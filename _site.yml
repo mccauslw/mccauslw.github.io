@@ -1,0 +1,19 @@
+name: "William McCausland"
+output_dir: "."
+navbar:
+  title: "William McCausland"
+  left:
+    - text: "Research"
+      href: research.html
+    - text: "ECN 6013"
+      href: ECN6013.html
+    - text: "Links"
+      href: links.html
+  right:
+    - icon: fa-envelope fa-lg
+      href: contact.html
+
+output:
+  html_document:
+    theme: paper
+    css: 'styles.css'

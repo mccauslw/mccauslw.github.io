@@ -1,0 +1,38 @@
+---
+---
+
+## R documentation
+
+### R Programming
+
+* [R for Data Science](https://r4ds.had.co.nz), by Grolemund and Wickham
+
+* [Advanced R](https://adv-r.hadley.nz), by Hadley Wickham
+
+### R Markdown
+
+* [Introduction to R Markdown](https://rmarkdown.rstudio.com/articles_intro.html)
+
+* [R Markdown from R Studio](https://rmarkdown.rstudio.com/lesson-1.html)
+
+* [R Markown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+* [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/), by Xie, Allaire and Grolemund
+
+### R Packages
+
+* [R Packages](http://r-pkgs.had.co.nz), by Hadley Wickham
+
+### R Websites
+
+* [Creating websites in R](https://www.emilyzabor.com/tutorials/rmarkdown_websites_tutorial.html), by Emily C. Zabor
+
+### R, Git and GitHub
+
+* [Happy Git and GitHub for the useR](https://happygitwithr.com), by Jenny Bryan and Jim Hester
+
+* ["Git and GitHub" chapter in "R packages"](http://r-pkgs.had.co.nz/git.html#git-pullreq)
+
+### R, C and C++
+
+* ["Rewriting R code in C++" chapter in "Advanced R"](https://adv-r.hadley.nz/rcpp.html)
