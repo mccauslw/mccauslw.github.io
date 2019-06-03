@@ -1,4 +1,93 @@
 ---
 ---
 
-Papers:
+#### Papers in Progress
+
+A Flexible Stochastic Conditional Duration Model
+(with Samuel Gingras)
+
+Dynamic factor models with stochastic volatility
+
+Multivariate stochastic volatility
+(with Shirley Miller and Denis Pelletier)
+
+#### Journal Articles
+
+[Testing the random utility hypothesis directly](./Papers/McCaDaviMarlParkBrow.pdf)
+*Economic Journal*, forthcoming.  
+(with Clintin Davis-Stober, A. A. J. Marley, Sanghyuk Park and Nicholas Brown)
+
+[The HESSIAN method for models with leverage-like effects](./Papers/DjegMcCa14.pdf)
+*Journal of Financial Econometrics*, 2015,
+**13**, 722-755.  
+(with Gbowan B. Djegnéné)
+
+[Bayesian inference and model comparison for random choice structures](./Papers/McCaMarl_JMP_14.pdf)
+*Journal of Mathematical Psychology*, 2014,
+**62-6**, 33-46.  
+(with A.A.J. Marley)
+
+[Prior Distributions for Random Choice Structures](./Papers/McCaMarl_JMP_13.pdf)
+*Journal of Mathematical Psychology*, 2013,
+**57**, 78-93.  
+(with A.A.J. Marley)
+
+[The HESSIAN Method (Highly Efficient State Smoothing, In A Nutshell)](./Papers/McCa_JEconometrics_12.pdf)
+*Journal of Econometrics*, 2012,
+**168**, 189-206.
+
+[Simulation smoothing for state-space models: A computational efficiency analysis](./Papers/McCaMillPell_CSDA_11.pdf)
+*Computational Statistics and Data Analysis*, 2011,
+**55**, 199-212.  
+(with Shirley Miller and Denis Pelletier)
+
+[Random Consumer Demand](./Papers/McCa_Economica_09.pdf)
+*Economica*, 2009,
+**76**, 89-107.
+ 
+[On Bayesian Analysis and Computation for Functions with Monotonicity and Curvature Restrictions](./Papers/McCa_JEconometrics_08.pdf)
+*Journal of Econometrics*, 2008,
+**142**, 484-507.
+
+[Time Reversibility of Stationary Regular Finite State Markov Chains](./Papers/McCa_JEconometrics_07.pdf)
+*Journal of Econometrics*, 2007,
+**136**, 303-318.
+
+[Using the BACC Software for Bayesian Inference](./Papers/McCa_CompEcon_04.pdf)
+*Computational Economics*, 2004,
+**23**, 201-218.
+
+[Bayesian Specification Analysis in Econometrics](./Papers/GeweMcCa_AJAE_01.pdf)
+*American Journal of Agricultural Economics*, 2001,
+**83**, 1181-1186. (with John Geweke)
+
+#### Other publications
+
+[Economic Modeling and Inference, by Bent Jesper Christensen and Nicholas M. Kiefer](./Papers/McCa_IREF_10.pdf)
+*International Review of Economics and Finance*, 2010,
+**19**, 793-794.
+(book review)
+
+Discussion on the Paper by Rue, Martino and Chopin
+*Journal of the Royal Statistical Society: Series B*, 2009,
+**71**, 375-375.
+
+Bayesian Inference on Time-Varying Proportions,
+in S. Chib, W. Griffiths, G. Koop and D. Terrell (eds.),
+*Advances in Econometrics, Volume 23: Bayesian Econometric Methods*.
+Bingley, UK: Emerald Books, 2008, 525-544.  
+(with Brahim Lgui)
+
+Using Simulation Methods for Bayesian Econometric Models
+in  David E. A. Giles (ed.),
+*Computer-Aided Econometrics*.
+New York: Marcel Dekker, 2003, 209-261. (with John Geweke and John J. Stevens)
+
+Embedding Bayesian Tools in Mathematical Software
+*Proceedings of the International Society for Bayesian Analysis (ISBA)*, 2000, 165-173.
+(with John Geweke)
+
+#### Unpublished research
+
+The Ghost in the Machine: Inferring Machine-Based Strategies from Observed Behavior
+(with Jim Engle-Warnick and John Miller)
