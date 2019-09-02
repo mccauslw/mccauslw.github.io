@@ -1,5 +1,4 @@
 name: "William McCausland"
-output_dir: "."
 navbar:
   title: "William McCausland"
   left:
@@ -18,8 +17,7 @@ navbar:
       href: contact.html
     - icon: fa-github fa-lg
       href: http://github.com/mccauslw
-
 output:
   html_document:
     theme: paper
-    css: 'styles.css'
+    css: styles.css
