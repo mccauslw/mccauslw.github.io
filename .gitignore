@@ -2,3 +2,11 @@
 .Rhistory
 .RData
 .Ruserdata
+.DS_Store
+*.lb
+*.aux
+*.fls
+*.log
+*.fdb_latexmk
+*.synctex.gz
+site_libs
