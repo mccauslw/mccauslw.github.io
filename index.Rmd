@@ -7,3 +7,20 @@
 
 I am an associate professor in the Department of Economics at the University of Montreal.
 
+My current research interests fall in two main areas:  
+
+1. Random discrete choice analysis  
+    + collection and analysis of data from discrete choice experiments  
+    + Bayesian analysis of abstract discrete choice models  
+    + testing random utility and other probabilistic discrete choice axioms  
+    + choice anomalies such as context effects and stochastic intransitivity  
+1. Non-linear and non-Gaussian state space models  
+    + stochastic volatility, count and duration models
+    + multivariate models
+
+The courses I am teaching now or have taught recently are:  
+
+1. Probability for Economists (University of Montreal, Ph.D.)  
+1. Elements of Microeconomics (University of Montreal, M.Sc.)  
+1. Econometrics of Financial Markets (University of Montreal, M.Sc.)  
+
