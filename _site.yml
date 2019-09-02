@@ -1,4 +1,5 @@
 name: "William McCausland"
+output_dir: "_site"
 navbar:
   title: "William McCausland"
   left:
