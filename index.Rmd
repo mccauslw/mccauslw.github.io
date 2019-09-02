@@ -1,7 +1,7 @@
 ---
 ---
 
-<img src="images/010.jpg" style="width:25%; border:2px solid; margin-left: 20px" align="right">
+<img src="images/010.jpg" style="width:50%; border:2px solid; margin-left: 20px" align="right">
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
@@ -22,9 +22,9 @@ My current research interests fall in two main areas:
 
 The courses I am teaching now or have taught recently are:  
 
-1. Probability for Economists (Ph.D.)  
-1. Elements of Microeconomics (M.Sc.)  
-1. Econometrics of Financial Markets (M.Sc.)  
+1. Probability for Economists, ECN 7060 (Ph.D.)  
+1. Elements of Microeconomics, ECN 6013 (M.Sc.)  
+1. Econometrics of Financial Markets, ECN 6578 (M.Sc.)  
 
 *** 
 Je suis professeur agrégé dans le département de sciences économiques de l'université de Montréal.
@@ -44,6 +44,6 @@ Mes recherches actuelles portent sur deux champs:
     
 Les cours que j'enseigne actuellement et récemment :
 
-1. Probabilités pour économistes (3ième cycle)
-1. Éléments de microéconomie (2ième cycle)
-1. Économétrie des marchés financiers (2ième cycle)
+1. Probabilités pour économistes, ECN 7060 (3ième cycle)
+1. Éléments de microéconomie, ECN 6013 (2ième cycle)
+1. Économétrie des marchés financiers, ECN 6578 (2ième cycle)
