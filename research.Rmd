@@ -1,7 +1,7 @@
 ---
 ---
 
-#### papers in Progress
+#### Papers in progress
 
 A Flexible Stochastic Conditional Duration Model
 (with Samuel Gingras)
@@ -11,7 +11,7 @@ Dynamic factor models with stochastic volatility
 Multivariate stochastic volatility
 (with Shirley Miller and Denis Pelletier)
 
-#### Journal Articles
+#### Journal articles
 
 [Testing the random utility hypothesis directly](./papers/McCaDaviMarlParkBrow.pdf)
 *Economic Journal*, forthcoming.  

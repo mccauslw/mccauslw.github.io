@@ -28,7 +28,7 @@ The courses I am teaching now or have taught recently are:
 
 Je suis professeur agrégé dans le département de sciences économiques de l'université de Montréal.
 
-Mes recherches actuels portent sur deux champs:
+Mes recherches actuelles portent sur deux champs:
 
 1. Analyse du choix discret stochastique
     + collecte et analysis des données provenant des expériences en choix discret
