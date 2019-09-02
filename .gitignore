@@ -9,6 +9,5 @@
 *.log
 *.fdb_latexmk
 *.synctex.gz
-_site
 _site.yml
 site_libs
