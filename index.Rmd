@@ -1,7 +1,7 @@
 ---
 ---
 
-<img src="images/010.jpg" style="width:25%; border:2px solid; margin-right: 20px" align="left">
+<img src="images/010.jpg" style="width:25%; border:2px solid; margin-left: 20px" align="right">
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
@@ -12,15 +12,37 @@ My current research interests fall in two main areas:
 1. Random discrete choice analysis  
     + collection and analysis of data from discrete choice experiments  
     + Bayesian analysis of abstract discrete choice models  
-    + testing random utility and other probabilistic discrete choice axioms  
+    + tests of random utility and other probabilistic discrete choice axioms  
     + choice anomalies such as context effects and stochastic intransitivity  
 1. Non-linear and non-Gaussian state space models  
     + stochastic volatility, count and duration models
     + multivariate models
+    + simulation smoothing
+    + Bayesian analysis
 
 The courses I am teaching now or have taught recently are:  
 
-1. Probability for Economists (University of Montreal, Ph.D.)  
-1. Elements of Microeconomics (University of Montreal, M.Sc.)  
-1. Econometrics of Financial Markets (University of Montreal, M.Sc.)  
+1. Probability for Economists (Ph.D.)  
+1. Elements of Microeconomics (M.Sc.)  
+1. Econometrics of Financial Markets (M.Sc.)  
 
+Je suis professeur agrégé dans le département de sciences économiques de l'université de Montréal.
+
+Mes recherches actuels portent sur deux champs:
+
+1. Analyse du choix discret stochastique
+    + collecte et analysis des données provenant des expériences en choix discret
+    + analyse bayésienne des modèles de choix discret abstrait
+    + tests de l'utilité aléatoire et d'autres axiomes de choix discret probabiliste
+    + anomalies de choix tels les effets de context et les intransitivités stochastiques
+1. Modèles espace-état non-linéaires et non-gaussiens
+    + modèles de volatilité stochastique, des comptes et des durées
+    + modèles multivariés
+    + simulation smoothing
+    + analyse bayésienne
+    
+Les cours que j'enseigne actuellement et récemment :
+
+1. Probabilités pour économistes (3ième cycle)
+1. Éléments de microéconomie (2ième cycle)
+1. Économétrie des marchés financiers (2ième cycle)
