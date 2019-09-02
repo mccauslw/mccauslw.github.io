@@ -1,4 +1,6 @@
 ---
 ---
 
+<link rel="stylesheet" href="styles.css" type="text/css">
+
 Documents pour ECN 7060, Probabilités pour Économistes

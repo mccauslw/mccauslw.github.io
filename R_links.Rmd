@@ -1,6 +1,8 @@
 ---
 ---
 
+<link rel="stylesheet" href="styles.css" type="text/css">
+
 ### R documentation
 
 #### R Programming

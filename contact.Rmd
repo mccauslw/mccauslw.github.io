@@ -1,6 +1,8 @@
 ---
 ---
 
+<link rel="stylesheet" href="styles.css" type="text/css">
+
 #### Email
 
 > william.j.mccausland@umontreal.ca  
@@ -10,7 +12,7 @@
 > CP 6128, succ. Centre-ville  
 > Montréal, QC H3C 3J7, Canada  
 
-#### Street Address (including packages)
+#### Street Address (for sending packages)
 > Départment de sciences économiques, Université de Montréal  
 > Pavillon Lionel-Groulx  
 > 3150 rue Jean-Brillant, C-6046  
