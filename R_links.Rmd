@@ -16,6 +16,7 @@
 * [R Markdown from R Studio](https://rmarkdown.rstudio.com/lesson-1.html)  
 * [R Markown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)  
 * [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/), by Xie, Allaire and Grolemund  
+* [Pimp my RMD: a few tips for R Markdown](https://holtzy.github.io/Pimp-my-rmd/), by Yan Holtz
 
 #### R Packages
 

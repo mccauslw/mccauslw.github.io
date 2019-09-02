@@ -10,10 +10,15 @@
 [Multivariate stochastic volatility using the HESSIAN method](./papers/McCaMillPell.pdf)
 (with Shirley Miller and Denis Pelletier)
 
-A Flexible Stochastic Conditional Duration Model
+[Dynamic factor models with stochastic volatility](./papers/McCa_DFM-SV.pdf)
+
+A flexible stochastic conditional duration model
 (with Samuel Gingras)
 
-Dynamic factor models with stochastic volatility
+[Joint sampling of states and parameters in state space models](./papers/McCaGing_theta_draw.pdf)
+(with Samuel Gingras)
+
+On the unconditional distribution of time-varying parameters
 
 #### Random Choice Models
 
