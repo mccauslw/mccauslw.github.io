@@ -1,6 +1,8 @@
 ---
 ---
 
+<img src="images/010.jpg" style="width:25%; border:2px solid; margin-right: 20px" align="left">
+
 <link rel="stylesheet" href="styles.css" type="text/css">
 
 I am an associate professor in the Department of Economics at the University of Montreal.
