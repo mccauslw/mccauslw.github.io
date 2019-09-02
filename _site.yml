@@ -11,7 +11,7 @@ navbar:
     - text: "ECN 7060"
       href: ECN7060.html
     - text: "R Links"
-      href: links.html
+      href: R_links.html
   right:
     - icon: fa-envelope fa-lg
       href: contact.html
