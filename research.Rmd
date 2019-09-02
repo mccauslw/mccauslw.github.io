@@ -3,7 +3,7 @@
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-#### Papers in progress
+### Papers in progress
 
 A Flexible Stochastic Conditional Duration Model
 (with Samuel Gingras)
@@ -13,7 +13,7 @@ Dynamic factor models with stochastic volatility
 Multivariate stochastic volatility
 (with Shirley Miller and Denis Pelletier)
 
-#### Journal articles
+### Journal articles
 
 [Testing the random utility hypothesis directly](./papers/McCaDaviMarlParkBrow.pdf)
 *Economic Journal*, forthcoming.  
@@ -63,7 +63,7 @@ Multivariate stochastic volatility
 *American Journal of Agricultural Economics*, 2001,
 **83**, 1181-1186. (with John Geweke)
 
-#### Other publications
+### Other publications
 
 [Economic Modeling and Inference, by Bent Jesper Christensen and Nicholas M. Kiefer](./papers/McCa_IREF_10.pdf)
 *International Review of Economics and Finance*, 2010,
@@ -89,7 +89,7 @@ Embedding Bayesian Tools in Mathematical Software
 *Proceedings of the International Society for Bayesian Analysis (ISBA)*, 2000, 165-173.
 (with John Geweke)
 
-#### Unpublished research
+### Unpublished research
 
 The Ghost in the Machine: Inferring Machine-Based Strategies from Observed Behavior
 (with Jim Engle-Warnick and John Miller)
