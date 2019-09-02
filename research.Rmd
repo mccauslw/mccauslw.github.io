@@ -5,15 +5,36 @@
 
 ### Papers in progress
 
+#### State Space Models
+
+[Multivariate stochastic volatility using the HESSIAN method](./papers/McCaMillPell.pdf)
+(with Shirley Miller and Denis Pelletier)
+
 A Flexible Stochastic Conditional Duration Model
 (with Samuel Gingras)
 
 Dynamic factor models with stochastic volatility
 
-Multivariate stochastic volatility
-(with Shirley Miller and Denis Pelletier)
+#### Random Choice Models
 
-### Journal articles
+Testing axioms of stochastic discrete choice using population choice probabilities
+(with Tony Marley and Clint Davis-Stober)
+
+An illustrated guide to context effects
+(with Tony Marley, Clint Davis-Stober and Brandon Turner)
+
+On the multiplicative inequality
+(with Tony Marley)
+
+A new experiment for population choice probabilities
+(with Charlie Gerringer, YouGov)
+
+RanCh: A package for abstract discrete Random Choice analysis
+
+A data archive for context effects
+(with Hope Snyder and Clint Davis-Stober)
+
+### Journal articles (reverse order of publication)
 
 [Testing the random utility hypothesis directly](./papers/McCaDaviMarlParkBrow.pdf)
 *Economic Journal*, forthcoming.  
