@@ -23,6 +23,8 @@
 
 * [Creating websites in R](https://www.emilyzabor.com/tutorials/rmarkdown_websites_tutorial.html), by Emily C. Zabor  
 
+* [Chapter 10: Websites in "R Markdown: The Definitive Guide"](https://bookdown.org/yihui/rmarkdown/websites.html)
+
 #### R, Git and GitHub
 
 * [Happy Git and GitHub for the useR](https://happygitwithr.com), by Jenny Bryan and Jim Hester  
