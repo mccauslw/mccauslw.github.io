@@ -1,0 +1,157 @@
+---
+title: "ECN 7060, Cours 4"
+author: "William McCausland"
+date: '2018-09-26'
+output: beamer_presentation
+---
+
+## Intégration riemannienne
+
+$$ L \int_a^b X = 
+\sup\left\{
+\sum_{i=1}^n (t_i-t_{i-1})
+\inf_{t\in [t_{i-1},t_i]} X(t) \colon a=t_0<t_1<\ldots<t_n = b
+\right\} $$
+
+$$ U \int_a^b X = 
+\inf\left\{
+\sum_{i=1}^n (t_i-t_{i-1})
+\sup_{t\in [t_{i-1},t_i]} X(t) \colon a=t_0<t_1<\ldots<t_n = b
+\right\} $$
+Notes:
+
+* L'existence et la valeur de l'intégral.
+* Extensions:
+$$ \int_{0}^\infty X(t)\, dt = \lim_{b\to \infty} X(t)\, dt
+\quad \int_a^b X(t)\, dt = \lim_{c \downarrow a} \lim_{d \uparrow b} \int_c^d X(t)\, dt. $$
+
+## Problèmes pour l'intégration riemannienne
+
+* $L \int_0^1 1_Q(t)$ et $U \int_0^1 1_Q(t)$
+
+* Soit $Q_n$ l'ensemble des $n$ premiers rationnels dans $[0,1]$.
+
+* $U \int_0^1 1_{Q_n}(t)$.
+
+* Notez que
+    * $1_{Q_n}(t) \leq 1_{Q_{n+1}}(t)$ pour tous $t$
+    * $\lim_{n\to \infty} 1_{Q_n}(t) = 1_Q(t)$ pour tous $t$
+    * $\lim_{n\to \infty} U \int_0^1 1_{Q_n}(t) \neq U \int_0^1 1_Q(t)$
+
+## Une variable aléatoire simple sur la mesure de Lebesgue sur $[0,1]$
+
+* Trois façons d'écrire la même variable aléatoire :
+
+    1. $X(\omega) = 2 \cdot 1_{[0,1/4) \cap (1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
+    1. $X(\omega) = 2 \cdot 1_{[0,1/4)}(\omega) + 2 \cdot 1_{(1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
+    1. $X(\omega) = 2 \cdot 1_{\Omega}(\omega) + 1 \cdot 1_{[1/4,1/2]}(\omega)$
+    
+* L'image de $X$ est $\{x_1,x_2\} = \{2, 3\}$.
+
+* Dans 1, $X$ est dans la forme canonique
+$$ X(\omega) = \sum_{x \in X(\Omega)} x \cdot 1_{\{X^{-1}(\{x\})\}}(\omega). $$
+
+* Dans 2, $X$ n'est pas dans cette forme, mais $[0,1/4)$, $[1/4,1/2]$ et $(1/2,1]$ forme une partition de $[0,1]$.
+
+* Dans 3, $[0,1]$ et $[1/4,1/2]$ ne forme pas une partition de $[0,1]$.
+
+## L'espérance d'une variable aléatoire
+
+* Pour une variable aléatoire simple ($X(\Omega)$ est fini):
+$$ E[X] = \sum_{x \in X(\Omega)} x \cdot P(X^{-1}(\{x\})). $$
+
+* Pour une variable aléatoire non-négative :
+$$ E[X] = \sup \{E[Y] \colon Y \leq X,\, Y\,\mbox{simple}\}. $$
+
+* Pour une variable aléatoire générale :
+$$ E[X] = E[X^+] - E[X^-]. $$
+* Notes :
+    * Quand l'expression de $X$ n'est pas de forme canonique.
+    * Cohérence des trois définitions.
+    * Valeurs possibles; quand la troisième n'est pas bien définie.
+
+## Espérances et les intégrals impropres
+
+1. Notez l'asymétrie dans $E[X] = \sup \{E[Y] \colon Y \leq X,\, Y\,\mbox{simple}\}$
+1. Notez la restriction $X\geq 0$.
+1. Exemple: $X(\omega) = 1/\sqrt{\omega}$, mesure de Lebesgue sur $[0,1]$.
+1. Exemple: $X(\omega) = 1/\omega$, mesure de Lebesgue sur $[0,1]$.
+1. Exemple: $X(\omega) = e^\omega$, densité gaussienne sur $\mathbb{R}$.
+1. Example: $X(\omega) = e^\omega$, densité $t$ de Student sur $\mathbb{R}$.
+
+## Convergence monotone de $X_n$ simple à $X$ non-négative
+
+* Fonctions $\Psi_n \colon \mathbb{R} \to \mathbb{R}$.
+$$ \Psi_n(x) = \min(n,2^{-n} \lfloor 2^n x \rfloor). $$
+
+* Propriétés de $\Psi_n(x)$ :
+    * $0 \leq \Psi_n(x) \leq x$, $x \geq 0$.
+    * $\Psi_n(x) \nearrow x$
+    * $\Psi_n(\mathbb{R})$ est fini
+    
+* Construction $X_n(\omega) = \Psi_n(X(\omega))$.
+
+* Propriétés de $X_n$
+    * $X_n$ est simple
+    * $X_n \leq X_{n+1} \leq X$
+    * $\lim_{n\to \infty} X_n(\omega) = X(\omega)$, $\omega \in \Omega$.
+    * $E[X_n] \leq E[X]$ (définition de $E[X]$)
+    * $\lim_{n\to \infty} E[X_n(\omega)] \leq E[X]$
+
+## Théorème de convergence monotone
+
+* Supposez que $X_1, X_2,\ldots$ sont des variables aléatoires avec $X_n \nearrow X$.
+Alors $X$ est une variable aléatoire et $E[X] = \lim_{n\to \infty} E[X_n]$.
+
+* Remarque : les $X_n$ ne sont pas forcément simples.
+
+* Selon monotonicité, $E[X_1] \leq E[X_2] \leq \ldots \leq E[X]$.
+
+* Immédiatement, $\lim_{n\to \infty} E[X_n] \leq E[X]$
+
+* Preuve de $\lim_{n\to \infty} E[X_n] \geq E[X]$ :
+
+    * Soit $Y$ simple, $Y \leq X$ (alors $E[Y] \leq E[X]$)
+    * Alors $Y = \sum_i v_i 1_{A_i}$ où $\{A_1\}$ est une partition de $\Omega$, et $v_i \leq X(\omega)$ pour $\omega \in A_i$.
+    
+## Remarques
+
+* On peut affaiblir la condition $X_n(\omega) \nearrow X(\omega)$ en
+$$ P(\{X_n(\omega) \nearrow X(\omega)\}) = 1. $$
+
+* On peut choisir une suite de variables aléatoires simples.
+
+* Autrement dit, $X_n \nearrow X$ presque surement.
+
+* Importance de monotonicité, positivité
+
+* Échec de convergence monotone pour l'intégration riemannienne.
+
+* Linéarité de $E[\cdot]$ pour variables aléatoires positives :
+soit $X_n = \Psi_n(X)$, $Y_n = \Psi_n(Y)$, $a,b\geq 0$.
+$$ E[aX + bY] = \lim_n E[aX_n + bY_n] = \lim_n aE[X_n] + bE[Y_n]
+= aE[X] + bE[Y]. $$
+
+## Aperçu des chapitres 5 et 6
+
+* Chapitre 5
+    * Inégalités de Markov, Chebychev, Cauchy-Schwarz, Jensen
+    * Convergence presque sur, en probabilité
+    * Lois de grand nombres
+* Chapitre 6
+    * Distributions, fonctions de distribution, de densité
+    
+## Devoirs et lectures
+
+### Devoirs, Rosenthal (matière du cours 4)
+
+1. Exercise 4.5.1
+2. Exercise 4.5.2
+3. Exercise 4.5.3
+4. Exercise 4.5.4
+5. Exercise 4.5.13 (considérez les fonctions $\omega^{-1}$, $\omega^{-1/2}$, $(1-\omega)^{-1}$ et $(1-\omega)^{-1/2}$ sur $\Omega$ et leurs combinaisons linéaires).
+
+### Lectures, Rosenthal (matière du cours 5)
+1. Chapitres 5, 6
+
+

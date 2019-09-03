@@ -1,0 +1,182 @@
+---
+title: "Cours 8"
+author: "William McCausland"
+date: '2018-10-31'
+output: beamer_presentation
+---
+
+## Un peu de Chapitre 12
+
+* $\mu$, $\nu$, $\lambda$ des mesures boréliennes sur $\mathbb{R}$, $\lambda$ Lebesgue.
+* $\mu$ est absolument continue s'il existe $f$ mesurable telle que $\mu(A) = \int_A f(x) \lambda(dx)$, $A$ mesurable.
+* $\mu$ est absolument continue par rapport à $\nu$ s'il existe $f$, $\nu$-mesurable, telle que $\mu(A) = \int_A f(x) \nu(dx)$, $A \in {\cal B}$.
+* $\mu$ est discret si $\sum_{x\in \mathbb{R}} \mu(\{x\}) = \mu(\mathbb{R})$.
+* $\mu \ll \nu$ signifie $\nu(A) = 0 \Rightarrow \mu(A) = 0$.
+* Théorème Radon-Nikodym : $\mu \ll \nu \Leftrightarrow \,\text{il existe $f$, $\nu$-mesurable, telle que}\,\mu(A) = \int_A f(x) \nu(dx)$, $A$ mesurable.
+* $f=\frac{d\mu}{d\nu}$ est la dérivée Radon-Nikodym de $\mu$ par rapport à $\nu$.
+* $\mu(A) = \int_A \left(\frac{d\mu}{d\nu}\right) d\nu$.
+
+## Probabilités conditionnelles de $\Lambda$
+
+* Par rapport à la sous-tribu ${\cal G}_1$ :
+$$ P(\Lambda|{\cal G}_1) =
+\begin{cases}
+p_{13}/P(A_1) & \omega \in A_1 \\
+(p_{21} + p_{22})/P(A_2) & \omega \in A_2 \\
+p_{32}/P(A_3) & \omega \in A_3
+\end{cases} $$
+
+* Par rapport à la variable aléatoire $X$
+$$ P(\Lambda|X) = P(\Lambda|\sigma(X)) =
+\begin{cases}
+\frac{p_{13}+p_{21}+p_{22}}{P(A_1 \cup A_2)} & \omega \in A_1 \cup A_2 = \{X=1\} \\
+p_{32}/P(A_3) & \omega \in A_3 = \{X=2\}
+\end{cases} $$
+
+* Par rapport à la sous-tribu minimale $\{\emptyset,\Omega\}$ :
+$$ P(\Lambda|\{\emptyset,\Omega\}) = P(\Lambda) = p_{13} + p_{21} + p_{22} + p_{32},\,\mbox{tous}\; \omega \in \Omega $$
+
+* Par rapport à la sous-tribu maximal ${\cal F}$ :
+$$ P(\Lambda|{\cal F}) = 1_\Lambda(\omega). $$
+
+## Vérification de $P(\Lambda|{\cal G}_1)$
+
+* À vérifier : $E[P(\Lambda|{\cal G}_1)1_{A}] = P(\Lambda \cap A)$, $A \in {\cal G}_1$.
+
+$$ E[P(\Lambda|{\cal G}_1)1_{A_1}] = E\left[\frac{p_{13}}{P(A_1)}1_{A_1}\right] = \frac{p_{13}}{P(A_1)}E[1_{A_1}] = p_{13} = P(\Lambda \cap A_1) $$
+
+$$ E[P(\Lambda|{\cal G}_1)1_{A_2}] = E\left[\frac{p_{21} + p_{23}}{P(A_2)}1_{A_2}\right] = \frac{p_{21}+p_{22}}{P(A_2)}E[1_{A_2}] = p_{21} + p_{22} = P(\Lambda \cap A_2) $$
+
+$$ E[P(\Lambda|{\cal G}_1)1_{A_3}] = E\left[\frac{p_{32}}{P(A_3)}1_{A_3}\right] = \frac{p_{32}}{P(A_3)}E[1_{A_3}] = p_{32} = P(\Lambda \cap A_3) $$
+
+* Le reste par linéarité de l'espérance, additivité de probabilité
+
+## Construction de $P(\Lambda|{\cal G}_1) = \frac{d\nu}{dP_0}$
+
+* La mesure $\nu$ : $\nu(A) \equiv P(\Lambda \cap A)$, $A \in {\cal G}_1$
+$$ \nu(A_1) = P(\Lambda \cap A_1) = p_{13} $$
+$$ \nu(A_2) = P(\Lambda \cap A_2) = p_{21} + p_{22} $$
+$$ \nu(A_3) = P(\Lambda \cap A_2) = p_{32} $$
+
+* La mesure $P_0$ : $P_0(A) \equiv P(A)$, $A \in {\cal G}_1$.
+$$ P_0(A_1) = p_{11} + p_{12} + p_{13} $$
+$$ P_0(A_2) = p_{21} + p_{22} + p_{23} $$
+$$ P_0(A_3) = p_{31} + p_{32} + p_{33} $$
+
+* Notez que $P_0(A) = 0 \Rightarrow \nu(A) = 0$, $A \in {\cal G}_1$ : c-à-d $\nu \ll P_0$.
+
+* $P(\Lambda|{\cal G}_1)(\omega) \equiv \nu(A)/P_0(A)$, $\omega \in A \in {\cal G}_1$.
+
+## Espérances conditionelles de $Y$
+
+* Par rapport à la sous-tribu ${\cal G}_1$ :
+$$ E[Y|{\cal G}_1] = \begin{cases}
+(4(p_{11}+p_{13}) + 5p_{12})/P(A_1) & \omega \in A_1 \\
+(4(p_{21}+p_{23}) + 5p_{22})/P(A_2) & \omega \in A_2 \\
+(4(p_{31}+p_{33}) + 5p_{32})/P(A_3) & \omega \in A_3 \\
+\end{cases} $$
+
+* Par rapport à la variable aléatoire $X$
+$$ E[Y|X] = \begin{cases}
+\frac{4(p_{11}+p_{13}+p_{21}+p_{23}) + 5(p_{12}+p_{22})}{P(A_1 \cup A_2)} & \omega \in A_1 \cup A_2 = \{X=1\} \\
+(4(p_{31}+p_{33}) + 5p_{32})/P(A_3) & \omega \in A_3 = \{X=2\} \\
+\end{cases} $$
+
+* Par rapport à la sous-tribu minimale $\{\emptyset,\Omega\}$ :
+$$ E[Y|\{\emptyset,\Omega\}] = E[Y] $$
+
+* Par rapport à la sous-tribu maximal ${\cal F}$ :
+$$ E[Y|{\cal F}] = Y(\omega) $$
+
+## Vérification de $E[Y|{\cal G}_1]$
+
+* À vérifier : $E[E[Y|{\cal G}_1]1_A]] = E[Y1_A]$, $A \in {\cal G}_1$ :
+
+* Pour $A = A_1$ :
+$$ E[E[Y|{\cal G}_1]1_{A_1}] = \frac{4(p_{11}+p_{13}) + 5p_{12}}{P(A_1)} E[1_{A_1}]
+= 4(p_{11}+p_{13}) + 5p_{12} $$
+
+$$ E[Y1_{A_1}] = 4(p_{11}+p_{13}) + 5p_{12} $$
+
+* $A = A_2$, $A = A_3$ semblables
+
+* Le reste par linéarité de l'espérance
+
+## Construction de $E[Y|{\cal G}_1]$ :
+
+* En général, $E[Y|{\cal G}_1](\omega) = E[Y^+|{\cal G}_1](\omega) - E[Y^-|{\cal G}_1](\omega)$, constant sur chaque $A \in {\cal G}_1$.
+
+* Mêmes cas $\infty$, $-\infty$, fini, indéfini, événement par événement
+
+* Ici, $Y = Y^+$, alors $E[Y|{\cal G}_1] = E[Y^+|{\cal G}_1] = \frac{d\rho^+}{dP_0}$,
+
+* $\rho^+(A) \equiv E[Y^+1_A]$, $P_0(A) \equiv P(A)$, $A \in {\cal G}_1$
+
+* Pour $A = A_1$,
+    * $\rho^+(A_1) = E[Y^+1_{A_1}] = 4(p_{11}+p_{13}) + 5p_{12}$
+    * $P_0(A_1) = P(A_1) = p_{11} + p_{12} + p_{13}$
+
+* Les cas $A = A_2$, $A = A_3$ sont semblables.
+
+* Pour chaque $\omega \in A \in {\cal G}_1$, $E[Y^+|{\cal G}_1](\omega) = \rho^+(A)/P_0(A)$.
+
+* Pour $\omega \in A_1$,
+    * $E[Y^+|{\cal G}_1](\omega) = \frac{4(p_{11}+p_{13}) + 5p_{12}}{p_{11} + p_{12} + p_{13}}$
+
+## Exercice 13.2.3
+
+* ${\cal G}_1$ et ${\cal G}_2$ sont deux sous-tribus de ${\cal F}$.
+
+(a) Si $Z$ est ${\cal G}_1$-mesurable et ${\cal G}_1 \subseteq {\cal G}_2$, $Z$ est ${\cal G}_2$ mesurable :
+    * Pour tous $z \in \mathbb{R}$, $\{Z \leq z\} \in {\cal G}_1$ alors $\{Z \leq z\} \in {\cal G}_2$.
+    
+(b) Si $Z$ est ${\cal G}_1$-mesurable et ${\cal G}_2$-mesurable, $Z$ est $({\cal G}_1 \cap {\cal G}_2)$-mesurable :
+    * Pour tous $z \in \mathbb{R}$, $\{Z \leq z\} \in {\cal G}_1$ et $\{Z \leq z\} \in {\cal G}_2$, alors $\{Z \leq z\} \in {\cal G}_1 \cap {\cal G}_2$.
+    
+## Proposition 13.2.6
+
+* Définition de $E[X|{\cal G}]$: $E[E[X|{\cal G}]1_G] = E[X1_G]$, tous $G \in {\cal G}$.
+
+* variables aléatoires $X$, $Y$, $X$ est ${\cal G}$-mesurable, $E[Y]<\infty$, $E[XY]<\infty$.
+
+* Proposition : $E[XY|{\cal G}] = XE[Y|{\cal G}]$
+
+* Preuve :
+    * Soit $G_0,G \in {\cal G}$, $X = 1_{G_0}$. Alors
+    $$ E[XE[Y|{\cal G}]1_G] = E[E[Y|{\cal G}]1_{G \cap G_0}] = E[Y1_{G \cap G_0}] = E[XY1_{G}]. $$
+    $$ E[E[XY|{\cal G}]1_G] = E[XY1_{G}]. $$
+    * $XE[X|{\cal G}] = E[XY|{\cal G}]$ avec probabilité 1.
+    * Même chose pour les $X$ simple (linéarité), positives (convergence dominée), général.
+
+## Proposition 13.2.7 (espérances itérées)
+
+* Définition de $E[X|{\cal G}]$: $E[E[X|{\cal G}]1_G] = E[X1_G]$, tous $G \in {\cal G}$.
+
+* Proposition : ${\cal G}_1 \subseteq {\cal G}_2 \subseteq {\cal F}$, $E[E[Y|{\cal G}_2]|{\cal G}_1] = E[Y|{\cal G}_1]$.
+
+* Preuve : fixe $G \in {\cal G}_1 \subseteq {\cal G}_2$,
+$$ E[\; E[E[Y|{\cal G}_2]|{\cal G}_1]\;1_G\;]
+= E[E[Y|{\cal G}_2]1_G] = E[Y1_G] $$
+$$ E[E[Y|{\cal G}_1]1_G] = E[Y1_G] $$
+alors
+$$ E[E[Y|{\cal G}_2]|{\cal G}_1] = E[Y|{\cal G}_1] \; \mbox{avec probabilité 1}. $$
+
+* Cas spécial, espérance conditionnelle comme projection
+$$ E[E[Y|{\cal G}]|{\cal G}] = E[Y|{\cal G}] $$
+
+## Devoirs et lectures
+
+Devoirs, Rosenthal (matière du cours 8)
+
+1. Exercice 13.4.2
+1. Exercice 13.4.6
+1. Exercice 13.4.8
+1. Exercice 13.4.10
+1. Exercice 13.4.12
+
+Préparation du cours 9, Casella et Berger
+
+1. Sections 6.1, 7.1
+1. Assez de 6.2, 6.3 pour faire les exercices 6.3, 6.6, 6.12(a), 6.14, 6.18
+1. Assez de 7.2 pour faire l'exercice 7.9
+

@@ -1,0 +1,235 @@
+---
+title: "ECN 7060, Cours 1"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+## Matières
+
+### Partie 1, Livre de Rosenthal
+* Espaces de probabilité, tribus, mesures, le théorème d’extension
+* Variables aléatoires, fonctions de distribution, indépendance
+* Espérance
+* Convergence en probabilité, convergence presque sûre
+* Fonctions caractéristiques, convergence en distribution et le théorème limite centrale
+* Probabilité et espérance conditionnelles
+
+### Partie 2, Livre de Casella et Berger
+* Statistiques suffisantes et ancillaires, principe de vraisemblance
+* Estimation ponctuelle, fréquentiste et bayésienne
+* Estimation d’intervalle, fréquentiste et bayésienne
+* Tests d’hypothèse, fréquentistes et bayésiens
+
+[//]: Partie 1: économétrie, micro et macro
+[//]: Convergence: économétrie fréquentiste
+[//]: Probabilité conditionnelle: économétrie bayésienne, micro, macro
+
+## Les éléments de la note finale :
+1. Questionnaires : 20% (meilleurs $n-1$ de $n \approx 10$)
+1. Examen intra maison : 25%
+2. Participation, cours et séance TP : 5%
+3. Examen final : 50%
+
+[//]: For people who don't benefit from TPs, participation based on class only
+[//]: Participation in TP can help, non-participation cannot hurt
+
+## Le cycle mercredi-mardi :
+1. Mercredi 13h-16h, cours :
+    + retour des questionnaires corrigés du cours précédent
+    + réponses aux questions des étudiants
+    + questionnaire sur les lectures (matière du cours actuel)
+    + correction des questionnaires du cours actuel
+    + enseignement magistral avec participation des étudiants
+    + aperçu de la matière de la semaine prochaine
+    + attribution des lectures (pour la semaine prochaine) avec questions simple de lecture, des devoirs sur la matière du cours actuel
+
+2. Mardi 11h30-13h, séance de travail pratique avec Narcisse
+    + discussion des devoirs
+
+[//]: Chance to ask questions before quiz
+
+## Attentes :
+### Avant le cours
+1. Avoir lu les lectures, pouvoir répondre aux questions simples
+
+[//]: Importance of trying first
+[//]: Nature of learning: asking questions and seeking answers
+
+### Avant la séance TP
+1. Avoir essayé (idéalement complété) les devoirs
+
+## Espaces de probablité $(\Omega, {\cal F}, P)$ dans un monde fini
+
+1. $\Omega$, l'*espace d'états*
+(exactement un état $\omega \in \Omega$ se produit)
+2. ${\cal F}$, algèbre, un ensemble d'événements (des parties de $\Omega$)
+3. $P \colon {\cal F} \to [0,1]$, une probabilité
+
+### Exemple :
+1. $\Omega = \{0,1\}$
+2. ${\cal F} = \{ \emptyset, \{0\}, \{1\}, \{0,1\}\} = 2^\Omega$
+3. $P(\cdot)$ selon le tableau suivant :
+
+$A$ | $P(A)$
+:---: | :------:
+$\emptyset$ | 0
+$\{0\}$ | 0.4
+$\{1\}$ | 0.6
+$\{0,1\}$ | 1
+
+[//]: Distinction between états et événements élémentaires
+[//]: States of the world not enough, interested in events
+[//]: Apparent redundancy: should notice this
+[//]: Axioms of probability and no-arbitrage conditions: P as a price
+[//]: Here: direct specification of F and P: note difficulty of doing this even for {1,...,10}.
+[//]: Specify less, and let the axioms do the rest
+
+## Jugements cohérents (de Finetti et Ramsey)
+
++ Ensemble d'états du monde : $\Omega = \{\omega_1,\omega_2\}$
+    - $\omega_1$: Le parti PLC gagne l'éléction fédérale prochaine
+    - $\omega_2$: Le parti PLC ne gagne pas
+    
++ Un agent offre des prix (cours acheteur et cours vendeur) pour ces contrats:
+    1. paie 1\$ si ni $\omega_1$ ni $\omega_1$ se produit (l'événement $\emptyset$)
+    2. paie 1\$ si $\omega_1$ se produit (l'événement $\{\omega_1\}$)
+    3. paie 1\$ si $\omega_2$ se produit (l'événement $\{\omega_2\}$)
+    4. paie 1\$ si $\omega_1$ ou $\omega_2$ se produit  (l'événement $\Omega = \{\omega_1, \omega_2\}$)
+
++ Ces jugements sont *cohérents* si un autre ne peut pas faire un profit sûr peu importe le résultat.
+
++ Ils sont cohérents ssi les prix vérifient les axiomes de probabilité.
+
++ Contribution de Ramsey: accommoder l'aversion pour le risque et mesurer à la fois les judgements de probabilité et l'utilité.
+
++ Ch. 2 de Diaconis et Skyrms, "Ten Great Ideas about Chance".
+
+[//]: 0.0, 0.5, 0.6, 1.0 : achete 4 vend 2 et 3, obtient 0.1
+[//]: Un standard méritoire même si on n'est pas obligé de parier.
+[//]: Marchés de prévision
+[//]: Additivité et la loi d'un prix, absense d'arbtitrage
+[//]: Pas forcément judicieux: 0.0, 0.01, 0.99, 1.00
+[//]: Nécessité, pas suffisance, de cohérence
+
+## Interprétation fréquentiste de probabilité
+
++ Venn et von Mises essaient de définir la probabilité en termes des (limites des) fréquences des événements semblables.
+
++ Plusieurs fréquentistes rejettent l'aspect subjectif des définitions qui repose sur les jugements cohérents.
+
++ Difficultés conceptuelles :
+    1. Définition de « semblable » qui évite et des tautologies et des situations où toutes les probabilités sont 0 ou 1.
+    1. L'irréalité des fréquences infinies
+    1. La possibilité des fréquences sont limites.
+
++ Ch. 4 de Diaconis et Skyrms, "Ten Great Ideas about Chance".
+
+## Quelles propriétés $(\Omega, {\cal F}, P)$ devrait-il posséder ($\Omega$ fini)?
+
+### Propriétés désirables
+1. Additivité finie : $$A, B \in {\cal F}, A \cap B = \emptyset \Rightarrow P(A \cup B) = P(A) + P(B)$$
+2. $P(\emptyset) = 0$, $P(\Omega) = 1$,
+3. $\emptyset, \Omega \in {\cal F}$,
+4. $A, B \in {\cal F} \Rightarrow A^c, A \cup B, A \cap B \in {\cal F}$
+
+Par 3 et 4, ${\cal F}$ est un algèbre, pas forcément une tribu.
+
+### Une façon de spécifier une probabilité :
+1. Donner $P(\{\omega\}) = p_\omega \geq 0$, $\omega \in \Omega$, où $\sum_{\omega \in \Omega} p_\omega = 1$
+2. Définir l'extension $P(A) = \sum_{\omega \in A} p_\omega$, $A \subseteq \Omega$.
+
+[//]: Different order, P then F, for intuition
+[//]: Closed under pairwise to closed under finite, not closed under infinite
+[//]: Verify probability triple in previous slide
+[//]: Can't do this for Omega on real interval
+[//]: Idea: specify some probabilities and let axioms do the rest
+[//]: Two issues: coherence, specifying enough
+
+## Dénombrable ou non?
+
+1. $\mathbb{N} = \{1,2,\ldots\}$
+1. $\mathbb{Z} = \{\ldots,-1,0,1,\ldots\}$
+1. $\mathbb{Z}^2$
+1. $\mathbb{Q} = \{a/b \colon a,b \in \mathbb{Z}, b \neq 0 \}$
+1. $\mathbb{Z}^n$
+1. $\mathbb{R}$
+1. $2^\mathbb{N}$, l'ensemble des sous-ensembles de $\mathbb{N}$
+1. L'ensemble des fonctions $f \colon \mathbb{N} \to \{0,1\}$
+1. L'ensemble des fichiers (livres, dessins, audio, video)
+1. L'ensemble des programmes informatiques
+
+[//]: Do diagonalisation argument
+[//]: Why doesn't it work on Q? Get a number not in Q.
+
+## Exemples de $\Omega$ : finis, dénombrables, indénombrables
+
+1. $\Omega = \{1,\ldots,n\}$
+1. $\Omega = \{(r_1,\ldots,r_n) \colon r_i \in \{0,1\}\}$
+1. $\Omega = \{(r_1,\ldots,r_n) \colon r_i \in \mathbb{Z}\}$
+1. $\Omega = \mathbb{N} \equiv \{1, 2, \ldots\}$
+1. $\Omega = \{(r_1,\ldots) \colon r_i \in \{0,1\}\}$
+1. $\Omega = [0,1]$
+1. $\Omega = \mathbb{R}$
+1. $\Omega = \mathbb{R}^n$
+
+[//]: Identify each as finite, countably infinite or uncountable
+[//]: Mention Poisson distribution
+
+## Construire $(\Omega, {\cal F}, P)$ pour la loi uniforme $[0,1]$
+
+### Premier essai: $\Omega = [0,1]$, ${\cal F} = 2^\Omega$, trouver une $P$ qui vérifie
+1. $P([a,b]) = P((a,b]) = P([a,b)) = P((a,b)) = b-a$ pour tout $0 \leq a \leq b \leq 1$.
+2. $A_1,A_2,\ldots, \in {\cal F}\, \mbox{disjoints} \Rightarrow P(\cup_{i=1}^\infty A_i) = \sum_{i=1}^\infty P(A_i)$
+3. $P(A \oplus r) = P(A)$, $0 \leq r \leq 1$.
+
+### Impossible! Preuve :
+1. Définir $x \sim y$ ssi $y-x \in Q$ ; $\sim$ est transitive et réflexive.
+2. Partitionner $[0,1]$ en classes d'équivalence : $\{0, 1/3, 1/5, \ldots\}$, $\{\pi, \pi - 3, \pi - 3.1, \ldots\}$, $\{e, e - 2.7, e - 2.71 \}$, etc.
+3. Construire $H$, un ensemble avec un élément de chaque classe.
+4. Noter que $[0,1] = \cup_{r \in [0,1] \cap Q} (H \oplus r)$ (ensembles disjoints).
+5. Constater l'implication impossible :
+$$ 1 = P(\Omega) = \sum_{r \in [0,1] \cap \mathbb{Q}} P(H \oplus r) = \sum_{r \in [0,1] \cap \mathbb{Q}} P(H)$$
+
+[//]: Put 0, 1, pi, pi+1 in their equivalence classes.
+[//]: Illustrate oplus operator with $[0.3,0.5] \oplus 0.6$.
+[//]: Try and start this slide after break.
+
+## La construction d'un espace de probabilité
+
+Supposez que l'espace d'états $\Omega$ est donné, on doit spécifier ${\cal F}$ et $P$. On veux
+
+1. un système cohérent (qui vérifie certains axiomes)
+2. une façon de spécifier une partie de $P$ et laisser les axiomes déterminer le reste
+3. une tribu ${\cal F}$ faisable mais assez riche qu'elle contient les événements d'intéret.
+
+La semaine prochaine on développe un outil important pour cette construction des espaces de probabilité.
+
+## Axiomes de probabilités
+
+Un espace de probabilité est un $(\Omega,{\cal F},P)$ tel que
+
+1. $\Omega \neq \emptyset$;
+2. ${\cal F}$ satisfait
+    a. $\emptyset, \Omega \in {\cal F}$,
+    b. $A \in {\cal F} \to A^c \in {\cal F}$,
+    c. $A_1, A_2, \ldots \in {\cal F} \to \cup_{i=1}^\infty A_i, \cap_{i=1}^\infty A_i \in {\cal F}$;
+3. $P \colon {\cal F} \to \mathbb{R}$ satisfait
+    a. $P(\emptyset) = 0$, $P(\Omega) = 1$,
+    b. $A_1, A_2,\ldots \in {\cal F}\, \mbox{disjoints} \to P(\cup_{i=1}^\infty A_i) = \sum_{i=1}^\infty P(A_i).$     
+
+[//]: Why countably additive and not finitely additive: we want to take limits
+[//]: Why not uncountable unions and intersections?
+(What would uncountable additivity mean?)
+[//]: Redundancy with unions or intersections
+
+## Aperçu, Rosenthal chapitre 2
+
+1. Construction d'un espace de probabilité à partir d'une semi-algèbre
+2. Le théorème d'extension
+3. Construction d'un espace de probabilité pour la loi uniforme sur $[0,1]$
+4. Construction d'un espace de probabilité pour un modèle du tirage répété au pile ou face
+
+[//]: We saw how difficult it was to specify directly all probabilities.
+[//]: We want tools to construct probability spaces in a well defined way.
+[//]: We know that any attempt to do 3 using power set is doomed to failure or forces us to accept something unpalletable.

@@ -1,0 +1,175 @@
+---
+title: "ECN 6578, Cours 6"
+author: "William McCausland"
+date: '2017-10-06'
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Lemme de Fatou
+
+* Pour une séquence $X_n \geq 0$ de variables aléatoires
+$$ E[\liminf_{n\to \infty} X_n] \leq \liminf_{n\to \infty} E[X_n]. $$
+
+* Notes :
+    1. Hypothèse très faible concernant $X_n$.
+    1. Résultat pour $X_n \geq C > -\infty$ suit immédiatement.
+    1. Les deux cotés peuvent être infinis
+    
+* Construction d'une séquence convergente : $Y_n \equiv \inf_{k\geq n} X_k$.
+    1. $0 \leq Y_n \leq X_n$.
+    1. $Y_n \leq Y_{n+1}$ ($\{k \geq n\}$ décroissant).
+    1. $Y_n \nearrow Y \equiv \liminf_{n\to \infty} X_n$.
+
+* Preuve :
+$$ \liminf_n E[X_n] \geq \liminf_n E[Y_n] = \lim_n E[Y_n] = E[Y] = E[\liminf_n X_n] $$
+
+## Théorème de convergence dominée
+
+* Pour une séquence $X_n$ de variables aléatoires, $X$ et $Y$ v.a. telles que
+$P(X_n \to X) = 1$, $|X_n| \leq Y$ et $E[Y] < \infty$.
+$$ \lim_{n\to \infty} E[X_n] = E[X]. $$
+
+* Notes :
+    1. La condition avec $Y$ (dominance) plus faible que $|X_n|$ uniformement bornés ; le résultat est donc plus fort.
+    1. Même v.a. dominante $Y$ pour tous les $n$.
+
+* Preuve :
+$$ E[Y] + E[X] = E[Y+X] = E[Y+\lim_n X_n] = E[Y+\liminf_n X_n] $$
+$$ E[Y+\liminf_n X_n] \leq \liminf_n E[Y+X_n] = E[Y] + \liminf_n E[X_n] $$
+$$ E[Y] - E[X] = \ldots \leq \ldots = E[Y] - \limsup_n E[X_n]. $$
+$$ \limsup_n E[X_n] \leq E[X] \leq \liminf_n E[X_n]. $$
+$$ \lim_n E[X_n] = E[X]. $$
+
+## Remarque sur les ensembles non-dénombrables de variables aléatoires
+
+* Soit $\{X_t\}_{t\geq 0}$ un ensemble (non-dénombrable) de variables aléatoires.
+
+* Si $E[X_{t_n}] \to E[X_0]$ pour n'importe quelle séquence $t_n \downarrow 0$ alors
+$\lim_{t\downarrow 0} E[X_t] = E[X_0]$.
+
+* En particulier, si $\lim_{t \downarrow 0}X_t(\omega) = X(\omega)$, $\omega \in \Omega$,
+et il exist une v.a. $Y$ telle que $|X_t| < Y$ et $E[Y] < \infty$,
+$$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
+
+## La dérivée de l'espérance
+
+* Soit $\{F_t\}_{a<t<b}$ un ensemble de variables aléatoires.
+
+* Conditions suffisantes pour $\frac{dE[F_t]}{dt} = E[F_t']$ :
+    1. Pour tous $t \in (a,b)$ : $-\infty < E[F_t] < \infty$.
+    1. Il existe une v.a. $Y$ telle que $E[Y] < \infty$ et pour tous $t \in (a,b)$ et $\omega \in \Omega$, $F_t'(\omega)$ existe et $|F_t'(\omega)| \leq Y(\omega)$.
+
+* Preuve : fixez $t\in (a,b)$. Alors
+    1. $F_t' = \lim_{n\to \infty} n(F_{t+1/n}-F_t)$, la limite d'une séquence de
+    variables aléatoires, est une variable alétoire.
+    1. Pour tous $t \in (a,b)$, $h\geq 0$,
+    (théorème des accroissements finis, mean value theorem)
+    $$ \left|\frac{F_{t+h}-F_t}{h}\right| \leq Y $$
+    1. Alors
+    $$ \lim_{h \downarrow 0} \frac{E[F_{t+h}]-E[F_t]}{h}
+    = \lim_{h \downarrow 0} E\left[\frac{F_{t+h}-F_t}{h}\right]
+    = E\left[\lim_{h \downarrow 0} \frac{F_{t+h}-F_t}{h} \right] $$
+    $$ \frac{dE[F_t]}{dt} = E[F_t'] \leq E[Y] < \infty. $$ 
+
+## Fonction génératrice des moments
+
+* Définition : pour une v.a. $X$, $M_X(s) = E[e^{sX}]$, $s\in R$.
+
+* Notes
+    1. n'existe pas toujours, même si $E[X] < \infty$.
+    1. $M_{X+Y}(s) = M_X(s)M_Y(s)$ pour v.a. indépendentes $X,Y$.
+    1. tableaux avec plusieurs v.a. standardes
+    1. la fonction caractéristique est souvent plus utile
+
+## Résultat sur $M_X(s)$
+
+* Si $X$ est une v.a. telle qu'il existe $s_0 > 0$ tel que $M_X(s) < \infty$ pour $|s|<s_0$,
+$$ E[|X^n|] < \infty,\, M_X(s) = \sum_{n=0}^\infty E[X^n] s^n / n!. $$
+
+* Preuve :
+    1. Soit $Z_n = \sum_{k=0}^n (sX)^k / k!$
+    1. $Z_n \to e^{sX}$ (définition de somme infinie)
+    1. Fixez $s$, $|s|<s_0$
+    $$ |Z_n| \leq \sum_{k=0}^n |sX|^k / k! \leq e^{sX} + e^{-sX} \equiv Y, $$
+    $$ E[Y] = M_X(s) + M_X(-s) < \infty. $$
+    1. Par convergence dominée, $E[e^{sX}] = \lim_{n\to \infty} E[Z_n] = \sum_{n=0}^\infty E[X^n]s^n/n!$.
+    
+## Signification de « génératrice des moments »
+
+* Rappel $M_X(s) = \sum_{n=0}^\infty E[X^n]s^n/n!$
+
+* $M'(s) = \sum_{n=0}^\infty E[X^{n+1}]s^n/n!$
+
+* $M^{(m)}(s) = \sum_{n=0}^\infty E[X^{n+m}]s^n/n!$
+
+* $M(0) = 1$, $M'(0) = E[X]$, $M^{(m)}(0) = E[X^m]$.
+
+## Mesures associées aux variables aléatoires
+
+* Soit $X$ une variable aléatoire sur un espace de probabilité $(\Omega,{\cal F},P)$
+
+* $(\mathbb{R}, {\cal B}, \mu)$ est une mesure de probabilité elle aussi, où
+$$ \mu = {\cal L}(X) = PX^{-1}. $$
+
+* Si $B \in {\cal B}$, $X^{-1}(B) \in {\cal F}$ et $\mu(B) = P(X^{-1}(B))$.
+
+## Convergence en distribution
+
+* Soit $\mu_n$ une séquence de mesures de probabilité boreliennes, $\mu$ une mesure de probabilité borelienne.
+
+* $\mu_n \Rightarrow \mu$ ($\mu_n$ converge en distribution à $\mu$) si pour chaque fonction $f \colon \mathbb{R} \to \mathbb{R}$, continue et bornée,
+$$ \int_{\mathbb{R}} f\, d\mu_n \to \int_{\mathbb{R}} f\, d\mu. $$
+
+* Pas une séquence de variables aléatoires, mais si $X_n$ est une séquence de variables aléatoires sur $(\Omega,{\cal F},P)$, ${\cal L}_n = PX_n^{-1}$ est une séquence de mesures.
+
+* Une condition équivalente: pour tous $x \in \mathbb{R}$,
+$$ \mu(\{x\}) = 0 \Rightarrow F_n(x) \to F(x) $$
+
+## Convergence en probabilité et en distribution I
+
+* Si $X_n \to X$ en probabilité,
+$\mu_n \equiv {\cal L}(X_n) \Rightarrow {\cal L}(X) \equiv \mu$.
+
+* Résultat équivalent : Si pour tous $\epsilon > 0$, $P(|X_n-X|\geq \epsilon) \to 0$,
+$$ \mu(\{x\}) = 0 \Rightarrow F_n(x) \to F(x). $$
+
+* Preuve : fixez $x \in \mathbb{R}$, $\epsilon > 0$, .
+$$ X > x + \epsilon\;\mbox{et}\; |X_n - X| < \epsilon \Rightarrow X_n > x $$
+$$ \{X_n \leq x\} \subseteq \{X \leq x + \epsilon\} \cup \{|X_n - X| \geq \epsilon\} $$
+$$ F_n(x) \leq F(x+\epsilon) + P(|X_n-X| \geq \epsilon) $$
+puisque $\sup F_n(x) \leq F(x+\epsilon)$,
+$$ \limsup_n F_n(x) \leq F(x+\epsilon) + 0 $$
+et puisque $\epsilon > 0$ est arbitraire,
+$$ \limsup_n F_n(x) \leq F(x). $$
+
+## Convergence en probabilité et en distribution II
+
+* Preuve, continuée : même $x \in \mathbb{R}$, fixez $\epsilon > 0$, 
+$$ X_n > x\;\mbox{et}\; |X_n-X| < \epsilon \Rightarrow X > x - \epsilon $$
+$$ \{X \leq x-\epsilon\} \subseteq \{X_n \leq x\} + \{|X_n-X| \geq \epsilon\} $$
+$$ F(x-\epsilon) \leq \liminf_n F_n(x) + \liminf_n P(|X_n-X| \geq \epsilon) $$
+$$ F(x-\epsilon) \leq \liminf_n F_n(x) $$
+
+* $\epsilon$ arbitraire, alors
+$$ F(x) - P(\{x\}) \leq \liminf_n F_n(x) $$
+
+* Maintenant si $P(\{x\}) = 0$,
+$$ \liminf_n F_n(x) = \limsup_n F_n(x) = \lim_n F_n(x) = F(x) $$
+
+## Devoirs et lectures
+
+### Devoirs, Rosenthal (matière du cours 6)
+
+1. Exercise 9.5.4
+2. Exercise 9.5.6
+3. Exercise 9.5.8
+4. Exercise 10.3.4
+5. Exercise 10.3.6
+
+### Lectures, Rosenthal (matière du cours 7)
+1. Chapitre 11, accent sur l'Intro, 11.1, 11.2
+

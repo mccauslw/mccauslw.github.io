@@ -3,4 +3,6 @@
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-Documents pour ECN 6013, Éléments de microéconomie
+### Documents pour ECN 6013, Éléments de Microéconomie
+
+[Plan de Cours](./ECN6013/ECN6013A-A19-PC.pdf)

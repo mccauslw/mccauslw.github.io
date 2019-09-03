@@ -1,0 +1,103 @@
+---
+title: "ECN 7060, Cours 3"
+author: "William McCausland"
+date: '2018-09-19'
+output: beamer_presentation
+---
+
+## Variables aléatoires sur $(\Omega,{\cal F},P)$
+
+* Une fonction $X(\omega)$ est une variable aléatoire si pour tout $x \in \mathbb{R}$
+$$ \{X \leq x\} \equiv \{\omega \in \Omega \colon X(\omega) \leq x\} \in {\cal F} $$
+
+* Soit $X$, $Y$, $Z_1,Z_2,\ldots$ des variables aléatoires, $c>0$.
+
+* Les fonctions suivantes sont-elles des variables aléatoires?
+    1. $1_A(\omega)$ où $A \in {\cal F}$
+    1. $W(\omega) = cX(\omega)$
+    1. $W = X + Y$
+    1. $W = \min(X, Y)$
+    1. $W = \max(X, Y)$
+    1. $W = \inf Z_1, Z_2,\ldots,$
+    
+* Supposez que $\lim_{n\to \infty} Z_n(\omega)$ existe et égale $Z(\omega)$ pour chaque
+$\omega \in \Omega$. $Z(\omega)$ est-elle une variable aléatoire?
+    
+## Indépendence des événements pour $(\Omega,{\cal F},P)$
+
+* $A,B \in {\cal F}$ sont indépendents si $P(A\cap B) = P(A)P(B)$.
+
+* $A \perp B \Rightarrow A \perp B^c,\, A^c \perp B,\, A^c \perp B^c$
+
+* $A,B,C \in {\cal F}$ sont indépendents si $P(A\cap B)=P(A)P(B)$, $P(B\cap C)=P(B)P(C)$,
+$P(A\cap C) = P(A)P(C)$ et $P(A\cap B\cap C) = P(A)P(B)P(C)$.
+
+* Importance de $P(A\cap B\cap C) = P(A)P(B)P(C)$.
+
+* $\{A_\alpha\}_{\alpha \in I}$ sont indépendents si pour chaque $j \in \mathbb{N}$ et chaque
+$\alpha_1,\ldots,\alpha_j$,
+$$ P(A_{\alpha_1} \cap A_{\alpha_2} \cap \ldots \cap A_{\alpha_j})
+= P(A_{\alpha_1})P(A_{\alpha_2})\cdots P(A_{\alpha_j}) $$
+
+* Si les $\{A_\alpha\}_{\alpha \in I}$ sont indépendents et $a \in I$, $\{A_\alpha\}_{\alpha \in I \backslash \{a\}}
+\cup \{A_a^c\}$ le sont aussi. 
+
+## Indépendence des variables aléatoires
+
+* Indépendence par paire : $X$ et $Y$ sont indépendents si pour tous ensembles boreliens $S_1$ et $S_2$, $X^{-1}(S_1)$ et $X^{-1}(S_2)$ sont indépendents.
+
+* Indépendence : une collection $\{X_\alpha \colon \alpha \in I\}$ de variables aléatoires est indépendente si pour tous $j \in \mathbb{N}$, $\alpha_1,\ldots,\alpha_j \in I$, $S_1,\ldots,S_j$ boreliens,
+$$ P(X_{\alpha_1} \in S_1, \ldots, X_{\alpha_j} \in S_j)
+= P(X_{\alpha_1} \in S_1) \cdots P(X_{\alpha_j} \in S_j) $$
+
+* Indépendence de $f(X)$ et $g(Y)$ pour $X,Y$ indépendent, $f$ et $g$ mesurables
+
+* Suffisance de $F(x,y) = F(x)F(y)$ pour indépendence.
+
+## Continuité de probabilité
+
+* Soit $(\Omega,{\cal F},P)$ un espace de probabilité.
+
+* Si $A_n \nearrow A$, $A_n \in {\cal F}$, $P(A) = \lim_{n\to \infty} P(A_n)$.
+
+* Si $A_n \searrow A$, $A_n \in {\cal F}$, $P(A) = \lim_{n\to \infty} P(A_n)$.
+
+## Événements limites
+
+* Soit $A_n = [0, 1+(-1)^n/n]$
+
+* $A_n$ est $[0,0]$, $[0, 3/2]$, $[0,2/3]$, $[0,5/4]$, etc.
+
+* Trouver $\limsup_{n\to \infty} A_n = \cap_{n=1}^\infty \cup_{k=n}^\infty A_k$
+
+* Trouver $\liminf_{n\to \infty} A_n = \cup_{n=1}^\infty \cap_{k=n}^\infty A_k$
+
+* Soit $B_n$ la séquence avec $B_n = [-1/n,0]$ pour $n$ impair, $B_n = [0,1/n]$ pour $n$ pair.
+
+* Trouver $\limsup_{n\to \infty} B_n$, $\liminf_{n\to \infty} B_n$
+
+* Proposition 3.4.1
+$$ P(\liminf_{n\to \infty} A_n) \leq \liminf_{n\to \infty} P(A_n) \leq \limsup_{n\to \infty} P(A_n) \leq P(\limsup_{n\to \infty} A_n).$$
+
+## Aperçu du Chapitre 4, Espérance
+
+1. Des variables aléatoires simples $X(\omega) = \sum_{i=1} x_i 1_{A_i}(\omega)$
+$$ E[X(\omega)] = \sum_{i=1}^n x_i P(A_i). $$
+    * linéarité
+    * $E[XY] = E[X]E[Y]$ pour $X$, $Y$ indépendant
+1. Des variables aléatoires non-négatives
+$$ E[X] = \sup \{ E[Y] \colon Y\,\mbox{simple},\, Y \leq X \}. $$
+1. Des variables aléatoires générales.
+1. Espérance comme une généralization de l'intégration riemannienne.
+
+## Devoirs et lectures
+
+### Devoirs, Rosenthal (matière du cours 3)
+1. Exercise 3.6.2
+2. Exercise 3.6.6
+3. Exercise 3.6.10
+4. Exercise 3.6.12
+
+### Lectures, Rosenthal (matière du cours 4)
+1. Chapitre 4
+

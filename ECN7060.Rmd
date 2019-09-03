@@ -3,4 +3,11 @@
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-Documents pour ECN 7060, Probabilités pour Économistes
+### Documents pour ECN 7060, Probabilités pour Économistes
+
+[Plan de Cours](./ECN7060/ECN7060A-A19-PC.pdf)
+
+[Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf)
+
+[Diapos, Cours 1, 2019/09/04 (première version)](./ECN7060/ECN7060_1.pdf)
+
