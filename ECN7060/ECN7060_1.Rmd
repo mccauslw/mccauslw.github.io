@@ -91,7 +91,7 @@ $\{0,1\}$ | 1
     - $\omega_2$: Le parti PLC ne gagne pas
     
 + Un agent offre des prix (cours acheteur et cours vendeur) pour ces contrats:
-    1. paie 1\$ si ni $\omega_1$ ni $\omega_1$ se produit (l'événement $\emptyset$)
+    1. paie 1\$ si ni $\omega_1$ ni $\omega_2$ se produit (l'événement $\emptyset$)
     2. paie 1\$ si $\omega_1$ se produit (l'événement $\{\omega_1\}$)
     3. paie 1\$ si $\omega_2$ se produit (l'événement $\{\omega_2\}$)
     4. paie 1\$ si $\omega_1$ ou $\omega_2$ se produit  (l'événement $\Omega = \{\omega_1, \omega_2\}$)
