@@ -20,17 +20,19 @@ output: pdf_document
 1. Chapitre 1
 2. Chapitre 2
 
+Définitions importantes: espace de probabilité; espace d'état; algèbre; tribu; additivité (finie ou dénombrable); stabilité par complémentation, pour les réunions ou intersections (finies ou dénombrables); semi-algèbre.
+
 ### Questions sur les lectures
 
-1. Soit $\Omega = [0,1]$. Soit ${\cal F}$ l'ensemble des sous-ensembles de $\Omega$ qui sont finis ou de complémentaire fini.
-    a. Est-ce que ${\cal F}$ est un algèbre? Appuyez votre réponse.
+1. Soit $\Omega = [0,1]$. Soit ${\cal F}$ l'ensemble des parties de $\Omega$ qui sont finis ou de complémentaire fini.
+    a. Est-ce que ${\cal F}$ est une algèbre? Appuyez votre réponse.
     a. Est-ce que ${\cal F}$ est une tribu (ou $\sigma$-algèbre)? Appuyez votre réponse.
 
 1. Soit $\Omega = \{1,2,3\}$ et ${\cal F} = 2^\Omega$. Trouvez une mesure de probabilité additive $P\colon {\cal F} \rightarrow [0,1]$ sur $(\Omega,{\cal F})$ telle que $P(\{1,2\}) = 3/4$ et $P(\{2,3\}) = 1/2$.
 
 1. Soit ${\cal J} = \{ \emptyset, \{1\}, \{2\}, \ldots, \{n\}, \{1,\ldots,n\} \}$.
 Soit $\Omega = \{1,\ldots,n\}$. Montrez que
-    a. ${\cal J}$ est stable par intersection finie?
-    b. $\emptyset \in {\cal J}$ et $\Omega \in {\cal J}$?
-    c. tous les éléments de ${\cal J}$ ont un complément par rapport à $\Omega$ qui égale une réunion disjointe finie des éléments de ${\cal J}$?
-    d. ${\cal J}$ est un semialgèbre de parties de $\Omega$?
+    a. ${\cal J}$ est stable pour les intersections finies,
+    b. $\emptyset \in {\cal J}$ et $\Omega \in {\cal J}$,
+    c. tous les éléments de ${\cal J}$ ont un complément par rapport à $\Omega$ qui égale une réunion disjointe finie des éléments de ${\cal J}$,
+    d. ${\cal J}$ est une semialgèbre de parties de $\Omega$.
