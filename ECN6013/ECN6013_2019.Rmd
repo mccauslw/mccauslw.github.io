@@ -1,0 +1,162 @@
+---
+title: "ECN 6013, automne 2019"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+Quelques sources et leur abbréviations :
+
+* OS: Osborne and Rubinstein (1994), "A Course in Game Theory", disponible [ici](http://books.osborne.economics.utoronto.ca)
+* ML: McAfee and Lewis, [Introduction to Economic Analysis](McAfee IEA.pdf)
+* CEE: [Concise Encyclopedia of Economics](http://www.econlib.org/library/CEE.html)
+
+## Jeux, équilibre et efficacité
+
+Cours : 9, 16 septembre; séances TP : 12 et 19 septembre
+
+### Sujets et lectures
+
+1. Efficacité à la [Pareto](https://en.wikipedia.org/wiki/Pareto_efficiency) et à la [Kaldor-Hicks](KaldorHicks.pdf)
+
+1. Exemples de jeux simples en forme normale :
+    a. [dilemme des prisonniers](https://en.wikipedia.org/wiki/Prisoner%27s_dilemma)
+    a. [jeux de coordination et anticoordination](https://en.wikipedia.org/wiki/Coordination_game)
+    a. [jeux faucon-colombe](https://en.wikipedia.org/wiki/Nash_equilibrium)
+
+1. [Équilibre en stratégies dominantes](https://en.wikipedia.org/wiki/Strategic_dominance)
+
+1. [Équilibre de Nash](https://en.wikipedia.org/wiki/Nash_equilibrium)
+
+1. Variations du dilemme des prisioinniers :
+    a. jeux à la Cournot (ML chapitre 17, section 1)
+    a. biens publiques (ML, chapitre 8, section 1)
+    a. [tragédie des communs](http://www.econlib.org/library/Enc/TragedyoftheCommons.html)
+    a. [jeux en forme extensive](https://en.wikipedia.org/wiki/Extensive-form_game)
+    a. jeux répétés (OR 8.1, 8.2)
+    
+### Exercices
+
+1. Trois soeurs, $A$, $B$ et $C$, héritent trois actifs indivisibles : une maison $X$, un bateau $Y$ et une peinture $Z$. Chaque soeur doit obtenir un seul objet, alors il y a six allocations faisables.
+Pour chacune des trois conditions ci-dessous, spécifiez des préférences strictes (sans indifférence) des soeurs telle que la condition tient :
+    a. Il y a une seule allocation efficace.
+    a. Il y a au moins deux allocations efficaces et au moins une allocation inefficace.
+    a. Toutes les allocations sont efficaces.
+
+1. Pour les trois jeux au tableau \ref{t:troisjeux}, identifiez le type du jeux, trouvez les équilibres Nash purs, les équilibres en stratégies dominantes et les allocations efficaces.
+\begin{table}[h]
+	\begin{center}
+	\begin{tabular}{ccc}
+		\hline
+		1/2 & $L$ & $R$ \\
+		\hline
+		$U$ & (1,1) & (3,0) \\
+		$D$ & (0,3) & (2,2) \\
+		\hline
+	\end{tabular}
+	\begin{tabular}{ccc}
+		\hline
+		1/2 & $L$ & $R$ \\
+		\hline
+		$U$ & (0,0) & (3,1) \\
+		$D$ & (1,3) & (2,2) \\
+		\hline
+	\end{tabular}
+	\begin{tabular}{ccc}
+		\hline
+		1/2 & $L$ & $R$ \\
+		\hline
+		$U$ & (2,1) & (0,0) \\
+		$D$ & (0,0) & (1,2) \\
+		\hline
+  \end{tabular}
+	\end{center}
+	\caption{Trois jeux}\label{t:troisjeux}
+\end{table}
+
+1. Il y a $n$ firmes en équilibre Cournot symmétrique.
+La demande marchande et de $Q(P) = 1-P$ et chaque firme a un coût marginal de production de $c \in [0,1)$, une constante.
+    a. Trouvez le prix, les quantités et les profits en equilibre.
+    a. Est-ce qu'il y a un équilibre en stratégies dominantes?
+    a. Est-ce que l'équilibre est efficace (pour l'ensemble des firmes, en ignorant les consommateurs)?
+
+1. Considerez le stage game du tableau \ref{t:stagegame}.
+\begin{table}[h]
+	\begin{center}
+	\begin{tabular}{ccc}
+		\hline
+		1/2 & $C$ & $D$ \\
+		\hline
+		$C$ & $(c,c)$ & $(l,h)$ \\
+		$D$ & $(h,l)$ & $(d,d)$ \\
+		\hline
+	\end{tabular}
+	\caption{Le stage game d'un jeux infiniment répété}\label{t:stagegame}
+	\end{center}
+\end{table}
+Deux joueurs avec un taux d'actualization $\delta$ jouent un jeux infiniment répété.
+    a. Pour quelles valeurs des paramètres $\delta$, $c$, $d$, $h$ et $l$ est-ce que le stage game est un dilemme des prisonniers?
+    a. Pour quelles valeurs des paramètres est-ce que gachette contre gachette est un équilibre?
+    a. Donnez des valeurs des paramètres telles que gachette contre gachette est un équilibre mais tit-for-tat contre tit-for-tat ne l'est pas.
+
+1. Il y a $n$ agriculteurs identiques.
+Leur fonction d'utilité est de $U(c,l) = c - l^\alpha/\alpha$, où $c \geq 0$ est la consommation, $l \geq 0$ est le travail et $\alpha > 1$.
+Il y a une technologie linéaire pour convertir une unité de travail en une unité de consommation.
+Considérez deux cas:
+    a. Ils consomment leur propre production : $c_i = l_i$. Quelles sont la quantité optimale de travail et l'utilité maximale?
+    a. Ils sont obligés de partager leur production agrégée : $c_i = n^{-1} \sum_{i=1}^n l_i$. Donnez un équilibre de Nash. Est-ce qu'il est un équilibre en stratégies dominantes?
+		Est-ce qu'il est efficace?
+
+## Enchères
+
+Cours: 23, 30 septembre; séances TP: 26 septembre, 3 octobre.
+
+### Sujets et lectures
+
+1. Quatre ventes aux enchères de base
+
+1. Valeurs communes et privées
+
+1. Stratégies et équilibres
+
+1. Malédiction du gagnant
+
+1. Équivalence en termes de revenue, revenus marginaux.
+
+Les lectures sont principalement dans l'article de [Klemperer](Klem99.pdf) \cite{Klem99}:
+pour le premier cours, Sections 1, 2, 3 et 4; pour le deuxième, Appendices A et B.
+L'article [Auction Theory](https://en.wikipedia.org/wiki/Auction_theory) a une analyse de la vente aux enchères à premier prix (recommandée) et une autre discussion de l'équivalence en termes de revenue (facultative).
+
+### Exercices
+
+1. Considérez une vente aux enchères à premier prix avec deux joueurs.
+Leurs valeurs privées $v_1 \in [0,1]$ et $v_2 \in [0,1]$ sont indépendantes avec fonctions de répartition $F[v_1] = v_1^2$ et $F[v_2] = v_2$.
+Mettons que leurs enchères sont $b_1(v_1) = v_1/2$ et $b_2(v_2) = 2v_2/3$.
+    a. La stratégie du joueur 1 est-elle une meilleure réponse à la stratégie du joueur 2?
+    a. La stratégie du joueur 2 est-elle une meilleure réponse à la stratégie du joueur 1?
+
+1. Considérez une vente aux enchères à premier prix avec deux joueurs.
+Leurs valeurs privées $v_1$ et $v_2$ sont iid $v_i \sim U[\alpha,\beta]$ (uniform sur l'intervalle $[\alpha,\beta]$).
+    a. Trouvez l'équilibre de Nash de la vente aux enchères à premier prix.
+    a. Trouvez le revenu espéré.
+
+1. Le gouvernement considère deux mécanismes pour attribuer le contrat pour remplacer un pont.
+Dans les deux cas, chaque firme $i$ soumet une enchère $b_i$ sous pli cacheté pour le contrat.
+Firme $i$ peut le faire à coût $c_i \sim U(0,1)$.
+Seulement la firme $i$ observe $c_i$.
+Les deux coûts, $c_1$ et $c_2$, sont indépendants.
+Voici les deux mécanismes :
+    a. La firme $i$ avec l'enchère minimale obtient le contrat et le gouvernement la paie $b_i$.
+    a. La firme $i$ avec l'enchère minimale obtient le contrat et le gouvernement la paie $b_{-i}$ (l'enchère de l'autre).
+Trouvez un équilibre $(b_1(c_1),b_2(c_2))$ pour chaque mécanisme et prouvez que les deux équilibres sont bien des équilibres.
+
+1. Selon Klemperer, quand l'information est parfaite, les modèles d'enchères sont souvent facile à résoudre.
+Il y trois acheteurs dans une vente aux enchères, avec valeurs privées $v_1=10$, $v_2=20$ et $v_3=30$ dollars.
+Les trois valeurs sont observées par les trois acheteurs.
+Les enchères $b_1$, $b_2$ et $b_3$ doivent être entiers.
+En cas d'enchères égales, le gagnant est sélectionné aux hazard.
+    a. Trouvez un équilibre de la vente aux enchères à premier prix.
+    a. Trouvez un équilibre de la vente aux enchères à deuxième prix.
+
+1. Il y a un équilibre en stratégies dominantes de la vente aux enchères de deuxième prix.
+Est-ce que cela veut dire que la collusion entre acheteurs est impossible?
