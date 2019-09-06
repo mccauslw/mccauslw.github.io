@@ -12,12 +12,12 @@ bibliography: bibliography.bib
 ### Livres
 
 * OS: Osborne and Rubinstein (1994), "A Course in Game Theory", disponible [ici](http://books.osborne.economics.utoronto.ca)
-* ML: McAfee and Lewis, [Introduction to Economic Analysis](McAfee_IEA.pdf)
+* ML: McAfee and Lewis, [Introduction to Economic Analysis](./ECN6013/McAfee_IEA.pdf)
 * CEE: [Concise Encyclopedia of Economics](http://www.econlib.org/library/CEE.html)
 
 ### Articles
 
-* @Klem99 [article](Klem99.pdf)
+* @Klem99 [article](ECN6013/Klem99.pdf)
 * @Coas60 [article](Coas60.pdf)
 * @Arro84 [article](Arro84.pdf)
 * @RothStig76 [article](RothStig76.pdf)
