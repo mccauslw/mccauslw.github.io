@@ -1,0 +1,71 @@
+---
+title: "Introduction"
+subtitle: "ECN 6013, automne 2019"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+urlcolor: blue
+---
+
+## Matière du cours
+Ce cours porte sur les incitations et l'information. La matière comprend :
+
+1. Allocations, efficacité, équilibre, jeux
+1. Enchères
+1. Externalités
+1. Asymétrie d'information et sélection adverse, assurance, signaux
+1. Actions cachées et aléa moral, problèmes principal-agent
+
+## Exemples
+1. Assurance automobile
+    + Le client a de l'aversion pour le risque.
+    + La probabilité d'un accident dépend et de la prudence et de l'habileté du conducteur.
+    + L'assureur n'observe ni la prudence ni l'habileté du client.
+1. Mécanicien
+    + Le mécanicien sait mieux que le client pourquoi il y a un problème avec une voiture.
+1. Réduction de la pollution
+    + Les pollueurs savant mieux que le gouvernement combien coûtent la réduction des émissions.
+1. Conducteur de taxi
+    + Le conducteur choisit une route efficace ou une route inefficace.
+1. Employé
+    + L'employé choisit un niveau d'effort à déployer.
+    + L'employeur observe le résultat, pas l'effort déployé.
+
+## Un aparté sur les modèles et les abstractions
++ Pour aller de A à B, une carte est souvent utile.
++ La convenance d'une carte dépend de l'objectif.
++ Pareil pour les modèles économiques.
++ L'égoïsme des agents est souvent une hypothèse utile pour les interactions économiques.
++ On utilise beaucoup d'abstractions pour la solubilité des modèles.
+    + Spécifications simples des préférences, des technologies, de l'information, des actions faisables, des contraintes et du hasard.
+
+## Évaluation
+
+|Item |Points sur 100|
+|-----|--------------------|
+|Examen intra, le 28 octobre|40|
+|Examen final, décembre|60|
+
+## Forum
+1. Je poserai des questions sur un forum de StudiUM.
+1. Je vous encourage de répondre ou donner des idées.
+1. Facultatif, pas de note.
+1. Une façon de se distinguer, utile pour ceux qui cherchent des lettres de références.
+1. Réponses courtes! (moins de 250 mots)
+
+## Livre facultatif
++ Incentives: Motivation and the Economics of Information, 2ième édition, par Donald E. Campbell
+
+## Votre responsabilité pour les préalables mathématiques
+Vous devez connaître la matière suivante :
+
++ optimisation libre (une et plusieurs variables)
++ optimisation sous contraintes et multiplicateurs de Lagrange
++ densités conjointes, marginales, conditionnelles ; espérances
++ intégration simple
+
+## Quelques politiques et règlements
++ L'heure et le local des cours, des séances TP et des examens sont affichés sur le site internet de l'université.
++ Écrivez votre code permanent et pas votre nom sur les cahiers d'examen.
++ Une demande de révision de l'évaluation doit spécifier la question à réviser et expliquer clairement le problème de correction.
+Dans certains cas, je réviserai d'autres questions.
