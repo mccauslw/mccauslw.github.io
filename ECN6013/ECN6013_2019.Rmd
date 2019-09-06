@@ -18,7 +18,7 @@ bibliography: bibliography.bib
 ### Articles
 
 * @Klem99 [article](ECN6013/Klem99.pdf) no dot slash
-* @Coas60 [article](Coas60.pdf)
+* @Coas60 [article](./Coas60.pdf) no dot slash
 * @Arro84 [article](Arro84.pdf)
 * @RothStig76 [article](RothStig76.pdf)
 * @Spen73 [article](Spen73.pdf)
