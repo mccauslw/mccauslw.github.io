@@ -1,0 +1,286 @@
+---
+title: "ECN 6013, automne 2019"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: pdf_document
+urlcolor: blue
+bibliography: bibliography.bib
+---
+
+## Livres et articles
+
+### Livres
+
+* OS: Osborne and Rubinstein (1994), "A Course in Game Theory", disponible [ici](http://books.osborne.economics.utoronto.ca)
+* ML: McAfee and Lewis, [Introduction to Economic Analysis](McAfee_IEA.pdf)
+* CEE: [Concise Encyclopedia of Economics](http://www.econlib.org/library/CEE.html)
+
+### Articles
+
+* @Klem99 [article](Klem99.pdf)
+* @Coas60 [article](Coas60.pdf)
+* @Arro84 [article](Arro84.pdf)
+* @RothStig76 [article](RothStig76.pdf)
+* @Spen73 [article](Spen73.pdf)
+* @Aker70 [article](Aker70.pdf)
+
+## Jeux, équilibre et efficacité
+
+Cours : 9, 16 septembre; séances TP : 12 et 19 septembre
+
+### Sujets et lectures
+
+1. Efficacité à la [Pareto](https://en.wikipedia.org/wiki/Pareto_efficiency) et à la [Kaldor-Hicks](KaldorHicks.pdf)
+
+1. Exemples de jeux simples en forme normale :
+    a. [dilemme des prisonniers](https://en.wikipedia.org/wiki/Prisoner%27s_dilemma)
+    a. [jeux de coordination et anticoordination](https://en.wikipedia.org/wiki/Coordination_game)
+    a. [jeux faucon-colombe](https://en.wikipedia.org/wiki/Chicken_(game))
+
+1. [Équilibre en stratégies dominantes](https://en.wikipedia.org/wiki/Strategic_dominance)
+
+1. [Équilibre de Nash](https://en.wikipedia.org/wiki/Nash_equilibrium)
+
+1. Variations du dilemme des prisioinniers :
+    a. jeux à la Cournot (ML chapitre 17, section 1)
+    a. biens publiques (ML, chapitre 8, section 1)
+    a. [tragédie des communs](http://www.econlib.org/library/Enc/TragedyoftheCommons.html)
+    a. [jeux en forme extensive](https://en.wikipedia.org/wiki/Extensive-form_game)
+    a. jeux répétés (OR 8.1, 8.2)
+    
+### Exercices
+
+1. Trois soeurs, $A$, $B$ et $C$, héritent trois actifs indivisibles : une maison $X$, un bateau $Y$ et une peinture $Z$. Chaque soeur doit obtenir un seul objet, alors il y a six allocations faisables.
+Pour chacune des trois conditions ci-dessous, spécifiez des préférences strictes (sans indifférence) des soeurs telle que la condition tient :
+    a. Il y a une seule allocation efficace.
+    a. Il y a au moins deux allocations efficaces et au moins une allocation inefficace.
+    a. Toutes les allocations sont efficaces.
+
+1. Pour les trois jeux au tableau \ref{t:troisjeux}, identifiez le type du jeux, trouvez les équilibres Nash purs, les équilibres en stratégies dominantes et les allocations efficaces.
+\begin{table}[h]
+	\begin{center}
+	\begin{tabular}{ccc}
+		\hline
+		1/2 & $L$ & $R$ \\
+		\hline
+		$U$ & (1,1) & (3,0) \\
+		$D$ & (0,3) & (2,2) \\
+		\hline
+	\end{tabular}
+	\begin{tabular}{ccc}
+		\hline
+		1/2 & $L$ & $R$ \\
+		\hline
+		$U$ & (0,0) & (3,1) \\
+		$D$ & (1,3) & (2,2) \\
+		\hline
+	\end{tabular}
+	\begin{tabular}{ccc}
+		\hline
+		1/2 & $L$ & $R$ \\
+		\hline
+		$U$ & (2,1) & (0,0) \\
+		$D$ & (0,0) & (1,2) \\
+		\hline
+  \end{tabular}
+	\end{center}
+	\caption{Trois jeux}\label{t:troisjeux}
+\end{table}
+
+1. Il y a $n$ firmes en équilibre Cournot symmétrique.
+La demande marchande et de $Q(P) = 1-P$ et chaque firme a un coût marginal de production de $c \in [0,1)$, une constante.
+    a. Trouvez le prix, les quantités et les profits en equilibre.
+    a. Est-ce qu'il y a un équilibre en stratégies dominantes?
+    a. Est-ce que l'équilibre est efficace (pour l'ensemble des firmes, en ignorant les consommateurs)?
+
+1. Considerez le stage game du tableau \ref{t:stagegame}.
+\begin{table}[h]
+	\begin{center}
+	\begin{tabular}{ccc}
+		\hline
+		1/2 & $C$ & $D$ \\
+		\hline
+		$C$ & $(c,c)$ & $(l,h)$ \\
+		$D$ & $(h,l)$ & $(d,d)$ \\
+		\hline
+	\end{tabular}
+	\caption{Le stage game d'un jeux infiniment répété}\label{t:stagegame}
+	\end{center}
+\end{table}
+Deux joueurs avec un taux d'actualization $\delta$ jouent un jeux infiniment répété.
+    a. Pour quelles valeurs des paramètres $\delta$, $c$, $d$, $h$ et $l$ est-ce que le stage game est un dilemme des prisonniers?
+    a. Pour quelles valeurs des paramètres est-ce que gachette contre gachette est un équilibre?
+    a. Donnez des valeurs des paramètres telles que gachette contre gachette est un équilibre mais tit-for-tat contre tit-for-tat ne l'est pas.
+
+1. Il y a $n$ agriculteurs identiques.
+Leur fonction d'utilité est de $U(c,l) = c - l^\alpha/\alpha$, où $c \geq 0$ est la consommation, $l \geq 0$ est le travail et $\alpha > 1$.
+Il y a une technologie linéaire pour convertir une unité de travail en une unité de consommation.
+Considérez deux cas:
+    a. Ils consomment leur propre production : $c_i = l_i$. Quelles sont la quantité optimale de travail et l'utilité maximale?
+    a. Ils sont obligés de partager leur production agrégée : $c_i = n^{-1} \sum_{i=1}^n l_i$. Donnez un équilibre de Nash. Est-ce qu'il est un équilibre en stratégies dominantes?
+		Est-ce qu'il est efficace?
+
+## Enchères
+
+Cours: 23, 30 septembre; séances TP: 26 septembre, 3 octobre.
+
+### Sujets et lectures
+
+1. Quatre ventes aux enchères de base
+
+1. Valeurs communes et privées
+
+1. Stratégies et équilibres
+
+1. Malédiction du gagnant
+
+1. Équivalence en termes de revenue, revenus marginaux.
+
+Les lectures sont principalement dans l'article de [Klemperer (1999)](Klem99.pdf) :
+pour le premier cours, Sections 1, 2, 3 et 4; pour le deuxième, Appendices A et B.
+L'article [Auction Theory](https://en.wikipedia.org/wiki/Auction_theory) a une analyse de la vente aux enchères à premier prix (recommandée) et une autre discussion de l'équivalence en termes de revenue (facultative).
+
+### Exercices
+
+1. Considérez une vente aux enchères à premier prix avec deux joueurs.
+Leurs valeurs privées $v_1 \in [0,1]$ et $v_2 \in [0,1]$ sont indépendantes avec fonctions de répartition $F[v_1] = v_1^2$ et $F[v_2] = v_2$.
+Mettons que leurs enchères sont $b_1(v_1) = v_1/2$ et $b_2(v_2) = 2v_2/3$.
+    a. La stratégie du joueur 1 est-elle une meilleure réponse à la stratégie du joueur 2?
+    a. La stratégie du joueur 2 est-elle une meilleure réponse à la stratégie du joueur 1?
+
+1. Considérez une vente aux enchères à premier prix avec deux joueurs.
+Leurs valeurs privées $v_1$ et $v_2$ sont iid $v_i \sim U[\alpha,\beta]$ (uniform sur l'intervalle $[\alpha,\beta]$).
+    a. Trouvez l'équilibre de Nash de la vente aux enchères à premier prix.
+    a. Trouvez le revenu espéré.
+
+1. Le gouvernement considère deux mécanismes pour attribuer le contrat pour remplacer un pont.
+Dans les deux cas, chaque firme $i$ soumet une enchère $b_i$ sous pli cacheté pour le contrat.
+Firme $i$ peut le faire à coût $c_i \sim U(0,1)$.
+Seulement la firme $i$ observe $c_i$.
+Les deux coûts, $c_1$ et $c_2$, sont indépendants.
+Voici les deux mécanismes :
+    a. La firme $i$ avec l'enchère minimale obtient le contrat et le gouvernement la paie $b_i$.
+    a. La firme $i$ avec l'enchère minimale obtient le contrat et le gouvernement la paie $b_{-i}$ (l'enchère de l'autre).
+Trouvez un équilibre $(b_1(c_1),b_2(c_2))$ pour chaque mécanisme et prouvez que les deux équilibres sont bien des équilibres.
+
+1. Selon Klemperer, quand l'information est parfaite, les modèles d'enchères sont souvent facile à résoudre.
+Il y trois acheteurs dans une vente aux enchères, avec valeurs privées $v_1=10$, $v_2=20$ et $v_3=30$ dollars.
+Les trois valeurs sont observées par les trois acheteurs.
+Les enchères $b_1$, $b_2$ et $b_3$ doivent être entiers.
+En cas d'enchères égales, le gagnant est sélectionné aux hazard.
+    a. Trouvez un équilibre de la vente aux enchères à premier prix.
+    a. Trouvez un équilibre de la vente aux enchères à deuxième prix.
+
+1. Il y a un équilibre en stratégies dominantes de la vente aux enchères de deuxième prix.
+Est-ce que cela veut dire que la collusion entre acheteurs est impossible?
+
+## Externalités et Coase
+
+Cours : le 7 octobre; séance TP : le 11 octobre.
+
+### Sujets et lectures
+
+1. Les externalités, droit et économie, coûts de transaction.
+
+La lecture est l'article de [Coase (1960)](Coas60.pdf)
+Il n'est pas nécessaire de lire tous les exemples des longues sections V et VII.
+Cependant, je parlerai de l'exemple Sturges v. Bridgman.
+
+### Exercice
+
+1. Il y a deux voisins, Caron et Lépine.
+Caron a un terrain où il pousse des carottes à un coût de 50\$ par an.
+Il les vend à 80\$ par an.
+Comme alternatif, il peut pousser des panais au même coût et les vendre à 70\$ par an.
+Lépine obtient un lapin domestique qui lui donne une utilité lui valant 100\$ par an.
+Le lapin mange des carottes et ne mange pas de panais.
+Sans intervention, le lapin mangerait toutes les carottes de Caron. 
+Chacun des voisins peut ériger et entretenir une barrière efficace contre les lapins à un coût de 50\$ par an.
+    a. Si Lépine est responsable du dommage que fait son lapin et les coûts de transaction sont zéro, quel est le résultat?
+    a. Si Lépine est responsable du dommage que fait son lapin et les coûts de transaction sont infinis, quel est le résultat?
+    a. Si Lépine n'est pas responsable du dommage que fait son lapin et les coûts de transaction sont zéro, quel est le résultat?
+    a. Si Lépine n'est pas responsable du dommage que fait son lapin et les coûts de transaction sont infinis, quel est le résultat?
+
+## Examen intra
+
+L'examen a lieu le 28 octobre; le moniteur discuterai de l'examen intra lors de la séance TP du 31 octobre.
+L'examen intra comprend toute la matière des cours précédents.
+
+## Information cachée
+
+Cours : 4, le 11, 18, 25 novembre; séances TP : 7, 14, 21, 28 novembre.
+
+### Sujets et lectures
+
+1. Introduction à l'information cachée et l'action cachée: [Arrow (1984)](Arro84.pdf), pages 1-6.
+1. Problème de tarification: [Arrow (1984)](Arro84.pdf), pages 6-9.
+1. L'assurance et la sélection adverse: [Rothschild et Stiglitz (1976)](RothStig76.pdf), pages 629-640 et la conclusion.
+1. Signaux: [Spence (1973)](Spen73.pdf).
+1. Le marché pour les citrons: lisez [Akerlof (1970)](Aker70.pdf).
+
+### Exercices
+
+1. (Modèle Arrow de tarification optimale)
+L'électricité est fournie par un monopole.
+Il y a deux types de consommateurs, $H$ (haute demande) et $B$ (basse demande) avec fonctions d'utilité $U_H(x) = 6\ln (x+1)$ et $U_B(x) = 4\ln (x+1)$.
+Le coût de production est constant, égale à $1$.
+Dans la population des clients, il y a une proportion $\pi$ de type $H$ et une proportion $(1-\pi)$ de type $B$.
+    a. Si les types sont observés, quel est l'équilibre? Quels sont les profits du monopole par client, pour les deux types de client?
+    a. Si les types ne sont pas observés, quel sont les quantités $x_H$ et $x_B$ en équilibre, en fonction de $\pi$.
+		Supposez que $\pi = 1/2$.
+		Quel est l'équilibre?
+		Quels sont les profits du monopole par client, pour les deux types de client?
+		L'équilibre est-il efficace?
+
+1. (Modèle Rothschild-Stiglitz) Les conducteurs ont une fonction d'utilité $U(w)=50w-w^2$.
+	Sans assurance, la richesse des conducteurs est $W=20$ s'il n'y a pas d'accident et $W-d=10$ s'il y a un accident.
+    a. Trouvez le contrat d'assurance en équilibre si tout le monde a une probabilité d'accident de $\pi_B = 0.1$.
+    a. Trouvez le contrat d'assurance en équilibre si tout le monde a une probabilité d'accident de $\pi_H = 0.2$.
+    a. Trouvez les contrats d'assurance en équilibre de plein information si une proportion $\lambda$ des conducteurs a une probabilité $\pi_H$ d'accident et une proportion $(1-\lambda)$ a une probabilité $\pi_L$ d'accident?
+    a. Trouvez les contrats d'assurance en équilibre d'information asymétrique si une proportion $\lambda=1/2$ des conducteurs a une probabilité $\pi_H$ d'accident et une proportion $(1-\lambda)=1/2$ a une probabilité $\pi_L$ d'accident? 
+    a. Supposez maintenant que ni les assureurs ni les conducteurs n'observaient les types, mais que tout le monde connait les proportions $\lambda=1/2$ et $1-\lambda=1/2$ et les probabilités $\pi_H$ et $\pi_L$.
+		Trouvez un équilibre.
+
+1. (Modèle Rothschild-Stiglitz) La probabilité d'une accident de voiture est plus élevée pour les hommes que pour les femmes, même si on conditionne aux attributs observables des conducteurs.
+	Un gouvernement interdit aux assureurs de discriminer par le sexe.
+	Qui gagne ou perd de cette interdiction (hommes?, femmes?, assureurs?), selon le modèle de Rothschild-Stiglitz?
+
+1. (Modèle de signalisation à la Spence) Il y a deux types de travailleurs, $H$ et $B$.
+	Les types ne sont pas observés.
+	Leurs proportions sont égales, leurs produits marginaux sont $25y$ et $10y$ et leurs coût d'opportunités pour obtenir $y$ unités d'éducation sont $0.6y^2$ et $0.8y^2$.
+    a. Trouvez un équilibre séparant.
+    a. Trouvez un équilibre mélangeant.
+
+1. (Modèle de signalisation à la Spence) Il y a deux types de travailleurs, $H$ et $B$.
+	Les types ne sont pas observés.
+	Leurs proportions sont égales, leurs produits marginaux sont $20$ et $10$ et leurs coût d'opportunités pour obtenir $y$ unités d'éducation sont $y^2$ et $3y^2$.
+    a. Trouvez un équilibre séparant.
+    a. Trouvez un équilibre mélangeant.
+	
+1. (Modèle de marché pour les citron à la Akerlof) Supposons qu'il y a une technologie à cout zéro qui indique, de façon fiable, si la qualité $x_i$ d'une voiture $i$ est égale ou supérieure à $\bar{\mu}$, où $0<\bar{\mu}<2$. Comment l'analyse d'Akerlof (Section 2) changerait-elle? Dans un premier temps, essayez $\bar{\mu} = 1$. Vous pouvez ignorer le marché pour les voitures avec qualité plus grande de $\bar{\mu}$ dans le cas d'information symétrique; c'est assez difficile et peu intéressant.
+
+## Action cachée
+
+Cours: le 2 décembre; séance TP: le 5 décembre.
+
+### Sujets et lectures
+
+1. Problèmes principal-agent : [Arrow (1984)](Arro84.pdf), Section 4, ``The Hidden-Action Model''; ML, Chapitre 19, Sections 1 et 2.
+
+### Exercices
+
+1. (Problème principal-agent) Un agent peut faire un effort ($a=1$) ou non $(a=0)$.
+Son utilité est de $E[s^\alpha] - c_a$, qui dépend du paiement aléatoire $s$ du principal et le coût associé avec l'effort.
+$0<\alpha \leq 1$ et $c_1 > c_0 = 0$.
+L'agent a une utilité de réservation $\bar{u}$.
+Le principal a un projet dont le succès dépend de l'effort de l'agent.
+Si le projet réussit, sa valeur au principal est de 1; si le projet échoue, sa valeur est de 0.
+Le projet réussit avec probabilité $\pi_a$, selon l'effort $a$ de l'agent; $0\leq \pi_0 < \pi_1 \leq 1$.
+Le principal est neutre pour le risque et maximise la valeur espéré du projet moins le paiement espéré à l'agent.
+    a. Le principal peut observer l'effort de l'agent et offrir un contrat qui dépend de cet effort.
+		L'agent peut accepter ou refuser le contrat.
+		Quel est le contrat optimal pour le principal?
+    a. Le principal ne peut pas observer l'effort de l'agent mais peut offrir un contrat $(s_0,s_1)$ qui paie $s_0$ si le projet échoue et $s_1$ si le projet réussit.
+		Quel est le contrat optimal pour le principal?
+
+## Références
