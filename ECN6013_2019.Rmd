@@ -12,17 +12,17 @@ bibliography: bibliography.bib
 ### Livres
 
 * OS: Osborne and Rubinstein (1994), "A Course in Game Theory", disponible [ici](http://books.osborne.economics.utoronto.ca)
-* ML: McAfee and Lewis, [Introduction to Economic Analysis](./ECN6013/McAfee_IEA.pdf) dot slash
+* ML: McAfee and Lewis, [Introduction to Economic Analysis](./ECN6013/McAfee_IEA.pdf)
 * CEE: [Concise Encyclopedia of Economics](http://www.econlib.org/library/CEE.html)
 
 ### Articles
 
-* @Klem99 [article](ECN6013/Klem99.pdf) no dot slash
-* @Coas60 [article](./Coas60.pdf) no dot slash
-* @Arro84 [article](Arro84.pdf)
-* @RothStig76 [article](RothStig76.pdf)
-* @Spen73 [article](Spen73.pdf)
-* @Aker70 [article](Aker70.pdf)
+* @Klem99 [article](./ECN6013/Klem99.pdf)
+* @Coas60 [article](./ECN6013/Coas60.pdf)
+* @Arro84 [article](./ECN6013/Arro84.pdf)
+* @RothStig76 [article](ECN6013/RothStig76.pdf)
+* @Spen73 [article](ECN6013/Spen73.pdf)
+* @Aker70 [article](ECN6013/Aker70.pdf)
 
 ## Jeux, équilibre et efficacité
 
@@ -136,7 +136,7 @@ Cours: 23, 30 septembre; séances TP: 26 septembre, 3 octobre.
 
 1. Équivalence en termes de revenue, revenus marginaux.
 
-Les lectures sont principalement dans l'article de [Klemperer (1999)](Klem99.pdf) :
+Les lectures sont principalement dans l'article de [Klemperer (1999)](ECN6013/Klem99.pdf) :
 pour le premier cours, Sections 1, 2, 3 et 4; pour le deuxième, Appendices A et B.
 L'article [Auction Theory](https://en.wikipedia.org/wiki/Auction_theory) a une analyse de la vente aux enchères à premier prix (recommandée) et une autre discussion de l'équivalence en termes de revenue (facultative).
 
@@ -182,7 +182,7 @@ Cours : le 7 octobre; séance TP : le 11 octobre.
 
 1. Les externalités, droit et économie, coûts de transaction.
 
-La lecture est l'article de [Coase (1960)](Coas60.pdf)
+La lecture est l'article de [Coase (1960)](ECN6013/Coas60.pdf)
 Il n'est pas nécessaire de lire tous les exemples des longues sections V et VII.
 Cependant, je parlerai de l'exemple Sturges v. Bridgman.
 
@@ -212,11 +212,11 @@ Cours : 4, le 11, 18, 25 novembre; séances TP : 7, 14, 21, 28 novembre.
 
 ### Sujets et lectures
 
-1. Introduction à l'information cachée et l'action cachée: [Arrow (1984)](Arro84.pdf), pages 1-6.
-1. Problème de tarification: [Arrow (1984)](Arro84.pdf), pages 6-9.
-1. L'assurance et la sélection adverse: [Rothschild et Stiglitz (1976)](RothStig76.pdf), pages 629-640 et la conclusion.
-1. Signaux: [Spence (1973)](Spen73.pdf).
-1. Le marché pour les citrons: lisez [Akerlof (1970)](Aker70.pdf).
+1. Introduction à l'information cachée et l'action cachée: [Arrow (1984)](ECN6013/Arro84.pdf), pages 1-6.
+1. Problème de tarification: [Arrow (1984)](ECN6013/Arro84.pdf), pages 6-9.
+1. L'assurance et la sélection adverse: [Rothschild et Stiglitz (1976)](ECN6013/RothStig76.pdf), pages 629-640 et la conclusion.
+1. Signaux: [Spence (1973)](ECN6013/Spen73.pdf).
+1. Le marché pour les citrons: lisez [Akerlof (1970)](ECN6013/Aker70.pdf).
 
 ### Exercices
 
@@ -265,7 +265,7 @@ Cours: le 2 décembre; séance TP: le 5 décembre.
 
 ### Sujets et lectures
 
-1. Problèmes principal-agent : [Arrow (1984)](Arro84.pdf), Section 4, ``The Hidden-Action Model''; ML, Chapitre 19, Sections 1 et 2.
+1. Problèmes principal-agent : [Arrow (1984)](ECN6013/Arro84.pdf), Section 4, ``The Hidden-Action Model''; ML, Chapitre 19, Sections 1 et 2.
 
 ### Exercices
 

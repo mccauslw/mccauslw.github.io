@@ -8,3 +8,6 @@
 [Plan de Cours](./ECN6013/ECN6013A-A19-PC.pdf)
 
 [Matière et Exercices](./ECN6013/ECN6013_2019.pdf)
+
+[Diapos, Efficacité, Jeux, Équilibre](./ECN6013/efficacite_jeux_equilibre.pdf), 2019/09/08
+

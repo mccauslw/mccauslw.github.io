@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="William McCausland" />
+
+<meta name="date" content="2019-09-08" />
+
+<title>ECN 6013, automne 2019</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">William McCausland</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="research.html">Research</a>
+</li>
+<li>
+  <a href="./CV/CVMcCausland.pdf">CV</a>
+</li>
+<li>
+  <a href="ECN6013.html">ECN 6013</a>
+</li>
+<li>
+  <a href="ECN7060.html">ECN 7060</a>
+</li>
+<li>
+  <a href="R_links.html">R Links</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="contact.html">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/mccauslw">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">ECN 6013, automne 2019</h1>
+<h4 class="author">William McCausland</h4>
+<h4 class="date">2019-09-08</h4>
+
+</div>
+
+
+<div id="livres-et-articles" class="section level2">
+<h2>Livres et articles</h2>
+<div id="livres" class="section level3">
+<h3>Livres</h3>
+<ul>
+<li>OS: Osborne and Rubinstein (1994), “A Course in Game Theory”, disponible <a href="http://books.osborne.economics.utoronto.ca">ici</a></li>
+<li>ML: McAfee and Lewis, <a href="./ECN6013/McAfee_IEA.pdf">Introduction to Economic Analysis</a></li>
+<li>CEE: <a href="http://www.econlib.org/library/CEE.html">Concise Encyclopedia of Economics</a></li>
+</ul>
+</div>
+<div id="articles" class="section level3">
+<h3>Articles</h3>
+<ul>
+<li><span class="citation">Klemperer (1999)</span> <a href="./ECN6013/Klem99.pdf">article</a></li>
+<li><span class="citation">Coase (1960)</span> <a href="./ECN6013/Coas60.pdf">article</a></li>
+<li><span class="citation">Arrow (1984)</span> <a href="./ECN6013/Arro84.pdf">article</a></li>
+<li><span class="citation">Rothschild and Stiglitz (1976)</span> <a href="ECN6013/RothStig76.pdf">article</a></li>
+<li><span class="citation">Spence (1973)</span> <a href="ECN6013/Spen73.pdf">article</a></li>
+<li><span class="citation">Akerlof (1970)</span> <a href="ECN6013/Aker70.pdf">article</a></li>
+</ul>
+</div>
+</div>
+<div id="jeux-equilibre-et-efficacite" class="section level2">
+<h2>Jeux, équilibre et efficacité</h2>
+<p>Cours : 9, 16 septembre; séances TP : 12 et 19 septembre</p>
+<div id="sujets-et-lectures" class="section level3">
+<h3>Sujets et lectures</h3>
+<ol style="list-style-type: decimal">
+<li><p>Efficacité à la <a href="https://en.wikipedia.org/wiki/Pareto_efficiency">Pareto</a> et à la <a href="KaldorHicks.pdf">Kaldor-Hicks</a></p></li>
+<li>Exemples de jeux simples en forme normale :
+<ol style="list-style-type: lower-alpha">
+<li><a href="https://en.wikipedia.org/wiki/Prisoner%27s_dilemma">dilemme des prisonniers</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Coordination_game">jeux de coordination et anticoordination</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Chicken_(game)">jeux faucon-colombe</a></li>
+</ol></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Strategic_dominance">Équilibre en stratégies dominantes</a></p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Nash_equilibrium">Équilibre de Nash</a></p></li>
+<li>Variations du dilemme des prisioinniers :
+<ol style="list-style-type: lower-alpha">
+<li>jeux à la Cournot (ML chapitre 17, section 1)</li>
+<li>biens publiques (ML, chapitre 8, section 1)</li>
+<li><a href="http://www.econlib.org/library/Enc/TragedyoftheCommons.html">tragédie des communs</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Extensive-form_game">jeux en forme extensive</a></li>
+<li>jeux répétés (OR 8.1, 8.2)</li>
+</ol></li>
+</ol>
+</div>
+<div id="exercices" class="section level3">
+<h3>Exercices</h3>
+<ol style="list-style-type: decimal">
+<li>Trois soeurs, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> et <span class="math inline">\(C\)</span>, héritent trois actifs indivisibles : une maison <span class="math inline">\(X\)</span>, un bateau <span class="math inline">\(Y\)</span> et une peinture <span class="math inline">\(Z\)</span>. Chaque soeur doit obtenir un seul objet, alors il y a six allocations faisables. Pour chacune des trois conditions ci-dessous, spécifiez des préférences strictes (sans indifférence) des soeurs telle que la condition tient :
+<ol style="list-style-type: lower-alpha">
+<li>Il y a une seule allocation efficace.</li>
+<li>Il y a au moins deux allocations efficaces et au moins une allocation inefficace.</li>
+<li>Toutes les allocations sont efficaces.</li>
+</ol></li>
+<li>Pour les trois jeux au tableau , identifiez le type du jeux, trouvez les équilibres Nash purs, les équilibres en stratégies dominantes et les allocations efficaces.</li>
+<li>Il y a <span class="math inline">\(n\)</span> firmes en équilibre Cournot symmétrique. La demande marchande et de <span class="math inline">\(Q(P) = 1-P\)</span> et chaque firme a un coût marginal de production de <span class="math inline">\(c \in [0,1)\)</span>, une constante.
+<ol style="list-style-type: lower-alpha">
+<li>Trouvez le prix, les quantités et les profits en equilibre.</li>
+<li>Est-ce qu’il y a un équilibre en stratégies dominantes?</li>
+<li>Est-ce que l’équilibre est efficace (pour l’ensemble des firmes, en ignorant les consommateurs)?</li>
+</ol></li>
+<li>Considerez le stage game du tableau .
+Deux joueurs avec un taux d’actualization <span class="math inline">\(\delta\)</span> jouent un jeux infiniment répété.
+<ol style="list-style-type: lower-alpha">
+<li>Pour quelles valeurs des paramètres <span class="math inline">\(\delta\)</span>, <span class="math inline">\(c\)</span>, <span class="math inline">\(d\)</span>, <span class="math inline">\(h\)</span> et <span class="math inline">\(l\)</span> est-ce que le stage game est un dilemme des prisonniers?</li>
+<li>Pour quelles valeurs des paramètres est-ce que gachette contre gachette est un équilibre?</li>
+<li>Donnez des valeurs des paramètres telles que gachette contre gachette est un équilibre mais tit-for-tat contre tit-for-tat ne l’est pas.</li>
+</ol></li>
+<li>Il y a <span class="math inline">\(n\)</span> agriculteurs identiques. Leur fonction d’utilité est de <span class="math inline">\(U(c,l) = c - l^\alpha/\alpha\)</span>, où <span class="math inline">\(c \geq 0\)</span> est la consommation, <span class="math inline">\(l \geq 0\)</span> est le travail et <span class="math inline">\(\alpha &gt; 1\)</span>. Il y a une technologie linéaire pour convertir une unité de travail en une unité de consommation. Considérez deux cas:
+<ol style="list-style-type: lower-alpha">
+<li>Ils consomment leur propre production : <span class="math inline">\(c_i = l_i\)</span>. Quelles sont la quantité optimale de travail et l’utilité maximale?</li>
+<li>Ils sont obligés de partager leur production agrégée : <span class="math inline">\(c_i = n^{-1} \sum_{i=1}^n l_i\)</span>. Donnez un équilibre de Nash. Est-ce qu’il est un équilibre en stratégies dominantes? Est-ce qu’il est efficace?</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="encheres" class="section level2">
+<h2>Enchères</h2>
+<p>Cours: 23, 30 septembre; séances TP: 26 septembre, 3 octobre.</p>
+<div id="sujets-et-lectures-1" class="section level3">
+<h3>Sujets et lectures</h3>
+<ol style="list-style-type: decimal">
+<li><p>Quatre ventes aux enchères de base</p></li>
+<li><p>Valeurs communes et privées</p></li>
+<li><p>Stratégies et équilibres</p></li>
+<li><p>Malédiction du gagnant</p></li>
+<li><p>Équivalence en termes de revenue, revenus marginaux.</p></li>
+</ol>
+<p>Les lectures sont principalement dans l’article de <a href="ECN6013/Klem99.pdf">Klemperer (1999)</a> : pour le premier cours, Sections 1, 2, 3 et 4; pour le deuxième, Appendices A et B. L’article <a href="https://en.wikipedia.org/wiki/Auction_theory">Auction Theory</a> a une analyse de la vente aux enchères à premier prix (recommandée) et une autre discussion de l’équivalence en termes de revenue (facultative).</p>
+</div>
+<div id="exercices-1" class="section level3">
+<h3>Exercices</h3>
+<ol style="list-style-type: decimal">
+<li>Considérez une vente aux enchères à premier prix avec deux joueurs. Leurs valeurs privées <span class="math inline">\(v_1 \in [0,1]\)</span> et <span class="math inline">\(v_2 \in [0,1]\)</span> sont indépendantes avec fonctions de répartition <span class="math inline">\(F[v_1] = v_1^2\)</span> et <span class="math inline">\(F[v_2] = v_2\)</span>. Mettons que leurs enchères sont <span class="math inline">\(b_1(v_1) = v_1/2\)</span> et <span class="math inline">\(b_2(v_2) = 2v_2/3\)</span>.
+<ol style="list-style-type: lower-alpha">
+<li>La stratégie du joueur 1 est-elle une meilleure réponse à la stratégie du joueur 2?</li>
+<li>La stratégie du joueur 2 est-elle une meilleure réponse à la stratégie du joueur 1?</li>
+</ol></li>
+<li>Considérez une vente aux enchères à premier prix avec deux joueurs. Leurs valeurs privées <span class="math inline">\(v_1\)</span> et <span class="math inline">\(v_2\)</span> sont iid <span class="math inline">\(v_i \sim U[\alpha,\beta]\)</span> (uniform sur l’intervalle <span class="math inline">\([\alpha,\beta]\)</span>).
+<ol style="list-style-type: lower-alpha">
+<li>Trouvez l’équilibre de Nash de la vente aux enchères à premier prix.</li>
+<li>Trouvez le revenu espéré.</li>
+</ol></li>
+<li>Le gouvernement considère deux mécanismes pour attribuer le contrat pour remplacer un pont. Dans les deux cas, chaque firme <span class="math inline">\(i\)</span> soumet une enchère <span class="math inline">\(b_i\)</span> sous pli cacheté pour le contrat. Firme <span class="math inline">\(i\)</span> peut le faire à coût <span class="math inline">\(c_i \sim U(0,1)\)</span>. Seulement la firme <span class="math inline">\(i\)</span> observe <span class="math inline">\(c_i\)</span>. Les deux coûts, <span class="math inline">\(c_1\)</span> et <span class="math inline">\(c_2\)</span>, sont indépendants. Voici les deux mécanismes :
+<ol style="list-style-type: lower-alpha">
+<li>La firme <span class="math inline">\(i\)</span> avec l’enchère minimale obtient le contrat et le gouvernement la paie <span class="math inline">\(b_i\)</span>.</li>
+<li>La firme <span class="math inline">\(i\)</span> avec l’enchère minimale obtient le contrat et le gouvernement la paie <span class="math inline">\(b_{-i}\)</span> (l’enchère de l’autre). Trouvez un équilibre <span class="math inline">\((b_1(c_1),b_2(c_2))\)</span> pour chaque mécanisme et prouvez que les deux équilibres sont bien des équilibres.</li>
+</ol></li>
+<li>Selon Klemperer, quand l’information est parfaite, les modèles d’enchères sont souvent facile à résoudre. Il y trois acheteurs dans une vente aux enchères, avec valeurs privées <span class="math inline">\(v_1=10\)</span>, <span class="math inline">\(v_2=20\)</span> et <span class="math inline">\(v_3=30\)</span> dollars. Les trois valeurs sont observées par les trois acheteurs. Les enchères <span class="math inline">\(b_1\)</span>, <span class="math inline">\(b_2\)</span> et <span class="math inline">\(b_3\)</span> doivent être entiers. En cas d’enchères égales, le gagnant est sélectionné aux hazard.
+<ol style="list-style-type: lower-alpha">
+<li>Trouvez un équilibre de la vente aux enchères à premier prix.</li>
+<li>Trouvez un équilibre de la vente aux enchères à deuxième prix.</li>
+</ol></li>
+<li>Il y a un équilibre en stratégies dominantes de la vente aux enchères de deuxième prix. Est-ce que cela veut dire que la collusion entre acheteurs est impossible?</li>
+</ol>
+</div>
+</div>
+<div id="externalites-et-coase" class="section level2">
+<h2>Externalités et Coase</h2>
+<p>Cours : le 7 octobre; séance TP : le 11 octobre.</p>
+<div id="sujets-et-lectures-2" class="section level3">
+<h3>Sujets et lectures</h3>
+<ol style="list-style-type: decimal">
+<li>Les externalités, droit et économie, coûts de transaction.</li>
+</ol>
+<p>La lecture est l’article de <a href="ECN6013/Coas60.pdf">Coase (1960)</a> Il n’est pas nécessaire de lire tous les exemples des longues sections V et VII. Cependant, je parlerai de l’exemple Sturges v. Bridgman.</p>
+</div>
+<div id="exercice" class="section level3">
+<h3>Exercice</h3>
+<ol style="list-style-type: decimal">
+<li>Il y a deux voisins, Caron et Lépine. Caron a un terrain où il pousse des carottes à un coût de 50$ par an. Il les vend à 80$ par an. Comme alternatif, il peut pousser des panais au même coût et les vendre à 70$ par an. Lépine obtient un lapin domestique qui lui donne une utilité lui valant 100$ par an. Le lapin mange des carottes et ne mange pas de panais. Sans intervention, le lapin mangerait toutes les carottes de Caron. Chacun des voisins peut ériger et entretenir une barrière efficace contre les lapins à un coût de 50$ par an.
+<ol style="list-style-type: lower-alpha">
+<li>Si Lépine est responsable du dommage que fait son lapin et les coûts de transaction sont zéro, quel est le résultat?</li>
+<li>Si Lépine est responsable du dommage que fait son lapin et les coûts de transaction sont infinis, quel est le résultat?</li>
+<li>Si Lépine n’est pas responsable du dommage que fait son lapin et les coûts de transaction sont zéro, quel est le résultat?</li>
+<li>Si Lépine n’est pas responsable du dommage que fait son lapin et les coûts de transaction sont infinis, quel est le résultat?</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="examen-intra" class="section level2">
+<h2>Examen intra</h2>
+<p>L’examen a lieu le 28 octobre; le moniteur discuterai de l’examen intra lors de la séance TP du 31 octobre. L’examen intra comprend toute la matière des cours précédents.</p>
+</div>
+<div id="information-cachee" class="section level2">
+<h2>Information cachée</h2>
+<p>Cours : 4, le 11, 18, 25 novembre; séances TP : 7, 14, 21, 28 novembre.</p>
+<div id="sujets-et-lectures-3" class="section level3">
+<h3>Sujets et lectures</h3>
+<ol style="list-style-type: decimal">
+<li>Introduction à l’information cachée et l’action cachée: <a href="ECN6013/Arro84.pdf">Arrow (1984)</a>, pages 1-6.</li>
+<li>Problème de tarification: <a href="ECN6013/Arro84.pdf">Arrow (1984)</a>, pages 6-9.</li>
+<li>L’assurance et la sélection adverse: <a href="ECN6013/RothStig76.pdf">Rothschild et Stiglitz (1976)</a>, pages 629-640 et la conclusion.</li>
+<li>Signaux: <a href="ECN6013/Spen73.pdf">Spence (1973)</a>.</li>
+<li>Le marché pour les citrons: lisez <a href="ECN6013/Aker70.pdf">Akerlof (1970)</a>.</li>
+</ol>
+</div>
+<div id="exercices-2" class="section level3">
+<h3>Exercices</h3>
+<ol style="list-style-type: decimal">
+<li>(Modèle Arrow de tarification optimale) L’électricité est fournie par un monopole. Il y a deux types de consommateurs, <span class="math inline">\(H\)</span> (haute demande) et <span class="math inline">\(B\)</span> (basse demande) avec fonctions d’utilité <span class="math inline">\(U_H(x) = 6\ln (x+1)\)</span> et <span class="math inline">\(U_B(x) = 4\ln (x+1)\)</span>. Le coût de production est constant, égale à <span class="math inline">\(1\)</span>. Dans la population des clients, il y a une proportion <span class="math inline">\(\pi\)</span> de type <span class="math inline">\(H\)</span> et une proportion <span class="math inline">\((1-\pi)\)</span> de type <span class="math inline">\(B\)</span>.
+<ol style="list-style-type: lower-alpha">
+<li>Si les types sont observés, quel est l’équilibre? Quels sont les profits du monopole par client, pour les deux types de client?</li>
+<li>Si les types ne sont pas observés, quel sont les quantités <span class="math inline">\(x_H\)</span> et <span class="math inline">\(x_B\)</span> en équilibre, en fonction de <span class="math inline">\(\pi\)</span>. Supposez que <span class="math inline">\(\pi = 1/2\)</span>. Quel est l’équilibre? Quels sont les profits du monopole par client, pour les deux types de client? L’équilibre est-il efficace?</li>
+</ol></li>
+<li>(Modèle Rothschild-Stiglitz) Les conducteurs ont une fonction d’utilité <span class="math inline">\(U(w)=50w-w^2\)</span>. Sans assurance, la richesse des conducteurs est <span class="math inline">\(W=20\)</span> s’il n’y a pas d’accident et <span class="math inline">\(W-d=10\)</span> s’il y a un accident.
+<ol style="list-style-type: lower-alpha">
+<li>Trouvez le contrat d’assurance en équilibre si tout le monde a une probabilité d’accident de <span class="math inline">\(\pi_B = 0.1\)</span>.</li>
+<li>Trouvez le contrat d’assurance en équilibre si tout le monde a une probabilité d’accident de <span class="math inline">\(\pi_H = 0.2\)</span>.</li>
+<li>Trouvez les contrats d’assurance en équilibre de plein information si une proportion <span class="math inline">\(\lambda\)</span> des conducteurs a une probabilité <span class="math inline">\(\pi_H\)</span> d’accident et une proportion <span class="math inline">\((1-\lambda)\)</span> a une probabilité <span class="math inline">\(\pi_L\)</span> d’accident?</li>
+<li>Trouvez les contrats d’assurance en équilibre d’information asymétrique si une proportion <span class="math inline">\(\lambda=1/2\)</span> des conducteurs a une probabilité <span class="math inline">\(\pi_H\)</span> d’accident et une proportion <span class="math inline">\((1-\lambda)=1/2\)</span> a une probabilité <span class="math inline">\(\pi_L\)</span> d’accident?</li>
+<li>Supposez maintenant que ni les assureurs ni les conducteurs n’observaient les types, mais que tout le monde connait les proportions <span class="math inline">\(\lambda=1/2\)</span> et <span class="math inline">\(1-\lambda=1/2\)</span> et les probabilités <span class="math inline">\(\pi_H\)</span> et <span class="math inline">\(\pi_L\)</span>. Trouvez un équilibre.</li>
+</ol></li>
+<li><p>(Modèle Rothschild-Stiglitz) La probabilité d’une accident de voiture est plus élevée pour les hommes que pour les femmes, même si on conditionne aux attributs observables des conducteurs. Un gouvernement interdit aux assureurs de discriminer par le sexe. Qui gagne ou perd de cette interdiction (hommes?, femmes?, assureurs?), selon le modèle de Rothschild-Stiglitz?</p></li>
+<li>(Modèle de signalisation à la Spence) Il y a deux types de travailleurs, <span class="math inline">\(H\)</span> et <span class="math inline">\(B\)</span>. Les types ne sont pas observés. Leurs proportions sont égales, leurs produits marginaux sont <span class="math inline">\(25y\)</span> et <span class="math inline">\(10y\)</span> et leurs coût d’opportunités pour obtenir <span class="math inline">\(y\)</span> unités d’éducation sont <span class="math inline">\(0.6y^2\)</span> et <span class="math inline">\(0.8y^2\)</span>.
+<ol style="list-style-type: lower-alpha">
+<li>Trouvez un équilibre séparant.</li>
+<li>Trouvez un équilibre mélangeant.</li>
+</ol></li>
+<li>(Modèle de signalisation à la Spence) Il y a deux types de travailleurs, <span class="math inline">\(H\)</span> et <span class="math inline">\(B\)</span>. Les types ne sont pas observés. Leurs proportions sont égales, leurs produits marginaux sont <span class="math inline">\(20\)</span> et <span class="math inline">\(10\)</span> et leurs coût d’opportunités pour obtenir <span class="math inline">\(y\)</span> unités d’éducation sont <span class="math inline">\(y^2\)</span> et <span class="math inline">\(3y^2\)</span>.
+<ol style="list-style-type: lower-alpha">
+<li>Trouvez un équilibre séparant.</li>
+<li>Trouvez un équilibre mélangeant.</li>
+</ol></li>
+<li><p>(Modèle de marché pour les citron à la Akerlof) Supposons qu’il y a une technologie à cout zéro qui indique, de façon fiable, si la qualité <span class="math inline">\(x_i\)</span> d’une voiture <span class="math inline">\(i\)</span> est égale ou supérieure à <span class="math inline">\(\bar{\mu}\)</span>, où <span class="math inline">\(0&lt;\bar{\mu}&lt;2\)</span>. Comment l’analyse d’Akerlof (Section 2) changerait-elle? Dans un premier temps, essayez <span class="math inline">\(\bar{\mu} = 1\)</span>. Vous pouvez ignorer le marché pour les voitures avec qualité plus grande de <span class="math inline">\(\bar{\mu}\)</span> dans le cas d’information symétrique; c’est assez difficile et peu intéressant.</p></li>
+</ol>
+</div>
+</div>
+<div id="action-cachee" class="section level2">
+<h2>Action cachée</h2>
+<p>Cours: le 2 décembre; séance TP: le 5 décembre.</p>
+<div id="sujets-et-lectures-4" class="section level3">
+<h3>Sujets et lectures</h3>
+<ol style="list-style-type: decimal">
+<li>Problèmes principal-agent : <a href="ECN6013/Arro84.pdf">Arrow (1984)</a>, Section 4, ``The Hidden-Action Model’’; ML, Chapitre 19, Sections 1 et 2.</li>
+</ol>
+</div>
+<div id="exercices-3" class="section level3">
+<h3>Exercices</h3>
+<ol style="list-style-type: decimal">
+<li>(Problème principal-agent) Un agent peut faire un effort (<span class="math inline">\(a=1\)</span>) ou non <span class="math inline">\((a=0)\)</span>. Son utilité est de <span class="math inline">\(E[s^\alpha] - c_a\)</span>, qui dépend du paiement aléatoire <span class="math inline">\(s\)</span> du principal et le coût associé avec l’effort. <span class="math inline">\(0&lt;\alpha \leq 1\)</span> et <span class="math inline">\(c_1 &gt; c_0 = 0\)</span>. L’agent a une utilité de réservation <span class="math inline">\(\bar{u}\)</span>. Le principal a un projet dont le succès dépend de l’effort de l’agent. Si le projet réussit, sa valeur au principal est de 1; si le projet échoue, sa valeur est de 0. Le projet réussit avec probabilité <span class="math inline">\(\pi_a\)</span>, selon l’effort <span class="math inline">\(a\)</span> de l’agent; <span class="math inline">\(0\leq \pi_0 &lt; \pi_1 \leq 1\)</span>. Le principal est neutre pour le risque et maximise la valeur espéré du projet moins le paiement espéré à l’agent.
+<ol style="list-style-type: lower-alpha">
+<li>Le principal peut observer l’effort de l’agent et offrir un contrat qui dépend de cet effort. L’agent peut accepter ou refuser le contrat. Quel est le contrat optimal pour le principal?</li>
+<li>Le principal ne peut pas observer l’effort de l’agent mais peut offrir un contrat <span class="math inline">\((s_0,s_1)\)</span> qui paie <span class="math inline">\(s_0\)</span> si le projet échoue et <span class="math inline">\(s_1\)</span> si le projet réussit. Quel est le contrat optimal pour le principal?</li>
+</ol></li>
+</ol>
+</div>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>Références</h2>
+<div id="refs" class="references">
+<div id="ref-Aker70">
+<p>Akerlof, George A. 1970. “The Market for ‘Lemons’: Quality and the Market Mechanism.” <em>Quarterly Journal of Economics</em> 84: 488–500.</p>
+</div>
+<div id="ref-Arro84">
+<p>Arrow, Kenneth J. 1984. “The Economics of Agency.” 451. Institute for Mathematical Studies in the Social Sciences, Stanford University.</p>
+</div>
+<div id="ref-Coas60">
+<p>Coase, Ronald. 1960. “The Problem of Social Cost.” <em>Journal of Law and Economics</em> 3: 1–44.</p>
+</div>
+<div id="ref-Klem99">
+<p>Klemperer, Paul. 1999. “Auction Theory: A Guide to the Literature.” <em>Journal of Economic Surveys</em> 13: 227–86.</p>
+</div>
+<div id="ref-RothStig76">
+<p>Rothschild, Michael, and Joseph Stiglitz. 1976. “Equilibrium in Competitive Insurance Markets: An Essay on the Economics of Imperfect Information.” <em>Quarterly Journal of Economics</em> 90: 629–49.</p>
+</div>
+<div id="ref-Spen73">
+<p>Spence, Michael. 1973. “Job Market Signaling.” <em>Quarterly Journal of Economics</em> 87: 355–74.</p>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
