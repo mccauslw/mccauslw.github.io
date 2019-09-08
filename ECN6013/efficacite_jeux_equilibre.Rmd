@@ -4,11 +4,14 @@ subtitle: "ECN 6013, automne 2019"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: beamer_presentation
+fig_width: 6
+fig_height: 4
 urlcolor: blue
 ---
 
 ```{r, include=FALSE}
 options(tinytex.verbose = TRUE)
+knitr::opts_chunk$set(fig.width=6, fig.height=4) 
 ```
 
 ## Allocations et efficacité à la Pareto, un exemple
@@ -16,7 +19,7 @@ options(tinytex.verbose = TRUE)
 + Trois agents (acteurs économiques): 1, 2 et 3.
 + Cinq allocations (résultats) faisables : $A$, $B$, $C$, $D$ et $E$.
 + Exemples des allocations ou des résultats :
-    + Partis politiques ($A$ est la PLC, $B$ est le PCC, \ldots)
+    + Parti politique au pouvoir ($A$ est le PLC, $B$ est le PCC, \ldots)
     + Politiques sur le cannabis ($A$ est 
     "légalité totale", ..., $E$ est "interdiction sans exception")
     + Allocations parmi les trois agents de 10 pommes et 10 oranges. $A$ est une allocation $(5,3,2)$ des pommes, $(2,4,4)$ des oranges.
@@ -40,8 +43,10 @@ options(tinytex.verbose = TRUE)
     + La préférence dans le sens de Pareto est transitive mais incomplète: il n'y a pas toujours un ordre.
     + Un résultat peut être efficace mais très injuste.
     + On n'a pas parlé des actions des agents, de leur optimisation, de l'équilibre.
+    On n'a pas besoin pour parler de l'efficacité.
+    + Concepts dérivés : équilibre efficace? prix efficace?
 
-## Conditions suffisantes pour l'efficacité
+## Conditions suffisantes pour l'inefficacité, l'efficacité
 
 Démontrer qu'un résultat est inefficace est souvent simple :
 
@@ -50,12 +55,12 @@ Démontrer qu'un résultat est inefficace est souvent simple :
 Deux conditions suffisantes pour l'efficacité d'un résultat :
 
 1. Le résultat maximise une somme pondérée de l'utilité des agents, où tous les poids sont positifs.
-1. Le résultat est strictement préféré à tous les alternatifs faisables par au moins un agent.
+1. Le résultat en question est strictement préféré à tous les autres resultats faisables par au moins un agent.
 
 ## Exemple, allocation d'un gâteau
 
 + Trois agents : 1, 2 et 3.
-+ Résultat est l'allocation d'un gâteau : $(x_1,x_2,x_3)$, $x_1 \geq 0$, $x_2 \geq 0$, $x_3 \geq 0$, $x_1 + x_2 + x_3 \leq 1$.
++ Le résultat est l'allocation d'un gâteau : $(x_1,x_2,x_3)$ tel que $x_1 \geq 0$, $x_2 \geq 0$, $x_3 \geq 0$, $x_1 + x_2 + x_3 \leq 1$.
 + L'utilité de $i$ est une fonction seulement de $x_i$, et la fonction est croissante.
 + Une proposition fausse : tous agents préfèrent toujours un résultat efficace à un résultat inefficace. Agents 1 et 2 préfèrent $(0.4,0.4,0.1)$ à $(0.3,0.3,0.4)$.
 + Une autre proposition fausse : un résultat $x$ préférable au résultat $y$ dans le sens de Pareto est efficace. Soit $x = (0.3,0.3,0.3)$, $y = (0.2,0.2,0.2)$.
@@ -69,7 +74,7 @@ Un jeu de deux personnes (dilemme des prisonniers):
 |$C$|$(1,1)$|$(-1,3)$|
 |$D$|$(2,-2)$|$(0,0)$|
 
-Une interprétation où les agents sont un vendeur (1) et un acheteur (2):
+Une interprétation où les agents sont un vendeur (1) et un acheteur (2) d'un objet :
 
 + L'objet vaut 1 au vendeur, 3 à l'acheteur.
 + Ils négocient un prix de 2.
@@ -78,13 +83,15 @@ Une interprétation où les agents sont un vendeur (1) et un acheteur (2):
 
 ## Équilibre en stratégies dominantes
 
-+ Une *stratégie dominante* est une stratégie qui donne le plus d'utilité au joueur, peu importe la stratégie de l'autre.
++ Une *stratégie dominante* d'un joueur est une stratégie qui maximise l'utilité du joueur, pour chaque stratégie de l'autre.
 + Dans le dilemme des prisonniers,
     + la stratégie $S_1^*=D$ est dominante pour le joueur ligne,
     + $S_2^*=D$ est dominante pour le joeur colonne.
 + Un *équilibre en stratégies dominantes* est un profil de stratégies où la stratégie de chaque joueur est dominante.
-+ Ici, $S^* = (S_1^*,S_2^*) = (D,D)$ est un équilibre (le seul) en stratégies dominantes.
++ Ici, $S^* = (S_1^*,S_2^*) = (D,D)$ est l'équilibre unique en stratégies dominantes.
 + Il est remarquable que le résultat $(0,0)$ en équilibre n'est pas efficace.
++ Remarquez le rôle des externalités.
+
 
 ## Équilibre de Nash
 
@@ -96,23 +103,27 @@ Une interprétation où les agents sont un vendeur (1) et un acheteur (2):
 |$D$|$(0,0)$|$(1,1)$|
 + Pas d'équilibre en stratégies dominantes.
 + Les conditions pour un équilibre de Nash sont moins contraignantes.
-+ La stratégie $S_1$ est une meilleure réponse à la stratégie $S_2$ si elle donne l'utilité optimale quand joueur 2 joue $S_2$.
-+ Un profil $S^* = (S_1^*,S_2^*)$ est un équilibre de Nash si $S_1^*$ est la meilleure réponse à $S_2^*$ et $S_2^*$ est la meilleure réponse à $S_1^*$.
++ La stratégie $S_1$ est une *meilleure réponse* à la stratégie $S_2$ si elle donne l'utilité optimale quand joueur 2 joue $S_2$.
++ Un profil $S^* = (S_1^*,S_2^*)$ est un *équilibre de Nash* si $S_1^*$ est la meilleure réponse à $S_2^*$ et $S_2^*$ est la meilleure réponse à $S_1^*$.
 + Ici, $(U,L)$ et $(D,R)$ sont des équilibres de Nash.
++ Un équilibre en stratégies dominantes est-il toujours un équilibre de Nash?
 
 ## Plus sur le jeu de coordination
 
 Exemples de coordination à plusieurs joueurs:
+
 + Conduire à droite (ou à gauche)
 + Rues sens uniques
 + Pistes cyclables
 + Adoption d'un standard, l'internet des objets.
-+	Un jeu « Bach ou Stravinsky » :
+
+Un jeu « Bach ou Stravinsky » :
 
 |$(U_1,U_2)$|$L$|$R$|
 |-----------|---|---|
 |$U$|$(1,2)$|$(0,0)$|
 |$D$|$(0,0)$|$(2,1)$|
+
 + Encore, $(U,L)$ et $(D,R)$ sont des équilibres de Nash, mais les deux joueurs ne sont pas indifférents entre les deux.
 
 ## Le jeu Faucon-Colombe (Hawk-Dove, Chicken)
@@ -129,15 +140,15 @@ Exemples de coordination à plusieurs joueurs:
 ## Une façon d'éviter un dilemme des prisonniers
 
 + Mettons qu'on peut s'engager à collaborer dans ce jeu.
-+ Par exemple, écrire un contrat qui oblige un joueur à payer 5 dollars à l'autre s'il triche.
++ Par exemple, écrire un contrat enforcé par un tierce parti qui oblige un joueur à payer 5 dollars à l'autre s'il joue $D$.
 + Le jeu devient
 
-|$(U_1,U_2)$|$L$|$R$|
+|$(U_1,U_2)$|$C$|$D$|
 |-----------|---|---|
-|$U$|$(1,1)$|$(4,-2)$|
+|$C$|$(1,1)$|$(4,-2)$|
 |$D$|$(-3,3)$|$(0,0)$|
-+ On a un équilibre en stratégies dominantes, $(U,L)$, un meilleur résultat pour les deux prisonniers.
-+ Un changement d'utilité à $(U,R)$ et à $(D,L)$ entraine un changement d'équilibre, même si on n'observe pas ces profils en équilibre des deux jeux.
++ On a un équilibre en stratégies dominantes, $(C,C)$, un meilleur résultat pour les deux prisonniers.
++ Un changement d'utilité à $(C,D)$ et à $(D,C)$ entraine un changement d'équilibre, même si on n'observe pas ces profils en équilibre des deux jeux.
 
 ## Le dilemme des prisonniers avec $n$ joueurs
 
@@ -145,17 +156,17 @@ Exemples de coordination à plusieurs joueurs:
 + Catégories d'exemples :
     + cartels
     + tragédie des biens communs
-		    + Le coût social de l'action dominante excède le coût individuel.
+        + Le coût social de l'action dominante excède le coût individuel.
         + Le niveau de la consommation ou de l'exploitation est plus élevé que le niveau efficace.
     + biens publiques
         + Le bénéfice social de l'action dominante excède le bénéfice individuel.
         + Le niveau de production est moins élevé que le niveau efficace.
-    + Il y a des cas ici où il n'y a pas de stratégies dominantes mais un équilibre de Nash unique est inefficace.
++ Il y a des cas semblables où il n'y a pas de stratégies dominantes mais un équilibre de Nash unique est inefficace.
 
 ## Exemple, cartel
 
 + Trois producteurs d'un bien : 1, 2, 3
-+ Le niveau de production est haut ($y_i=200$) ou bas ($y_i=100$) pour chacun.
++ Le niveau de production est haut ($y_i=200$) ou bas ($y_i=100$) pour chacun et le coût est zéro pour les trois.
 + Fonction de demande inverse : $p(Y) = 8 - \frac{1}{100} Y$, où $Y=y_1+y_2+y_3$.
 + Jeu simultané, pas répété
 + Résultats:
@@ -192,13 +203,13 @@ Exemples des tragédies des biens communs :
 + Surexploitation des océans : la morue au Québec
 + Pétrol ou eau souterraine : Irak et Koweït
 + Pollution de l'air, de l'eau
-+ Congestion
++ Congestion routière
 + Antibiotiques
 
 Comment éviter ou réduire les tragédies des biens communs
 
-+ Clôtures barbelées
-+ Normes locales (homard, nouvelle angleterre)
++ [Clôtures barbelées](https://www.bbc.com/news/business-40448594)
++ [Normes locales](https://www.theatlantic.com/health/archive/2009/09/learning-from-maines-lobster-wars/26613/) (homard, nouvelle angleterre)
 + Attribution ou ventes des droits d'exploitation: spectrum eléctromagnétique, plafonnement et échange (cap and trade)
 + Taxes pigoviennes, e.g. taxe de carbone
 + Règlements (nationaux, internationaux)
@@ -209,7 +220,7 @@ Biens publiques (non-excluable, non-rival)
 + Exemples: phares, éclairage des rues, connaissance scientifique
 + Problème de passager clandestin (free rider problem)
 
-Une expérience:
+Une expérience :
 
 + $n>2$ participants, dotation de 1 (dollar).
 + Chaque participant $i$ contribue $x_i$, garde $1-x_i$.
@@ -217,16 +228,17 @@ Une expérience:
 + Bénéfice marginal privé de contribuer un dollar : $0.5$.
 + Bénéfice marginal sociale: $0.5n$.
 
-Solutions:
+Comment encourager la production des biens publiques :
 
 + Normes
-+ Technologie d'exclusion (signaux télé des satellites)
-+ Provision ou subvention par un gouvernement
-+ Exclusion imposée par un gouvernement (droits d'auteur, brevets)
-+ Contrat pour s'engager à contribuer si un quorum a lieu
++ Technologie d'exclusion (télévision par satellite)
++ Provision ou subvention par un gouvernement (l'armée)
++ Exclusion imposée par un gouvernement (droits d'auteur)
++ [Contrat](https://en.wikipedia.org/wiki/Assurance_contract) pour s'engager à contribuer si un quorum a lieu
 
 ## Un modèle de biens publiques: spécification
 
++ Le modèle est décrit dans le chapitre 8 de ML.
 + Un parc donne une valeur $S^bn^{-a}$ (en dollars) a chacun des $n$ ménages dans une communauté.
 + $S=s_1 + s_2 + \ldots + s_n$ est la contribution totale en dollars.
 + $s_i$ est la contribution du ménage $i$.
@@ -239,7 +251,7 @@ Solutions:
 ## Un modèle de biens publiques: optimalité individuelle
 
 + Rappel : la valeur à chaque ménage est de $S^bn^{-a}$.
-+ Un ménage $i$ choisit $s_i \geq 0$ pour maximiser sa valeur privé
++ Un ménage $i$ choisit $s_i \geq 0$ pour maximiser sa valeur privée :
 $$ (S_{-i}+s_i)^b n^{-a} - s_i. $$
 + La valeur marginale privée de la contribution $s_i$ est de
 $b(S_{-i}+s_i)^{b-1} n^{-a} - 1$, qui est positive ssi
@@ -251,7 +263,7 @@ $S_{-i}+s_i < (bn^{-a})^{1/(1-b)}$.
 + Il y a plusieurs équilibres avec contributions facultatives.
 + En équilibre,
     + $S=S_e \equiv (bn^{-a})^{1/(1-b)}$,
-    + la valeur au ménage $i$ est de $$(bn^{-a})^{b/(1-b)}n^{-a} - s_i^* = b^{b/(1-b)}n^{-a/(1-b)} - s_i^*$$.
+    + la valeur au ménage $i$ est de $$(bn^{-a})^{b/(1-b)}n^{-a} - s_i^* = b^{b/(1-b)}n^{-a/(1-b)} - s_i^*.$$
     + la valeur totale est de
 		$$ \begin{aligned} V_e &= b^{b/(1-b)}n^{1-a/(1-b)} - (bn^{-a})^{1/(1-b)} \\ &= b^{b/(1-b)}n^{-a/(1-b)}(n-b). \end{aligned} $$
 
@@ -296,14 +308,17 @@ Notes
     + contrat illégal, condamné et ensuite toléré par le gouvernement chinois
 
 ## Des villageois
-[Des villageois de Xiaogang](figures/villageois.jpg)
+
+![Des villageois de Xiaogang](figures/villageois.jpg)
 
 ## Le contrat
-[Le contrat des villageois de Xiaogang](figures/China_contract.jpg)
+
+![Le contrat des villageois de Xiaogang](figures/China_contract.jpg){width=50%}
 
 ## Un jeu où les actions ne sont pas simultanées
 
 Voici une description d'un jeu en forme extensive, une arborescence qui représente les histoires de jeu possibles.
+
 + Joueur $A$ commence avec un choix entre $L$ et $R$.
 + Si $A$ choisit $L$, le jeu se termine et le résultat est $(1,5)$ : 1 pour $A$ et 5 pour $B$.
 + Si $A$ choisit $R$, joueur $B$ choisit entre $U$ et $D$:
