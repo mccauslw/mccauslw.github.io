@@ -22,7 +22,7 @@ knitr::opts_chunk$set(fig.width=6, fig.height=4)
     + Parti politique au pouvoir ($A$ est le PLC, $B$ est le PCC, \ldots)
     + Politiques sur le cannabis ($A$ est 
     "légalité totale", ..., $E$ est "interdiction sans exception")
-    + Allocations parmi les trois agents de 10 pommes et 10 oranges. $A$ est une allocation $(5,3,2)$ des pommes, $(2,4,4)$ des oranges.
+    + Allocations parmi les agents de 10 pommes et 10 oranges. $A$ est une allocation $(5,3,2)$ des pommes, $(2,4,4)$ des oranges; $B$, ...
 + Préférences des agents :
 
 |Résultat|$U_1$|$U_2$|$U_3$|
@@ -44,7 +44,7 @@ knitr::opts_chunk$set(fig.width=6, fig.height=4)
     + Un résultat peut être efficace mais très injuste.
     + On n'a pas parlé des actions des agents, de leur optimisation, de l'équilibre.
     On n'a pas besoin pour parler de l'efficacité.
-    + Concepts dérivés : équilibre efficace? prix efficace?
+    + Concepts dérivés : équilibre efficace? prix efficace? quantité de pollution efficace?
 
 ## Conditions suffisantes pour l'inefficacité, l'efficacité
 
@@ -140,7 +140,7 @@ Un jeu « Bach ou Stravinsky » :
 ## Une façon d'éviter un dilemme des prisonniers
 
 + Mettons qu'on peut s'engager à collaborer dans ce jeu.
-+ Par exemple, écrire un contrat enforcé par un tierce parti qui oblige un joueur à payer 5 dollars à l'autre s'il joue $D$.
++ Par exemple, écrire un contrat enforcé par une tierce partie qui oblige un joueur à payer 5 dollars à l'autre s'il joue $D$.
 + Le jeu devient
 
 |$(U_1,U_2)$|$C$|$D$|

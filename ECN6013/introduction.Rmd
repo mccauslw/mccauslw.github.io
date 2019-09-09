@@ -18,13 +18,13 @@ Ce cours porte sur les incitations et l'information. La matière comprend :
 
 ## Exemples
 1. Assurance automobile
-    + Le client a de l'aversion pour le risque.
+    + Le client a plus d'aversion pour le risque que l'assureur : marché potentiel.
     + La probabilité d'un accident dépend et de la prudence et de l'habileté du conducteur.
     + L'assureur n'observe ni la prudence ni l'habileté du client.
 1. Mécanicien
     + Le mécanicien sait mieux que le client pourquoi il y a un problème avec une voiture.
 1. Réduction de la pollution
-    + Les pollueurs savant mieux que le gouvernement combien coûtent la réduction des émissions.
+    + Chaque pollueur sait mieux que le gouvernement combien coûte sa réduction des émissions.
 1. Conducteur de taxi
     + Le conducteur choisit une route efficace ou une route inefficace.
 1. Employé
@@ -35,8 +35,9 @@ Ce cours porte sur les incitations et l'information. La matière comprend :
 + Pour aller de A à B, une carte est souvent utile.
 + La convenance d'une carte dépend de l'objectif.
 + Pareil pour les modèles économiques.
-+ L'égoïsme des agents est souvent une hypothèse utile pour les interactions économiques.
-+ On utilise beaucoup d'abstractions pour la solubilité des modèles.
++ La simplicité a une valeur.
++ Exemple : l'égoïsme des agents est souvent une hypothèse utile pour les interactions économiques.
++ On utilise beaucoup d'abstractions pour la clarté et la solubilité des modèles.
     + Spécifications simples des préférences, des technologies, de l'information, des actions faisables, des contraintes et du hasard.
 
 ## Évaluation
@@ -65,7 +66,7 @@ Vous devez connaître la matière suivante :
 + intégration simple
 
 ## Quelques politiques et règlements
-+ L'heure et le local des cours, des séances TP et des examens sont affichés sur le site internet de l'université.
-+ Écrivez votre code permanent et pas votre nom sur les cahiers d'examen.
-+ Une demande de révision de l'évaluation doit spécifier la question à réviser et expliquer clairement le problème de correction.
++ L'heure et le local des cours, des séances TP et des examens sont affichés sur le site [synchro](https://www.synchro.umontreal.ca).
++ Écrivez votre code permanent et/ou votre matricule, et non votre nom, sur les cahiers d'examen.
++ Une demande de révision d'une évaluation doit spécifier la question à réviser et expliquer clairement le problème de correction.
 Dans certains cas, je réviserai d'autres questions.
