@@ -11,5 +11,5 @@
 
 [Diapos, Introduction](./ECN6013/introduction.pdf), 2019/09/09
 
-[Diapos, Efficacité, Jeux, Équilibre](./ECN6013/efficacite_jeux_equilibre.pdf), 2019/09/09
+[Diapos, Efficacité, Jeux, Équilibre](./ECN6013/efficacite_jeux_equilibre.pdf), 2019/09/10
 

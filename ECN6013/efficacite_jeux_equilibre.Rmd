@@ -156,10 +156,10 @@ Un jeu « Bach ou Stravinsky » :
 + Catégories d'exemples :
     + cartels
     + tragédie des biens communs
-        + Le coût social de l'action dominante excède le coût individuel.
+        + Le coût social de l'action dominante est plus grand que le coût individuel.
         + Le niveau de la consommation ou de l'exploitation est plus élevé que le niveau efficace.
     + biens publiques
-        + Le bénéfice social de l'action dominante excède le bénéfice individuel.
+        + Le bénéfice social des actions qui mènent à un résultat efficace est plus grand que le bénéfice individuel.
         + Le niveau de production est moins élevé que le niveau efficace.
 + Il y a des cas semblables où il n'y a pas de stratégies dominantes mais un équilibre de Nash unique est inefficace.
 
