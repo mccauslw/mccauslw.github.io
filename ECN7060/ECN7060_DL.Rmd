@@ -5,22 +5,22 @@ date: "`r Sys.Date()`"
 output: pdf_document
 ---
 
-## Cours 1
+## Cours 1, le 4 septembre
 
 ### Devoirs, Rosenthal (matière du cours 1)
 
-1. Exercise 1.3.1
-2. Exercise 1.3.2
-3. Exercise 1.3.3
-4. Exercise 1.3.4
-5. Exercise 1.3.5
+1. Exercice 1.3.1
+2. Exercice 1.3.2
+3. Exercice 1.3.3
+4. Exercice 1.3.4
+5. Exercice 1.3.5
 
 ### Lectures, Rosenthal (matière du cours 2)
 
 1. Chapitre 1
 2. Chapitre 2
 
-Définitions importantes: espace de probabilité; espace d'état; algèbre; tribu; additivité (finie ou dénombrable); stabilité par complémentation, pour les réunions ou intersections (finies ou dénombrables); semi-algèbre.
+Définitions importantes : espace de probabilité; espace d'état; algèbre; tribu; additivité (finie ou dénombrable); stabilité par complémentation, pour les réunions ou intersections (finies ou dénombrables); semi-algèbre.
 
 ### Questions sur les lectures
 
@@ -35,4 +35,36 @@ Soit $\Omega = \{1,\ldots,n\}$. Montrez que
     a. ${\cal J}$ est stable pour les intersections finies,
     b. $\emptyset \in {\cal J}$ et $\Omega \in {\cal J}$,
     c. tous les éléments de ${\cal J}$ ont un complément par rapport à $\Omega$ qui égale une réunion disjointe finie des éléments de ${\cal J}$,
-    d. ${\cal J}$ est une semialgèbre de parties de $\Omega$.
+    d. ${\cal J}$ est une semi-algèbre de parties de $\Omega$.
+    
+## Cours 2, le 11 septembre
+
+### Devoirs, Rosenthal (matière du cours 2)
+
+1. Exercice 2.7.4
+2. Exercice 2.7.8
+3. Exercice 2.7.14
+4. Exercice 2.7.20
+5. Exercice 2.7.22
+
+### Lectures, Rosenthal (matière du cours 3)
+
+1. Chapitre 3
+
+Définitions importantes: variable aléatoire, $\searrow$, $\nearrow$, $\liminf_n$ et $\limsup_n$ pour une suite d'ensembles $A_n$, indépendance d'événements.
+
+
+### Questions sur les lectures
+
+1. Trouver $\Lambda_1$ tel que $[-1/n,1/n) \searrow \Lambda_1$.
+1. Trouver $\Lambda_2$ tel que $[-1+1/n,1-1/n) \nearrow \Lambda_2$.
+1. Soit $\Omega = \{1,2,3,4\}$, $A=\{1,2\}$, $B=\{1,3\}$. Soit $D_n$ la séquence où $D_n = A$ pour $n$ pair et $D_n = B$ pour $n$ impair.
+    a. Trouvez l'algèbre (sur $\Omega$) le plus petit qui contient $A$ et $B$.
+    a. Trouvez $\limsup_{n\to \infty} D_n = \cap_{n=1}^\infty \cup_{k=n}^\infty D_n$
+    et $\liminf_{n\to \infty} D_n = \cup_{n=1}^\infty \cap_{k=n}^\infty D_n$.
+    a. Soit $P\colon 2^\Omega \to \mathbb{R}$ telle que $(\Omega,2^\Omega,P)$ est un espace de probabilité. Prouver que si $A$ et $B$ sont indépendants, $A$ et $B^c$ le sont aussi.
+1. Soit $\Omega = \{1,2,3\}$, ${\cal F} = \{\emptyset,\{1,2\}, \{3\}, \Omega \}$
+    a. Donnez une fonction $X \colon \Omega \to \mathbb{R}$ qui est une variable aléatoire sur $(\Omega,{\cal F})$.
+    b. Donnez une fonction $f \colon \Omega \to \mathbb{R}$ qui n'est pas une variable aléatoire sur $(\Omega,{\cal F})$.
+    
+
