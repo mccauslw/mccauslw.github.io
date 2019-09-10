@@ -1,7 +1,7 @@
 ---
 title: "ECN 7060, Cours 2"
 author: "William McCausland"
-date: '2017-09-08'
+date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
@@ -31,8 +31,8 @@ Conditions sur $\Omega$, ${\cal J}$ et $P \colon {\cal J} \to [0,1]$ :
 
 Conclusion : il y a une tribu ${\cal M}$ sur $\Omega$ et une probabilité $P^*$ sur ${\cal M}$ telles que
 
-1. ${\cal J} \subseteq {\cal M}$.
-1. $P^*(A) = P(A)$ pour chaque $A \in {\cal J}$
+1. ${\cal J} \subseteq {\cal M}$,
+1. $P^*(A) = P(A)$ pour chaque $A \in {\cal J}$.
 
 
 ## Deux tribus pour $\Omega = \mathbb{R}$ (Exercise 2.4.5)
