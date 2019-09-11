@@ -14,9 +14,9 @@ knitr::opts_chunk$set(echo = FALSE)
 * 2.1 Définition d'un espace de probabilité
 * 2.2 Construction de $(\Omega, {\cal F}, P)$ pour $\Omega$ dénombrable,
       une spécification suffisante (un semi-algèbre ${\cal J}$ et un
-      $P\colon{\cal J}\to [0,1])$ avec superadditivité plus monotonicité
+      $P\colon{\cal J}\to [0,1]$ avec superadditivité plus monotonicité
       dénombrable) pour $\Omega = [0,1]$
-* 2.3 Théorème d'extension: outil pour construire ${\cal F}$, $P$
+* 2.3 Théorème d'extension : un outil pour construire ${\cal F}$, $P$
 * 2.4 Application du théorème pour $\Omega = [0,1]$.
 * 2.5 Variations du théorème (conditions alternatives)
 * 2.6 Application du théorème pour d'autres $\Omega$
