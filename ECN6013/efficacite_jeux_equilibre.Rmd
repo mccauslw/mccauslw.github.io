@@ -236,7 +236,7 @@ Comment encourager la production des biens publiques :
 + Exclusion imposée par un gouvernement (droits d'auteur)
 + [Contrat](https://en.wikipedia.org/wiki/Assurance_contract) pour s'engager à contribuer si un quorum a lieu
 
-## Un modèle de biens publiques: spécification
+## Un modèle de biens publiques : spécification
 
 + Le modèle est décrit dans le chapitre 8 de ML.
 + Un parc donne une valeur $S^bn^{-a}$ (en dollars) a chacun des $n$ ménages dans une communauté.
@@ -248,7 +248,7 @@ Comment encourager la production des biens publiques :
     + un coût de congestion $(a>0)$,
     + un grand parc pour $n$ est meilleur que $n$ petits privés ($b>a$).
 
-## Un modèle de biens publiques: optimalité individuelle
+## Un modèle de biens publiques : optimalité individuelle
 
 + Rappel : la valeur à chaque ménage est de $S^bn^{-a}$.
 + Un ménage $i$ choisit $s_i \geq 0$ pour maximiser sa valeur privée :
@@ -256,25 +256,27 @@ $$ (S_{-i}+s_i)^b n^{-a} - s_i. $$
 + La valeur marginale privée de la contribution $s_i$ est de
 $b(S_{-i}+s_i)^{b-1} n^{-a} - 1$, qui est positive ssi
 $S_{-i}+s_i < (bn^{-a})^{1/(1-b)}$.
++ Alors si $S_{-i} < (bn^{-a})^{1/(1-b)}$, la meilleur réponse est de contribuer la différence : $s_i^* = (bn^{-a})^{1/(1-b)} - S_{-i}$.
 + la valeur marginale sociale est de $b(S_{-i}+s_i)^{b-1} n^{1-a} - 1$, qui est plus grande.
 
-## Un modèle de biens publiques: équilibre
+## Un modèle de biens publiques : équilibre
 
 + Il y a plusieurs équilibres avec contributions facultatives.
 + En équilibre,
-    + $S=S_e \equiv (bn^{-a})^{1/(1-b)}$,
+    + $S=S_{eq} \equiv (bn^{-a})^{1/(1-b)}$,
     + la valeur au ménage $i$ est de $$(bn^{-a})^{b/(1-b)}n^{-a} - s_i^* = b^{b/(1-b)}n^{-a/(1-b)} - s_i^*.$$
     + la valeur totale est de
-		$$ \begin{aligned} V_e &= b^{b/(1-b)}n^{1-a/(1-b)} - (bn^{-a})^{1/(1-b)} \\ &= b^{b/(1-b)}n^{-a/(1-b)}(n-b). \end{aligned} $$
+		$$ \begin{aligned} V_{eq} &= b^{b/(1-b)}n^{1-a/(1-b)} - (bn^{-a})^{1/(1-b)} \\ &= b^{b/(1-b)}n^{-a/(1-b)}(n-b). \end{aligned} $$
 
-## Un modèle de biens publiques: valeur agrégée optimale
+## Un modèle de biens publiques : valeur agrégée optimale
 
-+ La valeur agrégée comme fonction de $S$.
++ La valeur agrégée comme fonction de $S$ :
 $$ S^bn^{-a}\cdot n - S = S^bn^{1-a} - S. $$
++ On considère ici le problème du planificateur social, pour trouver une allocation efficace.
 + Condition nécessaire de 1ière ordre pour un max intérieure:
 $$ bS^{b-1}n^{1-a} - 1 = 0. $$
 + La valeur est concave, on maximise la valeur agrégée avec
-$$ S_o = (bn^{1-a})^{1/(1-b)}. $$
+$$ S_o \equiv (bn^{1-a})^{1/(1-b)} > S_{eq} = (bn^{-a})^{1/(1-b)}. $$
 + La valeur agrégée maximale est de
 $$ \begin{aligned} V_o &= (bn^{1-a})^{b/(1-b)}n^{1-a} - (bn^{1-a})^{1/(1-b)} \\ &= b^{b/(1-b)}n^{(1-a)/(1-b)}(1-b). \end{aligned} $$
 
@@ -301,19 +303,19 @@ Notes
 + Grande famine de Chine : 1958-1962, 15-38 millions de morts
 + Contrat de 18 villageois de Xiaogang
     + terrains individuels
-    + part du quota rendue au gouvernement
-    + production excédentaire gardée par chaque agriculteur
+    + sa part du quota rendue au gouvernement
+    + sa production excédentaire gardée par chaque agriculteur
     +	adoption des enfants en cas d'exécution ou de prison
     + production de grain : 15000 kg en 1978, 90000 kg en 1979
     + contrat illégal, condamné et ensuite toléré par le gouvernement chinois
 
 ## Des villageois
 
-![Des villageois de Xiaogang](figures/villageois.jpg)
+![Des villageois de Xiaogang](figures/villageois.jpg){width=75%}
 
 ## Le contrat
 
-![Le contrat des villageois de Xiaogang](figures/China_contract.jpg){width=50%}
+![Le contrat des villageois de Xiaogang](figures/China_contract.jpg){width=100%}
 
 ## Un jeu où les actions ne sont pas simultanées
 
@@ -356,7 +358,7 @@ $A$ et $B$ joue ensemble le dilemme des prisonniers $T$ fois:
 
 + $l,d,c,h$ sont tels que $(C,C)$ est un équilibre en stratégies dominantes du jeu à une période, mais inefficace (exercice).
 + L'utilité pour la suite des jeux est $\alpha_1 u_1 + \ldots + \alpha_T u_T$.
-+ Par induction à l'envers, le seul équilibre parfait en sous-jeux est celui où les deux choisissent $D$ à chaque période, peu import l'histoire à date.
++ Par induction à l'envers, le seul équilibre parfait en sous-jeux est celui où les deux font $D$ toujours, peu import l'histoire.
 + La stratégie donnant-donnant (oeuil pour oeuil, tit-for-tat) est la stratégie où on commence par collaborer et joue l'action précédente de l'autre ensuite.
 + Pour $T=2$, $\alpha_1=\alpha_2=1$, $c=20$, $d=5$, $l=1$, $h=30$, les meilleures réponses à donnant-donnant produisent $C$ puis $D$.
 + Conclusion: il n'y a pas de stratégie dominante.
@@ -364,7 +366,7 @@ $A$ et $B$ joue ensemble le dilemme des prisonniers $T$ fois:
 ## Le dilemme des prisonniers répété infiniment
 + On considère maintenant un nombre infini de périodes.
 + L'utilité est $\sum_{t=0}^\infty \delta^t u_t$, où $\delta$ et un paramètre de patience.
-+ Autre interprétation: utilité espérée, $(1-\delta)$ est la probabilité que le jeu se termine à chaque période.
++ Autre interprétation : utilité espérée, $(1-\delta)$ est la probabilité que le jeu se termine à chaque période.
 + Une autre stratégie: gâchette sévère (grim trigger), où on collabore jusqu'à ce que l'autre défecte et on défecte à chaque période après.
 + Si les deux joueurs jouent la stratégie gâchette, leur utilité est
 \[
@@ -399,3 +401,26 @@ $A$ et $B$ joue ensemble le dilemme des prisonniers $T$ fois:
 + Utilité pas comparable, l'argent (volonté de payer) oui.
 + Préférence révélée, surplus des consommateurs et des producteurs.
 + Difficultés : justesse, l'utilité marginale de l'argent varie.
+
+## Plus sur le jeu Faucon-Colombe (Hawk-Dove, Chicken)
+
+Version étroite de Faucon-Colombe :
+
+|$(U_1,U_2)$|$L$|$R$|
+|-----------|---|---|
+|$U$|$(a,a)$|$(b,c)$|
+|$D$|$(c,b)$|$(d,d)$|
+
+où $c > a \geq b > d$.
+
+Variations moins étroites : $c > b > a > d$, asymmétrie, plusieurs joueurs.
+
+## Plus sur le jeu de coordination
+
+Version étroite du jeu de coordination
+
+* Chaque joueur a le même ensemble d'actions faisable
+* $(a,a)$ est un équilibre de Nash, pour chaque action $a$
+* Choix simultanés
+
+L'existence de plusieurs équilibres de Nash purs ne suffit pas : le jeu de F-C a deux équilibrez de Nash.
