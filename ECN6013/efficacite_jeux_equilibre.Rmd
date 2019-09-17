@@ -264,7 +264,7 @@ $S_{-i}+s_i < (bn^{-a})^{1/(1-b)}$.
 + Il y a plusieurs équilibres avec contributions facultatives.
 + En équilibre,
     + $S=S_{eq} \equiv (bn^{-a})^{1/(1-b)}$,
-    + la valeur au ménage $i$ est de $$(bn^{-a})^{b/(1-b)}n^{-a} - s_i^* = b^{b/(1-b)}n^{-a/(1-b)} - s_i^*.$$
+    + la valeur au ménage $i$ est de $$(bn^{-a})^{b/(1-b)}n^{-a} - s_i^* = b^{b/(1-b)}n^{-a/(1-b)} - s_i^*,$$
     + la valeur totale est de
 		$$ \begin{aligned} V_{eq} &= b^{b/(1-b)}n^{1-a/(1-b)} - (bn^{-a})^{1/(1-b)} \\ &= b^{b/(1-b)}n^{-a/(1-b)}(n-b). \end{aligned} $$
 
@@ -272,7 +272,7 @@ $S_{-i}+s_i < (bn^{-a})^{1/(1-b)}$.
 
 + La valeur agrégée comme fonction de $S$ :
 $$ S^bn^{-a}\cdot n - S = S^bn^{1-a} - S. $$
-+ On considère ici le problème du planificateur social, pour trouver une allocation efficace.
++ On considère ici le problème du planificateur social, pour trouver une allocation efficace symmétrique.
 + Condition nécessaire de 1ière ordre pour un max intérieure:
 $$ bS^{b-1}n^{1-a} - 1 = 0. $$
 + La valeur est concave, on maximise la valeur agrégée avec
@@ -291,9 +291,9 @@ Valeur totale plus élevée dans les allocations optimales:
 	\frac{V_o}{V_e} = \frac{n^{(1-a)/(1-b)}(1-b)}{n^{-a/(1-b)}(n-b)}
 	= \frac{1-b}{n-b} n^{1/(1-b)} > 1.
 \]
-Notes
+Notes :
 
-+ L'allocation optimale symétrique supérieure (dans le sens de Pareto) que l'allocation optimale en équilibre symétrique.
++ L'allocation qui maximise la valeur agrégée est préférable (dans le sens de Pareto) à l'allocation en équilibre symétrique.
 + Comment démontrer que d'autres équilibres sont inefficaces dans le sens de Pareto?
 
 ## Collectivisation agricole: un contrat à Xiaogang
@@ -368,7 +368,7 @@ $A$ et $B$ joue ensemble le dilemme des prisonniers $T$ fois:
 + L'utilité est $\sum_{t=0}^\infty \delta^t u_t$, où $\delta$ et un paramètre de patience.
 + Autre interprétation : utilité espérée, $(1-\delta)$ est la probabilité que le jeu se termine à chaque période.
 + Une autre stratégie: gâchette sévère (grim trigger), où on collabore jusqu'à ce que l'autre défecte et on défecte à chaque période après.
-+ Si les deux joueurs jouent la stratégie gâchette, leur utilité est
++ Si les deux joueurs jouent la stratégie gâchette, ils font tous les deux $C$ à chaque période. L'utilité de chacun est
 \[
   c \sum_{\tau=0}^\infty \delta^\tau = \frac{c}{1-\delta}.
 \]
@@ -393,7 +393,7 @@ $A$ et $B$ joue ensemble le dilemme des prisonniers $T$ fois:
 
 ## Epilogue sur l'efficacité
 + Une politique qui mène à une amélioration dans le sens de Pareto est rarissime.
-+ Juger une politique est difficile: quel est le bon standard pour ponderer un genre de coût contre un autre genre de bénéfice?
++ Juger une politique est difficile : quel est le bon standard pour ponderer un genre de coût contre un autre genre de bénéfice?
 + La philosophie morale est difficile.
 + Exemple: Jack gagne 10K, paie 1K (10\%); Jill gagne 100K, paie 5K (5\%) pour entretenir un puits commun dont ils tirent un montant égal d'eau.
 		Est-ce juste?
@@ -419,8 +419,8 @@ Variations moins étroites : $c > b > a > d$, asymmétrie, plusieurs joueurs.
 
 Version étroite du jeu de coordination
 
-* Chaque joueur a le même ensemble d'actions faisable
-* $(a,a)$ est un équilibre de Nash, pour chaque action $a$
+* Chaque joueur a le même ensemble d'actions faisables.
+* $(a,a)$ est un équilibre de Nash, pour chaque action $a$.
 * Choix simultanés
 
-L'existence de plusieurs équilibres de Nash purs ne suffit pas : le jeu de F-C a deux équilibrez de Nash.
+L'existence de plusieurs équilibres de Nash purs ne suffit pas : le jeu de F-C a deux équilibres de Nash.
