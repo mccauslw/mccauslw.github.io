@@ -16,88 +16,197 @@ $$ \{X \leq x\} \equiv \{\omega \in \Omega \colon X(\omega) \leq x\} \in {\cal F
     1. $1_A(\omega)$ où $A \in {\cal F}$
     1. $W(\omega) = cX(\omega)$
     1. $W = X + Y$
-    1. $W = \min(X, Y)$
-    1. $W = \max(X, Y)$
-    1. $W = \inf Z_1, Z_2,\ldots,$
-    
+    1. $W = \min(X, Y)$, $W = \max(X, Y)$
+    1. $W = \inf_n Z_n$, $W = \sup_n Z_n$
+
 * Supposez que $\lim_{n\to \infty} Z_n(\omega)$ existe et égale $Z(\omega)$ pour chaque
 $\omega \in \Omega$. $Z(\omega)$ est-elle une variable aléatoire?
+    * Notez le mode de convergence : ponctuel, pas uniforme
     
-## Indépendence des événements pour $(\Omega,{\cal F},P)$
+## Fonctions indicatrices
 
-* $A,B \in {\cal F}$ sont indépendents si $P(A\cap B) = P(A)P(B)$.
+Notation pour une fonction indicatrice sur $\Omega$, où $(\Omega, {\cal F}, P)$ est un espace de probabilité :
+$$ 1_A(\omega) = \begin{cases} 1 & \omega \in A \subseteq \Omega, \\ 0 & \mbox{autrement}. \end{cases} $$
+Si $A \in {\cal F}$,
+\[
+  \{\omega \in \Omega : 1_A(\omega) \leq x\}
+  = \begin{cases} \Omega & x \geq 1, \\ A^c & 0 \leq x < 1, \\ \emptyset & x < 0, \end{cases}
+\]
+et $\emptyset, A^c, \Omega \in {\cal F}$. Alors $1_A(x)$ est une variable aléatoire.
 
-* $A \perp B \Rightarrow A \perp B^c,\, A^c \perp B,\, A^c \perp B^c$
+## Multiplication scalaire
 
-* $A,B,C \in {\cal F}$ sont indépendents si $P(A\cap B)=P(A)P(B)$, $P(B\cap C)=P(B)P(C)$,
+Soit $X(\omega)$ une variable aléatoire et $W(\omega) \equiv cX(\omega)$.
+
+Pour $c=0$ le résultat est évident, alors supposez que $c \neq 0$.
+
+Pour tous $x \in \mathbb{R}$,
+\[
+  \begin{aligned}
+  \{\omega \in \Omega \colon W(\omega) \leq x\} &= \{\omega \in \Omega \colon cX(\omega) \leq x\} \\ &= \{\omega \in \Omega \colon x(\omega) \leq x/c\} \\ &\in {\cal F}.
+  \end{aligned}
+\]
+
+Avec une notation plus simple :
+\[
+  \{W \leq x\} = \{cX \leq x\} = \{X \leq x/c\} \in {\cal F}. 
+\]
+
+## Addition
+
+Soit $X(\omega)$ et $Y(\omega)$ deux variables aléatoire sur le même espace de probabilité $(\Omega, {\cal F}, P)$. Soit $W(\omega) = X(\omega) + Y(\omega)$.
+
+Pour tous $w \in \mathbb{R}$,
+\[
+  \begin{aligned}
+  \{W > w\} &= \cup_{q \in \mathbb{Q}} (\{X > q\} \cap \{Y > w-q\}) \\
+  &= \cup_{q \in \mathbb{Q}} (\{X \leq q\}^c \cap \{Y \leq w-q\}^c) \in {\cal F}
+  \end{aligned}
+\]
+Alors $\{W \leq w\} = \{W > w\}^c \in {\cal F}$.
+
+Notes pour la première équation :
+
+* Pour inclure le point $(x, w-x+\epsilon)$ arbitraire qui vérifie $x+y>w$, choisit $q \in (x-\epsilon,x)$.
+* Entre deux nombres réels, il y a toujours un nombre rationnel (la densité des rationnels dans les réels).
+
+## Discussion : minimum, maximum, infimum
+
+Rappel : $X, Y, Z_1, Z_2, \ldots$ sont des variables aléatoires sur $(\Omega, {\cal F}, P)$.
+
+1. $W = \min(X, Y)$
+1. $W = \max(X, Y)$
+1. $W = \inf_n Z_n$
+
+## Limites ponctuelles
+
+Supposez que $Z(\omega) = \lim_{n\to \infty} Z_n(\omega)$ pour tous $\omega \in \Omega$.
+
+Alors
+\[
+  \begin{aligned}
+  \{Z \leq x\} &= \{\lim_{k \to \infty} Z_k \leq x\} = \{ \forall \epsilon > 0,\, \exists n,\, \forall k>n,\, Z_k \leq x + \epsilon\} \\ &= \cap_{m=1}^\infty \cup_{n=1}^\infty \cap_{k=n}^\infty \{Z_k \leq x + 1/m\} \in {\cal F}.
+  \end{aligned}
+\]
+
+Notes :
+
+1. Fonctions sur $\Omega = \mathbb{R}$ avec un nombre de discontinuités dénombrable.
+
+1. Avec des limites et des sommes finies, on a des sommes infinies convergentes.
+
+## Indépendance de deux événements sur $(\Omega,{\cal F},P)$
+
+* $A,B \in {\cal F}$ sont indépendants (dénoté $A\perp B$) si $P(A\cap B) = P(A)P(B)$.
+
+* Résultat : $A \perp B \Rightarrow A \perp B^c,\, A^c \perp B,\, A^c \perp B^c$.
+
+* Deux faits :
+    * $P(A\cap B) + P(A\cap B^c) + P(A^c \cap B) + P(A^c \cap B^c) = 1$
+    * $(P(A) + P(A^c))(P(B) + P(B^c)) = P(A)P(B) + P(A)P(B^c) + P(A^c)P(B) + P(A^c)P(B^c) = 1$.
+    
+* $P(A\cap B^c) + P(A\cap B) = P(A)$ par additivité. Si $P(A\cap B) = P(A)P(B)$,
+$P(A\cap B^c) = P(A)(1-P(B)) = P(A)P(B^c)$.
+
+## Indépendance de trois événements
+
+* $A,B,C \in {\cal F}$ sont indépendants si $P(A\cap B)=P(A)P(B)$, $P(B\cap C)=P(B)P(C)$,
 $P(A\cap C) = P(A)P(C)$ et $P(A\cap B\cap C) = P(A)P(B)P(C)$.
 
-* Importance de $P(A\cap B\cap C) = P(A)P(B)P(C)$.
+* Importance de $P(A\cap B\cap C) = P(A)P(B)P(C)$ :
+    * $\Omega = \{1,2,3,4\}$, $P(\{i\}) = 0.25$ pour $i=1,2,3,4$.
+    * Soit $A = \{1,2\}$, $B = \{1,3\}$, $C = \{2,3\}$.
+    * $P(A\cap B) = P(A)P(B) = 0.25$, $P(A\cap C) = P(A)P(C) = 0.25$, $P(B\cap C) = P(B)P(C) = 0.25$.
+    * Mais $P(A\cap B \cap C) = 0$ et $P(A)P(B)P(C) = 0.125$.
+    * Intuition: si $\omega \in C$, $\omega \in A\cap B$ est impossible, tandis que si $\omega \notin C$, c'est possible.
 
-* $\{A_\alpha\}_{\alpha \in I}$ sont indépendents si pour chaque $j \in \mathbb{N}$ et chaque
+## Indépendance d'un ensemble $I$ d'événements
+
+* L'ensemble $I$ peut être indénombrable (processus stochastique en temps continu)
+* $\{A_\alpha\}_{\alpha \in I}$ sont indépendants si pour chaque $j \in \mathbb{N}$ et chaque
 $\alpha_1,\ldots,\alpha_j$,
 $$ P(A_{\alpha_1} \cap A_{\alpha_2} \cap \ldots \cap A_{\alpha_j})
 = P(A_{\alpha_1})P(A_{\alpha_2})\cdots P(A_{\alpha_j}) $$
 
-* Si les $\{A_\alpha\}_{\alpha \in I}$ sont indépendents et $a \in I$, $\{A_\alpha\}_{\alpha \in I \backslash \{a\}}
-\cup \{A_a^c\}$ le sont aussi. 
+* Si les $\{A_\alpha\}_{\alpha \in I}$ sont indépendants et $a \in I$, $\{A_\alpha\}_{\alpha \in I \backslash \{a\}}
+\cup \{A_a^c\}$ le sont aussi. (On peut remplacer un événement arbitraire par son complément.)
 
-## Indépendence des variables aléatoires
+## Indépendance des variables aléatoires
 
-* Indépendence par paire : $X$ et $Y$ sont indépendents si pour tous ensembles boreliens $S_1$ et $S_2$, $X^{-1}(S_1)$ et $X^{-1}(S_2)$ sont indépendents.
+* Indépendance de deux variables aléatoires : $X$ et $Y$ sont indépendants si pour tous ensembles boréliens $S_1$ et $S_2$, $X^{-1}(S_1)$ et $X^{-1}(S_2)$ sont indépendants.
 
-* Indépendence : une collection $\{X_\alpha \colon \alpha \in I\}$ de variables aléatoires est indépendente si pour tous $j \in \mathbb{N}$, $\alpha_1,\ldots,\alpha_j \in I$, $S_1,\ldots,S_j$ boreliens,
+* Indépendance par paire : pour toutes paires $(X,Y)$ dans une collection de variables aléatoires, $X$ et $Y$ sont indépendants.
+
+* Indépendance : une collection $\{X_\alpha \colon \alpha \in I\}$ de variables aléatoires est indépendante si pour tous $j \in \mathbb{N}$, $\alpha_1,\ldots,\alpha_j \in I$, $S_1,\ldots,S_j$ boréliens,
 $$ P(X_{\alpha_1} \in S_1, \ldots, X_{\alpha_j} \in S_j)
 = P(X_{\alpha_1} \in S_1) \cdots P(X_{\alpha_j} \in S_j) $$
 
-* Indépendence de $f(X)$ et $g(Y)$ pour $X,Y$ indépendent, $f$ et $g$ mesurables
+* Indépendance de $f(X)$ et $g(Y)$ pour $X,Y$ indépendant, $f$ et $g$ réelles et mesurables
 
-* Suffisance de $F(x,y) = F(x)F(y)$ pour indépendence.
+* Suffisance de $F(x,y) = F(x)F(y)$ pour indépendance.
 
-## Continuité de probabilité
+## Continuité de probabilité (résultat)
 
-* Soit $(\Omega,{\cal F},P)$ un espace de probabilité.
+Soit $(\Omega,{\cal F},P)$ un espace de probabilité.
+
+Résultat (continuité de probabilité)
 
 * Si $A_n \nearrow A$, $A_n \in {\cal F}$, $P(A) = \lim_{n\to \infty} P(A_n)$.
-
 * Si $A_n \searrow A$, $A_n \in {\cal F}$, $P(A) = \lim_{n\to \infty} P(A_n)$.
 
+Attention :
+
+* $[0,1-1/n] \nearrow [0,1)$.
+* On peut avoir $P([0,1-1/n]) \to P([0,1)) = 0.5$ et $P([0,1]) = 1$ en même temps.
+* Plus généralement, la fonction de répartition n'est pas forcément continue.
+
+## Continuité de probabilité (preuve)
+
+* Soit $A_n \nearrow A$, $A_n \in {\cal F}$.
+
+* On construit une suite d'anneaux disjoints :
+$$B_1 = A_1,\, B_2 = A_2 \cap A_1^c,\, \ldots,\, B_n = A_n \cap A_{n-1}^c,\, \ldots$$
+
+* Notez que $B_n \in {\cal F}$, $A_n = \cup_{m=1}^n B_m$ et $A = \cup_{m=1}^\infty B_m$.
+
+* Alors
+$$ P(A) = P(\cup_{m=1}^\infty B_m) = \sum_{m=1}^\infty P(B_m) = \lim_{n\to \infty} \sum_{m=1}^n P(B_n) = \lim_{n\to \infty} P(A_n).$$
+
+* Si $A_n \searrow A$ et $A_n \in {\cal F}$, $A_n^c \nearrow A^c$ puis
+$P(A^c) = \lim_{n\to \infty} P(A_n^c)$, $P(A) = \lim_{n\to \infty} P(A_n)$.
+
+## Convergence : suites d'événements $A_n$ non-monotones
+
+* $C_n = \cap_{k=n}^\infty A_k \nearrow C \equiv \cup_{n=1}^\infty \cap_{k=n}^\infty A_k$ ($A_n$ presque toujours, $\liminf_n A_n$).
+
+* $D_n = \cup_{k=n}^\infty A_k \searrow D \equiv \cap_{n=1}^\infty \cup_{k=n}^\infty A_k$ ($A_n$ infiniment souvent, $\limsup_n A_n$).
+
+* Les ensembles "infiniment souvent", "presque toujours" existe toujours.
+
+* (Proposition 3.4.1, preuve)
+\[
+  \begin{aligned}
+  P(\liminf_n A_n) &= P(\cup_{n=1}^\infty \cap_{k=n}^\infty A_k) = \lim_{n\to \infty} P(\cap_{k=n}^\infty A_k) \\ &= \liminf_{n\to \infty} P(\cap_{k=n}^\infty A_k) \leq \liminf_{n\to \infty} P(A_n),
+  \end{aligned}
+\]
+\[
+  P(\liminf_n A_n) \leq \liminf_n P(A_n) \leq \limsup_n P(A_n) \leq P(\limsup_n A_n).
+\]
+* Si $P(\liminf_n A_n) = P(\limsup_n A_n)$, $\lim_{n\to \infty} P(A_n)$ existe.
+
 ## Événements limites
-
-* Soit $A_n = [0, 1+(-1)^n/n]$
-
-* $A_n$ est $[0,0]$, $[0, 3/2]$, $[0,2/3]$, $[0,5/4]$, etc.
-
-* Trouver $\limsup_{n\to \infty} A_n = \cap_{n=1}^\infty \cup_{k=n}^\infty A_k$
-
-* Trouver $\liminf_{n\to \infty} A_n = \cup_{n=1}^\infty \cap_{k=n}^\infty A_k$
 
 * Soit $B_n$ la séquence avec $B_n = [-1/n,0]$ pour $n$ impair, $B_n = [0,1/n]$ pour $n$ pair.
 
 * Trouver $\limsup_{n\to \infty} B_n$, $\liminf_{n\to \infty} B_n$
 
-* Proposition 3.4.1
-$$ P(\liminf_{n\to \infty} A_n) \leq \liminf_{n\to \infty} P(A_n) \leq \limsup_{n\to \infty} P(A_n) \leq P(\limsup_{n\to \infty} A_n).$$
-
 ## Aperçu du Chapitre 4, Espérance
 
-1. Des variables aléatoires simples $X(\omega) = \sum_{i=1} x_i 1_{A_i}(\omega)$
+1. Pour les variables aléatoires simples $X(\omega) = \sum_{i=1} x_i 1_{A_i}(\omega)$,
 $$ E[X(\omega)] = \sum_{i=1}^n x_i P(A_i). $$
     * linéarité
     * $E[XY] = E[X]E[Y]$ pour $X$, $Y$ indépendant
 1. Des variables aléatoires non-négatives
 $$ E[X] = \sup \{ E[Y] \colon Y\,\mbox{simple},\, Y \leq X \}. $$
 1. Des variables aléatoires générales.
-1. Espérance comme une généralization de l'intégration riemannienne.
-
-## Devoirs et lectures
-
-### Devoirs, Rosenthal (matière du cours 3)
-1. Exercise 3.6.2
-2. Exercise 3.6.6
-3. Exercise 3.6.10
-4. Exercise 3.6.12
-
-### Lectures, Rosenthal (matière du cours 4)
-1. Chapitre 4
-
+1. Espérance comme une généralisation de l'intégration riemannienne.

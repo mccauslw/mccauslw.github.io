@@ -51,7 +51,7 @@ Soit $\Omega = \{1,\ldots,n\}$. Montrez que
 
 1. Chapitre 3
 
-Définitions importantes: variable aléatoire, $\searrow$, $\nearrow$, $\liminf_n$ et $\limsup_n$ pour une suite d'ensembles $A_n$, indépendance d'événements.
+Définitions importantes : variable aléatoire, $\searrow$, $\nearrow$, $\liminf_n$ et $\limsup_n$ pour une suite d'ensembles $A_n$, indépendance d'événements.
 
 
 ### Questions sur les lectures
@@ -67,4 +67,39 @@ Définitions importantes: variable aléatoire, $\searrow$, $\nearrow$, $\liminf_
     a. Donnez une fonction $X \colon \Omega \to \mathbb{R}$ qui est une variable aléatoire sur $(\Omega,{\cal F})$.
     b. Donnez une fonction $f \colon \Omega \to \mathbb{R}$ qui n'est pas une variable aléatoire sur $(\Omega,{\cal F})$.
     
+## Cours 3, le 18 septembre
+
+### Devoirs, Rosenthal (matière du cours 3)
+
+1. Exercice 3.6.2
+2. Exercice 3.6.6
+3. Exercice 3.6.10
+4. Exercice 3.6.12
+
+### Lectures, Rosenthal (matière du cours 4)
+
+1. Chapitre 4
+
+Définitions importantes : espérance, variance d'une variable aléatoire simple,
+covariance, corrélation entre deux variables aléatoires simples.
+
+### Questions sur les lectures
+
+1. Soit $(\Omega, {\cal F}, P)$ la mesure de probabilité où $\Omega = \mathbb{N} = \{1,2,\ldots\}$, ${\cal F} = 2^\Omega$ et $P$ est la probabilité où $P(\{\omega\}) = 2^{-\omega}$, $\omega \in \mathbb{N}$.
+Soit $X(\omega) = 0$.
+Pour $n \in \mathbb{N}$, soit
+$$ X_n(\omega) = \begin{cases} 2^n & \omega=n \\ 0 & \omega \neq n. \end{cases}$$
+Trouver $E[X]$ et $E[X_n]$. Est-ce que $E[X_n] \to E[X]$?
+
+1. Soit $(\Omega, {\cal F}, P)$ la mesure de probabilité où $\Omega = \mathbb{N} = \{1,2,\ldots\}$, ${\cal F} = 2^\Omega$ et $P$ est la probabilité où $P(\{n\}) = 2^{-n}$, $n \in \mathbb{N}$.
+Soit
+$$ X(\omega) = \begin{cases} 2, & \omega = 2,3 \\ 1, & \omega = 4 \\ 0, & \mbox{autrement}. \end{cases} $$
+Trouver $E[X]$.
+
+1. Soit $(\Omega, {\cal F}, P)$ la mesure de Lebesgue sur $\Omega = [0,1]$. Soit
+$$ Y(\omega) = \begin{cases} 1, & \omega\, \mbox{irrationel},\, \omega < 1/2 \\
+3, & \omega = 1/2 \\
+5, & 1/2 < \omega \leq 1 \\
+7, & \mbox{autrement}. \end{cases} $$
+Trouver $E[Y]$.
 
