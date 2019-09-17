@@ -11,6 +11,6 @@
 
 [Diapos, Cours 1, 2019/09/04](./ECN7060/ECN7060_1.pdf) (version corrigée après le cours)
 
-[Diapos, Cours 2, 2019/09/11](./ECN7060/ECN7060_2.pdf) (version corrigé après le cours)
+[Diapos, Cours 2, 2019/09/11](./ECN7060/ECN7060_2.pdf) (version corrigée après le cours)
 
 [Diapos, Cours 3, 2019/09/18](./ECN7060/ECN7060_3.pdf) (version avant le cours)
