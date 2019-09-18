@@ -40,7 +40,7 @@ Soit $X(\omega)$ une variable aléatoire et $W(\omega) \equiv cX(\omega)$.
 
 Pour $c=0$ le résultat est évident, alors supposez que $c \neq 0$.
 
-Pour tous $x \in \mathbb{R}$,
+Pour tout $x \in \mathbb{R}$,
 \[
   \begin{aligned}
   \{\omega \in \Omega \colon W(\omega) \leq x\} &= \{\omega \in \Omega \colon cX(\omega) \leq x\} \\ &= \{\omega \in \Omega \colon X(\omega) \leq x/c\} \\ &\in {\cal F}.
@@ -56,7 +56,7 @@ Avec une notation plus simple :
 
 Soit $X(\omega)$ et $Y(\omega)$ deux variables aléatoires sur le même espace de probabilité $(\Omega, {\cal F}, P)$. Soit $W(\omega) = X(\omega) + Y(\omega)$.
 
-Pour tous $w \in \mathbb{R}$,
+Pour tout $w \in \mathbb{R}$,
 \[
   \begin{aligned}
   \{W > w\} &= \cup_{q \in \mathbb{Q}} (\{X > q\} \cap \{Y > w-q\}) \\
@@ -80,7 +80,7 @@ Rappel : $X, Y, Z_1, Z_2, \ldots$ sont des variables aléatoires sur $(\Omega, {
 
 ## Limites ponctuelles
 
-Supposez que $Z(\omega) = \lim_{n\to \infty} Z_n(\omega)$ pour tous $\omega \in \Omega$.
+Supposez que $Z \colon \Omega \to \mathbb{R}$, $Z(\omega) = \lim_{n\to \infty} Z_n(\omega)$ pour tout $\omega \in \Omega$.
 
 Alors
 \[
@@ -137,7 +137,7 @@ $$ P(A_{\alpha_1} \cap A_{\alpha_2} \cap \ldots \cap A_{\alpha_j})
 
 * Indépendance par paire : pour toutes paires $(X,Y)$ dans une collection de variables aléatoires, $X$ et $Y$ sont indépendants.
 
-* Indépendance : une collection $\{X_\alpha \colon \alpha \in I\}$ de variables aléatoires est indépendante si pour tous $j \in \mathbb{N}$, $\alpha_1,\ldots,\alpha_j \in I$, $S_1,\ldots,S_j$ boréliens,
+* Indépendance : une collection $\{X_\alpha \colon \alpha \in I\}$ de variables aléatoires est indépendante si pour tout $j \in \mathbb{N}$, $\alpha_1,\ldots,\alpha_j \in I$, $S_1,\ldots,S_j$ boréliens,
 $$ P(X_{\alpha_1} \in S_1, \ldots, X_{\alpha_j} \in S_j)
 = P(X_{\alpha_1} \in S_1) \cdots P(X_{\alpha_j} \in S_j) $$
 
