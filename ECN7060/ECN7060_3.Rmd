@@ -43,7 +43,7 @@ Pour $c=0$ le résultat est évident, alors supposez que $c \neq 0$.
 Pour tous $x \in \mathbb{R}$,
 \[
   \begin{aligned}
-  \{\omega \in \Omega \colon W(\omega) \leq x\} &= \{\omega \in \Omega \colon cX(\omega) \leq x\} \\ &= \{\omega \in \Omega \colon x(\omega) \leq x/c\} \\ &\in {\cal F}.
+  \{\omega \in \Omega \colon W(\omega) \leq x\} &= \{\omega \in \Omega \colon cX(\omega) \leq x\} \\ &= \{\omega \in \Omega \colon X(\omega) \leq x/c\} \\ &\in {\cal F}.
   \end{aligned}
 \]
 
@@ -54,7 +54,7 @@ Avec une notation plus simple :
 
 ## Addition
 
-Soit $X(\omega)$ et $Y(\omega)$ deux variables aléatoire sur le même espace de probabilité $(\Omega, {\cal F}, P)$. Soit $W(\omega) = X(\omega) + Y(\omega)$.
+Soit $X(\omega)$ et $Y(\omega)$ deux variables aléatoires sur le même espace de probabilité $(\Omega, {\cal F}, P)$. Soit $W(\omega) = X(\omega) + Y(\omega)$.
 
 Pour tous $w \in \mathbb{R}$,
 \[
@@ -91,7 +91,7 @@ Alors
 
 Notes :
 
-1. Fonctions sur $\Omega = \mathbb{R}$ avec un nombre de discontinuités dénombrable.
+1. Fonctions sur $\Omega = \mathbb{R}$ avec un ensemble dénombrable de discontinuités.
 
 1. Avec des limites et des sommes finies, on a des sommes infinies convergentes.
 
@@ -158,7 +158,7 @@ Attention :
 
 * $[0,1-1/n] \nearrow [0,1)$.
 * On peut avoir $P([0,1-1/n]) \to P([0,1)) = 0.5$ et $P([0,1]) = 1$ en même temps.
-* Plus généralement, la fonction de répartition n'est pas forcément continue.
+* Plus généralement, la fonction de répartition n'est pas forcément continue. Mais la continuité de probabilité implique qu'elle est continue à droite.
 
 ## Continuité de probabilité (preuve)
 
@@ -193,12 +193,6 @@ $P(A^c) = \lim_{n\to \infty} P(A_n^c)$, $P(A) = \lim_{n\to \infty} P(A_n)$.
   P(\liminf_n A_n) \leq \liminf_n P(A_n) \leq \limsup_n P(A_n) \leq P(\limsup_n A_n).
 \]
 * Si $P(\liminf_n A_n) = P(\limsup_n A_n)$, $\lim_{n\to \infty} P(A_n)$ existe.
-
-## Événements limites
-
-* Soit $B_n$ la séquence avec $B_n = [-1/n,0]$ pour $n$ impair, $B_n = [0,1/n]$ pour $n$ pair.
-
-* Trouver $\limsup_{n\to \infty} B_n$, $\liminf_{n\to \infty} B_n$
 
 ## Aperçu du Chapitre 4, Espérance
 
