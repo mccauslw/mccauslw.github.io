@@ -36,9 +36,7 @@ et $\emptyset, A^c, \Omega \in {\cal F}$. Alors $1_A(x)$ est une variable aléat
 
 ## Multiplication scalaire
 
-Soit $X(\omega)$ une variable aléatoire et $W(\omega) \equiv cX(\omega)$.
-
-Pour $c=0$ le résultat est évident, alors supposez que $c \neq 0$.
+Soit $X(\omega)$ une variable aléatoire, $c>0$ et $W(\omega) \equiv cX(\omega)$.
 
 Pour tout $x \in \mathbb{R}$,
 \[
@@ -51,6 +49,14 @@ Avec une notation plus simple :
 \[
   \{W \leq x\} = \{cX \leq x\} = \{X \leq x/c\} \in {\cal F}. 
 \]
+
+Notes :
+
+* pour le cas $c<0$ il faut utiliser 
+\[
+  \{X \geq x/c\} = \left( \cup_{n=1}^\infty \{X \leq x/c - 1/n\} \right)^c {\cal F}.
+\]
+* pour $c=0$, $W = 0$ est trivialement une variable aléatoire.
 
 ## Addition
 
@@ -133,7 +139,7 @@ $$ P(A_{\alpha_1} \cap A_{\alpha_2} \cap \ldots \cap A_{\alpha_j})
 
 ## Indépendance des variables aléatoires
 
-* Indépendance de deux variables aléatoires : $X$ et $Y$ sont indépendants si pour tous ensembles boréliens $S_1$ et $S_2$, $X^{-1}(S_1)$ et $X^{-1}(S_2)$ sont indépendants.
+* Indépendance de deux variables aléatoires : $X$ et $Y$ sont indépendants si pour tous ensembles boréliens $S_1$ et $S_2$, $X^{-1}(S_1)$ et $Y^{-1}(S_2)$ sont indépendants.
 
 * Indépendance par paire : pour toutes paires $(X,Y)$ dans une collection de variables aléatoires, $X$ et $Y$ sont indépendants.
 
