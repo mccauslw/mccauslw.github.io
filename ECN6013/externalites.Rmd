@@ -1,0 +1,198 @@
+---
+title: "Externalités et le problème de coût social"
+subtitle: "ECN 6013, automne 2019"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+fig_width: 6
+fig_height: 4
+urlcolor: blue
+---
+
+```{r, include=FALSE}
+options(tinytex.verbose = TRUE)
+knitr::opts_chunk$set(fig.width=6, fig.height=4) 
+```
+
+## Équilibre marchand
+
+```{r graph1, echo=FALSE, message=FALSE, warning=FALSE}
+x = seq(0,20)
+CMpr = x
+CMso = 4+x
+BMpr = 20-x
+
+# Marginal private cost
+plot(x, CMpr, type='l', col='black', xlab="quantité", ylab="prix", xaxt='n', yaxt='n')
+text(13, 12, "O = CM privé", pos=4)
+# Marginal private benefit
+lines(x, BMpr, col='blue')
+text(14, 7, "D = BM privé", col='blue', pos=4)
+
+axis(side = 1, at = 10, labels='Qeq')
+lines(c(10, 10), c(10, 0), lty='dashed')
+
+axis(side = 2, at = 10, labels='Peq')
+lines(c(0, 10), c(10, 10), lty='dashed')
+
+text(2, 7, "C")
+text(2, 13, "A")
+```
+
+Surplus des consommateurs : A
+
+Surplus des producteurs : C
+
+## Analyse du bien-être avec une externalité négative
+
+```{r graph3, echo=FALSE, message=FALSE, warning=FALSE}
+x = seq(0,20)
+CMpr = x
+CMso = 4+x
+BMpr = 20-x
+
+# Marginal private cost
+plot(x, CMpr, type='l', col='black', xlab="quantité", ylab="prix", xaxt='n', yaxt='n')
+text(13, 12, "O = CM privé", pos=4)
+# Marginal social cost
+lines(x, CMso, col='red')
+text(8, 17, "CM social", col='red', pos=4)
+# Marginal private benefit
+lines(x, BMpr, col='blue')
+text(14, 7, "D = BM privé", col='blue', pos=4)
+
+axis(side = 1, at = 10, labels='Qeq')
+lines(c(10, 10), c(14, 0), lty='dashed')
+
+axis(side = 2, at = 10, labels='Peq')
+lines(c(0, 10), c(10, 10), lty='dashed')
+
+text(1, 12, "A", pos=4)
+text(8, 9.5, "B", pos=3)
+text(1, 7, "C", pos=4)
+text(5, 5, "D", pos=3)
+text(10, 12, "E", pos=2)
+```
+
+## Taxe Pigovien
+
+```{r graph2, echo=FALSE, message=FALSE, warning=FALSE}
+x = seq(0,20)
+CMpr = x
+CMso = 4+x
+BMpr = 20-x
+
+# Marginal private cost
+plot(x, CMpr, type='l', col='black', xlab="quantité", ylab="prix", xaxt='n', yaxt='n')
+text(13, 12, "O = CM privé", pos=4)
+# Marginal social cost
+lines(x, CMso, col='red')
+text(8, 17, "CM social", col='red', pos=4)
+# Marginal private benefit
+lines(x, BMpr, col='blue')
+text(14, 7, "D = BM privé", col='blue', pos=4)
+
+axis(side = 1, at = 10, labels='Qeq')
+lines(c(10, 10), c(14, 0), lty='dashed')
+axis(side = 1, at = 8, labels='Qo')
+lines(c(8, 8), c(12, 0), lty='dashed')
+
+axis(side = 2, at = 10, labels='Peq')
+lines(c(0, 10), c(10, 10), lty='dashed')
+axis(side = 2, at = 12, labels='Pp')
+lines(c(0, 8), c(12, 12), lty='dashed')
+
+text(1, 14, "A", pos=4)
+text(1, 11, "B", pos=4)
+text(7.5, 9.25, "E", pos=3)
+text(8.5, 9.25, "F", pos=3)
+text(1, 7.5, "C", pos=4)
+text(5, 5, "D", pos=3)
+text(8.5, 7.5, "G", pos=3)
+text(10, 12, "H", pos=2)
+```
+
+## Négotiation à la Coase
+
+Contexte 1 :
+
+* Valeur à A du wombat: 10\$
+* Valeur à B du wombat: 20\$
+* A possède le wombat.
+
+Notes:
+
+* Surplus total en cas de vente?
+* Résultats qui dominent la situation initial dans le sens de Pareto?
+* Importance (ou non) de la répartition du surplus.
+* Coûts de transaction (difficulté de trouver et réaliser un échange mutuellement bénéfique)
+* Signification de coûts de transaction « nuls », « infinis » 
+
+## Possession contestée (ou en doute)
+
+Contexte 2 :
+
+* Même préférences
+* Possession contestée du wombat.
+* Un arbitre/médiateur/juge décide si le wombat appartient à A ou B.
+
+Notes :
+
+* Si les coûts sont nuls :
+    * Si l'arbitre décide en faveur de A, A vend à B.
+    * Si l'arbitre décide en faveur de B, B garde le wombat.
+* Si les coûts sont infinis :
+    * Si l'arbitre décide en faveur de A, A garde le wombat.
+    * Si l'arbitre décide en faveur de B, B garde le wombat.
+* Allocations efficaces?
+* Si l'efficacité est importante et les coûts de transaction sont élevés, c'est une raison de favorisé B.
+* Autres raisons: cohérence, simplicité, justice.
+
+## Exemples, mutualité du mal
+
+|Partie 1|Partie 2|Mal|
+|--------|--------|---|
+|Opérateur 1|Opérateur 2|Interférence des signaux de télé mobile|
+|Cavalier|Marcheur|Souliers salis|
+|Bridgman|Sturges|Son couvert par le bruit des mortiers|
+|Train|Agriculteurs|Destruction causée par les étincelles|
+|Pollueur|Ménages|Air ou eau sale|
+|Voleur|Victime|Perte de l'objet volé|
+
+Notes:
+
+* Agent et victime vs. la mutualité du mal
+* Deux conditions nécessaires (versus deux conditions suffisantes)
+
+## Bridgman vs Sturges (vrai exemple, montants fictifs)
+
+* Valeur de sa firme (confiserie) à Bridgman: 200 \$.
+* Valeur de sa pratique médicale à Sturges: 100 \$.
+* Le juge décide qui a le droit à une ressource (l'air dans la salle de consultation de Sturges.)
+    * Sturges : ambience tranquille
+    * Bridgman : dépotoir pour le bruit de ses mortiers.
+* Coûts zéro, décision en faveur de B : B continue.
+* Coûts zéro, décision en faveur de S : B paie S entre 100 \$ et 200 \$ pour le droit de continuer.
+* Coûts infinis, décision en faveur de B : B continue.
+* Coûts infinis, décision en faveur de S : B enlève ses mortiers.
+
+## Coûts de transaction
+
+Suffisamment bas :
+
+* Deux opérateur de téléphonie mobile, spectre
+* Activités dangereuses, dérogation du droit de poursuivre
+* Paiement des firmes éoliennes aux agriculteurs (5000\$)
+* Quotidien : dans des familles, entre amis, entre voisins
+
+Trop elevés :
+
+* Plomb dans l'air (nombre de personnes)
+* Voleur/victime (endogénéité du mal)
+* Mal psychologique (personnes vexées ou fachées)
+
+Recommendations de Coase en cas de coûts trop éléves :
+
+* Réduire les coûts de transaction (organiser ou faciliter des marchés)
+* Attribuer le droit à celui qui peut réduire le mal à coût plus faible.
+(Cavalier et marcheur; aggresseur et aggressé)

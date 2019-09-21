@@ -1,0 +1,503 @@
+---
+title: "Enchères"
+subtitle: "ECN 6013, automne 2019"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+fig_width: 6
+fig_height: 4
+urlcolor: blue
+---
+
+## Préliminaires mathématiques
+
+Fonction de répartition pour le maximum de variables aléatoires indépendantes :
+
+* Soit $X$ et $Y$ deux variables aléatoires indépendantes.
+* Soit $Z = \max(X,Y)$.
+* Soit $F_x$, $F_y$ et $F_z$ les fonctions de répartitions.
+* Soit $f_x$, $f_y$ et $f_z$ les densités.
+* Alors
+\[
+\begin{aligned}
+	F_z(z) &= \Pr[Z \leq z] \\
+	&= \Pr[X \leq z \;\mbox{et}\; Y \leq z] \\
+	&= \Pr[X \leq z] \Pr[Y \leq z] \\
+	&= F_x(z) F_y(z).
+\end{aligned}
+\]
+et
+\[
+  f_z(z) = f_x(z)F_y(z) + F_x(z)f_y(z).
+\]
+
+## Exemples
+	
+* Soit $U_i \sim \mathrm{iid\, U(0,1)}$, $i=1,\ldots,n$.
+* Soit $X_2 = \max(U_1,U_2)$, $X_n = \max(U_1,\ldots,U_n)$.
+* La fonction de répartition pour $U_i$ est
+\[
+	F(u_i) = 
+	\begin{cases}
+		0 & u_i < 0, \\
+		u_i & 0 \leq u_i \leq 1, \\
+		1 & u_i > 1.
+	\end{cases}
+\]
+* Celle pour $X_2$ est
+\[
+  F(x_2) = 
+	\begin{cases}
+		0 & x_2 < 0, \\
+		x_2^2 & 0 \leq x_2 \leq 1, \\
+		1 & x_2 > 1.
+	\end{cases}
+\]
+* La densité pour $X_2$ est $f(x_2) = 2x_2$ pour $0 \leq x_2 \leq 1$.
+
+## Exemples (cont.)
+	
+* La fonction de répartition pour $X_n$ est
+\[
+	F(x_n) = 
+	\begin{cases}
+		0 & x_n < 0, \\
+		x_n^n & 0 \leq x_n \leq 1, \\
+		1 & x_n > 1.
+	\end{cases}
+\]
+* La densité pour $X_n$ est $f(x_n) = nx_n^{n-1}$ pour $0 \leq x_n \leq 1$.
+
+## Enchères: l'environnement
+	
+* Un nombre $n$ d'enchérisseurs ou joueurs.
+* Un seul objet indivisible à vendre
+* Joueur $i$ à une valeur de réservation $v_i$, le montant maximal que il paierait pour l'objet.
+* Le résultat d'une vente aux enchères est le transfert (ou non) à un joueur (le gagnant) de l'objet et des paiements, souvent un seul paiement du gagnant au vendeur.
+* L'action est souvent une enchère ou une séquence d'enchères.
+* Le résultat est efficace si et seulement si l'objet est vendu au joueur avec la valeur maximale, peut importe le paiement.
+* On verra cinq jeux (ou enchères) différents.
+
+## L'enchère anglaise (ou ascendante)
+	
+* Participation asynchrone.
+* Les joueurs peuvent à tout moment déclarer publiquement une surenchère, une enchère plus grande que la plus récente.
+* Le gagnant est le joueur avec la dernière enchère.
+* Il paie un montant égale à sa dernière enchère.
+* S'il n'y a pas d'enchère, l'objet revient au vendeur.
+* Des fois, il y a un prix minimum.
+* Associée avec les maisons de vente aux enchères Sotheby's et Christie's de Londres.
+
+## La vente aux enchères hollandaise (ou descendante)
+	
+* Il y a un cadran avec des valeurs de zéro jusqu'à une valeur très élevée.
+* La valeur affichée sur le cadran décroit jusqu'à ce qu'un joueur arrête le cadran.
+* Ce joueur est le gagnant, il est obligé à payer le montant au cadran.
+* Si le prix minimum est atteint, l'objet revient au vendeur.
+* Associée avec la vente des tulipes en hollande.
+
+## Enchère sous pli cacheté au premier prix
+  
+* Une seule offre simultanée de tous les joueurs: $b_i$, $i=1,\ldots,n$.
+* Le joueur $i$ avec l'enchère $b_i$ la plus grande est le gagnant.
+* Il paie $b_i$ pour l'objet.
+* Après l'enchère, les offres sont révélées ou non.
+* L'assistance des joueurs n'est pas nécessaire.
+
+## Enchère sous pli cacheté au second prix
+  
+* Une seule offre simultanée de tous les joueurs: $b_i$, $i=1,\ldots,n$.
+* Soit $b_i$ l'offre la plus élevée et $b_j$ la seconde.
+* Le joueur $i$ avec l'enchère $b_i$ est le gagnant.
+* Il paie $b_j$ pour l'objet. 
+* L'assistance des joueurs n'est pas nécessaire.
+* Nommé aussi l'enchère de Vickrey.
+
+## Enchère all-pay
+  
+* Une seule offre simultanée de tous les joueurs: $b_i$, $i=1,\ldots,n$.
+* Soit $b_i$ l'offre la plus élevée.
+* Le joueur $i$ avec l'enchère $b_i$ est le gagnant.
+* Chaque joueur $j$ paie $b_j$, gagnant ou non.
+* Élections, recherche et développment, sports, lobbying.
+* Variation : guerre d'attrition, deux joueurs, le gagnant et le perdant paie l'offre la moins élevée.
+
+## L'équivalence (en terme de résultat) des enchères
+	
+* Deux enchères sont équivalentes si le résultat (gagnant et prix) en équilibre n'est pas différente.
+* Dans un sens, l'enchère anglaise est équivalente à l'enchère au second prix:
+    * $b_i$ est l'enchère la plus élevée qu'on est prêt à faire.
+    * Cette analyse fonction bien pour les valeurs privées, moins bien pour les valeurs communes.
+* Dans un sens, l'enchère hollandaise est équivalente à l'enchère au premier prix.
+    * $b_i$ est la valeur pour laquelle on arrêterait le cadran au cas où personne ne l'a déjà fait.
+    * Cette analyse fonction bien pour les valeurs privées et les valeurs communes.
+
+## Équilibre de l'enchère à deuxième prix
+	
+* $n$ joueurs, joueur $i$ a une valeur privée de $v_i$.
+* Pas besoin de spécifier la distribution des valeurs.
+* Déclarer une valeur $b_i = v_i$ est une stratégie dominante!
+    * Stratégie facile à comprendre, calculer.
+    * Pas besoin des informations sur les autres joueurs.
+* Celui qui valorise l'objet le plus gagne.
+* Faire réveler les valeurs coûte au vendeur.
+* $b_i > v_i$ : courrir le risque de gagner et payer plus cher que sa valeur.
+* $b_i < v_i$ : courrir le risque de perdre, sans avantage.
+
+## Une enchère inversée : réduction de la pollution
+	
+* Il y a plusieurs pollueurs qui émettent du $SO_2$.
+* Le gouvernement veut réduire la pollution à coût minimal.
+* Pollueur $i$ réalise la réduction à un coût de $c_i$.
+* Mécanisme naif : demander aux producteurs leur coût et obliger le pollueur à coût *signalé* minimal de réduire ses émissions.
+* Mécanisme de Vickrey : même chose, mais récompenser le pollueur à coût signalé minimal un montant égal au coût en deuxième place.
+* Le résultat :
+    * Tous les pollueurs ont l'incitation de signaler leur vrai coût.
+    * La réduction des émissions se produit au coût minimal.
+    * Le gouvernement paie plus que le coût minimal.
+
+## Équilibre de l'enchère à premier prix - définition
+
+* On commence avec un cas simple:
+    * Deux joueurs, $i=1,2$.
+    * $v_i \sim \mathrm{iid \, U(0,1)}$ (valeurs certaines et privées).
+		
+* Un équilibre est une fonction $b_1(v_1)$ et une fonction $b_2(v_2)$ telles que pour chaque $v_1 \in [0,1]$, $b_1(v_1)$ maximise
+\[
+  \Pr[b_1 > b_2(v_2)] (v_1-b_1)
+\]
+et pour chaque $v_2 \in [0,1]$, $b_2(v_2)$ maximise
+\[
+  \Pr[b_2 > b_1(v_1)] (v_2-b_2).
+\]
+* Si on change la distribution des $v_i$, la définition ne change pas (mais la probabilité, oui).
+* En cas de plusieurs joueurs, $b_2(v_2)$ et $b_1(v_1)$ sont remplacés par l'enchère maximale des autres joueurs.
+
+## Équilibre pour l'enchère au premier prix - solution
+	
+* Trouver une solution est difficile; vérifier, plus facile.
+* Proposons $b_2(v_2) = \lambda v_2$, pour un $\lambda \in [0,1]$.
+* Si $b_2(v_2) = \lambda v_2$ est la stratégie de joueur deux, joueur un n'offre jamais plus que $b_1 = \lambda$.
+* Sa meilleur réponse, comme fonction de $v_1$, est
+\[
+  b_1(v_1) = \arg\max_{b_1} \, \Pr[b_1 > \lambda v_2] (v_1 - b_1)
+\]
+* Si $b_1 \leq \lambda$,
+\[
+  \Pr[b_1 > \lambda v_2] = \Pr[v_2 < b_1/\lambda] = b_1/\lambda.
+\]
+* Pourvu que $b_1 \leq \lambda$, $b_1(v_1)$ maximise
+\[
+  \frac{b_1}{\lambda} (v_1 - b_1),
+\]
+et la solution est $b_1 = v_1/2$, qui est de la forme $b_1 = \lambda v_1$.
+* $b_i = v_i/2$, $i=1,2$ est un équilibre --- $b_i(v_i)$ n'est jamais plus grand que $\lambda = 1/2$.
+
+## Revenu au vendeur - enchère au premier prix
+  
+* Soit $\pi$ le revenu moyen au vendeur dans le cas $v_i \sim U(0,1)$, $i=1,2$.
+* Pour l'enchère à premier prix, $\pi = E[\max(v_1/2,v_2/2)]$:
+\[
+\begin{aligned}
+	\pi &= \int_0^1 \int_0^1 \max(v_1/2,v_2/2) \,dv_2\,dv_1 \\
+			&= \int_0^1 \left[ \int_0^{v_1} \frac{v_1}{2} \,dv_2 + \int_{v_1}^1 \frac{v_2}{2} \,dv_2 \right]\,dv_1 \\
+			&= \int_0^1
+			\frac{v_1}{2} [v_2]_0^{v_1}
+			+ \left[ \frac{1}{4} v_2^2 \right]_{v_1}^1 \; dv_1 \\
+			&= \int_0^1 \left( \frac{1}{4} v_1^2 + \frac{1}{4} \right) \,dv_1 \\
+			&= \left[ \frac{1}{12} v_1^3 + \frac{1}{4} v_1 \right]_0^1 = \frac{1}{12} + \frac{1}{4} = \frac{1}{3}.
+\end{aligned}
+\]
+
+## Revenu au vendeur - enchère du deuxième prix
+
+* Pour l'enchère à deuxième prix, $\pi = E[\min(v_1,v_2)]$ :
+\[
+\begin{aligned}
+	\pi &= \int_0^1 \int_0^1 \min(v_1,v_2) \,dv_2\,dv_1 \\
+			&= \int_0^1 \left[ \int_0^{v_1} v_2\,dv_2 + \int_{v_1}^1 v_1\,dv_2 \right]\,dv_1 \\
+			&= \int_0^1 \left[ \frac{1}{2} v_1^2 + v_1(1-v_1) \right]\,dv_1 \\
+			&= \left[\frac{1}{2} v_1^2 - \frac{1}{6} v_1^3\right]_0^1 = \frac{1}{3}			\end{aligned}
+\]
+* Même valeur en moyen, mais remarquez que les revenus diffèrent de cas en cas:
+si $v_1 = 0.2$ et $v_2 = 0.7$, les revenus sont $v_1 = 0.2$ et $v_2/2 = 0.35$.
+
+## Équivalence en termes de revenu
+	
+* Le résultat sur l'égalité de revenu espéré se généralise.
+* Voici quelques hypothèses sur le jeu et les joueurs:
+    * Les joueurs sont neutres pour le risque.
+    * Les valeurs (ou signales) $v_i$ sont iid, avec $v_i \in [\underline{v},\overline{v}]$.
+    * $F(v)$ continue, strictement croissante dans $[\underline{v},\overline{v}]$
+    * Si $v_i=\underline{v}$, joueur $i$ a un gain espéré de zéro.
+    * En équilibre du jeux (pas spécifié) celui à la valeur maximale gagne l'enchère.
+* Notez:
+    * Il y a très peu de structure sur les actions des joueurs: plusieurs étapes sont possibles.
+    * Il peut y avoir des paiements pour les perdants.
+    * Il peut y avoir plusieurs objets (avec modifications).
+    * Plus de flexibilité que le cas $v_i \sim U(0,1)$.
+    * Les deux dernières hypothèses tiennent pour les cinq enchères mentionnées et d'autres.
+
+## Quelques définitions
+
+Pour chaque $v,s$:
+
+* $S_i(v)$ est le gain espéré de joueur $i$ *en équilibre*, quand sa valeur est de $v$.
+* $P_i(v)$ est la probabilité que joueur $i$ gagne, en équilibre, comme fonction de $v$.
+* $E_i(v)$ est le paiement espéré, en équilibre, de joueur $i$, comme fonction de $v$.
+* $S_i(v|s)$ est l'utilité espérée de joueur $i$, s'il dévie en faisant semblant être un joueur à valeur $s$, quand les autres joueurs agissent comme dans l'équilibre.
+	
+Pour l'enchère à premier prix $E_i(v) = P_i(v) b_i(v)$, mais le résultat ne dépend pas de ce jeu.
+
+## Dérivation de l'équivalence I
+
+* Quelques résultats :
+\[
+	S_i(v) = vP_i(v) - E_i(v),
+\]
+\[
+  S_i(s) = sP_i(s) - E_i(s),
+\]
+\[
+	S_i(v|s) = vP_i(s) - E_i(s).
+\]
+
+* La substitution de $E_i(s) = sP_i(s) - S_i(s)$ dans $S_i(v|s) = vP_i(s) - E_i(s)$ donne
+\[
+	S_i(v|s) = vP_i(s) - sP_i(s) + S_i(s).
+\]
+* La dérivée par rapport à $s$ donne
+\[
+	\frac{\partial S_i(v|s)}{\partial s} = S_i'(s) + (v-s)P_i'(s) - P_i(s).
+\]
+* Par optimalité, cette dérivée doit être nulle pour $s=v$ et
+\[
+	S_i'(v) = P_i(v).
+\]
+
+## Dérivation de l'équivalence II
+	
+* On vient de dériver $S_i'(v) = P_i(v)$, qui donne l'intégral définie
+\[
+  \int_\underline{v}^v P_i(s) \;ds = S_i(v) - S_i(\underline{v}).
+\]
+* On sait que $S_i(\underline{v}) = 0$, alors
+\[
+	S_i(v) = \int_\underline{v}^v P_i(s) \;ds.
+\]
+* Maintenant on utilise l'hypothèse d'efficacité :
+    * La fonction de probabilité $P_i(v)$ est pareille dans toutes les enchères qui vérifient les hypothèses.
+    * La fonction de valeur $S_i(v)$ est pareille.
+    * La fonction $E_i(v) = vP_i(v) - S_i(v)$ est pareille.
+    * Le revenu espéré du vendeur est $E[\sum_{i=1}^n E_i(v_i)]$.
+* Conclusion: le revenu espéré du vendeur est pareille pour toutes les enchères qui vérifient les hypothèses.
+
+## Aversion pour le risque et collusion
+
+Aversion pour le risque :
+
+* Comment changent les enchères à 1er et à 2ième prix si les joueurs sont averses pour le risque?
+* Paiements plus élevés versus plus certains. 
+* Si le vendeur est averse pour le risque et non les joueurs?
+	
+Collusion :
+	
+* Que ferait les enchérisseurs pour faire de la collusion dans la vente à deuxième prix?
+* Premier prix?
+* Quelles sont les tentations pour dévier du plan de la collusion?
+
+## Valeurs communes et valeurs privées
+	
+* Jusqu'au présent, on étudie les enchères aux valeurs privées:
+    * Pour enchérisseur $i$, $v_i$ est connu et fixe.
+    * Savoir $v_j$ ne change pas $v_i$ (mais peut changer $b_i$).
+    * Exemple plausible : enchère sur ebay d'un jouet de valeur sentimentale.
+		
+* Il y a des enchères aux valeurs communes:
+    * Il y a une valeur objective de l'objet.
+    * Les joueurs ne savent pas combien vaut l'objet.
+    * Chacun observe un signal de valeur, une information pertinente sur la valeur.
+    * Exemple plausible : droits miniers sur un terrain, toutes les firmes ont le même coût d'exploitation, une firme peut avoir une information que les autres n'ont pas.
+    * $E_i[v] \neq E_i[v|E_j[v]]$ possible. Sa valeur espérée peut changer si on découvre la valeur espérée d'un autre joueur.
+		* Il y a des cas intermédiaires entre ces cas extrêmes.
+
+## La malédiction du gagnant I
+
+* Pour une valeur connue $v_i$, l'utilité espérée associé avec une enchère de $b_i$ est
+\[
+	\Pr[b_i > \max_{j\neq i}(b_j)] (v_i - b_i)
+\]
+* Pour une distribution de $\max_{j\neq i}(b_j)$ donnée, on peut maximiser cette utilité pour chaque $v_i$.
+* Maintenant, mettons que la valeur $v_i$ de l'objet est incertaine.
+* Une loi pertinente de probabilité :
+\[
+  E[X] = \Pr[A] E[X|A] + (1-\Pr[A]) E[X|A^c],
+\]
+où $A$ est une événement, $A^c$ est son complément et $X$ est une variable aléatoire.
+
+## La malédiction du gagnant II
+	
+* Si la valeur $v_i$ est incertaine, l'utilité espérée associée avec une enchère de $b_i$ est
+\[
+	\begin{aligned}
+	  \Pr[b_i > \max_{j\neq i}(b_j)] &\cdot E[v_i-b_i|b_i > \max_{j\neq i}(b_j)] \\
+		+ (1-\Pr[b_i > \max_{j\neq i}(b_j)]) &\cdot 0 \\
+	  = \Pr[b_i > \max_{j\neq i}(b_j)] &\cdot E[v_i-b_i|b_i > \max_{j\neq i}(b_j)].
+	\end{aligned}
+\]
+* Si les valeurs $v_j$, $j=1,\ldots,n$, sont positivement corrélées et les enchères sont monotones en valeur,
+\[
+ 	E[v_i-b_i|b_i > \max_{j\neq i}(b_j)] < E[v_i-b_i].
+\]
+* Un joueur sous la malédiction du gagnant ne conditionne pas et surestime la valeur au cas de gagner.
+
+## Équilibre pour l'enchère de premier prix, $n$ joueurs
+
+* Maintenant, il y a $n$ joueurs, $i=1,\ldots,n$.
+* $v_i \sim \mathrm{iid}\,U(0,1)$.
+* Comme pour deux joueurs, on vérifie qu'il y a un équilibre avec $b_i = \lambda v_i$.
+* Problème de joueur $i$ : pour $v_i$ donné, $b_i(v_i)$ maximise
+\[
+  \Pr[b_i > \max_{i\neq j} b_j] (v_i-b_i).
+\]
+* Si les autres jouent $b_j = \lambda v_j$ et si $b_i \leq \lambda$,
+\[
+	\begin{aligned}
+	  \Pr[b_i > \max_{i\neq j} b_j] &= \prod_{j\neq i} \Pr[b_i > b_j] \\
+		&= \prod_{j\neq i} \Pr[b_i > \lambda v_j] = \left(\frac{b_i}{\lambda}\right)^{n-1}.
+	\end{aligned}
+\]
+
+## Équilibre pour l'enchère de premier prix, $n$ joueurs
+	
+* Si $b_i \leq \lambda$ et les autres joueurs jouent $b_j=\lambda v_j$, le profit pour une enchère $b_i$ est de
+\[
+  \left(\frac{b_i}{\lambda}\right)^{n-1} (v_i - b_i).
+\]
+* La valeur de $b_i$ qui maximise ce profit est $b_i = \frac{n-1}{n} v_i$.
+* Ce résultat suggère un équilibre où $\lambda = \frac{n-1}{n}$ et $b_i(v_i) = \frac{n-1}{n} v_i$, $i=1,\ldots,n$.
+* Il faut confirmer que $b_i \leq \frac{n-1}{n}$ toujours.
+* La valeur maximale de $v_i$ est $1$, ce qui le confirme.
+
+## Revenu espéré pour l'enchère de premier prix, $n$ joueurs I
+	
+* Soit $R = \max_i b_i$ l'enchère maximale, qui égale au revenu.
+* Sa fonction de répartition est
+\[
+  \begin{aligned}
+		F(r) &= \Pr[\max_i b_i \leq r] \\
+		&= \prod_{i=1}^n \Pr[b_i \leq r] \\
+		&= \prod_{i=1}^n \Pr[v_i \leq nr/(n-1)] \\
+		&= \begin{cases}
+			0 & r < 0 \\
+			\left( \frac{n}{n-1} r \right)^n & 0 \leq r \leq \frac{n-1}{n} \\
+			1 & r > \frac{n-1}{n} \\
+		\end{cases}
+	\end{aligned}
+\]
+
+## Revenu espéré pour l'enchère de premier prix, $n$ joueurs II
+
+* Sa densité est
+\[
+  f(r) = \begin{cases}
+		0 & r < 0 \\
+		\left(\frac{n}{n-1}\right)^n nr^{n-1} & 0 \leq r \leq \frac{n-1}{n} \\
+		0 & r > \frac{n-1}{n}
+	\end{cases}
+\]
+* Sa valeur espérée est le revenu espéré de l'enchère:
+\[
+  \begin{aligned}
+    E[r] &= \int_0^{(n-1)/n} f(r) r dr \\
+	  &= \left(\frac{n}{n-1}\right)^n \int_0^{(n-1)/n} n r^n dr \\
+	  &= \left(\frac{n}{n-1}\right)^n \left[ \frac{n}{n+1} r^{n+1} \right]_0^{(n-1)/n} \\
+	  &= \frac{n-1}{n+1}.
+  \end{aligned}
+\]
+
+## Enchères et discrimination par le prix au 3e degré
+	
+* Monopole, discriminant par le prix de 3e degré:
+    * plusieurs segments, type observé (sexe, âge, status étudiant)
+    * prix différents, même revenus marginaux (égaux au coût marginal)
+    * ventes aux individus avec les revenus marginaux les plus élevés.
+		
+* Lien entre le problème de l'enchère optimal (pour le vendeur) et celui du monopole, discriminant par le prix de 3e degré.
+* Avec des joueurs symétriques et les enchères standards, le gagnant est celui avec le signal ou la valeur le plus élevé.
+* Si un signal plus élevé implique un revenu marginal plus élevé, le gagnant a le revenu marginal le plus élevé.
+* WJM Sous les hypothèses du théorème d'équivalence du revenu, tous les enchères standards sont optimaux si le prix de réservation égalise le revenu marginal et la valeur du vendeur.
+
+## L'approche revenu marginal
+	
+* Prenez un joueur quelconque, avec valeur $v_i \in [\underline{v},\overline{v}]$
+* Mettons que la fonction de répartition de $v_i$ est $F_i(v)$.
+* Considérer une offre à prendre ou à laisser à $i$ :
+    * Le vendeur offre l'objet au prix $\hat{v}$ à $i$.
+    * $i$ accepte si $\hat{v}<v_i$, un événement avec probabilité $1-F_i(\hat{v})$.
+    * Le revenu espéré est de $\hat{v}(1-F_i(\hat{v}))$.
+    * Interprétez $\hat{v}$ comme un prix, $q(\hat{v})=1-F_i(\hat{v})$ comme une quantité.
+    * Selon cette interprétation, $q(\hat{v})$ est une courbe de demande.
+    * Revenu marginal :
+		\[
+			MR_i(q(v)) = \frac{d}{dq} vq = v + q\frac{dv}{dq} = v + q/\left(\frac{dq}{dv}\right) = v - \frac{1-F_i(v)}{f_i(v)}.
+		\]
+* On appèle $MR_i(v) = v-(1-F_i(v))/f_i(v)$, comme fonction de la valeur aléatoire $v$, le revenu marginal du joueur $i$.
+
+## Une identité
+
+Deux façons d'exprimer le revenu espéré d'un vendeur qui fait une offre à prendre ou à laisser:
+\[
+	R_i = q(\hat{v})\hat{v} = \int_0^{q(\hat{v})} MR_i(q)\; dq.
+\]
+D'où vient l'identité (vrai pour n'importe quel $i$, $\hat{v}$)
+\[
+	\begin{aligned}
+		\hat{v} &= \frac{1}{q(\hat{v})} \int_0^{q(\hat{v})} MR_i(q)\; dq \\
+		&= \frac{1}{1-F_i(\hat{v})} \int_{\hat{v}}^{\overline{v}}
+		MR_i(q(v)) f_i(v) \; dv \\
+		&= E[MR_i(q(v_i))|v_i>\hat{v}].
+	\end{aligned}
+\]
+Deuxième équation ici : Klemperer (1999), Appendice B, note 126.
+
+## Le résultat
+	
+* Maintenant, on observe une enchère à deuxième prix et
+    * $i$ gagne,
+    * il paie $R$.
+
+* Alors
+    * $v_i \geq R$,
+    * le revenu réalisé est de $R$.
+		* Prenez l'espérance conditionnelle des deux côtés de
+		\[
+			\hat{v} = E[MR_i(v_i)|v_i>\hat{v}],
+		\]
+		sachant l'événement $R = \hat{v}$
+		* Le résultat est
+		\[
+			E[R] = E[MR_g(v_g)],
+		\]
+		où $g$ est l'indice (aléatoire) du gagnant.
+		* Le revenu espéré de l'enchère à 2è prix est l'espérance du revenu marginal
+		du gagnant.
+		* Par équivalence de revenu, c'est le revenu espéré d'autres enchères.
+
+## Application du théorème d'équivalence du revenu
+	
+* Le paiement espéré d'un joueur de type $v$ est pareil pour tous les enchères du théorème.
+* Paiement espéré du joueur de type $v$, enchère du 2e prix :
+\[
+\begin{aligned}
+	E_i(v) &= P_i(v) E[\max_{j \neq i} v_j|\max_{j \neq i} v_j < v] \\
+	&= P_i(v) \frac{\int_{x=\underline{v}}^v x (n-1) f(x) (F(x))^{n-2} dx}
+	{\int_{x=\underline{v}}^v (n-1) f(x) (F(x))^{n-2} dx} \\
+	&= P_i(v)
+	\left[v - \frac{\int_{x=\underline{v}}^v (F(x))^{n-1} dx}{(F(v))^{n-1}} \right].
+\end{aligned}
+\]
+* Le paiement espéré du joueur de type $v$ dans l'enchère du premier prix est $P_i(v) b(v)$, ce qui donne
+\[
+	b(v) = v - \frac{\int_{x=\underline{v}}^v (F(x))^{n-1} dx}{(F(v))^{n-1}}.
+\]
