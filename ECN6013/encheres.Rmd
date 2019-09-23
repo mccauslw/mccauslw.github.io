@@ -71,12 +71,29 @@ et
 ## Enchères: l'environnement
 	
 * Un nombre $n$ d'enchérisseurs ou joueurs.
-* Un seul objet indivisible à vendre
+* Un seul objet indivisible à vendre.
 * Joueur $i$ à une valeur de réservation $v_i$, le montant maximal que il paierait pour l'objet.
 * Le résultat d'une vente aux enchères est le transfert (ou non) à un joueur (le gagnant) de l'objet et des paiements, souvent un seul paiement du gagnant au vendeur.
 * L'action est souvent une enchère ou une séquence d'enchères.
-* Le résultat est efficace si et seulement si l'objet est vendu au joueur avec la valeur maximale, peut importe le paiement.
+* Le résultat est efficace si et seulement si l'objet finit par appartenir à l'agent (joueur ou vendeur) avec la valeur maximale, peut importe le paiement.
+* *Ex post*, un résultat efficace ne domine pas forcément l'allocation initiale.
 * On verra cinq jeux (ou enchères) différents.
+
+## Valeurs communes et valeurs privées
+	
+* Enchères aux valeurs privées :
+    * Pour enchérisseur $i$, $v_i$ est connu et fixe.
+    * Savoir $v_j$ ne change pas $v_i$ (mais peut changer $b_i$).
+    * Exemples plausibles : enchère sur eBay d'un jouet de valeur sentimentale, enchère de poisson (Tokyo, Sydney).
+		
+* Enchères aux valeurs communes :
+    * Il y a une valeur objective de l'objet.
+    * Les joueurs ne savent pas combien vaut l'objet.
+    * Chacun observe un signal de valeur, une information pertinente.
+    * Exemple plausible : droits miniers sur un terrain, toutes les firmes ont le même coût d'exploitation, une firme peut avoir une information que les autres n'ont pas.
+
+* Il y a des cas intermédiaires entre ces cas extrêmes.
+* Sauf pour les diapos « malédiction du gagnant » on suppose que les valeurs sont privées.
 
 ## L'enchère anglaise (ou ascendante)
 	
@@ -86,7 +103,7 @@ et
 * Il paie un montant égale à sa dernière enchère.
 * S'il n'y a pas d'enchère, l'objet revient au vendeur.
 * Des fois, il y a un prix minimum.
-* Associée avec les maisons de vente aux enchères Sotheby's et Christie's de Londres.
+* Associée aux maisons de vente aux enchères Sotheby's et Christie's de Londres.
 
 ## La vente aux enchères hollandaise (ou descendante)
 	
@@ -98,15 +115,17 @@ et
 
 ## Enchère sous pli cacheté au premier prix
   
-* Une seule offre simultanée de tous les joueurs: $b_i$, $i=1,\ldots,n$.
+* Une seule offre de chaque joueur : $b_i$, $i=1,\ldots,n$.
+* Offres « simultanées » dans le sens que les joueurs ignorent les offres des autres.
+* L'assistance des joueurs n'est pas nécessaire.
 * Le joueur $i$ avec l'enchère $b_i$ la plus grande est le gagnant.
 * Il paie $b_i$ pour l'objet.
-* Après l'enchère, les offres sont révélées ou non.
-* L'assistance des joueurs n'est pas nécessaire.
+* Parfois, toutes les offres sont révélées après l'enchère, parfois seulement l'offre gagnante, parfois aucune offre.
 
 ## Enchère sous pli cacheté au second prix
   
-* Une seule offre simultanée de tous les joueurs: $b_i$, $i=1,\ldots,n$.
+* Une seule offre de chaque joueur : $b_i$, $i=1,\ldots,n$.
+* Offres « simultanées », l'assistance des joueurs n'est pas nécessaire.
 * Soit $b_i$ l'offre la plus élevée et $b_j$ la seconde.
 * Le joueur $i$ avec l'enchère $b_i$ est le gagnant.
 * Il paie $b_j$ pour l'objet. 
@@ -115,22 +134,23 @@ et
 
 ## Enchère all-pay
   
-* Une seule offre simultanée de tous les joueurs: $b_i$, $i=1,\ldots,n$.
+* Une seule offre de chaque joueur : $b_i$, $i=1,\ldots,n$
+* Offres « simultanées »
 * Soit $b_i$ l'offre la plus élevée.
 * Le joueur $i$ avec l'enchère $b_i$ est le gagnant.
 * Chaque joueur $j$ paie $b_j$, gagnant ou non.
-* Élections, recherche et développment, sports, lobbying.
-* Variation : guerre d'attrition, deux joueurs, le gagnant et le perdant paie l'offre la moins élevée.
+* Phénomènes semblables : élections, recherche et développement, sports, lobbying,
+lézards.
+* Une variation, la guerre d'attrition : deux joueurs, le gagnant et le perdant paie l'offre la moins élevée.
 
 ## L'équivalence (en terme de résultat) des enchères
 	
-* Deux enchères sont équivalentes si le résultat (gagnant et prix) en équilibre n'est pas différente.
+* Deux enchères sont équivalentes si les résultats (qui gagne, quels paiements) en équilibre sont pareils.
 * Dans un sens, l'enchère anglaise est équivalente à l'enchère au second prix:
-    * $b_i$ est l'enchère la plus élevée qu'on est prêt à faire.
-    * Cette analyse fonction bien pour les valeurs privées, moins bien pour les valeurs communes.
+    * $b_i$ est l'enchère la plus élevée que joueur $i$ est prêt à faire.
 * Dans un sens, l'enchère hollandaise est équivalente à l'enchère au premier prix.
-    * $b_i$ est la valeur pour laquelle on arrêterait le cadran au cas où personne ne l'a déjà fait.
-    * Cette analyse fonction bien pour les valeurs privées et les valeurs communes.
+    * $b_i$ est la valeur pour laquelle joueur $i$ arrêterait le cadran si personne ne l'avait déjà fait.
+* Ces analyses fonctionnent bien pour les valeurs privées, moins bien pour les valeurs communes.
 
 ## Équilibre de l'enchère à deuxième prix
 	
@@ -139,22 +159,23 @@ et
 * Déclarer une valeur $b_i = v_i$ est une stratégie dominante!
     * Stratégie facile à comprendre, calculer.
     * Pas besoin des informations sur les autres joueurs.
-* Celui qui valorise l'objet le plus gagne.
-* Faire réveler les valeurs coûte au vendeur.
-* $b_i > v_i$ : courrir le risque de gagner et payer plus cher que sa valeur.
-* $b_i < v_i$ : courrir le risque de perdre, sans avantage.
+* Celui qui valorise l'objet le plus gagne en équilibre.
+* Faire révéler les valeurs coûte au vendeur : une partie du surplus (la différence entre les deux premières valeurs) va au gagnant.
+* $b_i > v_i$ : courir le risque de gagner et payer plus cher que sa valeur.
+* $b_i < v_i$ : courir le risque de perdre, sans avantage.
 
 ## Une enchère inversée : réduction de la pollution
 	
-* Il y a plusieurs pollueurs qui émettent du $SO_2$.
-* Le gouvernement veut réduire la pollution à coût minimal.
-* Pollueur $i$ réalise la réduction à un coût de $c_i$.
-* Mécanisme naif : demander aux producteurs leur coût et obliger le pollueur à coût *signalé* minimal de réduire ses émissions.
+* Il y a plusieurs émetteurs du $SO_2$ dans un pays.
+* Le gouvernement veut réduire les émissions par $10^6$ tonnes à coût minimal.
+* Chaque émetteur $i$ peut réaliser la réduction à un coût de $c_i$.
+* Mécanisme naïf : demander aux émetteurs leur coûts et obliger l'émetteur à coût *signalé* minimal de réduire ses émissions.
 * Mécanisme de Vickrey : même chose, mais récompenser le pollueur à coût signalé minimal un montant égal au coût en deuxième place.
 * Le résultat :
     * Tous les pollueurs ont l'incitation de signaler leur vrai coût.
     * La réduction des émissions se produit au coût minimal.
     * Le gouvernement paie plus que le coût minimal.
+* Attention : le jeux dans un contexte plus large.
 
 ## Équilibre de l'enchère à premier prix - définition
 
@@ -178,9 +199,9 @@ et pour chaque $v_2 \in [0,1]$, $b_2(v_2)$ maximise
 * Trouver une solution est difficile; vérifier, plus facile.
 * Proposons $b_2(v_2) = \lambda v_2$, pour un $\lambda \in [0,1]$.
 * Si $b_2(v_2) = \lambda v_2$ est la stratégie de joueur deux, joueur un n'offre jamais plus que $b_1 = \lambda$.
-* Sa meilleur réponse, comme fonction de $v_1$, est
+* Sa meilleure réponse, comme fonction de $v_1$, est
 \[
-  b_1(v_1) = \arg\max_{b_1} \, \Pr[b_1 > \lambda v_2] (v_1 - b_1)
+  b_1(v_1) = \arg\max_{b_1} \, \Pr[b_1 > \lambda v_2] (v_1 - b_1).
 \]
 * Si $b_1 \leq \lambda$,
 \[
@@ -306,23 +327,9 @@ Collusion :
 * Premier prix?
 * Quelles sont les tentations pour dévier du plan de la collusion?
 
-## Valeurs communes et valeurs privées
-	
-* Jusqu'au présent, on étudie les enchères aux valeurs privées:
-    * Pour enchérisseur $i$, $v_i$ est connu et fixe.
-    * Savoir $v_j$ ne change pas $v_i$ (mais peut changer $b_i$).
-    * Exemple plausible : enchère sur ebay d'un jouet de valeur sentimentale.
-		
-* Il y a des enchères aux valeurs communes:
-    * Il y a une valeur objective de l'objet.
-    * Les joueurs ne savent pas combien vaut l'objet.
-    * Chacun observe un signal de valeur, une information pertinente sur la valeur.
-    * Exemple plausible : droits miniers sur un terrain, toutes les firmes ont le même coût d'exploitation, une firme peut avoir une information que les autres n'ont pas.
-    * $E_i[v] \neq E_i[v|E_j[v]]$ possible. Sa valeur espérée peut changer si on découvre la valeur espérée d'un autre joueur.
-		* Il y a des cas intermédiaires entre ces cas extrêmes.
-
 ## La malédiction du gagnant I
 
+* Dans le cas des valeurs communes, $E_i[v] \neq E_i[v|E_j[v]]$ est possible : un joueur apprend quelque chose sur la valeur en découvrant la valeur espérée d'un autre joueur.
 * Pour une valeur connue $v_i$, l'utilité espérée associé avec une enchère de $b_i$ est
 \[
 	\Pr[b_i > \max_{j\neq i}(b_j)] (v_i - b_i)
@@ -419,7 +426,7 @@ où $A$ est une événement, $A^c$ est son complément et $X$ est une variable a
 ## Enchères et discrimination par le prix au 3e degré
 	
 * Monopole, discriminant par le prix de 3e degré:
-    * plusieurs segments, type observé (sexe, âge, status étudiant)
+    * plusieurs segments, type observé (sexe, âge, statu étudiant)
     * prix différents, même revenus marginaux (égaux au coût marginal)
     * ventes aux individus avec les revenus marginaux les plus élevés.
 		
@@ -442,7 +449,7 @@ où $A$ est une événement, $A^c$ est son complément et $X$ est une variable a
 		\[
 			MR_i(q(v)) = \frac{d}{dq} vq = v + q\frac{dv}{dq} = v + q/\left(\frac{dq}{dv}\right) = v - \frac{1-F_i(v)}{f_i(v)}.
 		\]
-* On appèle $MR_i(v) = v-(1-F_i(v))/f_i(v)$, comme fonction de la valeur aléatoire $v$, le revenu marginal du joueur $i$.
+* On appelle $MR_i(v) = v-(1-F_i(v))/f_i(v)$, comme fonction de la valeur aléatoire $v$, le revenu marginal du joueur $i$.
 
 ## Une identité
 
@@ -480,7 +487,7 @@ Deuxième équation ici : Klemperer (1999), Appendice B, note 126.
 			E[R] = E[MR_g(v_g)],
 		\]
 		où $g$ est l'indice (aléatoire) du gagnant.
-		* Le revenu espéré de l'enchère à 2è prix est l'espérance du revenu marginal
+		* Le revenu espéré de l'enchère à 2ième prix est l'espérance du revenu marginal
 		du gagnant.
 		* Par équivalence de revenu, c'est le revenu espéré d'autres enchères.
 
