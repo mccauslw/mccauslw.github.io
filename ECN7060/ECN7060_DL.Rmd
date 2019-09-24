@@ -103,3 +103,27 @@ $$ Y(\omega) = \begin{cases} 1, & \omega\, \mbox{irrationel},\, \omega < 1/2 \\
 7, & \mbox{autrement}. \end{cases} $$
 Trouver $E[Y]$.
 
+## Cours 4, le 25 septembre
+
+### Devoirs, Rosenthal (matière du cours 4)
+
+1. Exercice 4.5.1
+2. Exercice 4.5.2
+3. Exercice 4.5.3
+4. Exercice 4.5.4
+5. Exercice 4.5.13 (considérez les fonctions $\omega^{-1}$, $\omega^{-1/2}$, $(1-\omega)^{-1}$ et $(1-\omega)^{-1/2}$ sur $\Omega$ et leurs combinaisons linéaires).
+
+### Lectures, Rosenthal (matière du cours 5)
+
+1. Chapitres 5, 6
+
+Définitions importantes : convergence presque sur, convergence en probabilité.
+
+### Question sur les lectures
+
+1. Soit $(\Omega, {\cal F}, P)$ un espace de probabilité avec $\Omega = [0,1]$ et $P$, la mesure de Lebesgue.
+Pour tous $n>0$, soit $A_n \equiv [0,1/n]$, $Z_n = 1_{A_n}$, $Z=0$.
+Lesquelles des affirmations suivantes sont vraies? Expliquez. Pour $Z_n = n1_{A_n}$, est-ce que les réponses changent?
+    a. $Z_n \to Z$.
+    b. $Z_n$ converge à $Z$ presque surement.
+    c. $Z_n$ converge à $Z$ en probabilité.

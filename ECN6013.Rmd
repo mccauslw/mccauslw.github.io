@@ -14,4 +14,3 @@
 [Diapos, Efficacité, Jeux, Équilibre](./ECN6013/efficacite_jeux_equilibre.pdf), 2019/09/15 (après le cours 2)
 
 [Diapos, Enchères](./ECN6013/encheres.pdf), 2019/09/23 (avant le cours 3)
-
