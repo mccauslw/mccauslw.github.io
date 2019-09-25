@@ -27,16 +27,16 @@ $$ \int_{0}^\infty X(t)\, dt = \lim_{b\to \infty} X(t)\, dt
 
 ## Problèmes pour l'intégration riemannienne
 
-* $L \int_0^1 1_Q(t) = 0$ et $U \int_0^1 1_Q(t) = 1$
+* $L \int_0^1 1_\mathbb{Q}(t) = 0$ et $U \int_0^1 1_\mathbb{Q}(t) = 1$
 
-* Soit $Q_n$ l'ensemble des $n$ premiers rationnels dans $[0,1]$.
+* Soit $\mathbb{Q}_n$ l'ensemble des $n$ premiers rationnels dans $[0,1]$. (L'ordre n'est pas importante.)
 
-* Pour tout $n$, $U \int_0^1 1_{Q_n}(t) = 0$.
+* Pour tout $n$, $U \int_0^1 1_{\mathbb{Q}_n}(t) = 0$.
 
 * Notez que
-    * $1_{Q_n}(t) \leq 1_{Q_{n+1}}(t)$ pour tous $t$,
-    * $\lim_{n\to \infty} 1_{Q_n}(t) = 1_Q(t)$ pour tous $t$,
-    * $0 = \lim_{n\to \infty} U \int_0^1 1_{Q_n}(t) \neq U \int_0^1 1_Q(t) = 1$.
+    * $1_{\mathbb{Q}_n}(t) \leq 1_{\mathbb{Q}_{n+1}}(t)$ pour tous $t$,
+    * $\lim_{n\to \infty} 1_{\mathbb{Q}_n}(t) = 1_\mathbb{Q}(t)$ pour tous $t$,
+    * $0 = \lim_{n\to \infty} U \int_0^1 1_{\mathbb{Q}_n}(t) \neq U \int_0^1 1_\mathbb{Q}(t) = 1$.
 
 * $\delta$ de Dirac comme pansement lorsqu'il y a des points avec probabilité positive : défini comme
 \[
@@ -55,7 +55,7 @@ et pour tout $t \neq 0$,
     1. $X(\omega) = 2 \cdot 1_{[0,1/4)}(\omega) + 2 \cdot 1_{(1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
     1. $X(\omega) = 2 \cdot 1_{\Omega}(\omega) + 1 \cdot 1_{[1/4,1/2]}(\omega)$
     
-* L'image de $X$ est $\{x_1,x_2\} = \{2, 3\}$.
+* L'image de $X$ est $\{x_1,x_2\} = \{2, 3\}$, un ensemble fini.
 
 * Dans 1, $X$ est de la forme canonique
 $$ X(\omega) = \sum_{x \in X(\Omega)} x \cdot 1_{\{X^{-1}(\{x\})\}}(\omega). $$
@@ -91,10 +91,6 @@ $$ E[X] = E[X^+] - E[X^-]. $$
 
 * Soit $(\Omega, {\cal F}, P)$ l'espace de probabilité $([0,1], {\cal B}, \mu)$ où $\mu$ est la mesure de Lebesgue.
 
-* Soit $\mathbb{Q}_n$ l'ensemble des $n$ premiers rationnels dans $[0,1]$. (L'ordre est arbitraire.)
-
-* $\mathbb{Q}$ est l'ensemble des rationnels.
-
 * Pour tout $n$,
 \[
   E[1_{\mathbb{Q}_n}] = 1 \cdot \mu(\mathbb{Q}_n) + 0 \cdot \mu(\Omega \backslash \mathbb{Q}_n) = 0.
@@ -105,9 +101,11 @@ $$ E[X] = E[X^+] - E[X^-]. $$
   E[1_\mathbb{Q}] = 1 \cdot \mu(\mathbb{Q} \cap [0,1]) + 0 \cdot \mu(\mathbb{Q}^c \cap [0,1]) = 0.
 \]
 
+* Rappel : pour l'intégration riemannienne, $U \neq L$, échec de convergence monotone.
+
 ## Linéarité de l'espérance, variables aléatoires simples I
 
-Même $X(\omega)$ sur $\Omega = [0,1]$ :
+Même $X(\omega)$ sur $\Omega = [0,1]$ qu'on a vu avant :
 \[
   X(\omega) = \begin{cases}
     2 & \omega \in A_1 \equiv [0,1/4), \\
@@ -118,7 +116,7 @@ Même $X(\omega)$ sur $\Omega = [0,1]$ :
 
 Une autre variable aléatoire $Y(\omega)$ sur $\Omega$ :
 \[
-  Y(\omega) = \begin{cases} 5 & \omega \leq 3/4, \\ 4 & \mbox{autrement}. \end{cases}
+  Y(\omega) = \begin{cases} 5 & \omega \in B_1 \equiv [0,3/4], \\ 4 & \omega \in B_2 = (3/4,1]. \end{cases}
 \]
 
 Toutes les intersections $A_i \cap B_j$ :
@@ -176,15 +174,10 @@ Pour toute variable aléatoire $X \geq 0$,
 ## Espérances des variables aléatoires arbitraires
 
 * Soit $X$ une variable aléatoire arbitraire.
-
 * Soit $X^+(\omega) = \max(X(\omega), 0)$, $X^-(\omega) = \max(-X(\omega), 0)$.
-
 * Les deux sont des variables aléatoires non-négatives.
-
 * $X^+ + X^- = X$.
-
 * Soit $v^+ \equiv E[X^+]$, $v^- \equiv E[X^-]$.
-
 * $E[X]$ défini par :
 
 |$E[X^+]$|$E[X^-]$|$E[X]$|
@@ -194,7 +187,9 @@ Pour toute variable aléatoire $X \geq 0$,
 |$v^+ < \infty$|$v^- = \infty$|$-\infty$|
 |$v^+ = \infty$|$v^- = \infty$|pas défini|
 
-## Espérances et les intégrales impropres
+* Attention : la valeur d'une v.a. n'est jamais $\infty$ ou $-\infty$. La valeur d'un $\sup$, $\inf$ ou $\lim$ peut l'être.
+
+## Les espérances et les intégrales impropres
 
 Quelques choses à noter dans la définition, pour $X \geq 0$,
 $$ E[X] = \sup \{E[Y] \colon Y \leq X,\, Y\,\mbox{simple}\}. $$
@@ -208,35 +203,38 @@ Exemples :
 
 1. $X(\omega) = 1/\sqrt{\omega}$, mesure de Lebesgue sur $[0,1]$.
 1. $X(\omega) = 1/\omega$, mesure de Lebesgue sur $[0,1]$.
+1. $X(\omega) = \omega$, loi gaussienne sur $\mathbb{R}$.
 1. $X(\omega) = \omega$, loi Cauchy sur $\mathbb{R}$.
+1. $X$ de la Figure 4.2.1.
 
 ## Convergence monotone de $X_n$ simple à $X$ non-négative
 
 * Les fonctions $\Psi_n \colon \mathbb{R} \to \mathbb{R}$ :
 $$ \Psi_n(x) = \min(n,2^{-n} \lfloor 2^n x \rfloor). $$
-
 * Propriétés de $\Psi_n(x)$ :
     * $0 \leq \Psi_n(x) \leq x$, $x \geq 0$.
     * Pour tout $x \in \mathbb{R}$, $\Psi_n(x) \nearrow x$.
     * Pour tout $n$, $\Psi_n(\mathbb{R})$ est fini.
-    
 * Construction $X_n(\omega) = \Psi_n(X(\omega))$.
-
 * Propriétés de $X_n$ :
     * $X_n$ est simple
     * $X_n \leq X_{n+1} \leq X$
     * $\lim_{n\to \infty} X_n(\omega) = X(\omega)$, $\omega \in \Omega$.
     * $E[X_n] \leq E[X]$ (définition de $E[X]$)
     * $\lim_{n\to \infty} E[X_n(\omega)] \leq E[X]$
+* Pourquoi pas $\Psi_n(x) = \min(n, n^{-1} \lfloor nx \rfloor)$? $\Psi_n(x) = 2^{-n} \lfloor 2^n x \rfloor)$?
+* Remarquez la discrétisation de $X(\Omega)$, pas $\Omega$.
 
 ## Théorème de convergence monotone
 
-* Supposez que $X_1, X_2,\ldots$ sont des variables aléatoires avec $X_n(\omega) \nearrow X(\omega)$ pour tout $\omega \in \Omega$.
+* Supposez que $X_1, X_2,\ldots$ sont des variables aléatoires non-négatives avec $X_n(\omega) \nearrow X(\omega)$ pour tout $\omega \in \Omega$.
 Alors $X$ est une variable aléatoire et $E[X] = \lim_{n\to \infty} E[X_n]$.
 
 * Remarque : les $X_n$ ne sont pas forcément simples.
 
 * Par monotonicité, $E[X_1] \leq E[X_2] \leq \ldots \leq E[X]$.
+
+* Attention : $E[X_n] = \infty$, $E[X] = \infty$ possible.
 
 * Immédiatement, $\lim_{n\to \infty} E[X_n] \leq E[X]$.
 
@@ -244,17 +242,17 @@ Alors $X$ est une variable aléatoire et $E[X] = \lim_{n\to \infty} E[X_n]$.
 
 ## Preuve de $\lim_{n\to \infty} E[X_n] \geq E[X]$
 
-* Soit $Y$ simple, $Y \leq X$ (alors $E[Y] \leq E[X]$)
+* Soit $Y$ simple, $Y \leq X$ (alors $E[Y] \leq E[X]$). Soit $\epsilon > 0$.
 * $Y = \sum_i v_i 1_{A_i}$ où $\{A_i\}$ est une partition de $\Omega$ en événements et $v_i \leq X(\omega)$ pour tout $\omega \in A_i$.
-* Soit $\epsilon > 0$.
-* Pour tout $i$ et $n$, soit $A_{in} \equiv \{\omega \in \Omega \colon X_n(\omega) \geq v_i - \epsilon\}$.
+* Pour tout $i$ et $n$, soit $A_{in} \equiv \{\omega \in A_i \colon X_n(\omega) \geq v_i - \epsilon\}$.
 * Alors pour tout $i$, $\{A_{in}\} \nearrow A_i$. (monotonicité, convergence) 
 * Alors $E[X_n] \geq \sum_i (v_i - \epsilon) P(A_{in})$. (à droite : $E[Y_n]$, $Y_n$ simple)
 * Par convergence de probabilité :
 \[
   \lim_{n\to \infty} \sum_i (v_i - \epsilon) P(A_{in}) = \left(\sum_i v_i P(A_i)\right) - \epsilon,
 \]
-* Alors $lim_{n\to \infty} E[X_n] \geq E[Y] - \epsilon \geq E[Y]$.
+* Alors $lim_{n\to \infty} E[X_n] \geq E[Y] - \epsilon$.
+* $\epsilon > 0$ est arbitraire alors $\lim_{n\to \infty} E[X_n] \geq E[Y]$.
 * $Y$ est arbitraire, alors $\lim_{n\to \infty} E[X_n] \geq E[X]$.
 
 ## Remarques
