@@ -66,6 +66,8 @@ $$ X(\omega) = \sum_{x \in X(\Omega)} x \cdot 1_{\{X^{-1}(\{x\})\}}(\omega). $$
 
 ## Une variable aléatoire simple sur $\Omega = [0,1]^2$
 
+![Une variable aléatoire simple](SquareSimpleVA.JPG){width=40%}
+
 Ici,
 \[
   X(\omega) = \begin{cases} x_1 & \omega \in A_1 \\ x_2 & \omega \in A_2 \\ x_3 & \omega \in A_3 \\ x_4 & \omega \in A_4. \end{cases}
