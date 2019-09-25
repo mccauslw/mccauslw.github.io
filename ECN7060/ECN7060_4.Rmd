@@ -22,8 +22,8 @@ Notes :
 
 * L'existence et la valeur de l'intégral.
 * Extensions : (au 2ième cas, il y a une singularité à $a$ ou à $b$)
-$$ \int_{0}^\infty X(t)\, dt = \lim_{b\to \infty} X(t)\, dt
-\quad \int_a^b X(t)\, dt = \lim_{c \downarrow a} \lim_{d \nearrow b} \int_c^d X(t)\, dt. $$
+$$ \int_{0}^\infty X(t)\, dt = \lim_{b\to \infty} \int_0^b X(t)\, dt,
+\quad \int_a^b X(t)\, dt = \lim_{c \downarrow a} \lim_{d \uparrow b} \int_c^d X(t)\, dt. $$
 
 ## Problèmes pour l'intégration riemannienne
 
@@ -51,7 +51,7 @@ et pour tout $t \neq 0$,
 
 * Trois façons d'écrire la même variable aléatoire :
 
-    1. $X(\omega) = 2 \cdot 1_{[0,1/4) \cap (1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
+    1. $X(\omega) = 2 \cdot 1_{[0,1/4) \cup (1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
     1. $X(\omega) = 2 \cdot 1_{[0,1/4)}(\omega) + 2 \cdot 1_{(1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
     1. $X(\omega) = 2 \cdot 1_{\Omega}(\omega) + 1 \cdot 1_{[1/4,1/2]}(\omega)$
     
@@ -178,7 +178,7 @@ Pour toute variable aléatoire $X \geq 0$,
 * Soit $X$ une variable aléatoire arbitraire.
 * Soit $X^+(\omega) = \max(X(\omega), 0)$, $X^-(\omega) = \max(-X(\omega), 0)$.
 * Les deux sont des variables aléatoires non-négatives.
-* $X^+ + X^- = X$.
+* $X^+ - X^- = X$.
 * Soit $v^+ \equiv E[X^+]$, $v^- \equiv E[X^-]$.
 * $E[X]$ défini par :
 
@@ -251,7 +251,7 @@ Alors $X$ est une variable aléatoire et $E[X] = \lim_{n\to \infty} E[X_n]$.
 * Alors $E[X_n] \geq \sum_i (v_i - \epsilon) P(A_{in})$. (à droite : $E[Y_n]$, $Y_n$ simple)
 * Par convergence de probabilité :
 \[
-  \lim_{n\to \infty} \sum_i (v_i - \epsilon) P(A_{in}) = \left(\sum_i v_i P(A_i)\right) - \epsilon,
+  \lim_{n\to \infty} \sum_i (v_i - \epsilon) P(A_{in}) = \left(\sum_i v_i P(A_i)\right) - P(\cup_i A_i) \epsilon,
 \]
 * Alors $lim_{n\to \infty} E[X_n] \geq E[Y] - \epsilon$.
 * $\epsilon > 0$ est arbitraire alors $\lim_{n\to \infty} E[X_n] \geq E[Y]$.
