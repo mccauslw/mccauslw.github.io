@@ -216,11 +216,12 @@ et la solution est $b_1 = v_1/2$, qui est de la forme $b_1 = \lambda v_1$.
 
 ## Revenu au vendeur - enchère au premier prix
   
-* Soit $\pi$ le revenu moyen au vendeur dans le cas $v_i \sim U(0,1)$, $i=1,2$.
+* Soit $\pi$ le revenu moyen dans le cas $v_i \sim \mathrm{iid}\, U(0,1)$, $i=1,2$.
+* La densité sur $[0,1]^2$ est uniforme, $f(v_1,v_2) = 1$.
 * Pour l'enchère à premier prix, $\pi = E[\max(v_1/2,v_2/2)]$:
 \[
 \begin{aligned}
-	\pi &= \int_0^1 \int_0^1 \max(v_1/2,v_2/2) \,dv_2\,dv_1 \\
+	\pi &= \int_0^1 \int_0^1 f(v_1,v_2) \max(v_1/2,v_2/2) \,dv_2\,dv_1 \\
 			&= \int_0^1 \left[ \int_0^{v_1} \frac{v_1}{2} \,dv_2 + \int_{v_1}^1 \frac{v_2}{2} \,dv_2 \right]\,dv_1 \\
 			&= \int_0^1
 			\frac{v_1}{2} [v_2]_0^{v_1}
@@ -316,6 +317,32 @@ Notes :
     * Le revenu espéré du vendeur est $E[\sum_{i=1}^n E_i(v_i)]$.
 * Conclusion: le revenu espéré du vendeur est pareille pour toutes les enchères qui vérifient les hypothèses.
 
+## Application du théorème d'équivalence du revenu I
+
+* Supposons que les hypothèses du théorème tiennent.
+* Le paiement espéré d'un joueur de type $v$ est pareil pour tous les enchères du théorème.
+* Paiement espéré du joueur de type $v$, enchère du 2e prix :
+\[
+\begin{aligned}
+	E_i(v) &= P_i(v) E[\max_{j \neq i} v_j|\max_{j \neq i} v_j < v] \\
+	&= P_i(v) \frac{\int_{x=\underline{v}}^v x (n-1) f(x) (F(x))^{n-2} dx}
+	{\int_{x=\underline{v}}^v (n-1) f(x) (F(x))^{n-2} dx} \\
+	&= P_i(v)
+	\left[v - \frac{\int_{x=\underline{v}}^v (F(x))^{n-1} dx}{(F(v))^{n-1}} \right].
+\end{aligned}
+\]
+* 3ième équation, numérateur : intégration par parties, avec
+\[
+  u = x,\, dv = (n-1)f(x)F(x)^{n-2} \quad du = 1,\, v = F(x)^{n-1}.
+\]
+
+## Application du théorème d'équivalence du revenu II
+
+* Le paiement espéré du joueur de type $v$ dans l'enchère du premier prix est $P_i(v) b_i(v)$, ce qui donne
+\[
+	b_i(v) = v_i - \frac{\int_{x=\underline{v}}^v (F(x))^{n-1} dx}{(F(v))^{n-1}}.
+\]
+
 ## Aversion pour le risque et collusion
 
 Aversion pour le risque, Klemperer (1999), Section 5 :
@@ -324,7 +351,7 @@ Aversion pour le risque, Klemperer (1999), Section 5 :
 * Paiements plus élevés versus plus certains. 
 * Si le vendeur est averse pour le risque et non les joueurs?
 	
-Collusion :
+Collusion, Section 9 :
 	
 * Que ferait les enchérisseurs pour faire de la collusion dans la vente à deuxième prix?
 * Premier prix?
@@ -332,18 +359,18 @@ Collusion :
 
 ## La malédiction du gagnant I
 
-* Rappel : quand les valeurs sont privées, l'utilité espérée associée à une enchère de $b_i$, quand la valeur est $v_i$, et
+* Rappel : pour l'enchère à premier prix, quand les valeurs sont privées, l'utilité espérée associée à une enchère de $b_i$, quand la valeur du joueur $i$ est de $v_i$, est de
 \[
-	\Pr[b_i > \max_{j\neq i}(b_j)] (v_i - b_i)
+	\Pr[b_i > \max_{j\neq i}(b_j)] (v_i - b_i).
 \]
 * Pour une loi donnée de $\max_{j\neq i}(b_j)$, on peut maximiser cette utilité comme fonction de $v_i$.
-* Passons maintenant au cas des valeurs communes : la valeur $v$ de l'objet est incertaine.
+* Passons au cas des valeurs communes : la valeur $v$ de l'objet est incertaine, chaque joueur observe un signal privé de valeur.
 * $E_i[v] \neq E_i[v|E_j[v]]$ est possible : un joueur apprend quelque chose sur $v$ en découvrant l'information d'un autre joueur.
 * Une loi pertinente de probabilité :
 \[
   E[X] = \Pr[A] E[X|A] + (1-\Pr[A]) E[X|A^c],
 \]
-où $A$ est une événement; $A^c$, son complément et $X$, une variable aléatoire.
+où $A$ est un événement; $A^c$, son complément et $X$, une variable aléatoire.
 
 ## La malédiction du gagnant II
 	
@@ -428,88 +455,56 @@ $\Pr[b_i > \max_{j\neq i}(b_j)]E[v-b_i]$. Le fait de gagner est un signal négat
   \end{aligned}
 \]
 
-## Enchères et discrimination par le prix au 3e degré
-	
-* Monopole, discriminant par le prix de 3e degré:
-    * plusieurs segments, type observé (sexe, âge, statu étudiant)
-    * prix différents, même revenus marginaux (égaux au coût marginal)
-    * ventes aux individus avec les revenus marginaux les plus élevés.
-		
-* Lien entre le problème de l'enchère optimal (pour le vendeur) et celui du monopole, discriminant par le prix de 3e degré.
-* Avec des joueurs symétriques et les enchères standards, le gagnant est celui avec le signal ou la valeur le plus élevé.
-* Si un signal plus élevé implique un revenu marginal plus élevé, le gagnant a le revenu marginal le plus élevé.
-* WJM Sous les hypothèses du théorème d'équivalence du revenu, tous les enchères standards sont optimaux si le prix de réservation égalise le revenu marginal et la valeur du vendeur.
-
 ## L'approche revenu marginal
 	
-* Prenez un joueur quelconque, avec valeur $v_i \in [\underline{v},\overline{v}]$
-* Mettons que la fonction de répartition de $v_i$ est $F_i(v)$.
+* Prenez un joueur quelconque, avec valeur privée $v_i \in [\underline{v},\overline{v}]$.
+* Mettons que la fonction de répartition de $v_i$ est $F(v)$.
 * Considérer une offre à prendre ou à laisser à $i$ :
     * Le vendeur offre l'objet au prix $\hat{v}$ à $i$.
-    * $i$ accepte si $\hat{v}<v_i$, un événement avec probabilité $1-F_i(\hat{v})$.
-    * Le revenu espéré est de $\hat{v}(1-F_i(\hat{v}))$.
-    * Interprétez $\hat{v}$ comme un prix, $q(\hat{v})=1-F_i(\hat{v})$ comme une quantité.
+    * $i$ accepte si $\hat{v}<v_i$, un événement avec probabilité $1-F(\hat{v})$.
+    * Le revenu espéré est de $\hat{v}(1-F(\hat{v}))$.
+    * Interprétez $\hat{v}$ comme un prix, $q(\hat{v})=1-F(\hat{v})$ comme une quantité.
     * Selon cette interprétation, $q(\hat{v})$ est une courbe de demande.
     * Revenu marginal :
 		\[
-			MR_i(q(v)) = \frac{d}{dq} vq = v + q\frac{dv}{dq} = v + q/\left(\frac{dq}{dv}\right) = v - \frac{1-F_i(v)}{f_i(v)}.
+			MR(q(v)) = \frac{d}{dq} vq = v + q\frac{dv}{dq} = v + q/\left(\frac{dq}{dv}\right) = v - \frac{1-F(v)}{f(v)}.
 		\]
-* On appelle $MR_i(v) = v-(1-F_i(v))/f_i(v)$, comme fonction de la valeur aléatoire $v$, le revenu marginal du joueur $i$.
+* On appelle $MR(v) = v-(1-F(v))/f(v)$ le revenu marginal d'un joueur avec valeur $v$.
+* Pensez à un monopole, des consommateurs avec une répartition de valeurs donnée par $F(v)$.
 
 ## Une identité
 
 Deux façons d'exprimer le revenu espéré d'un vendeur qui fait une offre à prendre ou à laisser:
 \[
-	R_i = q(\hat{v})\hat{v} = \int_0^{q(\hat{v})} MR_i(q)\; dq.
+	R = q(\hat{v})\hat{v}, \quad R = \int_0^{q(\hat{v})} MR(q)\; dq.
 \]
-D'où vient l'identité (vrai pour n'importe quel $i$, $\hat{v}$)
+D'où vient l'identité (vrai pour n'importe quel $\hat{v} \in [\underline{v},\overline{v}]$)
 \[
 	\begin{aligned}
-		\hat{v} &= \frac{1}{q(\hat{v})} \int_0^{q(\hat{v})} MR_i(q)\; dq \\
-		&= \frac{1}{1-F_i(\hat{v})} \int_{\hat{v}}^{\overline{v}}
-		MR_i(q(v)) f_i(v) \; dv \\
-		&= E[MR_i(q(v_i))|v_i>\hat{v}].
+		\hat{v} &= \frac{1}{q(\hat{v})} \int_0^{q(\hat{v})} MR(q)\; dq \\
+		&= \frac{1}{1-F(\hat{v})} \int_{\hat{v}}^{\overline{v}}
+		MR(q(v)) f(v) \; dv \\
+		&= E[MR(q(v))|v>\hat{v}].
 	\end{aligned}
 \]
-Deuxième équation ici : Klemperer (1999), Appendice B, note 126.
+2ième équation : changement de variables, $q = q(v) = 1-F(v)$, $dq = q'(v)\,dv = -f(v)\,dv$, $q(\overline{v}) = 1-F(\overline{v}) = 0$. Voir Klemperer (1999), Appendice B, note 126.
 
 ## Le résultat
-	
-* Maintenant, on observe une enchère à deuxième prix et
-    * $i$ gagne,
-    * il paie $R$.
 
-* Alors
-    * $v_i \geq R$,
-    * le revenu réalisé est de $R$.
-		* Prenez l'espérance conditionnelle des deux côtés de
-		\[
-			\hat{v} = E[MR_i(v_i)|v_i>\hat{v}],
-		\]
-		sachant l'événement $R = \hat{v}$
-		* Le résultat est
-		\[
-			E[R] = E[MR_g(v_g)],
-		\]
-		où $g$ est l'indice (aléatoire) du gagnant.
-		* Le revenu espéré de l'enchère à 2ième prix est l'espérance du revenu marginal
-		du gagnant.
-		* Par équivalence de revenu, c'est le revenu espéré d'autres enchères.
-
-## Application du théorème d'équivalence du revenu
-	
-* Le paiement espéré d'un joueur de type $v$ est pareil pour tous les enchères du théorème.
-* Paiement espéré du joueur de type $v$, enchère du 2e prix :
+* On sait que pour chaque $i$ et $\hat{v} \in [\underline{v},\overline{v}]$,
 \[
-\begin{aligned}
-	E_i(v) &= P_i(v) E[\max_{j \neq i} v_j|\max_{j \neq i} v_j < v] \\
-	&= P_i(v) \frac{\int_{x=\underline{v}}^v x (n-1) f(x) (F(x))^{n-2} dx}
-	{\int_{x=\underline{v}}^v (n-1) f(x) (F(x))^{n-2} dx} \\
-	&= P_i(v)
-	\left[v - \frac{\int_{x=\underline{v}}^v (F(x))^{n-1} dx}{(F(v))^{n-1}} \right].
-\end{aligned}
+  \hat{v} = E[MR(v_i)|v_i > \hat{v}]
 \]
-* Le paiement espéré du joueur de type $v$ dans l'enchère du premier prix est $P_i(v) b(v)$, ce qui donne
+* Considérons une vente aux enchères à 2ième prix.
+* Soit $v_{(1)} > v_{(2)}$ les deux valeurs les plus élevées. Elles sont des variables aléatoires.
+* On peut conclure que
 \[
-	b(v) = v - \frac{\int_{x=\underline{v}}^v (F(x))^{n-1} dx}{(F(v))^{n-1}}.
+  E[v_{(2)}] = E[ E[MR(v)|v>v_{(2)}] ] = E[MR(v_{(1)})].
 \]
+* Le revenue de la vente à 2ième prix est de $R=v_{(2)}$, alors
+\[
+	E[R] = E[MR(v_{(1)})].
+\]
+* Le revenu espéré de l'enchère à 2ième prix est l'espérance du revenu marginal
+du gagnant.
+* Par équivalence de revenu, c'est le revenu espéré d'autres enchères quand les hypothèses du théorème d'équivalence de revenu tiennent.
