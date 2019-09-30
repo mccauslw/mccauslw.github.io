@@ -247,32 +247,35 @@ si $v_1 = 0.2$ et $v_2 = 0.7$, les revenus sont $v_1 = 0.2$ et $v_2/2 = 0.35$.
 	
 * Le résultat sur l'égalité de revenu espéré se généralise.
 * Voici quelques hypothèses sur le jeu et les joueurs:
-    * Les joueurs sont neutres pour le risque.
-    * Les valeurs (ou signales) $v_i$ sont iid, avec $v_i \in [\underline{v},\overline{v}]$.
-    * $F(v)$ continue, strictement croissante dans $[\underline{v},\overline{v}]$
-    * Si $v_i=\underline{v}$, joueur $i$ a un gain espéré de zéro.
-    * En équilibre du jeux (pas spécifié) celui à la valeur maximale gagne l'enchère.
+    1. Les joueurs sont neutres pour le risque.
+    2. Les valeurs (ou signales) $v_i$ sont iid, avec $v_i \in [\underline{v},\overline{v}]$.
+    3. $F(v)$ continue, strictement croissante sur $[\underline{v},\overline{v}]$
+    4. Si $v_i=\underline{v}$, joueur $i$ a un gain espéré de zéro.
+    5. En équilibre, celui qui valorise l'objet le plus gagne l'objet.
 * Notez:
-    * Il y a très peu de structure sur les actions des joueurs: plusieurs étapes sont possibles.
-    * Il peut y avoir des paiements pour les perdants.
+    * Il y a très peu de structure sur les actions des joueurs : par exemple, plusieurs étapes sont possibles.
+    * Les jeux où les perdants paient sont possibles : par exemple, la vente all-pay.
     * Il peut y avoir plusieurs objets (avec modifications).
     * Plus de flexibilité que le cas $v_i \sim U(0,1)$.
-    * Les deux dernières hypothèses tiennent pour les cinq enchères mentionnées et d'autres.
+    * Les deux dernières hypothèses tiennent pour les cinq enchères ci-haut et d'autres.
 
 ## Quelques définitions
 
-Pour chaque $v,s$:
+Pour chaque $v,s$ :
 
 * $S_i(v)$ est le gain espéré de joueur $i$ *en équilibre*, quand sa valeur est de $v$.
 * $P_i(v)$ est la probabilité que joueur $i$ gagne, en équilibre, comme fonction de $v$.
 * $E_i(v)$ est le paiement espéré, en équilibre, de joueur $i$, comme fonction de $v$.
-* $S_i(v|s)$ est l'utilité espérée de joueur $i$, s'il dévie en faisant semblant être un joueur à valeur $s$, quand les autres joueurs agissent comme dans l'équilibre.
-	
-Pour l'enchère à premier prix $E_i(v) = P_i(v) b_i(v)$, mais le résultat ne dépend pas de ce jeu.
+* $S_i(v|s)$ est le gain espéré de joueur $i$, s'il dévie en faisant semblant être un joueur à valeur $s$, quand les autres joueurs agissent comme dans l'équilibre.
+
+Notes :
+
+* On conditionne ci-haut à $v_i = v$, mais les valeurs des autres joueurs sont aléatoires.
+* Exemple : pour l'enchère à premier prix $E_i(v) = P_i(v) b_i(v)$.
 
 ## Dérivation de l'équivalence I
 
-* Quelques résultats :
+* Quelques résultats (hypothèse 1) :
 \[
 	S_i(v) = vP_i(v) - E_i(v),
 \]
@@ -285,13 +288,13 @@ Pour l'enchère à premier prix $E_i(v) = P_i(v) b_i(v)$, mais le résultat ne d
 
 * La substitution de $E_i(s) = sP_i(s) - S_i(s)$ dans $S_i(v|s) = vP_i(s) - E_i(s)$ donne
 \[
-	S_i(v|s) = vP_i(s) - sP_i(s) + S_i(s).
+	S_i(v|s) = vP_i(s) - sP_i(s) + S_i(s) = S_i(s) + (v-s) P_i(s).
 \]
-* La dérivée par rapport à $s$ donne
+* La dérivée par rapport à $s$ donne (hypothèses 2, 3 pour l'existence de la dérivée)
 \[
 	\frac{\partial S_i(v|s)}{\partial s} = S_i'(s) + (v-s)P_i'(s) - P_i(s).
 \]
-* Par optimalité, cette dérivée doit être nulle pour $s=v$ et
+* Condition de première ordre : cette dérivée doit être nulle pour $s=v$ et donc
 \[
 	S_i'(v) = P_i(v).
 \]
@@ -302,20 +305,20 @@ Pour l'enchère à premier prix $E_i(v) = P_i(v) b_i(v)$, mais le résultat ne d
 \[
   \int_\underline{v}^v P_i(s) \;ds = S_i(v) - S_i(\underline{v}).
 \]
-* On sait que $S_i(\underline{v}) = 0$, alors
+* Par hypothèse 4, $S_i(\underline{v}) = 0$, alors
 \[
 	S_i(v) = \int_\underline{v}^v P_i(s) \;ds.
 \]
-* Maintenant on utilise l'hypothèse d'efficacité :
+* Maintenant on utilise l'hypothèse 5 (efficacité) :
     * La fonction de probabilité $P_i(v)$ est pareille dans toutes les enchères qui vérifient les hypothèses.
-    * La fonction de valeur $S_i(v)$ est pareille.
-    * La fonction $E_i(v) = vP_i(v) - S_i(v)$ est pareille.
+    * Même chose pour la fonction de valeur $S_i(v)$.
+    * Même chose pour la fonction $E_i(v) = vP_i(v) - S_i(v)$.
     * Le revenu espéré du vendeur est $E[\sum_{i=1}^n E_i(v_i)]$.
 * Conclusion: le revenu espéré du vendeur est pareille pour toutes les enchères qui vérifient les hypothèses.
 
 ## Aversion pour le risque et collusion
 
-Aversion pour le risque :
+Aversion pour le risque, Klemperer (1999), Section 5 :
 
 * Comment changent les enchères à 1er et à 2ième prix si les joueurs sont averses pour le risque?
 * Paiements plus élevés versus plus certains. 
@@ -329,34 +332,36 @@ Collusion :
 
 ## La malédiction du gagnant I
 
-* Dans le cas des valeurs communes, $E_i[v] \neq E_i[v|E_j[v]]$ est possible : un joueur apprend quelque chose sur la valeur en découvrant la valeur espérée d'un autre joueur.
-* Pour une valeur connue $v_i$, l'utilité espérée associé avec une enchère de $b_i$ est
+* Rappel : quand les valeurs sont privées, l'utilité espérée associée à une enchère de $b_i$, quand la valeur est $v_i$, et
 \[
 	\Pr[b_i > \max_{j\neq i}(b_j)] (v_i - b_i)
 \]
-* Pour une distribution de $\max_{j\neq i}(b_j)$ donnée, on peut maximiser cette utilité pour chaque $v_i$.
-* Maintenant, mettons que la valeur $v_i$ de l'objet est incertaine.
+* Pour une loi donnée de $\max_{j\neq i}(b_j)$, on peut maximiser cette utilité comme fonction de $v_i$.
+* Passons maintenant au cas des valeurs communes : la valeur $v$ de l'objet est incertaine.
+* $E_i[v] \neq E_i[v|E_j[v]]$ est possible : un joueur apprend quelque chose sur $v$ en découvrant l'information d'un autre joueur.
 * Une loi pertinente de probabilité :
 \[
   E[X] = \Pr[A] E[X|A] + (1-\Pr[A]) E[X|A^c],
 \]
-où $A$ est une événement, $A^c$ est son complément et $X$ est une variable aléatoire.
+où $A$ est une événement; $A^c$, son complément et $X$, une variable aléatoire.
 
 ## La malédiction du gagnant II
 	
-* Si la valeur $v_i$ est incertaine, l'utilité espérée associée avec une enchère de $b_i$ est
+* Dans le cas des valeurs communes, l'utilité espérée associée à une offre de $b_i$ est
 \[
 	\begin{aligned}
-	  \Pr[b_i > \max_{j\neq i}(b_j)] &\cdot E[v_i-b_i|b_i > \max_{j\neq i}(b_j)] \\
+	  \Pr[b_i > \max_{j\neq i}(b_j)] &\cdot E[v-b_i|b_i > \max_{j\neq i}(b_j)] \\
 		+ (1-\Pr[b_i > \max_{j\neq i}(b_j)]) &\cdot 0 \\
-	  = \Pr[b_i > \max_{j\neq i}(b_j)] &\cdot E[v_i-b_i|b_i > \max_{j\neq i}(b_j)].
+	  = \Pr[b_i > \max_{j\neq i}(b_j)] &\cdot E[v-b_i|b_i > \max_{j\neq i}(b_j)].
 	\end{aligned}
 \]
-* Si les valeurs $v_j$, $j=1,\ldots,n$, sont positivement corrélées et les enchères sont monotones en valeur,
+* On valorise les conséquences de l'offre $b_i$ comme si elle est l'offre gagnante.
+* Si les signaux de valeur informent sur $v$,
 \[
- 	E[v_i-b_i|b_i > \max_{j\neq i}(b_j)] < E[v_i-b_i].
+ 	E[v-b_i|b_i > \max_{j\neq i}(b_j)] < E[v-b_i].
 \]
-* Un joueur sous la malédiction du gagnant ne conditionne pas et surestime la valeur au cas de gagner.
+* Un joueur sous la malédiction du gagnant ne conditionne pas et maximise
+$\Pr[b_i > \max_{j\neq i}(b_j)]E[v-b_i]$. Le fait de gagner est un signal négatif de valeur. (Également, le fait de perdre est un signal positif de valeur.)
 
 ## Équilibre pour l'enchère de premier prix, $n$ joueurs
 
