@@ -1,0 +1,220 @@
+---
+title: "ECN 7060, Cours 5"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Inégalité de Markov
+
+* Soit $X\geq 0$ une variable aléatoire, soit $\alpha \in (0,\infty)$.
+* Inégalité de Markov :
+\[
+  E[X] \geq \alpha P[X \geq \alpha]
+\]
+* Preuve :
+    * Soit
+    \[
+      Z \equiv
+      \begin{cases}
+        0 & X(\omega) < \alpha, \\
+        1 & X(\omega) \geq \alpha.
+      \end{cases}
+    \]
+    * Alors, par monotonicitè,
+    \[
+      E[Z] = \alpha P[X \geq \alpha] \leq E[X]
+    \]
+* Questions :
+    1. donnez un exemple d'un $X \geq 0$ qui donne une égalité
+    2. donnez des conditions nécessaires et suffisante pour une égalité.
+
+## Inégalité de Chebychev
+
+* Soit $Y$ une variable aléatoire ou $\mu_Y = E[Y]$ existe et est finie.
+* Soit $\epsilon > 0$.
+* Inégalité de Chebychev : 
+\[
+  P[|Y-\mu_Y| \geq \epsilon] \leq \frac{1}{\epsilon^2} \mathrm{Var}[Y].
+\]
+* Preuve :
+    * Sit $X = (Y-\mu_Y)^2$, soit $\alpha = \epsilon^2$.
+    * Alors
+    \[
+      P(|Y-\mu_Y| \geq \epsilon) = P(X \geq \epsilon^2) \leq \frac{1}{\epsilon^2}\mathrm{Var}[Y].
+    \]
+* Notes :
+    * $\mathrm{Var}[Y] = \infty$ est possible, mais l'inégalité ne contraigne pas.
+    * $\epsilon^{-2}$ peut être très grand, mais c'est fini.
+    * Application : borner la probabilité d'une valeur loin de la moyenne, pour une v.a. $X_n$ d'une suite où la variance devient arbitrairement petite. On veut choisir $n$ après $\epsilon$.
+    
+## Définitions
+
+* Soit $Z_1, Z_2,\ldots$ une suite de v.a., $Z$ une v.a.
+* Convergence ponctuelle de $Z_n$ à $Z$ : pour tout $\omega \in \Omega$,
+\[
+  \lim_{n\to \infty} Z_n(\omega) = Z(\omega).
+\]
+* Convergence de $Z_n$ à $Z$ presque sur, $Z_n \overset{p.s.}{\to} Z$ :
+\[
+  P[\{Z_n \to Z\}] = 1,\;\mbox{ou}\; P(Z_n \to Z) = 1.
+\]
+* Convergence en $Z_n$ à $Z$ en probabilité, $Z_n \overset{p}{\to} Z$ : pour tout $\epsilon \geq 0$,
+\[
+  P[\{|Z_n - Z| \geq \epsilon\}] \to 0,\;\mbox{ou}\; P(|Z_n - Z| \geq \epsilon) \to 0.
+\]
+
+## Convergence en probabilité mais pas convergence p.s.
+
+* Soit $A_1 = \Omega = [0,1]$, $A_2 = [0,1/2)$, $A_3 = [1/2,1]$,
+$A_4 = [0,1/4)$, $A_5 = [1/4,1/2)$, $A_6 = [1/2,3/4)$, $A_7 = [3/4,1]$, ...
+* Soit $X = 0$ et pour tout $n \in \mathbb{N}$, $X_n = 1_{A_n}(\omega)$.
+* Convergence presque sûre?
+    * Pour tous $\omega$, $\liminf_n X_n(\omega) = 0$, $\limsup_n X_n(\omega) = 1$.
+    * Échec de convergence pour tout $\omega \in \Omega$!
+    * Alors $P[\{X_n \to X\}] = 0$.
+* Convergence en probabilité?
+    * $P(X_n = X) \approx 1-1/n \to 1$.
+    * Alors pour tout $\epsilon > 0$, $P(|X_n - X| \geq \epsilon) \to 0$.
+
+## Une condition suffisante pour convergence p.s.
+
+La condition : pour tout $\epsilon > 0$, $\sum_n P(|Z_n - Z|\geq \epsilon) < \infty.$
+
+Preuve :
+
+* Soit $\epsilon > 0$ et supposez que $\sum_n P(|Z_n - Z|\geq \epsilon) < \infty.$
+* Alors
+\[
+  \lim_{m \to \infty} \sum_{k=m}^\infty P(|Z_k - Z| \geq \epsilon) = 0.
+\]
+* Pour $m$ fixe,
+\[
+  \begin{aligned}
+    P(\cap_{n=1}^\infty \cup_{k=n}^\infty |Z_k - Z| \geq \epsilon)
+    &\leq P(\cup_{k=m}^\infty |Z_k - Z| \geq \epsilon) \\
+    &\leq \sum_{k=m}^\infty P(|Z_k - Z|\geq \epsilon).
+  \end{aligned}
+\]
+* Puisque $m$ est arbitraire, $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
+
+## Preuve, continuée
+
+Rappel : la condition entraine $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
+
+Alors
+\[
+  \begin{aligned}
+    P(\exists \epsilon > 0, |Z_n - Z| \geq \epsilon\; i.o)
+    &= P(\exists \epsilon \in \mathbb{Q}, \epsilon > 0, |Z_n - Z| \geq \epsilon\; i.o.) \\
+    &\leq \sum_{\epsilon \in \mathbb{Q}, \epsilon > 0} P(|Z_n - Z| \geq \epsilon\; i.o.) = 0.
+  \end{aligned}
+\]
+
+Alors
+\[
+  P(\forall \epsilon > 0, |Z_n - Z| < \epsilon\; a.a.) = 1,
+\]
+\[
+  P(Z_n \to Z) = 1.
+\]
+
+## Convergence presque sûre $\to$ convergence en probabilité
+
+Preuve :
+
+* Supposez que $P(Z_n \to Z) = 1$ (convergence p.s.).
+* Soit $\epsilon > 0$.
+* Soit $A_n = \{\exists m \geq n, |Z_n - Z| \geq \epsilon\}$.
+* Alors
+\[
+  A_n \searrow \cup_n A_n \subseteq \{Z_n \not\to Z\}.
+\]
+\[
+  P(A_n) \to P(\cap_n A_n) \leq P(Z_n \not\to Z) = 0.
+\]
+\[
+  P(|Z_n - Z| \geq \epsilon) \leq P(A_n) \to 0.
+\]
+* Puisque $\epsilon > 0$ est arbitraire, pour tout $\epsilon > 0$, $P(|Z_n - Z| \geq \epsilon) \to 0$ (convergence en probabilité).
+
+## Une faible loi de grands nombres
+
+* Une faible loi de grands nombres :
+    * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_n$.
+    * Supposez que pour tous $n$, $E[X_n] = m$ et $\mathrm{Var}[X_n] < v < \infty$.
+    * Alors $S_n \overset{p.s.}{\to} m$.
+* Preuve :
+    * Pour tous $n$, $E[S_n] = m$ et $\mathrm{Var}[S_n] \leq v/n$.
+    * Par l'inégalité de Chebyshev, $P(|S_n - m| \geq \epsilon) \leq \frac{v}{n}\frac{1}{\epsilon^2} \to 0$.
+
+## Une forte loi de grands nombres
+
+* Une forte loi de grands nombres
+    * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_n$.
+    * Supposez que pour tous $n$, $E[X_n] = m$, $E[(X_n-m)^4] \leq a < \infty$.
+    * Alors $P(S_n \to m) = 1$.
+
+## Preuve
+
+* Notez que $(X_i - m)^2 \leq (X_i-m)^4 + 1$ pour tout $\omega \in \Omega$. (Soit $(X_i-m)^2 > 1$, soit non; $y^2 - y + 1$ n'a pas de racine réelle)
+* Supposez que $m = 0$, sans perte de généralité.
+* Remarquez que $S_n^4 = \frac{1}{n^4} \sum_{i,j,k,l} X_i X_j X_k X_l$.
+* Alors
+\[
+  \begin{aligned}
+    E[S_n^4] &= \frac{1}{n^4} \sum_{i,j,k,l} E[X_i X_j X_k X_l] \\
+    &= \frac{1}{n^4} \left[ \sum_i E[X_i^4] + {4 \choose 2} \sum_i \sum_{j>i} E[X_i^2 X_j^2] \right] \\
+    &\leq \frac{1}{n^4} (na + 3n(n-1)v^2).
+  \end{aligned}
+\]
+* Alors
+\[
+  P(|S_n| \geq \epsilon) = P(|S_n|^4 \geq \epsilon^4) \leq \frac{a + 3v^2}{n^2\epsilon^4}
+\]
+et la somme suivante converge :
+$\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$
+
+## Inégalité de Jensen
+
+* Soit $\phi \colon \mathbb{R} \to \mathbb{R}$ convexe.
+
+## Applications de l'inégalité de Jensen
+
+1. Le kurtosis $K$, s'il existe, est toujours plus grand que 1, où
+\[
+  K \equiv \frac{E[(Z-\mu)^4]}{E[(Z-\mu)^2]^2}.
+\]
+Supposons que les quatre premiers moments existent et sont finis.
+Soit $Y=Z-\mu$. Prenez $\phi(x) = x^2$, $X = Y^2$.
+1. Le Kurtosis d'un mélange-échelle de v.a. gaussiennes.
+1. La fonction d'utilité $u(x)$ concave, richesse $X$.
+\[
+  -E[u(X)] = E[-u(X)] \geq -u(E[X]), \quad u(E(X)) \geq E[u(X)].
+\]
+
+## Une note sur les distributions
+
+* La fonction de répartition : $F(x) \equiv \Pr[(-\infty,x]]$.
+
+* Monotonicity par monotonicité de probabilité
+
+* Continuité à droite : $x_n \searrow x \Rightarrow (-\infty,x_n] \searrow (-\infty,x] \Rightarrow F(x_n) \to F(x)$.
+
+* Continuité à gauche? : $x_n \nearrow x \Rightarrow (-\infty,x_n] \nearrow (-\infty,x) \Rightarrow F(x_n) \to F(x) - \Pr[\{x\}]$.
+
+## Aperçu des chapîtres 9 et 10
+
+* Chapître 9
+    * Lemme de Fatou
+    * Théorème de convergence monotone, une méthode plus flexible de démontrer
+    $\lim_{n\to \infty} E[X_n] = E[X]$.
+    * Deux applications : les dérivées des espérances, la fonction génératrice des moments.
+
+* Chapître 10
+    * Convergence faible, en loi
+

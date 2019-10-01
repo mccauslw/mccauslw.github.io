@@ -127,3 +127,37 @@ Lesquelles des affirmations suivantes sont vraies? Expliquez. Pour $Z_n = n1_{A_
     a. $Z_n \to Z$.
     b. $Z_n$ converge à $Z$ presque surement.
     c. $Z_n$ converge à $Z$ en probabilité.
+
+## Cours 5, le 2 octobre
+
+### Devoirs, Rosenthal (matière du cours 5)
+
+1. Exercice 5.5.2
+1. Exercice 5.5.10
+1. Exercice 5.5.14
+1. Exercice 6.3.2
+1. Exercice 6.3.4
+
+### Lectures, Rosenthal (matière du cours 6)
+
+1. Chapitre 9, 10
+
+Définitions importantes : $\liminf$ d'une suite de nombres, $\liminf$ d'une variable aléatoire, fonction géneratrice des moments
+
+### Question sur les lectures
+
+1. Selon le lemme de Fatou, pour une séquence de variables aléatoires $X_n \geq 0$,
+$$ E[\liminf_{n\to \infty} X_n] \leq \liminf_{n\to \infty} E[X_n]. $$
+Supposez que $(\Omega, {\cal F}, P)$ est un espace de probabilité où
+$\Omega = \mathbb{N}$, ${\cal F} = 2^\Omega$ et $P(\{\omega\}) = 2^{-\omega}$.
+    a. Montrez que la séquence de variables aléatoires
+$X_n = 2^n 1_{\{n\}} (\omega)$ vérifie
+$$ E[\liminf_{n\to \infty} X_n] < \liminf_{n\to \infty} E[X_n]. $$
+    a. Donnez une séquence de variables aléatoires $X_n \geq 0$ telle que
+$$ E[\liminf_{n\to \infty} X_n] = \liminf_{n\to \infty} E[X_n]. $$
+    a. Donnez une séquence de variables aléatoires $X_n \geq 0$ telle que
+$E[\liminf_{n\to \infty} X_n] < \infty$ et $\liminf_{n\to \infty} E[X_n] = \infty$.
+    a. Donnez une séquence de variables aléatoires $X_n \geq 0$ telle que
+$E[\liminf_{n\to \infty} X_n] = \infty$ et $\liminf_{n\to \infty} E[X_n] = \infty$.
+
+1. Donnez la fonction génératrice des moments pour une v.a. Bernoulli avec probabilité $p$ de succès.
