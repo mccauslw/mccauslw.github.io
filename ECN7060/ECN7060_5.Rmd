@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = FALSE)
       Z \equiv
       \begin{cases}
         0 & X(\omega) < \alpha, \\
-        1 & X(\omega) \geq \alpha.
+        \alpha & X(\omega) \geq \alpha.
       \end{cases}
     \]
     * Alors, par monotonicitè,
@@ -63,13 +63,14 @@ knitr::opts_chunk$set(echo = FALSE)
 \[
   P[\{Z_n \to Z\}] = 1,\;\mbox{ou}\; P(Z_n \to Z) = 1.
 \]
-* Convergence en $Z_n$ à $Z$ en probabilité, $Z_n \overset{p}{\to} Z$ : pour tout $\epsilon \geq 0$,
+* Convergence de $Z_n$ à $Z$ en probabilité, $Z_n \overset{p}{\to} Z$ : pour tout $\epsilon > 0$,
 \[
   P[\{|Z_n - Z| \geq \epsilon\}] \to 0,\;\mbox{ou}\; P(|Z_n - Z| \geq \epsilon) \to 0.
 \]
 
 ## Convergence en probabilité mais pas convergence p.s.
 
+* Prenez l'espace de probabilité $(\Omega, {\cal F}, P)$ où $\Omega = [0,1]$, ${\cal F} = {\cal B}$, $P$ la mesure de Lebesgue.
 * Soit $A_1 = \Omega = [0,1]$, $A_2 = [0,1/2)$, $A_3 = [1/2,1]$,
 $A_4 = [0,1/4)$, $A_5 = [1/4,1/2)$, $A_6 = [1/2,3/4)$, $A_7 = [3/4,1]$, ...
 * Soit $X = 0$ et pour tout $n \in \mathbb{N}$, $X_n = 1_{A_n}(\omega)$.
@@ -153,12 +154,12 @@ Soit $Y = Z = 0$, $Y_n$, $Z_n$ des suites de v.a. telles que
 Pour la suite $Y_n$ :
 
 * $\Pr[Y_n \neq Y] = 1/n^2 \to 0$ alors $Y_n \overset{p}{\to} Y$.
-* $\sum_n \Pr[Y_n \neq Y] = \sum_{1/n^2} = \pi^2/6 < \infty$ alors $Y_n \overset{a.s.}{\to} Y$.
+* $\sum_{n=1}^\infty \Pr[Y_n \neq Y] = \sum_{n=1}^\infty {1/n^2} = \pi^2/6 < \infty$ alors $Y_n \overset{a.s.}{\to} Y$.
 
 Pour la suite $Z_n$ :
 
 * $\Pr[Z_n \neq Z] = 1/n \to 0$ alors $Z_n \overset{p}{\to} Z$.
-* Mais $\sum_n \Pr[|Z_n - Z| \geq 1] = \sum_n 1/n = \infty$.
+* Mais $\sum_{n=1}^\infty \Pr[|Z_n - Z| \geq 1] = \sum_{n=1}^\infty 1/n = \infty$.
 * Si $Z_n = 1_{(0,1/n)}$, $P$ est la mesure de Lebesgue sur $\Omega = [0,1]$,
 $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 * Par contre, si les $Z_n$ sont indépendants, par Borel-Cantelli (ii)
@@ -169,9 +170,9 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 ## Une faible loi de grands nombres
 
 * Une faible loi de grands nombres :
-    * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_n$.
+    * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_i$.
     * Supposez que pour tous $n$, $E[X_n] = m$ et $\mathrm{Var}[X_n] < v < \infty$.
-    * Alors $S_n \overset{p.s.}{\to} m$.
+    * Alors $S_n \overset{p}{\to} m$.
 * Preuve :
     * Pour tous $n$, $E[S_n] = m$ et $\mathrm{Var}[S_n] \leq v/n$.
     * Par l'inégalité de Chebyshev, $P(|S_n - m| \geq \epsilon) \leq \frac{v}{n}\frac{1}{\epsilon^2} \to 0$.
@@ -179,7 +180,7 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 ## Une forte loi de grands nombres
 
 * Une forte loi de grands nombres
-    * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_n$.
+    * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_i$.
     * Supposez que pour tous $n$, $E[X_n] = m$, $E[(X_n-m)^4] \leq a < \infty$.
     * Alors $P(S_n \to m) = 1$.
 
@@ -246,7 +247,7 @@ Première équation : $X = \sigma^2$, $\phi(x) = x^2$.
 
 * La fonction de répartition : $F(x) \equiv \Pr[(-\infty,x]]$.
 
-* Monotonicity de $F$ par monotonicité de probabilité.
+* Monotonicité de $F$ par monotonicité de probabilité.
 
 * Continuité à droite : $x_n \searrow x \Rightarrow (-\infty,x_n] \searrow (-\infty,x] \Rightarrow F(x_n) \to F(x)$, par continuité de probabilité.
 
