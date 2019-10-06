@@ -161,3 +161,32 @@ $E[\liminf_{n\to \infty} X_n] < \infty$ et $\liminf_{n\to \infty} E[X_n] = \inft
 $E[\liminf_{n\to \infty} X_n] = \infty$ et $\liminf_{n\to \infty} E[X_n] = \infty$.
 
 1. Donnez la fonction génératrice des moments pour une v.a. Bernoulli avec probabilité $p$ de succès.
+
+## Cours 6, le 9 octobre
+
+### Devoirs, Rosenthal (matière du cours 6)
+
+1. Exercise 9.5.4
+2. Exercise 9.5.6
+3. Exercise 9.5.8
+4. Exercise 10.3.4
+5. Exercise 10.3.6
+
+### Lectures, Rosenthal (matière du cours 7)
+
+1. Chapitre 11, accent sur l'Intro, 11.1, 11.2
+1. (si nécessaire, https://fr.wikipedia.org/wiki/Nombre_complexe)
+
+### Questions sur les lectures
+
+1. Exprimez les nombres complexes suivants sous la forme $\alpha + i \beta$, où $a,b,c,d,r,\theta\in \mathbb{R}$.
+    a. $(a+ib)(c+id)$
+    a. $(a+ib)/(c+id)$
+    a. $re^{i\theta}$
+    a. $\log (a+ib)$
+
+1. Exprimez les nombres complexes suivants sous la forme $re^{i\theta}$, où $a,b,r,r_1,r_2,\theta\in \mathbb{R}$.
+    a. $(a+ib)$
+    a. $r_1e^{i\theta_1} \cdot r_2e^{i\theta_2}$
+    a. $re^{i\theta} \cdot i$
+    a. $e^{a+ib}$

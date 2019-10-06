@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Lemme de Fatou
 
-* Pour une séquence $X_n \geq 0$ de variables aléatoires
+* Lemme de Fatou : pour une suite $X_n \geq 0$ de v.a.
 $$ E[\liminf_{n\to \infty} X_n] \leq \liminf_{n\to \infty} E[X_n]. $$
 
 * Notes :
@@ -58,11 +58,9 @@ $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
 ## La dérivée de l'espérance
 
 * Soit $\{F_t\}_{a<t<b}$ un ensemble de variables aléatoires.
-
 * Conditions suffisantes pour $\frac{dE[F_t]}{dt} = E[F_t']$ :
     1. Pour tous $t \in (a,b)$ : $-\infty < E[F_t] < \infty$.
     1. Il existe une v.a. $Y$ telle que $E[Y] < \infty$ et pour tous $t \in (a,b)$ et $\omega \in \Omega$, $F_t'(\omega)$ existe et $|F_t'(\omega)| \leq Y(\omega)$.
-
 * Preuve : fixez $t\in (a,b)$. Alors
     1. $F_t' = \lim_{n\to \infty} n(F_{t+1/n}-F_t)$, la limite d'une séquence de
     variables aléatoires, est une variable alétoire.
@@ -159,17 +157,3 @@ $$ F(x) - P(\{x\}) \leq \liminf_n F_n(x) $$
 
 * Maintenant si $P(\{x\}) = 0$,
 $$ \liminf_n F_n(x) = \limsup_n F_n(x) = \lim_n F_n(x) = F(x) $$
-
-## Devoirs et lectures
-
-### Devoirs, Rosenthal (matière du cours 6)
-
-1. Exercise 9.5.4
-2. Exercise 9.5.6
-3. Exercise 9.5.8
-4. Exercise 10.3.4
-5. Exercise 10.3.6
-
-### Lectures, Rosenthal (matière du cours 7)
-1. Chapitre 11, accent sur l'Intro, 11.1, 11.2
-
