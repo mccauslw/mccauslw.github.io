@@ -202,14 +202,14 @@ Notes :
 
 Cas 4 :
 
-* Mêmes préférences que dans le cas 3
-* Droit (musique/silence) contestée (appartenance d'une ressource)
+* Mêmes préférences, le droit (musique/silence) est contesté
 * Un arbitre/médiateur/juge décide si le droit appartient à A ou à B.
+* L'appartenance d'une ressource vs une externalité
 
 Notes :
 
 * Si les coûts sont nuls :
-    * Si l'arbitre décide en faveur de A, A vend le droit à B. (B paie A pour la silence)
+    * Si l'arbitre décide en faveur de A, A vend le droit à B. (B paie A pour le silence)
     * Si l'arbitre décide en faveur de B, B jouit du silence.
 * Si les coûts sont infinis :
     * Si l'arbitre décide en faveur de A, A jouit de la musique.
