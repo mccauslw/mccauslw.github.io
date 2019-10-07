@@ -74,7 +74,7 @@ text(5, 5, "D", pos=3)
 text(10, 12, "E", pos=2)
 ```
 
-Surplus des consommateurs $(A+B)$ + surplus des producteurs $(C+D)$ - externalités negatives $(B+D+E)$ égale $A+C-E$.
+Surplus des consommateurs $(A+B)$ + surplus des producteurs $(C+D)$ - externalités négatives $(B+D+E)$ égale $A+C-E$.
 
 
 ## Taxe Pigovien
@@ -123,9 +123,22 @@ text(10, 12, "H", pos=2)
 |Revenu||D+E|
 |Total|A+B+C-H|A+B+C|
 
+## Autres mesures
+
+1. Responsabilité légale
+    * l'internalisation des coûts mène à une réduction de production
+    * transferts aux victimes au lieu du gouvernement
+    * coûts de transaction élevés
+
+1. Restrictions de quantité (plafonnement et échange, cap-and-trade)
+    * vente de permis échangeables
+    * Il faut évaluer pas seulement les coûts sociaux mais aussi les coûts privés (courbe d'offre) et les bénéfices privés (courbe de demande).
+    * achat des crédits comme un investissement vs pay-as-you-go
+    * pression politique des propriétaires des crédits (plus stable comme politique)
+
 ## Coase et le problème de coût social
 
-Négotiation à la Coase, trois cas avec une échange potentielle :
+Négociation à la Coase, trois cas avec une échange potentielle :
 
 1. Objet concret, appartenance reconnue
 1. Objet concret, appartenance contestée ou en doute
@@ -175,7 +188,7 @@ Notes :
 
 ## Cas 3 : droit, appartenance reconnu
 
-Cas 3 :
+Cas 3 : deux colocs, A et B
 
 * Valeur à A d'écouter de la musique : 10\$
 * Valeur à B du silence : 20\$
@@ -190,7 +203,7 @@ Notes :
 Cas 4 :
 
 * Mêmes préférences que dans le cas 3
-* Droit (musique/silence) contestée (appartence d'une ressource)
+* Droit (musique/silence) contestée (appartenance d'une ressource)
 * Un arbitre/médiateur/juge décide si le droit appartient à A ou à B.
 
 Notes :
@@ -222,7 +235,7 @@ Exemples :
 
 Notes :
 
-* Agent et victime vs. la mutualité du mal
+* Auteur et victime du mal vs. la mutualité du mal
 * Deux conditions nécessaires (versus deux conditions suffisantes)
 
 ## Bridgman vs Sturges (vrai exemple, montants fictifs)
@@ -230,7 +243,7 @@ Notes :
 * Valeur de sa firme (confiserie) à Bridgman: 200 \$.
 * Valeur de sa pratique médicale à Sturges: 100 \$.
 * Le juge décide qui a le droit à une ressource (l'air dans la salle de consultation de Sturges.)
-    * Sturges : ambience tranquille
+    * Sturges : ambiance tranquille
     * Bridgman : dépotoir pour le bruit de ses mortiers.
 * Coûts zéro, décision en faveur de B : B continue.
 * Coûts zéro, décision en faveur de S : B paie S entre 100 \$ et 200 \$ pour le droit de continuer.
@@ -242,19 +255,56 @@ Notes :
 Suffisamment bas :
 
 * Deux opérateurs de téléphonie mobile, spectre
-* Activités dangereuses, dérogation du droit de poursuivre
 * Paiement des firmes éoliennes aux agriculteurs (5000\$)
 * Paiement des propriétaires aux apiculteurs
-* Quotidien : dans des familles, entre amis, entre voisins
+* Quotidien : entres colocs, voisins, amis, membres d'une famille
 
-Trop elevés :
+Trop élevés :
 
 * Plomb dans l'air (nombre de personnes)
 * Voleur/victime (endogénéité du mal)
-* Mal psychologique (personnes vexées ou fachées)
 
-Recommendations de Coase en cas de coûts trop éléves :
+Recommandations de Coase en cas de coûts trop élevés :
 
 * Réduire les coûts de transaction (organiser ou faciliter des marchés)
 * Attribuer le droit à celui qui peut réduire le mal à coût minimal.
-(Cavalier et marcheur; aggresseur et aggressé)
+(cavalier et marcheur; voleur et victime)
+
+## L'enchère à premier prix et l'aversion au risque
+
+* Gain espéré : $S(b) = P(b)(v-b)$
+* $b^*$ optimal sous la neutralité au risque vérifie
+\[
+  S'(b^*) = P'(b^*)(v-b^*) - P(b^*) = 0.
+\]
+* Variance du gain :
+\[
+  V(b) = P(b)(v-b)^2 - P(b)^2 (v-b)^2 = S(b)(v-b) - S(b)^2.
+\]
+* En général, $V'(b) = S'(b)(v-b) - S(b) - 2S(b)S'(b)$.
+* À $b=b^*$, on a $V'(b^*) = -S(b^*) < 0$.
+* Sous l'aversion au risque, $b$ optimal est plus grand que $b^*$.
+
+## L'enchère all-pay et l'aversion au risque
+
+* Gain espéré : $S(b) = P(b)v - b$
+* $b^*$ optimal sous la neutralité au risque vérifie
+\[
+  S'(b^*) = P'(b^*)v - 1 = 0.
+\]
+* Variance du gain :
+\[
+  V(b) = P(b)v^2 - P(b)^2 v^2 = v^2 P(b) (1-P(b)).
+\]
+* En général,
+\[
+\begin{aligned}
+  V'(b) &= v^2 [P'(b)(1-P(b)) - P(b)P'(b)] \\
+  &= v^2P'(b)[1-2P(b)].
+\end{aligned}
+\]
+* Sous l'aversion au risque,
+    * Si $P(b^*) < 1/2$, $V'(b^*) > 0$ et $b$ optimal est moins grand que $b^*$.
+    * Si $P(b^*) > 1/2$, $V'(b^*) < 0$ et $b$ optimal est plus grand que $b^*$.
+
+
