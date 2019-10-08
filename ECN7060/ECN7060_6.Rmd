@@ -1,7 +1,7 @@
 ---
 title: "ECN 6578, Cours 6"
 author: "William McCausland"
-date: '2017-10-06'
+date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
@@ -47,10 +47,8 @@ $$ \lim_n E[X_n] = E[X]. $$
 ## Remarque sur les ensembles non-dénombrables de variables aléatoires
 
 * Soit $\{X_t\}_{t\geq 0}$ un ensemble (non-dénombrable) de variables aléatoires.
-
 * Si $E[X_{t_n}] \to E[X_0]$ pour n'importe quelle séquence $t_n \downarrow 0$ alors
 $\lim_{t\downarrow 0} E[X_t] = E[X_0]$.
-
 * En particulier, si $\lim_{t \downarrow 0}X_t(\omega) = X(\omega)$, $\omega \in \Omega$,
 et il exist une v.a. $Y$ telle que $|X_t| < Y$ et $E[Y] < \infty$,
 $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
@@ -76,18 +74,17 @@ $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
 ## Fonction génératrice des moments
 
 * Définition : pour une v.a. $X$, $M_X(s) = E[e^{sX}]$, $s\in R$.
-
 * Notes
-    1. n'existe pas toujours, même si $E[X] < \infty$.
-    1. $M_{X+Y}(s) = M_X(s)M_Y(s)$ pour v.a. indépendentes $X,Y$.
-    1. tableaux avec plusieurs v.a. standardes
-    1. la fonction caractéristique est souvent plus utile
+    * $M_X$ n'existe pas toujours, même si $E[X] < \infty$.
+    * $M_{X+Y}(s) = M_X(s)M_Y(s)$ pour v.a. indépendentes $X,Y$.
+    * il y a des tableaux avec plusieurs v.a. standardes
+    * la fonction caractéristique est souvent plus utile
 
 ## Résultat sur $M_X(s)$
 
-* Si $X$ est une v.a. telle qu'il existe $s_0 > 0$ tel que $M_X(s) < \infty$ pour $|s|<s_0$,
+* Supposons que $X$ est une v.a. et qu'il existe $s_0 > 0$ tel que $M_X(s) < \infty$ pour $|s|<s_0$.
+* Alors
 $$ E[|X^n|] < \infty,\, M_X(s) = \sum_{n=0}^\infty E[X^n] s^n / n!. $$
-
 * Preuve :
     1. Soit $Z_n = \sum_{k=0}^n (sX)^k / k!$
     1. $Z_n \to e^{sX}$ (définition de somme infinie)
@@ -99,48 +96,45 @@ $$ E[|X^n|] < \infty,\, M_X(s) = \sum_{n=0}^\infty E[X^n] s^n / n!. $$
 ## Signification de « génératrice des moments »
 
 * Rappel $M_X(s) = \sum_{n=0}^\infty E[X^n]s^n/n!$
-
 * $M'(s) = \sum_{n=0}^\infty E[X^{n+1}]s^n/n!$
-
 * $M^{(m)}(s) = \sum_{n=0}^\infty E[X^{n+m}]s^n/n!$
-
 * $M(0) = 1$, $M'(0) = E[X]$, $M^{(m)}(0) = E[X^m]$.
 
 ## Mesures associées aux variables aléatoires
 
 * Soit $X$ une variable aléatoire sur un espace de probabilité $(\Omega,{\cal F},P)$
-
 * $(\mathbb{R}, {\cal B}, \mu)$ est une mesure de probabilité elle aussi, où
 $$ \mu = {\cal L}(X) = PX^{-1}. $$
-
 * Si $B \in {\cal B}$, $X^{-1}(B) \in {\cal F}$ et $\mu(B) = P(X^{-1}(B))$.
+* Pour $-\infty \leq a \leq b \leq \infty$,
+    * $[a,b] \subset \mathbb{R}$,
+    * $[a,b] \in {\cal B}$,
+    * $\mu([a,b]) = P(\{X \in [a,b]\}),$
+    * $\{X \in [a,b]\} \subset \Omega$,
+    * $\{X \in [a,b]\} \in {\cal F}$.
 
 ## Convergence en distribution
 
 * Soit $\mu_n$ une séquence de mesures de probabilité boreliennes, $\mu$ une mesure de probabilité borelienne.
-
 * $\mu_n \Rightarrow \mu$ ($\mu_n$ converge en distribution à $\mu$) si pour chaque fonction $f \colon \mathbb{R} \to \mathbb{R}$, continue et bornée,
 $$ \int_{\mathbb{R}} f\, d\mu_n \to \int_{\mathbb{R}} f\, d\mu. $$
-
-* Pas une séquence de variables aléatoires, mais si $X_n$ est une séquence de variables aléatoires sur $(\Omega,{\cal F},P)$, ${\cal L}_n = PX_n^{-1}$ est une séquence de mesures.
-
-* Une condition équivalente: pour tous $x \in \mathbb{R}$,
-$$ \mu(\{x\}) = 0 \Rightarrow F_n(x) \to F(x) $$
+* Une condition équivalente: pour tout $x \in \mathbb{R}$,
+$$ \mu(\{x\}) = 0 \Rightarrow F_n(x) \to F(x). $$
+* $\mu_n$ est une suite de mesures, pas une suite de variables aléatoires.
+* cependant, si $X_n$ est une séquence de variables aléatoires sur $(\Omega,{\cal F},P)$, ${\cal L}_n = PX_n^{-1}$ est une séquence de mesures.
 
 ## Convergence en probabilité et en distribution I
 
 * Si $X_n \to X$ en probabilité,
 $\mu_n \equiv {\cal L}(X_n) \Rightarrow {\cal L}(X) \equiv \mu$.
-
-* Résultat équivalent : Si pour tous $\epsilon > 0$, $P(|X_n-X|\geq \epsilon) \to 0$,
+* Résultat équivalent : Si pour tout $\epsilon > 0$, $P(|X_n-X|\geq \epsilon) \to 0$,
 $$ \mu(\{x\}) = 0 \Rightarrow F_n(x) \to F(x). $$
-
-* Preuve : fixez $x \in \mathbb{R}$, $\epsilon > 0$, .
+* Preuve : fixez $x \in \mathbb{R}$, $\epsilon > 0$. Alors
 $$ X > x + \epsilon\;\mbox{et}\; |X_n - X| < \epsilon \Rightarrow X_n > x $$
 $$ \{X_n \leq x\} \subseteq \{X \leq x + \epsilon\} \cup \{|X_n - X| \geq \epsilon\} $$
-$$ F_n(x) \leq F(x+\epsilon) + P(|X_n-X| \geq \epsilon) $$
-puisque $\sup F_n(x) \leq F(x+\epsilon)$,
-$$ \limsup_n F_n(x) \leq F(x+\epsilon) + 0 $$
+$$ F_n(x) \leq F(x+\epsilon) + P(|X_n-X| \geq \epsilon). $$
+Puisque $\sup_n F_n(x) \leq F(x+\epsilon)$,
+$$ \limsup_n F_n(x) \leq F(x+\epsilon) + 0, $$
 et puisque $\epsilon > 0$ est arbitraire,
 $$ \limsup_n F_n(x) \leq F(x). $$
 
@@ -151,9 +145,7 @@ $$ X_n > x\;\mbox{et}\; |X_n-X| < \epsilon \Rightarrow X > x - \epsilon $$
 $$ \{X \leq x-\epsilon\} \subseteq \{X_n \leq x\} + \{|X_n-X| \geq \epsilon\} $$
 $$ F(x-\epsilon) \leq \liminf_n F_n(x) + \liminf_n P(|X_n-X| \geq \epsilon) $$
 $$ F(x-\epsilon) \leq \liminf_n F_n(x) $$
-
 * $\epsilon$ arbitraire, alors
 $$ F(x) - P(\{x\}) \leq \liminf_n F_n(x) $$
-
 * Maintenant si $P(\{x\}) = 0$,
 $$ \liminf_n F_n(x) = \limsup_n F_n(x) = \lim_n F_n(x) = F(x) $$
