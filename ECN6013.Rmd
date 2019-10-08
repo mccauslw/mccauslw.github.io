@@ -11,6 +11,10 @@
 
 [Mise à jour du document ECN6013_2019](./ECN6013/ECN6013_2019.pdf)
 
+[Examen Intra 2018](./ECN6013/EI18A.pdf)
+
+[Examen Intra 2017](./ECN6013/EI17A.pdf)
+
 [Diapos, Introduction](./ECN6013/introduction.pdf), 2019/09/09
 
 [Diapos, Efficacité, Jeux, Équilibre](./ECN6013/efficacite_jeux_equilibre.pdf), 2019/09/15 (après le cours 2)
