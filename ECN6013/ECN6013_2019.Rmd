@@ -186,7 +186,7 @@ La lecture est l'article de [Coase (1960)](Coas60.pdf)
 Il n'est pas nécessaire de lire tous les exemples des longues sections V et VII.
 Cependant, je parlerai de l'exemple Sturges v. Bridgman.
 
-### Exercice
+### Exercices
 
 1. Il y a deux voisins, Caron et Lépine.
 Caron a un terrain où il pousse des carottes à un coût de 50\$ par an.
@@ -200,6 +200,21 @@ Chacun des voisins peut ériger et entretenir une barrière efficace contre les 
     a. Si Lépine est responsable du dommage que fait son lapin et les coûts de transaction sont infinis, quel est le résultat?
     a. Si Lépine n'est pas responsable du dommage que fait son lapin et les coûts de transaction sont zéro, quel est le résultat?
     a. Si Lépine n'est pas responsable du dommage que fait son lapin et les coûts de transaction sont infinis, quel est le résultat?
+
+1. La courbe de demande et la courbe d'offre pour le pétrole sont de
+\[
+  q_D =
+  \begin{cases} 100-p & 0 \leq p \leq 100 \\ 0 & \mbox{autrement}, \end{cases}
+  \qquad
+  q_O = 
+  \begin{cases} p-20 & p \geq 20 \\ 0 & \mbox{autrement}. \end{cases}
+\]
+Supposons que les vrais coûts externes sont de $20$ par unité.
+Le gouvernement sous-estime ces coûts et impose un taxe de $10$ par unité.
+    a. Calculez la perte des consommateurs.
+    a. Calculez la perte des producteurs.
+    a. Calculez le gain de ceux qui subissent les coûts externes.
+    a. Calculez le gain total. Ce gain est quelle fraction du gain total faisable?
 
 ## Examen intra
 

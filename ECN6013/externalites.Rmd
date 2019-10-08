@@ -138,7 +138,7 @@ text(10, 12, "H", pos=2)
 
 ## Coase et le problème de coût social
 
-Négociation à la Coase, trois cas avec une échange potentielle :
+Négociation à la Coase, quatre cas avec une échange potentielle :
 
 1. Objet concret, appartenance reconnue
 1. Objet concret, appartenance contestée ou en doute
