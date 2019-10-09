@@ -83,9 +83,9 @@ $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
 * Preuve : fixez $t\in (a,b)$. Alors
     1. $F_t' = \lim_{n\to \infty} n(F_{t+1/n}-F_t)$, la limite d'une séquence de
     variables aléatoires, est une variable alétoire.
-    1. Pour tous $t \in (a,b)$, $h\geq 0$,
+    1. Pour tous $h$, $0 < h < b-t$,
     (théorème des accroissements finis, mean value theorem)
-    $$ \left|\frac{F_{t+h}-F_t}{h}\right| \leq Y $$
+    $$ \left|\frac{F_{t+h}-F_t}{h}\right| \leq Y. $$
     1. Alors
     $$ \lim_{h \downarrow 0} \frac{E[F_{t+h}]-E[F_t]}{h}
     = \lim_{h \downarrow 0} E\left[\frac{F_{t+h}-F_t}{h}\right]
@@ -124,7 +124,7 @@ $$ E[|X^n|] < \infty,\, M_X(s) = \sum_{n=0}^\infty E[X^n] s^n / n!. $$
 ## Mesures associées aux variables aléatoires
 
 * Soit $X$ une variable aléatoire sur un espace de probabilité $(\Omega,{\cal F},P)$
-* $(\mathbb{R}, {\cal B}, \mu)$ est une mesure de probabilité elle aussi, où
+* $(\mathbb{R}, {\cal B}, \mu)$ est un espace de probabilité elle aussi, où
 $$ \mu = {\cal L}(X) = PX^{-1}. $$
 * Si $B \in {\cal B}$, $X^{-1}(B) \in {\cal F}$ et $\mu(B) = P(X^{-1}(B)) = (PX^{-1})(B)$.
 * Pour $-\infty \leq a \leq b \leq \infty$,
@@ -140,7 +140,8 @@ $$ \mu = {\cal L}(X) = PX^{-1}. $$
 * $\mu_n \Rightarrow \mu$ ($\mu_n$ converge en distribution à $\mu$) si pour chaque fonction $f \colon \mathbb{R} \to \mathbb{R}$, continue et bornée,
 $$ \int_{\mathbb{R}} f\, d\mu_n \to \int_{\mathbb{R}} f\, d\mu. $$
 * Une condition équivalente: pour tout $x \in \mathbb{R}$,
-$$ \mu(\{x\}) = 0 \Rightarrow F_n(x) \to F(x). $$
+$$ \mu(\{x\}) = 0 \Rightarrow F_n(x) \to F(x), $$
+où $F_n(x) \equiv \mu_n((-\infty,x])$, $F(x) \equiv \mu((-\infty,x])$.
 * $\mu_n$ est une suite de mesures, pas une suite de variables aléatoires.
 * Cependant, si $X_n$ est une suite de variables aléatoires sur $(\Omega,{\cal F},P)$, ${\cal L}_n = PX_n^{-1}$ est une suite de mesures.
 
@@ -166,7 +167,7 @@ $$ \limsup_n F_n(x) \leq F(x). $$
 Pour tout $\omega \in \Omega$, $n \in \mathbb{N}$,
 $$ X_n > x\;\mbox{et}\; |X_n-X| < \epsilon \Rightarrow X > x - \epsilon, $$
 alors pour tout $n \in \mathbb{N}$,
-$$ \{X \leq x-\epsilon\} \subseteq \{X_n \leq x\} + \{|X_n-X| \geq \epsilon\}, $$
+$$ \{X \leq x-\epsilon\} \subseteq \{X_n \leq x\} \cup \{|X_n-X| \geq \epsilon\}, $$
 alors
 $$ F(x-\epsilon) \leq \liminf_n F_n(x) + \liminf_n P(|X_n-X| \geq \epsilon) $$
 $$ F(x-\epsilon) \leq \liminf_n F_n(x) $$
