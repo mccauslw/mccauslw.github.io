@@ -177,6 +177,8 @@ $E[\liminf_{n\to \infty} X_n] = \infty$ et $\liminf_{n\to \infty} E[X_n] = \inft
 1. Chapitre 11, accent sur l'Intro, 11.1, 11.2
 1. (si nécessaire, https://fr.wikipedia.org/wiki/Nombre_complexe)
 
+Définitions importantes : nombres complexes et les operations de base (addition, multiplication, division, exponential, logarithme, magnitude, angle), fonction caractéristique.
+
 ### Questions sur les lectures
 
 1. Exprimez les nombres complexes suivants sous la forme $\alpha + i \beta$, où $a,b,c,d,r,\theta\in \mathbb{R}$.
@@ -190,3 +192,25 @@ $E[\liminf_{n\to \infty} X_n] = \infty$ et $\liminf_{n\to \infty} E[X_n] = \inft
     a. $r_1e^{i\theta_1} \cdot r_2e^{i\theta_2}$
     a. $re^{i\theta} \cdot i$
     a. $e^{a+ib}$
+
+1. Les variables aléatoires indépendantes $X_k$, $k=1,2,\ldots$ suivent une loi $\mathrm{Be}(p)$ (Bernoulli) si $P(X_k=0) = (1-p)$ et $P(X_k=1) = p$, $k=1,2,\ldots$.     
+    a. Trouvez la fonction caractéristique $\phi_X(t)$ de $X_k$.
+    a. La variable aléatoire $Y=\sum_{k=1}^n X_k$ suit une loi $\mathrm{Bi}(n,p)$ (Binomial). Trouvez la fonction caractéristique $\phi_Y(t)$ de $Y$.
+    a. Soit $Z=\sqrt{n}(n^{-1}Y-p)$. Trouvez la fonction caractéristique $\phi_Z(t)$ de $Z$.
+
+## Cours 7, le 16 octobre
+
+## Devoirs et lectures
+
+### Devoirs, Rosenthal (matière du cours 7)
+
+1. Exercise 11.5.7
+2. Exercise 11.5.11
+3. Exercise 11.5.15 (ajouter la distribution $\mathrm{Ga}(\alpha,\beta)$, utilisez les fonctions caractéristiques et non le « hint »)
+4. Exercise 11.5.16
+5. Exercise 11.5.18
+
+### Préparation pour le cours 8
+1. Lisez le chapitre 13 de Rosenthal
+1. Exercises 13.4.1, 13.4.2, 13.4.5
+1. Généralisez le théorème de variance totale (théorème 13.3.1) à un théorème de covariance totale (aléas $X$ et $Y$, sous-tribu ${\cal G}$)

@@ -1,7 +1,7 @@
 ---
 title: "ECN 7060, Cours 7"
 author: "William McCausland"
-date: '2017-10-17'
+date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
@@ -20,27 +20,27 @@ $$ \phi(t) = \frac{\sin t}{t} \equiv \mathsf{sinc}(t). $$
 * Puisque $\sin(tx)$ est impair, $e^{-x^2/2}$ est pair,
 $$ \phi(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \cos tx \cdot e^{-x^2/2}\, dx $$
 $$ \phi'(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty -\sin tx \cdot x e^{-x^2/2}\, dx $$
-
 * Intégration par parties, $u = -\sin tx$, $dv = xe^{-x^2/2}\,dx$, $du = -t\cos tx$, $v = -e^{-x^2/2}$, donne
 $$ \phi'(t) = [uv]_{-\infty}^\infty - \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty t \cos tx \cdot e^{-x^2/2} \, dx = -t \phi(t). $$
-
 * La solution de l'équation différentielle $\log \phi(0) = 0$,
 $\frac{d\log \phi(t)}{dt} = -t$
 est $\log \phi(t) = \int_0^t -s\, ds = -t^2/2$.
-
 * Alors $\phi(t) = e^{-t^2/2}$.
 
 ## Continuité de la fonction caractéristique
 
-$$ \left| \phi_x(t+h) - \phi_x(t) \right| = \left| \int (e^{i(t+h)x} - e^{itx}) \mu(dx) \right| \leq \int \left| e^{i(t+h)x} - e^{itx} \right| \mu(dx).$$
+\[
+\begin{aligned}
+  \left| \phi_x(t+h) - \phi_x(t) \right| &= \left| \int (e^{i(t+h)x} - e^{itx}) \mu(dx) \right| \\
+  &\leq \int \left| e^{i(t+h)x} - e^{itx} \right| \mu(dx).
+\end{aligned}
+\]
 
 * Deux bornes qui ne dépend pas de $t$
 $$ \left| e^{i(t+h)x} - e^{itx} \right| \leq h|x|, \qquad \left| e^{i(t+h)x} - e^{itx} \right| \leq 2. $$
-
 * Selon la deuxième, (convergence dominée)
 $$ \lim_{h \downarrow 0} E\left[\left| e^{i(t+h)x} - e^{itx} \right|\right]
 = E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)x} - e^{itx} \right|\right] $$
-
 * Selon la première,
 $$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)x} - e^{itx} \right|\right] \to 0. $$
 
@@ -48,7 +48,7 @@ $$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)x} - e^{itx} \right|\right] \to 
 
 * Soit $X$ une variables aléatoire, $\phi(t)$ sa fonction caractéristique.
 * Si $E[|X|^k] < \infty$, alors pour $0 \leq j \leq k$, $\phi^{(j)}(t) = E[(iX)^j e^{itX}]$.
-* Preuve :
+* Preuve par induction :
     * $E[(iX)^0 e^{itX}] = E[e^{itX}] = \phi(t) = \phi^{(0)}(t)$, alors vrai pour $j=0$.
     * Supposez que $\phi^{(j-1)} = E[(iX)^{j-1} e^{itX}]$.
     * $|(iX)^j e^{itX}| = |i|^j|X|^j|e^{itX}| = |X|^j$
@@ -57,21 +57,17 @@ $$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)x} - e^{itx} \right|\right] \to 
 * Génération des moments :
 $$ \phi^{(j)}(0) = i^j E[X^j] $$
 
-## La fonction $(\sin \theta t) / t = \theta \mathsf{sinc}(\theta t)$
+## Propriétés de la fonction $(\sin \theta t) / t = \theta \mathsf{sinc}(\theta t)$
 
 1. Pour $\theta = 0$, $(\sin \theta t) / t \equiv 0$.
-
 1. Pour $\theta \neq 0$, $t=k\pi/\theta$, $k = \pm 1, \pm 2, \ldots$,
 $$ \frac{\sin \theta t}{t} = 0. $$
-
 1. Pour $\theta \neq 0$,
 $$ \lim_{t \to 0} \frac{\sin \theta t}{t}
 = \frac{\lim_{t \to 0} \theta \cos \theta t}{\lim_{t \to 0} 1} = \theta $$
 $$ \lim_{t\to \infty} \frac{\sin \theta t}{t} = 0. $$
-
 1. Pour $\theta \neq 0$, la fonction est paire :
 $$ \frac{\sin \theta (-t)}{-t} = \frac{\sin \theta t}{t} $$
-
 1. Selon le livre,
 $$ \lim_{T\to \infty} \int_{-T}^T \frac{\sin \theta t}{t} \, dt
 = \begin{cases} \pi & \theta > 0 \\ 0 & \theta = 0 \\ -\pi & \theta < 0 \end{cases} $$
@@ -84,10 +80,14 @@ $$ \mu([a,b]) = \frac{1}{2\pi} \lim_{T\to \infty} \int_{-T}^T \frac{e^{-ita}-e^{
 * Puisque
 $$ \left|\frac{e^{-ita}-e^{-itb}}{it}\right| = \left|\int_a^b e^{itr}\, dr\right| < \infty $$
 l'intégral entre $-T$ et $T$ est fini.
-
 * Par Fubini,
-$$ \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \int_{\mathbb{R}} e^{itx} \, \mu(dx) \,dt = \int_{\mathbb{R}} \int_{-T}^T
-\frac{e^{it(x-a)} - e^{it(x-b)}}{it} \, dt \, \mu(dx). $$
+\[
+\begin{aligned}
+  \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} &\int_{\mathbb{R}} e^{itx} \, \mu(dx) \,dt \\
+  &= \int_{\mathbb{R}} \int_{-T}^T
+\frac{e^{it(x-a)} - e^{it(x-b)}}{it} \, dt \, \mu(dx).
+\end{aligned}
+\]
 
 ## Théorème d'inversion II
 
@@ -104,27 +104,21 @@ $$ \frac{1}{2} (\mu(\{a\}) + \mu(\{b\}) + \mu((a,b)). $$
 ## Unicité de la fonction caractéristique
 
 * Théorème d'unicité ${\cal L}(X) = {\cal L}(Y) \Leftrightarrow \phi_X(t) = \phi_Y(t)$
-
 * $\Rightarrow$ de la définition de la fonction caractéristique en termes de $\mu$
-
 * $\Leftarrow$ du théorème d'inversion.
 
 ## Théorème de continuité
 
 * Soit $\mu,\mu_1,\mu_2,\ldots$ des mesures boréliennes, $\phi,\phi_1,\phi_2,\ldots,$ leurs fonctions caractéristiques. Alors $\mu_n$ converge en loi à $\mu$ ssi $\phi_n(t) \to \phi(t)$, $t\in \mathbb{R}$.
-
 * Par la définition de convergence en loi et la continuité des fonctions $\cos xt$ et $\sin xt$ en $x$ pour $t$ donné, si $\mu_n$ converge en loi à $\mu$, $\phi_n(t) \to \phi(t)$ pour $t\in \mathbb{R}$.
-
 * L'autre direction est plus difficile.
 
 ## Théorème centrale limite I
 
 * Supposez que $X_1,X_2,\ldots,$ sont iid, avec moyenne 0, variance 1.
-
 * Soit $Y_n = \sqrt{n} \frac{1}{n} \sum_{k=1}^n X_k$. La fonction caractéristique de $Y_n$ est
 $$ \phi_n(t) = \phi_X^n\left(\frac{t}{\sqrt{n}}\right)
 = \left[ 1 + \frac{it}{\sqrt{n}} E[X_1] + \frac{1}{2} \left(\frac{it}{\sqrt{n}}\right)^2 E[X_1^2] + o(n^{-1}) \right]^n. $$
-
 * Avec $E[X_1] = 0$, $E[X_1^2] = 1$,
 $$ \phi_n(t) = \left(1 - \frac{1}{2}\frac{t^2}{n} + o(n^{-1})\right)^n. $$
 $$ \log \phi_n(t) = n\log \left( 1 - \frac{1}{2}\frac{t^2}{n} + o(n^{-1}) \right)
@@ -136,20 +130,5 @@ $$ \phi_n(t) \to e^{-t^2/2}. $$
 
 * Si $Y$ est une variable aléatoire $N(0,1)$, sa fonction caractéristique est
 $\phi(t) = e^{-t^2/2}$.
-
 * Puisque $\phi_n(t) \to \phi(t)$, ${\cal L}(Y_n) \Rightarrow {\cal L}(Y)$.
 
-## Devoirs et lectures
-
-### Devoirs, Rosenthal (matière du cours 7)
-
-1. Exercise 11.5.7
-2. Exercise 11.5.11
-3. Exercise 11.5.15 (ajouter la distribution $\mathrm{Ga}(\alpha,\beta)$, utilisez les fonctions caractéristiques et non le « hint »)
-4. Exercise 11.5.16
-5. Exercise 11.5.18
-
-### Préparation pour le cours 8
-1. Lisez le chapitre 13 de Rosenthal
-1. Exercises 13.4.1, 13.4.2, 13.4.5
-1. Généralisez le théorème de variance totale (théorème 13.3.1) à un théorème de covariance totale (aléas $X$ et $Y$, sous-tribu ${\cal G}$)
