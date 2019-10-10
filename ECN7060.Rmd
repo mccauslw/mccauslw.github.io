@@ -7,7 +7,7 @@
 
 [Plan de Cours](./ECN7060/ECN7060A-A19-PC.pdf)
 
-[Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf) (jusqu'au cours 5, inclusif)
+[Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf) (jusqu'au cours 6, inclusif)
 
 [Diapos, Cours 1, 2019/09/04](./ECN7060/ECN7060_1.pdf) (version corrigée après le cours)
 
@@ -18,3 +18,5 @@
 [Diapos, Cours 4, 2019/09/25](./ECN7060/ECN7060_4.pdf) (version corrigée après le cours)
 
 [Diapos, Cours 5, 2019/10/02](./ECN7060/ECN7060_5.pdf) (version corrigée après le cours)
+
+[Diapos, Cours 6, 2019/10/09](./ECN7060/ECN7060_6.pdf) (version corrigée après le cours)
