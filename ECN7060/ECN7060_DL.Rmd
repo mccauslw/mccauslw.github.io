@@ -200,8 +200,6 @@ Définitions importantes : nombres complexes et les operations de base (addition
 
 ## Cours 7, le 16 octobre
 
-## Devoirs et lectures
-
 ### Devoirs, Rosenthal (matière du cours 7)
 
 1. Exercise 11.5.7
@@ -210,7 +208,11 @@ Définitions importantes : nombres complexes et les operations de base (addition
 4. Exercise 11.5.16
 5. Exercise 11.5.18
 
-### Préparation pour le cours 8
-1. Lisez le chapitre 13 de Rosenthal
+### Lectures, Rosenthal (matière du cours 8)
+
+1. Chapitre 13
+
+### Questions sur les lectures (pas de questionnaire, cours 8)
+
 1. Exercises 13.4.1, 13.4.2, 13.4.5
 1. Généralisez le théorème de variance totale (théorème 13.3.1) à un théorème de covariance totale (aléas $X$ et $Y$, sous-tribu ${\cal G}$)
