@@ -5,6 +5,14 @@ date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
+## La fonction caractérisitique
+
+* Comme $F$, une autre représentation complète de la loi d'une v.a.
+* Applications :
+    * Calcul des moments : moins convenable que la fonction génératrice des moments, mais elle existe toujours
+    * L'opération de convolution versus l'opération de multiplication.
+    * Théorème central limite
+    
 ## Fonction caractéristique d'une loi $U(a,b)$
 
 $$ \phi(t) = E[e^{itX}] = E[\cos tX + i \sin tX] = \frac{1}{b-a} \int_a^b \cos tx + i \sin tx \, dx $$
@@ -12,8 +20,39 @@ $$ \phi(t) = \frac{1}{t(b-a)} \left[ \sin tx - i \cos tx \right]_a^b
 = \frac{1}{it(b-a)} \left[ \cos tx + i \sin tx \right]_a^b $$
 $$ \phi(t) = \frac{e^{itb} - e^{ita}}{it(b-a)} $$
 
+* Cas spécial $a = -\theta$, $b = \theta$ :
+$$ \phi(t) = \frac{\sin \omega t}{\omega t}. $$
 * Cas spécial, $a=-1$, $b=1$ :
 $$ \phi(t) = \frac{\sin t}{t} \equiv \mathsf{sinc}(t). $$
+
+## Cas discret
+
+1. $X = x$
+\[
+  \phi_X(t) = E[e^{itx}] = e^{itx}.
+\]
+1. $X \sim \mathrm{Bin}(p)$
+\[
+  \phi_X(t) = (1-p) + pe^{it}.
+\]
+1. Binomial avec valeurs artitraires
+\[
+  X = \begin{cases}
+  x_0 & \mbox{avec probabilité}\, (1-p), \\
+  x_1 & \mbox{avec probabilité}\, p. \\
+  \end{cases}
+\]
+\[
+  \phi_X(t) = E[e^{itX}] = (1-p) e^{itx_0} + p e^{itx_1}.
+\]
+1. Cas spécial $p=1/2$, $x_0 = -\omega$, $x_1 = \omega$
+\[
+  \phi_X(t) = (e^{-i\omega t} + e^{i\omega t})/2 = \cos \omega t.
+\]
+1. $X \sim \mathrm{Po}(\lambda)$
+\[
+  \phi_X(t) = \exp[\lambda(e^{it}-1)].
+\]
 
 ## Fonction caractéristique d'une loi $N(0,1)$
 
@@ -27,6 +66,20 @@ $\frac{d\log \phi(t)}{dt} = -t$
 est $\log \phi(t) = \int_0^t -s\, ds = -t^2/2$.
 * Alors $\phi(t) = e^{-t^2/2}$.
 
+## Fonction caractérisitique d'une loi $N(\mu,\sigma^2)$
+
+Si $X \sim N(0,1)$ et $Y=\mu + \sigma X$ alors $Y \sim N(\mu, \sigma^2)$ et
+\[
+  \phi_Y(t) = E[e^{i(\mu + \sigma X)t}] = e^{i\mu t} E[e^{i(t\sigma)X}]
+  = e^{i\mu t} \phi_X(\sigma t) = e^{i\mu t} e^{-\sigma^2 t^2/2}
+\]
+
+La densité de $Y$ est de la même forme fonctionelle :
+\[
+  f_Y(y) = \frac{1}{\sqrt{2\pi \sigma^2}}
+  \exp\left[-\frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}\right].
+\]
+
 ## Continuité de la fonction caractéristique
 
 \[
@@ -39,10 +92,16 @@ est $\log \phi(t) = \int_0^t -s\, ds = -t^2/2$.
 * Deux bornes qui ne dépend pas de $t$
 $$ \left| e^{i(t+h)x} - e^{itx} \right| \leq h|x|, \qquad \left| e^{i(t+h)x} - e^{itx} \right| \leq 2. $$
 * Selon la deuxième, (convergence dominée)
+<<<<<<< HEAD
+$$ \lim_{h \downarrow 0} E\left[\left| e^{i(t+h)X} - e^{itX} \right|\right]
+= E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] $$
+
+=======
 $$ \lim_{h \downarrow 0} E\left[\left| e^{i(t+h)x} - e^{itx} \right|\right]
 = E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)x} - e^{itx} \right|\right] $$
+>>>>>>> 0d4c9591709dabf8ccdd9247d30d886880d1ec6c
 * Selon la première,
-$$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)x} - e^{itx} \right|\right] \to 0. $$
+$$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] \to 0. $$
 
 ## Dérivée de la fonction caractéristique
 
@@ -50,10 +109,10 @@ $$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)x} - e^{itx} \right|\right] \to 
 * Si $E[|X|^k] < \infty$, alors pour $0 \leq j \leq k$, $\phi^{(j)}(t) = E[(iX)^j e^{itX}]$.
 * Preuve par induction :
     * $E[(iX)^0 e^{itX}] = E[e^{itX}] = \phi(t) = \phi^{(0)}(t)$, alors vrai pour $j=0$.
-    * Supposez que $\phi^{(j-1)} = E[(iX)^{j-1} e^{itX}]$.
+    * Supposez que $\phi^{(j-1)}(t) = E[(iX)^{j-1} e^{itX}]$.
     * $|(iX)^j e^{itX}| = |i|^j|X|^j|e^{itX}| = |X|^j$
     * $E[|X|^k] < \infty \Rightarrow E[|X|^j] < \infty$
-    * $\phi^{(j)} = E\left[ \frac{d}{dt} (iX)^{j-1} e^{itX} \right] = E[(iX)^j e^{itX}]$
+    * $\phi^{(j)}(t) = E\left[ \frac{d}{dt} (iX)^{j-1} e^{itX} \right] = E[(iX)^j e^{itX}]$
 * Génération des moments :
 $$ \phi^{(j)}(0) = i^j E[X^j] $$
 
@@ -68,7 +127,11 @@ $$ \lim_{t \to 0} \frac{\sin \theta t}{t}
 $$ \lim_{t\to \infty} \frac{\sin \theta t}{t} = 0. $$
 1. Pour $\theta \neq 0$, la fonction est paire :
 $$ \frac{\sin \theta (-t)}{-t} = \frac{\sin \theta t}{t} $$
+<<<<<<< HEAD
+1. Lemme 11.1.3 du livre,
+=======
 1. Selon le livre,
+>>>>>>> 0d4c9591709dabf8ccdd9247d30d886880d1ec6c
 $$ \lim_{T\to \infty} \int_{-T}^T \frac{\sin \theta t}{t} \, dt
 = \begin{cases} \pi & \theta > 0 \\ 0 & \theta = 0 \\ -\pi & \theta < 0 \end{cases} $$
 
@@ -101,6 +164,15 @@ $$ \frac{1}{2\pi} \lim_{T\to \infty} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it}
 * La valeur de l'intégral est
 $$ \frac{1}{2} (\mu(\{a\}) + \mu(\{b\}) + \mu((a,b)). $$
 
+## La dualité en cas de $\phi_X(t)$ intégrable
+
+Théorème d'inversion spécial quand $\phi_X(t)$ est intégrable :
+
+$X$ a une densité
+\[
+  f_X(x) = \frac{1}{2\pi} \int_{\mathbb{R}} e^{-itx} \phi_X(t) dt.
+\]
+
 ## Unicité de la fonction caractéristique
 
 * Théorème d'unicité ${\cal L}(X) = {\cal L}(Y) \Leftrightarrow \phi_X(t) = \phi_Y(t)$
@@ -131,4 +203,7 @@ $$ \phi_n(t) \to e^{-t^2/2}. $$
 * Si $Y$ est une variable aléatoire $N(0,1)$, sa fonction caractéristique est
 $\phi(t) = e^{-t^2/2}$.
 * Puisque $\phi_n(t) \to \phi(t)$, ${\cal L}(Y_n) \Rightarrow {\cal L}(Y)$.
+<<<<<<< HEAD
+=======
 
+>>>>>>> 0d4c9591709dabf8ccdd9247d30d886880d1ec6c
