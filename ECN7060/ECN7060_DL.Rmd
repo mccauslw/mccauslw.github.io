@@ -166,11 +166,11 @@ $E[\liminf_{n\to \infty} X_n] = \infty$ et $\liminf_{n\to \infty} E[X_n] = \inft
 
 ### Devoirs, Rosenthal (matière du cours 6)
 
-1. Exercise 9.5.4
-2. Exercise 9.5.6
-3. Exercise 9.5.8
-4. Exercise 10.3.4
-5. Exercise 10.3.6
+1. Exercice 9.5.4
+2. Exercice 9.5.6
+3. Exercice 9.5.8
+4. Exercice 10.3.4
+5. Exercice 10.3.6
 
 ### Lectures, Rosenthal (matière du cours 7)
 
@@ -190,3 +190,24 @@ $E[\liminf_{n\to \infty} X_n] = \infty$ et $\liminf_{n\to \infty} E[X_n] = \inft
     a. $r_1e^{i\theta_1} \cdot r_2e^{i\theta_2}$
     a. $re^{i\theta} \cdot i$
     a. $e^{a+ib}$
+
+## Cour 7, le 16 octobre
+
+## Devoirs et lectures
+
+### Devoirs, Rosenthal (matière du cours 7)
+
+1. Exercice 11.5.7
+2. Exercice 11.5.11
+3. Exercice 11.5.15 (ajouter la distribution $\mathrm{Ga}(\alpha,\beta)$, utilisez les fonctions caractéristiques et non le « hint »)
+4. Exercice 11.5.16
+5. Exercice 11.5.18
+
+### Lectures, Rosenthal (matière du cours 8)
+
+1. Chapitre 13 de Rosenthal
+
+### Questions sur les lectures (pas de Questionnaire)
+
+1. Exercises 13.4.1, 13.4.2, 13.4.5
+1. Généralisez le théorème de variance totale (théorème 13.3.1) à un théorème de covariance totale (aléas $X$ et $Y$, sous-tribu ${\cal G}$)
