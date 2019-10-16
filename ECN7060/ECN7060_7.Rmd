@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
-## La fonction caractérisitique
+## La fonction caractéristique
 
 * Comme $F$, une autre représentation de la loi d'une v.a. qui existe et qui est unique.
 * Applications :
@@ -23,7 +23,7 @@ output: beamer_presentation
 1. Pour $X$ réelle,
     a. $\Re(\phi(t)) = E[\cos tX]$ est paire.
     a. $\Im(\phi(t)) = E[\sin tX]$ est impaire.
-1. Pour $X$ symmétrique ($F(-x) = 1-F(x)$ au points de continuité), $\phi$ est rélle.
+1. Pour $X$ symétrique ($F(-x) = 1-F(x)$ au points de continuité), $\phi$ est réelle.
 
 ## Fonction caractéristique d'une loi $U(a,b)$
 
@@ -33,7 +33,7 @@ $$ \phi(t) = \frac{1}{t(b-a)} \left[ \sin tx - i \cos tx \right]_a^b
 $$ \phi(t) = \frac{e^{itb} - e^{ita}}{it(b-a)} $$
 
 * Cas spécial $a = -\theta$, $b = \theta$ :
-$$ \phi(t) = \frac{\sin \omega t}{\omega t}. $$
+$$ \phi(t) = \frac{\sin \theta t}{\theta t}. $$
 * Cas spécial, $a=-1$, $b=1$ :
 $$ \phi(t) = \frac{\sin t}{t} \equiv \mathsf{sinc}(t). $$
 
@@ -51,11 +51,11 @@ lines(t, 1/abs(t), col='red')
 \[
   \phi_X(t) = E[e^{itx}] = e^{itx}.
 \]
-1. $X \sim \mathrm{Bin}(p)$
+1. $X \sim \mathrm{Bern}(p)$
 \[
   \phi_X(t) = (1-p) + pe^{it}.
 \]
-1. Binomial avec valeurs arbitraires
+1. Bernoulli avec valeurs arbitraires
 \[
   X = \begin{cases}
   x_0 & \mbox{avec probabilité}\, (1-p), \\
@@ -65,18 +65,18 @@ lines(t, 1/abs(t), col='red')
 \[
   \phi_X(t) = E[e^{itX}] = (1-p) e^{itx_0} + p e^{itx_1}.
 \]
-1. Cas spécial $p=1/2$, $x_0 = -\omega$, $x_1 = \omega$
+1. Cas spécial $p=1/2$, $x_0 = -\theta$, $x_1 = \theta$
 \[
-  \phi_X(t) = (e^{-i\omega t} + e^{i\omega t})/2 = \cos \omega t.
+  \phi_X(t) = (e^{-i\theta t} + e^{i\theta t})/2 = \cos \theta t.
 \]
 1. $X \sim \mathrm{Po}(\lambda)$
 \[
   \phi_X(t) = \exp[\lambda(e^{it}-1)].
 \]
 
-## Illustration, cas binomiale avec valeurs $x_0$ et $x_1$
+## Illustration, cas Bernoulli avec valeurs $x_0$ et $x_1$
 
-```{r bin}
+```{r bern}
 t = seq(-2*pi, 2*pi, length.out = 200)
 x0 = 1; x1 = 6; p = 0.25
 phi = (1-p)*exp(complex(imaginary=t*x0))
@@ -87,19 +87,19 @@ cercle = exp(complex(imaginary=t))
 
 ## Partie réelle
 
-```{r binre}
+```{r bernre}
 plot(t, Re(phi), type='l', ylim=c(-1,1))
 ```
 
 ## Partie imaginaire
 
-```{r binim}
+```{r bernim}
 plot(t, Im(phi), type='l', ylim=c(-1,1))
 ```
 
-## Trajet dans le circle unitaire
+## Trajet dans le cercle unitaire
 
-```{r bincirc}
+```{r berncirc}
 plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
 lines(Re(cercle), Im(cercle), col='red')
 ```
@@ -124,7 +124,7 @@ plot(t, Re(phi), type='l', ylim=c(-1,1))
 plot(t, Im(phi), type='l', ylim=c(-1,1))
 ```
 
-## Trajet dans le circle unitaire
+## Trajet dans le cercle unitaire
 
 ```{r Pocirc}
 plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
@@ -144,7 +144,7 @@ $\frac{d\log \phi(t)}{dt} = -t$
 est $\log \phi(t) = \int_0^t -s\, ds = -t^2/2$.
 * Alors $\phi(t) = e^{-t^2/2}$.
 
-## Fonction caractérisitique d'une loi $N(\mu,\sigma^2)$
+## Fonction caractéristique d'une loi $N(\mu,\sigma^2)$
 
 Si $X \sim N(0,1)$ et $Y=\mu + \sigma X$ alors $Y \sim N(\mu, \sigma^2)$ et
 \[
@@ -152,7 +152,7 @@ Si $X \sim N(0,1)$ et $Y=\mu + \sigma X$ alors $Y \sim N(\mu, \sigma^2)$ et
   = e^{i\mu t} \phi_X(\sigma t) = e^{i\mu t} e^{-\sigma^2 t^2/2}
 \]
 
-La densité de $Y$ est de la même forme fonctionelle :
+La densité de $Y$ est de la même forme fonctionnelle :
 \[
   f_Y(y) = \frac{1}{\sqrt{2\pi \sigma^2}}
   \exp\left[-\frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}\right].
@@ -187,7 +187,7 @@ $$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] = E[
     * $\phi^{(j)}(t) = E\left[ \frac{d}{dt} (iX)^{j-1} e^{itX} \right] = E[(iX)^j e^{itX}]$
 * Génération des moments :
 $$ \phi^{(j)}(0) = i^j E[X^j] $$
-* Attention : $\phi_X(t) = \exp(-\gamma |t|)$ pour $X$ Cauchy, pas différentiable à $t=0$.
+* Attention : $\phi_X(t) = \exp(-\gamma |t|)$ pour $X$ Cauchy symétrique avec paramètre d'échelle $\gamma$, n'est pas différentiable à $t=0$.
 
 ## Propriétés de la fonction $(\sin \theta t) / t = \theta \mathsf{sinc}(\theta t)$
 
@@ -204,7 +204,7 @@ $$ \frac{\sin \theta (-t)}{-t} = \frac{\sin \theta t}{t} $$
 $$ \lim_{T\to \infty} \int_{-T}^T \frac{\sin \theta t}{t} \, dt
 = \begin{cases} \pi & \theta > 0 \\ 0 & \theta = 0 \\ -\pi & \theta < 0 \end{cases} $$
 
-## Théroème d'inversion I
+## Théorème d'inversion I
 
 * Soit $\mu$ une mesure borélienne, $\phi(t)$ sa fonction caractéristique. Alors
 si $a<b$ et $\mu(\{a\}) = \mu(\{b\}) = 0$,
