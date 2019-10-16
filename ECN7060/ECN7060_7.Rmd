@@ -92,14 +92,10 @@ La densité de $Y$ est de la même forme fonctionelle :
 * Deux bornes qui ne dépend pas de $t$
 $$ \left| e^{i(t+h)x} - e^{itx} \right| \leq h|x|, \qquad \left| e^{i(t+h)x} - e^{itx} \right| \leq 2. $$
 * Selon la deuxième, (convergence dominée)
-<<<<<<< HEAD
 $$ \lim_{h \downarrow 0} E\left[\left| e^{i(t+h)X} - e^{itX} \right|\right]
 = E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] $$
-
-=======
 $$ \lim_{h \downarrow 0} E\left[\left| e^{i(t+h)x} - e^{itx} \right|\right]
 = E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)x} - e^{itx} \right|\right] $$
->>>>>>> 0d4c9591709dabf8ccdd9247d30d886880d1ec6c
 * Selon la première,
 $$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] \to 0. $$
 
@@ -127,11 +123,7 @@ $$ \lim_{t \to 0} \frac{\sin \theta t}{t}
 $$ \lim_{t\to \infty} \frac{\sin \theta t}{t} = 0. $$
 1. Pour $\theta \neq 0$, la fonction est paire :
 $$ \frac{\sin \theta (-t)}{-t} = \frac{\sin \theta t}{t} $$
-<<<<<<< HEAD
 1. Lemme 11.1.3 du livre,
-=======
-1. Selon le livre,
->>>>>>> 0d4c9591709dabf8ccdd9247d30d886880d1ec6c
 $$ \lim_{T\to \infty} \int_{-T}^T \frac{\sin \theta t}{t} \, dt
 = \begin{cases} \pi & \theta > 0 \\ 0 & \theta = 0 \\ -\pi & \theta < 0 \end{cases} $$
 
@@ -203,7 +195,3 @@ $$ \phi_n(t) \to e^{-t^2/2}. $$
 * Si $Y$ est une variable aléatoire $N(0,1)$, sa fonction caractéristique est
 $\phi(t) = e^{-t^2/2}$.
 * Puisque $\phi_n(t) \to \phi(t)$, ${\cal L}(Y_n) \Rightarrow {\cal L}(Y)$.
-<<<<<<< HEAD
-=======
-
->>>>>>> 0d4c9591709dabf8ccdd9247d30d886880d1ec6c
