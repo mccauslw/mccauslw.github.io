@@ -7,12 +7,24 @@ output: beamer_presentation
 
 ## La fonction caractérisitique
 
-* Comme $F$, une autre représentation complète de la loi d'une v.a.
+* Comme $F$, une autre représentation de la loi d'une v.a. qui existe et qui est unique.
 * Applications :
     * Calcul des moments : moins convenable que la fonction génératrice des moments, mais elle existe toujours
     * L'opération de convolution versus l'opération de multiplication.
     * Théorème central limite
-    
+    * Inférence quand les moments n'existent pas.
+
+## Propriétés de la fonction caractéristique
+
+1. $\phi_X(0) = E[e^0] = 1$, peut importe $X$.
+1. $|\phi_X(t)| \leq E[|e^{itX}|] = 1$.
+1. Si $X$ et $Y$ sont indépendants, $\phi_{X+Y}(t) = E[e^{it(X+Y)}] = E[e^{itX}e^{itY}] = E[e^{itX}]E[e^{itY}]$.
+1. $\phi(t) = E[\cos tX] + iE[\sin tX]$, par linéarité de l'espérance.
+1. Pour $X$ réelle,
+    a. $\Re(\phi(t)) = E[\cos tX]$ est paire.
+    a. $\Im(\phi(t)) = E[\sin tX]$ est impaire.
+1. Pour $X$ symmétrique ($F(-x) = 1-F(x)$ au points de continuité), $\phi$ est rélle.
+
 ## Fonction caractéristique d'une loi $U(a,b)$
 
 $$ \phi(t) = E[e^{itX}] = E[\cos tX + i \sin tX] = \frac{1}{b-a} \int_a^b \cos tx + i \sin tx \, dx $$
@@ -25,6 +37,14 @@ $$ \phi(t) = \frac{\sin \omega t}{\omega t}. $$
 * Cas spécial, $a=-1$, $b=1$ :
 $$ \phi(t) = \frac{\sin t}{t} \equiv \mathsf{sinc}(t). $$
 
+## La fonction $\mathsf{sinc}$
+
+```{r sinc}
+t = seq(-6*pi, 6*pi, length.out = 200)
+plot(t, sin(t)/t, type='l')
+lines(t, 1/abs(t), col='red')
+```
+
 ## Cas discret
 
 1. $X = x$
@@ -35,7 +55,7 @@ $$ \phi(t) = \frac{\sin t}{t} \equiv \mathsf{sinc}(t). $$
 \[
   \phi_X(t) = (1-p) + pe^{it}.
 \]
-1. Binomial avec valeurs artitraires
+1. Binomial avec valeurs arbitraires
 \[
   X = \begin{cases}
   x_0 & \mbox{avec probabilité}\, (1-p), \\
@@ -53,6 +73,64 @@ $$ \phi(t) = \frac{\sin t}{t} \equiv \mathsf{sinc}(t). $$
 \[
   \phi_X(t) = \exp[\lambda(e^{it}-1)].
 \]
+
+## Illustration, cas binomiale avec valeurs $x_0$ et $x_1$
+
+```{r bin}
+t = seq(-2*pi, 2*pi, length.out = 200)
+x0 = 1; x1 = 6; p = 0.25
+phi = (1-p)*exp(complex(imaginary=t*x0))
+phi = phi + p*exp(complex(imaginary=t*x1))
+
+cercle = exp(complex(imaginary=t))
+```
+
+## Partie réelle
+
+```{r binre}
+plot(t, Re(phi), type='l', ylim=c(-1,1))
+```
+
+## Partie imaginaire
+
+```{r binim}
+plot(t, Im(phi), type='l', ylim=c(-1,1))
+```
+
+## Trajet dans le circle unitaire
+
+```{r bincirc}
+plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
+lines(Re(cercle), Im(cercle), col='red')
+```
+
+## Illustration, cas Poisson
+
+```{r Po}
+t = seq(-2*pi, 2*pi, length.out = 200)
+lambda = 2
+phi = exp(lambda*(exp(complex(imaginary = t))-1))
+```
+
+## Partie réelle
+
+```{r Pore}
+plot(t, Re(phi), type='l', ylim=c(-1,1))
+```
+
+## Partie imaginaire
+
+```{r Poim}
+plot(t, Im(phi), type='l', ylim=c(-1,1))
+```
+
+## Trajet dans le circle unitaire
+
+```{r Pocirc}
+plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
+lines(Re(cercle), Im(cercle), col='red')
+points(0, 0, col='green')
+```
 
 ## Fonction caractéristique d'une loi $N(0,1)$
 
@@ -94,10 +172,8 @@ $$ \left| e^{i(t+h)x} - e^{itx} \right| \leq h|x|, \qquad \left| e^{i(t+h)x} - e
 * Selon la deuxième, (convergence dominée)
 $$ \lim_{h \downarrow 0} E\left[\left| e^{i(t+h)X} - e^{itX} \right|\right]
 = E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] $$
-$$ \lim_{h \downarrow 0} E\left[\left| e^{i(t+h)x} - e^{itx} \right|\right]
-= E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)x} - e^{itx} \right|\right] $$
 * Selon la première,
-$$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] \to 0. $$
+$$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] = E[0] = 0. $$
 
 ## Dérivée de la fonction caractéristique
 
@@ -111,6 +187,7 @@ $$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] \to 
     * $\phi^{(j)}(t) = E\left[ \frac{d}{dt} (iX)^{j-1} e^{itX} \right] = E[(iX)^j e^{itX}]$
 * Génération des moments :
 $$ \phi^{(j)}(0) = i^j E[X^j] $$
+* Attention : $\phi_X(t) = \exp(-\gamma |t|)$ pour $X$ Cauchy, pas différentiable à $t=0$.
 
 ## Propriétés de la fonction $(\sin \theta t) / t = \theta \mathsf{sinc}(\theta t)$
 
@@ -169,7 +246,7 @@ $X$ a une densité
 
 * Théorème d'unicité ${\cal L}(X) = {\cal L}(Y) \Leftrightarrow \phi_X(t) = \phi_Y(t)$
 * $\Rightarrow$ de la définition de la fonction caractéristique en termes de $\mu$
-* $\Leftarrow$ du théorème d'inversion.
+* $\Leftarrow$ du théorème d'inversion. Probabilités des intervalles par continuité de probabilité, autres événements par unicité des extensions.
 
 ## Théorème de continuité
 
