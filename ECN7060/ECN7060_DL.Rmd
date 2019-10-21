@@ -216,3 +216,20 @@ Définitions importantes : nombres complexes et les operations de base (addition
 
 1. Exercises 13.4.1, 13.4.2, 13.4.5
 1. Généralisez le théorème de variance totale (théorème 13.3.1) à un théorème de covariance totale (aléas $X$ et $Y$, sous-tribu ${\cal G}$)
+
+## Cours 8, le 30 octobre
+
+## Devoirs, Rosenthal (matière du cours 8)
+
+1. Exercice 13.4.2
+1. Exercice 13.4.6
+1. Exercice 13.4.8
+1. Exercice 13.4.10
+1. Exercice 13.4.12
+
+### Lectures, Casella et Berger (matière du cours 9)
+
+1. Sections 6.1, 7.1
+1. Assez de 6.2, 6.3 pour faire les exercices 6.3, 6.6, 6.12(a), 6.14, 6.18
+1. Assez de 7.2 pour faire l'exercice 7.9
+
