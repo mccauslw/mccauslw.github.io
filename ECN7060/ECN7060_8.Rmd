@@ -16,7 +16,20 @@ output: beamer_presentation
 * $f=\frac{d\mu}{d\nu}$ est la dérivée Radon-Nikodym de $\mu$ par rapport à $\nu$.
 * $\mu(A) = \int_A \left(\frac{d\mu}{d\nu}\right) d\nu$.
 
-## Probabilités conditionnelles de $\Lambda$
+## Théorème de Bayes, événements de probabilité positive
+
+![](Bayes.JPG)
+
+## Un peu plus sur la mesurabilité
+
+* Supposez que $X$ est ${\cal G}$-mesurable.
+* $\{X \leq c\} \in {\cal G}$, tout $c$
+* $\{X = c\} = \{X \leq c\} \backslash \cap_n \{X \leq c-1/n\} \in {\cal G}$.
+* Si on sait assez pour répondre à la question suivante pour tous $c$, on connait la valeur de $X(\omega)$.
+
+> Est-ce que $\omega \in \{X \leq c\}$?
+
+## Probabilités conditionnelles de l'événement $\Lambda\in \Omega$
 
 * Par rapport à la sous-tribu ${\cal G}_1$ :
 $$ P(\Lambda|{\cal G}_1) =
@@ -40,7 +53,12 @@ $$ P(\Lambda|{\cal F}) = 1_\Lambda(\omega). $$
 
 * À vérifier : $E[P(\Lambda|{\cal G}_1)1_{A}] = P(\Lambda \cap A)$, $A \in {\cal G}_1$.
 $$ E[P(\Lambda|{\cal G}_1)1_{A_1}] = E\left[\frac{p_{13}}{P(A_1)}1_{A_1}\right] = \frac{p_{13}}{P(A_1)}E[1_{A_1}] = p_{13} = P(\Lambda \cap A_1) $$
-$$ E[P(\Lambda|{\cal G}_1)1_{A_2}] = E\left[\frac{p_{21} + p_{23}}{P(A_2)}1_{A_2}\right] = \frac{p_{21}+p_{22}}{P(A_2)}E[1_{A_2}] = p_{21} + p_{22} = P(\Lambda \cap A_2) $$
+\[
+  \begin{aligned}
+    E[P(\Lambda|{\cal G}_1)1_{A_2}] = E\left[\frac{p_{21} + p_{23}}{P(A_2)}1_{A_2}\right] &= \frac{p_{21}+p_{22}}{P(A_2)}E[1_{A_2}] \\
+    &= p_{21} + p_{22} = P(\Lambda \cap A_2)
+  \end{aligned}
+\]
 $$ E[P(\Lambda|{\cal G}_1)1_{A_3}] = E\left[\frac{p_{32}}{P(A_3)}1_{A_3}\right] = \frac{p_{32}}{P(A_3)}E[1_{A_3}] = p_{32} = P(\Lambda \cap A_3) $$
 * Le reste par linéarité de l'espérance, additivité de probabilité
 
@@ -77,7 +95,7 @@ $$ E[Y|{\cal F}] = Y(\omega) $$
 
 ## Vérification de $E[Y|{\cal G}_1]$
 
-* À vérifier : $E[E[Y|{\cal G}_1]1_A]] = E[Y1_A]$, $A \in {\cal G}_1$ :
+* À vérifier : $E[E[Y|{\cal G}_1]1_A] = E[Y1_A]$, $A \in {\cal G}_1$ :
 * Pour $A = A_1$ :
 $$ E[E[Y|{\cal G}_1]1_{A_1}] = \frac{4(p_{11}+p_{13}) + 5p_{12}}{P(A_1)} E[1_{A_1}]
 = 4(p_{11}+p_{13}) + 5p_{12} $$
@@ -109,15 +127,15 @@ $$ E[Y1_{A_1}] = 4(p_{11}+p_{13}) + 5p_{12} $$
 
 ## Proposition 13.2.6
 
-* Définition de $E[X|{\cal G}]$: $E[E[X|{\cal G}]1_G] = E[X1_G]$, tous $G \in {\cal G}$.
-* variables aléatoires $X$, $Y$, $X$ est ${\cal G}$-mesurable, $E[Y]<\infty$, $E[XY]<\infty$.
+* Définition de $E[X|{\cal G}]$ : $E[E[X|{\cal G}]1_G] = E[X1_G]$, tous $G \in {\cal G}$.
+* Soit $X$, $Y$ des variables aléatoires, $X$ est ${\cal G}$-mesurable, $E[Y]<\infty$, $E[XY]<\infty$.
 * Proposition : $E[XY|{\cal G}] = XE[Y|{\cal G}]$
 * Preuve :
     * Soit $G_0,G \in {\cal G}$, $X = 1_{G_0}$. Alors
     $$ E[XE[Y|{\cal G}]1_G] = E[E[Y|{\cal G}]1_{G \cap G_0}] = E[Y1_{G \cap G_0}] = E[XY1_{G}]. $$
     $$ E[E[XY|{\cal G}]1_G] = E[XY1_{G}]. $$
     * $XE[X|{\cal G}] = E[XY|{\cal G}]$ avec probabilité 1.
-    * Même chose pour les $X$ simple (linéarité), positives (convergence dominée), général.
+    * Même chose pour $X$ simple (linéarité), positive (convergence dominée), générale.
 
 ## Proposition 13.2.7 (espérances itérées)
 
@@ -129,5 +147,16 @@ $$ E[\; E[E[Y|{\cal G}_2]|{\cal G}_1]\;1_G\;]
 $$ E[E[Y|{\cal G}_1]1_G] = E[Y1_G] $$
 alors
 $$ E[E[Y|{\cal G}_2]|{\cal G}_1] = E[Y|{\cal G}_1] \; \mbox{avec probabilité 1}. $$
-* Cas spécial, espérance conditionnelle comme projection
+* Cas spécial, espérance conditionnelle comme projection :
 $$ E[E[Y|{\cal G}]|{\cal G}] = E[Y|{\cal G}] $$
+* Deux autres cas spéciaux :
+    - $E[E[X|Y]] = E[X]$ pour ${\cal G}_1 = \{\emptyset, \Omega\} \subseteq {\cal G}_2 = \sigma(Y)$.
+    - $E[E[X|Y,Z]|Z] = E[X|Z]$ pour ${\cal G}_1 = \sigma(Z) \in {\cal G}_2 = \sigma(Y,Z)$
+
+## Apérçu du cours 9 (Casella et Berger)
+
+* Statistiques exhaustives (sufficient), complètes, minimales, ancillaires
+* Estimation ponctuelle, méthode des moments et maximum de vraisemblance
+* L'approche bayésienne et les lois a priori, conjointe et a posteriori
+* Estimation ponctuelle bayésienne
+
