@@ -29,6 +29,10 @@ output: beamer_presentation
 
 > Est-ce que $\omega \in \{X \leq c\}$?
 
+* Si une variable aléatoire est $\sigma(X)$-mesurable, c'est une fonction seulement de $X$---elle dépend de $\omega$ seulement à travers $X(\omega)$.
+* Supposons que $Z(\omega)$ est $\sigma(X)$-mesurable.
+* Pour tous $z \in \mathbb{R}$, il existe $B_z \in {\cal B}$ tel que $\{Z=z\} = \{X \in B_z\}$. Alors $Z = f(X)$, où $f(x) = z$ pour tous $x \in B_z$.
+
 ## Probabilités conditionnelles de l'événement $\Lambda\in \Omega$
 
 * Par rapport à la sous-tribu ${\cal G}_1$ :
