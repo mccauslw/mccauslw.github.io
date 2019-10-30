@@ -16,10 +16,6 @@ output: beamer_presentation
 * $f=\frac{d\mu}{d\nu}$ est la dérivée Radon-Nikodym de $\mu$ par rapport à $\nu$.
 * $\mu(A) = \int_A \left(\frac{d\mu}{d\nu}\right) d\nu$.
 
-## Théorème de Bayes, événements de probabilité positive
-
-![](Bayes.JPG)
-
 ## Un peu plus sur la mesurabilité
 
 * Supposez que $X$ est ${\cal G}$-mesurable.
@@ -32,6 +28,10 @@ output: beamer_presentation
 * Si une variable aléatoire est $\sigma(X)$-mesurable, c'est une fonction seulement de $X$---elle dépend de $\omega$ seulement à travers $X(\omega)$.
 * Supposons que $Z(\omega)$ est $\sigma(X)$-mesurable.
 * Pour tous $z \in \mathbb{R}$, il existe $B_z \in {\cal B}$ tel que $\{Z=z\} = \{X \in B_z\}$. Alors $Z = f(X)$, où $f(x) = z$ pour tous $x \in B_z$.
+
+## Théorème de Bayes, événements de probabilité positive
+
+![](Bayes.JPG)
 
 ## Probabilités conditionnelles de l'événement $\Lambda\in \Omega$
 
@@ -109,17 +109,22 @@ $$ E[Y1_{A_1}] = 4(p_{11}+p_{13}) + 5p_{12} $$
 
 ## Construction de $E[Y|{\cal G}_1]$ :
 
-* En général, $E[Y|{\cal G}_1](\omega) = E[Y^+|{\cal G}_1](\omega) - E[Y^-|{\cal G}_1](\omega)$, constant sur chaque $A \in {\cal G}_1$.
+* En général, $E[Y|{\cal G}_1](\omega) = E[Y^+|{\cal G}_1](\omega) - E[Y^-|{\cal G}_1](\omega)$.
 * Mêmes cas $\infty$, $-\infty$, fini, indéfini, événement par événement
-* Ici, $Y = Y^+$, alors $E[Y|{\cal G}_1] = E[Y^+|{\cal G}_1] = \frac{d\rho^+}{dP_0}$,
-* $\rho^+(A) \equiv E[Y^+1_A]$, $P_0(A) \equiv P(A)$, $A \in {\cal G}_1$
+* Ici, $Y = Y^+$, alors $E[Y^+|{\cal G}_1] = E[Y^+|{\cal G}_1] = \frac{d\rho^+}{dP_0}$, où
+\[
+  \rho^+(A) \equiv E[Y^+1_A],\quad P_0(A) \equiv P(A),\quad A \in {\cal G}_1,
+\]
+et notez que $\rho^+ \ll P_0$ alors $\rho^+(A) = \int_A E[Y|{\cal G}_1] P_0(dx)$.
 * Pour $A = A_1$,
     * $\rho^+(A_1) = E[Y^+1_{A_1}] = 4(p_{11}+p_{13}) + 5p_{12}$
     * $P_0(A_1) = P(A_1) = p_{11} + p_{12} + p_{13}$
 * Les cas $A = A_2$, $A = A_3$ sont semblables.
 * Pour chaque $\omega \in A \in {\cal G}_1$, $E[Y^+|{\cal G}_1](\omega) = \rho^+(A)/P_0(A)$.
 * Pour $\omega \in A_1$,
-    * $E[Y^+|{\cal G}_1](\omega) = \frac{4(p_{11}+p_{13}) + 5p_{12}}{p_{11} + p_{12} + p_{13}}$
+\[
+  E[Y^+|{\cal G}_1](\omega) = \frac{4(p_{11}+p_{13}) + 5p_{12}}{p_{11} + p_{12} + p_{13}}.
+\]
 
 ## Exercice 13.2.3
 
@@ -133,19 +138,19 @@ $$ E[Y1_{A_1}] = 4(p_{11}+p_{13}) + 5p_{12} $$
 
 * Définition de $E[X|{\cal G}]$ : $E[E[X|{\cal G}]1_G] = E[X1_G]$, tous $G \in {\cal G}$.
 * Soit $X$, $Y$ des variables aléatoires, $X$ est ${\cal G}$-mesurable, $E[Y]<\infty$, $E[XY]<\infty$.
-* Proposition : $E[XY|{\cal G}] = XE[Y|{\cal G}]$
+* Proposition : $E[XY|{\cal G}] = XE[Y|{\cal G}]$ avec probabilité 1.
 * Preuve :
     * Soit $G_0,G \in {\cal G}$, $X = 1_{G_0}$. Alors
     $$ E[XE[Y|{\cal G}]1_G] = E[E[Y|{\cal G}]1_{G \cap G_0}] = E[Y1_{G \cap G_0}] = E[XY1_{G}]. $$
     $$ E[E[XY|{\cal G}]1_G] = E[XY1_{G}]. $$
-    * $XE[X|{\cal G}] = E[XY|{\cal G}]$ avec probabilité 1.
+    * $XE[Y|{\cal G}] = E[XY|{\cal G}]$ avec probabilité 1.
     * Même chose pour $X$ simple (linéarité), positive (convergence dominée), générale.
 
 ## Proposition 13.2.7 (espérances itérées)
 
 * Définition de $E[X|{\cal G}]$: $E[E[X|{\cal G}]1_G] = E[X1_G]$, tous $G \in {\cal G}$.
-* Proposition : ${\cal G}_1 \subseteq {\cal G}_2 \subseteq {\cal F}$, $E[E[Y|{\cal G}_2]|{\cal G}_1] = E[Y|{\cal G}_1]$.
-* Preuve : fixe $G \in {\cal G}_1 \subseteq {\cal G}_2$,
+* Proposition : Si ${\cal G}_1 \subseteq {\cal G}_2 \subseteq {\cal F}$, $E[E[Y|{\cal G}_2]|{\cal G}_1] = E[Y|{\cal G}_1]$.
+* Preuve : fixez $G \in {\cal G}_1 \subseteq {\cal G}_2$,
 $$ E[\; E[E[Y|{\cal G}_2]|{\cal G}_1]\;1_G\;]
 = E[E[Y|{\cal G}_2]1_G] = E[Y1_G] $$
 $$ E[E[Y|{\cal G}_1]1_G] = E[Y1_G] $$
@@ -159,7 +164,7 @@ $$ E[E[Y|{\cal G}]|{\cal G}] = E[Y|{\cal G}] $$
 
 ## Apérçu du cours 9 (Casella et Berger)
 
-* Statistiques exhaustives (sufficient), complètes, minimales, ancillaires
+* Statistiques exhaustives (sufficient), complètes, minimales, ancillaires (ou libres)
 * Estimation ponctuelle, méthode des moments et maximum de vraisemblance
 * L'approche bayésienne et les lois a priori, conjointe et a posteriori
 * Estimation ponctuelle bayésienne
