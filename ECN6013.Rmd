@@ -19,6 +19,8 @@
 
 [Diapos, Efficacité, Jeux, Équilibre](./ECN6013/efficacite_jeux_equilibre.pdf), 2019/09/15 (après le cours 2)
 
-[Diapos, Enchères](./ECN6013/encheres.pdf), 2019/10/01 (après le cours 4)
+[Diapos, Enchères](./ECN6013/encheres.pdf), 2019/10/01
 
-[Diapos, Externalités](./ECN6013/externalites.pdf), 2019/10/4 (après le cours 5)
+[Diapos, Externalités](./ECN6013/externalites.pdf), 2019/10/04
+
+[Diapos, Information Assurance](./ECN6013/information_assurance.pdf), 2019/11/03 (avant le cours du 4 novembre)
