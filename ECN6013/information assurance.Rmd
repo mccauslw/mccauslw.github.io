@@ -16,6 +16,7 @@ Quelques faits empiriques sur l'assurance :
 - Le prix varie selon le risque.
 - Les firmes spécifient et un prix et une quantité.
 - Un contrat n'est pas en force si le client a deux contrats d'assurance.
+- Des marchés manquants.
 
 La mesure de risque :
 
@@ -28,7 +29,7 @@ La mesure de risque :
 
 ## Un menu de choix
 
-L'université de Montréal m'offre trois choix d'assurance médicale:
+L'université de Montréal m'offre trois choix d'assurance médicale :
 ![Trois choix de prime, franchise](figures/trois_options.png)
 
 - Le choix révèle de l'information cachée pertinente.
@@ -39,7 +40,7 @@ L'université de Montréal m'offre trois choix d'assurance médicale:
 
 ## Décisions face à l'incertitude - objets de choix
 
-* Il y a deux états du monde possibles, mutuellement exclusifs et exhaustifs
+* Il y a deux états du monde possibles, mutuellement exclusifs et exhaustifs.
 * Voici deux exemples stylisés :
     * montée de la bourse (rendement de $u=0.10$), chute de la bourse (rendement de $d=-0.05$), 
     * un accident de voiture n'arrive pas, un accident de voiture arrive
@@ -52,21 +53,20 @@ L'université de Montréal m'offre trois choix d'assurance médicale:
 
 - Utilité espérée objective
     - Le mauvais état a une probabilité objective de $\pi$; le bon, $1-\pi$.
-		- Les probabilités sont primitives et objectives.
-		- Si les préférences (sur les lottéries) vérifient les axiomes de von Neumann-Morgenstern, il existe une fonction d'utilité $U(\cdot)$ tel que les préférences sont représentées par la fonction d'utilité
+    - Les probabilités sont primitives et objectives.
+    - Si les préférences (sur les loteries) vérifient les axiomes de von Neumann-Morgenstern, il existe une fonction d'utilité $U(\cdot)$ telle que les préférences sont représentées par la fonction d'utilité
 			\[
 				V(x,y) = (1-\pi) U(x) + \pi U(y).
 			\]
-		- Tous les agents dans un modèle connaissent les probabilités.
+    - Tous les agents dans un modèle connaissent les probabilités.
 - Utilité espérée subjective
     - Si les préférences vérifient les axiomes de Savage, il existe des probabilités
-			$\pi$ et $1-\pi$ et une fonction d'utilité $U(\cdot)$ tel que les préférences sont
-			représentées par la fonction d'utilité
+			$\pi$ et $1-\pi$ et une fonction d'utilité $U(\cdot)$ telles que les préférences sont représentées par la fonction d'utilité
 			\[
 				V(x,y) = (1-\pi) U(x) + \pi U(y).
 			\]
-		- Les probabilités font partie de la représentation.
-		- Les agents ont des probabilités subjectives différentes.
+    - Les probabilités font partie de la représentation.
+    - Les agents ont des probabilités subjectives différentes.
 
 ## L'aversion pour le risque
 
@@ -119,7 +119,7 @@ où
 - Panier pour $c=0$ (dotation) : $(w(1+r),w(1+r))$
 - Panier pour $c=w$ : $(w(1+u),w(1+d))$
 - Interprétation de $c>w$ : levier
-- Interprétation de $c<0$ : vente à decouvert
+- Interprétation de $c<0$ : vente à découvert
 
 ## Illustration de la contrainte I
 
@@ -155,8 +155,8 @@ Dans l'exemple de client d'assurance,
 \]
 - Avec les prix à cote juste, le profit espéré est zéro.
 - L'entrée et la sortie des firmes dirigent le profit vers zéro.
-- La contrainte pour un actif qui coûte sa valeur espérée est à cote juste.
 - La contrainte pour une assurance où $\pi$ est le prix d'un dollar dans le mauvais état est à cote juste.
+- Plus en général, la contrainte pour un actif qui coûte sa valeur espérée est à cote juste.
 
 ## Choix optimal de l'agent
 
@@ -171,7 +171,7 @@ où $\theta = w(1+r)$ (bourse) ou $\theta = W - pd$ (auto).
 \[
   \max_{x\geq 0, y\geq 0} (1-\pi) U(x) + \pi U(y) \quad \mbox{s.c.} \quad (1-p)x + py = \theta.
 \]
-- Une condition nécessaire pour un maximum est que le taux marginal de substitution égal le ratio de prix:
+- Une condition nécessaire pour un maximum est que le taux marginal de substitution égal le ratio de prix :
 \[
   \frac{(1-\pi) U'(x)}{\pi U'(y)} = \frac{1-p}{p}.
 \]
@@ -180,7 +180,7 @@ où $\theta = w(1+r)$ (bourse) ou $\theta = W - pd$ (auto).
 
 Le théorème de l'assurance complète dit que	le choix optimal face à une contrainte à cote juste est $x^* = y^* = \theta$.
 
-- Les deux conditions nécessaire pour un maximum:
+- Les deux conditions nécessaire pour un maximum :
 \[
   \frac{(1-\pi) U'(x)}{\pi U'(y)} = \frac{1-p}{p}, \qquad (1-p)x + py = \theta,
 \]
@@ -192,9 +192,9 @@ deviennent, quand $p=\pi$, $x = y = \theta$.
 ## Notes sur l'équilibre pour le modèle de base
 
 - Les clients sont identiques : la probabilité $\pi$, la dotation $(W,W-d)$ et l'utilité $U(\cdot)$ sont fixes.
-- Ou il y a un grand nombre de clients ou des assureurs sont neutres au risque:
+- Ou il y a un grand nombre de clients ou des assureurs sont neutres au risque :
     - le risque agrégé est zéro ou n'est pas important.
-- Il y a un grand nombre d'assureurs, avec la possibilité d'entrée et de sortie:
+- Il y a un grand nombre d'assureurs, avec la possibilité d'entrée et de sortie :
     - en équilibre il n'y a pas de profits.
 - Le profit espéré d'un assureur qui vend une police au prix $p$ à un client qui en achète $c$ unités est de $pc - \pi c$.
 - Si $p < \pi$, l'assureur perd de l'argent. Impossible dans un équilibre, parce que l'assureur partirait.
@@ -208,24 +208,24 @@ Un équilibre est un prix $p$ et un panier $(x^*,y^*)$ tel que
 - $(x^*,y^*)$ maximise $V(x,y) = (1-\pi) U(x) + \pi U(y)$ sous la contraint $(1-p)x + py = (1-p)W + p(W-d) = W-pd$,
 - la firme maximise son profit espéré,
 - le profit de la firme est zéro.
-Result: en équilibre, $p=\pi$, $x^*=y^*=W-pd$.
+Résultat : en équilibre, $p=\pi$, $x^*=y^*=W-pd$.
 
 ## Efficacité de l'équilibre (modèle sans action cachée)
 
 - En équilibre, $p^*=\pi$ et $x^*=y^*= \theta \equiv W-\pi d$.
 - L'efficacité de cet équilibre est une conséquence du premier théorème de bien-être.
-- Démonstration directe:
-    - Supposez que l'équilibre n'est pas efficace: l'utilité est plus élevée à $(x',y')$.
+- Démonstration directe :
+    - Supposez que l'équilibre n'est pas efficace : l'utilité est plus élevée à $(x',y')$ faisable.
     - $(x^*,y^*)$ maximise l'utilité dans la région $(1-\pi) x + \pi y \leq w$, alors $(1-\pi) x'+ \pi y'>w$.
     - Dans une économie avec un grand nombre de clients, $(x',y')$ n'est pas faisable.
 
 ## Assurance avec information cachée - clients
 
 - Nous passons maintenant au modèle Rothschild-Stiglitz.
-- Attention: dans ce papier, $p$ est une probabilité; $\pi$, un profit.
+- Attention : dans ce papier, $p$ est une probabilité; $\pi$, un profit.
 - Deux types de clients, haut risque ($H$) et bas risque ($B$)
 - $n_H$ clients de type $H$, $n_B$ de type $B$, $n_H$ et $n_B$ très grands.
-- Le type est (habituellement) de l'information cachée.
+- Dans le modèle final, le type est caché.
 - La probabilité d'un accident est $\pi_H$ ou $\pi_B$, selon le type et
 \[
   \pi_H > \pi_B.
@@ -243,7 +243,7 @@ Result: en équilibre, $p=\pi$, $x^*=y^*=W-pd$.
 \]
 où $x$ est la consommation dans le mauvais état, $y$ est celle dans le bon état.
 - Monotonicité, aversion pour le risque : $U'>0$, $U''<0$.
-- Le taux marginal de substitution est toujours moins élevé pour le type $H$ :
+- À chaque point $(x,y)$, le taux marginal de substitution est toujours moins élevé pour le type $H$ :
 \[
 	\frac{(1-\pi_H) U'(x)}{\pi_H U'(y)} < \frac{(1-\pi_B) U'(x)}{\pi_B U'(y)}.
 \]
@@ -258,7 +258,7 @@ où $x$ est la consommation dans le mauvais état, $y$ est celle dans le bon ét
 \[
 	(1-\pi_t) \alpha_1 + \pi_t (-\alpha_2) = (1-\pi_t) (W-x) + \pi_t (W-d-y)
 \]
-- Condition pour un profit nul espéré pour un type connu $i$ est
+- Condition pour un profit nul espéré pour un type connu $t$ est
 \[
 	(1-\pi_t) x + \pi_t y = W - \pi_t d.
 \]
