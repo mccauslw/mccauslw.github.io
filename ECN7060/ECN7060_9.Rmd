@@ -144,9 +144,9 @@ $$
 * Moyenne et variance :
 $$ E[\theta] = \frac{\alpha}{\alpha + \beta}, \quad
 \mathrm{Var}[\theta] = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}. $$
-* Relation avec la loi gamma: si $X$ et $Y$ sont indépendentes, $X \sim \mathrm{Ga}(\alpha,\gamma)$ et $Y \sim \mathrm{Ga}(\beta,\gamma)$,
+* Relation avec la loi gamma: si $X$ et $Y$ sont indépendantes, $X \sim \mathrm{Ga}(\alpha,\gamma)$ et $Y \sim \mathrm{Ga}(\beta,\gamma)$,
 $$ \frac{X}{X+Y} \sim \mathrm{Be}(\alpha, \beta). $$
-* Remarquez la forme fonctionelle en $\theta$ et sa resemblance à la vraisemblance binomiale.
+* Remarquez la forme fonctionnelle en $\theta$ et sa ressemblance à la vraisemblance binomiale.
 
 ## Des densités beta
 
@@ -166,7 +166,7 @@ f(\theta, x) & = f(\theta) f(x|\theta) \\
 & = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} \theta^{n_1 + \alpha-1} (1-\theta)^{n - n_1 + \beta-1}.
 \end{aligned}
 $$
-* La densité postérieure de $\theta$ est proportionelle à la densité conjointe :
+* La densité postérieure de $\theta$ est proportionnelle à la densité conjointe :
 $$
 f(\theta|x) = \frac{f(\theta,x)}{f(x)} \propto f(\theta,x) \propto \theta^{n_1 + \alpha-1} (1-\theta)^{n - n_1 + \beta-1}.
 $$
@@ -187,7 +187,7 @@ $$
 
 ## Trois estimateurs bayésiens de $\theta$
 
-1. La valeur $\hat{\theta}_1$ qui mimimise $E[(\theta-\hat{\theta}_1)^2|x]$ est la moyenne postérieure.
+1. La valeur $\hat{\theta}_1$ qui minimise $E[(\theta-\hat{\theta}_1)^2|x]$ est la moyenne postérieure.
 
 1. La valeur $\hat{\theta}_2$ qui minimise $E[|\theta-\hat{\theta}_2||x]$ est la médiane postérieure.
 
