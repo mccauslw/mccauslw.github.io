@@ -1,6 +1,6 @@
 ---
 title: "ECN 7060, Cours 9"
-date: '2018-11-07'
+date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
@@ -79,6 +79,16 @@ $$ \frac{f(x|\theta)}{f(y|\theta)} = \frac{\theta^{\sum_i x_i} (1-\theta)^{n-\su
     * Le ratio ne dépend pas de $\theta$ seulement si $\sum_i x_i = \sum_i y_i$ ou
 $T(x) = T(y)$.
 
+## Des log vraisemblances pour le modèle binomial
+
+```{r vraibin, echo=TRUE}
+theta = seq(0, 1, by=0.01)
+n0 = 4; n1 = 5; L = theta^n1 * (1-theta)^n0
+plot(theta, log(L), col='blue', type='l')
+n0 = 12; n1 = 6; L = theta^n1 * (1-theta)^n0
+lines(theta, log(L), col='red')
+```
+
 ## Estimation de $\theta$
 
 * Par la méthode des moments :
@@ -107,7 +117,7 @@ $$ \mathrm{Var}[\hat{\theta}] = \theta(1-\theta)/n. $$
 
 * $E[X_i^4] = \theta < \infty$ alors $\hat{\theta}$ converge à $\theta$ presque sûrement.
 
-* $\sqrt{n} (\hat{\theta} - \theta)$ converege en loi à la loi $N(0,\theta(1-\theta))$.
+* $\sqrt{n} (\hat{\theta} - \theta)$ converge en loi à la loi $N(0,\theta(1-\theta))$.
 
 * Notez la dépendance à $\theta$ partout.
 
@@ -115,9 +125,9 @@ $$ \mathrm{Var}[\hat{\theta}] = \theta(1-\theta)/n. $$
 
 ## L'approche bayésienne
 
-* Représenter l'incertitude concernant $\theta$ par une distribution.
+* Représenter l'incertitude concernant $\theta$ par une loi.
 
-* Un modèle est une distribution conjointe de $\theta$ et $X$.
+* Un modèle est une loi conjointe de $\theta$ et $X$.
 
 * En pratique, le modèle est donné sous la forme $f(\theta) f(X|\theta)$.
 
@@ -137,6 +147,14 @@ $$ E[\theta] = \frac{\alpha}{\alpha + \beta}, \quad
 * Relation avec la loi gamma: si $X$ et $Y$ sont indépendentes, $X \sim \mathrm{Ga}(\alpha,\gamma)$ et $Y \sim \mathrm{Ga}(\beta,\gamma)$,
 $$ \frac{X}{X+Y} \sim \mathrm{Be}(\alpha, \beta). $$
 * Remarquez la forme fonctionelle en $\theta$ et sa resemblance à la vraisemblance binomiale.
+
+## Des densités beta
+
+```{r betadensity, echo=TRUE}
+plot(theta, dbeta(theta, 1, 4), type='l', col='blue')
+lines(theta, dbeta(theta, 2, 3), col='red')
+lines(theta, dbeta(theta, 4.5, 0.5), col='green')
+```
 
 ## La loi conjointe de $\theta$ et $x$ dans le modèle beta-binomial
 
@@ -160,7 +178,7 @@ $$
 
 ## Trois fonctions de perte pour l'analyse bayésienne
 
-* Supposons que $a$ est une action associée avec l'estimation du paramètre $\theta$.
+* Supposons que $a$ est une action associée à l'estimation du paramètre $\theta$.
 
 * Trois fonctions de perte $L(\theta, a)$ :
     1. Perte quadratique $L(\theta, a) = (a-\theta)^2$
@@ -189,12 +207,12 @@ $$ \hat{\theta}_3 = \frac{\alpha+n_1-1}{\alpha+\beta+n-2}. $$
     * $E[\hat{\theta}] = \theta$,
     $\mathrm{Var}[\hat{\theta}] = \frac{\theta(1-\theta)}{n}$,
     $\mathrm{Var}[\sqrt{n}(\hat{\theta}-\theta)] = \theta(1-\theta)$.
-    * $\mathrm{bias}[\hat{\theta}] = E[\hat{\theta}] - \theta = 0$,
+    * $\mathrm{biais}[\hat{\theta}] = E[\hat{\theta}] - \theta = 0$,
     $\mathrm{EQM}[\hat{\theta}] = \mathrm{Var}[\hat{\theta}] = \frac{\theta(1-\theta)}{n}$.
 * Propriétés de l'estimateur $\hat{\theta}_1 = \frac{\alpha + n_1}{\alpha + \beta + n}$
     * $E[\hat{\theta}_1] = \frac{\alpha + n\theta}{\alpha + \beta + n}$,
     $\mathrm{Var}[\hat{\theta}_1] = \frac{n\theta(1-\theta)}{(\alpha+\beta+n)^2} < \mathrm{Var}[\hat{\theta}]$.
-    * $\mathrm{bias}[\hat{\theta}_1] = E[\hat{\theta}_1] - \theta = \frac{\alpha(1-\theta) - \beta\theta}{\alpha + \beta + n}$,
+    * $\mathrm{biais}[\hat{\theta}_1] = E[\hat{\theta}_1] - \theta = \frac{\alpha(1-\theta) - \beta\theta}{\alpha + \beta + n}$,
     $$ \mathrm{EQM}[\hat{\theta}_1] = \frac{n\theta(1-\theta) + [\alpha(1-\theta) - \beta\theta]^2}{(\alpha + \beta + n)^2}. $$
 
 ## Illustration graphique I
@@ -203,9 +221,9 @@ $$ \hat{\theta}_3 = \frac{\alpha+n_1-1}{\alpha+\beta+n-2}. $$
 theta = seq(0, 1, by=0.01)
 n = 20; alpha = 1; beta = 1;
 EQM = theta * (1-theta) / n
-bias1 = (alpha*(1-theta) - beta*theta)/(alpha + beta + n)
+biais1 = (alpha*(1-theta) - beta*theta)/(alpha + beta + n)
 var1 = n*theta*(1-theta)/(alpha + beta + n)^2
-EQM1 = bias1^2 + var1
+EQM1 = biais1^2 + var1
 ```
 
 ## Illustration graphique II
@@ -213,7 +231,7 @@ EQM1 = bias1^2 + var1
 ```{r EQMplot, include=TRUE, echo=TRUE}
 plot(theta, EQM, type='l')
 lines(theta, EQM1, col='blue')
-lines(theta, bias1^2, col='green')
+lines(theta, biais1^2, col='green')
 lines(theta, var1, col='red')
 ```
 
@@ -257,18 +275,3 @@ T(y) & = \sum_{i=1}^n (y_i-\mu)^\top H (y_i-\mu) \\
 & = \mathrm{tr}\left[H\sum_{i=1}^n (y_i-\bar{y})(y_i-\bar{y})^\top\right] + n(\bar{y}-\mu)^\top H (\bar{y}-\mu)
 \end{aligned}
 $$
-
-## Devoirs et lectures
-
-Devoirs, Casella et Berger (matière du cours 9)
-
-1. Exercice 6.9 (a,b,c)
-1. Exercice 6.11
-1. Exercice 6.12
-1. Exercice 7.24
-
-Préparation du cours 10, Casella et Berger
-
-1. Sections 7.2.3, 7.3
-1. Page Wikipédia https://en.wikipedia.org/wiki/Admissible_decision_rule
-1. Questions suggérées : 7.19, 7.20, 7.21, 7.22

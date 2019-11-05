@@ -219,7 +219,7 @@ Définitions importantes : nombres complexes et les operations de base (addition
 
 ## Cours 8, le 30 octobre
 
-## Devoirs, Rosenthal (matière du cours 8)
+### Devoirs, Rosenthal (matière du cours 8)
 
 1. Exercice 13.4.2
 1. Exercice 13.4.6
@@ -233,3 +233,17 @@ Définitions importantes : nombres complexes et les operations de base (addition
 1. Assez de 6.2, 6.3 pour faire les exercices 6.3, 6.6, 6.12(a), 6.14, 6.18
 1. Assez de 7.2 pour faire l'exercice 7.9
 
+## Cours 9, le 6 novembre
+
+### Devoirs, Casella et Berger (matière du cours 9)
+
+1. Exercice 6.9 (a,b,c)
+1. Exercice 6.11
+1. Exercice 6.12
+1. Exercice 7.24
+
+### Lectures, Casella et Berger (matière du cours 10)
+
+1. Sections 7.2.3, 7.3
+1. Page Wikipédia https://en.wikipedia.org/wiki/Admissible_decision_rule
+1. Questions suggérées : 7.19, 7.20, 7.21, 7.22
