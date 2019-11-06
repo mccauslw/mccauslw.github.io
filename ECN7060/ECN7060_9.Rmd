@@ -40,7 +40,7 @@ ne dépend pas de $\theta$ seulement si $x_{(1)} = y_{(1)}$ et $x_{(n)} = y_{(n)
 
 ## Modèle binomial
 
-* Modèle : $X_i \sim \mathrm{iid}\,\mathrm{Bn}(\theta)$, $\theta \in [0,1]$:
+* Modèle, $X_i \sim \mathrm{iid}\,\mathrm{Bn}(\theta)$, $\theta \in [0,1]$ :
 $$
 \begin{aligned}
 f(x_i|\theta) & = \begin{cases} \theta & x_i = 1, \\ 1-\theta & x_i = 0. \end{cases} \\
@@ -80,7 +80,7 @@ $$ \prod_{i=1}^n \frac{e^{-\theta} \theta^{x_i}}{x_i!}
 * Proposition : $T(x) = n_1$ est une statistique suffisante minimale.
 
 * Vérification par ratio de vraisemblances
-    * Ratio de deux vraisemblances:
+    * Ratio de deux vraisemblances :
 $$ \frac{f(x|\theta)}{f(y|\theta)} = \frac{\theta^{\sum_i x_i} (1-\theta)^{n-\sum_i x_i}}{\theta^{\sum_i y_i} (1-\theta)^{n-\sum_i y_i}}. $$
 
     * Le ratio ne dépend pas de $\theta$ seulement si $\sum_i x_i = \sum_i y_i$ ou
@@ -105,7 +105,7 @@ lines(theta, log(L), col='red')
 
 * Par la méthode de maximum de vraisemblance :
     * ${\cal L}(\theta;x) = \log L(\theta;x) = n_1 \log \theta + (n-n_1) \log (1-\theta)$
-    * Deux dérivées par rapport à $\theta$:
+    * Deux dérivées par rapport à $\theta$ :
     $$ \frac{d{\cal L}(\theta;x)}{d\theta} = \frac{n_1}{\theta} - \frac{(n-n_1)}{1-\theta} $$
     $$ \frac{d^2{\cal L}(\theta;x)}{d\theta^2} = -\frac{n_1}{\theta^2} - \frac{(n-n_1)}{(1-\theta)^2}. $$
     * Deuxième toujours négative, première nulle pour $\theta = n_1/n$.
@@ -216,7 +216,7 @@ $$ \hat{\theta}_3 = \frac{\alpha+n_1-1}{\alpha+\beta+n-2}. $$
     $\mathrm{Var}[\sqrt{n}(\hat{\theta}-\theta)] = \theta(1-\theta)$.
     * $\mathrm{biais}[\hat{\theta}] = E[\hat{\theta}] - \theta = 0$,
     $\mathrm{EQM}[\hat{\theta}] = \mathrm{Var}[\hat{\theta}] = \frac{\theta(1-\theta)}{n}$.
-* Propriétés de l'estimateur $\hat{\theta}_1 = \frac{\alpha + n_1}{\alpha + \beta + n}$
+* Propriétés de l'estimateur $\hat{\theta}_1 = \frac{\alpha + n_1}{\alpha + \beta + n}$ :
     * $E[\hat{\theta}_1] = \frac{\alpha + n\theta}{\alpha + \beta + n}$,
     $\mathrm{Var}[\hat{\theta}_1] = \frac{n\theta(1-\theta)}{(\alpha+\beta+n)^2} < \mathrm{Var}[\hat{\theta}]$.
     * $\mathrm{biais}[\hat{\theta}_1] = E[\hat{\theta}_1] - \theta = \frac{\alpha(1-\theta) - \beta\theta}{\alpha + \beta + n}$,
