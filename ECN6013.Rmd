@@ -15,6 +15,10 @@
 
 [Examen Intra 2017](./ECN6013/EI17A.pdf)
 
+[Examen Final 2018](./ECN6013/EF18A.pdf)
+
+[Examen Final 2017](./ECN6013/EF17A.pdf)
+
 [Diapos, Introduction](./ECN6013/introduction.pdf), 2019/09/09
 
 [Diapos, Efficacité, Jeux, Équilibre](./ECN6013/efficacite_jeux_equilibre.pdf), 2019/09/15 (après le cours 2)

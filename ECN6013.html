@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -248,6 +247,18 @@ $(document).ready(function () {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 
 
@@ -325,6 +336,8 @@ $(document).ready(function () {
 <p><a href="./ECN6013/ECN6013_2019.pdf">Mise à jour du document ECN6013_2019</a></p>
 <p><a href="./ECN6013/EI18A.pdf">Examen Intra 2018</a></p>
 <p><a href="./ECN6013/EI17A.pdf">Examen Intra 2017</a></p>
+<p><a href="./ECN6013/EF18A.pdf">Examen Final 2018</a></p>
+<p><a href="./ECN6013/EF17A.pdf">Examen Final 2017</a></p>
 <p><a href="./ECN6013/introduction.pdf">Diapos, Introduction</a>, 2019/09/09</p>
 <p><a href="./ECN6013/efficacite_jeux_equilibre.pdf">Diapos, Efficacité, Jeux, Équilibre</a>, 2019/09/15 (après le cours 2)</p>
 <p><a href="./ECN6013/encheres.pdf">Diapos, Enchères</a>, 2019/10/01</p>
@@ -349,23 +362,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
