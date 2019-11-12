@@ -247,3 +247,17 @@ Définitions importantes : nombres complexes et les operations de base (addition
 1. Sections 7.2.3, 7.3
 1. Page Wikipédia https://en.wikipedia.org/wiki/Admissible_decision_rule
 1. Questions suggérées : 7.19, 7.20, 7.21, 7.22
+
+## Cours 10, le 13 novembre
+
+### Devoirs, Casella et Berger (matière du cours 10)
+
+1. Exercise 7.10
+1. Exercise 7.38
+1. Exercise 7.40
+1. Exercise 7.41
+
+### Lectures, Casella et Berger (matière du cours 11)
+
+1. Chapitre 8 (pas tous les détails des exemples)
+1. Questions suggérées : 8.6, 8.16

@@ -1,5 +1,7 @@
 ---
 title: "ECN 7060, cours 10"
+author: "William McCausland"
+date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
@@ -24,18 +26,18 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 
 * Rappel : $r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]].$
 
-* Une *règle de Bayes* est une fonction de décision qui minimise $r(\pi,\delta)$ par rapport à $\pi$ et $L(\theta,a)$.
+* Une *règle de Bayes* est une fonction de décision $\delta^*$ qui minimise $r(\pi,\delta)$ pour $\pi$ et $L(\theta,a)$ donné.
 
 * Difficultés possibles
     * non-unicité de $\delta$
     * absence d'une solution parce que $R(\theta,\delta) = \infty$ pour tous $\delta$
 
 * Même si $r(\pi,\delta)$ est toujours infini, on peut souvent trouver, pour $x$ donné, $\delta(x)$ qui minimise la perte *a posteriori* espérée $E[L(\theta,\delta(X))|X]$ à $\{X=x\}$.
-    * c'est une règle de Bayes *généralisée*
-    * en pratique, on le fait pour $x$ observée seulement; $\delta(x)$ a souvent la même dimension que $\theta$
-    * pour la perte quadratique, $\delta(x)$ est la moyenne *a posteriori*
-    * pour la perte valeur absolue, $\delta(x)$ est la médiane *a posteriori*
-    * pour une autre perte, on peut approximer $\delta(x)$ par simulation.
+    * C'est une règle de Bayes *généralisée*.
+    * En pratique, on le fait pour $x$ observée seulement; $\delta(x)$ a souvent la même dimension que $\theta$.
+    * Pour la perte quadratique, $\delta(x)$ est la moyenne *a posteriori*.
+    * Pour la perte valeur absolue, $\delta(x)$ est la médiane *a posteriori*.
+    * Pour une autre perte, on peut approximer $\delta(x)$ par simulation.
 
 ## Dominance et admissibilité
 
@@ -58,9 +60,10 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 
 * L'importance du biais et l'EMQ est largement due à la solubilité des problèmes.
 
-* Rappelons que la perte quadratique est seulement un choix parmi plusieurs.
-    * paramètres d'échelle, perte asymétrique
-    * non-existance d'une moyenne
+* Rappelons que la perte quadratique est seulement un choix parmi plusieurs. Quelques problèmes :
+    * paramètres d'échelle toujours positifs,
+    * impossibilité de la perte asymétrique,
+    * non-existance de la moyenne ou la variance d'un estimateur.
 
 * Le non-biais n'est pas un principe fiable, si on considère l'exemple suivant.
 
@@ -172,16 +175,3 @@ $$
 \end{aligned}
 $$
 
-## Devoirs et lectures
-
-Devoirs, Casella et Berger (matière du cours 10)
-
-1. Exercise 7.10
-1. Exercise 7.38
-1. Exercise 7.40
-1. Exercise 7.41
-
-Préparation du cours 11, Casella et Berger
-
-1. Chapitre 8 (pas tous les détails des exemples)
-1. Questions suggérées : 8.6, 8.16
