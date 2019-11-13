@@ -46,7 +46,7 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 * Une fonction de décision est admissible s'il n'y a pas d'autre fonction de décision qui la domine.
 
 * Supposons que $\delta(x)$ minimise $r(\pi,\delta) = \int R(\theta,\delta) \pi(\theta)\, d\theta$, pour une fonction $\pi \colon \Theta \to \mathbb{R}_+$.
-    * Si $\delta(x)$ est inadmissible, il existe une $\delta^*(x)$ qui la domine : il y a un ensemble $\bar{\Theta}$ où $R(\theta,\delta) > R(\theta,\delta)$.
+    * Si $\delta(x)$ est inadmissible, il existe une $\delta^*(x)$ qui la domine : il y a un ensemble $\bar{\Theta}$ où $R(\theta,\delta) > R(\theta,\delta^*)$.
     Il faut que $\pi(\bar{\Theta}) = 0$. Sinon, $\delta(x)$ ne minimise $r(\pi,\delta)$.
     
 * À quelques conditions techniques près, un estimateur admissible est une règle de Bayes généralisée (avec possiblement une loi *a priori* impropre).
@@ -90,7 +90,7 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 * Densité des données :
 $$
 \begin{aligned}
-f(x|\theta) & = \sum_{i=1}^n (2\pi\sigma^2)^{-1/2}
+f(x|\theta) & = \prod_{i=1}^n (2\pi\sigma^2)^{-1/2}
 \exp\left[-\frac{1}{2} \frac{(x_i-\mu)^2}{\sigma^2} \right] \\
 & = (2\pi)^{-n/2} \sigma^{-n} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2 \right] \\
 & = (2\pi)^{-n/2} \sigma^{-n} \exp\left[-\frac{1}{2\sigma^2} ((n-1)S^2 + n(\bar{x}-\mu)^2) \right]
@@ -129,7 +129,7 @@ où $S^2 \equiv \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$
 \]
 \[
   \mu|\omega,x \sim N\left(
-    \frac{\lambda_0 \mu_0 + n\bar{x}}{\lambda_0 + n}, (\lambda_0 + n)^{-1}
+    \frac{\lambda_0 \mu_0 + n\bar{x}}{\lambda_0 + n}, (\omega(\lambda_0 + n))^{-1}
   \right).
 \]
 * Détails à https://en.wikipedia.org/wiki/Normal-gamma_distribution,
