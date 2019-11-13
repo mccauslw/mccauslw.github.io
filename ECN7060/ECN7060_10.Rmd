@@ -9,7 +9,7 @@ output: beamer_presentation
 
 * Pour une fonction de perte $L(\theta,a)$ donnée et un estimateur $\delta(X)$ donné,
 la fonction de risque (une fonction de $\theta$) est, dans la notation de Casella et Berger :
-$$ R(\theta,\delta) = E_\theta[L(\theta,\delta(X))] $$
+$$ R(\theta,\delta) = E_\theta[L(\theta,\delta(X))]. $$
 
 * L'espérance est par rapport à la loi de $X$ pour $\theta$ donné.
 
@@ -60,7 +60,7 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 
 * L'importance du biais et l'EMQ est largement due à la solubilité des problèmes.
 
-* Rappelons que la perte quadratique est seulement un choix parmi plusieurs. Quelques problèmes :
+* La perte quadratique est seulement un choix possible parmi plusieurs. Quelques problèmes :
     * paramètres d'échelle toujours positifs,
     * impossibilité de la perte asymétrique,
     * non-existance de la moyenne ou la variance d'un estimateur.
@@ -70,20 +70,18 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 ## Un estimateur non-biaisé ridicule (RUBE)
 
 * $X_i \sim \mathrm{Po}(\lambda)$, $n=1$.
-
-* On veut estimer $\tau(\lambda) = e^{-3\lambda}$
-
-* Considérons la statistique $T(X) = (-2)^X$
-
-* $E[T] = e^{-\lambda} \sum_{k=0}^\infty \frac{(-2\lambda)^x}{x!} = e^{-3\lambda}$
-
+* On veut estimer $\tau(\lambda) = e^{-3\lambda}$.
+* Considérons la statistique $T(X) = (-2)^X$.
+* Vraiment ridicule :
+    * Pour $x = 9, 10, 11$, $T(x) = -512, 1024, -2048$
+    * Pour $\lambda = 10$, $e^{-3\lambda} \approx 9.357623\times 10^{-14}$.
+* Mais non-biaisé :
+\[
+  E[T] = e^{-\lambda} \sum_{k=0}^\infty \frac{(-2\lambda)^x}{x!} = e^{-3\lambda}.
+\]
 * Par complétion de la famille de loi Poisson, $T$ est l'estimateur unique non-biaisé de $\tau(\lambda)$.
     * Si $E_\theta[g(X)] = 0$ pour tous $\theta$, $P(\{g(X)=0\}) = 1$.
     * Soit $g(x) = T(x) - T'(x)$ la différence entre deux candidats pour un estimateur non-biaisé.
-
-* Pour $x = 9, 10, 11$, $T(x) = -512, 1024, -2048$
-
-* Pour $\lambda = 10$, $e^{-3\lambda} \approx 9.357623\times 10^{-14}$.
 
 ## Statistiques suffisantes dans un modèle gaussien
 
@@ -109,6 +107,34 @@ où $S^2 \equiv \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2$
 
 * $S^2$ est non-biaisé ; $\hat{\sigma}^2$ est biaisé mais sa EMQ est moins grande, peu importe la valeur de $\sigma^2$.
 (exemples 7.3.3, 7.3.4)
+
+## Analyse bayésienne avec une loi *a priori* conjugée
+
+* Soit $\omega = \sigma^{-2}$, $\theta = (\mu, \omega)$.
+* Densité des données, en termes de $\omega$ :
+\[
+  f(x|\theta) \propto
+  \omega^{n/2} \exp\left[-\frac{\omega}{2} ((n-1)S^2 + n(\bar{x}-\mu)^2)\right]
+\]
+* La famille des lois *a priori* conjugée est Normal-gamma, où
+    * $\omega \sim \mathrm{Ga}(\alpha_0, \beta_0)$
+    * $\mu|\omega \sim N(\mu_0, (\omega\lambda_0)^{-1})$
+* Après des manipulations, on découvre que
+\[
+  \omega|x \sim \mathrm{Ga}\left(
+    \alpha_0 + n/2,
+    \beta_0 + \frac{1}{2}
+    \left((n-1)S + \frac{\lambda_0n(\bar{x}-\mu_0)^2}{\lambda_0 + n}\right)
+  \right),
+\]
+\[
+  \mu|\omega,x \sim N\left(
+    \frac{\lambda_0 \mu_0 + n\bar{x}}{\lambda_0 + n}, (\lambda_0 + n)^{-1}
+  \right).
+\]
+* Détails à https://en.wikipedia.org/wiki/Normal-gamma_distribution,
+section "Posterior distribution of the parameters"
+
 
 ## La fonction de score
 
@@ -152,21 +178,20 @@ $$
 
 ## Remarques, inégalité Cramér-Rao
 
-* Le dénominateur est l'information Fisher, qui dépend du modèle et non l'estimateur (pourvu que c'est non-biaisé)
-
-* Plus utile dans le cas où $W(X)$ est non-biaisé : $E_\theta[W(X)] = \theta$, numérateur = 1, la variance a une borne qui ne dépend pas de l'estimateur.
-
+* Le dénominateur est l'information Fisher, qui dépend du modèle et non l'estimateur.
+* L'inégalité est très utile dans le cas où $W(X)$ est non-biaisé pour $\theta$ : $E_\theta[W(X)] = \theta$, numérateur = 1, la variance a une borne qui ne dépend pas de l'estimateur.
 * Toujours une fonction de $\theta$, par contre.
+* Un estimateur qui atteint la borne est dit "efficace".
+* Attention :
+    * un estimateur biaisé peut avoir une EMQ en dessous de cette borne.
+    * le critère de non-biais et la fonction de perte quadratique ne sont pas sans difficultés.
 
 ## Théorème Rao-Blackwell
 
 * Soit $W$ un estimateur non-biaisé de $\tau(\theta)$, $T$ une statistique suffisante pour $\theta$. Alors $\phi(T) = E[W|T]$ est un estimateur de $\tau(\theta)$ qui est non-biaisé et uniformement meilleur en termes de variance.
-
 * Preuve: $\phi(T)$ est une fonction de $T$ et alors une fonction de l'échantillon seulement.
-
 * Non-biais :
 $$ E_\theta[\phi(T)] = E_\theta[E[W|T]] = E_\theta[W] = \tau(\theta). $$
-
 * Uniformement meilleur en termes de variance :
 $$
 \begin{aligned}
@@ -174,4 +199,3 @@ $$
 & = \mathrm{Var}_\theta[\phi(T)] + E_\theta[\mathrm{Var[W|T]}] \\
 \end{aligned}
 $$
-
