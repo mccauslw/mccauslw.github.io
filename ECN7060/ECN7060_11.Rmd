@@ -1,7 +1,7 @@
 ---
 title: "ECN 7060, cours 11"
 author: "William McCausland"
-date: '2018-11-21'
+date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
@@ -238,7 +238,7 @@ lines(theta, beta_4); lines(theta, beta_3)
 |12|0.9998779297|
 
 ## 
-!["Frequentists versus Bayesians" de xkcd](https://imgs.xkcd.com/comics/frequentists_vs_bayesians.png)
+!["Frequentists versus Bayesians" de xkcd](frequentists_vs_bayesians_2x.png)
 
 ## Devoirs et lectures
 

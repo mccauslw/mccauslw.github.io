@@ -215,9 +215,10 @@ Résultat : en équilibre, $p=\pi$, $x^*=y^*=W-pd$.
 - En équilibre, $p^*=\pi$ et $x^*=y^*= \theta \equiv W-\pi d$.
 - L'efficacité de cet équilibre est une conséquence du premier théorème de bien-être.
 - Démonstration directe :
-    - Supposez que l'équilibre n'est pas efficace : l'utilité est plus élevée à $(x',y')$ faisable.
-    - $(x^*,y^*)$ maximise l'utilité dans la région $(1-\pi) x + \pi y \leq w$, alors $(1-\pi) x'+ \pi y'>w$.
-    - Dans une économie avec un grand nombre de clients, $(x',y')$ n'est pas faisable.
+    - Supposez que l'équilibre n'est pas efficace : pour tous client $i$, l'utilité de son allocation $(x_i,y_i)$ est plus grande ou égale à l'utilité de $(x^*,y^*)$. Pour au moins un client c'est plus grande.
+    - $(x^*,y^*)$ maximise l'utilité dans la région $(1-\pi) x + \pi y \leq \theta$, alors pour tous $i$, $(1-\pi) x_i + \pi y_i\geq \theta$. L'égalité est stricte pour au moins un client.
+    - L'allocation agrégée $(X,Y)$ vérifie $(1-\pi) X + \pi Y > \theta$.
+    - Dans une économie avec un grand nombre de clients, $(X,Y)$ n'est pas faisable.
 
 ## Assurance avec information cachée - clients
 
@@ -265,6 +266,7 @@ où $x$ est la consommation dans le mauvais état, $y$ est celle dans le bon ét
 
 ## Profit pour un mélange
 
+- Une possibilité qu'il faut considérer : on vend le même contrat à tout le monde.
 - La condition pour un profit nul espéré pour un seul contrat accepté par les deux types est
 \[
 	(1-\pi) x + \pi y = W-\pi d,
@@ -308,7 +310,6 @@ Un équilibre est un ensemble de contrats $\{(x_1,y_1), (x_2,y_2),\ldots\}$ et u
 
 - l'allocation à chaque client est le contrat (ou la dotation) qui maximise son utilité,
 - les firmes maximise le profit espéré,
-- les firmes peuvent entrer ou sortir du marché,
 - il n'y a pas d'autre contrat qui donne un profit (à une firme qui l'offre) si tous les clients	qui le préfère le prend.
 
 ## Nombre de contrats en équilibre
