@@ -7,7 +7,6 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
-<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -248,6 +247,18 @@ $(document).ready(function () {
 }
 </style>
 
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
 <!-- code folding -->
 
 
@@ -331,7 +342,8 @@ $(document).ready(function () {
 <p><a href="./ECN6013/efficacite_jeux_equilibre.pdf">Diapos, Efficacité, Jeux, Équilibre</a>, 2019/09/15 (après le cours 2)</p>
 <p><a href="./ECN6013/encheres.pdf">Diapos, Enchères</a>, 2019/10/01</p>
 <p><a href="./ECN6013/externalites.pdf">Diapos, Externalités</a>, 2019/10/04</p>
-<p><a href="./ECN6013/information_assurance.pdf">Diapos, Information Assurance</a>, 2019/11/11 (avant le cours du 11 novembre)</p>
+<p><a href="./ECN6013/information_assurance.pdf">Diapos, Information Assurance</a>, 2019/11/11</p>
+<p><a href="./ECN6013/information_vendeurs.pdf">Diapos, Information cachée des vendeurs</a>, 2019/11/18 (avant le cours du 18 novembre)</p>
 </div>
 
 
@@ -351,23 +363,6 @@ $(document).ready(function () {
 
 
 </script>
-
-<!-- tabsets -->
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

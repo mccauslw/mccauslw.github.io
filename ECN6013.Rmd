@@ -27,4 +27,6 @@
 
 [Diapos, Externalités](./ECN6013/externalites.pdf), 2019/10/04
 
-[Diapos, Information Assurance](./ECN6013/information_assurance.pdf), 2019/11/11 (avant le cours du 11 novembre)
+[Diapos, Information Assurance](./ECN6013/information_assurance.pdf), 2019/11/11
+
+[Diapos, Information cachée des vendeurs](./ECN6013/information_vendeurs.pdf), 2019/11/18 (avant le cours du 18 novembre)
