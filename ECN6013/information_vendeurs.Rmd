@@ -11,22 +11,22 @@ urlcolor: blue
 
 ## Cette section
 
-* Information asymétrique des vendeurs lors des négotiations
+* Information asymétrique des vendeurs lors des négociations
     * papier de Samuelson (1984)
-    * immeubles, durables usagés, items sur eBay, Kijiji
+    * immeubles, durables usagés, items sur Kijiji, d'autres sites
 * Information asymétrique dans les marchés
     * papier d'Akerlof (1970)
     * les vendeurs ou les acheteurs ont de l'information asymétrique
 
-## Négotiation avec asymétrie d'information
+## Négociation avec asymétrie d'information
 
 * Un objet, un acheteur et un vendeur, neutres au risque.
     * La valeur de l'objet est de $v$ au vendeur, $1.5v$ à l'acheteur.
     * Le vendeur connait $v$, l'information cachée.
-    * Pour l'acheteur, $v$ est une variable aléatoire, $v \sim U(0,1)$, avant l'achat potentiel.
+* Pour l'acheteur, $v$ est une variable aléatoire, $v \sim U(0,1)$, avant l'achat potentiel.
 * Sa valeur propre espérée de $v$ est de $1/2$, sa valeur espérée de l'objet est de $3/4$.
-* Il existe toujours un échange mutuellement bénéfique.
-* On a une situation asymétrique d'information cachée où seulement le vendeur connait $v$.
+* Il existe toujours un échange potentiel mutuellement bénéfique et le surplus est de $0.5v$.
+* On a une situation d'information cachée asymétrique où seulement le vendeur connait $v$.
 
 ## Un mécanisme
 
@@ -35,7 +35,7 @@ urlcolor: blue
     * Le vendeur accepte, lui donne l'objet et reçoit $b$ de l'acheteur; ou rejette l'offre.
 * La stratégie optimale du vendeur est de vendre lorsque $b \geq v$.
 * Quelle est la valeur à l'acheteur d'une offre de $b$?
-* C'est la valeur espéree sachant la stratégie du vendeur :
+* C'est la valeur espérée sachant la stratégie du vendeur :
 \[
   \int_0^b \left(\frac{3}{2}v - b\right)\, dv = \left. \frac{3}{4} v^2 - bv \right|_0^b = -\frac{1}{4} b^2 < 0.
 \]
@@ -47,6 +47,7 @@ urlcolor: blue
 * Un autre mécanisme possible est une offre à prendre ou à laisser par le vendeur.
     * Le vendeur offre un prix $s$ pour l'objet.
     * L'acheteur accepte, paie $s$ au vendeur et reçoit l'objet; ou rejette l'offre.
+* Pour l'acheteur, $v \sim U(0,1)$. Pour le vendeur, $v$ est fixe. Nous voulons un résultat pour chaque $v \in [0,1]$.
 * Une vente est profitable à tous les deux si $v < s < (3/2)v$.
 * Le vendeur n'offre jamais un prix $s$ moins grand que $v$.
 * Si l'acheteur accepte les offres $\bar{s}_1$ et $\bar{s}_2 > \bar{s}_1$, le vendeur ne lui offrirait jamais le prix $\bar{s}_1$; si l'acceptation est profitable quand $v=v_1$, elle est profitable quand $v<v_1$.
@@ -64,11 +65,11 @@ urlcolor: blue
 \]
 * Encore, il n'y a pas d'échange.
 
-## Le marché pour les auto usagées
+## Le marché pour les autos usagées
 
-* L'exemple précédent: négociation entre deux parties.
+* L'exemple précédent : négociation entre deux parties.
 * Ici: marché avec qualité cachée, tout se vend au même prix.
-* Les éléments essentiels:
+* Les éléments essentiels :
     * Les vendeurs observent la qualité de leur auto.
     * Les acheteurs n'observent pas la qualité.
     * Il y a des acheteurs qui valorisent une auto plus que des vendeurs (sinon, l'allocation est efficace et on ne parle pas d'un échec de marché).
@@ -84,7 +85,7 @@ Exemples et applications d'Akerlof :
 
 * liquidité des produits durables (voitures usagées)
 * le travail des minorités, la demande pour la certification
-* la ventes des produits de qualité (et les copies) et les coûts de la malhonnêteté des contrefacteurs :
+* la vente des produits de qualité et des copies vendues comme des vrais. Les coûts de la malhonnêteté des contrefacteurs :
     * coût direct : mal fait aux clients trichés.
     * coût indirect : fuite des firmes honnêtes.
 
@@ -92,7 +93,7 @@ Exemples et applications d'Akerlof :
 
 * Un marché où la qualité $x_i$ (d'une voiture $i$) varie
 * Seulement le vendeur de $i$ observe $x_i$.
-* Les participants observent le prix $p$ et la qualité moyenne $\mu$, deux quantités observées en équilibre.
+* Les participants observent le prix $p$ et la qualité moyenne $\mu$, deux quantités déterminées en équilibre.
 * Demande: $Q_d = D(p,\mu)$.
 * Offre: $S = S(p)$, $\mu = \mu(p)$.
 * En équilibre, $D(p,\mu(p)) = S(p)$.
@@ -109,7 +110,7 @@ Exemples et applications d'Akerlof :
 * Implications de la linéarité des utilités
     * neutralité pour le risque (la qualité moyenne détermine la demande)
     * solutions de coin possibles
-    * agrégation
+    * agrégation, consommateur représentatif
 * Dotations:
     * Groupe 1 commence avec $N$ autos; groupe 2 avec 0.
     * Groupe 1 a un revenu $Y_1$; groupe 2, $Y_2$.
@@ -125,13 +126,13 @@ Demande et l'offre du groupe 1:
 	\end{cases}
 \]
 \[
-	S_1 =
+	S_1(p) =
 	\begin{cases}
 		pN/2 & p \leq 2 \\
 		N & p > 2
 	\end{cases}
 	\qquad
-	\mu =
+	\mu(p) =
 	\begin{cases}
 		p/2 & p\leq 2 \\
 	  1 & p>2
@@ -187,11 +188,11 @@ Demande totale:
 * Écarter $p<1$ et $p>3/2$ tout de suite.
 * Cas $p=3/2$: $S=N$, $D \in [0,2Y_2/3]$. Équilibre si $N \leq 2Y_2/3$.
 * Cas $1<p<3/2$: $S=N$, $D = Y_2/p$. Équilibre si $1 < Y_2/N < 3/2$.
-* Cas $p=1$: $S\in[0,N]$, $D = Y_2$. Équilibre si $Y_2 \leq N$.
+* Cas $p=1$: $S\in[0,N]$, $D \in [Y_2, Y_1+Y_2]$. Équilibre si $Y_2 \leq N$.
 
 ## Les équilibres: information symétrique
 
-Équilibres possibles, selon les valeurs de $N$, $Y_2$ :
+* Équilibres possibles, selon les valeurs de $N$, $Y_2$ :
 \[
 	(p,Q) = \begin{cases}
 		(1,Y_2) & Y_2 \leq N \\
@@ -200,6 +201,7 @@ Demande totale:
 	\end{cases}
 \]
 
-* Dans le premier cas, un surplus de $Y_2/2$ aux acheteurs,
-* Dans le deuxième cas, un surplus de $N/2$, partagé,
-* Dans le troisième cas, un surplus de $N/2$ aux vendeurs.
+* Le surplus est une mesure des pertes associées à l'information asymétrique
+    * Dans le premier cas, un surplus de $Y_2/2$ aux acheteurs,
+    * Dans le deuxième cas, un surplus de $N/2$, partagé,
+    * Dans le troisième cas, un surplus de $N/2$ aux vendeurs.
