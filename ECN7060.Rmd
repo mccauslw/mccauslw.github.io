@@ -7,26 +7,28 @@
 
 [Plan de Cours](./ECN7060/ECN7060A-A19-PC.pdf)
 
-[Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf) (jusqu'au cours 10, inclusif)
+[Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf) (jusqu'au cours 11, inclusif)
 
 [Examen intra](./ECN7060/EI19.pdf)
 
-[Diapos, Cours 1, 2019/09/04](./ECN7060/ECN7060_1.pdf) (version corrigée après le cours)
+[Diapos, Cours 1, 2019/09/04](./ECN7060/ECN7060_1.pdf)
 
-[Diapos, Cours 2, 2019/09/11](./ECN7060/ECN7060_2.pdf) (version corrigée après le cours)
+[Diapos, Cours 2, 2019/09/11](./ECN7060/ECN7060_2.pdf)
 
-[Diapos, Cours 3, 2019/09/18](./ECN7060/ECN7060_3.pdf) (version corrigée après le cours)
+[Diapos, Cours 3, 2019/09/18](./ECN7060/ECN7060_3.pdf)
 
-[Diapos, Cours 4, 2019/09/25](./ECN7060/ECN7060_4.pdf) (version corrigée après le cours)
+[Diapos, Cours 4, 2019/09/25](./ECN7060/ECN7060_4.pdf)
 
-[Diapos, Cours 5, 2019/10/02](./ECN7060/ECN7060_5.pdf) (version corrigée après le cours)
+[Diapos, Cours 5, 2019/10/02](./ECN7060/ECN7060_5.pdf)
 
-[Diapos, Cours 6, 2019/10/09](./ECN7060/ECN7060_6.pdf) (version corrigée après le cours)
+[Diapos, Cours 6, 2019/10/09](./ECN7060/ECN7060_6.pdf)
 
-[Diapos, Cours 7, 2019/10/16](./ECN7060/ECN7060_7.pdf) (version corrigée après le cours)
+[Diapos, Cours 7, 2019/10/16](./ECN7060/ECN7060_7.pdf)
 
-[Diapos, Cours 8, 2019/10/30](./ECN7060/ECN7060_8.pdf) (version corrigé après le cours)
+[Diapos, Cours 8, 2019/10/30](./ECN7060/ECN7060_8.pdf)
 
-[Diapos, Cours 9, 2019/11/06](./ECN7060/ECN7060_9.pdf) (version corrigé après le cours)
+[Diapos, Cours 9, 2019/11/06](./ECN7060/ECN7060_9.pdf)
 
-[Diapos, Cours 10, 2019/11/13](./ECN7060/ECN7060_10.pdf) (version corrigé après le cours)
+[Diapos, Cours 10, 2019/11/13](./ECN7060/ECN7060_10.pdf)
+
+[Diapos, Cours 11, 2019/11/20](./ECN7060/ECN7060_11.pdf) (version avant le cours)

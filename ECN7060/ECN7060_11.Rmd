@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = FALSE)
 * Notes :
     * une question scientifique d'intérêt
     * rien ici de classique ou de bayésien
-    * la spécification de $\Theta_0$ précède la recherche d'un test, l'évaluation d'un test
+    * La spécification de $\Theta_0$ devrait précèder la recherche d'un test et l'évaluation d'un test.
     * asymmétrie implicite, pas explicite ici
     * l'asymétrie comme une question d'erreur : favoriser le control d'un type d'erreur
 
@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = FALSE)
 * Notes :
     * Une règle de décision est un $\delta \colon {\cal X} \to \{a_0,a_1\}$
     * $R = \{x \colon \delta(x) = a_1 \}$, $R^c = \{x \colon \delta(x) = a_0\}$.
-    * réduction de dimension ici aussi : il y a souvent une statistique $W(X)$ scalaire tel que $R$ ou $R^c$ prend la forme $\{x \colon W(x) \in [a,b]\}$
+    * réduction de dimension, comme dans le cas d'estimation ponctuelle : il y a souvent une statistique $W(X)$ scalaire tel que $R$ ou $R^c$ prend la forme $\{x \colon W(x) \in [a,b]\},$ des fois avec $a=\infty$ ou $b=\infty$.
     * attention : quand $W(X)$ est un estimateur de $\theta$, il est facile de confondre une hypothèse avec une région ($R$ ou $R^c$).
     
 ## Optimalité par fonction de perte
@@ -72,7 +72,7 @@ c_{II} (1-\beta(\theta)), & \theta \in \Theta_0^c
 \end{cases}
 $$
 
-* Rappel : c'est une exercise *ex ante*
+* Rappel : c'est une exercise *ex ante*.
     
 ## Risque de Bayes
 
@@ -99,8 +99,8 @@ a_1, & \mbox{autrement}.
 $$
 
 * Notes :
-    * C'est une exercise *ex post*
-    * Pas de distinction importante entre $H_0$ et $H_1$ (échangeable)
+    * C'est une exercise *ex post*.
+    * La distinction entre $H_0$ et $H_1$ est seulement en termes de $c_{II}/c_I$.
     
 ## Exemple récurrent Bernoulli
 
@@ -142,7 +142,7 @@ $$ \lambda(x) =
 $$ \left\{x \in {\cal X} \colon \lambda(x) \equiv \frac{\sup_{\theta \in \Theta_0} L(\theta|x)}{\sup_{\theta \in \Theta}L(\theta|x)} \leq c \right\} $$
 
 * Notes :
-    * attraction intuitive
+    * attrait intuitive
     * réduction de dimension
 
 * $c \in [0,1]$ à spécifier
@@ -237,19 +237,48 @@ lines(theta, beta_4); lines(theta, beta_3)
 |11|0.9982910156|
 |12|0.9998779297|
 
+## Test d'une hypothèse ponctuelle, une approche bayésienne
+
+Un modèle composé, où le modèle $M$, le paramètre $\theta$ et les données
+sont aléatoires :
+\[
+  \begin{aligned}
+    f(M,\theta,x) &= \Pr[M=H_0] 1_{\{H_0\}}(M) \delta_{1/2}(\theta) (1/2)^n \\
+    &+ \Pr[M=H_1] 1_{\{H_1\}}(m) f_{\mathrm{Be}}(\theta; \alpha, \beta) \theta^r (1-\theta)^{n-r}.
+  \end{aligned}
+\]
+
+Après l'intégration de $x$,
+\[
+  f(M,x) = \Pr[M=H_0] 1_{\{H_0\}}(M) f_0(x) + \Pr[M=H_1] 1_{\{H_1\}}(M) f_1(x),
+\]
+où
+\[
+  f_0(x) = (1/2)^n, \quad f_1(x) =
+  \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}
+  \frac{\Gamma(\alpha+r)\Gamma(\beta+n-r)}{\Gamma(\alpha + \beta + n)}.
+\]
+
+## (cont.)
+
+Les probabilités posterieures :
+\[
+  \Pr[M=H_0|x] = \frac{\Pr[M=H_0] f_0(x)}{\Pr[M=H_0] f_0(x) + \Pr[M=H_1] f_1(x)}
+\]
+\[
+  \Pr[M=H_1|x] = \frac{\Pr[M=H_1] f_1(x)}{\Pr[M=H_0] f_0(x) + \Pr[M=H_1] f_1(x)}
+\]
+
+Le rapport de chances (rapport des cotes) postérieur :
+\[
+  \frac{\Pr[M=H_0|x]}{\Pr[M=H_1|x]} = \frac{\Pr[M=H_0]}{\Pr[M=H_1]} \frac{f_0(x)}{f_1(x)}
+\]
+
+La décision optimale :
+\[
+  \delta(x) = \begin{cases} a_0 & \frac{c_I}{c_{II}} \frac{\Pr[M=H_0]}{\Pr[M=H_1]} \frac{f_0(x)}{f_1(x)} \leq 1, \\ a_1 & \mbox{autrement}.
+  \end{cases}
+\]
+
 ## 
 !["Frequentists versus Bayesians" de xkcd](frequentists_vs_bayesians_2x.png)
-
-## Devoirs et lectures
-
-Devoirs, Casella et Berger (matière du cours 11)
-
-1. Exercise 8.12
-1. Exercise 8.13
-1. Exercise 8.53
-
-Préparation du cours 12, Casella et Berger
-
-1. Chapitre 9 (pas tous les détails des exemples)
-1. Questions suggérées : 9.1, 9.2, 9.6, 9.26
-

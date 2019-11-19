@@ -252,12 +252,25 @@ Définitions importantes : nombres complexes et les operations de base (addition
 
 ### Devoirs, Casella et Berger (matière du cours 10)
 
-1. Exercise 7.10
-1. Exercise 7.38
-1. Exercise 7.40
-1. Exercise 7.41
+1. Exercice 7.10
+1. Exercice 7.38
+1. Exercice 7.40
+1. Exercice 7.41
 
 ### Lectures, Casella et Berger (matière du cours 11)
 
 1. Chapitre 8 (pas tous les détails des exemples)
 1. Questions suggérées : 8.6, 8.16
+
+## Cours 10, le 20 novembre
+
+### Devoirs, Casella et Berger (matière du cours 11)
+
+1. Exercice 8.12
+1. Exercice 8.13
+1. Exercice 8.53
+
+### Lectures, Casella et Berger
+
+1. Chapitre 9 (pas tous les détails des exemples)
+1. Questions suggérées : 9.1, 9.2, 9.6, 9.26
