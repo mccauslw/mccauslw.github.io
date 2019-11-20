@@ -16,15 +16,15 @@ knitr::opts_chunk$set(echo = FALSE)
     * hypothèse alternative $H_1$, $\theta \in \Theta_0^c$
 
 * Notes :
-    * une question scientifique d'intérêt
-    * rien ici de classique ou de bayésien
+    * Les hypothèses viennent d'une question scientifique d'intérêt.
+    * Il n'y a rien ici de classique ou de bayésien.
     * La spécification de $\Theta_0$ devrait précèder la recherche d'un test et l'évaluation d'un test.
-    * asymmétrie implicite, pas explicite ici
-    * l'asymétrie comme une question d'erreur : favoriser le control d'un type d'erreur
+    * Il y a une asymmétrie qui n'est pas explicite ici.
+    * L'asymétrie est une question d'erreur : on favorise le control d'un type d'erreur.
 
 ## Tests
 
-* Deux décisions (en termes de la notation pour les actions)
+* Deux décisions (même notation pour les actions)
     * $a_0$, ne pas rejeter $H_0$
     * $a_1$, rejeter $H_0$
 
@@ -52,7 +52,7 @@ c_I & \theta \in \Theta_0 \\
 
 * Notes :
     * $c_I$ est le coût d'une erreur du type I, $c_{II}$ le coût d'une erreur du type II
-    * Avec cette généralité, on peut briser l'asymétrie des deux hypothèses.
+    * Avec cette généralité, on peut briser la symétrie des deux hypothèses.
 
 ## Les fonctions de risque et de puissance
 
@@ -108,10 +108,8 @@ $$
     1. $X_1,\ldots,X_n \sim \mathrm{iid}\, \mathrm{Bn}(\theta)$, $\theta \in [0,1]$.
     1. $L(\theta,x) = \theta^r (1-\theta)^{(n-r)}$, où $r$ est le nombre de uns.
     1. $\hat{\theta}_{\mathrm{EMV}} = \hat{\theta} = r/n$.
-
 * Considérons les hypothèses $H_0:\theta \geq 1/2$ et $H_1:\theta < 1/2$
-    1. $\Theta_0 = [1/2,1]$, $\Theta = [0,1]$, $\Theta_0^c = [0,1/2)$
-    
+    * $\Theta_0 = [1/2,1]$, $\Theta = [0,1]$, $\Theta_0^c = [0,1/2)$
 * Calculer le rapport des vraisemblances
 $$ \sup_{\theta \in \Theta_0} L(\theta|x) =
 \begin{cases} L(\hat{\theta}|x) & \hat{\theta} \geq 1/2 \\ L(\frac{1}{2}|x) = \left(\frac{1}{2}\right)^n & \hat{\theta} < 1/2 \end{cases} $$
@@ -121,6 +119,7 @@ $$ \lambda(x) =
     1, & r \geq n/2, \\
     \frac{(n/2)^n}{r^r (n-r)^{n-r}}, & r < n/2.
 \end{cases} $$
+* Une fonction de la statistique suffisante. En général, on peut utiliser $f(t|\theta)$ directement, obtenir le même résultat.
 
 ## Les valeures de $\lambda(x)$ pour $n=12$
 
@@ -157,16 +156,20 @@ $$ \{x \in {\cal X} \colon \sum_{i}x_i \leq r\},\quad r=0,1,2,3,4,5,12 $$
 ```{r betar, include=TRUE, echo=TRUE}
 theta = seq(0, 1, by=0.01); n=12
 beta_0 = pbinom(0, n, theta) # R = {r <= 0}
+beta_1 = pbinom(1, n, theta) # R = {r <= 0}
 beta_2 = pbinom(2, n, theta) # R = {r <= 2}
 beta_3 = pbinom(3, n, theta)
 beta_4 = pbinom(4, n, theta)
+beta_5 = pbinom(5, n, theta)
+beta_12 = pbinom(12, n, theta)
 ```
 
 ## Graphique des fonctions de puissance
 
 ```{r betarplot, include=TRUE, echo=TRUE}
-plot(theta, beta_0, type='l'); lines(theta, beta_2)
-lines(theta, beta_3); lines(theta, beta_4)
+plot(theta, beta_0, type='l'); lines(theta, beta_1)
+lines(theta, beta_2); lines(theta, beta_3)
+lines(theta, beta_4); lines(theta, beta_5); lines(theta, beta_12)
 ```
 
 ## Exemple, même modèle, hypothèse ponctuelle
@@ -206,6 +209,9 @@ beta_6 = pbinom(0, n, theta) + pbinom(0, n, 1-theta)
 beta_5 = pbinom(1, n, theta) + pbinom(1, n, 1-theta)
 beta_4 = pbinom(2, n, theta) + pbinom(2, n, 1-theta) 
 beta_3 = pbinom(3, n, theta) + pbinom(3, n, 1-theta)
+beta_2 = pbinom(4, n, theta) + pbinom(4, n, 1-theta)
+# R = {0,1,2,3,4,5,7,8,9,10,11,12}
+beta_1 = pbinom(5, n, theta) + pbinom(5, n, 1-theta)
 ```
 
 ## Graphique des fonctions de puissance
@@ -213,13 +219,20 @@ beta_3 = pbinom(3, n, theta) + pbinom(3, n, 1-theta)
 ```{r betarptplot, include=TRUE, echo=TRUE}
 plot(theta, beta_6, type='l'); lines(theta, beta_5)
 lines(theta, beta_4); lines(theta, beta_3)
+lines(theta, beta_2); lines(theta, beta_1)
 ```
+
+## La probabilité *a posteriori* $P(\theta \geq 1/2|x)$, $r=4$
+
+* Soit $n=12$, $\theta \sim \mathrm{Be}(\alpha, \beta)$, où $\alpha=1$, $\beta=1$.
+* $\theta|x \sim \mathrm{Be}(\alpha+r, \beta+n-r)$
+* Si on observe (mettons) $r=4$, $\theta|x \sim \mathrm{Be}(5, 9)$
+* $P(\theta \geq 1/2|r(x) = 4) = 1-F_{\mathrm{Be}(5,9)}(1/2) = `r 1-pbeta(0.5, 5, 9)`$.
 
 ## La probabilité *a posteriori* $P(\theta \geq 1/2|x)$, plusieurs $r$
 
 * Soit $n=12$, $\alpha=1$, $\beta=1$, $\Omega_0 = [1/2,1]$
-
-* La probabilité *a posterior* dépend du $r$ observé:
+* La probabilité *a posterior* dépend du $r$ observé :
 
 |$r$|$P[\theta \in \Omega_0\|x]$|
 |---|----------------------|
