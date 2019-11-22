@@ -11,31 +11,37 @@ urlcolor: blue
 
 ## Signaux - éléments et exemples
 
-Les éléments:
-    - information asymétrique, indication de valeur ou productivité
-    - les agents à information favorable veulent la révéler
-    - la transmission de l'information doit être couteuse
-    - ce coût doit être moins élevé quand la valeur est plus élevé
-Exemples:
-    - jeunes, productivité comme travailleurs, education
-    - avocats, productivité, vêtements et bureaux de luxe
-    - firmes, qualité des produits, garantis
-    - banques, solvabilité, édifices bancaires
-    - firmes (intro en bourse), perspectives de profit, parts retenues
-    - paons, aptitude biologique, queue (sélection sexuelle)
+Les éléments :
+
+- information asymétrique, indication de valeur ou productivité
+- les agents à information favorable veulent la révéler
+- la transmission de l'information doit être couteuse
+- ce coût doit être moins élevé quand la valeur est plus élevé
+
+Exemples :
+
+- jeunes, productivité comme travailleurs, education
+- avocats, productivité, vêtements et bureaux de luxe
+- firmes, qualité des produits, garantis
+- banques, solvabilité, édifices bancaires
+- firmes (intro en bourse), perspectives de profit, parts retenues
+- paons, aptitude biologique, queue (sélection sexuelle)
 
 ## Signaux et Indices
 
 Un signal :
-    - observable
-    - choisi
-    - peut avoir un effet sur la valeur ou la productivité ou non
-    - exemples : education, etc.
+
+- observable
+- choisi
+- peut avoir un effet sur la valeur ou la productivité ou non
+- exemples : education, etc.
+
 Un indice :
-    - observable
-    - non choisi
-    - peut avoir un effet sur la valeur ou la productivité ou non
-    - exemples : âge, sexe, race
+
+- observable
+- non choisi
+- peut avoir un effet sur la valeur ou la productivité ou non
+- exemples : âge, sexe, race
 
 ## You might be signalling - du blogue de Bryan Caplan
 
@@ -98,26 +104,29 @@ So when the graduating class of 2006 received diplomas that read ``Zhengzhou Uni
 ## Signaux - équilibre
 
 Un équilibre est
-    - une fonction de salaire $W(y)$,
-    - une fonction de probabilité $\pi(y)$,
-    - des niveaux d'éducation $y_B$ et $y_H$,
-tels que
-    - $y_i$ maximise $W(y) - C_i(y)$ pour $i=H,B$,
-    - $W(y) = \pi(y) m_H(y) + (1-\pi(y)) m_B(y)$,
-    - $\pi(y)$ correspond à la vraie proportion, pour chaque $y$.
+
+- une fonction de salaire $W(y)$,
+- une fonction de probabilité $\pi(y)$,
+- des niveaux d'éducation $y_B$ et $y_H$, tels que
+- $y_i$ maximise $W(y) - C_i(y)$ pour $i=H,B$,
+- $W(y) = \pi(y) m_H(y) + (1-\pi(y)) m_B(y)$,
+- $\pi(y)$ correspond à la vraie proportion, pour chaque $y$.
+
 Deux types d'équilibre :
-    - Si $y_B = y_H$, c'est un équilibre « mélangeant » (pooling).
-    - Si $y_B \neq y_H$, c'est un équilibre « séparant » (separating) --- les types sont révélées en équilibre.
+
+- Si $y_B = y_H$, c'est un équilibre « mélangeant » (pooling).
+- Si $y_B \neq y_H$, c'est un équilibre « séparant » (separating) --- les types sont révélées en équilibre.
 
 ## Équilibre si les types étaient observables
 
 L'analyse est triviale si le type est observé.
-    - Pas besoin de $\pi(y)$
-    - Les firmes peuvent payer $W_H(y)$ et $W_B(y)$ de façon indépendante.
-    - En équilibre, $W_i'(y_i) - C_i'(y_i) = 0$, $i=H,B$.
-        - La solution est $W_i(y_i) = C_i(y_i) + c$.
-        - La constante $c$ est déterminée par la contrainte de participation.
-    - $y_H \neq y_B$ est possible, mais ne révèle pas d'information cachée.
+
+- Pas besoin de $\pi(y)$
+- Les firmes peuvent payer $W_H(y)$ et $W_B(y)$ de façon indépendante.
+- En équilibre, $W_i'(y_i) - C_i'(y_i) = 0$, $i=H,B$.
+    - La solution est $W_i(y_i) = C_i(y_i) + c$.
+    - La constante $c$ est déterminée par la contrainte de participation.
+- $y_H \neq y_B$ est possible, mais ne révèle pas d'information cachée.
 
 ## Un exemple où l'éducation n'est pas productive
 
@@ -129,7 +138,7 @@ L'analyse est triviale si le type est observé.
 
 ## Éducation non productive, équilibres mélangants
 
-![$W(y)$ pour l'équilibre mélangeant](non_product_pooling.jpg){width=80%}
+![$W(y)$ pour l'équilibre mélangeant](figures/non_product_pooling.jpg){width=80%}
 
 ## Éducation non productive, équilibres mélangeants
 
@@ -152,16 +161,16 @@ L'analyse est triviale si le type est observé.
     \[
 			mq_H + m - 3(y^*)^2/4 \geq m.
 		\]
-		- Remarquons que $mq_H + m - (y^*)^2/2 \geq m$ est redondante.
+    - Remarquons que $mq_H + m - (y^*)^2/2 \geq m$ est redondante.
 - Équilibres multiples : pour chaque $y^* \leq 2\sqrt{mq_H/3}$.
 
 ## Le jugement de Salomon de Pierre Paul Rubens
 
-![Le jugement de Salomon](Salomons_dom){width=80%}
+![Le jugement de Salomon](figures/Salomons_dom){width=80%}
 
 ## Éducation non productive, équilibres séparants
 
-![$W(y)$ pour l'équilibre séparant](non_product_separating.jpg){width=80%}
+![$W(y)$ pour l'équilibre séparant](figures/non_product_separating.jpg){width=80%}
 
 ## Éducation non productive, équilibre séparant
 
@@ -197,11 +206,11 @@ L'analyse est triviale si le type est observé.
 
 ## Éducation productive, pleine information
 
-![Efficacité dans le cas de pleine information](full_info.jpg){width=80%}
+![Efficacité dans le cas de pleine information](figures/full_info.jpg){width=80%}
 
 ## Éducation productive, équilibres mélangants
 
-![$W(y)$ pour l'équilibre mélangeant](product_pooling.jpg){width=80%}
+![$W(y)$ pour l'équilibre mélangeant](figures/product_pooling.jpg){width=80%}
 
 ## Éducation productive, équilibre mélangant I
 
@@ -233,7 +242,7 @@ et $y^*$ est optimal et pour les $H$ et pour les $B$.
 
 ## Éducation productive, équilibres séparants
 
-![$W(y)$ pour l'équilibre séparant](product_separating.jpg){width=80%}
+![$W(y)$ pour l'équilibre séparant](figures/product_separating.jpg){width=80%}
 
 ## Éducation productive, équilibre séparant
 
