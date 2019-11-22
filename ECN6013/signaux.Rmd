@@ -1,75 +1,53 @@
-\documentclass{beamer}
+---
+title: "Signaux"
+subtitle: "ECN 6013, automne 2019"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+fig_width: 6
+fig_height: 4
+urlcolor: blue
+---
 
-\usepackage{amsmath,amssymb}
-\usepackage{graphicx}
-\usepackage{mcode}
-\usepackage[french]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[abbr]{harvard}
+## Signaux - éléments et exemples
 
-\title[]{ECN 6013 : Signaux}
+Les éléments:
+    - information asymétrique, indication de valeur ou productivité
+    - les agents à information favorable veulent la révéler
+    - la transmission de l'information doit être couteuse
+    - ce coût doit être moins élevé quand la valeur est plus élevé
+Exemples:
+    - jeunes, productivité comme travailleurs, education
+    - avocats, productivité, vêtements et bureaux de luxe
+    - firmes, qualité des produits, garantis
+    - banques, solvabilité, édifices bancaires
+    - firmes (intro en bourse), perspectives de profit, parts retenues
+    - paons, aptitude biologique, queue (sélection sexuelle)
 
-\author[William McCausland]{William McCausland}
+## Signaux et Indices
 
-\institute[Université de Montréal]
-{Département de Sciences Économiques\\Université de Montréal}
+Un signal :
+    - observable
+    - choisi
+    - peut avoir un effet sur la valeur ou la productivité ou non
+    - exemples : education, etc.
+Un indice :
+    - observable
+    - non choisi
+    - peut avoir un effet sur la valeur ou la productivité ou non
+    - exemples : âge, sexe, race
 
-\date{\today}
+## You might be signalling - du blogue de Bryan Caplan
 
-\begin{document}
+- If you bothered to enroll in school or pay tuition, you might be signaling.
+- If you worry about failing the final exam, but not subsequently forgetting what you learned, you might be signaling.
+- If you don't think cheating is ``only cheating yourself,'' you might be signaling.
+- If you seek out ``easy A's,'' you might be signaling.
+- If you rejoice when teachers cancel class, you might be signaling.
+- If you ask ``will this be in the test?'', you might be signalling.
 
-\begin{frame}
-	\titlepage
-\end{frame}
+## Les Signaux dans le New York Times
 
-\begin{frame}\frametitle{Signaux - éléments et exemples}
-	Les éléments:
-	\begin{enumerate}
-		\item information asymétrique, indication de valeur ou productivité
-		\item les agents à information favorable veulent la révéler
-		\item la transmission de l'information doit être couteuse
-		\item ce coût doit être moins élevé quand la valeur est plus élevé
-	\end{enumerate}
-	Exemples:
-	\begin{enumerate}
-		\item jeunes, productivité comme travailleurs, education
-		\item avocats, productivité, vêtements et bureaux de luxe
-		\item firmes, qualité des produits, garantis
-		\item banques, solvabilité, édifices bancaires
-		\item firmes (intro en bourse), perspectives de profit, parts retenues
-		\item paons, aptitude biologique, queue (sélection sexuelle)
-	\end{enumerate}
-\end{frame}
-
-\begin{frame}\frametitle{Signaux et Indices}
-	Un signal :
-	\begin{itemize}
-		\item observable
-		\item choisi
-		\item peut avoir un effet sur la valeur ou la productivité ou non
-		\item exemples : education, etc.
-	\end{itemize}
-	Un indice :
-	\begin{itemize}
-		\item observable
-		\item non choisi
-		\item peut avoir un effet sur la valeur ou la productivité ou non
-		\item exemples : âge, sexe, race
-	\end{itemize}
-\end{frame}
-
-\begin{frame}\frametitle{You might be signalling - du blogue de Bryan Caplan}
-	\begin{itemize}
-		\item If you bothered to enroll in school or pay tuition, you might be signaling.
-		\item If you worry about failing the final exam, but not subsequently forgetting what you learned, you might be signaling.
-		\item If you don't think cheating is ``only cheating yourself,'' you might be signaling.
-		\item If you seek out ``easy A's,'' you might be signaling.
-		\item If you rejoice when teachers cancel class, you might be signaling.
-		\item If you ask ``will this be in the test?'', you might be signalling.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}\frametitle{Les Signaux dans le New York Times}
 	XINZHENG, China, June 21 — Shengda College in central China has a diverse curriculum, foreign faculty members to teach English and [...]
  
 	Liu Jin/Agence France-Presse
@@ -77,284 +55,201 @@ Campus security officers stood guard Tuesday at the gate to Shengda College, whe
 But many students paid the college's rich tuition — at \$2,500 a year one of the highest in China — primarily because Shengda promised that their diplomas would bear the name of its parent, Zhengzhou University, a more prestigious national-level institution, and not mention Shengda at all.
 
 So when the graduating class of 2006 received diplomas that read ``Zhengzhou University Shengda Economic, Trade and Management College,'' students erupted last Friday, ransacking classrooms and administrative offices, shattering car windows, scuffling with the police and staging one of the most prolonged student protests since the 1989 pro-democracy uprising that filled Tiananmen Square [...].
-\end{frame}
 
-\begin{frame}\frametitle{Signaux - sommaire}
-	\begin{itemize}
-		\item Le papier de Spence introduit formellement le concept.
-		\item Il y a des travailleurs et des firmes.
-		\item Travailleurs :
-		\begin{itemize}
-			\item Deux types de productivité : $H$ et $B$, en proportions $q_H$, $q_B$
-			\item Ils choisissent un niveau d'éducation et de participer ou non.
-			\item Ils ont des préférences pour leur salaire et leur niveau d'éducation.
-			\item Ces préférences dépendent de leur type.
-			\item Leur productivité peut dépendre de leur niveau d'éducation.
-		\end{itemize}
-		\item Firmes :
-		\begin{itemize}
-			\item Elles embauchent les travailleurs.
-			\item Elles offrent un salaire qui dépend du niveau d'éducation.
-			\item Elles n'observent pas le type de travailleur directement.
-			\item Elles observent le niveau d'éducation, qui peut révéler le type en équilibre.
-			\item Le marché pour le travail de chaque niveau d'éducation est concurrentiel.
-		\end{itemize}
-	\end{itemize}
-\end{frame}
+## Signaux - sommaire
 
-\begin{frame}\frametitle{Signaux - travailleurs}
-	\begin{itemize}
-		\item Deux types : $H$ (haute productivité) et $B$ (basse).
-		\item Les proportions sont $q_H$ et $q_B = 1-q_H$.
-		\item Utilité $W(y) - C_i(y)$, $i=H,B$, où
-		\begin{itemize}
-			\item $y$ est le niveau d'éducation,
-			\item $W(y)$ est le salaire offert à un travailleur avec éducation $y$,
-			\item $C_i(y)$ est le coût d'opportunité de l'éducation du type $i$.
-		\end{itemize}
-		\item La productivité est de $m_i(y)$, $i=H,B$.
-		\begin{itemize}
-			\item la dépendance de $i$ est essentielle.
-			\item la dépendance de $y$ n'est pas essentielle.
-		\end{itemize}
-	\end{itemize}
-\end{frame}
+- Le papier de Spence introduit formellement le concept.
+- Il y a des travailleurs et des firmes.
+- Travailleurs :
+    - Deux types de productivité : $H$ et $B$, en proportions $q_H$, $q_B$
+    - Ils choisissent un niveau d'éducation et de participer ou non.
+    - Ils ont des préférences pour leur salaire et leur niveau d'éducation.
+    - Ces préférences dépendent de leur type.
+    - Leur productivité peut dépendre de leur niveau d'éducation.
+- Firmes :
+    - Elles embauchent les travailleurs.
+    - Elles offrent un salaire qui dépend du niveau d'éducation.
+    - Elles n'observent pas le type de travailleur directement.
+    - Elles observent le niveau d'éducation, qui peut révéler le type en équilibre.
+    - Le marché pour le travail de chaque niveau d'éducation est concurrentiel.
 
-\begin{frame}\frametitle{Signaux - firmes}
-	\begin{itemize}
-		\item Beaucoup de firmes identiques et concurrentielles.
-		\item La technologie est linéaire, même si $m_i(y)$ ne l'est pas nécessairement.
-		\item Une firme offre un paie $W(y)$, à un travailleur d'éducation $y$.
-		\item En équilibre, $W(y)$ est le produit marginal espéré d'un travailleur avec éducation $y$.
-		\item L'incertitude n'est pas spécifiée --- comme les prix, elle est déterminée en équilibre.
-		\item Pour chaque $y$, la firme croit que la proportion des travailleurs du type $H$ parmi ceux à éducation $y$ est $\pi(y)$.
-		\item $\pi(y)$ n'égale pas nécessairement $q_H$.
-	\end{itemize}
-\end{frame}
+## Signaux - travailleurs
 
-\begin{frame}\frametitle{Signaux - équilibre}
-	Un équilibre est
-	\begin{itemize}
-		\item une fonction de salaire $W(y)$,
-		\item une fonction de probabilité $\pi(y)$,
-		\item des niveaux d'éducation $y_B$ et $y_H$,
-	\end{itemize}
-	tels que
-	\begin{itemize}
-		\item $y_i$ maximise $W(y) - C_i(y)$ pour $i=H,B$,
-		\item $W(y) = \pi(y) m_H(y) + (1-\pi(y)) m_B(y)$,
-		\item $\pi(y)$ correspond à la vraie proportion, pour chaque $y$.
-	\end{itemize}
-	Deux types d'équilibre :
-	\begin{itemize}
-		\item Si $y_B = y_H$, c'est un équilibre « mélangeant » (pooling).
-		\item Si $y_B \neq y_H$, c'est un équilibre « séparant » (separating) --- les types sont révélées en équilibre.
-	\end{itemize}
-\end{frame}
+- Deux types : $H$ (haute productivité) et $B$ (basse).
+- Les proportions sont $q_H$ et $q_B = 1-q_H$.
+- Utilité $W(y) - C_i(y)$, $i=H,B$, où
+    - $y$ est le niveau d'éducation,
+    - $W(y)$ est le salaire offert à un travailleur avec éducation $y$,
+    - $C_i(y)$ est le coût d'opportunité de l'éducation du type $i$.
+- La productivité est de $m_i(y)$, $i=H,B$.
+    - la dépendance de $i$ est essentielle.
+    - la dépendance de $y$ n'est pas essentielle.
 
-\begin{frame}\frametitle{Équilibre si les types étaient observables}
-	L'analyse est triviale si le type est observé.
-	\begin{itemize}
-		\item Pas besoin de $\pi(y)$
-		\item Les firmes peuvent payer $W_H(y)$ et $W_B(y)$ de façon indépendante.
-		\item En équilibre, $W_i'(y_i) - C_i'(y_i) = 0$, $i=H,B$.
-		\begin{itemize}
-			\item La solution est $W_i(y_i) = C_i(y_i) + c$.
-			\item La constante $c$ est déterminée par la contrainte de participation.
-		\end{itemize}
-		\item $y_H \neq y_B$ est possible, mais ne révèle pas d'information cachée.
-	\end{itemize}
-\end{frame}
+## Signaux - firmes
 
-\begin{frame}\frametitle{Un exemple où l'éducation n'est pas productive}
-	\begin{itemize}
-		\item Supposons que $m_i(y) = m_i$, la productivité ne dépend pas de l'éducation.
-		\item Spécifiquement, $m_B = m$ et $m_H = 2m$.
-		\item Soit $C_H(y) = y^2/2$, $C_B(y) = 3y^2/4$.
-		\item Aparté : si les firmes observaient le type directement, l'équilibre est trivial :
-		\begin{itemize}
-			\item $W_H(y) = 2m$, $W_B(y) = m$, $y_H = y_B = 0$.
-		\end{itemize}
-	\end{itemize}
-\end{frame}
+- Beaucoup de firmes identiques et concurrentielles.
+- La technologie est linéaire, même si $m_i(y)$ ne l'est pas nécessairement.
+- Une firme offre un paie $W(y)$, à un travailleur d'éducation $y$.
+- En équilibre, $W(y)$ est le produit marginal espéré d'un travailleur avec éducation $y$.
+- L'incertitude n'est pas spécifiée --- comme les prix, elle est déterminée en équilibre.
+- Pour chaque $y$, la firme croit que la proportion des travailleurs du type $H$ parmi ceux à éducation $y$ est $\pi(y)$.
+- $\pi(y)$ n'égale pas nécessairement $q_H$.
 
-\begin{frame}\frametitle{Éducation non productive, équilibres mélangants}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=90mm]{non_product_pooling.jpg}
-			\caption{$W(y)$ pour l'équilibre mélangeant}
-		\end{center}
-	\end{figure}
-\end{frame}
+## Signaux - équilibre
 
-\begin{frame}\frametitle{Éducation non productive, équilibres mélangeants}
-	\begin{itemize}
-		\item Dans un équilibre mélangeant, il y a un seuil $y^*$ tel que
-		\[
-			y_B = y_H = y^*,
+Un équilibre est
+    - une fonction de salaire $W(y)$,
+    - une fonction de probabilité $\pi(y)$,
+    - des niveaux d'éducation $y_B$ et $y_H$,
+tels que
+    - $y_i$ maximise $W(y) - C_i(y)$ pour $i=H,B$,
+    - $W(y) = \pi(y) m_H(y) + (1-\pi(y)) m_B(y)$,
+    - $\pi(y)$ correspond à la vraie proportion, pour chaque $y$.
+Deux types d'équilibre :
+    - Si $y_B = y_H$, c'est un équilibre « mélangeant » (pooling).
+    - Si $y_B \neq y_H$, c'est un équilibre « séparant » (separating) --- les types sont révélées en équilibre.
+
+## Équilibre si les types étaient observables
+
+L'analyse est triviale si le type est observé.
+    - Pas besoin de $\pi(y)$
+    - Les firmes peuvent payer $W_H(y)$ et $W_B(y)$ de façon indépendante.
+    - En équilibre, $W_i'(y_i) - C_i'(y_i) = 0$, $i=H,B$.
+        - La solution est $W_i(y_i) = C_i(y_i) + c$.
+        - La constante $c$ est déterminée par la contrainte de participation.
+    - $y_H \neq y_B$ est possible, mais ne révèle pas d'information cachée.
+
+## Un exemple où l'éducation n'est pas productive
+
+- Supposons que $m_i(y) = m_i$, la productivité ne dépend pas de l'éducation.
+- Spécifiquement, $m_B = m$ et $m_H = 2m$.
+- Soit $C_H(y) = y^2/2$, $C_B(y) = 3y^2/4$.
+- Aparté : si les firmes observaient le type directement, l'équilibre est trivial :
+    - $W_H(y) = 2m$, $W_B(y) = m$, $y_H = y_B = 0$.
+
+## Éducation non productive, équilibres mélangants
+
+![$W(y)$ pour l'équilibre mélangeant](non_product_pooling.jpg){width=80%}
+
+## Éducation non productive, équilibres mélangeants
+
+- Dans un équilibre mélangeant, il y a un seuil $y^*$ tel que
+\[
+	y_B = y_H = y^*,
+\]
+\[
+	 W(y)= \begin{cases} m & y < y^*, \\ (q_H+1) m & y \geq y^*, \end{cases}
+	 \qquad
+	 \pi(y) = \begin{cases} 0 & y < y^*, \\ q_H & y \geq y^*. \end{cases}
+\]
+- Vérification d'un équilibre :
+    - les contraintes de participation tiennent, ($W(y) > 0$).
+    - pour que les travailleurs du type $H$ choisissent $y=y^*$,
+    \[
+	    mq_H + m - (y^*)^2/2 \geq m,
+    \]
+    - pour que les travailleurs du type $B$ choisissent $y=y^*$,
+    \[
+			mq_H + m - 3(y^*)^2/4 \geq m.
 		\]
+		- Remarquons que $mq_H + m - (y^*)^2/2 \geq m$ est redondante.
+- Équilibres multiples : pour chaque $y^* \leq 2\sqrt{mq_H/3}$.
+
+## Le jugement de Salomon de Pierre Paul Rubens
+
+![Le jugement de Salomon](Salomons_dom){width=80%}
+
+## Éducation non productive, équilibres séparants
+
+![$W(y)$ pour l'équilibre séparant](non_product_separating.jpg){width=80%}
+
+## Éducation non productive, équilibre séparant
+
+- Dans un équilibre séparant, il y a un seuil $y^*$ tel que
+\[
+	y_B = 0, \quad y_H = y^*,
+\]
+\[
+	W(y) = \begin{cases} m & y < y^*, \\ 2m & y \geq y^*, \end{cases}
+	\qquad
+	\pi(y) = \begin{cases} 0 & y < y^*, \\ 1 & y \geq y^*. \end{cases}
+\]
+- Vérification d'un équilibre :
+    - les contraintes de participation tiennent, ($W(y) > 0$).
+    - contrainte de sélection pour les types $H$:
 		\[
-			 W(y)= \begin{cases} m & y < y^*, \\ (q_H+1) m & y \geq y^*, \end{cases}
-			 \qquad
-			 \pi(y) = \begin{cases} 0 & y < y^*, \\ q_H & y \geq y^*. \end{cases}
+			2m - (y^*)^2/2 \geq m
 		\]
-		\item Vérification d'un équilibre :
-		\begin{itemize}
-			\item les contraintes de participation tiennent, ($W(y) > 0$).
-			\item pour que les travailleurs du type $H$ choisissent $y=y^*$,
-			\[
-				mq_H + m - (y^*)^2/2 \geq m,
-			\]
-			\item pour que les travailleurs du type $B$ choisissent $y=y^*$,
-			\[
-				mq_H + m - 3(y^*)^2/4 \geq m.
-			\]
-			\item Remarquons que $mq_H + m - (y^*)^2/2 \geq m$ est redondante.
-		\end{itemize}
-		\item Équilibres multiples : pour chaque $y^* \leq 2\sqrt{mq_H/3}$.
-	\end{itemize}
-\end{frame}
-
-\begin{frame}\frametitle{Le jugement de Salomon de Pierre Paul Rubens}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=90mm]{Salomons_dom}
-		\end{center}
-	\end{figure}
-\end{frame}
-
-\begin{frame}\frametitle{Éducation non productive, équilibres séparants}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=90mm]{non_product_separating.jpg}
-			\caption{$W(y)$ pour l'équilibre séparant}
-		\end{center}
-	\end{figure}
-\end{frame}
-
-\begin{frame}\frametitle{Éducation non productive, équilibre séparant}
-	\begin{itemize}
-		\item Dans un équilibre séparant, il y a un seuil $y^*$ tel que
+		- contrainte de sélection pour les types $B$:
 		\[
-			y_B = 0, \quad y_H = y^*,
+			m \geq 2m - 3(y^*)^2/4
 		\]
-		\[
-			W(y) = \begin{cases} m & y < y^*, \\ 2m & y \geq y^*, \end{cases}
-			\qquad
-			\pi(y) = \begin{cases} 0 & y < y^*, \\ 1 & y \geq y^*. \end{cases}
-		\]
-		\item Vérification d'un équilibre :
-		\begin{itemize}
-			\item les contraintes de participation tiennent, ($W(y) > 0$).
-			\item contrainte de sélection pour les types $H$:
-			\[
-				2m - (y^*)^2/2 \geq m
-			\]
-			\item contrainte de sélection pour les types $B$:
-			\[
-				m \geq 2m - 3(y^*)^2/4
-			\]
-			\item ensembles : $3(y^*)^2/4 \geq m \geq (y^*)^2/2$.
-		\end{itemize}
-	\end{itemize}
-\end{frame}
+		- ensembles : $3(y^*)^2/4 \geq m \geq (y^*)^2/2$.
 
-\begin{frame}\frametitle{Un exemple où l'éducation est productive}
-	\begin{itemize}
-		\item Supposons maintenant que $m_H(y) = 6y$ et $m_B(y) = 3y$.
-		\item Comme avant, $C_H(y) = y^2/2$ et $C_B(y) = 3y^2/4$.
-		\item Soit $q_H = 1/3$ (fraction de travailleurs de type $H$)
-		\item Si les firmes observaient les types, ils paierait
-		$W(y) = m_i(y)$ pour $i=H,B$:
-		\begin{itemize}
-			\item $H$ maximise $W_H(y)-C_H(y) = 6y - y^2/2$ au choix $y=6$.
-			\item $B$ maximise $W_B(y)-C_B(y) = 3y - 3y^2/4$ au choix $y=2$.
-		\end{itemize}
-	\end{itemize}
-\end{frame}
+## Un exemple où l'éducation est productive
 
-\begin{frame}\frametitle{Éducation productive, pleine information}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=90mm]{full_info.jpg}
-			\caption{Efficacité dans le cas de pleine information}
-		\end{center}
-	\end{figure}
-\end{frame}
+- Supposons maintenant que $m_H(y) = 6y$ et $m_B(y) = 3y$.
+- Comme avant, $C_H(y) = y^2/2$ et $C_B(y) = 3y^2/4$.
+- Soit $q_H = 1/3$ (fraction de travailleurs de type $H$)
+- Si les firmes observaient les types, ils paierait $W(y) = m_i(y)$ pour $i=H,B$ :
+    - $H$ maximise $W_H(y)-C_H(y) = 6y - y^2/2$ au choix $y=6$.
+    - $B$ maximise $W_B(y)-C_B(y) = 3y - 3y^2/4$ au choix $y=2$.
 
-\begin{frame}\frametitle{Éducation productive, équilibres mélangants}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=90mm]{product_pooling.jpg}
-			\caption{$W(y)$ pour l'équilibre mélangeant}
-		\end{center}
-	\end{figure}
-\end{frame}
+## Éducation productive, pleine information
 
-\begin{frame}\frametitle{Éducation productive, équilibre mélangant I}
-	\begin{itemize}
-		\item Si $B$ et $H$ choisissent le même $y=y^*$, la productivité moyenne est
-		\[
-			 q_H m_H(y^*) + (1-q_H) m_B(y^*) = (1/3)(6y^*) + (2/3)(3y^*) = 4y^*.
-		\]
-		\item Dans un équilibre pooling, il y a une valeur $y^*$ telle que
-		\[
-			y_B = y_H = y^*,
-		\]
-		\[
-			W(y) = \begin{cases} 3y & y < y^*, \\ 4y^* & y \geq y^*, \end{cases}
-		  \qquad
-		  \pi(y) = \begin{cases} 0 & y < y^*, \\ q_H & y \geq y^* \end{cases}
-		\]
-		et $y^*$ est optimal et pour les $H$ et pour les $B$.
-	\end{itemize}
-\end{frame}
+![Efficacité dans le cas de pleine information](full_info.jpg){width=80%}
 
-\begin{frame}\frametitle{Éducation productive, équilibre mélangant II}
-	\begin{itemize}
-		\item Les conditions à vérifier sont
-		\begin{enumerate}
-			\item $y^*$ est meilleur pour les $H$ que $y<y^*$: $3y - y^2/2 \leq 4y^* - (y^*)^2/2$ pour chaque $y \leq y^*$,
-			\item $y^*$ est meilleur pour les $B$ que $y<y^*$: $3y - 3y^2/4 \leq 4y^* - 3(y^*)^2/4$ pour chaque $y \leq y^*$.
-			\item $y^*$ est meilleur pour les $H$ que $y>y^*$: la courbe d'indifférence des $H$ qui passe par le point $(y^*,4y^*)$, $w=y^2/2 + 4y^* - (y^*)^2/2$, a une dérivée par rapport à $y$ qui est inférieure à la dérivée de $4y$ par rapport à $y$ à $y=y^*$.
-		\end{enumerate}
-		\item Condition 2 est vraie pour $y^* < 4.43$ : sinon, le maximum d'utilité dans l'intervalle $[0,y^*]$ excède l'utilité à $y^*$.
-		\item Étant donné condition 2, condition 1 est redondant car les courbes d'indifférence des $H$ sont toujours moins raides que celles des $B$.
-		\item Condition 3 est vraie pour $y^* > 4$.
-		\item Il y a un équilibre pooling pour $4 \leq y^* \leq 4.43$.
-	\end{itemize}
-\end{frame}
+## Éducation productive, équilibres mélangants
 
-\begin{frame}\frametitle{Éducation productive, équilibres séparants}
-	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[width=90mm]{product_separating.jpg}
-			\caption{$W(y)$ pour l'équilibre séparant}
-		\end{center}
-	\end{figure}
-\end{frame}
+![$W(y)$ pour l'équilibre mélangeant](product_pooling.jpg){width=80%}
 
-\begin{frame}\frametitle{Éducation productive, équilibre séparant}
-	\begin{itemize}
-		\item Dans un équilibre séparant, il y a $y_B$ et $y_H$ tels que
-		\begin{itemize}
-			\item les $B$ choisissent $y_B$ et reçoivent $3y_B$,
-			\item les $H$ choisissent $y_H$ et reçoivent $6y_H$.
-		\end{itemize}
-		\item Les contraintes d'auto-sélection sont
-		\[
-			6y_H - y_H^2/2 \geq 3y_B - y_B^2/2
-		\]
-		pour les $H$ et
-		\[
-			3y_B - 3y_B^2/4 \geq 6y_H - 3y_H^2/4
-		\]
-		pour les $B$.
-		\item Les $B$ n'ont rien à prouver, il obtient seulement la quantité d'éducation efficace $y_B = 2$.
-		\item Si la contrainte d'auto-sélection pour les $H$ est saturée, $y_H \approx 7.46$.
-		La quantité d'éducation efficace pour les $H$ est de $y_H = 6$.
-		Il y a des équilibres où $y_H > 7.46$.
-	\end{itemize}
-\end{frame}
+## Éducation productive, équilibre mélangant I
 
-\end{document}
+- Si $B$ et $H$ choisissent le même $y=y^*$, la productivité moyenne est
+\[
+	 q_H m_H(y^*) + (1-q_H) m_B(y^*) = (1/3)(6y^*) + (2/3)(3y^*) = 4y^*.
+\]
+- Dans un équilibre pooling, il y a une valeur $y^*$ telle que
+\[
+	y_B = y_H = y^*,
+\]
+\[
+	W(y) = \begin{cases} 3y & y < y^*, \\ 4y^* & y \geq y^*, \end{cases}
+	\qquad
+	\pi(y) = \begin{cases} 0 & y < y^*, \\ q_H & y \geq y^* \end{cases}
+\]
+et $y^*$ est optimal et pour les $H$ et pour les $B$.
+
+## Éducation productive, équilibre mélangant II
+
+- Les conditions à vérifier sont
+    1. $y^*$ est meilleur pour les $H$ que $y<y^*$: $3y - y^2/2 \leq 4y^* - (y^*)^2/2$ pour chaque $y \leq y^*$,
+    1.  $y^*$ est meilleur pour les $B$ que $y<y^*$: $3y - 3y^2/4 \leq 4y^* - 3(y^*)^2/4$ pour chaque $y \leq y^*$.
+    1.  $y^*$ est meilleur pour les $H$ que $y>y^*$: la courbe d'indifférence des $H$ qui passe par le point $(y^*,4y^*)$, $w=y^2/2 + 4y^* - (y^*)^2/2$, a une dérivée par rapport à $y$ qui est inférieure à la dérivée de $4y$ par rapport à $y$ à $y=y^*$.
+- Condition 2 est vraie pour $y^* < 4.43$ : sinon, le maximum d'utilité dans l'intervalle $[0,y^*]$ excède l'utilité à $y^*$.
+- Étant donné condition 2, condition 1 est redondant car les courbes d'indifférence des $H$ sont toujours moins raides que celles des $B$.
+- Condition 3 est vraie pour $y^* > 4$.
+- Il y a un équilibre pooling pour $4 \leq y^* \leq 4.43$.
+
+## Éducation productive, équilibres séparants
+
+![$W(y)$ pour l'équilibre séparant](product_separating.jpg){width=80%}
+
+## Éducation productive, équilibre séparant
+
+- Dans un équilibre séparant, il y a $y_B$ et $y_H$ tels que
+    - les $B$ choisissent $y_B$ et reçoivent $3y_B$,
+    - les $H$ choisissent $y_H$ et reçoivent $6y_H$.
+- Les contraintes d'auto-sélection sont
+\[
+	6y_H - y_H^2/2 \geq 3y_B - y_B^2/2
+\]
+pour les $H$ et
+\[
+	3y_B - 3y_B^2/4 \geq 6y_H - 3y_H^2/4
+\]
+pour les $B$.
+- Les $B$ n'ont rien à prouver, il obtient seulement la quantité d'éducation efficace $y_B = 2$.
+- Si la contrainte d'auto-sélection pour les $H$ est saturée, $y_H \approx 7.46$.
+La quantité d'éducation efficace pour les $H$ est de $y_H = 6$.
+Il y a des équilibres où $y_H > 7.46$.
