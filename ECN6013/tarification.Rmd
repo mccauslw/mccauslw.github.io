@@ -1,0 +1,93 @@
+---
+title: "Tarification Optimale"
+subtitle: "ECN 6013, automne 2019"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+fig_width: 6
+fig_height: 4
+urlcolor: blue
+---
+
+## Tarification optimale - producteur
+
+- Il y a un producteur monopoliste d'électricité.
+- Coût linéaire : le coût de produire $x$ unités est de $cx$, où $c>0$.
+- La revente est impossible et le producteur peut imposer une tarification $T(x)$ : un consommateur paie $T(x)$ pour $x$ unités d'électricité.
+- Soit $M(x) = T(x) - cx$ la majoration (ou le profit).
+- Le producteur choisit $T(x)$ pour maximiser son profit.
+
+## Modèle de base avec un seul type de consommateur
+
+- Le consommateur a l'utilité métrique monétaire $U(x)$ comme function de sa consommation de l'électricité.
+- $U(x)$ est crossante, concave, différentiable.
+- Normalisation : $U(0) = 0$.
+- Alors $V(x) = U(x) - cx$ est le surplus total.
+- Le consommateur choisit $x$ pour maximiser $U(x) - T(x)$.
+
+## Équilibre avec un seul type de consommateur
+
+- Un équilibre est une tarification $T(x)$ et une consommation $\bar{x}$ telles que
+    - $T(x)$ maximise la majoration, sachant que le consommateur optimise.
+    - $\bar{x}$ maximise $U(x) - T(x)$.
+- Le monopole peut faire une offre à prendre ou à laisser alors peut extraire tous le surplus.
+- Alors le monopole maximise le surplus total et choisit $T(x)$ pour en extraire tous.
+- Le surplus est maximal pour $\bar{x}$ qui vérifie la CPO $U'(\bar{x}) = c$.
+- $T(x)$ tel que $T(x) \geq U(x)$, avec égalité pour $\bar{x}$ seulement, est optimal pour le producteur.
+- Le profit est $\bar{M} \equiv M(\bar{x}) = V(\bar{x})$.
+
+## Illustration, équilibre avec un type de consommateur
+
+```{r single, echo=FALSE}
+xLbar = 0.5
+xHbar = xLbar + log(2)
+c = exp(-xLbar)
+
+ULbar = 1-c
+UHbar = 1-exp(-2*xHbar)
+
+x = seq(0, 1, by=0.01)
+cx = c*x
+
+ULx = 1-exp(-x)
+UHx = 1-exp(-2*x)
+
+TLx = ULbar + c*(x-xLbar)
+THx = UHbar + c*(x-xHbar)
+
+plot(x, cx, type='l', xlab='x', ylab='$', xlim=c(0, 1), ylim=c(0, 1))
+lines(x, ULx, col='blue')
+lines(x, UHx, col='green')
+lines(x, TLx, col='blue')
+lines(x, THx, col='green')
+lines(c(xLbar, xLbar), c(0, ULbar), lty='dashed')
+lines(c(0, xLbar), c(c*xLbar, c*xLbar), lty='dashed')
+lines(c(0, xLbar), c(ULbar, ULbar), lty='dashed')
+
+text(0.1, 0.18, 'T[L](x)', col='blue')
+text(0.04, 0.07, 'U[L](x)', col='blue')
+text(0.3, 0.20, 'cx')
+```
+
+## Modèle avec deux types de consommateur, types observés
+
+- Deux types : $H$ (haute demande) et $B$ (basse demande) en proportions $\pi$ et $(1-\pi)$.
+- Les utilités sont $U_H(x)$ et $U_B(x)$ avec les mêmes propriétés que $U(x)$ plus $U_H'(x) > U_B'(x)$ pour tous $x \geq 0$.
+- Le surplus par consommateur de type $t$ est de $V_t(x) \equiv U_t(x) - cx$.
+- Un équilibre est une $T_H(x)$, une $T_B(x)$, $x_B^*$ et $x_H^*$ telles que
+    - $T_t(x)$ maximise la majoration pour les consommateurs de type $t$, $t=B,H$.
+    - $\bar{x}_t$ maximise $U_t(x) - T_t(x)$, $t=B,H$.
+- En équilibre,
+    - $\bar{x}_t$ vérifie $U_t'(\bar{x}_t) = c$, $t=B,H$. (CPO pour max de surplus)
+    - $T_t(x) \geq U_t(x)$, avec égalité pour $\bar{x}_t$ seulement, $t=B,H$.
+    - le profit par consommateur est $\pi \bar{M}_B + (1-\pi) \bar{M}_H$, où $\bar{M}_t \equiv M(\bar{x}_t) = V_t(\bar{x}_t)$, $t=B,H$.
+- L'équilibre est efficace : les bénéfices marginales égale le coûts marginal $c$.
+ 
+## Modèle avec deux types de consommateur, types non-observés
+
+- Qu'est-ce qui se passe avec un seul $T(x)$ qui vérifie $T(\bar{x}_t) = U(\bar{x}_t)$, $t=B,H$?
+- Le producteur peut réduire la majoration au point $\bar{x}_H$ jusqu'à $M_H^0$ qui vérifie
+\[
+  V_H(\bar{x}_H) - M_H^0 = V_H(\bar{x}_L) - \bar{M}_L.
+\]
+est 
