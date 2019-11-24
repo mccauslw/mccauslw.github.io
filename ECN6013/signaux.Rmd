@@ -14,9 +14,9 @@ urlcolor: blue
 Les éléments :
 
 - information asymétrique, indication de valeur ou productivité
-- les agents à information favorable veulent la révéler
-- la transmission de l'information doit être couteuse
-- ce coût doit être moins élevé quand la valeur est plus élevé
+- Les agents à information favorable veulent la révéler.
+- La transmission crédible de l'information doit être couteuse.
+- Ce coût doit être moins élevé quand la valeur est plus élevé.
 
 Exemples :
 
@@ -42,6 +42,8 @@ Un indice :
 - non choisi
 - peut avoir un effet sur la valeur ou la productivité ou non
 - exemples : âge, sexe, race
+
+Signaux et criblage (signalling and screening)
 
 ## You might be signalling - du blogue de Bryan Caplan
 
@@ -130,6 +132,7 @@ L'analyse est triviale si le type est observé.
 
 ## Un exemple où l'éducation n'est pas productive
 
+- Maintenant, le type n'est pas observé.
 - Supposons que $m_i(y) = m_i$, la productivité ne dépend pas de l'éducation.
 - Spécifiquement, $m_B = m$ et $m_H = 2m$.
 - Soit $C_H(y) = y^2/2$, $C_B(y) = 3y^2/4$.

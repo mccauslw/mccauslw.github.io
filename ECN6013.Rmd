@@ -29,4 +29,6 @@
 
 [Diapos, Information Assurance](./ECN6013/information_assurance.pdf), 2019/11/11
 
-[Diapos, Information cachée des vendeurs](./ECN6013/information_vendeurs.pdf), 2019/11/18 (avant le cours du 18 novembre)
+[Diapos, Information cachée des vendeurs](./ECN6013/information_vendeurs.pdf), 2019/11/18
+
+[Diapos, Signaux](./ECN6013/signaux.pdf), 2019/11/25 (version avant le cours)
