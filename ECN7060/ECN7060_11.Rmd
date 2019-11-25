@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = FALSE)
 * Notes :
     * Une règle de décision est un $\delta \colon {\cal X} \to \{a_0,a_1\}$
     * $R = \{x \colon \delta(x) = a_1 \}$, $R^c = \{x \colon \delta(x) = a_0\}$.
-    * réduction de dimension, comme dans le cas d'estimation ponctuelle : il y a souvent une statistique $W(X)$ scalaire tel que $R$ ou $R^c$ prend la forme $\{x \colon W(x) \in [a,b]\},$ des fois avec $a=\infty$ ou $b=\infty$.
+    * réduction de dimension, comme dans le cas d'estimation ponctuelle : il y a souvent une statistique $W(X)$ scalaire tel que $R$ ou $R^c$ prend la forme $\{x \colon W(x) \in [a,b]\},$ des fois avec $a=-\infty$ ou $b=\infty$.
     * attention : quand $W(X)$ est un estimateur de $\theta$, il est facile de confondre une hypothèse avec une région ($R$ ou $R^c$).
     
 ## Optimalité par fonction de perte
@@ -93,7 +93,7 @@ $$
 
 * La solution $\delta(x)$ qui minimise la perte *a posteriori* est
 $$ \delta(x) = \begin{cases}
-a_0, & \frac{c_{II}}{c_I} \frac{P[\theta \in \Theta_0^c|x]}{P[\theta \in \Theta_0|x]} \leq 1, \\
+a_0, & \frac{c_I}{c_{II}} \frac{P[\theta \in \Theta_0|x]}{P[\theta \in \Theta_0^c|x]} \geq 1, \\
 a_1, & \mbox{autrement}.
 \end{cases}
 $$
@@ -289,7 +289,7 @@ Le rapport de chances (rapport des cotes) postérieur :
 
 La décision optimale :
 \[
-  \delta(x) = \begin{cases} a_0 & \frac{c_I}{c_{II}} \frac{\Pr[M=H_0]}{\Pr[M=H_1]} \frac{f_0(x)}{f_1(x)} \leq 1, \\ a_1 & \mbox{autrement}.
+  \delta(x) = \begin{cases} a_0 & \frac{c_I}{c_{II}} \frac{\Pr[M=H_0]}{\Pr[M=H_1]} \frac{f_0(x)}{f_1(x)} \geq 1, \\ a_1 & \mbox{autrement}.
   \end{cases}
 \]
 
