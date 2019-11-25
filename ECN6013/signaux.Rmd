@@ -90,8 +90,8 @@ So when the graduating class of 2006 received diplomas that read ``Zhengzhou Uni
     - $W(y)$ est le salaire offert à un travailleur avec éducation $y$,
     - $C_i(y)$ est le coût d'opportunité de l'éducation du type $i$.
 - La productivité est de $m_i(y)$, $i=H,B$.
-    - la dépendance de $i$ est essentielle.
-    - la dépendance de $y$ n'est pas essentielle.
+    - La dépendance de $i$ est essentielle pour un modèle de signaux.
+    - La dépendance de $y$ (accumulation de capital humain) n'est pas essentielle dans le modèle.
 
 ## Signaux - firmes
 
@@ -112,7 +112,7 @@ Un équilibre est
 - des niveaux d'éducation $y_B$ et $y_H$, tels que
 - $y_i$ maximise $W(y) - C_i(y)$ pour $i=H,B$,
 - $W(y) = \pi(y) m_H(y) + (1-\pi(y)) m_B(y)$,
-- $\pi(y)$ correspond à la vraie proportion, pour chaque $y$.
+- $\pi(y)$ correspond à la vraie proportion (endogène), pour chaque niveau d'éducation $y$.
 
 Deux types d'équilibre :
 
