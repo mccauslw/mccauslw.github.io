@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -86,7 +87,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -247,18 +247,6 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -344,7 +332,8 @@ $(document).ready(function () {
 <p><a href="./ECN7060/ECN7060_8.pdf">Diapos, Cours 8, 2019/10/30</a></p>
 <p><a href="./ECN7060/ECN7060_9.pdf">Diapos, Cours 9, 2019/11/06</a></p>
 <p><a href="./ECN7060/ECN7060_10.pdf">Diapos, Cours 10, 2019/11/13</a></p>
-<p><a href="./ECN7060/ECN7060_11.pdf">Diapos, Cours 11, 2019/11/20</a> (version avant le cours)</p>
+<p><a href="./ECN7060/ECN7060_11.pdf">Diapos, Cours 11, 2019/11/20</a></p>
+<p><a href="./ECN7060/ECN7060_12.pdf">Diapos, Cours 12, 2019/11/27</a></p>
 </div>
 
 
@@ -364,6 +353,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

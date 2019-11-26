@@ -31,4 +31,6 @@
 
 [Diapos, Cours 10, 2019/11/13](./ECN7060/ECN7060_10.pdf)
 
-[Diapos, Cours 11, 2019/11/20](./ECN7060/ECN7060_11.pdf) (version avant le cours)
+[Diapos, Cours 11, 2019/11/20](./ECN7060/ECN7060_11.pdf)
+
+[Diapos, Cours 12, 2019/11/27](./ECN7060/ECN7060_12.pdf)
