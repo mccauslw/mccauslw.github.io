@@ -31,16 +31,17 @@ $$ P[L(x) \leq \theta \leq U(x)|x] \quad \mbox{ou} \quad P[l\leq \theta \leq u|x
 
 ## Inversion d'une statistique test
 
-* Résultat
-    * Pour chaque $\theta_0$, soit $A(\theta_0)$ la région de non-rejet pour un test de niveau $\alpha$ de l'hypothèse nulle $H_0:\theta = \theta_0$.
-    * Définez, pour chaque $x \in {\cal X}$, $C(x) = \{\theta:x \in A(\theta)\}$.
-    * Notez que $x \in A(\theta) \Leftrightarrow \theta \in C(x)$.
-    * Alors $C(X)$ est une région de confiance avec coefficient de confiance $(1-\alpha)$.
-* Preuve
+* Pour chaque $\theta_0$, soit $A(\theta_0)$ la région de non-rejet pour un test de niveau $\alpha$ de l'hypothèse nulle $H_0:\theta = \theta_0$.
+* Alors $A(\theta)$ vérifie $P_\theta[X \notin A(\theta)] \leq \alpha$ et l'inégalité est sharp.
+* Définez, pour chaque $x \in {\cal X}$, $C(x) = \{\theta:x \in A(\theta)\}$.
+* Notez que $x \in A(\theta) \Leftrightarrow \theta \in C(x)$.
+* Résultat : $C(X)$ est une région de confiance avec coefficient de confiance $(1-\alpha)$.
+* Preuve :
     * Puisque le niveau du test est de $\alpha$,
     $$ P_\theta[X \notin A(\theta)] \leq \alpha. $$
     * Alors
     $$ P_\theta[\theta \in C(X)] = P_\theta[X \in A(\theta)] \geq (1-\alpha). $$
+    * La première inégalité est sharp donc la deuxième l'est aussi.
     
 ## Exemple gaussien, $\sigma^2$ connu
 
@@ -65,7 +66,8 @@ $$
 
 ## Quantités pivotales
 
-* Une fonction $Q(X,\theta)$ est pivotale si sa distribution ne dépend pas de $\theta$.
+* Une fonction $Q(X,\theta)$ est pivotale si sa loi ne dépend pas de $\theta$.
+* Interprétation bayésienne : sa loi ne dépend pas de $f(\theta)$
 * Famille $f(x|\mu) = f_0(x-\mu)$ : $Q(X,\theta) = \bar{X}-\mu$ est pivotale.
 * Preuve :
     * Soit $Z_i \sim f_0(z)$. Sa distribution ne dépend pas de $\mu$.
@@ -89,7 +91,7 @@ $$
     * $T_{n-1} = \sqrt{n} (\bar{X}-\mu)/S \sim t(n-1)$.
     * $(n-1)S^2/\sigma^2 \sim \chi^2_{n-1}$.
 * Cas où $\sigma^2$ est connu :
-$$ 1-\alpha = P_\theta(-z_{\alpha/2} \leq -Z \leq z_{\alpha/2}) = P_\theta(C(X)) $$
+$$ 1-\alpha = P_\theta(-z_{\alpha/2} \leq -Z \leq z_{\alpha/2}) = P_\theta(\mu \in C(X)). $$
 où $C(X)$ est l'estimateur par ensemble suivant
 $$ C(X) = \{\mu \colon \bar{X} - z_{\alpha/2} \sigma/\sqrt{n} \leq \mu \leq \bar{X} + z_{\alpha/2} \sigma/\sqrt{n} \}. $$
 
@@ -100,7 +102,7 @@ $$ 1-\alpha = P_\theta(-t_{n-1,\alpha/2} \leq -T_{n-1} \leq t_{n-1,\alpha/2}) = 
 où
 $$ C(X) = \{\mu \colon \bar{X} - t_{n-1,\alpha/2} S/\sqrt{n} \leq \mu \leq \bar{X} + t_{n-1,\alpha/2} S/\sqrt{n} \}. $$
 * Cas où $\sigma^2$ n'est pas connu, intervalle pour $\sigma^2$ :
-$$ 1-\alpha = P_\theta(\chi_{n-1,1-\alpha/2} \leq (n-1)S^2/\sigma^2\chi^2_{n-1} \leq \chi_{n-1,\alpha/2}) = P_\theta(C(X)), $$
+$$ 1-\alpha = P_\theta(\chi_{n-1,1-\alpha/2} \leq (n-1)S^2/\sigma^2 \leq \chi_{n-1,\alpha/2}) = P_\theta(C(X)), $$
 où
 $$ C(X) = \left\{\sigma^2 \colon \frac{(n-1)S^2}{\chi_{n-1,\alpha/2}} \leq \sigma^2 \leq \frac{(n-1)S^2}{\chi_{n-1,1-\alpha/2}}\right\}. $$
 
