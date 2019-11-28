@@ -75,7 +75,7 @@ $$
     $$ (X_1,\ldots,X_n) \sim (Z_1+\mu,\ldots,Z_n+\mu) $$
     $$ \bar{X} - \mu \sim \frac{1}{n} \sum_{i=1}^n (Z_i + \mu) - \mu = \bar{Z} $$
     * La loi de $\bar{Z}$ (et de $Q(X,\theta) = \bar{X}-\mu$) ne dépend pas de $\mu$.
-* Famille $f(x|\sigma) = \frac{1}{\sigma}f(x/\sigma)$ : $Q(X,\sigma^2) = \bar{X}/\sigma$ est pivotale.
+* Famille $f(x|\sigma) = \frac{1}{\sigma}f_0(x/\sigma)$ : $Q(X,\sigma^2) = \bar{X}/\sigma$ est pivotale.
 * Famille $f(x|\mu,\sigma^2) = \frac{1}{\sigma} f_0((x-\mu)/\sigma)$ : $Q_1(X,\theta) = (\bar{X}-\mu)/\sigma$, $Q_2(X,\theta) = (\bar{X}-\mu)/S$, $Q_3(X,\theta) = S/\sigma$ sont pivotales.
 
 ## Utiliser une quantité pivotale pour construire un ensemble de confiance
