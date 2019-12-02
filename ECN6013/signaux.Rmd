@@ -238,9 +238,9 @@ et $y^*$ est optimal et pour les $H$ et pour les $B$.
     1. $y^*$ est meilleur pour les $H$ que $y<y^*$: $3y - y^2/2 \leq 4y^* - (y^*)^2/2$ pour chaque $y \leq y^*$,
     1.  $y^*$ est meilleur pour les $B$ que $y<y^*$: $3y - 3y^2/4 \leq 4y^* - 3(y^*)^2/4$ pour chaque $y \leq y^*$.
     1.  $y^*$ est meilleur pour les $H$ que $y>y^*$: la courbe d'indifférence des $H$ qui passe par le point $(y^*,4y^*)$, $w=y^2/2 + 4y^* - (y^*)^2/2$, a une dérivée par rapport à $y$ qui est inférieure à la dérivée de $4y$ par rapport à $y$ à $y=y^*$.
-- Condition 2 est vraie pour $y^* < 4.43$ : sinon, le maximum d'utilité dans l'intervalle $[0,y^*]$ excède l'utilité à $y^*$.
+- Condition 2 est vraie pour $y^* \leq 4.43$ : sinon, le maximum d'utilité dans l'intervalle $[0,y^*]$ excède l'utilité à $y^*$.
 - Étant donnée la condition 2, la condition 1 est redondante car les courbes d'indifférence des $H$ sont toujours moins raides que celles des $B$.
-- Condition 3 est vraie pour $y^* > 4$.
+- Condition 3 est vraie pour $y^* \geq 4$.
 - Il y a un équilibre mélangeant pour $4 \leq y^* \leq 4.43$.
 
 ## Éducation productive, équilibres séparants
