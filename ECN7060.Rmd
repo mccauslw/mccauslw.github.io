@@ -7,7 +7,7 @@
 
 [Plan de Cours](./ECN7060/ECN7060A-A19-PC.pdf)
 
-[Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf) (jusqu'au cours 11, inclusif)
+[Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf) (jusqu'au cours 12, inclusif)
 
 [Examen intra](./ECN7060/EI19.pdf)
 
