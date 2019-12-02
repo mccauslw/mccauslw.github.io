@@ -31,4 +31,6 @@
 
 [Diapos, Information cachée des vendeurs](./ECN6013/information_vendeurs.pdf), 2019/11/18
 
-[Diapos, Signaux](./ECN6013/signaux.pdf), 2019/11/25 (version avant le cours)
+[Diapos, Signaux](./ECN6013/signaux.pdf), 2019/11/25
+
+[Diapos, Tarification](./ECN6013/tarification.pdf), 2019/12/02
