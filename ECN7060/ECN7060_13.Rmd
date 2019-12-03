@@ -113,20 +113,19 @@ plot(x, y, type='l')
 ## Information de Fisher, deux formes
 
 * Deux dérivées de la log vraisemblance, si elles existent :
-$$
+\[
 \frac{\partial \log f(x|\theta)}{\partial \theta^\top}
 = \frac{1}{f(x|\theta)} \frac{\partial f(x|\theta)}{\partial \theta^\top}
-$$
-$$
-\frac{\partial^2 \log f(x|\theta)}{\partial \theta \partial \theta^\top}
-= \frac{1}{f(x|\theta)}
-\frac{\partial^2 f(x|\theta)}{\partial \theta \partial \theta^\top} - \frac{1}{f(x|\theta)^2} \frac{\partial f(x|\theta)}{\partial \theta^\top} \frac{\partial f(x|\theta)}{\partial \theta}
-$$
-$$
-\frac{\partial^2 \log f(x|\theta)}{\partial \theta \partial \theta^\top}
-= \frac{1}{f(x|\theta)}
-\frac{\partial^2 f(x|\theta)}{\partial \theta \partial \theta^\top} - \frac{\partial \log f(x|\theta)}{\partial \theta^\top} \frac{\partial \log f(x|\theta)}{\partial \theta}
-$$
+\]
+\[
+  \begin{aligned}
+    \frac{\partial^2 \log f(x|\theta)}{\partial \theta \partial \theta^\top}
+    &= \frac{1}{f(x|\theta)}
+    \frac{\partial^2 f(x|\theta)}{\partial \theta \partial \theta^\top} -     \frac{1}{f(x|\theta)^2} \frac{\partial f(x|\theta)}{\partial \theta^\top}     \frac{\partial f(x|\theta)}{\partial \theta} \\
+    &= \frac{1}{f(x|\theta)}
+    \frac{\partial^2 f(x|\theta)}{\partial \theta \partial \theta^\top} -     \frac{\partial \log f(x|\theta)}{\partial \theta^\top} \frac{\partial \log     f(x|\theta)}{\partial \theta}
+  \end{aligned}
+\]
 
 * Espérance des deux côtés, si on peut passer l'espérance après les dérivées :
 $$
@@ -146,7 +145,8 @@ $$
 On considère ici les modèles où les $X_i$ sont iid et on peut échanger l'ordre de l'espérance et le gradient.
 
 * Si les $X_i$ sont indépendantes, les $\partial \log f(X_i|\theta)/\partial \theta$ le sont aussi.
-
+* Si on peut changer l'ordre de l'espérance et le gradient, ils ont une expérance de $0$.
+* Alors
 $$ \begin{aligned}
 I_n(\theta) &= E_\theta\left[
 \sum_{i=1}^n \frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
@@ -221,7 +221,7 @@ $$ \sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \to_
 * Variance fini
 * $X_i$ indépendents, identiquement distribués.
 
-## Loi de grand nombres pour la matrice Hessienne et son inverse
+## Loi de grand nombres pour la matrice hessienne et son inverse
 
 $$ \frac{1}{n}\frac{\partial^2 l(\theta_0;X)}{\partial \theta \partial \theta^\top} = \frac{1}{n} \sum_{i=1}^n \frac{\partial^2 \log f(X_i|\theta_0)}{\partial \theta \partial \theta^\top} \to_p I(\theta_0) $$
 
