@@ -1,7 +1,7 @@
 ---
 title: "ECN 7060, cours 13"
 author: "William McCausland"
-date: '2018-12-05'
+date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
@@ -50,8 +50,9 @@ plot(x, y, type='l')
 
 ## Un modèle de mélange II
 
-* Rappel: $\theta = (p,\mu_1,\mu_2,\sigma_1,\sigma_2)$
+* Rappel : $\theta = (p,\mu_1,\mu_2,\sigma_1,\sigma_2)$
 * Irregularité II : la vraisemblance n'est pas bornée
+    * $x = (x_1,\ldots,x_n)$ est arbitraire. Soit $\bar{x} = n^{-1}\sum x_i$.
     * Soit $\theta(\epsilon) = (n^{-1}, x_1, \bar{x}, \epsilon, s)$.
     * $f(x_1|\theta(\epsilon)) = n^{-1} \frac{1}{\sqrt{2\pi}\epsilon} + (1-n^{-1}) \frac{1}{\sqrt{2\pi}s} e^{-(x_1-\bar{x})/2s^2}$
     * $\lim_{\epsilon \downarrow 0} f(x_2,\ldots,x_n|\theta(\epsilon)) \neq 0$
@@ -75,13 +76,17 @@ plot(x, y, type='l')
 * Si $r = 0$,
     * $f(x|p) = (1-p)^n$,
     * $\hat{p}_{MV}(x) = 0$,
-    * $\mathrm{Var}_p[\hat{p}_{MV}(X)] = 0$ pour $p = \hat{p}_{MV}(x)$.
+    * $\mathrm{Var}_p[\hat{p}_{MV}(X)] = 0$ quand $p = \hat{p}_{MV}(x)$.
 
 * Irregularité :
     * $\hat{p}_{MV}(x)$ se trouve sur la frontière de $\Theta = [0,1]$.
-    * La dérivée (à droite) n'égale pas zéro à l'estimation MV.
+    * La dérivée (à droite) de $\log f(x|p)$ n'égale pas zéro à l'estimation MV :
+    \[
+      \left. \frac{\partial n\log(1-p)}{\partial p} \right|_{p=0}
+      = \left. -n/(1-p) \right|_{p=0} = -n.
+    \]
 
-* D'autres cas:
+* D'autres cas :
     * Modèles avec restrictions sur les paramètres
 
 ## Un modèle uniform
@@ -103,7 +108,7 @@ plot(x, y, type='l')
     * on ne peut pas prendre la dérivé dans l'intégral
     $$ \frac{\partial}{\partial \theta} \int_0^\theta f(x_i|\theta)\, dx = 0
     \quad \mbox{mais} \quad
-    \int_0^\theta \frac{\partial}{\partial \theta} f(x_i|\theta)\, dx = -\frac{1}{\theta} $$
+    \int_0^\theta \frac{\partial}{\partial \theta} f(x_i|\theta)\, dx = \int_0^\theta \frac{-1}{\theta^2}\, dx = -\frac{1}{\theta}. $$
     
 ## Information de Fisher, deux formes
 
@@ -134,11 +139,13 @@ E_\theta\left[
 \right] \equiv -I_n(\theta)
 $$
 
-* Attention: existence des dérivées, changement de l'ordre.
+* Attention : existence des dérivées, changement de l'ordre.
 
 ## Additivité de l'information de Fisher
 
-On considère ici les modèles où les $X_i$ sont iid.
+On considère ici les modèles où les $X_i$ sont iid et on peut échanger l'ordre de l'espérance et le gradient.
+
+* Si les $X_i$ sont indépendantes, les $\partial \log f(X_i|\theta)/\partial \theta$ le sont aussi.
 
 $$ \begin{aligned}
 I_n(\theta) &= E_\theta\left[
@@ -148,7 +155,7 @@ I_n(\theta) &= E_\theta\left[
 \frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
 \frac{\partial \log f(X_i|\theta)}{\partial \theta}
 \right] \\
-&= nI(\theta).
+&\equiv nI(\theta).
 \end{aligned}
 $$
 
@@ -164,7 +171,7 @@ $$
 * Alors si le gradient à gauche est nulle
 $$ (\hat{\theta}-\theta_0) \approx -\left[\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} $$
 
-* Notes:
+* Notes : on a besoin de
     * existence d'un maximum intérieur de la vraisemblance
     * existence des dérivées
     * négligeabilité du terme résiduel
@@ -188,7 +195,7 @@ $$ X_n \to_d X \Rightarrow g(X_n) \to_d g(X). $$
 * Pour préparer une analyse asymptotique, on peut écrire
 $$ (\hat{\theta}-\theta_0) \approx \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
 
-$$ \sqrt{n}(\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
+$$ \sqrt{n}(\hat{\theta}-\theta_0) \approx \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
 
 ## Théorème limite central, loi de grand nombres pour le gradient
 
@@ -252,12 +259,3 @@ $$
 \frac{\partial^2 l(\hat{\theta};x)}{\partial \theta \partial \theta^\top} (\hat{\theta}-\theta_0) \to_d \chi^2_k.
 \end{aligned}
 $$
-
-## Devoirs
-
-Devoirs, Casella et Berger (matière du cours 13)
-
-1. Exercise 10.18
-1. Exercise 10.19
-1. Exercise 10.25
-1. Exercise 10.33
