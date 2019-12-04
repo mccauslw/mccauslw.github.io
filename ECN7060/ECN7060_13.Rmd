@@ -62,11 +62,13 @@ plot(x, y, type='l')
         * d'autres choix de $\mu_2$, $\sigma_2$
         * échange d'index
     * D'autres modèles de mélange
-* Implications pour la loi *a posteriori*
-    * Pour certaines lois *a priori*, la densité *a posteriori* est bornée.
-    * Bornée ou non, si la densité *a priori* est propre, la densité *a posteriori* l'est aussi.
-    * Même sinon, la densité *a posteriori* est souvent propre (mais il faut vérifier)
-    * Même si la densité postérieure n'est pas bornée, la région où la densité postérieure est plus grande que 
+
+## Le modèle de mélange, implications pour la loi *a posteriori*
+
+* Pour certaines lois *a priori*, la densité *a posteriori* est bornée.
+* Bornée ou non, si la densité *a priori* est propre, la densité *a posteriori* l'est aussi.
+* Même si la densité *a priori* est impropre, la densité *a posteriori* est souvent propre (mais il faut le vérifier).
+* Même si la densité postérieure n'est pas bornée, la région où la densité postérieure est plus grande que le maximum local régulier a une probabilité négligable.
 
 ## Un modèle Bernoulli
 
