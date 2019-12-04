@@ -1,0 +1,281 @@
+---
+title: "Actions cachées, aléa morale, problèmes principal-agent"
+subtitle: "ECN 6013, automne 2019"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+fig_width: 6
+fig_height: 4
+urlcolor: blue
+---
+
+## Actions cachées, aléa morale, problèmes principal-agent
+
+* Un agent économique a un contrôle partiel sur un résultat (accident ou non, succès ou échec d'un projet).
+* Son action (prudence, effort) n'est pas observée (par un assureur, par un employeur).
+* Les actions qui augmentent la probabilité d'un bon résultat sont coûteuses pour l'agent.
+* L'agent est averse pour le risque.
+* Une réduction de risque atténue les incitations pour choisir les `bonnes' actions.
+* Partager le risque avec d'autres personnes entraine une externalité.
+* Tension entre la réduction de risque et les bonnes incitations.
+
+## Assurance avec action cachée
+
+Exemples d'aléa morale en assurance
+
+* Comportement au volant et assurance automobile
+* Protection du domicile et assurance maison
+* (Absence d') assurance pour perte de capital dans la maison.
+* Assurance incendie et incendie criminel
+* Assurance vie, meurtre et suicide
+* Assurance médicale et choix de traitement
+* Comportement des banques sous l'assurance implicite des gouvernements
+
+Les actions prises ne sont pas efficaces, à cause d'une différence entre les coûts ou bénéfices privés et les coûts ou bénéfices sociaux.
+
+## Les problèmes principal-agent
+
+* Étudiés en droit, économie, sciences politiques.
+* Interaction entre un (des) principal et un (des) agent.
+* Le principal veut inciter l'agent à faire quelque chose.
+* L'agent effectue une action cachée.
+* Souvent le principal peut plus facilement tolérer du risque.
+* Exemples : (principal, agent)
+    * actionnaires, gérant
+    * employeur, employé
+    * client, mécanicien
+    * propriétaires des terrains, agriculteurs
+    * électorat, politiciens
+    * politiciens des pays riches, bureaucrates de l'aide étrangère
+    * système légal, conducteurs, firmes, etc. (degré de prudence)
+
+## Aparté: la fonction d'utilité CARA
+
+* La fonction d'utilité CARA (Constant Absolute Risk Aversion)
+\[
+	v(x) = \begin{cases}
+	  \frac{1}{\lambda} (1-e^{-\lambda x}) & \lambda > 0, \\
+	  x & \lambda = 0.
+	 \end{cases}
+\]
+* Elle est monotone et concave:
+\[
+	v'(x) = \frac{1}{\lambda} (\lambda e^{-\lambda x}) > 0
+	\qquad
+	v''(x) = -\lambda e^{-\lambda x} < 0
+\]
+* L'aversion absolue pour le risque (indice Arrow-Pratt) est de
+\[
+	-\frac{v''(x)}{v'(x)} = \lambda.
+\]
+* Plus grand $\lambda$, plus averse; $\lambda = 0$ est la neutralité.
+
+## L'espérance d'utilité CARA pour un risque Gaussien
+
+* Si $x\sim N(\mu, \sigma^2)$, $E[e^x] = e^{\mu + \sigma^2/2}$ et alors
+\[
+	E[e^{-\lambda x}] = e^{-\lambda \mu + \lambda^2 \sigma^2/2}.
+\]
+* L'équivalent certain d'un risque Gaussien $x\sim N(\mu,\sigma^2)$, selon l'utilité CARA:
+\[
+  \begin{aligned}
+			E[v(x)] &= E\left[\frac{1}{\lambda}(1-e^{-\lambda x})\right]
+			= \frac{1}{\lambda}(1-e^{-\lambda(\mu-\lambda \sigma^2/2)}) \\
+			&= v(\mu - \lambda \sigma^2/2).
+  \end{aligned}
+\]
+* La prime de risque ici est de $\lambda \sigma^2/2$; on accepte $\lambda \sigma^2/2$ moins en espérance pour avoir un montant certain.
+
+## Un premier modèle principal-agent (manuel IEA)
+
+L'agent:
+
+* choisit d'accepter ou rejeter un contrat du principal,
+* le cas échéant, choisit un niveau $e\geq 0$ d'effort,
+* a une utilité de réservation $u_0$,
+* obtient l'utilité $E[v(w)] - e^2/(2a)$, où
+    * $w$ est le paiement du principal,
+    * $v(w)$ est CARA avec aversion $\lambda$ pour le risque,
+    * $a>0$ est l'habileté de l'agent, {\em observée}
+
+Un projet du principal:
+
+* La valeur du projet est de $x \sim N(e,\sigma^2)$.
+
+Le principal: (neutre pour le risque)
+
+* offre un contrat à l'agent qui paie $sx + y$ à l'agent,
+* maximise la valeur nette (après le paiement) espérée du projet.
+
+## Le problème de l'agent
+
+* Son utilité s'il accepte le contrat est de
+\[
+	u = E[v(sx + y)] - e^2/(2a) = se + y - s^2 \lambda \sigma^2 - e^2/(2a).
+\]
+* L'effort optimal :
+\[
+	\frac{\partial u}{\partial e} = s - e/a,
+	\qquad \frac{\partial^2 u}{\partial e^2} = -1/a < 0,
+	\qquad
+	e^* = sa.
+\]
+* Son utilité indirecte (pour $e=e^*$) :
+\[
+	\begin{aligned}
+		u^*(s,y) &= s^2a + y - s^2 \lambda \sigma^2 - s^2a^2/(2a) \\
+		&= s^2a/2 + y - s^2 \lambda \sigma^2.
+	\end{aligned}
+\]
+* Il accept le contrat $(s,y)$ si $u^*(s,y) > u_0$, ou si
+\[
+	y + s^2a/2 - s^2\lambda \sigma^2 \geq u_0.
+\]
+
+## Le problème du principal
+
+* La condition pour accepter le contrat devient la contrainte de participation pour le principal
+\[
+	y + s^2a/2 - s^2\lambda \sigma^2 \geq u_0.
+\]
+* Cette condition est saturée, alors $y=u_0 - s^2a/2 + s^2\lambda \sigma^2$.
+* La valeur nette du projet est de
+\[
+	\begin{aligned}
+		\pi = E[x-sx-y] &= (1-s)sa - (u_0 - s^2a/2 + s^2\lambda \sigma^2) \\
+		&= sa - s^2a/2 - u_0 - s^2\lambda \sigma^2.
+	\end{aligned}
+\]
+* La part optimale:
+\[
+	\frac{\partial \pi}{\partial s} = a - sa - 2s\lambda \sigma^2,
+	\qquad \frac{\partial^2 \pi}{\partial s^2} = -a-2\lambda\sigma^2 < 0,
+\]
+\[
+	\qquad s^* = \frac{a}{a+2\lambda \sigma^2}.
+\]
+
+## Notes sur le problème principal-agent
+
+* Le principal veut donner les bonnes incitations pour l'effort, mais doit compenser l'agent pour assumer du risque.
+* L'effort efficace égalise le gain marginal (1) et le coût marginal ($e/a$) à $e=a$.
+* Si le principal observe l'effort, $e=a$ est optimal (et efficace)
+* Si l'agent est neutre pour le risque ($\lambda = 0$), $s=1$ est optimal pour le principal et puis $e=a$ est le choix de l'agent.
+* Si $\lambda > 0$, le principal choisit $s<1$ et l'agent $e<a$.
+* Interpretations de $s$ :
+    * $s=1$: vente du projet à l'agent pour $-y$.
+    * $s=0$: relation employeur/employée avec salaire versé,
+    * $0<s<1$: commission de vente, métayage, franchisage
+
+## Un modèle principal-agent avec actions discrètes
+
+L'agent :
+
+* choisit d'accepter ou de rejeter un contrat du principal,
+* le cas échéant, choisit un niveau $e\in \{0,1\}$ d'effort,
+* a une utilité de réservation $u_0$,
+* obtient l'utilité $E_e[u(s)] - c_e$ sous le contrat s'il fait l'effort $e$, avec $c_1 > c_0 = 0$, $u$ concave.
+* maximise son utilité.
+
+Un projet du principal :
+
+* réussit avec probabilité $\pi_e$, selon l'effort $e$ de l'agent, avec $\pi_1 > \pi_0$,
+* vaut 1 au cas de succès, 0 sinon.
+
+Le principal:
+
+* est neutre pour le risque,
+* choisit un contrat $(s_0,s_1)$ qui paie $s_1$ en cas de succès, $s_0$ sinon
+* maximise la valeur espérée du projet moins le paiement espéré à l'agent (neutralité pour le risque)
+
+## Le cas où l'effort est observé
+
+Dans ce cas, le principal peut acheter la participation à bas effort au coût $s_0$ qui vérifie
+\[
+	u(s_0) = u_0, \qquad s_0 = u^{-1}(u_0),
+\]
+et la participation à haut effort au coût $s_1$ qui vérifie
+\[
+	u(s_1) - c_1 = u_0, \qquad s_1 = u^{-1}(u_0+c_1).
+\]
+
+Notes:
+
+* Le profit dans le premier cas est de $\pi_0 - u^{-1}(u_0)$.
+* Le profit dans le deuxième cas est de $\pi_1 - u^{-1}(u_0+c_1)$.
+* Le principal offre le contrat le plus payant (pour lui).
+* Le principal assume tout le risque; l'agent est assuré contre le risque.
+* Le principal choisit le contrat (ou $s_0$ pour $e=0$ ou $s_1$ pour $e=1$) qui maximise son profit ; l'action de l'agent est efficace.
+
+## Le cas où l'effort n'est pas observé
+
+La stratégie :
+
+1. trouver le contrat qui incite $e=0$ et qui maximise le profit parmi tous les contrats qui incite $e=0$, (attention: une contrainte de compatibilité des incitations pour éviter $e=1$)
+1. trouver le contrat qui incite $e=1$ et qui maximise le profit parmi tous les contrats qui incite $e=1$, (attention: une contrainte de compatibilité des incitations pour éviter $e=0$)
+1. choisit le contrat le plus payant entre les deux.
+
+Le premier est facile :
+
+* offrir à l'agent $s_0 = u^{-1}(u_0)$ peut importe le résultat,
+* on obtient le même résultat qui était optimal pour un problème moins contraignant,
+* ce contrat doit être optimal parmi les contrats qui incitent $s_0$.
+
+## Comment inciter l'effort $e=1$
+
+* Prenons $u(s) = s^\alpha$, $0 < \alpha < 1$ (concave)
+* La contrainte de participation:
+\begin{equation}\label{e:part}
+	\pi_1 s_1^\alpha + (1-\pi_1) s_0^\alpha - c_1 \geq u_0.
+\end{equation}
+* La contrainte de compatibilité des incitations:
+\[
+	\pi_1 s_1^\alpha + (1-\pi_1) s_0^\alpha - c_1 \geq \pi_0 s_1^\alpha + (1-\pi_0) s_0^\alpha,
+\]
+ou
+\begin{equation}\label{e:incent}
+	s_1^\alpha - s_0^\alpha \geq c_1 / (\pi_1 - \pi_0).
+\end{equation}
+* Le problème du principal est
+\[
+	\max_{s_0,s_1} \pi_1 (1-s_1) + (1-\pi_1) (-s_0) \quad \mbox{s.c.} \quad \eqref{e:part}, \eqref{e:incent}
+\]
+
+## La contrainte de participation est saturée
+
+* Mettons que non: on a une solution $(s_0, s_1)$ qui vérifie la contrainte de compatibilité des incitations et
+\[
+	\pi_1 s_1^\alpha + (1-\pi_1) s_0^\alpha - c_1 = u' > u_0.
+\]
+* Remplacer $s_1^\alpha$ par $s_1^\alpha - (u'-u_0)$, $s_0^\alpha$ par $s_0^\alpha - (u'-u_0)$, la contrainte de participation tient toujours.
+* La contrainte de compatibilité des incitations tient toujours elle aussi.
+* Le profit du principal est plus élevé.
+* Contradiction.
+
+## La contrainte de compatibilité des incitations est saturée
+
+* Mettons que non: la solution résout le problème avec fonction de Lagrange
+\[
+  \begin{aligned}
+	  L(s_0,s_1,\lambda) &=
+		\pi_1 (1-s_1) + (1-\pi_1) (-s_0) \\
+		&+ \lambda (\pi_1 s_1^\alpha + (1-\pi_1)s_0^\alpha - c_1 - u_0)
+	\end{aligned}
+\]
+* $L(s_0,s_1,\lambda)$ est concave, un point stationnaire vérifie
+\[
+	\frac{\partial L}{\partial s_0} = -(1-\pi_1) + \lambda (1-\pi_1) \alpha s_0^{\alpha-1} = 0,
+\]
+\[
+	\frac{\partial L}{\partial s_1} = -\pi_1 + \lambda \pi_1 \alpha s_1^{\alpha-1} = 0.
+\]
+* On a $\lambda = s_0^{1-\alpha}/\alpha = s_1^{1-\alpha}/\alpha$, alors $s_0 = s_1$.
+* Intutition : s'il n'avait pas besoin d'inciter $e=1$, il assurerait l'agent complètement.
+* $s_0 = s_1$ n'est pas cohérent avec la contrainte de compatibilité des incitations : contradiction.
+
+## La solution au problème d'inciter l'effort haut
+
+* Les deux contraintes sont saturées, on obtient $s_0^\alpha$ et $s_1^\alpha$ comme la solution deux équations linéaires (les deux contraintes).
+* On compare le profit optimal ici avec le profit optimal associé avec $e=0$.
+* La solution globale est celle qui donne le profit maximal.
+* La solution dépend des paramètres $\alpha$, $\pi_0$, $\pi_1$, $u_0$, $c_1$.
