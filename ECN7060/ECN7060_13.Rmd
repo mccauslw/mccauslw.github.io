@@ -43,7 +43,7 @@ $$ \theta_1 \neq \theta_2 \Rightarrow f(\cdot|\theta_1) \neq f(\cdot|\theta_2). 
 * Ici, $p = 0.01$, $\mu_1 = 0$, $\mu_2 = 2$, $\sigma_1 = 1$, $\sigma_2 = 0.01$.
 
 ```{r mixture, include=TRUE, echo = TRUE, fig.height=6}
-x = seq(-3,3,by=0.001)
+x = seq(-3, 3, by=0.001)
 y = 0.01*dnorm(x, 2, 0.01) + 0.99*dnorm(x, 0, 1)
 plot(x, y, type='l')
 ```
@@ -64,8 +64,9 @@ plot(x, y, type='l')
     * D'autres modèles de mélange
 * Implications pour la loi *a posteriori*
     * Pour certaines lois *a priori*, la densité *a posteriori* est bornée.
-    * Si la densité *a priori* est propre, la densité *a posteriori* l'est aussi.
+    * Bornée ou non, si la densité *a priori* est propre, la densité *a posteriori* l'est aussi.
     * Même sinon, la densité *a posteriori* est souvent propre (mais il faut vérifier)
+    * Même si la densité postérieure n'est pas bornée, la région où la densité postérieure est plus grande que 
 
 ## Un modèle Bernoulli
 
@@ -80,7 +81,7 @@ plot(x, y, type='l')
 
 * Irregularité :
     * $\hat{p}_{MV}(x)$ se trouve sur la frontière de $\Theta = [0,1]$.
-    * La dérivée (à droite) de $\log f(x|p)$ n'égale pas zéro à l'estimation MV :
+    * La dérivée (à droite) de $\log f(x|p)$ n'égale pas à zéro à l'estimation MV :
     \[
       \left. \frac{\partial n\log(1-p)}{\partial p} \right|_{p=0}
       = \left. -n/(1-p) \right|_{p=0} = -n.
@@ -112,6 +113,7 @@ plot(x, y, type='l')
     
 ## Information de Fisher, deux formes
 
+* Ici, $X=(X_1,\ldots,X_n)$, $x=(x_1,\ldots,x_n)$.
 * Deux dérivées de la log vraisemblance, si elles existent :
 \[
 \frac{\partial \log f(x|\theta)}{\partial \theta^\top}
@@ -172,10 +174,10 @@ $$
 $$ (\hat{\theta}-\theta_0) \approx -\left[\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} $$
 
 * Notes : on a besoin de
-    * existence d'un maximum intérieur de la vraisemblance
-    * existence des dérivées
-    * négligeabilité du terme résiduel
-    * non-singularité de la matrice hessienne
+    * l'existence d'un maximum intérieur de la vraisemblance
+    * l'existence des dérivées
+    * la négligeabilité du terme résiduel
+    * la non-singularité de la matrice hessienne
 
 ## Continuous mapping theorem
 
@@ -212,13 +214,15 @@ $$ E_{\theta_0}\left[ \frac{\partial
 * Par une loi de grand nombres,
 $$ \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \to_p 0. $$
 
-* Par un théorème limite central,
+* Par un théorème central limite,
 $$ \sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \to_d N(0,I(\theta_0)). $$
 
 ## Notes sur le gradient
 
-* Existence des dérivées, échange d'ordre (intégral, dérivée)
-* Variance fini
+On a besoin de
+
+* l'existence des dérivées, échange d'ordre (intégral, dérivée),
+* une variance fini,
 * $X_i$ indépendents, identiquement distribués.
 
 ## Loi de grand nombres pour la matrice hessienne et son inverse
