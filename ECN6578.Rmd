@@ -1,0 +1,9 @@
+---
+---
+
+<link rel="stylesheet" href="styles.css" type="text/css">
+
+### Documents pour ECN 6578, Économétrie des marchés financiers
+
+[Plan de Cours](./ECN6578/ECN6578A-H20-PC.docx)
+
