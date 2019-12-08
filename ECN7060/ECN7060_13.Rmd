@@ -1,7 +1,7 @@
 ---
 title: "ECN 7060, cours 13"
 author: "William McCausland"
-date: '2018-12-05'
+date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
@@ -43,15 +43,16 @@ $$ \theta_1 \neq \theta_2 \Rightarrow f(\cdot|\theta_1) \neq f(\cdot|\theta_2). 
 * Ici, $p = 0.01$, $\mu_1 = 0$, $\mu_2 = 2$, $\sigma_1 = 1$, $\sigma_2 = 0.01$.
 
 ```{r mixture, include=TRUE, echo = TRUE, fig.height=6}
-x = seq(-3,3,by=0.001)
+x = seq(-3, 3, by=0.001)
 y = 0.01*dnorm(x, 2, 0.01) + 0.99*dnorm(x, 0, 1)
 plot(x, y, type='l')
 ```
 
 ## Un modèle de mélange II
 
-* Rappel: $\theta = (p,\mu_1,\mu_2,\sigma_1,\sigma_2)$
+* Rappel : $\theta = (p,\mu_1,\mu_2,\sigma_1,\sigma_2)$
 * Irregularité II : la vraisemblance n'est pas bornée
+    * $x = (x_1,\ldots,x_n)$ est arbitraire. Soit $\bar{x} = n^{-1}\sum x_i$.
     * Soit $\theta(\epsilon) = (n^{-1}, x_1, \bar{x}, \epsilon, s)$.
     * $f(x_1|\theta(\epsilon)) = n^{-1} \frac{1}{\sqrt{2\pi}\epsilon} + (1-n^{-1}) \frac{1}{\sqrt{2\pi}s} e^{-(x_1-\bar{x})/2s^2}$
     * $\lim_{\epsilon \downarrow 0} f(x_2,\ldots,x_n|\theta(\epsilon)) \neq 0$
@@ -61,10 +62,13 @@ plot(x, y, type='l')
         * d'autres choix de $\mu_2$, $\sigma_2$
         * échange d'index
     * D'autres modèles de mélange
-* Implications pour la loi *a posteriori*
-    * Pour certaines lois *a priori*, la densité *a posteriori* est bornée.
-    * Si la densité *a priori* est propre, la densité *a posteriori* l'est aussi.
-    * Même sinon, la densité *a posteriori* est souvent propre (mais il faut vérifier)
+
+## Le modèle de mélange, implications pour la loi *a posteriori*
+
+* Pour certaines lois *a priori*, la densité *a posteriori* est bornée.
+* Bornée ou non, si la densité *a priori* est propre, la densité *a posteriori* l'est aussi.
+* Même si la densité *a priori* est impropre, la densité *a posteriori* est souvent propre (mais il faut le vérifier).
+* Même si la densité postérieure n'est pas bornée, la région où la densité postérieure est plus grande que le maximum local régulier a une probabilité négligable.
 
 ## Un modèle Bernoulli
 
@@ -75,13 +79,17 @@ plot(x, y, type='l')
 * Si $r = 0$,
     * $f(x|p) = (1-p)^n$,
     * $\hat{p}_{MV}(x) = 0$,
-    * $\mathrm{Var}_p[\hat{p}_{MV}(X)] = 0$ pour $p = \hat{p}_{MV}(x)$.
+    * $\mathrm{Var}_p[\hat{p}_{MV}(X)] = 0$ quand $p = \hat{p}_{MV}(x)$.
 
 * Irregularité :
     * $\hat{p}_{MV}(x)$ se trouve sur la frontière de $\Theta = [0,1]$.
-    * La dérivée (à droite) n'égale pas zéro à l'estimation MV.
+    * La dérivée (à droite) de $\log f(x|p)$ n'égale pas à zéro à l'estimation MV :
+    \[
+      \left. \frac{\partial n\log(1-p)}{\partial p} \right|_{p=0}
+      = \left. -n/(1-p) \right|_{p=0} = -n.
+    \]
 
-* D'autres cas:
+* D'autres cas :
     * Modèles avec restrictions sur les paramètres
 
 ## Un modèle uniform
@@ -103,25 +111,25 @@ plot(x, y, type='l')
     * on ne peut pas prendre la dérivé dans l'intégral
     $$ \frac{\partial}{\partial \theta} \int_0^\theta f(x_i|\theta)\, dx = 0
     \quad \mbox{mais} \quad
-    \int_0^\theta \frac{\partial}{\partial \theta} f(x_i|\theta)\, dx = -\frac{1}{\theta} $$
+    \int_0^\theta \frac{\partial}{\partial \theta} f(x_i|\theta)\, dx = \int_0^\theta \frac{-1}{\theta^2}\, dx = -\frac{1}{\theta}. $$
     
 ## Information de Fisher, deux formes
 
+* Ici, $X=(X_1,\ldots,X_n)$, $x=(x_1,\ldots,x_n)$.
 * Deux dérivées de la log vraisemblance, si elles existent :
-$$
+\[
 \frac{\partial \log f(x|\theta)}{\partial \theta^\top}
 = \frac{1}{f(x|\theta)} \frac{\partial f(x|\theta)}{\partial \theta^\top}
-$$
-$$
-\frac{\partial^2 \log f(x|\theta)}{\partial \theta \partial \theta^\top}
-= \frac{1}{f(x|\theta)}
-\frac{\partial^2 f(x|\theta)}{\partial \theta \partial \theta^\top} - \frac{1}{f(x|\theta)^2} \frac{\partial f(x|\theta)}{\partial \theta^\top} \frac{\partial f(x|\theta)}{\partial \theta}
-$$
-$$
-\frac{\partial^2 \log f(x|\theta)}{\partial \theta \partial \theta^\top}
-= \frac{1}{f(x|\theta)}
-\frac{\partial^2 f(x|\theta)}{\partial \theta \partial \theta^\top} - \frac{\partial \log f(x|\theta)}{\partial \theta^\top} \frac{\partial \log f(x|\theta)}{\partial \theta}
-$$
+\]
+\[
+  \begin{aligned}
+    \frac{\partial^2 \log f(x|\theta)}{\partial \theta \partial \theta^\top}
+    &= \frac{1}{f(x|\theta)}
+    \frac{\partial^2 f(x|\theta)}{\partial \theta \partial \theta^\top} -     \frac{1}{f(x|\theta)^2} \frac{\partial f(x|\theta)}{\partial \theta^\top}     \frac{\partial f(x|\theta)}{\partial \theta} \\
+    &= \frac{1}{f(x|\theta)}
+    \frac{\partial^2 f(x|\theta)}{\partial \theta \partial \theta^\top} -     \frac{\partial \log f(x|\theta)}{\partial \theta^\top} \frac{\partial \log     f(x|\theta)}{\partial \theta}
+  \end{aligned}
+\]
 
 * Espérance des deux côtés, si on peut passer l'espérance après les dérivées :
 $$
@@ -134,12 +142,15 @@ E_\theta\left[
 \right] \equiv -I_n(\theta)
 $$
 
-* Attention: existence des dérivées, changement de l'ordre.
+* Attention : existence des dérivées, changement de l'ordre.
 
 ## Additivité de l'information de Fisher
 
-On considère ici les modèles où les $X_i$ sont iid.
+On considère ici les modèles où les $X_i$ sont iid et on peut échanger l'ordre de l'espérance et le gradient.
 
+* Si les $X_i$ sont indépendantes, les $\partial \log f(X_i|\theta)/\partial \theta$ le sont aussi.
+* Si on peut changer l'ordre de l'espérance et le gradient, ils ont une expérance de $0$.
+* Alors
 $$ \begin{aligned}
 I_n(\theta) &= E_\theta\left[
 \sum_{i=1}^n \frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
@@ -148,7 +159,7 @@ I_n(\theta) &= E_\theta\left[
 \frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
 \frac{\partial \log f(X_i|\theta)}{\partial \theta}
 \right] \\
-&= nI(\theta).
+&\equiv nI(\theta).
 \end{aligned}
 $$
 
@@ -164,11 +175,11 @@ $$
 * Alors si le gradient à gauche est nulle
 $$ (\hat{\theta}-\theta_0) \approx -\left[\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} $$
 
-* Notes:
-    * existence d'un maximum intérieur de la vraisemblance
-    * existence des dérivées
-    * négligeabilité du terme résiduel
-    * non-singularité de la matrice hessienne
+* Notes : on a besoin de
+    * l'existence d'un maximum intérieur de la vraisemblance
+    * l'existence des dérivées
+    * la négligeabilité du terme résiduel
+    * la non-singularité de la matrice hessienne
 
 ## Continuous mapping theorem
 
@@ -188,7 +199,7 @@ $$ X_n \to_d X \Rightarrow g(X_n) \to_d g(X). $$
 * Pour préparer une analyse asymptotique, on peut écrire
 $$ (\hat{\theta}-\theta_0) \approx \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
 
-$$ \sqrt{n}(\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
+$$ \sqrt{n}(\hat{\theta}-\theta_0) \approx \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
 
 ## Théorème limite central, loi de grand nombres pour le gradient
 
@@ -205,16 +216,18 @@ $$ E_{\theta_0}\left[ \frac{\partial
 * Par une loi de grand nombres,
 $$ \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \to_p 0. $$
 
-* Par un théorème limite central,
+* Par un théorème central limite,
 $$ \sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \to_d N(0,I(\theta_0)). $$
 
 ## Notes sur le gradient
 
-* Existence des dérivées, échange d'ordre (intégral, dérivée)
-* Variance fini
+On a besoin de
+
+* l'existence des dérivées, échange d'ordre (intégral, dérivée),
+* une variance fini,
 * $X_i$ indépendents, identiquement distribués.
 
-## Loi de grand nombres pour la matrice Hessienne et son inverse
+## Loi de grand nombres pour la matrice hessienne et son inverse
 
 $$ \frac{1}{n}\frac{\partial^2 l(\theta_0;X)}{\partial \theta \partial \theta^\top} = \frac{1}{n} \sum_{i=1}^n \frac{\partial^2 \log f(X_i|\theta_0)}{\partial \theta \partial \theta^\top} \to_p I(\theta_0) $$
 
@@ -252,12 +265,3 @@ $$
 \frac{\partial^2 l(\hat{\theta};x)}{\partial \theta \partial \theta^\top} (\hat{\theta}-\theta_0) \to_d \chi^2_k.
 \end{aligned}
 $$
-
-## Devoirs
-
-Devoirs, Casella et Berger (matière du cours 13)
-
-1. Exercise 10.18
-1. Exercise 10.19
-1. Exercise 10.25
-1. Exercise 10.33

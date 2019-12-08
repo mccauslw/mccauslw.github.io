@@ -15,12 +15,12 @@ Les éléments :
 
 - information asymétrique, indication de valeur ou productivité
 - Les agents à information favorable veulent la révéler.
-- La transmission crédible de l'information doit être couteuse.
+- La transmission crédible de l'information doit être coûteuse.
 - Ce coût doit être moins élevé quand la valeur est plus élevé.
 
 Exemples :
 
-- jeunes, productivité comme travailleurs, education
+- jeunes, productivité comme travailleurs, éducation
 - avocats, productivité, vêtements et bureaux de luxe
 - firmes, qualité des produits, garantis
 - banques, solvabilité, édifices bancaires
@@ -34,7 +34,7 @@ Un signal :
 - observable
 - choisi
 - peut avoir un effet sur la valeur ou la productivité ou non
-- exemples : education, etc.
+- exemples : éducation, etc.
 
 Un indice :
 
@@ -139,7 +139,7 @@ L'analyse est triviale si le type est observé.
 - Aparté : si les firmes observaient le type directement, l'équilibre est trivial :
     - $W_H(y) = 2m$, $W_B(y) = m$, $y_H = y_B = 0$.
 
-## Éducation non productive, équilibres mélangants
+## Éducation non productive, équilibres mélangeants
 
 ![$W(y)$ pour l'équilibre mélangeant](figures/non_product_pooling.jpg){width=80%}
 
@@ -211,17 +211,17 @@ L'analyse est triviale si le type est observé.
 
 ![Efficacité dans le cas de pleine information](figures/full_info.jpg){width=80%}
 
-## Éducation productive, équilibres mélangants
+## Éducation productive, équilibres mélangeants
 
 ![$W(y)$ pour l'équilibre mélangeant](figures/product_pooling.jpg){width=80%}
 
-## Éducation productive, équilibre mélangant I
+## Éducation productive, équilibre mélangeant I
 
 - Si $B$ et $H$ choisissent le même $y=y^*$, la productivité moyenne est
 \[
 	 q_H m_H(y^*) + (1-q_H) m_B(y^*) = (1/3)(6y^*) + (2/3)(3y^*) = 4y^*.
 \]
-- Dans un équilibre pooling, il y a une valeur $y^*$ telle que
+- Dans un équilibre mélangeant, il y a une valeur $y^*$ telle que
 \[
 	y_B = y_H = y^*,
 \]
@@ -232,16 +232,16 @@ L'analyse est triviale si le type est observé.
 \]
 et $y^*$ est optimal et pour les $H$ et pour les $B$.
 
-## Éducation productive, équilibre mélangant II
+## Éducation productive, équilibre mélangeant II
 
 - Les conditions à vérifier sont
     1. $y^*$ est meilleur pour les $H$ que $y<y^*$: $3y - y^2/2 \leq 4y^* - (y^*)^2/2$ pour chaque $y \leq y^*$,
     1.  $y^*$ est meilleur pour les $B$ que $y<y^*$: $3y - 3y^2/4 \leq 4y^* - 3(y^*)^2/4$ pour chaque $y \leq y^*$.
     1.  $y^*$ est meilleur pour les $H$ que $y>y^*$: la courbe d'indifférence des $H$ qui passe par le point $(y^*,4y^*)$, $w=y^2/2 + 4y^* - (y^*)^2/2$, a une dérivée par rapport à $y$ qui est inférieure à la dérivée de $4y$ par rapport à $y$ à $y=y^*$.
-- Condition 2 est vraie pour $y^* < 4.43$ : sinon, le maximum d'utilité dans l'intervalle $[0,y^*]$ excède l'utilité à $y^*$.
-- Étant donné condition 2, condition 1 est redondant car les courbes d'indifférence des $H$ sont toujours moins raides que celles des $B$.
-- Condition 3 est vraie pour $y^* > 4$.
-- Il y a un équilibre pooling pour $4 \leq y^* \leq 4.43$.
+- Condition 2 est vraie pour $y^* \leq 4.43$ : sinon, le maximum d'utilité dans l'intervalle $[0,y^*]$ excède l'utilité à $y^*$.
+- Étant donnée la condition 2, la condition 1 est redondante car les courbes d'indifférence des $H$ sont toujours moins raides que celles des $B$.
+- Condition 3 est vraie pour $y^* \geq 4$.
+- Il y a un équilibre mélangeant pour $4 \leq y^* \leq 4.43$.
 
 ## Éducation productive, équilibres séparants
 
@@ -250,8 +250,8 @@ et $y^*$ est optimal et pour les $H$ et pour les $B$.
 ## Éducation productive, équilibre séparant
 
 - Dans un équilibre séparant, il y a $y_B$ et $y_H$ tels que
-    - les $B$ choisissent $y_B$ et reçoivent $3y_B$,
-    - les $H$ choisissent $y_H$ et reçoivent $6y_H$.
+    - les $B$ choisissent $y_B$ et reçoivent $3y_B$ comme salaire,
+    - les $H$ choisissent $y_H$ et reçoivent $6y_H$ comme salaire.
 - Les contraintes d'auto-sélection sont
 \[
 	6y_H - y_H^2/2 \geq 3y_B - y_B^2/2
@@ -261,7 +261,7 @@ pour les $H$ et
 	3y_B - 3y_B^2/4 \geq 6y_H - 3y_H^2/4
 \]
 pour les $B$.
-- Les $B$ n'ont rien à prouver, il obtient seulement la quantité d'éducation efficace $y_B = 2$.
-- Si la contrainte d'auto-sélection pour les $H$ est saturée, $y_H \approx 7.46$.
-La quantité d'éducation efficace pour les $H$ est de $y_H = 6$.
+- Les $B$ n'ont rien à prouver, ils obtiennent seulement la quantité d'éducation efficace $y_B = 2$.
+- Si la contrainte d'auto-sélection pour les $B$ est saturée, $y_H \approx 7.46$.
+La quantité d'éducation efficace pour les $H$ est de $y_H = 6$ alors $y_H = 7.46$ est inefficace.
 Il y a des équilibres où $y_H > 7.46$.

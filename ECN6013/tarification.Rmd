@@ -13,7 +13,8 @@ urlcolor: blue
 
 - Il y a un producteur monopoliste d'électricité.
 - Coût linéaire : le coût marginal de production est de $c>0$, une constante.
-- La revente est impossible et le producteur peut imposer une tarification $T(x)$ : un consommateur paie $T(x)$ pour $x$ unités d'électricité.
+- Le producteur choisit une tarification $T(x)$ : un consommateur paie $T(x)$ pour $x$ unités d'électricité.
+- La revente est impossible.
 - Soit $M(x) = T(x) - cx$ la majoration (ou le profit).
 - Le producteur choisit $T(x)$ pour maximiser son profit.
 
@@ -22,7 +23,7 @@ urlcolor: blue
 - Le consommateur a l'utilité métrique monétaire $U(x)$ comme function de sa consommation de l'électricité.
 - $U(x)$ est croissante, concave, différentiable.
 - Normalisation : $U(0) = 0$.
-- Alors $V(x) = U(x) - cx$ est le surplus total.
+- Alors $V(x) = U(x) - cx$ est le surplus total associé à la consommation $x$.
 - Le consommateur choisit $x$ pour maximiser $U(x) - T(x)$.
 - On suppose que $V'(0) = U'(0) - c > 0$ pour garantir que la quantité efficace de $x$ est strictement positive.
 
@@ -35,11 +36,30 @@ urlcolor: blue
 - Alors le monopole maximise le surplus total et choisit $T(x)$ pour en extraire tout.
 - Le surplus est maximal pour $\bar{x}$ qui vérifie la CPO $U'(\bar{x}) = c$.
 - $T(x)$ tel que $T(x) \geq U(x)$, avec égalité pour $\bar{x}$ seulement, est optimal pour le producteur.
-- Le profit est $\bar{M} \equiv M(\bar{x}) = V(\bar{x})$.
+- Le profit est $\bar{M} \equiv M(\bar{x}) = V(\bar{x}) = U(\bar{x}) - c\bar{x}$.
+
+## Une autre approche
+
+- Le monopole offre la quantité $x$ à un prix total $p$.
+- Le consommateur accepte ssi $p \leq U(x)$.
+- Le problème du monopole est
+\[
+  \max_{p, x} \Pi(p, x) = p - cx\quad \mbox{tel que}\quad p \leq U(x).
+\]
+- La contrainte de participation $p \leq U(x)$ est saturée et on peut l'utiliser pour éliminer $p$.
+- Le problème devient
+\[
+  \max_x \Pi(x) = U(x) - cx.
+\]
+- La quantité optimale $\bar{x}$ vérifie $U'(\bar{x}) = c$, maximise le surplus total, est efficace.
+- Le prix est de $p=U(\bar{x})$, alors tout le surplus va au monopole.
+- Interprétation : une firme choisit la qualité $x$ d'un produit, mesurée en terme de coût.
 
 ## Illustration, équilibre avec un type de consommateur
 
 ```{r single, echo=FALSE}
+
+# Common calculation
 alpha = 2
 ULx <- function (x) {1-exp(-x)}
 UHx <- function (x) {1-exp(-alpha*x)}
@@ -56,29 +76,38 @@ THx <- function(x) {UHbar + c*(x-xHbar)}
 x = seq(0, 1, by=0.01)
 cx = c*x
 
-plot(x, cx, type='l', xlab='x', ylab='$', xlim=c(0, 1), ylim=c(0, 1))
-lines(x, ULx(x), col='blue')
-lines(x, UHx(x), col='darkgreen')
-lines(x, TLx(x), col='blue')
-lines(x, THx(x), col='darkgreen')
-# Efficient
-lines(x, UHx(x) - UHx(xLbar) + ULx(xLbar), col='darkgreen', lty='dotted')
-lines(x, THx(x) - UHx(xLbar) + ULx(xLbar), col='darkgreen', lty='dotted')
+# Plotting
 
-lines(c(xLbar, xLbar), c(0, ULbar), lty='dashed', col='blue')
-lines(c(0, xLbar), c(c*xLbar, c*xLbar), lty='dashed', col='blue')
-lines(c(0, xLbar), c(ULbar, ULbar), lty='dashed', col='blue')
+# Cost
+plot(x, cx, type='l', xlab='x', ylab='$', xlim=c(0, 1), ylim=c(0, 1), xaxs="i", yaxs="i", bty='l')
+
+# Utility, L and H
+#lines(x, ULx(x), col='blue')
+lines(x, UHx(x), col='darkgreen')
+
+# Tarif, L and H
+#lines(x, TLx(x), col='blue')
+lines(x, THx(x), col='darkgreen')
+
+# Dashed lines, H and L
+#lines(c(xLbar, xLbar), c(0, ULbar), lty='dashed', col='blue')
+#lines(c(0, xLbar), c(c*xLbar, c*xLbar), lty='dashed', col='blue')
+#lines(c(0, xLbar), c(ULbar, ULbar), lty='dashed', col='blue')
 lines(c(xHbar, xHbar), c(0, UHbar), lty='dashed', col='darkgreen')
 lines(c(0, xHbar), c(c*xHbar, c*xHbar), lty='dashed', col='darkgreen')
 lines(c(0, xHbar), c(UHbar, UHbar), lty='dashed', col='darkgreen')
 
+# Points, high and low
+#points(xLbar, ULbar, pch=20, col='blue')
+points(xHbar, UHbar, pch=20, col='darkgreen')
+
+# Labels for utilities, cost
 xlab = 0.8
-text(xlab, TLx(xlab), expression(T[B](x)), col='blue')
-text(xlab, ULx(xlab), expression(U[B](x)), col='blue')
-text(xlab, THx(xlab), expression(T[H](x)), col='darkgreen')
-text(xlab, UHx(xlab), expression(U[H](x)), col='darkgreen')
-text(xlab, UHx(xlab), expression(U[H](x)), col='darkgreen')
-text(0.3, 0.20, 'cx')
+#text(xlab, TLx(xlab), expression(T[B](x)), col='blue')
+#text(xlab, ULx(xlab), expression(U[B](x)), col='blue')
+text(xlab, THx(xlab), expression(T(x)), col='darkgreen')
+text(xlab, UHx(xlab), expression(U(x)), col='darkgreen')
+text(0.4, 0.27, 'cx')
 ```
 
 ## Modèle avec deux types de consommateur, types observés
@@ -86,15 +115,52 @@ text(0.3, 0.20, 'cx')
 - Deux types : $H$ (haute demande) et $B$ (basse demande) en proportions $\pi$ et $(1-\pi)$.
 - Les utilités sont $U_H(x)$ et $U_B(x)$ avec les mêmes propriétés que $U(x)$ plus $U_H'(x) > U_B'(x)$ pour tous $x \geq 0$.
 - Le surplus par consommateur de type $t$ est de $V_t(x) \equiv U_t(x) - cx$.
-- Un équilibre est une $T_H(x)$, une $T_B(x)$, $x_B^*$ et $x_H^*$ telles que
+- Un équilibre est une $T_H(x)$, une $T_B(x)$, $\bar{x}_B$ et $\bar{x}_H$ telles que
     - $T_t(x)$ maximise la majoration pour les consommateurs de type $t$, $t=B,H$.
     - $\bar{x}_t$ maximise $U_t(x) - T_t(x)$, $t=B,H$.
 - En équilibre,
     - $\bar{x}_t$ vérifie $U_t'(\bar{x}_t) = c$, $t=B,H$. (CPO pour max de surplus)
     - $T_t(x) \geq U_t(x)$, avec égalité pour $\bar{x}_t$ seulement, $t=B,H$.
-    - le profit par consommateur est $\pi \bar{M}_B + (1-\pi) \bar{M}_H$, où $\bar{M}_t \equiv M(\bar{x}_t) = V_t(\bar{x}_t)$, $t=B,H$.
+    - le profit par consommateur est $\pi \bar{M}_B + (1-\pi) \bar{M}_H$, où $\bar{M}_t \equiv M(\bar{x}_t) = V_t(\bar{x}_t) = U_t(\bar{x}_t) - c\bar{x}_t$, $t=B,H$.
 - L'équilibre est efficace : pour les deux types, la bénéfice marginale égale le coût marginal $c$.
- 
+
+## Illustration, deux types observés
+
+```{r two_observed, echo=FALSE}
+# Plotting
+
+# Cost
+plot(x, cx, type='l', xlab='x', ylab='$', xlim=c(0, 1), ylim=c(0, 1), xaxs="i", yaxs="i", bty='l')
+
+# Utility, H and L
+lines(x, ULx(x), col='blue')
+lines(x, UHx(x), col='darkgreen')
+
+# Tarif, H and L
+lines(x, TLx(x), col='blue')
+lines(x, THx(x), col='darkgreen')
+
+# Dashed lines, H and L
+lines(c(xLbar, xLbar), c(0, ULbar), lty='dashed', col='blue')
+lines(c(0, xLbar), c(c*xLbar, c*xLbar), lty='dashed', col='blue')
+lines(c(0, xLbar), c(ULbar, ULbar), lty='dashed', col='blue')
+lines(c(xHbar, xHbar), c(0, UHbar), lty='dashed', col='darkgreen')
+lines(c(0, xHbar), c(c*xHbar, c*xHbar), lty='dashed', col='darkgreen')
+lines(c(0, xHbar), c(UHbar, UHbar), lty='dashed', col='darkgreen')
+
+# Points, high and low
+points(xLbar, ULbar, pch=20, col='blue')
+points(xHbar, UHbar, pch=20, col='darkgreen')
+
+# Labels for utilities, cost
+xlab = 0.8
+text(xlab, TLx(xlab), expression(T[B](x)), col='blue')
+text(xlab, ULx(xlab), expression(U[B](x)), col='blue')
+text(xlab, THx(xlab), expression(T[H](x)), col='darkgreen')
+text(xlab, UHx(xlab), expression(U[H](x)), col='darkgreen')
+text(0.4, 0.27, 'cx')
+```
+
 ## Modèle avec deux types de consommateur, types non-observés
 
 - Qu'est-ce qui se passe avec une seule $T(x)$ qui vérifie $T(\bar{x}_t) = U(\bar{x}_t)$, $t=B,H$?
@@ -106,7 +172,49 @@ comme résultat :
     - les quantités efficaces $\bar{x}_B$ et $\bar{x}_H$ sont les choix optimaux,
     - le surplus $V_B(\bar{x}_B) - c\bar{x}_B$ va au monopole,
     - le surplus $V_H(\bar{x}_H) - c\bar{x}_H$ est partagé entre les $H$ et le monopole.
-- Cependant, ceci ne maximise le profit du monopole.
+- Cependant, ceci ne maximise pas le profit du monopole.
+
+## Tarification efficace
+
+```{r efficient, echo=FALSE}
+# Plotting
+
+# Cost
+plot(x, cx, type='l', xlab='x', ylab='$', xlim=c(0, 1), ylim=c(0, 1), xaxs="i", yaxs="i", bty='l')
+
+# Utility, H and L
+lines(x, ULx(x), col='blue')
+lines(x, UHx(x), col='darkgreen')
+
+# Tarif, H and L
+lines(x, TLx(x), col='blue')
+lines(x, THx(x), col='darkgreen')
+
+# Efficient tarification
+lines(x, UHx(x) - UHx(xLbar) + ULx(xLbar), col='darkgreen', lty='dotted')
+lines(x, THx(x) - UHx(xLbar) + ULx(xLbar), col='darkgreen', lty='dotted')
+points(xHbar, THx(xHbar) - UHx(xLbar) + ULx(xLbar), pch=20, col='darkgreen')
+
+# Dashed lines, H and L
+lines(c(xLbar, xLbar), c(0, ULbar), lty='dashed', col='blue')
+lines(c(0, xLbar), c(c*xLbar, c*xLbar), lty='dashed', col='blue')
+lines(c(0, xLbar), c(ULbar, ULbar), lty='dashed', col='blue')
+lines(c(xHbar, xHbar), c(0, UHbar), lty='dashed', col='darkgreen')
+lines(c(0, xHbar), c(c*xHbar, c*xHbar), lty='dashed', col='darkgreen')
+lines(c(0, xHbar), c(UHbar, UHbar), lty='dashed', col='darkgreen')
+
+# Points, high and low
+points(xLbar, ULbar, pch=20, col='blue')
+#points(xHbar, UHbar, pch=20, col='darkgreen')
+
+# Labels for utilities, cost
+xlab = 0.8
+text(xlab, TLx(xlab), expression(T[B](x)), col='blue')
+text(xlab, ULx(xlab), expression(U[B](x)), col='blue')
+text(xlab, THx(xlab), expression(T[H](x)), col='darkgreen')
+text(xlab, UHx(xlab), expression(U[H](x)), col='darkgreen')
+text(0.4, 0.27, 'cx')
+```
 
 ## Tarification optimale I
 
@@ -123,13 +231,13 @@ comme résultat :
 
 - Le problème du monopole : sous les quatres contraintes, choisir $p_B$, $p_H$, $x_B$, $x_H$ pour maximimizer le profit
 \[
-  \Pi = \pi (p_H - cx_H) + (1-\pi) (p_B - cx_B).
+  \Pi(p_H, p_B, x_H, x_B) = \pi (p_H - cx_H) + (1-\pi) (p_B - cx_B).
 \]
 - On peut éliminer $p_B$ avec la contrainte (saturée) de participation des $B$ :
 \[ p_B = U_B(x_B). \]
 - On peut éliminer $p_H$ avec la contrainte (saturée) d'autosélection des $H$ :
 \[ p_H = U_H(x_H) - U_H(x_B) + p_B = U_H(x_H) - U_H(x_B) + U_B(x_B) \]
-- On obtient le problème de maximisation libre de
+- On obtient le problème de maximisation libre de $\Pi(x_H, x_B)$ :
 \[ \pi (U_H(x_H) - U_H(x_B) + U_B(x_B) - cx_H) + (1-\pi) (U_B(x_B) - cx_B). \]
 
 ## Tarification optimale III
@@ -141,9 +249,9 @@ comme résultat :
 - Notez que
 \[
   \frac{\partial^2 \Pi(x_H,x_B)}{\partial x_H^2} < 0, \quad
-  \frac{\partial^2 \Pi(x_H,x_B)}{\partial x_H \partial X_B} = 0.
+  \frac{\partial^2 \Pi(x_H,x_B)}{\partial x_H \partial x_B} = 0.
 \]
-- $x_H^*$ vérifie $U_H'(x_H^*) = c$ et $x_H^*$ est la quantité efficace pour les $H$, peu importe la valeur de $\pi$.
+- $x_H^*$ vérifie $U_H'(x_H^*) = c$ et $x_H^* = \bar{x}_H$, la quantité efficace pour les $H$ et ce, peu importe la valeur de $\pi$.
 - Cette CPO donne $x_H^*$ mais pas le prix $p_H^*$ ni le profit $p_H^* - cx_H^*$ associé aux $H$.
 - Le partage du surplus est toujours à déterminer.
 
@@ -153,5 +261,6 @@ comme résultat :
 \[
   U_B'(x_B^*) - \pi U_H'(x_B^*) - c = 0.
 \]
-- Pour $\pi$ ou $U_H'(x_B) - U_B'(x_B)$ suffisament élevé, $x_B=0$ est optimale.
-- On peut dire que la solution de $U_B'(x_B^*) - \pi U_H'(x_B^*) - c = 0$ est moins grande que la solution de $U_B'(x_B^*) - c = 0$.
+- Pour $\pi$ ou $U_H'(x_B) - U_B'(x_B)$ suffisament élevé, $x_B^*=0$ est optimale.
+- On ne peut pas dire sans d'autres informations si $x_B^*=0$ ou $x_B^*>0$, mais on peut dire que $x_B^* < \bar{x}_B$ : $\pi U_H'(x_B) > 0$ alors la solution de $U_B'(x_B^*) = c + \pi U_H'(x_B^*)$ est moins grande que la solution de $U_B'(\bar{x}_B) = c$.
+- La quantité $x_B^*$ est moins grande que la quantité efficace $\bar{x}_B$, $U_B(x_B^*) > c$.
