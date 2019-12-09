@@ -96,7 +96,7 @@ L'agent:
 * obtient l'utilité $E[v(w)] - e^2/(2a)$, où
     * $w$ est le paiement du principal,
     * $v(w)$ est CARA avec aversion $\lambda$ pour le risque,
-    * $a>0$ est l'habileté de l'agent, {\em observée}
+    * $a>0$ est l'habileté de l'agent, *observée*
 
 Un projet du principal:
 
@@ -169,24 +169,21 @@ Le principal: (neutre pour le risque)
 
 ## Un modèle principal-agent avec actions discrètes
 
-L'agent :
+* L'agent :
+    * choisit d'accepter ou de rejeter un contrat du principal,
+    * le cas échéant, choisit un niveau $e\in \{0,1\}$ d'effort,
+    * a une utilité de réservation $u_0$,
+    * obtient l'utilité $E_e[u(s)] - c_e$ sous le contrat s'il fait l'effort $e$, avec $c_1 > c_0 = 0$, $u$ concave.
+    * maximise son utilité.
 
-* choisit d'accepter ou de rejeter un contrat du principal,
-* le cas échéant, choisit un niveau $e\in \{0,1\}$ d'effort,
-* a une utilité de réservation $u_0$,
-* obtient l'utilité $E_e[u(s)] - c_e$ sous le contrat s'il fait l'effort $e$, avec $c_1 > c_0 = 0$, $u$ concave.
-* maximise son utilité.
+* Un projet du principal :
+    * réussit avec probabilité $\pi_e$, selon l'effort $e$ de l'agent, avec $\pi_1 > \pi_0$,
+    * vaut 1 au cas de succès, 0 sinon.
 
-Un projet du principal :
-
-* réussit avec probabilité $\pi_e$, selon l'effort $e$ de l'agent, avec $\pi_1 > \pi_0$,
-* vaut 1 au cas de succès, 0 sinon.
-
-Le principal:
-
-* est neutre pour le risque,
-* choisit un contrat $(s_0,s_1)$ qui paie $s_1$ en cas de succès, $s_0$ sinon
-* maximise la valeur espérée du projet moins le paiement espéré à l'agent (neutralité pour le risque)
+* Le principal:
+    * est neutre pour le risque,
+    * choisit un contrat $(s_0,s_1)$ qui paie $s_1$ en cas de succès, $s_0$ sinon
+    * maximise la valeur espérée du projet moins le paiement espéré à l'agent (neutralité pour le risque)
 
 ## Le cas où l'effort est observé
 
