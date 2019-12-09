@@ -14,7 +14,7 @@ urlcolor: blue
 * Un agent économique a un contrôle partiel sur un résultat (accident ou non, succès ou échec d'un projet).
 * Son action (prudence, effort) n'est pas observée (par un assureur, par un employeur).
 * Les actions qui augmentent la probabilité d'un bon résultat sont coûteuses pour l'agent.
-* L'agent est averse pour le risque.
+* L'agent a de l'aversion pour le risque.
 * Une réduction de risque atténue les incitations pour choisir les `bonnes' actions.
 * Partager le risque avec d'autres personnes entraine une externalité.
 * Tension entre la réduction de risque et les bonnes incitations.
@@ -28,7 +28,6 @@ Exemples d'aléa morale en assurance
 * (Absence d') assurance pour perte de capital dans la maison.
 * Assurance incendie et incendie criminel
 * Assurance vie, meurtre et suicide
-* Assurance médicale et choix de traitement
 * Comportement des banques sous l'assurance implicite des gouvernements
 
 Les actions prises ne sont pas efficaces, à cause d'une différence entre les coûts ou bénéfices privés et les coûts ou bénéfices sociaux.
@@ -68,7 +67,7 @@ Les actions prises ne sont pas efficaces, à cause d'une différence entre les c
 \[
 	-\frac{v''(x)}{v'(x)} = \lambda.
 \]
-* Plus grand $\lambda$, plus averse; $\lambda = 0$ est la neutralité.
+* Plus grand $\lambda$, plus de l'aversion; $\lambda = 0$ est la neutralité.
 
 ## L'espérance d'utilité CARA pour un risque Gaussien
 
@@ -84,25 +83,27 @@ Les actions prises ne sont pas efficaces, à cause d'une différence entre les c
 			&= v(\mu - \lambda \sigma^2/2).
   \end{aligned}
 \]
-* La prime de risque ici est de $\lambda \sigma^2/2$; on accepte $\lambda \sigma^2/2$ moins en espérance pour avoir un montant certain.
+* La prime de risque ici est de $\lambda \sigma^2/2$ :
+    * on accepte $\lambda \sigma^2/2$ moins en espérance pour avoir un montant certain, ou
+    * il faut donner une compensation moyenne de $\lambda \sigma^2/2$ pour faire accepter le risque.
 
 ## Un premier modèle principal-agent (manuel IEA)
 
-L'agent:
+L'agent :
 
 * choisit d'accepter ou rejeter un contrat du principal,
 * le cas échéant, choisit un niveau $e\geq 0$ d'effort,
 * a une utilité de réservation $u_0$,
-* obtient l'utilité $E[v(w)] - e^2/(2a)$, où
+* obtient l'utilité $E[v(w - e^2/(2a))]$, où
     * $w$ est le paiement du principal,
     * $v(w)$ est CARA avec aversion $\lambda$ pour le risque,
-    * $a>0$ est l'habileté de l'agent, *observée*
+    * $a>0$ est l'habileté de l'agent, *observée*. (L'effort est plus facile si $a$ est élevé, mais pas plus efficace.)
 
-Un projet du principal:
+Un projet du principal :
 
 * La valeur du projet est de $x \sim N(e,\sigma^2)$.
 
-Le principal: (neutre pour le risque)
+Le principal : (neutre pour le risque)
 
 * offre un contrat à l'agent qui paie $sx + y$ à l'agent,
 * maximise la valeur nette (après le paiement) espérée du projet.
@@ -111,61 +112,60 @@ Le principal: (neutre pour le risque)
 
 * Son utilité s'il accepte le contrat est de
 \[
-	u = E[v(sx + y)] - e^2/(2a) = se + y - s^2 \lambda \sigma^2 - e^2/(2a).
+	u = E[v(sx + y - e^2/(2a))] = v(se + y - e^2/(2a) - \lambda s^2 \sigma^2/2).
 \]
-* L'effort optimal :
+* L'effort optimal ($u$ est une fonction concave d'une fonction concave en $e$ alors concave) :
 \[
-	\frac{\partial u}{\partial e} = s - e/a,
-	\qquad \frac{\partial^2 u}{\partial e^2} = -1/a < 0,
+	\frac{\partial u}{\partial e} = v'(se + y - e^2/(2a) - \lambda s^2 \sigma^2/2)(s - e/a),
 	\qquad
 	e^* = sa.
 \]
 * Son utilité indirecte (pour $e=e^*$) :
 \[
 	\begin{aligned}
-		u^*(s,y) &= s^2a + y - s^2 \lambda \sigma^2 - s^2a^2/(2a) \\
-		&= s^2a/2 + y - s^2 \lambda \sigma^2.
+		u^*(s,y) &= v(s^2a + y - \lambda s^2 \sigma^2/2 - s^2a^2/(2a)) \\
+		&= v(s^2a/2 + y - \lambda s^2 \sigma^2/2).
 	\end{aligned}
 \]
-* Il accept le contrat $(s,y)$ si $u^*(s,y) > u_0$, ou si
+* Il accept le contrat $(s,y)$ si $u^*(s,y) \geq u_0$, ou si
 \[
-	y + s^2a/2 - s^2\lambda \sigma^2 \geq u_0.
+	v(y + s^2a/2 - \lambda s^2 \sigma^2/2) \geq u_0.
 \]
 
 ## Le problème du principal
 
 * La condition pour accepter le contrat devient la contrainte de participation pour le principal
 \[
-	y + s^2a/2 - s^2\lambda \sigma^2 \geq u_0.
+	y + s^2a/2 - \lambda s^2 \sigma^2 / 2 \geq v^{-1}(u_0).
 \]
-* Cette condition est saturée, alors $y=u_0 - s^2a/2 + s^2\lambda \sigma^2$.
+* Elle est saturée, alors $y=v^{-1}(u_0) - s^2a/2 + \lambda s^2 \sigma^2/2$.
 * La valeur nette du projet est de
 \[
 	\begin{aligned}
-		\pi = E[x-sx-y] &= (1-s)sa - (u_0 - s^2a/2 + s^2\lambda \sigma^2) \\
-		&= sa - s^2a/2 - u_0 - s^2\lambda \sigma^2.
+		\pi = E[x-sx-y] &= (1-s)sa - (v^{-1}(u_0) - s^2a/2 + \lambda s^2 \sigma^2/2) \\
+		&= sa - s^2a/2 - v^{-1}(u_0) - \lambda s^2 \sigma^2/2.
 	\end{aligned}
 \]
 * La part optimale:
 \[
-	\frac{\partial \pi}{\partial s} = a - sa - 2s\lambda \sigma^2,
-	\qquad \frac{\partial^2 \pi}{\partial s^2} = -a-2\lambda\sigma^2 < 0,
+	\frac{\partial \pi}{\partial s} = a - sa - \lambda s \sigma^2,
+	\qquad \frac{\partial^2 \pi}{\partial s^2} = -a-\lambda\sigma^2 < 0,
 \]
 \[
-	\qquad s^* = \frac{a}{a+2\lambda \sigma^2}.
+	\qquad s^* = \frac{a}{a+\lambda \sigma^2}.
 \]
 
 ## Notes sur le problème principal-agent
 
 * Le principal veut donner les bonnes incitations pour l'effort, mais doit compenser l'agent pour assumer du risque.
-* L'effort efficace égalise le gain marginal (1) et le coût marginal ($e/a$) à $e=a$.
+* L'effort efficace $e=a$ égalise le gain marginal ($v'$) et le coût marginal ($v'\cdot e/a$) d'un agent qui garde tout le profit marginal.
 * Si le principal observe l'effort, $e=a$ est optimal (et efficace)
 * Si l'agent est neutre pour le risque ($\lambda = 0$), $s=1$ est optimal pour le principal et puis $e=a$ est le choix de l'agent.
 * Si $\lambda > 0$, le principal choisit $s<1$ et l'agent $e<a$.
 * Interpretations de $s$ :
-    * $s=1$: vente du projet à l'agent pour $-y$.
-    * $s=0$: relation employeur/employée avec salaire versé,
-    * $0<s<1$: commission de vente, métayage, franchisage
+    * $s=1$ : vente du projet à l'agent pour $-y$.
+    * $s=0$ : relation employeur/employée avec salaire versé,
+    * $0<s<1$ : commission de vente, métayage, franchisage
 
 ## Un modèle principal-agent avec actions discrètes
 
@@ -183,7 +183,7 @@ Le principal: (neutre pour le risque)
 * Le principal:
     * est neutre pour le risque,
     * choisit un contrat $(s_0,s_1)$ qui paie $s_1$ en cas de succès, $s_0$ sinon
-    * maximise la valeur espérée du projet moins le paiement espéré à l'agent (neutralité pour le risque)
+    * maximise la valeur espérée du projet moins le paiement espéré à l'agent (par neutralité pour le risque)
 
 ## Le cas où l'effort est observé
 
@@ -196,11 +196,11 @@ et la participation à haut effort au coût $s_1$ qui vérifie
 	u(s_1) - c_1 = u_0, \qquad s_1 = u^{-1}(u_0+c_1).
 \]
 
-Notes:
+Notes :
 
 * Le profit dans le premier cas est de $\pi_0 - u^{-1}(u_0)$.
 * Le profit dans le deuxième cas est de $\pi_1 - u^{-1}(u_0+c_1)$.
-* Le principal offre le contrat le plus payant (pour lui).
+* Le principal offre le contrat qui lui donne le profit maximal.
 * Le principal assume tout le risque; l'agent est assuré contre le risque.
 * Le principal choisit le contrat (ou $s_0$ pour $e=0$ ou $s_1$ pour $e=1$) qui maximise son profit ; l'action de l'agent est efficace.
 
@@ -221,11 +221,11 @@ Le premier est facile :
 ## Comment inciter l'effort $e=1$
 
 * Prenons $u(s) = s^\alpha$, $0 < \alpha < 1$ (concave)
-* La contrainte de participation:
+* La contrainte de participation :
 \begin{equation}\label{e:part}
 	\pi_1 s_1^\alpha + (1-\pi_1) s_0^\alpha - c_1 \geq u_0.
 \end{equation}
-* La contrainte de compatibilité des incitations:
+* La contrainte de compatibilité des incitations :
 \[
 	\pi_1 s_1^\alpha + (1-\pi_1) s_0^\alpha - c_1 \geq \pi_0 s_1^\alpha + (1-\pi_0) s_0^\alpha,
 \]
@@ -267,12 +267,12 @@ ou
 	\frac{\partial L}{\partial s_1} = -\pi_1 + \lambda \pi_1 \alpha s_1^{\alpha-1} = 0.
 \]
 * On a $\lambda = s_0^{1-\alpha}/\alpha = s_1^{1-\alpha}/\alpha$, alors $s_0 = s_1$.
-* Intutition : s'il n'avait pas besoin d'inciter $e=1$, il assurerait l'agent complètement.
+* Intutition : s'il n'avait pas besoin d'inciter $e=1$, le principal assurerait l'agent complètement.
 * $s_0 = s_1$ n'est pas cohérent avec la contrainte de compatibilité des incitations : contradiction.
 
 ## La solution au problème d'inciter l'effort haut
 
-* Les deux contraintes sont saturées, on obtient $s_0^\alpha$ et $s_1^\alpha$ comme la solution deux équations linéaires (les deux contraintes).
+* Les deux contraintes sont saturées, on obtient $s_0^\alpha$ et $s_1^\alpha$ comme la solution de deux équations linéaires (les deux contraintes).
 * On compare le profit optimal ici avec le profit optimal associé avec $e=0$.
 * La solution globale est celle qui donne le profit maximal.
 * La solution dépend des paramètres $\alpha$, $\pi_0$, $\pi_1$, $u_0$, $c_1$.
