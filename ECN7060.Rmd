@@ -40,3 +40,7 @@
 [Diapos, Cours 12, 2019/11/27](./ECN7060/ECN7060_12.pdf)
 
 [Diapos, Cours 13, 2019/12/04](./ECN7060/ECN7060_13.pdf)
+
+[Questionnaire 6, 2018, sur les probabilités et espérances conditionnelles](./ECN7060/Quiz_6_2018.pdf)
+
+[Questionnaire 7, 2017, sur les probabilités et espérances conditionnelles](./ECN7060/Quiz_7.pdf)
