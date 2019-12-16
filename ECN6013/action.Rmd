@@ -187,45 +187,45 @@ Le principal : (neutre pour le risque)
 
 ## Le cas où l'effort est observé
 
-Dans ce cas, le principal peut acheter la participation à bas effort au coût $s_0$ qui vérifie
+Dans ce cas, le principal peut acheter la participation à bas effort au coût $\sigma_0$ qui vérifie la contrainte de participation $u(\sigma_0) = u_0$, c'est à dire au coût
 \[
-	u(s_0) = u_0, \qquad s_0 = u^{-1}(u_0),
+	\sigma_0 \equiv u^{-1}(u_0).
 \]
-et la participation à haut effort au coût $s_1$ qui vérifie
+Ou il peut acheter la participation à haut effort au coût $\sigma_1$ qui vérifie la contraint de participation $u(\sigma_1) - c_1 = u_0$, c'est à dire au coût
 \[
-	u(s_1) - c_1 = u_0, \qquad s_1 = u^{-1}(u_0+c_1).
+	\sigma_1 \equiv u^{-1}(u_0+c_1).
 \]
 
 Notes :
 
-* Le profit dans le premier cas est de $\pi_0 - u^{-1}(u_0)$.
+* Le profit dans le premier cas est de $\pi_0 - \sigma_0 = \pi_0 - u^{-1}(u_0)$.
 * Le profit dans le deuxième cas est de $\pi_1 - u^{-1}(u_0+c_1)$.
-* Le principal offre le contrat qui lui donne le profit maximal.
-* Le principal assume tout le risque; l'agent est assuré contre le risque.
-* Le principal choisit le contrat (ou $s_0$ pour $e=0$ ou $s_1$ pour $e=1$) qui maximise son profit ; l'action de l'agent est efficace.
+* Le principal choisit le contrat (ou $\sigma_0$ pour $e=0$ ou $\sigma_1$ pour $e=1$) qui maximise son profit,
+* Le principal assume tout le risque car l'agent est assuré contre le risque. (L'agent est payé pour l'effort et non le résultat.)
+* L'allocation est efficace.
 
 ## Le cas où l'effort n'est pas observé
 
 La stratégie :
 
-1. trouver le contrat qui incite $e=0$ et qui maximise le profit parmi tous les contrats qui incite $e=0$, (attention: une contrainte de compatibilité des incitations pour éviter $e=1$)
-1. trouver le contrat qui incite $e=1$ et qui maximise le profit parmi tous les contrats qui incite $e=1$, (attention: une contrainte de compatibilité des incitations pour éviter $e=0$)
+1. trouver le contrat qui incite $e=0$ et qui maximise le profit parmi tous les contrats qui incite $e=0$, (il y a une contrainte de compatibilité des incitations pour éviter $e=1$)
+1. trouver le contrat qui incite $e=1$ et qui maximise le profit parmi tous les contrats qui incite $e=1$, (il y a une contrainte de compatibilité des incitations pour éviter $e=0$)
 1. choisit le contrat le plus payant entre les deux.
 
-Le premier est facile :
+La première étape est facile :
 
-* offrir à l'agent $s_0 = u^{-1}(u_0)$ peut importe le résultat,
-* on obtient le même résultat qui était optimal pour un problème moins contraignant,
-* ce contrat doit être optimal parmi les contrats qui incitent $s_0$.
+* Considérez le contrat $(s_0, s_1) = (\sigma_0, \sigma_0)$, où $\sigma_0 \equiv u^{-1}(u_0)$.
+* On obtient la participation avec $e=0$ pour le salaire constant $\sigma_0$, qui était optimal dans un problème moins contraignant.
+* Alors ce contrat doit être optimal parmi les contrats qui incitent $e=0$.
 
-## Comment inciter l'effort $e=1$
+## Étape 2 : contrat optimal parmi ceux qui incitent $e=1$
 
 * Prenons $u(s) = s^\alpha$, $0 < \alpha < 1$ (concave)
-* La contrainte de participation :
+* La contrainte de participation est $E_{e=1}[u(s)] - c_1 \geq u_0$ :
 \begin{equation}\label{e:part}
 	\pi_1 s_1^\alpha + (1-\pi_1) s_0^\alpha - c_1 \geq u_0.
 \end{equation}
-* La contrainte de compatibilité des incitations :
+* La contrainte de compatibilité des incitations est $E_{e=1}[u(s)] - c_1 \geq E_{e=0}[u(s)]$ :
 \[
 	\pi_1 s_1^\alpha + (1-\pi_1) s_0^\alpha - c_1 \geq \pi_0 s_1^\alpha + (1-\pi_0) s_0^\alpha,
 \]
@@ -237,29 +237,30 @@ ou
 \[
 	\max_{s_0,s_1} \pi_1 (1-s_1) + (1-\pi_1) (-s_0) \quad \mbox{s.c.} \quad \eqref{e:part}, \eqref{e:incent}
 \]
+* Remarque : si \eqref{e:part} et \eqref{e:incent} sont saturées, il y a un seul contrat $(s_0,s_1)$ qui vérifie les deux ; ce contrat donne le maximum.
 
 ## La contrainte de participation est saturée
 
-* Mettons que non: on a une solution $(s_0, s_1)$ qui vérifie la contrainte de compatibilité des incitations et
+* Mettons que non : alors la solution $(s_0, s_1)$ vérifie la contrainte de compatibilité des incitations et
 \[
 	\pi_1 s_1^\alpha + (1-\pi_1) s_0^\alpha - c_1 = u' > u_0.
 \]
-* Remplacer $s_1^\alpha$ par $s_1^\alpha - (u'-u_0)$, $s_0^\alpha$ par $s_0^\alpha - (u'-u_0)$, la contrainte de participation tient toujours.
+* Remplacer $s_1^\alpha$ par $s_1^\alpha - (u'-u_0)$, $s_0^\alpha$ par $s_0^\alpha - (u'-u_0)$ et la contrainte de participation tient toujours.
 * La contrainte de compatibilité des incitations tient toujours elle aussi.
 * Le profit du principal est plus élevé.
-* Contradiction.
+* Contradiction : $(s_0, s_1)$ ne peut pas être la solution.
 
 ## La contrainte de compatibilité des incitations est saturée
 
-* Mettons que non: la solution résout le problème avec fonction de Lagrange
+* Mettons que non: la solution $(s_0, s_1)$ résout le problème avec fonction de Lagrange
 \[
   \begin{aligned}
 	  L(s_0,s_1,\lambda) &=
 		\pi_1 (1-s_1) + (1-\pi_1) (-s_0) \\
-		&+ \lambda (\pi_1 s_1^\alpha + (1-\pi_1)s_0^\alpha - c_1 - u_0)
+		&+ \lambda (\pi_1 s_1^\alpha + (1-\pi_1)s_0^\alpha - c_1 - u_0).
 	\end{aligned}
 \]
-* $L(s_0,s_1,\lambda)$ est concave, un point stationnaire vérifie
+* $L(s_0,s_1,\lambda)$ est concave et un point stationnaire vérifie
 \[
 	\frac{\partial L}{\partial s_0} = -(1-\pi_1) + \lambda (1-\pi_1) \alpha s_0^{\alpha-1} = 0,
 \]
@@ -268,11 +269,16 @@ ou
 \]
 * On a $\lambda = s_0^{1-\alpha}/\alpha = s_1^{1-\alpha}/\alpha$, alors $s_0 = s_1$.
 * Intutition : s'il n'avait pas besoin d'inciter $e=1$, le principal assurerait l'agent complètement.
-* $s_0 = s_1$ n'est pas cohérent avec la contrainte de compatibilité des incitations : contradiction.
+* $s_0 = s_1$ n'est pas cohérent avec la contrainte de compatibilité des incitations : il y a une contradiction.
 
-## La solution au problème d'inciter l'effort haut
+## La solution au problème de l'étape 2
 
-* Les deux contraintes sont saturées, on obtient $s_0^\alpha$ et $s_1^\alpha$ comme la solution de deux équations linéaires (les deux contraintes).
-* On compare le profit optimal ici avec le profit optimal associé avec $e=0$.
-* La solution globale est celle qui donne le profit maximal.
+* Les deux contraintes sont saturées, alors on obtient $s_0^\alpha$ et $s_1^\alpha$ comme la solution de deux équations linéaires (les deux contraintes, mais avec égalité).
+* En général, on obtient le contrat $(s_0,s_1)$ optimal (parmi les contrats qui incitent $e=1$) par $s_0 = u^{-1}(u(s_0))$, $s_1 = u^{-1}(u(s_1))$ ; ici, cela veut dire $s_0 = (s_0^\alpha)^{1/\alpha}$, $s_1 = (s_1^\alpha)^{1/\alpha}$.
+* On calcul le profit espéré maximal (parmi les contrats qui incitent $e=1$) comme $\pi_1 - \pi_1 s_1 - (1-\pi_1) s_0$.
+
+## La solution finale
+
+* On compare le profit maximal parmi les contrats qui incite $e=1$ avec le profit maximal parmi les contrats qui incite $e=0$, obtenu à l'étape 1 de la « stratégie ».
+* La solution globale est celle qui donne le profit maximal (étape 3 de la stratégie).
 * La solution dépend des paramètres $\alpha$, $\pi_0$, $\pi_1$, $u_0$, $c_1$.
