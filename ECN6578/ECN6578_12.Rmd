@@ -1,0 +1,267 @@
+---
+title: "ECN 6578, Cours 12 : Valeur à risque"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Lectures
+
+* Tsay 7 (intro), 7.1, 7.2, 7.3, 7.4
+
+## Pourquoi la valeur à risque I
+
+* L'objectif de l'investisseur : choisir un portefeuille selon ses préférences.
+* L'information pertinente est la loi prédictive conjointe de tous les rendements des actifs.
+* Gérer toute cette information est trop difficile :
+    * estimation
+    * élicitation des préférences
+    * optimisation
+* Simplification 1 : focaliser sur la moyenne et la variance des rendements : (CAPM)
+* Simplification 2 : focaliser sur les grandes pertes et leur probabilité (VaR, ES)
+* Pour un preneur de décisions, les deux sont complémentaires, pas exclusives.
+
+## Pourqoui la valeur à risque II
+
+* Perte non-linéaire : risque de faire faillite, de devoir vendre des actifs productifs, d'avoir besoin d'un sauvetage financier
+* Exemples de risque :
+    * Institutions financières, levier de financement
+    * Importeurs, exporteurs (risque des devises)
+    * Firmes qui exploitent des ressources naturels (risque de changements de prix)
+    * Pensions : risque de perte de valeur des actifs
+
+## Valeur à Risque (VaR)
+
+* Pour les quantités suivantes
+    1. Terme (ou horizon) $l$ (en périodes),
+    1. Probabilité $p$ de grande perte,
+    1. Fonction de répartition $F_l(\cdot)$ pour le gain de valeur d'un portefeuille en $l$ périodes,
+
+* la valeur à risque (VaR) est (par définition) la solution de l'équation
+$$ p = F_l(\mathrm{VaR}). $$
+
+* la question de conditionnement
+    * loi inconditionelle, longue terme, non-paramétrique
+    * loi condtionnelle, court terme, besoin d'un modèle (régression quantile ou plein modèle)
+    
+## RiskMetrics
+
+* Modèle simple, IGARCH Gaussien :
+$$ \mu_t=0,\quad \sigma_t^2=\alpha \sigma_{t-1}^2 + (1-\alpha)r_{t-1}^2,
+\quad r_t = a_t = \sigma_t \epsilon_t $$
+où $\epsilon_t \sim \mathrm{N}(0,1)$.
+
+* Un seul paramètre $\alpha \in (0,1)$, approximativement 0.94.
+
+* Utile à court terme, pour les rendements journaliers.
+
+* Pour $i<j$,
+$$ \mathrm{cov}[r_{t+i}, r_{t+j}|F_t] = E[\sigma_{t+i}\sigma_{t+j}\epsilon_{t+i}E[\epsilon_{t+j}|F_{t+j-1}]|F_t] = 0. $$
+
+## RiskMetrics : variance multipériode
+
+* Du diapos précédent : $\mathrm{cov}[r_{t+i}, r_{t+j}|F_t] = 0$. Alors
+
+$$
+\begin{aligned}
+  \mathrm{Var}[a_{t+i}|F_t] &= \mathrm{Var}[E[a_{t+i}|F_{t+i-1}]|F_t] + E[\mathrm{Var}[a_{t+i}|F_{t+i-1}]|F_t]\\
+  &= E[\sigma^2_{t+i}|F_t]
+\end{aligned}
+$$
+
+$$ \sigma^2_t[k] = \sum_{i=1}^k \mathrm{Var}[a_{t+i}|F_t] = \sum_{i=1}^k E[\sigma^2_{t+i}|F_t]. $$
+
+## Une récursion pour modèle IGARCH Gaussien de RiskMetrics
+
+* Pour tous $t$,
+$$
+  \sigma_t^2 = \alpha \sigma_{t-1}^2 + (1-\alpha) r_{t-i}^2
+  = \alpha \sigma_{t-1}^2 + (1-\alpha) \sigma_{t-1}^2 \epsilon_t^2.
+$$
+$$
+  \sigma_t^2 = \sigma_{t-1}^2 + (1-\alpha) \sigma_{t-1}^2 (\epsilon_{t-1}^2-1)
+$$
+
+* En particulier,
+$$
+\sigma_{t+i}^2 = \sigma_{t+i-1}^2 + (1-\alpha) \sigma^2_{t+i-1} (\epsilon_{t+i-1}^2-1)
+$$
+
+* Espérences itérées donne ($E[E[\cdot|F_{t+i-2}]|F_t]$)
+$$
+E[\sigma_{t+i}^2|F_t] = E[\sigma^2_{t+i-1}|F_t].
+$$
+
+* On peut écrire maintenant
+$$ \sigma_t^2[k] = k\sigma_{t+1}^2. $$
+
+## Calcul de VaR RiskMetrics
+
+* À $t$, on détient une quantité $Q$ d'un portefeuille à prix $P_t$.
+* Pour $p=0.05$, $l=1$, la VaR est de
+$$ P_tQ \times \Phi^{-1}(0.05) \sigma_{t+1} \approx P_tQ  \times 1.65 \sigma_{t+1} $$
+* Pour $p=0.05$, $l=k$, la VaR est de
+$$ P_tQ \times \Phi^{-1}(0.05) \sqrt{k} \sigma_{t+1} \approx P_tQ  \times 1.65 \sqrt{k} \sigma_{t+1} $$
+* Notez l'approximation $R_t = r_t$.
+* Exemple 7.1 :
+    * $\sigma_t = 0.53\%$ (écart-type empirique du taux d'échange DM/Dollar, juin 1997)
+    * $P_tQ = 10^7\, \$$
+    * $p = 0.05$ ($\Phi^{-1}(0.05) \approx 1.65$)
+    * $\mathrm{VaR}(1) = 10^7 \times 1.65 \times 0.0053 = 87450\,\$$
+    * $\mathrm{VaR}(10) = 10^7 \times \sqrt{10} \times 1.65 \times 0.0053 = 276541\,\$$
+
+## Discussion
+
+* Simple
+* L'hypothèse de gaussianité peut être très trompeur pour $p\leq 0.01$.
+
+## Approche économétrique I
+
+* Mettons qu'on a un modèle ARMA(p,q)-GARCH(u,v) pour les rendements $r_1,\ldots,r_n$ :
+$$ \mu_t = \phi_0 + \sum_{i=1}^p \phi_i r_{t-i} + a_t - \sum_{j=1}^q \theta_j a_{t-j} $$
+$$ \sigma^2_t = \alpha_0 + \sum_{i=1}^u \alpha_i a_{t-i}^2 + \sum_{j=1}^v \beta_j \sigma^2_{t-j}. $$
+
+* En évaluant la vraisemblance, on obtient les $\mu_t$, $\sigma^2_t$.
+
+* Chaque $\mu_t$ et $\sigma^2_t$ est une fonction de tous les $r_1,\ldots,r_{t-1}$
+
+* Par la suite, on peut calculer $a_t = r_t - \mu_t$, $t=1,\ldots,n$.
+
+* Sachant $r_1,\ldots,r_n$, $r_{n+1} \sim (\mu_{n+1}, \sigma_{n+1})$, où
+$$ \mu_{n+1} = \phi_0 + \sum_{i=1}^p \phi_i r_{n+1-i} - \sum_{j=1}^q \theta_j a_{n+1-j} $$
+$$ \sigma^2_{n+1} = \alpha_0 + \sum_{i=1}^u \alpha_i a_{n+1-i}^2 + \sum_{j=1}^v \beta_j \sigma^2_{n+1-j}. $$
+
+## Approche économétrique II
+
+* Si $r_{n+1}|r_1,\ldots,r_n \sim N(\mu_{n+1},\sigma^2_{n+1})$, la VaR pour une période avec $p=0.05$ est, par unité de valeur
+$$ \mathrm{VaR} = \mu_{n+1} + \Phi(0.05) \sigma_{n+1} = \mu_{n+1} - 1.65 \sigma_{n+1}. $$
+
+* Si $r_{n+1}|r_1,\ldots,r_n \sim t(\mu_{n+1},\sigma^2_{n+1},\nu)$ :
+    * La variance d'un aléa $t$ de Student standard avec $\nu$ degrés de liberté est $\nu/(\nu-2)$.
+    * Soit $t_\nu(p)$ la quantile d'un aléa $t(\nu)$.
+    * La valeur à risque est, par unité de valeur
+$$ \mathrm{VaR} = \mu_{n+1} + \frac{t_\nu(p) \sigma_{n+1}}{\sqrt{\nu/(\nu-2)}}. $$
+
+## Exemple, calcul du VaR ou $r_{n+1}|r_1,\ldots,r_n$ est un $t$ de Student
+
+* Mettons que $\mu_{n+1} = 0.001$, $\sigma_{n+1} = 0.02$, $\nu = 12$.
+
+* Calcul du VaR pour $p=0.05$
+```{r studentvar, echo=TRUE}
+p = 0.05
+nu = 12
+mu.np1 = 0.001
+sigma.np1 = 0.02
+t.nu.p = qt(p, nu)
+VaR = mu.np1 + t.nu.p * sigma.np1 / (sqrt(nu/(nu-2)))
+VaR
+```
+
+## Estimation quantile, approche inconditionnelle
+
+* Trier les rendements $r_1,\ldots,r_n$ pour calculer les statistiques d'ordre :
+$$ r_{(1)} \leq r_{(2)} \leq \ldots \leq r_{(n)}. $$
+
+* Supposons que $r_t$ sont iid avec fonction de répartition $F$ et densité $f$.
+
+* On veux estimer $x_p = F^{-1}(p)$, la quantile $p$ de la population
+
+* Pour $l=np$ entier
+$$ r_{(l)} \sim_\mathrm{asy} N\left( x_p, \frac{p(1-p)}{n[f(x_p)]^2} \right) $$
+
+* $r_{(l)}$ est une estimation de $x_p$
+
+* Il faut estimer $f(x_p)$ pour calculer la variance de l'estimateur.
+
+## Quand $np$ n'est pas entier
+
+* Trouver $l_1$, $l_2$ entiers tels que $l_2 = l_1 + 1$, $l_1 < np < l_2$.
+
+* Alors $l_1$ est le plancher de $np$.
+
+* Soit $p_1 = l_1/n$, $p_2 = l_2/n$.
+
+* Trouver $\hat{x}_p$ entre $\hat{x}_{p_1}$ et $\hat{x}_{p_2}$ :
+
+$$ \hat{x}_p = \frac{p_2 - p}{p_2 - p_1} r_{(l_1)} + \frac{p - p_1}{p_2 - p_1} r{(l_2)} $$
+
+## Exemple à longue terme
+
+```{r VaRibm, echo=TRUE}
+# Séries IBM journalière
+r = scan('d-ibmln.txt')
+r.sort = sort(r)
+n = length(r)
+# Calcul de x-chapeau-p
+p = 0.05
+l1 = floor(p*n); p1 = l1/n;
+l2 = ceiling(p*n); p2 = l2/n;
+x.ch.p = ((p2-p) * r.sort[l1] + (p-p1) * r.sort[l2]) / (p2-p1)
+# Calcul de f(x-chapeau-p)
+ds = density(r)
+x.ch.p.index = which.min((ds$x-x.ch.p)^2)
+f.x.ch.p = ds$y[x.ch.p.index]
+sigma = sqrt(p*(1-p)/n)/f.x.ch.p
+```
+
+## Valeurs
+
+```{r valeurs, echo=TRUE}
+p1;p2;l1;l2
+x.ch.p;f.x.ch.p;sigma
+```
+
+## Illustration : histogramme
+
+```{r histibm, echo=TRUE}
+hist(r, 80)
+abline(v=x.ch.p)
+```
+
+## Illustration : densité
+
+```{r densibm, echo=TRUE}
+plot(ds$x, ds$y, type='l')
+abline(v=x.ch.p)
+```
+
+## Commentaires
+
+* Avantages :
+    1. Simple
+    1. Pas de modèle
+    
+* Inconvénients :
+    1. L'hypothèse de iid peu crédible : il y a plus d'incertitude quand les rendements ne sont pas indépendents.
+    1. Pas de conditionnement à l'information pertinente.
+    1. Les quantiles empiriques ne sont pas efficaces pour $p$ petit.
+    1. Pas de changement de distribution entre la période de l'échantillon et la période de prévision.
+
+## Régression quantile I
+
+* Rappel : la moyenne $E[r]$ est la solution du problème
+$$ \mu = \arg\min_\beta E[(r-\beta)^2] = \arg\min_\beta E(r-E[r])^2 + (E[r]-\beta)^2. $$
+* La quantile $x_p = F^{-1}(p)$ est la solution du problème
+$$ q_p = \arg\min_\beta E[w_p(r-\beta)], $$
+* La fonction de perte $w_p$ est
+$$ w_p(z) = \begin{cases} pz, & z \geq 0 \\ -(1-p)z, & z < 0. \end{cases} $$
+* La quantile empirique (ou de l'échantillon) est la solution de
+$$ \hat{q}_p = \arg\min_\beta \sum_{i=1}^n w_p(r_i-\beta). $$
+
+## Régression quantile II
+
+* Supposons que la quantile conditionnelle $q_p|x$ est linéaire en $x$ : $q_p|x = \beta_p^\top x$.
+
+* Alors $\beta_p$ est la solution de
+$$ \beta_p = \arg\min_\beta E[w_p(r-\beta^\top x)]. $$
+
+* L'analogue dans l'échantillon donne l'estimateur
+$$ \hat{\beta}_p = \arg\min_\beta \sum_{t=1}^n w_p(r_t-\beta^\top x_t). $$
+
+* Notes
+    * Dans le contexte de VaR, $x_t$ comprend des variables dans $F_{t-1}$.
+    * la fonction de perte $w_p$ est moins sensible aux valeurs aberrantes que la fonction de perte quadratique.

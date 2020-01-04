@@ -1,0 +1,735 @@
+---
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2019"
+subtitle: "Cours 8 et 9"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Références
+
+*  CLM 8.1 FAS
+*  CLM 8.2 CCAPM, utilité isoélastique, casse-têtes empiriques
+*  CLM 8.4 Utilité Epstein-Zin, utilité non-séparable
+*  CLM A.2 GMM
+
+## Le facteur d'actualisation dans un monde sans risque
+
+*  Supposons un monde sans risque, avec taux d'intérêt $R_t$.
+*  La valeur actuelle d'un dollar dans un an est de
+    \[ M_{t+1}=\frac{1}{1+R_{t+1}}. \]
+*  On appelle $M_t$ le facteur d'actualisation.
+*  L'absence d'arbitrage entraîne, pour chaque actif $i$,
+    \[ P_{it} = P_{i,t+1} M_{t+1}. \]
+*  En termes équivalents :,
+    \[ \frac{P_{i,t+1}}{P_{it}} M_{t+1} = (1+R_{i,t+1})M_{t+1} = 1. \]
+
+## Le facteur d'actualisation stochastique (FAS)
+
+*  Le FAS $M_t$ vérifie pour tout actif (ou portefeuille) $i$ :
+    \[ P_{it} = E_t[P_{i,t+1} M_{t+1}]
+    \quad E_t[(1+R_{i,t+1})M_{t+1}] = 1. \]
+*  Version inconditionnelle (prendre l'espérance
+    des deux côtés) :
+    \[ E[(1+R_{it})M_t] = 1. \]
+*  Avec $\mathrm{cov}[X,Y] = E[XY] - \mu_X\mu_Y$, on obtient
+    \[
+    1 = \mathrm{cov}[R_{it},M_t] + E[1+R_{it}]E[M_t]
+    \]
+    \[
+    E[1+R_{it}] = \frac{1}{E[M_t]} (1-\mathrm{cov}[R_{it},M_t]).
+    \]
+*  Notez bien que $M_t$ ne dépend pas de $i$.
+
+## Le rendement zéro-bêta
+
+*  Un actif à rendement $R_{ot}$ est un actif
+    *zéro-bêta inconditionnel* si $\mathrm{cov}[R_{ot},M_t] = 0$.
+*  Pour un tel actif,
+    \[ E[1+R_{ot}] = \frac{1}{E[M_t]}, \]
+    et on obtient
+    \[ E[R_{it}-R_{ot}] = -E[1+R_{ot}]\mathrm{cov}[R_{it},M_t]. \]
+*  Remarquez qu'un actif sans risque est toujours un actif zéro-bêta inconditionnel.
+
+## Deux approches à la dérivation du FAS
+
+*  maximisation de l'utilité (hypothèse plus forte), et
+*  absence de l'arbitrage (moins forte).
+
+## Maximisation d'utilité espérée intertemporelle
+
+*  Voici une fonction d'utilité sur les chemins aléatoires
+    $\{C_{\tau}\}_{\tau=t}^{\infty}$ de la consommation :
+    \[ V = E_t\left[ \sum_{j=0}^{\infty} \delta^j U(C_{t+j}) \right]. \]
+*  $V$ est séparable en temps,
+*  $V$ est séparable en état (utilité espérée)
+*  Le taux de préférence de temps ($\delta$) est constant.
+*  La maximisation de $V$ sous des contraints
+    (richesse, actifs disponible) donne
+    \[ U'(C_t) = \delta E_t[ (1+R_{i,t+1}) U'(C_{t+1}) ], \]
+    où $R_{i,t+1}$ est le rendement de l'actif $i$ à $t+1$.
+*  C'est une équation dite d'Euler.
+
+## Maximisation d'utilité et le FAS
+
+*  Le FAS est le taux marginal inter-temporel de substitution:
+    \[ M_{t+1} = \delta U'(C_{t+1})/U'(C_t), \]
+    qui est toujours positif.
+*  Intuition pour
+    \[ E[R_{it}-R_{ot}] = -E[1+R_{ot}]\mathrm{cov}[R_{it},M_t] : \]
+    Si $\mathrm{cov}[R_{it},M_t] > 0$, $i$ a un rendement
+    élevé quand la consommation future est plus valorisée
+    (i.e. quand $U'(C_{t+1})$ est élevé). Son prix
+    est plus élevé et son rendement moyen est moins élevé.
+*  L'investisseur supporte ce rendement moyen moins élevé
+    car l'actif paie quand la consommation est plus valorisée.
+
+## Absense d'arbitrage et le FAS
+
+*  Voici un milieu très simple :
+    *  Il y a deux périodes.
+    *  L'état du monde est aléatoire dans la deuxième période.
+    *  Il y a $S$ états du monde possible : $1, \ldots, S$.
+    *  Chaque état $s$ a une probabilités $\pi_s$ d'être réalisé.
+    *  Il y a $N$ actifs, chacun avec un paiement dans le deuxième
+      période qui dépend de $s$.
+    *  Actif $i$ a un prix $q_i$ en période 1.
+    *  Actif $i$ paie $X_{si}$ si l'état $s$ se produit.
+    *  $\pi$, $X$ et $q$ sont primitifs.
+
+## Prix et rendements
+
+*  Vecteur $q$ donne les prix à période 1 :
+    \[
+    \underset{N\times 1}{q}
+    =
+    \begin{bmatrix}
+      q_1 \\
+      \vdots \\
+      q_N
+    \end{bmatrix}.
+    \]
+*  Matrice $X$ donne les paiements des actif :
+    \[
+    \underset{S\times N}{X}
+    =
+    \begin{bmatrix}
+      X_{11} & \cdots & X_{1N} \\
+      \vdots & \ddots & \vdots \\
+      X_{S1} & \cdots & X_{SN}
+    \end{bmatrix}.
+    \]
+*  Matrix $G$ donne le rendement brut de l'actif $i$ en état
+    $s$ ($G_{si} = X_{si}/q_i$):
+    \[
+    \underset{S\times N}{G}
+    =
+    \begin{bmatrix}
+      G_{11} & \cdots & G_{1N} \\
+      \vdots & \ddots & \vdots \\
+      G_{S1} & \cdots & G_{SN}
+    \end{bmatrix}.
+    \]
+
+## Prix d'états
+
+*  Définition: vecteur $p$ ($S \times 1$) est un vecteur
+    des prix d'états si
+    \[ X'p = q, \]
+    ou, ce qui est équivalent, pour chaque actif $i$,
+    \[ q_i = \sum_{s=1}^S X_{si} p_s. \]
+*  Si on divise chaque rangée $i$ de $X'p = q$ par $q_i$, on
+    obtient
+    \[ G'p = \iota. \]
+
+## Implications de l'absence d'arbitrage
+
+*  Résultat très important : pas d'arbitrage ssi
+    il existe un vecteur $p$ positif des prix d'états.
+*  Si, en plus, $\mathrm{rang}(X) = S$, le marché est dit complet
+    et le vecteur $p$ est unique.
+*  On peut définir une variable aléatoire $M$, qui s'avère
+    être le FAS : dans chaque état $s$,
+    $M_s = p_s/\pi_s$.
+*  L'absence d'arbitrage implique qu'il existe un $p$ positif t.q.
+    $G'p = \iota$.
+*  Donc, il existe un $M > 0$ tel que
+    \[
+    1 = \sum_{s=1}^S p_s(1+R_{si}) = \sum_{s=1}^S \pi_s M_s(1+R_{si})
+    = E[(1+R_i)M].
+    \]
+*  Le résultat se généralise (plusieurs périodes, temps continu).
+
+## Le modèle CCAPM
+
+*  L'équation
+    \[ 1 = E_t[(1+R_{i,t+1})M_{t+1}], \]
+    avec
+    \[ M_{t+1} = \delta \frac{U'(C_{t+1})}{U'(C_t)}, \]
+    où $C_t$ est la consommation agrégée est le modèle
+    CCAPM (C pour consommation).
+
+## La fonction d'utilité isoélastique
+
+*  La fonction d'utilité isoélastique est
+    \[ U(C_t) = \frac{C_t^{1-\gamma}-1}{1-\gamma} \quad \gamma>0 \]
+* 
+    $\lim_{\gamma \rightarrow 1} U(C_t) = \log C_t$
+* 
+    Dans le contexte où les agents maximisent l'espérance de
+    $U(C_t)$ isoélastique, l'aversion relative pour le risque
+    est constante et égale à $\gamma$ :
+    \[ -C_t \frac{U''(C_t)}{U'(C_t)} = \gamma \]
+*  Dans un modèle inter-temporel séparable dans le temps
+    avec l'utilité isoélastique à chaque période,
+    l'élasticité de substitution inter-temporelle est constante,
+    et égale à $\psi = \gamma^{-1}$.
+
+## Un problème à deux périodes sans incertitude
+
+*  Supposez qu'il y a un rendement $R$ sans risque.
+    \[
+    \max_{C_t,C_{t+1}} U(C_t) + \delta U(C_{t+1})
+    \quad \text{tel que} \quad
+    C_t + \frac{1}{1+R} C_{t+1} = m
+    \]
+*  Conditions nécessaires pour un max:
+    \[
+    \delta C_{t+1}^{-\gamma} - \frac{1}{1+R} C_t^{-\gamma} = 0
+    \quad
+    \text{(proportions)}
+    \]
+    \[
+    C_t + \frac{1}{1+R} C_{t+1} = m
+    \quad
+    \text{(niveaux)}
+    \]
+    \[
+    \left(
+      \frac{C_{t+1}}{C_t}
+    \right)^{-\gamma}
+    =
+    \frac{1}{\delta(1+R)}
+    \]
+    \[
+    \frac{C_{t+1}}{C_t}
+    =
+    \left[
+      \delta (1+R)
+    \right]^{1/\gamma}
+    \]
+    \[
+    \Delta c_{t+1} = c_{t+1} - c_t
+    \equiv
+    \log\frac{C_{t+1}}{C_t}
+    =
+    \frac{1}{\gamma} \log \delta
+    +
+    \frac{1}{\gamma} \log(1+R)
+    \]
+
+## Remarques sur le problème à deux périodes
+
+*  $\log\frac{C_{t+1}}{C_t}$ est la log-croissance de la
+    consommation,
+*  $\frac{1}{\gamma}$ est l'élasticité de substitution
+    inter-temporelle,
+*  $r = \log(1+R)$ est le log taux d'intérêt,
+*  Invariance de l'échelle: $C_{t+1}/C_t$
+    ne dépend pas de $m$: $\{C_t\}$ pour un riche est
+    un multiple de celui d'un pauvre.
+* Le lien entre le risque et la substitution n'est pas flexible.
+*  $C_t$ agrégée: si tout le monde a une utilité
+    isoélastique avec le même $\gamma$ et $\delta$,
+    $C$ agrégée est celle d'un consommateur avec cette
+    utilité ayant la richesse agrégée.
+* Une rationalisation du consommateur représentatif.
+
+## Tester le CCAPM
+
+* Le CCAPM avec l'utilité isoélastique devient
+\begin{equation}\label{e:CCAPM}
+    1 = E_t
+    \left[
+      (1+R_{i,t+1}) \delta
+      \left(
+        \frac{C_{t+1}}{C_t}
+      \right)^{-\gamma}
+    \right]
+\end{equation}
+* Pour tester le CCAPM, on peut estimer $\gamma$ et tester
+    cette restriction sous une hypothèse supplémentaire :
+    $(1+R_i,C)$ est log-normal et homoscédastique.
+
+## La loi log-normale
+
+*  Définition :
+\[
+    X \sim LN(\mu,\sigma^2)
+    \Leftrightarrow
+    \log X \sim N(\mu,\sigma^2)
+\]
+*  Moments :
+\[
+    \log E[X] = E[\log X] + \frac{1}{2} \mathrm{var}[ \log X ] = \mu + \sigma^2/2,
+\]
+\[
+    E[X] = e^{\mu + \sigma^2/2}.
+\]
+
+## CCAPM avec log-normalité
+
+* L'équation \eqref{e:CCAPM} en logarithmes :
+\[
+    0 = \log E_t \left[
+      (1+R_{i,t+1}) \delta
+      \left( \frac{C_{t+1}}{C_t} \right)^{-\gamma}
+    \right].
+\]
+* Sous l'hypothèse supplémentaire de log-normalité,
+\[ 0 = E_t[r_{i,t+1}] + \log \delta - \gamma E_t[\Delta c_{t+1}]
+    + \frac{1}{2} (\sigma_i^2 + \gamma^2\sigma_c^2 - 2\gamma\sigma_{ic})
+\]
+* $\sigma_i^2$ est la variance de $r_{i,t+1}$,
+* $\sigma_c^2$ est la variance de $\Delta c_{t+1}$,
+* $\sigma_{ic}$ est la covariance entre $r_{i,t+1}$ et $\Delta c_{t+1}$
+* Les variances conditionnelles égalent aux variances inconditionnelles par l'homoscédasticité.
+
+## Ajouter un actif sans risque
+
+* S'il existe un actif $f$ sans risque,
+    $\sigma_f^2 = \sigma_{fc} = 0$, et
+\[ r_{f,t+1} =
+    - \log \delta
+    - \frac{\gamma^2 \sigma_c^2}{2}
+    + \gamma E_t[\Delta c_{t+1}]
+\]
+* Pour un actif arbitraire $i$,
+\[
+    E_t[r_{i,t+1} - r_{f,t+1}] =
+    \gamma \sigma_{ic} - \sigma_i^2/2
+\]
+* Version en rendements simples:
+\[
+    \log(E_t[(1+R_{i,t+1})/(1+R_{f,t+1})]) = \gamma \sigma_{ic}
+\]
+* La constance de cette prime de risque est une implication
+  malheureuse de l'homoscédasticité, pas cohérente avec les données.
+
+## Le casse-tête de la prime des actions (The Equity Premium Puzzle)
+
+*  Soit $i$ l'indice S\&P500
+*  Prenez l'effet de commerce (commercial paper) comme
+    proxy pour $f$.
+*  Pendant 1889-1994, la moyenne de l'échantillon du
+    $R_i$ est de 6\%.
+*  Celle du rendement log en excès est de 4\%.
+*  $C_{t+1}/C_t$ est très lisse ($\sigma_c =0.033$),
+*  Sa covariance avec $R_i$ est très faible
+    ($\sigma_{ic} = 0.0027$).
+*  Le coefficient de risque nécessaire pour
+    expliquer ces faits est de 19, qui est peu crédible,
+    selon les études micro.
+
+## Le mystère du taux sans risque
+
+*  Version inconditionnelle de l'expression pour
+    $E_t[r_{f,t+1}]$ :
+    \[
+    E[r_{ft}] = -\log \delta + \gamma g -
+    \frac{\gamma^2\sigma_c^2}{2}
+    \]
+    où $g = E[\Delta c_{t+1}]$.
+*  Les moyennes historiques sont:
+    * $E[r_{ft}]$: 1.8\%
+    * $g$: 1.8\%
+    * $\sigma_c^2$: 3.3\%
+	
+*  Mais $\gamma = 19$ implique $\delta = 1.12 > 1$.
+*  Intuition : une grande aversion pour le risque implique
+    un très faible volonté à substituer.
+    Avec $C_{t+1}/C_t > 1$, on a une forte désire
+    à emprunter, qui n'est pas cohérent avec un taux d'intérêt
+    bas et un $\delta < 1$.
+
+## Les préférences Epstein-Zin
+
+*  Tentative à élucidé le casse-tête de la prime de
+    risque avec des préférences qui brisent le lien entre $\gamma$
+    (aversion pour le risque) et $\psi$
+    (élasticité de substitution inter-temporelle),
+    tout en maintenant l'invariance à l'échelle.
+*  La définition de l'utilité EZ est récursive:
+    \[
+    U_t =
+    \left\{
+      (1-\delta) C_t^{(1-\gamma)/\theta} +
+      \delta (E_t[U_{t+1}^{1-\gamma}])^{1/\theta}
+    \right\}^{\theta/(1-\gamma)}
+    \]
+    où
+    \[
+    \theta = \frac{1-\gamma}{1-\psi^{-1}}.
+    \]
+
+## Utilité isoélastique comme cas spécial
+
+*  Pour $\theta = 1$,
+    \begin{eqnarray*}
+      U_t^{1-\gamma} & = & (1-\delta) C_t^{1-\gamma}
+      + \delta E_t[U_{t+1}^{1-\gamma}] \\
+      & = &
+      (1-\delta) C_t^{1-\gamma}
+      + \delta (1-\delta) E_t C_{t+1}^{1-\gamma}
+      + \delta^2 E_t[ U_{t+2}^{1-\gamma} ] \\
+      & = & (1-\delta)
+      E_t\left[ \sum_{\tau=0}^{\infty} \delta^{\tau}
+        C_{t+\tau}^{1-\gamma}\right].
+    \end{eqnarray*}
+
+## Équation d'Euler pour les préférences E-Z
+
+*  Pour le contraint budgétaire suivant :
+    \[ W_{t+1} = (1+R_{m,t+1})(W_t-C_t), \]
+    où $W_t$ est la richesse de l'agent représentatif,
+    y compris le capital humain, et $R_{m,t+1}$ est le rendement
+    du marché, EZ montrent que l'équation d'Euler est
+    \[
+    1 =
+    E_t\left[
+      \left\{
+        \delta
+        \left(
+          \frac{C_{t+1}}{C_t}
+        \right)^{-1/\psi}
+      \right\}^{\theta}
+      \left\{
+        \frac{1}{(1+R_{m,t+1})}
+      \right\}^{1-\theta}
+      (1+R_{i,t+1})
+    \right].
+    \]
+*  Notez l'invariance de l'échelle : une équation pour le ratio $C_{t+1}/C_t$.
+* Soit $X_{t+1}$ l'intérieur de l'espérance.
+
+## CCAPM avec E-Z et log-normalité
+
+*  Avec la log-normalité et l'homoscédasticité, on obtient
+    \[
+    0 = E_t[\log X_{t+1}] + \frac{1}{2}\mathrm{var}_t[\log X_{t+1}],
+    \]
+    où
+    \[
+    \log X_{t+1} =
+    \theta \log \delta
+    -\frac{\theta}{\psi} \Delta c_{t+1}
+    -(1-\theta) r_{m,t+1}
+    + r_{i,t+1}.
+    \]
+*  Avec les cas spéciaux $r_i = r_m$ et
+    $r_i = r_f$ et le cas général $r_i = r_i$, on obtient
+    \[
+    r_{f,t+1} =
+    -\log \delta
+    + \frac{\theta-1}{2} \sigma_m^2
+    - \frac{\theta}{2\psi^2} \sigma_i^2
+    + \frac{1}{\psi} E_t[\Delta c_{t+1}]
+    \]
+    \[
+    E_t[r_{i,t+1}] - r_{f,t+1} =
+    \left[
+      \theta \frac{\sigma_{ic}}{\psi} + (1-\theta) \sigma_{im}
+    \right]
+    - \frac{\sigma_i^2}{2}
+    \]
+*  La prime de risque est une somme pondérée de la covariance de
+    $r_i$ avec $\Delta c_{t+1}$ et sa covariance avec $r_m$.
+    Exercice: montrez que $\theta=1$ donne le CCAPM avec utilité
+    isoélastique et que $\theta=0$ donne approximativement le CAPM.
+
+## Utilité non-séparable
+
+*  Une autre tentative à élucidé le casse-tête de la
+    prime de risque implique l'utilité  non-séparable,
+    tout en maintenant l'invariance à l'échelle:
+    \[
+    U_t =
+    \sum_{j=0}^{\infty}
+    \delta^j
+    \frac{(C_{t+j}/X_{t+j})^{1-\gamma}-1}{1-\gamma},
+    \]
+    où
+    * Habitude interne: $X_t = C_{t-1}^{\kappa}$ où $C_t$ est
+      la consommation individuelle, ou
+    * Habitude externe: $X_t = \bar{C}_{t-1}^{\kappa}$ où $C_t$ est
+      la consommation agrégée.
+
+## Habitude interne
+
+*  Avec l'habitude interne, la décision $C_t$ a un effet sur
+    $X_{t+1}$, ce dont le consommateur tient compte :
+    \begin{eqnarray*}
+      \frac{\partial U_t}{\partial C_t}
+      & = &
+      \frac{\partial}{\partial C_t}
+      \left[
+        \frac{(C_t/C_{t-1}^{\kappa})^{1-\gamma}-1}{1-\gamma}
+        +
+        \delta
+        \frac{(C_{t+1}/C_t^{\kappa})^{1-\gamma}-1}{1-\gamma}
+      \right] \\
+      & = &
+      \left( \frac{C_t}{C_{t-1}^{\kappa}} \right)^{-\gamma}
+      \cdot
+      \frac{1}{C_{t-1}^{\kappa}}
+      +
+      \delta
+      \left(\frac{C_{t+1}}{C_t^{\kappa}}\right)^{-\gamma}
+      \cdot
+      (-\kappa)
+      \cdot
+      C_t^{-\kappa-1}
+      \cdot
+      C_{t+1} \\
+      & = &
+      C_t^{-\gamma}C_{t-1}^{\kappa(\gamma-1)}
+      - \delta \kappa C_t^{\kappa(\gamma-1)} C_{t+1}^{-\gamma}(C_{t+1}/C_t)
+    \end{eqnarray*}
+*  Cette utilité marginale dépend de $C_{t+1}$, qui est aléatoire,
+    et $t$.
+    L'équation d'Euler est donc
+    \[
+    E_t \left[
+      \frac{\partial U_t}{\partial C_t}
+    \right]
+    =
+    \delta
+    E_t \left[
+      (1+R_{t+1}) \frac{\partial U_{t+1}}{\partial C_{t+1}}
+    \right].
+    \]
+
+## Habitude externe
+
+*  Avec l'habitude externe, la décision $C_t$ d'un individuel n'a
+    aucun effet sur $X_t$, mais en équilibre, tout le monde prend la
+    même décision :
+    \[
+    \frac{\partial U_t}{\partial C_t} =
+    \frac{\partial}{\partial C_t}
+    \left[
+      \frac{(C_t/X_t)^{1-\gamma}-1}{1-\gamma}
+    \right]_{X_t = C_{t-1}^{\kappa}} =
+    \left(\frac{C_t}{X_t}\right)^{-\gamma}
+    \cdot
+    \frac{1}{X_t} = C_t^{-\gamma} C_{t-1}^{\kappa(\gamma-1)}
+    \]
+    \[
+    M_{t+1} =
+    \delta
+    \frac{\partial U_{t+1}/\partial C_{t+1}}{\partial U_t/\partial C_t} =
+    \delta
+    \frac{C_{t+1}^{-\gamma} C_t^{\kappa(\gamma-1)}}
+    {C_t^{-\gamma} C_{t-1}^{\kappa(\gamma-1)}}
+    \]
+*  Avec log-normalité et homoscédasticité,
+    \[
+    E_t[r_{i,t+1}-r_{f,t+1}] + \sigma_i^2/2 = \gamma \sigma_{ic}
+    \]
+    \[
+    r_{f,t+1} =
+    - \log \delta
+    - \gamma^2 \sigma_c^2/2
+    + \gamma E_t[\Delta c_{t+1}] - \kappa(\gamma-1) \Delta C_t
+    \]
+*  La prime de risque ne change pas.
+*  Encore seulement une $\gamma$ très grande peut expliquer les données.
+*  Mais une telle aversion pour le risque est plus cohérente avec
+    un rendement sans risque plus bas.
+
+## Motivation pour GMM
+
+* GMM, c'est la Méthode de Moments Généralisée
+* La log-normalité de $(C_{t+1}, R_{i,t+1})$ est une hypothèse très forte.
+* L'approche GMM n'exige qu'une condition de moment inconditionnel comme $E[(1+R_{it})M_t] = 1$.
+
+## Éléments de GMM
+
+*  Vecteur de variables aléatoires : $w_t\;$ ($J\times 1$)
+*  Vecteur de paramètres : $\theta_0\;$ ($P\times 1$)
+*  Fonction de moment : $g(w_t,\theta_0)\;$ ($Q\times 1$)
+*  Condition de moment de la population : $E[g(w_t,\theta_0)]=0$
+
+## Exemple CCAPM 1 : $w_t$
+
+*  Vecteur de variables aléatoires :
+    \[ w_t = (C_t, C_{t+1}, R_{t+1}, Z_t) \]
+*  $C_t$ est la consommation agrégée ($1\times 1$).
+*  $R_{t+1}$ est un vecteur $N\times 1$ de rendements nets.
+*  $Z_t$ est un vecteur $K\times 1$ de variables exogènes, ou instruments, connu à $t$.
+*  Par exemple,
+    \[ Z_t = (1, C_t/C_{t-1},C_{t-1}/C_{t-2}, R_t, R_{t-1}). \]
+
+## Exemple CCAPM 2 : $\theta_0$
+
+*  Vecteur de paramètres :
+    \[ \theta_0 = (\delta_0,\gamma_0) \]
+*  $\delta_0$ et $\gamma_0$ sont des ``vraies'' valeurs des paramètres
+    d'utilité isoélastique :
+    \[ V = E\left[\sum_{\tau=0}^\infty \delta_0^\tau
+      \frac{C_\tau^{1-\gamma_0}}{1-\gamma_0}\right] \]
+
+## Exemple CCAPM 3 : $g(w_t,\theta_0)$
+
+*  Fonction de moment :
+    \[ g(w_t,\theta_0) =
+    [(1 + R_{t+1})\delta_0 (C_{t+1}/C_t)^{-\gamma_0} - \iota] \otimes Z_t \]
+*  $\iota$ est un vecteur $N\times 1$ de 1.
+*  $\otimes$ est l'opération de produit Kronecker.
+*  $[\ldots]$ est $N\times 1$, $Z_t$ est $K\times 1$ donc le
+    produit Kronecker est $NK \times 1$.
+*  Un élément de $g(w_t,\theta_0)$ pour chaque combinaison d'actif et d'instrument.
+
+## Exemple CCAPM 4 : Condition de moment de la population
+
+*  Condition de moment de la population :
+    \[ E[g(w_t,\theta_0)] = 0. \]
+*  Selon le modèle, pour chaque instrument $k$ et chaque actif $i$,
+    \begin{eqnarray*}
+      \lefteqn{E[((1+R_{i,t+1}) \delta_0 (C_{t+1}/C_t)^{-\gamma_0}-1)
+        \cdot Z_{kt}]} \\
+      & = & E[
+      E_t[((1+R_{i,t+1}) \delta_0 (C_{t+1}/C_t)^{-\gamma_0}-1)\cdot Z_{kt}] ] \\
+      & = & E[
+      E_t[((1+R_{i,t+1}) \delta_0 (C_{t+1}/C_t)^{-\gamma_0}-1)] Z_{kt} ] \\
+      & = & E[0 \cdot Z_{kt}] = 0 \\
+    \end{eqnarray*}
+*  Donc les conditions de moment sont entraînées par la théorie.
+
+## Identification et suridentification
+
+*  Dans cet exemple, $Q = N\times K$ (dimension de $g$)
+    et $P=2$ (dimension de $\theta_0$)
+*  Si $Q \geq P$ et les instruments sont valides, le système est
+    identifié.
+*  Si $Q > P$, le système est sur-identifié.
+
+## La condition de moment de l'échantillon
+
+*  Correspondant à $E[g(w_t,\theta_0)]$, la condition de moment
+    de la population, il y a une condition de moment de l'échantillon :
+    \[ g_T(w,\theta) \equiv \frac{1}{T} \sum_{t=1}^T g(w_t,\theta) \]
+*  $w \equiv (w_1,\ldots,w_T)$.
+*  Comme $g(w_t,\theta)$, $g_T(w,\theta)$ est $Q\times 1$.
+*  Intuition pour GMM :
+    *  Si le modèle est vrai, il devrait y avoir une valeur du
+      paramètre $\theta$ pour laquelle $g_T(w,\theta)$ est près de
+      zéro.
+    *  On estime $\theta$ avec la valeur pour laquelle
+      $g_T(w,\theta)$ est le plus près à zéro.
+    *  $g_T(w,\theta)$ étant vecteur, il faut choisir un distance
+      à zéro.
+    *  On peut évaluer le modèle par la proximité de
+      $g_T(w,\theta)$ à zéro.
+
+## L'estimation GMM
+
+*  L'estimation GMM (méthode de moments généralisée)
+    est la valeur $\hat{\theta}_{GMM}$ qui minimise
+    \begin{equation}\label{e1}
+      Q_T(\theta) = g_T(w,\theta)'\, W_T\, g_T(w,\theta),
+    \end{equation}
+    où $W_T$ est une matrice $Q\times Q$ définie positive.
+*  $W_T = I_Q$ (matrice d'identité) donne la somme des carrées.
+*  Une condition nécessaire pour une solution
+    $\hat{\theta} = \arg\min_{\theta} Q_T(\theta)$ est
+    \begin{equation}\label{e2}
+      2 G_T(\theta)' W_T g_T(w,\theta) = 0,
+    \end{equation}
+    où
+    \[ G_T(w,\theta) = \frac{1}{T}
+    \sum_{t=1}^T \frac{\partial g_T(w_t,\theta)}{\partial \theta'}. \]
+*  On peut minimiser $Q_T$ dans \eqref{e1} ou résoudre \eqref{e2}.
+
+## Le choix de $W_T$, la matrice de pondération
+
+*  La théorie de GMM dit que la $W_T$ optimale est
+    \[ W_T = S^{-1}, \]
+    où
+    \[ S = \mathrm{avar}[ T^{1/2} g_T(w,\theta_0)]. \]
+*  Notez que $S$ dépend de $\theta_0$, qui est inconnu.
+*  Même l'estimation de $\theta$ dépend de $W_T$.
+*  Cette situation mène à une approche itérative.
+
+## Estimation de $\theta$ à plusieurs étapes
+
+*  Commencez avec $W_T = I_Q$.
+*  Plus robuste mais un peu plus difficile : commencez avec une
+    matrice diagonale avec les précisions de l'échantillon des
+    éléments de $g_T(w,\theta)$.
+*  Pour calculer ce dernier, on peut choisir des valeurs
+    raisonnables de $\theta$ ($\delta = 0.99$ et $\gamma = 3.0$,
+    par exemple).
+*  Itérez sur les étapes suivantes :
+    *  Calculer $\hat{\theta}$ par minimisation ou la solution
+      de (\ref{e2}).
+    *  Calculer
+      \[ \hat{S}(w,\hat{\theta}) = \frac{1}{T}
+      \sum_{t=1}^T g(w_t,\hat{\theta}) g(w_t,\hat{\theta})' \]
+*  Arrêtez quand (par exemple)
+    $\max|\hat{\theta}^K - \hat{\theta}^{K-1}| < \epsilon$.
+*  Pour $\gamma \approx 3$, $\delta \approx 1$,
+    $\epsilon = 10^{-4}$ est raisonnable.
+
+## Propriétés Asymptotiques
+
+*  Si $g(w_t,\theta)$ est stationnaire et ergodique et
+    $W_T$ est définie positive,
+    *  $\hat{\theta} \rightarrow \theta_0$ en probabilité et
+    *  $T^{1/2}(\hat{\theta}-\theta_0)$ converge en loi à
+      $N(0,(G'S^{-1}G)^{-1})$.
+*  Avec la matrice $2\times 2$ de covariance asymptotique
+    $(G'S^{-1}G)^{-1}$, reportez les écarts types (racines carrées des éléments diagonaux)
+
+## Questions théoriques I
+
+1. Considérez le milieu introduit à la diapo "Absence d'arbitrage et le FAS". Il y a $S=2$ états et 2 actifs. Le premier actif a un rendement net $R_f$ dans les deux états et coûte 100 $. Le deuxième actif a un rendement net $R_1$ dans le permier état et un rendement net $R_2$ dans le deuxième et coûte 500 $.
+    a. Donnez les matrices $X$ et $G$ et le vecteur $q$ en termes de $R_f$, $R_1$ et $R_2$.
+    a. Donnez une condition nécessaire et suffisante sur $R_f$, $R_1$ et $R_2$ pour la complétion du marché.
+    a. Supposant que le marché est complet, trouvez le vecteur des prix d'états et donnez une condition supplémentaire sur $R_f$, $R_1$ et $R_2$ pour l’absence d'arbitrage.
+    a. Si les états sont équiprobable ($\pi_1 = \pi_2 = 0.5$) trouvez le facteur d'actualisation stochastique.
+
+## Questions théoriques II
+
+2. Considérez le problème à la diapo "Un problème à deux périodes sans incertitude".
+    a. Démontrez que si $(C_t^{(i)}, C_{t+1}^{(i)})$ est une solution du problème pour un consommateur avec revenu $m_i$, $i=1,2$, que $(C_t^{(1)}+C_t^{(2)}, C_{t+1}^{(1)}+C_{t+1}^{(2)})$ est une solution du problème pour un consommateur avec revenu $m_1 + m_2$. 
+    a. Généralisez le problème à trois périodes. Le taux d'intérêt $R$ est constant et la pondération de $U(C_{t+2})$ est $\delta^2$. Démontrez que pour la solution $(C_t, C_{t+1}, C_{t+2})$, les ratios $C_{t+2}/C_t$ et $C_{t+1}/C_t$ ne dépendent pas du revenu $m$.
+    
+## Exercices R
+
+Pour les exercices suivantes, utilisez les log-rendements mensuels des $N=4$ actions des exercices R du cours 7 : IBM, GM, Hershey Foods et Alcoa.
+Utilisez l'index S&P 500 pour le marché et le CPI (consumer price index) pour rendre réels les rendements au besoin.
+Le (nouveau) fichier CAPM.zip contient toutes les données nécessaires : regardez la description à la prochaine diapo.
+
+1. Effectuer les tests $J_0$, $J_1$, $J_2$ et $J_3$ de la version Sharpe-Lintner du CAPM.
+Utilisez le rendement de l'obligation de trésor d'un an comme le rendement $R_f$ sans risque.
+1. Effectuer les tests $J_4$ et $J_5$ de la version Black du CAPM. Une condition raisonnable de convergence est que le changement fractionnaire de $\hat{\gamma}^*$ est $10^{-6}$.
+Vous devriez utiliser une boucle `while` en R. Il y a beaucoup de ressources sur internet pour apprendre comment programmer des boucles. Par exemple, <https://fr.wikibooks.org/wiki/Programmer_en_R/Programmer_une_boucle>.
+
+## Données pour les exercices R
+
+Le fichier `CAPM.zip` contient :
+
+|fichier|description|
+|-------|-----------|
+|`CPI.txt`|indice des prix à la consommation, 1962/01 - 2000/01|
+|`tresor.txt`|rendement de l'obligation de trésor, 1962/01 - 1999/12|
+|`m-sp6299`|rendement du S&P 500, 1962/01 - 1999/12|
+|`m-ibm6299`|rendement de l'action IBM, 1962/01 - 1999/12|
+|`m-gm6299`|rendement de l'action GM, 1962/01 - 1999/12|
+|`m-hsy6299`|rendement de l'action Hershey Foods, 1962/01 - 1999/12|
+|`m-aa6299`|rendement de l'action Alcoa, 1962/01 - 1999/12|

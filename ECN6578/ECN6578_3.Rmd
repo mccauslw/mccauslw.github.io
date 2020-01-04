@@ -1,0 +1,374 @@
+---
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2019"
+subtitle: "Cours 3"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+## Plan
+
+1. Comment spécifier un processus ARMA(p,q).
+1. Comment trouver la fonction d'autocorrélation d'un processus ARMA(p,q).
+1. Comment estimer les paramètres d'un processus ARMA(p,q).
+1. Comment selectionner les ordres d'un processus ARMA(p,q).
+
+## Commentaires préliminaires
+
+1. On focalise sur les processus covariance-stationnaires $r_t$.
+1. Tous les moments d'ordre un et deux de $r_t$ se trouvent dans la moyenne $\mu$ et la fonction d'autocovariance $\gamma_k$, $k=0,1,\ldots$.
+1. Spécification alternative : moyenne $\mu$, variance $\sigma^2$ et fonction d'autocorrélation $\rho_k$, $k=1,2,\ldots$, avec $\sigma^2 = \gamma_0$, $\rho_k = \gamma_k/\gamma_0$.
+1. On peut trouver les moments d'ordre un et deux de toutes les fonctions linéaires des $r_t$ si on connait $\mu$, $\gamma_k$, $k=1,\ldots$.
+1. Un processus gaussien est complètement spécifié par ces moments d'ordre un et deux.
+1. Il est très utile de définir un processus $r_t$ en termes d'une transformation d'un bruit blanc $a_t$ telle que la valeur $r_t$ dépend seulement du passé ($r_{t-1}, r_{t-2}, \ldots$) et *l'innovation* $a_t$.
+1. Pour aujourd'hui, la notation $a_t$ signifie toujours un bruit blanc et on suppose que $r_t$ est toujours un processus covariance-stationnaire.
+
+## Modèle AR(1) : spécification
+
+### AR(1) avec moyenne zéro, expressions équivalentes:
+- $r_t = \phi r_{t-1} + a_t$
+- $(1-\phi B) r_t = a_t$
+- $r_t = (1-\phi B)^{-1} a_t = \sum_{\tau=0}^\infty \phi^\tau B^\tau a_t$:
+    - $r_t = \phi r_{t-1} + a_t = \phi (\phi r_{t-2} + a_{t-1}) + a_t = a_t + \phi a_{t-1} + \phi^2 r_{t-2}$.
+    - remplace $r_{t-2}$ par $\phi r_{t-3} + a_{t-2}$ pour obtenir
+    $r_t = a_t + \phi a_{t-1} + \phi^2 a_{t-2} + \phi^3 r_{t-3}$, etc.
+    - $r_t = \sum_{\tau=0}^\infty \phi^\tau a_{t-\tau}$.
+
+### AR(1) avec moyenne $\mu$, expressions équivalentes:
+- $(1-\phi B) (r_t - \mu) = a_t$
+- $r_t = (1-\phi) \mu + \phi r_{t-1} + a_t$
+- $r_t = \phi_0 + \phi_1 r_{t-1} + a_t$, si $\phi_0 = (1-\phi)\mu$ et $\phi_1 = \phi$.
+
+## Modèle AR(1) : Calcul de la fonction d'autocovariance II
+
+- Supposons que $\mu=0$, $\phi$ et $\sigma_a^2 \equiv \mathrm{Var}[a_t]$ sont donnés.
+
+### Équations Yule-Walker pour trouver $\gamma_0$, $\gamma_1$
+
+- Multipliez $r_t = \phi r_{t-1} + a_t$ par $r_t$, $r_{t-1}$ et prenez les espérances :
+$$ E[r_t^2] = \phi E[r_t r_{t-1}] + E[r_t a_t] \quad\mbox{ou}\quad \gamma_0 = \phi \gamma_1 + \sigma_a^2, $$
+$$ E[r_{t-1}r_t] = \phi E[r_{t-1}^2] + E[r_{t-1} a_t] \quad\mbox{ou}\quad \gamma_1 = \phi \gamma_0. $$
+- La solution est $\gamma_0 = \sigma_a^2 / (1-\phi^2)$, $\gamma_1 = \phi \sigma_a^2 / (1-\phi^2)$.
+
+### Récursion pour trouver $\gamma_k$, $k>1$
+
+- Pour $k>1$
+$$ \gamma_k = E[r_t r_{t-k}] = E[(\phi r_{t-1} + a_t) r_{t-k}] = \phi \gamma_{k-1}. $$
+
+## Modèle AR(1) : Calcul de la fonction d'autocovariance II
+
+- Avec la solution des équations Y-W et la récursion, on obtient la fonction d'autocovariance
+$$ \gamma_k = \frac{\sigma_a^2}{1-\phi^2}\, \phi^k, $$
+et la fonction d'autocorrélation
+$$ \rho_k = \phi^k. $$
+
+- La fonction d'autocorrélation diminue à un taux exponentielle.
+
+- La valeur $\phi^{-1}$ est la racine du polynôme caracteristique $1-\phi x$, où $x$ replace $B$ dans l'expression $1-\phi B$.
+
+- La stationnarité implique $|\phi| < 1$ ou $|\phi^{-1}| > 1$.
+
+## Modèle AR(1) : Simulation
+
+```{r ARsim, echo=TRUE}
+ts.sim = arima.sim(n=1000, list(ar=0.8, sd = 0.1))
+ts.plot(ts.sim)
+```
+
+## Introduction au modèle AR(2)
+
+- Mettons que $s_t$ est un AR(1) : $(1-\omega_1 B) s_t = a_t$.
+- Définissons $r_t$ par $(1-\omega_2 B) r_t = s_t$.
+- Attention : $r_t$ n'est pas un AR(1) parce que $s_t$ n'est pas un bruit blanc.
+- Notez que $(1-\omega_1 B)(1-\omega_2 B)r_t = a_t$.
+- Autrement dit, $[1-(\omega_1 + \omega_2)B+\omega_1\omega_2B^2] r_t = a_t$.
+- Alors $r_t$ est un AR(2).
+
+## Modèle AR(2) avec moyenne zéro : spécification
+
+### Expressions équivalentes pour un AR(2):
+
+$$(1-\omega_1 B)(1-\omega_2 B) r_t = a_t$$
+$$[1-(\omega_1 + \omega_2) B + \omega_1\omega_2 B^2] r_t = a_t$$
+$$(1-\omega_2 B)(1-\omega_1 B) r_t = a_t$$
+$$r_t = (\omega_1 + \omega_2) r_{t-1} - \omega_1 \omega_2 r_{t-2} + a_t$$
+$$(1 - \phi_1 B - \phi_2 B^2) r_t = a_t,\;\mbox{où}\;\phi_1=\omega_1 + \omega_2,\,\phi_2 = -\omega_1\omega_2 $$
+$$r_t = (1 - \phi_1 B - \phi_2 B^2)^{-1} a_t$$
+
+### Notes
+
+- Remarquez que $(1-\omega_1 x)(1-\omega_2 x) = 1 - \phi_1 x - \phi_2 x^2$.
+- Alors $\omega_1^{-1}$ et $\omega_2^{-1}$ sont les deux racines de $1 - \phi_1 x - \phi_2 x^2$.
+
+## Racines du polynôme caractéristique et la stationnarité
+
+- Les racines $\omega_1^{-1}$ et $\omega_2^{-1}$ sont réelles ou sont complèxe conjugées :
+\[
+  \omega_1^{-1} = a + bi, \qquad \omega_2^{-1} = a - bi,
+\]
+pour $a$ et $b$ réelle.
+
+- Dans les deux cas, la stationnarité implique $|\omega_1| < 1$ et $|\omega_2| < 1$
+- Condition équivalente : $|\omega_1^{-1}| > 1$ et $|\omega_2^{-1}| > 1$.
+- Si $(\omega_1^{-1},\omega_2^{-1}) = a \pm bi$, $|\omega_1^{-1}| = |\omega_2^{-1}| = \sqrt{a^2 + b^2}$, $$(\omega_1,\omega_2) = \frac{a \mp bi}{a^2 + b^2}.$$
+
+## Modèle AR(2) : Calcul de la fonction d'autocovariance I
+
+### Équations Yule-Walker pour trouver $\gamma_0$, $\gamma_1$, $\gamma_2$
+
+- Multiplie $r_t = \phi_1 r_{t-1} + \phi_2 r_{t-2} + a_t$ par $r_t$, $r_{t-1}$, $r_{t-2}$ et prenez l'espérance:
+$$ E[r_t^2] = \phi_1 E[r_t r_{t-1}] + \phi_2 E[r_t r_{t-2}] + E[r_t a_t], $$
+$$ E[r_{t-1} r_t] = \phi_1 E[r_{t-1}^2] + \phi_2 E[r_{t-1}r_{t-2}] + E[r_{t-1} a_t], $$
+$$ E[r_{t-2} r_{t}] = \phi_1 E[r_{t-2} r_{t-1}] + \phi_2 E[r_{t-2}^2] + E[r_{t-2}a_t]. $$
+- En termes de $\gamma_0$, $\gamma_1$, $\gamma_2$,
+$$ \gamma_0 = \phi_1 \gamma_1 + \phi_2 \gamma_2 + \sigma_a^2, $$
+$$ \gamma_1 = \phi_1 \gamma_0 + \phi_2 \gamma_1, $$
+$$ \gamma_2 = \phi_1 \gamma_1 + \phi_2 \gamma_0. $$
+- On trouve la solution $\gamma_0$, $\gamma_1$, $\gamma_2$ pour $\phi_1$, $\phi_2$ et $\sigma_a^2$ donnés.
+
+## Modèle AR(2) : Calcul de la fonction d'autocovariance II
+
+### Récursion pour trouver $\gamma_k$, $k>2$
+
+* Une récursion qui donne une équation de différence pour $\gamma_k$ :
+\[
+  \begin{aligned}
+  \gamma_k = E[r_t r_{t-k}] &= E[(\phi_1 r_{t-1} + \phi_2 r_{t-2} + a_t) r_{t-k}] \\ &= \phi_1 \gamma_{k-1} + \phi_2 \gamma_{k-2}.
+  \end{aligned}
+\]
+* La solution générale de cette équation de différence linéaire de 2e ordre est (pourvu que $\omega_1 \neq \omega_2$)
+\[
+  \gamma_k = c_1 \omega_1^k + c_2 \omega_2^k,
+\]
+où $\omega_1^{-1}$ et $\omega_2^{-1}$ sont les deux racines de $1-\phi_1 x - \phi_2x^2$.
+* On peut trouver $c_1$ et $c_2$ avec les valeurs initiales $\gamma_0$ et $\gamma_1$.
+* Signification : une description des ailes de la fonction d'autocorrélation.
+
+## Fonction d'autocovariance pour quelques processus AR(2)
+
+1. $\omega_1 = \omega_2 = 0.4$ :
+$$ (1-0.4B)(1-0.4B) = 1 - 0.8 B + 0.16 B^2. $$
+1. $\omega_1 = -0.1$, $\omega_2 = 0.9$ :
+$$ (1+0.1B)(1-0.9B) = 1 - 0.8 B - 0.09 B^2. $$
+1. $\omega_1 = 0.4 + 0.5i$, $\omega_2 = 0.4 - 0.5i$ :
+$$ (1-(0.4+0.5i)B)(1-(0.4-0.5i)B) = 1 - 0.8 B + 0.41 B^2. $$
+
+## ACF pour $\omega_1 = \omega_2 = 0.4$
+
+```{r ACF1, echo=TRUE}
+ACF = ARMAacf(ar = c(0.8, -0.16), lag.max=10)
+plot(ACF)
+```
+
+## ACF pour $\omega_1 = -0.1$, $\omega_2 = 0.9$
+
+```{r ACF2, echo=TRUE}
+ACF = ARMAacf(ar = c(0.8, 0.09), lag.max=10)
+plot(ACF)
+```
+
+## ACF pour $\omega_1 = 0.4 + 0.5i$, $\omega_2 = 0.4 - 0.5i$
+
+```{r ACF3, echo=TRUE}
+ACF = ARMAacf(ar = c(0.8, -0.41), lag.max=10)
+plot(ACF)
+```
+
+## Extensions aux AR(p)
+
+* Même approche pour trouver la fonction d'autocovariance :
+    - $(p+1)$ équations linéaires Yule-Walker pour calculer les $(p+1)$ variables inconnues $\sigma_0,\gamma_1,\ldots,\gamma_p$ à partir de $\sigma_a^2$ et $\phi_1,\ldots,\phi_p$.
+    - Une récursion donne $\gamma_k$ en termes de $\gamma_{k-1},\ldots,\gamma_{k-p}$, $k>p$.
+* Si $\omega_1^{-1}, \ldots, \omega_p^{-1}$ sont les racines de $(1-\phi_1 x - \ldots - \phi_p x^p)$,
+\[
+   (1-\phi_1 B - \ldots - \phi_p B^p) = (1-\omega_1 B) \cdots (1-\omega_p B),
+\]
+* La stationnarité implique $|\omega_i^{-1}| > 1$ (ou $|\omega_i| < 1$), $i=1,\ldots,p$.
+* La fonction d'autocovariance vérifie, pour $k>p$, si les $\omega_i$ sont distincts.
+\[
+  \gamma_k = c_1 \omega_1^k + \ldots + c_p \omega_p^k
+\]
+et $\gamma_0,\ldots,\gamma_p$ détermine $c_1,\ldots,c_p$.
+* Conséquence : la fonction d'autocorrélation d'un AR(p) diminue de taux exponentiel.
+* Il peut y avoir des paires $(\omega_i, \omega_j) = a \pm bi$, mais les $\gamma_k$ sont toujours réels.
+
+## ARMA(p,q) : 3 représentations
+
+1. Représentation ARMA(p,q)
+\[
+  (1 - \phi_1 B - \phi_2 B^2 - \ldots \phi_p B^p) r_t = (1 - \theta_1 B - \theta_2 B^2 - \ldots - \theta_q B^q) a_t.
+\]
+\[
+  \phi(B) r_t = \theta(B) a_t
+\]
+
+2. Représentation MA infinie
+\[
+  \frac{\theta(B)}{\phi(B)} = 1 + \psi_1 B + \psi_2 B^2 + \ldots \equiv \psi(B)
+\]
+\[
+  r_t = \psi(B) a_t
+\]
+
+3. Représentation AR infinie (si le processus est invertible)
+\[
+  \frac{\phi(B)}{\theta(B)} = 1 - \pi_1 B - \pi_2 B^2 - \ldots \equiv \pi(B)
+\]
+\[
+  \pi(B) r_t = a_t 
+\]
+
+## Calcul de la fonction d'autocovariance d'un ARMA(p,q)
+
+- L'équation ARMA:
+\[
+  r_t = \phi_1 r_{t-1} + \ldots \phi_p r_{t-p} + a_t - \theta_1 a_{t-1} - \ldots - \theta_q a_{t-q}
+\]
+- Multiplie par $r_{t-h}$ et prenez l'espérance:
+\[
+  \gamma_h = \phi_1 \gamma_{h-1} - \ldots - \phi_p \gamma_{h-p} - \theta_h E[a_{t-h}r_{t-h}] - \ldots - \theta_q E[a_{t-q}r_{t-h}]
+\]
+- En utilisant la représentation AR infinie,
+\[
+  \gamma_h = \phi_1 \gamma_{h-1} - \ldots - \phi_p \gamma_{h-p} - \theta_h \psi_0 \sigma_a^2 - \ldots - \theta_q \psi_{q-h} \sigma_a^2
+\]
+- Les équations pour $h=0,1,\ldots,p$ donnent $\gamma_0,\gamma_1,\ldots,\gamma_p$.
+- Pour $h > \max(p, q)$, c'est comme un AR(p) :
+\[
+  \gamma_h = \phi_1 \gamma_{h-1} - \ldots - \phi_p \gamma_{h-p},
+\]
+alors les racines du polynome caracteristique déterminent le taux de diminution de la ACF.
+
+## Exemple : ACF d'un processus ARMA(p,q)
+
+```{r ACF, echo=TRUE}
+ACF = ARMAacf(ar = c(0.8, -0.2), ma = c(0.5), 10)
+plot(ACF)
+```
+
+## Exemple : PACF d'un processus ARMA(p,q)
+
+```{r PACF, echo=TRUE}
+PACF = ARMAacf(ar = c(0.8, -0.2), ma = c(0.5), 10, pacf=TRUE)
+plot(PACF)
+```
+
+## Estimation des paramètres des modèles ARMA(p,q)
+
+- Pour $p$ et $q$ donné, on veut
+    - trouver les estimateurs $\hat{\phi}$, $\hat{\theta}$, $\hat{\sigma}_a^2$ de $\phi = (\phi_0,\phi_1,\ldots,\phi_p)$, $\theta = (\theta_1, \ldots \theta_q)$ et $\sigma_a^2$, pour un échantillon donné,
+    - trouver la loi asymptotique des estimateurs.
+- La méthode la plus courante : maximum de vraisemblance (MV) pour une vraisemblance gaussienne.
+- Même si un ARMA(p,q) n'est pas gaussien, la loi asymptotique des estimateurs MV est pareille.
+(Un exemple de l'approche pseudo-maximum de vraisemblance)
+- La théorie des lois asymptotiques des estimateurs MV et pseudo-MV est bien connue.
+- En pratique, il faut, de façon efficace :
+    - évaluer la fonction de vraisemblance,
+    - maximiser cette fonction en se servant des évaluations.
+- Les logiciels font tous le travail, mais il vaut la peine de comprendre ce qu'ils font.
+
+## Évaluation de la vraisemblance gaussienne I
+
+- Attention: voici une façon directe mais *très* inefficace.
+- Soit $r=(r_1,\ldots,r_T)$, un vecteur ligne.
+- Si $r$ est stationnaire et gaussien, sa densité est
+\[
+  f(r) = \frac{1}{(2\pi)^{T/2}} |\Gamma|^{-1/2} \exp\left[-\frac{1}{2}(r-\mu \iota)^T \Gamma^{-1} (r-\mu \iota) \right],
+\]
+où $\mu = E[r_t]$,
+\[
+  \iota = \begin{bmatrix} 1 \\ 1 \\ \vdots \\ 1 \end{bmatrix},\qquad
+  \Gamma = \begin{bmatrix}
+    \gamma_0 & \gamma_1 & \cdots & \gamma_{T-1} \\
+    \gamma_1 & \gamma_0 & \cdots & \gamma_{T-2} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \gamma_{T-1} & \gamma_{T-2} & \cdots & \gamma_0
+  \end{bmatrix}.
+\]
+- Pour évaluer la vraisemblance à $\phi_0, \phi_1, \ldots \phi_p, \theta_1, \ldots, \theta_q$, $\sigma_a^2$ :
+    - trouvez $\mu$, $\gamma_0, \gamma_1, \ldots, \gamma_{T-1}$ en fonction des coefficients, puis
+    - évaluer l'expression $f(r)$ ci-haut.
+
+## Évaluation de la vraisemblance gaussienne II
+
+- En pratique, cette façon directe d'évaluer la vraisemblance est très inefficace.
+- Il y a des algorithmes pour évaluer la vraisemblance des ARMA(p,q) gaussiens.
+- Remarquez par exemple que la vraisemblance d'un AR(1) est plus rapide à évaluer si on décompose la densité comme
+\[
+  \begin{aligned}
+    f(r) &= \frac{1}{\sqrt{2\pi \sigma_a^2 (1-\phi^2)^{-1}}} \exp
+  \left[-\frac{1}{2} \frac{(r_1-\mu)^2}{\sigma_a^2  (1-\phi^2)^{-1}}\right] \\
+    &\times \prod_{t=2}^T \frac{1}{\sqrt{2\pi\sigma_a^2}} \exp
+  \left[-\frac{1}{2} \frac{(r_t-\phi r_{t-1} - (1-\phi) \mu)^2}{\sigma_a^2}\right]
+  \end{aligned}
+\]
+- Le coût de computation ici est linéaire en $T$.
+- Le coût de l'évaluation directe est quadratique en $T$.
+
+## Exemple en R de l'estimation des paramètres ARMA
+
+```{r ARMAest}
+t=read.table('../Data/m-ibm3dx2608.txt',header=T)
+arima(t$vwrtn, order=c(3,0,1))
+```
+
+## Sélection des ordres $p$ et $q$ d'un processus ARMA
+
+- La vraisemblance maximale croit avec l'ajout d'un paramètre.
+- On veut éviter le problème de surapprentissage (overfitting).
+- Une façon de le faire est l'imposition d'un coût.
+- Le critère AIC (Akaike Information Criterion) est
+\[
+  AIC(p,q) = -\frac{2}{T} \ln f(r;\hat{\phi},\hat{\theta},\hat{\sigma}_a^2) + \frac{2(p+q+1)}{T}.
+\]
+- Le critère BIC (Bayesian Information Criterion) est
+\[
+  BIC(p,q) = -\frac{2}{T} \ln f(r;\hat{\phi},\hat{\theta},\hat{\sigma}_a^2) + \frac{(p+q+1)\ln T}{T}
+\]
+- On choisit les ordres $p$ et $q$ qui minimisent AIC ou BIC.
+- Si l'ARMA(p,q) est gaussien,
+\[
+  \hat{\sigma}_a^2 = -\frac{2}{T} \ln f(r;\hat{\phi},\hat{\theta},\hat{\sigma}_a^2).
+\]
+alors augmenter la vraisemblance, c'est réduire la variance estimée de l'innovation.
+
+## Questions théoriques
+
+1. Ecrivez les équations Yule-Walker pour un process AR(3) et pour un processus ARMA(1,1).
+
+1. Trouvez la fonction d'autocorrélation pour un processus MA(3).
+
+1. Considérez le process AR(3) suivant :
+\[
+  r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t.
+\]
+    a. Trouvez les racines du polynome caracteristique du processus.
+    a. Est-ce que la condition de stationnarité tient?
+
+1. Trouvez $\psi_1,\psi_2,\psi_3$ pour un ARMA(1,2) général.
+
+## Exercises R
+
+1. Considérez le process ARMA(3,1) suivant :
+\[
+  r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t - 0.3 a_{t-1}.
+\]
+    a. Simulez le séries pour $T=500$ observations.
+    a. Faites la graphique de la fonction d'autocorrélation de la population.
+    a. Faites la graphique de la fonction d'autocorrélation de l'échantillon.
+    a. Estimez les paramètres d'un modèle ARMA(3,1) en vous servant de l'échantillon que vous avez tirer.
+
+1. Tsay, Exercice 2.4 (b)
+
+## Cours 4, la semaine prochaine
+
+### Plan préliminaire
+1. Prévision avec un ARMA(p,q)
+1. Modèles d'héteroscédasticité conditionnelle autorégressive
+1. Introduction à l'inférence bayésienne
+1. Modèles de volatilité stochastique
+
+### Lectures
+
+- Dans Tsay, 3e édition :
+    - Chapitre 3 jusqu'à la fin de 3.4.2.

@@ -1,0 +1,321 @@
+---
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2019"
+subtitle: "Cours 2"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+## Plan
+
+1. Rendements de plusieurs périodes et log rendements
+1. Asymmétrie et Aplatissement
+1. Autocovariance et autocorrélation
+1. Faits empiriques
+
+## La relation entre le log-rendement $r$ et le rendement $R$
+
+- Rappelons que $r_t \equiv \log(1+R_t)$.
+- La fonction $r = \log (1+R)$ est concave et $r \leq R$
+
+```{r concave, fig.height=5}
+R = seq(-0.9,1.0,by=0.01)
+plot(R, log(1+R), xlab="R", ylab="r", type='l')
+lines(R, R, col='blue')
+```
+
+## Rendements multipériodes
+
+* Rendements multipériodes : ($k$ périodes, net, bruts, log)
+$$ R_t[k] \equiv \frac{P_t - P_{t-k}}{P_{t-k}}, \quad 1+R_t[k] \equiv \frac{P_t}{P_{t-k}}, \quad r_t[k] \equiv \log(1+R_t[k]) $$
+* Notez que
+$$ 1 + R_t[k] = \frac{P_{t-k+1}}{P_{t-k}} \cdots \frac{P_{t-1}}{P_{t-2}} \frac{P_t}{P_{t-1}}
+= \prod_{\tau = t-k+1}^t (1+R_\tau) $$
+$$ r_t[k] = (p_{t-k+1} - p_{t-k}) + \ldots + (p_{t-1} - p_{t-2}) + (p_t - p_{t-1}) = \sum_{\tau = t-k+1}^t r_\tau $$
+* Avantage aux log-rendements pour l'analyse intertemporelle
+
+## Intuition pour le rendement continument composé
+
+* Rendement composé : divisez une période en $n$ sous-périodes,
+    - soit $r/n$ le rendement net à chaque sous-période,
+    - soit $R$ le rendement net pour la période entière.
+* Alors
+$$ (1+R) = (1 + r/n)^n $$
+* Le rendement net $R$ est croissant en $n$ grace au rendements composés \ldots
+* \ldots mais il y a une limite : (rendement continument composé)
+$$ (1+R) = \lim_{n\to \infty} (1 + r/n)^n = e^r. $$
+* En logs (Séries Mercator) :
+$$ \lim_{n\to \infty} n \log (1+r/n) = \lim_{n\to \infty} n \left[\frac{r}{n} - \frac{1}{2} \left(\frac{r}{n}\right)^2 + \frac{1}{3}\left(\frac{r}{n}\right)^3 - \ldots\right] = r. $$
+
+## Annualisation
+
+* Mettons que l'unité de temps est l'année.
+* Question : Pour quelle valeur de $R$ un rendement net annuel constant de $R$ pendant $k$ ans donne-t-il un rendement net après $k$ périodes de $R_t[k]$?
+* C'est à dire quelle valeur de $R$ vérifie
+$1+R_t[k] = (1+R)^k$?
+* L'annualisation d'un rendement multipériode :
+\[
+  (1+R) = (1+R_t[k])^{1/k}, \quad R = (1+R_t[k])^{1/k} - 1.
+\]
+* En logarithmes :
+\[
+  r = \frac{1}{k} \log (1+R_t[k]) = r_t[k]/k.
+\]
+* Remarquez encore la linéarité des log rendements avec l'aggrégation temporelle.
+
+## Asymétrie et aplatissement
+
+* Définitions : pour la variable aléatoire $X \sim (\mu, \sigma^2)$, l'asymétrie $S$ et l'aplatissment $K$ de la population sont
+$$ S = E[(X-\mu)^3]/\sigma^3, \quad K = E[(X-\mu)^4]/\sigma^4. $$
+
+* Pour l'asymétrie et l'aplatissement de l'échantillon, on utilise les moments de l'échantillon.
+
+* Asymétrie et aplatissement dans le tableau 1.2
+    * Asymétrie (skewness) souvent négative---actions et indices.
+    * Aplatissement (kurtosis) toujours plus grand que 3---actions et indices.
+    * $S$ et $K$ plus sévères pour $r_t$ que pour $R_t$.
+    * $S$ et $K$ moins sévères (mais pas toujours) pour $r_t$ mensuels que pour $r_t$ journaliers. (Comme si un théorème central limite s'applique)
+
+## Aspects non-gaussiens du rendement IBM I
+
+```{r SK1, echo=TRUE, results='asis'}
+# Données IBM, r_t journalier, 1970-2008
+da = read.table('d-ibm3dx7008.txt', header=T)
+r = da$rtn
+mu = mean(r); sigma = sd(r)
+
+S_ch = mean((r-mu)^3)/sigma^3;
+cat(sprintf('Asymétrie, Sch=%f', S_ch))
+K_ch = mean((r-mu)^4)/sigma^4;
+cat(sprintf('Aplatissement, Kch=%f', K_ch))
+```
+
+## Aspects non-gaussiens du rendement IBM II
+
+```{r SK2, echo=TRUE, fig.height=5}
+hist(r, breaks=100, freq=FALSE)
+x = seq(min(r), max(r), by=0.0005)
+lines(x, dnorm(x, mu, sigma), col='green')
+```
+
+## Tests de normalité basés sur $S$ et $K$
+
+* L'hypothèse nulle ici: $H_0: r_t \sim \mathrm{iid}\, N(\mu,\sigma^2)$, $t=1,\ldots,T$.
+
+* Loi asymptotique de l'assymétrie de l'échantillon sous $H_0$:
+$$ z_S = \frac{\hat{S}_{ch}}{\sqrt{6/T}} \sim N(0,1). $$
+
+* Loi asymptotique de l'aplatissement de l'échantillon sous $H_0$:
+$$ z_K = \frac{\hat{K}_{ch}-3}{\sqrt{24/T}} \sim N(0,1). $$
+
+* Il s'avère que $z_S$ et $z_K$ sont asymtotiquement indépendents.
+
+* Si un nombre $\nu$ de v.a. $N(0,1)$ sont indépendentes, la somme de leurs carrées à une loi $\chi^2(\nu)$.
+
+* Loi asymptotique de la statistique Jarque-Bera sous $H_0$:
+$$ \mathrm{JB} = \frac{\hat{S}^2}{6/T} + \frac{(\hat{K}-3)^2}{24/T} \sim \chi^2(2). $$
+
+## Exemple 1: test de l'hypothèse $H_0$ contre $H_1:S \neq 0$ à un niveau de 5\%
+
+```{r Stest, results='asis'}
+T = length(r)            # Taille de l'échantillon
+alpha = 0.05             # Niveau du test
+z_S = S_ch/sqrt(6/T)     # Statistique test
+c_1 = qnorm(alpha/2)     # Valeurs critiques
+c_2 = qnorm(1-alpha/2)
+cat(sprintf('Statistique test : %f', z_S))
+cat(sprintf('Région de non rejet : [%f, %f]', c_1, c_2))
+```
+
+## Exemple 2: test de l'hypothèse $H_0$ contre $H_1:K > 3$ à un niveau de 1\%
+
+```{r Ktest, results='asis'}
+alpha = 0.01              # Niveau du test
+z_K = (K_ch-3)/sqrt(24/T) # Statistique test
+c = qnorm(1-alpha)        # Valeur critique
+cat(sprintf('Statistique test : %f', z_K))
+cat(sprintf('Région de non rejet : [-inf, %f]', c))
+```
+
+## Attention : tests multiples!
+
+Trois tests asymptotiques de l'hypothèse $H_0$ de normalité:
+
+1. Test avec la statistique $z_S$, $H_0$ contre $H_1:S \neq 0$. La région de non-rejet est
+$$ q_{N,\alpha/2} < z_S < q_{N,1-\alpha/2}. $$
+où $\alpha$ est le niveau du test; $q_{N,p}$, la quantile $p$ d'une loi $N(0,1)$.
+
+1. Test avec la statistique test $z_K$, $H_0$ contre $H_1:K \neq 3$. La région de non-rejet est
+$$ q_{N,\alpha/2} < z_K < q_{N,1-\alpha/2}. $$
+1. Test avec la statistique test JB, $H_0$ contre $H_1:S \neq 0\, \mbox{ou}\, K \neq 3$.
+La région de non-rejet est
+$$ JB < q_{\chi^2(2),1-\alpha}, $$
+où $q_{\chi^2(2),p}$ est la quantile $p$ d'une loi $\chi^2(2)$.
+
+Si on fait les tests 1 et 2, la probabilité d'un rejet sous $H_0$ excède $\alpha$.
+
+## Régions de non-rejet pour les trois tests, $\alpha = 0.01$
+
+```{r SKjoint, echo=FALSE}
+m = 5
+# Graphique vide
+plot(0, 0, xlim=c(-m,m), ylim=c(-m,m), xlab='z_S', ylab='z_K')
+# Axes
+lines(c(-m,m), c(0,0))
+lines(c(0,0), c(-m,m))
+
+alpha = 0.01; q = qnorm(1-alpha/2); q2 = qchisq(1-alpha, 2)
+
+# Région de non rejet : S
+lines(c(-q,-q), c(-m,m))
+lines(c(q,q), c(-m,m))
+polygon(c(-q, q, q, -q), c(-m, -m, m, m), angle=45, density=8, border=F, col='gray')
+
+# Région de non rejet : K
+lines(c(-m,m), c(-q,-q))
+lines(c(-m,m), c(q,q))
+polygon(c(-m, -m, m, m), c(-q, q, q, -q), angle=-45, density=8, border=F, col='gray')
+
+# Région de non rejet : S, K
+theta = seq(-2*pi, 2*pi, length.out = 1000)
+lines(sqrt(q2)*cos(theta), sqrt(q2)*sin(theta), col='green')
+```
+
+## Stationnarité
+
+* Une séries $r_t$ est stationnaire ssi pour chaque $k$, $t_1,\ldots,t_k$ et $\tau$, les deux distributions suivantes sont identiques :
+$$ (r_{t_1},r_{t_2},\ldots,r_{t_k}), \quad (r_{t_1-\tau},r_{t_2-\tau},\ldots,r_{t_k-\tau}). $$
+
+* Une séries $r_t$ est covariance-stationnaire ssi $E[r_t] \equiv \mu$ et $\gamma_k \equiv \mathrm{Cov}[r_t, r_{t-k}]$ ne dépend pas de $t$.
+
+* Pertinence des deux types de stationnarité
+    * Des hypothèses que le futur ressemble, dans un sens, au passé.
+* Pertinence de covariance-stationnarité
+    * Sauf pour l'existence des moment, moins fort
+    * Les variances et covariances des fonctions linéaires des v.a. dépendent seulement des variances et covariances de ces v.a.
+    * Les fonctions d'autocorrélation et d'autocorrélation partielle sont bien définies.
+    * Conditions de covariance-stationnarité en termes des coefficients ARMA(p,q)
+
+## Non-corrélation versus indépendence I
+
+* Tirer un parametre d'échelle
+$\omega \sim \chi^2(\nu)$.
+
+* Sachant $\omega$, tirer $X_1$ et $X_2$, conditionnellement iid et gaussiens :
+$$ X_1, X_2|\omega \sim \mathrm{iid}\,N(0,\nu/\omega). $$
+
+* $X_1$ et $X_2$ ont chacune une loi marginale $t$ de Student:
+$$ X_i \sim t(\nu),\; i=1,2. $$
+
+* $X_1$ et $X_2$ sont non-corrélés :
+$$ \mathrm{Cov}[X_1, X_2] = E[\mathrm{Cov}[X_1,X_2|\omega]] + \mathrm{Cov}[E[X_1|\omega], E[X_2|\omega]] = 0 $$
+
+* $X_1$ et $X_2$ ne sont pas indépendents :
+$$ \begin{aligned} \mathrm{Cov}[X_1^2, X_2^2] &= E[\mathrm{Cov}[X_1^2,X_2^2|\omega]] + \mathrm{Cov}[E[X_1^2|\omega], E[X_2^2|\omega]] \\ &= \mathrm{Var}[\nu/\omega] \neq 0. \end{aligned} $$
+
+## Non-corrélation versus indépendence II
+
+```{r scatter2, fig.height=5}
+nu = 2
+T = 1000
+omega = rchisq(T, nu)
+X1 = rnorm(T, 0, sqrt(nu/omega))
+X2 = rnorm(T, 0, sqrt(nu/omega))
+plot(X1, X2, xlab='X_1', ylab='X_2')
+```
+
+## Non-corrélation versus indépendence III
+
+Remarquez la dépendance entre $|X_1|$ et $|X_2|$ :
+
+```{r scatter, fig.height=5}
+plot(abs(X1), abs(X2), xlab='X_1', ylab='X_2')
+```
+
+## Fonctions d'autocorrélation, d'autocorrélations partielles
+
+Fonction d'autocorrélation:
+$$ \rho_\tau = \mathrm{corr}[r_t,r_{t-\tau}] = \mathrm{Cov}[r_t,r_{t-\tau}]/\mathrm{Var[r_t]}. $$
+
+Fonction d'autocorrélation partielle:
+$$ \phi_\tau = \mathrm{corr}[r_t,r_{t-\tau}|r_{t-1},\ldots,r_{t-\tau+1}]. $$
+Quand $r_t$ est covariance stationnaire, $\phi_\tau$ est le coefficient $\phi_{\tau \tau}$ de $r_{t-\tau}$ dans la régression
+$$ r_t = \phi_{1\tau} r_{t-1} + \ldots + \phi_{\tau \tau} r_{t-\tau} + \epsilon_t,
+\quad E[\epsilon_t | r_{t-1},\ldots,r_{t-\tau}] = 0. $$
+
+## Fonction d'autocorrélation de $r_t$
+
+```{r acf, fig.height=6}
+acf(r)
+```
+
+## Fonction d'autocorrélation de $|r_t|$
+
+```{r acfabs, fig.height=6}
+acf(abs(r))
+```
+
+## Fonction d'autocorrélation partielle de $|r_t|$
+
+```{r pacfabs}
+pacf(abs(r))
+```
+
+## Tests de non-autocorrélation
+
+* Hypothèse $H_0$ : $r_t$ est iid, de variance finie.
+* Les lois ici sont asymtotiques, sous $H_0$.
+* Test avec une autocorrélation isolée :
+$$ \hat{\rho}_k \sim N(0,T^{-1}) $$
+* Test portmanteau avec plusieurs autocorrélations, Box-Pierce :
+$$ T \sum_{l=1}^m \hat{\rho}_l^2 \sim \chi^2(m) $$
+* Avec correction de biais, Ljung-Box (dist. asym.)
+$$ T(T+2) \sum_{l=1}^m \frac{\hat{\rho}_l^2}{T-l} \sim \chi^2(m) $$
+
+## Faits empiriques de Cont (2001)
+
+1. Peu d'autocorrelation ($r_t$) sauf à une échelle de moins de 20 minutes.
+2. Aplatissement inconditionnel plus grand que 3.
+3. Asymmétrie négative pour des actifs et des indices.
+4. Loi de $r_t$ "plus gaussienne" à une échelle temporelle plus grande.
+5. Variation de volatilité à toute échelle temporelle.
+6. Persistence de volatilité.
+7. Aplatissement conditionnel moins grand que l'aplatissement inconditionnel, mais toujours plus grand que 3.
+8. La fonction d'autocorrélation de $|r_t|$ décroit selon une loi de puissance (plus lentement que de taux exponentiel). (Long mémoire)
+9. Effet de levier: changement de volatilité négativement corrélé avec le rendement actuel.
+10. Corrélation positive entre volume et volatilité.
+
+## Questions théoriques
+
+1. La v.a. $X$ suit une loi qui est un mélange de deux lois gaussiennes, chacune avec probabilité 0.5 : $N(\mu,\sigma^2)$ et $N(-\mu,\sigma^2)$.
+Calculez l'aplatissement $K_x$ et $\lim_{\sigma^2 \downarrow 0} K_x$.
+
+1. Trouvez l'asymétrie et l'aplatissement d'un mélange général de deux v.a. gaussiennes.
+Trouvez ici les quatres premiers moments non centraux d'une v.a. $N(\mu,\sigma^2)$ :
+<https://fr.wikipedia.org/wiki/Loi_normale#Moments>.
+
+1. Le prix d'un actif le 4 janvier est de 12.55 dollars. Le prix de l'actif le 15 fevrier est de 13.05. Quel est le rendement simple annualisé et le log rendement annualisé?
+
+1. On observe un échantillon $X_1,\ldots,X_T$, où $X_t \sim \mathrm{iid}\, N(\mu,\sigma^2)$.
+Si on fait les tests 1 et 2 de la diapo "Attention : tests multiples!" quelle est la probabilité d'au moins un rejet, commen fonction de $\alpha$?
+
+## Exercises R
+
+1. Télécharger le fichier des données `d-intc7208.txt` est faire la graphique des rendements avec la commande `plot`.
+1. Avec les rendements journaliers de l'action Intel, faites les tests suivant.
+Utilisez les commandes ``qnorm`` et ``qchisq`` pour calculer les valeures critiques.
+    a. Un test de l'hypothèse que les rendements sont iid gaussiens, avec la statistique test Jarque-Bera.
+    a. Un test de l'hypothèse que les rendements sont iid avec variance finie, avec la statistique test Box-Pierce. Utilisez la commande `acf` pour obtenir la fonction d'autocorrélation. Utilisez $m=10$ retards.
+
+## Cours 3, la semaine prochaine
+
+### Plan préliminaire
+1. Modèles ARMA(p,q) de base
+
+### Lectures
+
+- Dans Tsay, 3e édition :
+    - 2.3,
+    - 2.4 Intro, 2.4.1,
+    - 2.5 Intro, 2.5.1,
+    - 2.6 Intro, 2.6.1

@@ -1,0 +1,496 @@
+---
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2019"
+subtitle: "Cours 7"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+## Plan
+
+1. Modèles à facteurs
+1. CAPM
+1. APT
+
+## Références
+
+1. CLM 5.0, 5.1, 5.2, 5.3
+1. CLM 5.7.1 (anomalies)
+1. CLM 6.0, 6.1 (APT)
+
+## Modèles à facteurs : motivation
+
+* Considérez le modèle suivant pour $N$ actifs :
+$$ R_t = a_t + \epsilon_t, \quad \epsilon_t \sim (0,\Sigma_t), $$
+où $R_t$, $a_t$ et $\epsilon_t$ sont $N \times 1$, $\Sigma$ est $N \times N$ avec $N(N+1)/2$ éléments distincts.
+* $O(N^2)$ paramètres représente trop de degrés de liberté à spécifier ou à estimer (danger de surapprentissage).
+* Les modèles à facteurs capturent la covariance des actifs de façon plus parcimonieuse.
+
+## Modèle à facteur : définition
+
+* Considérez le modèle alternatif suivant :
+$$ R_t = a_t + Bf_t + \epsilon_t, \quad \epsilon_t \sim (0, \Sigma_t), $$
+où $f_t \sim (0, \Omega_t)$ est un vecteur $K \times 1$ de facteurs, $B$ est une matrice $N \times K$ de coefficients de saturation (factor loadings) et $\Sigma_t$ est une matrice diagonale.
+* $K$ est beaucoup moins grand que $N$ (souvent $K=1$).
+* $B$ a $KN$ éléments, $\Sigma$ a $N$ éléments non-nuls, $\Omega$ a $K(K+1)/2$ éléments distincts.
+* Un petit nombre de facteurs capture la covariance des rendements.
+* $\mathrm{Var}[r_t] = B\Omega_tB^\top + \Sigma_t$.
+* $f_t$ peut être observé (rendement du marché par exemple) ou latent.
+
+## Interprétation des facteurs
+
+* Dans le modèle CAPM, $K=1$ et le seul facteur est $R_{mt}$, le rendement du marché (le portefeuille de tous les actifs d'une économie).
+* Souvent les facteurs sont des portefeuilles construits pour capturer autant de covariation que possible.
+* Souvent les facteurs sont des variables macroéconomiques observable.
+* Souvent les facteurs sont latents. On donne une loi paramétrique pour les facteurs et on estime conjointement les facteurs et leurs paramètres avec les autres paramètres.
+
+## Le modèle CAPM
+
+* Les préférences dépendent seulement de la moyenne et de la variance du rendement.
+* Chacune des hypothèses suivantes justifie cette approche :
+    * les agents ont des utilités quadratiques : $$v(w) = -(w-\alpha)^2.$$
+    * la loi du vecteur des rendements est gaussienne
+* Les décisions sont statiques, pas dynamiques.
+* On suppose que la moyenne et la variance du vecteur $R = (R_1,\ldots,R_N)$ sont constantes.
+* On utilise toutes les observations pour estimer la moyenne et la variance.
+* On utilise souvent les données mensuelles, où les hypothèses de normalité et homoscédasticité sont plus raisonables.
+
+## L'importance de la diversification
+
+* Mettons qu'il y a deux actifs, avec vecteur $R = (R_1,R_2)$ de rendements.
+* La loi de $R$ est
+    \[ R = (R_1,R_2) \sim (\mu,\Omega) \]
+    où
+    \[
+    \mu \equiv
+    \begin{bmatrix}
+      \mu_1 \\
+      \mu_2
+    \end{bmatrix}
+    \quad
+    \Omega \equiv
+    \begin{bmatrix}
+      \sigma_1^2 & \rho \sigma_1 \sigma_2 \\
+      \rho \sigma_1 \sigma_2 & \sigma_2^2
+    \end{bmatrix}.
+    \]
+* On investit dans un portefeuille $p$ avec poids $\omega = (\omega_1, \omega_2)$, où $\iota'\omega = 1$, $\iota = (1,1)$.
+* Le rendement du portefeuille est $R_p = \omega^\top R = \omega_1 R_1 + \omega_2 R_2$.
+* La moyenne et la variance de $R_p$ sont $\mu_p = \omega'\mu$ et $\sigma_p^2 = \omega' \Omega \omega = \omega_1^2 \sigma_1^2 + 2\omega_1\omega_2\rho\sigma_1\sigma_2 + \omega_2^2 \sigma_2^2$.
+* L'ensemble des $(\sigma_p,\mu_p)$ possibles est
+\[
+    \{(\sqrt{\omega'\Omega\omega},\omega'\mu) :
+    \omega_1 + \omega_2 = 1\}.
+\]
+
+## Illustration : code
+
+```{r frontier2a}
+mu1 = 0.02; s1 = 0.05;
+mu2 = -0.01; s2 = 0.10; rho = 0.5
+omega1 = seq(-1,2,by=0.001); omega2 = 1-omega1
+mup = omega1*mu1 + omega2*mu2
+s2p = omega1^2*s1^2 + 2*omega1*omega2*rho*s1*s2 + omega2^2*s2^2
+sp = sqrt(s2p)
+```
+
+## Illustration : graphique
+
+```{r frontier2b}
+plot(sp, mup, type='l')
+points(c(s1,s2), c(mu1,mu2))
+```
+
+## L'importance de la diversification II
+
+* Fixons $\omega_1,\omega_2 \in (0,1)$, faisons varier $\rho$. Alors
+$$ \mu_p = \omega_1 \mu_1 + \omega_2 \mu_2 $$
+\[
+  \omega_1^2 \sigma_1^2 - 2\omega_1\omega_2\sigma_1\sigma_2 + \omega_2^2\sigma_2^2 \leq \sigma_p^2 \leq \omega_1^2 \sigma_1^2 + 2\omega_1\omega_2\sigma_1\sigma_2 + \omega_2^2\sigma_2^2
+\]
+\[
+  (\omega_1\sigma_1 - \omega_2\sigma_2)^2 \leq \sigma_p^2 \leq (\omega_1\sigma_1 + \omega_2\sigma_2)^2
+\]
+* Le pire cas, sans ventes à découvert, est pour $\rho = 1$, auquel cas $(\sigma_p,\mu_p)$ est une combinaison convexe de $(\sigma_1,\mu_1)$ et $(\sigma_2,\mu_2)$.
+
+## Version Black du CAPM
+
+* $N$ actifs: $R$, $\omega$, $\mu$ sont $N \times 1$, $\Omega$ est $N \times N$.
+* Les rendements sont réels.
+* Pour l'analyse empirique, il faut les rendre réels avec une indice des prix.
+* L'ensemble de $(\sigma_p,\mu_p)$ faisable est
+$\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
+* La frontière minimum variance (FMV) est
+    \begin{eqnarray*}
+    \{(\sqrt{\omega'\Omega\omega},\omega'\mu) :
+    \omega'\iota = 1,
+    \; \text{il n'existe pas de}\; \bar{\omega}\; \text{t.q.} \\
+    \bar{\omega}'\iota = 1,
+    \quad \bar{\omega}'\mu = \omega'\mu,
+    \quad \bar{\omega}'\Omega\bar{\omega} < \omega'\Omega\omega \}.
+    \end{eqnarray*}
+* La frontière efficace (FE) est
+    \begin{eqnarray*}
+    \{(\sqrt{\omega'\Omega\omega},\omega'\mu) :
+    \omega'\iota = 1,
+    \; \text{il n'existe pas de}\; \bar{\omega}\; \text{t.q.} \\
+    \bar{\omega}'\iota = 1,
+    \quad \bar{\omega}'\mu \geq \omega'\mu,
+    \quad \bar{\omega}'\Omega\bar{\omega} < \omega'\Omega\omega \}.
+    \end{eqnarray*}
+
+## Comment trouver la FMV I
+
+* Soit $\mu_p$ un paramètre.
+* On trouve la solution paramétrique de
+  \[
+    \min_{\omega} \omega'\Omega\omega \; \text{tel que} \;
+    \omega'\mu = \mu_p, \; \omega'\iota = 1.
+  \]
+* La fonction de Lagrange est
+  \[
+    L = \omega'\Omega\omega +
+    \delta_1(\mu_p - \omega'\mu) +
+    \delta_2(1-\omega' \iota).
+  \]
+ * $\Omega$ est défini positif, alors il y a un minimum unique o\`u
+  \[ 2\Omega\omega - \delta_1\mu - \delta_2\iota = 0 \]
+  \[ \mu_p = \omega'\mu \]
+  \[ 1 = \omega'\iota \]
+
+## Comment trouver la FMV II
+
+* Avec $2\Omega\omega - \delta_1\mu - \delta_2\iota = 0$, on trouve $\omega$ en termes de $\delta_1$ et $\delta_2$ :
+  \[
+    \omega =
+    \frac{1}{2} \Omega^{-1}\mu \cdot \delta_1 +
+    \frac{1}{2} \Omega^{-1}\iota \cdot \delta_2.
+  \]
+* La substitution de $\omega$ dans $\mu_p = \omega'\mu$ et $1 = \omega'\iota$ donne deux équations scalaires en termes des scalaires $\delta_1$ et $\delta_2$ :
+  \[
+    \mu_p =
+    \frac{1}{2}
+    \mu'\Omega^{-1}\mu \cdot \delta_1 +
+    \frac{1}{2}
+    \iota'\Omega^{-1}\mu \cdot \delta_2
+    \equiv B\delta_1 + A\delta_2.
+  \]
+  \[
+    1 =
+    \frac{1}{2}
+    \mu'\Omega^{-1}\iota \cdot \delta_1 +
+    \frac{1}{2}
+    \iota'\Omega^{-1}\iota \cdot \delta_2
+    \equiv A\delta_1 + C\delta_2.
+  \]
+* Leur solution est
+  \[
+    \begin{bmatrix}
+      \delta_1 \\
+      \delta_2
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+      B & A \\
+      A & C
+    \end{bmatrix}^{-1}
+    \begin{bmatrix}
+      \mu_p \\
+      1
+    \end{bmatrix}
+    =
+    \frac{1}{BC-A^2}
+    \begin{bmatrix}
+      C & -A \\
+      -A & B
+    \end{bmatrix}
+    \begin{bmatrix}
+      \mu_p \\
+      1
+    \end{bmatrix}
+  \]
+
+## Comment trouver la FMV III
+
+* La substitution de $\delta_1$ et $\delta_2$ dans 
+  $\omega = \frac{1}{2} \Omega^{-1}\mu \cdot \delta_1 + \frac{1}{2} \Omega^{-1}\iota \cdot \delta_2$ donne
+  \[ \omega_p = g + h\mu_p \]
+  où
+  \[ g \equiv \frac{B\Omega^{-1}\iota-A\Omega^{-1}\mu}{2(BC-A^2)} \]
+  \[ h \equiv \frac{C\Omega^{-1}\mu-A\Omega^{-1}\iota}{2(BC-A^2)}, \]
+  qui donne $(\sqrt{\omega_p' \Omega \omega_p},\mu_p)$ sur la FMV.
+* Remarquez que $\iota' g = 1$ et $\iota' h = 0$.
+* $g$ est le vecteur de poids d'un portefeuille.
+
+## Résultats I
+
+* Si $p$ et $p'$ sont des portefeuilles distincts sur la frontière minimum-variance,
+    * Pour chaque $\lambda \in \Re$, $\lambda p + (1-\lambda) p'$, est
+      sur la FMV lui aussi.
+    * Pour chaque $q$ sur la FMV,
+      il existe un $\lambda \in \Re$ tel que
+      $q = \lambda p + (1-\lambda) p'$.
+* Le portefeuille avec le minimum de variance global a les poids, la moyenne, et l'écart type suivants :
+  \[
+    \omega_0 = \frac{1}{\iota' \Omega^{-1} \iota} \Omega^{-1} \iota
+    \quad
+    \mu_0 = \frac{\iota' \Omega^{-1} \mu}{\iota' \Omega^{-1} \iota}
+    \quad
+    \sigma_0 = \frac{1}{\sqrt{\iota' \Omega^{-1} \iota}}
+  \]
+* Si $p$ et $r$ se trouvent sur la FMV,
+  \[
+    \mathrm{cov}[R_p,R_r] =
+    \frac{\iota'\Omega^{-1}\iota}
+    {(\mu'\Omega^{-1}\mu)(\iota'\Omega^{-1}\iota) - (\iota'\Omega^{-1}\mu)^2} \,
+    (\mu_p - \mu_0)(\mu_r - \mu_0) + \sigma_0^2
+  \]
+
+## Résultats II
+
+* Si un portefeuille $\omega_p \neq \omega_0$ se trouve sur la FMV, il exist un portfeuille unique $op$, le portefeuille zéro bêta de $p$, tel que $\mathrm{cov}[R_p,R_{op}] = 0$.
+* Pour n'importe quel portefeuille $a$ et n'import quel portefeuille $p$ sur la FMV, les coefficients de la régression
+  \[
+    R_a = \beta_0 + \beta_1 R_{op} + \beta_2 R_p + \epsilon_p
+    \quad
+    E[\epsilon_p|R_p,R_{op}] = 0
+  \]
+  sont
+  \[
+    \beta_2 = \beta_{ap} \equiv \mathrm{cov}[R_a,R_p]/\sigma_p^2
+  \]
+  \[
+    \beta_1 = \mathrm{cov}[R_a,R_{op}]/\sigma_{op}^2 = 1 - \beta_{ap}
+  \]
+  \[
+    \beta_0 = 0
+  \]
+  La moyenne du rendement de $a$ s'écrit
+  \[
+    \mu_a = E[R_a] = \beta_0 + \beta_1 E[R_{op}] + \beta_2 E[R_p]
+    = (1-\beta_{ap}) \mu_{op} + \beta_{ap} \mu_p
+  \]
+
+## Version Sharpe-Lintner du CAPM I
+
+* En plus des $N$ actifs, on a un actif sans risque, avec un rendement $R_f$ non-aléatoire.
+* Pour trouver la FMV, on trouve la solution paramétrique $\omega_p$ de
+  \[
+    \min_{\omega} \omega'\Omega\omega \; \text{tel que} \;
+    \omega'\mu + (1-\omega'\iota) R_f = \mu_p.
+  \]
+* La solution est
+  \[
+    \omega_p =
+    \frac{\mu_p - R_f}
+    {(\mu - R_f \iota)'\Omega^{-1}(\mu - R_f \iota)} \,
+    \Omega^{-1}(\mu - R_f \iota)
+    \equiv c_p \bar{\omega}
+  \]
+  où $\bar{\omega} \equiv \Omega^{-1}(\mu - R_f \iota)$.
+
+## Version Sharpe-Lintner du CAPM II
+
+* Notez que $\bar{\omega}$ ne dépend pas de $\mu_p$.
+* On met $\omega_p \iota$ dans le portefeuille $\omega_q$ des actifs avec risque.
+  \[
+    \omega_q = \frac{\bar{\omega}}{\iota'\bar{\omega}} =
+    \frac{1}{\iota'\Omega^{-1}(\mu - R_f\iota)} \,
+    \Omega^{-1}(\mu-R_f \iota).
+  \]
+* On met $1-\omega_p \iota = 1-c_p \bar{\omega}\iota$ dans l'actif sans risque.
+* La portefeuille $\omega_q$ est le portefeuille de tangence.
+Son écart type est
+$\sqrt{\omega_q'\Omega \omega_q}$ et sa moyenne est $\omega_q' \mu$.
+* Pour un portefeuille $a$,
+  la pente $sr_a$ du droit de $(0,R_f)$ à $(\sigma_a,\mu_a)$
+  est le ratio de Sharpe.
+  \[ sr_a = \frac{\mu_a - R_f}{\sigma_a} \]
+* On peut interpreter $sr_a$ comme la moyenne de l'excès de rendement pour chaque unité de risque.
+* Le portefeuille $q$ maximise $sr_a$.
+
+## Complétion du modèle CAPM
+
+* La pertinence de la FE dépend de l'hypothèse que seulement la moyenne et l'écart-type d'un portefeuille importent.
+* Si on trace les courbes d'indifference d'un investisseur, on peut trouver son portefeuille optimal.
+* On complète le modèle CAPM avec une condition d'équilibre.
+Si tous les investisseurs ont les mêmes attentes
+($\mu$ et $\Omega$ sont pareils pour tous),
+et tous choississent un portfeuille efficace, le portefeuille
+$m$ du marché (le portefeuille global) doit être efficace.
+
+## Implications Testables : Version S-L
+
+* La version Sharpe-Lintner entraîne les implications testables suivantes:
+  \[ E[R_i] = R_f + \beta_{im}(E[R_m]-R_f) \]
+  \[ \beta_{im} = \frac{\mathrm{cov}[R_i,R_m]}{\mathrm{var}[R_m]} \]
+* Si on défine le rendement excédentaire $Z_i \equiv R_i - R_f$ de l'actif $i$, on obtient
+  \[ E[Z_i] = \beta_{im}E[Z_m], \]
+  où
+  \[ \beta_{im} = \frac{\mathrm{cov}[Z_i,Z_m]}{\mathrm{var}[Z_m]}, \]
+  une équation de régression à constante nulle.
+
+## Implications Testables : Version Black
+
+* Pour la version Black, on a l'implication
+\[ E[R_i] = \alpha_{im} + \beta_{im} E[R_m] \]
+où
+\[ \alpha_{im} = E[R_{om}](1-\beta_{im}) \quad \forall i. \]
+Autrement dit
+\[ E[R_i] = \alpha + \beta_{im}(E[R_m] - \alpha). \]
+où
+\[ \alpha = E[R_{om}]. \]
+* Notez bien que la constante $\alpha$ ne dépend pas de $i$, ce qui est une restriction testable.
+
+## Détails économétriques
+
+* On suppose souvent que les rendements sont i.i.d. $N(\mu,\Omega)$.
+* On se sert souvent des rendements mensuels. L'approximation gaussien n'est pas si mal.
+* On utilise souvent une indice comme le S\&P 500 comme proxy du marché, et les bon du trésor comme proxy de l'actif sans risque.
+* Selon la méthode GMM, on fait de l'estimation à partir des conditions de moment
+    \[ E[g_t(\theta)] = E[h_t \otimes \epsilon_t] = 0. \]
+* Pour la version Sharpe-Lintner, les conditions $E[\epsilon_t] = 0$ et $E[\epsilon_t Z_{mt}] = 0$ s'expriment avec
+    \[ h_t' = \begin{bmatrix} 1 & Z_{mt} \end{bmatrix}, \]
+    \[ e_t = Z_t - \alpha - \beta Z_{mt} \]
+    et $\theta = (\alpha', \beta')'$.
+
+## Modèle de marché pour la version Sharpe-Lintner
+
+* On enfonce le modèle CAPM dans un modéle du marché.
+* Modèle de marché pour la version S-L :
+\[ Z_t = \alpha + \beta Z_{mt} + \epsilon_t \]
+\[ \epsilon_t \sim (0_N,\Sigma) \]
+\[ Z_{mt} \sim (\mu_m,\sigma_m^2) \]
+\[ \mathrm{cov}[Z_{mt},\epsilon_t] = 0_N \]
+* $Z_t$ est le vecteur $N\times 1$ des rendements excédentaire de $N$ actifs ou portefeuilles.
+* $\beta$ est le vecteur $N\times 1$ des bêtas.
+* $Z_{mt}$ est le rendement excédentaire du marché.
+* Notez que $\mu_m$ ici est une moyenne d'un rendement excédentaire.
+* Hypothèse nulle entraînée par le CAPM: $H_0:\alpha=0$
+
+## Modèle de marché pour la version Black
+
+* Modèle de marché pour la version Black :
+\[ R_t = \alpha + \beta R_{mt} + \epsilon_t \]
+\[ \epsilon_t \sim (0_N,\Sigma) \]
+\[ R_{mt} \sim (\mu_m,\sigma_m^2) \]
+\[ \mathrm{cov}[R_{mt},\epsilon_t] = 0_N \]
+* $R_t$ est le vecteur $N\times 1$ des rendements réels
+* Hypothèse nulle entraînée par le CAPM:
+$H_0:\alpha=(\iota-\beta)\gamma$, pour un $\gamma$ scalaire quelconque
+* Autrement identique.
+
+## Anomalies I
+
+* Au début (début des années 70) les signes empiriques étaient favorable pour le CAPM.
+* à partir de la fin des années 70, il y a des signes moins favorable.
+* Le CAPM implique que seuls les bêtas expliquent la coupe transversale des moyennes.
+* Donc trouver des caractéristiques des actifs qui expliquent la moyenne étant donné les bêtas est donner un signe contre le CAPM.
+* Basu (1977) montre l'effet prix-bénéfice. Le plus bas le ratio prix-bénéfice, le plus grand la moyenne, relative à la prévision du CAPM (basé sur le bêta).
+
+## Anomalies II
+
+* Banz (1981) montre l'effet de taille. Le plus bas la taille de l'entreprise, la plus grande la moyenne (relative).
+* Les deux anomalies pourraient être reliées, car les deux quantités sont corrélées.
+* Fama-French (1992, 1993) montre que les actifs avec un grand ratio valeur comptable/valeur marchande ont des moyennes ``trop'' grandes.
+* DeBondt et Thaler(1985) et Jegadeesh et Titman (1993) montre que les perdants (actions dont le rendement du passé récent était faible) ont des moyennes trop grandes (et l'inverse pour les gagnants).
+
+## Démonstration des anomalies
+
+* Une façon de démontrer ses anomalies et de
+    * construire un ``bon'' portefeuille selon l'effet en question
+      (e.g. avec moins d'actions des grandes entreprises
+      et plus d'actions des petites, relatif au marché)
+    * démontrer que son ratio de Sharpe est plus grand que celui
+      du marché.
+    
+## Des ripostes
+
+* On peut riposter :
+    * ``Data Snooping'' : on essaye plusieurs tests, sans motivation théorique,
+      et par hasard, quelques-uns indiquent un départ significatif.
+    * biais de sélection : les actifs des entreprises qui font faillite sont écartés de l'échantillon. Les petites sont plus probable à échouer, et les survivants ont un rendement plus élevé.
+    * C'est seulement l'efficacité du proxy du marché qui est mise en cause par les tests. Mais Kandel et Stambaugh (1987) et Shanken (1987) démontrent que si la corrélation entre le proxy et le marché est plus grand que 0.7, le rejet du CAPM avec le proxy entraîne le rejet du CAPM avec le marché inobservable.
+
+## La théorie d'évaluation par arbitrage (APT)
+
+* La APT (Ross, 1976) est un exemple d'un modèle avec plusieurs facteurs.
+* On commence avec :
+\[
+  R_i = a_i + b_{i1} f_1 + b_{i2} f_2 + \ldots b_{iK} f_K + \epsilon_i \quad i=1,\ldots,N
+\]
+où
+* $f_1,\ldots,f_K$ sont des facteurs (variables pas associées à l'actif)
+* $b_{ik}$ est la sensibilité de $R_i$ au facteur $k$ (factor loading).
+* $\epsilon_i$ est une variable tel que $\epsilon|f \sim (0,\Sigma)$.
+* Même chose en vecteurs:
+\[
+  R_i = a_i + b_i'f + \epsilon_i \quad i=1,\ldots,N
+\]
+* Empilation des $N$ équations:
+\[
+  \underset{N\times 1}{R} = \underset{N\times 1}{a} + \underset{N\times K}{B} \underset{K\times 1}{f} + \underset{N\times 1}{\epsilon}
+\]
+
+## Résultats I
+  
+* Le modèle du marché dans lequel on enfonce le CAPM est un cas spécial : $K=1$, $f_1 = R_m$.
+* Ross démontre qu'avec
+    * $N$ très grand,
+    * les facteurs rendent compte de la variation en commun des actifs au point que la variance d'un portefeuille $p$ bien diversifié, conditionnelle aux facteurs, tende vers zéro, et
+    * l'absence d'arbitrage,
+    que
+    \[
+      \underset{N\times 1}{\mu} \equiv E[R] = \underset{N\times 1}{\iota} \underset{1\times 1}{\lambda_0} + \underset{N\times K}{B} \underset{K\times 1}{\lambda_K},
+    \]
+    où
+    * $\lambda_0$ est un paramètre zéro-bêta du modèle,
+      qui est le rendement sans risque s'il y en a un, et
+    * $\lambda_K$ est un vecteur des primes des risque des facteurs.
+
+## Résultats II
+
+* Cette relation exprime ``l'évaluation exacte par facteurs''.
+* Avec $N$ fini, elle tiens approximativement.
+* On peut la dériver également à partir des conditions d'équilibre: ICAPM (I pour Intertemporel).
+* Elle donne des restrictions des paramètres du modèle du marché.
+
+## Choix des facteurs
+  
+* Rendements des portfeuilles des actifs :
+    * marché $m$ dans le CAPM,
+    * portefeuilles construits selon les caractéristiques
+      des actions (e.g. Fama-French, note sous Table 6.1.)
+    * portefeuilles construits avec les méthodes statistiques qui cherche les facteurs qui rendent compte de la variation commun.
+    * Deux méthodes (234-238) :
+        * analyse des facteurs (factor analysis)
+        * analyse ``composants principales'' (principal components analysis)
+* Variables macroéconomiques :
+    * innovation en PNB
+    * changements des rendements des obligations
+    * inflation imprévue
+
+## Questions théoriques
+
+1. Prouvez les 5 résultats des diapos 16 et 17, «Résultats I» et «Résultats II»
+
+* Voici des suggestions pour chacun des 5 résultats :
+1. Le résultat dépend de l'unicité de la solution $g + \mu_p h$.
+Si vous n'en servez pas, la solution est incorrecte.
+1. Exprimez $\sigma_p^2 \equiv (g + \mu_ph) \Omega (g + \mu_ph)$ et minimisez. Écrivez le résultat en terms de $\mu$, $\Omega$.
+1. La covariance entre le rendement du portefeuille
+$g + \mu_p h$ et celui du portefeuille $g + \mu_q h$ est
+$(g+\mu_ph)\Omega(g+\mu_qh)$.
+1. Servez-vous du troisième résultat pour trouver le $\mu_{op}$ unique, en termes de $\mu_p$, qui donne $\mathrm{Cov}[R_p,R_{op}] = 0$.
+1. La covariance entre le rendement du portefeuille $p$ sur le FMV et le portefeuille arbitraire $\omega$ est
+$(g+\mu_ph)\Omega\omega$.
+Écrivez-la en forme $\lambda \mu_i + \gamma$, où $\mu_i = E[R_i]$, et $\lambda$ et $\gamma$ sont des fonctions de $\mu_p, A, B, C, D$.
+Écrivez l'équation pour deux cas spéciaux, $i=op$ et $i=p$, pour obtenir (5.2.19) dans le manuel CLM.
+
+## Exercices R
+
+Les rendements mensuelles de $N=4$ actifs pendant 1962-1999 se trouvent dans les fichiers `m-ibm6299` (IBM), `m-gm6299` (GM), `g-hsy6299` (Hershey Foods) et `g-aa6299` (Alcoa). Les commandes R `cbind` (empilation horizontale des vecteurs) `%*%` (multiplication matricielle) et `scan` (chargement des données) seront utiles.
+
+1. Trouvez les estimations maximum de vraisemblance $\hat{\mu}$ et $\hat{\Sigma}$ pour le modèle où le vecteur des rendements réels des $N$ actions est iid $N(\mu,\Sigma)$. (Comme dans le cas univarié, l'estimateur MV de la moyenne de la population, $\mu$, est la moyenne de l'échantillon et l'estimateur MV de la variance de la population, $\Sigma$, est la variance de l'échantillon, avec le nombre de périodes $T$ au dénominateur).
+1. Trouvez la courbe de la frontière minimum variance des portefeuilles construits à partir des $N$ actions. Utilisez $\hat{\mu}$ et $\hat{\Sigma}$ de la première question pour la moyenne et la variance.
+1. Sur le même graphique, mettez les points qui représente la moyenne et l'écart type du rendement de chaque action.

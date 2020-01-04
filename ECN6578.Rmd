@@ -5,5 +5,8 @@
 
 ### Documents pour ECN 6578, Économétrie des marchés financiers
 
-[Plan de Cours](./ECN6578/ECN6578A-H20-PC.docx)
+[Plan de Cours](./ECN6578/ECN6578A-H20-PC.pdf)
 
+[Diapos, Cours 1](./ECN6578/ECN6578_1.pdf)
+
+[Diapos, Cours 1, code source](./ECN6578/ECN6578_1.Rmd)
