@@ -1,0 +1,12 @@
+---
+title: "Exercices R"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+### Premier travail pratique
+
+1. Travail préliminaire (le 6 janvier, pas à remettre)
+    a. Télécharger R et R Studio.
+    a. Créer un fichier HTML à partir du gabarit R Markdown.

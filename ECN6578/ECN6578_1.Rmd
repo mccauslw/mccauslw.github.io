@@ -15,7 +15,7 @@ urlcolor: blue
 1. Mélanges versus fonctions linéaires de variables aléatoires
 1. La loi des espérances itérées
 1. L'inégalité de Jensen
-1. Démonstration de RStudio
+1. Démonstration de RStudio, si le temps le permet
 
 ## Introduction
 
@@ -24,8 +24,9 @@ urlcolor: blue
 - Deux éléments très importants : le temps et le risque
 - Participants
     - Ménages (épargne, dette---immobilier, éducation, etc.)
-    - Firmes (financement des projets, gérance du risque)
-    - Gouvernement (financement des dépenses et des transferts)
+    - Firmes non-financières (financement des projets, gérance du risque)
+    - Gouvernements (financement des dépenses et des transferts)
+    - Firmes financières (création des contrats de nature financière, fourniture des marchés liquides)
 - Actifs : actions, obligations, options, contrats à terme, contrats d'assurance, prêts.
 
 ### Économétrie (sens large) des marchés financiers
@@ -78,11 +79,11 @@ urlcolor: blue
   1+R_t \equiv \frac{P_t}{P_{t-1}}, \quad
   r_t \equiv \log(1+R_t) = p_t - p_{t-1}.
 \]
-- Notes
+- Notes :
     * Les trois rendements ne dépendent pas de l'unité de valeur.
     * Ils dépendent de l'unité du temps.
     * L'indice $t$ indique souvent le moment où la quantité est connue.
-    * Les rendements sont plus "stationnaires" que les prix.
+    * Les rendements sont plus "stationnaires" que les prix et plus comparables.
 
 ## Rendements des portfeuilles
 
@@ -95,7 +96,7 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
 \[
   1+R_{pt} = \frac{P_{pt}}{P_{p,t-1}} = P_{pt} = \sum_{i=1}^n \frac{\omega_i P_{it}}{P_{i,t-1}}  = \sum_{i=1}^n \omega_i (1+R_{it}) = 1 + \sum_{i=1}^n \omega_i R_{it}. \]
 * Rendement net: $R_{pt} = \sum_{i=1}^n \omega_i R_{it}$.
-* Avantage aux rendements simples par rapport aux log rendements pour l'analyse dans la coupe transversale.
+* La linéarité des rendements simples (et non des log rendements) donne l'avantage à ceux-là.
 
 ## Fonctions linéaires vs mélanges, un exemple
 
@@ -118,11 +119,11 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
 ### Deux placements
 
 1. Placer 100 \$ en proportions $(\omega_1,\omega_2,\omega_3) = (0.5, 0.2, 0.3)$
-    - C.-à-d. placer 50 \$ à l'actif 1, 20 \$ à l'actif 2, 30 \$ à l'actif 3.
+    - C.-à-d. placer 50 \$ en l'actif 1, 20 \$ en l'actif 2, etc.
     - Le rendement est une v.a. qui est une fonction linéaire de 3 v.a.
 
 1. Placer 100 \$ en actif 1, 2 ou 3 avec probabilités 0.5, 0.2, 0.3.
-    - C.-à-d. placer 100 \$ en actif 1 avec probabilité 0.5, 100 \$ en actif 2 avec p. 0.2, etc.
+    - C.-à-d. placer 100 \$ en l'actif 1 avec probabilité 0.5, 100 \$ en l'actif 2 avec probabilité 0.2, etc.
     - Le rendement a une loi qui est un mélange discret de trois lois.
 
 ## Fonctions linéaires de variables aléatoires
@@ -143,6 +144,7 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
 ### Exemple : mélange de deux v.a. gaussiennes
 
 - Mettons que $(\mu,\sigma^2)$ égale $(\mu_1,\sigma_1^2)$ avec probabilité $\pi$ et $(\mu_2,\sigma_2^2)$ avec probabilité $(1-\pi)$.
+- $(\mu, \sigma)$ est aléatoire, $(\mu_1, \sigma_1)$, $(\mu_2, \sigma_2)$ et $\pi$ ne le sont pas.
 - Mettons que $R|(\mu,\sigma) \sim N(\mu,\sigma^2)$.
 - La loi marginale de $R$ est un mélange de deux lois gaussiennes.
 - La densité de $R$ est
@@ -199,14 +201,14 @@ lines(x, fmelange, col='black')
   \mathrm{Var}[Y] = E[\mathrm{Var}[Y|X]] + \mathrm{Var}[E[Y|X]]
 \]
 - [\textcolor{blue}{Preuve}](https://fr.wikipedia.org/wiki/Théorème_de_la_variance_totale)
-- Exemple 1: $Y$ est le rendement d'une action, $X$ indique l'industrie.
-- Exemple 2: $Y$ est le rendement d'un actif, $X$ est une mesure de la volatilité.
+- Exemple 1 : $Y$ est le rendement d'une action, $X$ indique l'industrie  ($X=1$ pour la construction, $X=2$ pour le tourisme, $X=3$ pour les mines, ...).
+- Exemple 2 : $Y$ est le rendement d'un actif, $X$ est une mesure observable de la volatilité de l'actif.
     - Conditionner réduit la variance en moyenne car le deuxième terme à droite est non-négatif.
     - Attention : il peut y avoir des valeurs de $X$ telles que $\mathrm{Var}[Y] < \mathrm{Var}[Y|X]$.
 
 ## Application II: mélange de deux aléas gaussiens
 
-### Description du mélange
+### Description du mélange (rappel)
 
 - $(\mu,\sigma^2)$ égale $(\mu_1,\sigma_1^2)$ avec probabilité $\pi$ et $(\mu_2,\sigma_2^2)$ avec probabilité $(1-\pi)$.
 - $R|(\mu,\sigma) \sim N(\mu,\sigma^2)$
@@ -251,22 +253,6 @@ lines(x, fmelange, col='black')
     * $\varphi(x) = x^2$, $X = \sigma^2$ donne $E[\sigma^4] 
     \geq E[\sigma^2]^2$ et alors $K_z \geq 3$.
 
-## Questions théoriques
-
-1. Pour les deux placements décrits à la diapo "Fonctions linéaires vs mélanges, un exemple", calculez la moyenne et la variance du rendement.
-
-1. Étudiez la preuve du théorème de variance totale et prouvez le théorème de covariance totale : pour variables aléatoires $X$, $Y$ et $Z$ telles que les moments suivants existent,
-\[
-  \mathrm{Cov}[X,Y] = E[\mathrm{Cov}[X,Y|Z]] + \mathrm{Cov}[E[X|Z], E[Y|Z]].
-\]
-
-1. Trouvez $\mathrm{Var}[\mu]$ dans l'Application II de la loi des espérances itérées.
-
-## Exercises R
-
-1. Télécharger R et R Studio.
-2. Créer un fichier HTML à partir du gabarit R Markdown.
-
 ## Cours 2, la semaine prochaine
 
 ### Plan préliminaire
@@ -275,9 +261,3 @@ lines(x, fmelange, col='black')
 1. Autocorrélation
 1. Faits empiriques
 1. Modèles ARMA(p,q) de base
-
-### Lectures
-
-- Dans Tsay, 3e édition :
-    - 1.1, 1.2.2, 1.2.5
-    - 2.1, 2.2, 2.3
