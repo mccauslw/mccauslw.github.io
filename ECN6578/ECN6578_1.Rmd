@@ -19,15 +19,15 @@ urlcolor: blue
 
 ## Introduction
 
-### Survol des marchés financiers
+### Marchés financiers
 
-- Deux éléments très importants : le temps et le risque
-- Participants
+- Deux éléments très importants : le temps et l'incertitude
+- Actifs : actions, obligations, options, contrats à terme, contrats d'assurance, prêts.
+- Participants :
     - Ménages (épargne, dette---immobilier, éducation, etc.)
     - Firmes non-financières (financement des projets, gérance du risque)
     - Gouvernements (financement des dépenses et des transferts)
     - Firmes financières (création des contrats de nature financière, fourniture des marchés liquides)
-- Actifs : actions, obligations, options, contrats à terme, contrats d'assurance, prêts.
 
 ### Économétrie (sens large) des marchés financiers
 
@@ -35,17 +35,36 @@ urlcolor: blue
 - Inférence (tests, estimation, prévision)
 - Valorisation par simulation 
 
-## Les éléments de la note finale :
+## Les éléments de la note finale
 
 1. Examen intra, le lundi 17 février : 40%
-1. Deux travaux pratiques de computation en R, à remettre le 24 février avant minuit et le 8 avril avant minuit : 10% + 10%
+1. Deux travaux pratiques de computation en R
+    a. premier à remettre le 24 février avant minuit : 10%
+    a. deuxième à remettre le 8 avril avant minuit : 10%
 1. Examen final, date à déterminer : 40%
 
 ### Notes
 - Les deux examens sont théoriques.
-- Les travaux pratiques en R constituent un travail largement complémentaire des examens.
-- Chaque semaine, je donnerai des lectures, des exercices en R (pour les travaux pratiques) et des questions théoriques pour préparer les examens.
-- Le premier travail consiste en les exercises pratiques données jusqu'au 10 février (inclusif) ; le deuxième, les exercices pratiques données jusqu'au 30 mars (inclusif).
+- Les travaux pratiques en R sont complémentaires des examens.
+- Le premier travail consiste en les exercices pratiques données jusqu'au 10 février (inclusif) ; le deuxième, les exercices pratiques données jusqu'au 30 mars (inclusif).
+
+## Documents au site web
+
+### Documents
+
+1. Lectures et exercices théorique (organisé par cours)
+    a. lectures préparatoires à faire avant le cours
+    a. lectures associées aux cours
+    a. exercices théoriques
+1. Exercices pratiques en R (organisé par cours)
+1. Plan de cours
+1. Diapos en pdf
+
+### Notes
+
+- Chaque semaine, avant le cours, je mettrai à jour les deux premiers documents et ajouterai les diapos du cours actuel.
+- Les lectures et les questions théoriques servent à préparer les examens.
+- [Le site web du cours](https://mccauslw.github.io/ECN6578.html)
 
 ## Plus sur les travaux pratiques en R
 
@@ -64,7 +83,7 @@ urlcolor: blue
     - inclure les résultats de R (y compris des tableaux et des graphiques) dans les documents.
 
 ## Attentes
-1. Faites les lectures avant le cours.
+1. Faites les lectures préparatoires avant le cours.
 1. Essayez les questions seuls, puis discutez-en parmi vous, puis demandez de l'aide.
 1. Le contenu du cours comprend les lectures.
 
@@ -81,7 +100,7 @@ urlcolor: blue
 \]
 - Notes :
     * Les trois rendements ne dépendent pas de l'unité de valeur.
-    * Ils dépendent de l'unité du temps.
+    * Ils dépendent tous de l'unité du temps.
     * L'indice $t$ indique souvent le moment où la quantité est connue.
     * Les rendements sont plus "stationnaires" que les prix et plus comparables.
 
@@ -95,10 +114,10 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
 * Prix (et rendement brut) du portfeuille à $t$ :
 \[
   1+R_{pt} = \frac{P_{pt}}{P_{p,t-1}} = P_{pt} = \sum_{i=1}^n \frac{\omega_i P_{it}}{P_{i,t-1}}  = \sum_{i=1}^n \omega_i (1+R_{it}) = 1 + \sum_{i=1}^n \omega_i R_{it}. \]
-* Rendement net: $R_{pt} = \sum_{i=1}^n \omega_i R_{it}$.
+* Rendement net : $R_{pt} = \sum_{i=1}^n \omega_i R_{it}$.
 * La linéarité des rendements simples (et non des log rendements) donne l'avantage à ceux-là.
 
-## Fonctions linéaires vs mélanges, un exemple
+## Fonctions linéaires des v.a. vs mélanges, un exemple
 
 ### Éléments communs
 
@@ -116,7 +135,7 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
   \end{bmatrix}.
 \]
 
-### Deux placements
+### Deux placements (seul le premier est réaliste)
 
 1. Placer 100 \$ en proportions $(\omega_1,\omega_2,\omega_3) = (0.5, 0.2, 0.3)$
     - C.-à-d. placer 50 \$ en l'actif 1, 20 \$ en l'actif 2, etc.
@@ -162,9 +181,9 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
 mu1 = 0.05; sigma1 = 0.1
 mu2 = -0.10; sigma2 = 0.4
 pi = 0.8
-x = seq(-1,1,by=0.01)
+x = seq(-1, 1, by=0.01)
 f1 = dnorm(x, mu1, sigma1)
-f2 = dnorm(x, mu2,  sigma2)
+f2 = dnorm(x, mu2, sigma2)
 fmelange = pi * f1 + (1-pi) * f2
 ```
 
@@ -182,11 +201,11 @@ lines(x, fmelange, col='black')
 
 - Version inconditionnelle : pour variables aléatoires $X$ et $Y$,
 \[
-  E[Y] = E[E[Y|X]]
+  E[Y] = E[E[Y|X]].
 \]
 - Version conditionnelle : pour variables aléatoires $X$, $Y$ et $Z$,
 \[
-  E[Y|Z] = E[E[Y|X,Z]|Z]
+  E[Y|Z] = E[E[Y|X,Z]|Z].
 \]
 
 ### Un exemple temporel
@@ -237,8 +256,8 @@ lines(x, fmelange, col='black')
     * Soit $W$ la richesse (connue) en période $t$.
     * Soit $(1+R_{t+1})$ le rendement brut (inconnu) d'un actif en période $t+1$.
     * Alors $X = W(1+R_{t+1})$ et la richesse après une période si toute la richesse est placée en l'actif.
-    * Conséquence de l'inégalité de Jensen :
-    $u(E[W(1+R_{t+1})]) \geq E[u(W(1+R_{t+1}))]$
+    * Une conséquence de l'inégalité de Jensen :
+    $$ u(E[W(1+R_{t+1})]) \geq E[u(W(1+R_{t+1}))]. $$
     * Cela implique une préférence pour la valeur sure $E[W(1+R_{t+1})]$ à la richesse aléatoire $W(1+R_{t+1})$.
 
 ## L'inégalité de Jensen, cont.
@@ -248,8 +267,10 @@ lines(x, fmelange, col='black')
     * $K_z \equiv E[(Z-\mu)^4]/E[(Z-\mu)^2]^2 = E[(Z-\mu)^4]/\sigma^4$.
     * $\varphi(x) = x^2$, $X = (Z-\mu)^2$ donne $E[(Z-\mu)^4] \geq E[(Z-\mu)^2]^2$, $K_z\geq 1$.
     * Si $Z$ est gaussienne, $K_z = 3$.
-    * Supposons que $Z = \sigma \epsilon$, où $\epsilon \sim N(0,1)$, $\sigma$ et $\epsilon$ indépendents.
-    * Par la loi des espérances itérées, $E[Z^4] = E[E[Z^4|\sigma^2]] = E[3\sigma^4]$.
+    
+- Application 3 : aplatissement d'un mélange-échelle de v.a. gaussiennes
+    * Supposons que $Z = \sigma \epsilon$, où $\epsilon \sim N(0,1)$ et $\sigma$ et $\epsilon$ sont aléatoires et indépendents.
+    * Par la loi des espérances itérées, $$ E[Z^4] = E[E[Z^4|\sigma^2]] = E[3\sigma^4] = 3E[\sigma^4]. $$
     * $\varphi(x) = x^2$, $X = \sigma^2$ donne $E[\sigma^4] 
     \geq E[\sigma^2]^2$ et alors $K_z \geq 3$.
 
