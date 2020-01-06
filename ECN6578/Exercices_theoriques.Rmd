@@ -11,6 +11,8 @@ output: pdf_document
 
 #### Lectures
 
+1. Tsay, 3e édition : 1.1
+
 #### Exercices
 
 1. Pour les deux placements décrits à la diapo "Fonctions linéaires vs mélanges, un exemple", calculez la moyenne et la variance du rendement.
@@ -30,9 +32,8 @@ Les deux façons :
 
 #### Lectures avant le cours
 
-- Dans Tsay, 3e édition :
-    - 1.1, 1.2.2, 1.2.5
-    - 2.1, 2.2, 2.3
+1. Tsay, 3e édition : 1.2.2, 1.2.3, 1.2.5
+1. Tsay, 3e édition : 2.1, 2.2, 2.3
 
 #### Autres lectures
 
