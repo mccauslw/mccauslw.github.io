@@ -8,5 +8,10 @@ output: pdf_document
 ### Premier travail pratique
 
 1. Travail préliminaire (le 6 janvier, pas à remettre)
-    a. Télécharger R et R Studio.
-    a. Créer un fichier HTML à partir du gabarit R Markdown.
+    a. Téléchargez R et R Studio.
+    a. Créez un fichier HTML à partir du gabarit R Markdown.
+
+1. Travail, cours du 13 janvier
+    a. Téléchargez le fichier des données `d-3m7008.txt` et faites la graphique des rendements journaliers de l'action 3M avec la commande `plot`.
+    a. Faites un test de l'hypothèse que les rendements sont iid gaussiens, avec la statistique test Jarque-Bera. Calculez les valeurs critiques en utilisant la fonction de quantile (comme `qnorm` ou `qchisq`) de la loi asymptotique de la statistique test sous l'hypothèse nulle.
+    a. Faites un test de l'hypothèse que les rendements sont iid avec variance finie, avec la statistique test Box-Pierce. Utilisez la commande `acf` pour obtenir la fonction d'autocorrélation et calculez la statistique test à partir de cette fonction. Utilisez $m=10$ retards. Confirmez ensuite votre réponse en utilisant la commande `Box.test`.

@@ -3,6 +3,7 @@ title: "Lectures et exercices théoriques"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: pdf_document
+urlcolor: blue
 ---
 
 ## Avant l'intra
@@ -11,7 +12,7 @@ output: pdf_document
 
 #### Lectures
 
-1. Tsay, 3e édition : 1.1
+1. Tsay, 3e édition : 1.1 Rendements
 
 #### Exercices
 
@@ -32,8 +33,44 @@ Les deux façons :
 
 #### Lectures avant le cours
 
-1. Tsay, 3e édition : 1.2.2, 1.2.3, 1.2.5
-1. Tsay, 3e édition : 2.1, 2.2, 2.3
+1. Tsay, 3e édition :
+    a. 1.2.2 la loi des rendements
+    a. 1.2.3 rendements multivariés
+    a. 1.2.5 propriétés empiriques des rendements
+1. Tsay, 3e édition :
+    a. 2.1 stationnarité
+    a. 2.2 corrélation et la fonction d'autocorrélation
+    a. 2.3 le bruit blanc et les séries temporelles linéaires
+
+#### Autres lectures
+
+1. L'article de Cont (2001) que j'ai mis sur StudiUM.
+1. Tsay, 3e édition :
+    a. 1.2.1 (lois statistiques et leurs moments)
+
+#### Exercices
+
+1. La v.a. $X$ suit une loi qui est un mélange de deux lois gaussiennes, chacune avec probabilité 0.5 : $N(\mu,\sigma^2)$ et $N(-\mu,\sigma^2)$.
+Calculez l'aplatissement $K_x$ et $\lim_{\sigma^2 \downarrow 0} K_x$.
+
+1. Trouvez l'asymétrie et l'aplatissement d'un mélange général de deux v.a. gaussiennes.
+Le site suivant donne les quatres premiers moments non centraux d'une v.a. $N(\mu,\sigma^2)$ : <https://fr.wikipedia.org/wiki/Loi_normale#Moments>.
+
+1. Le prix d'un actif le 4 janvier est de 14.50 dollars. Le prix de l'actif le 15 fevrier est de 13.15. Quel est le rendement simple annualisé et le log rendement annualisé?
+
+1. On observe un échantillon $X_1,\ldots,X_T$, où $X_t \sim \mathrm{iid}\, N(\mu,\sigma^2)$.
+Si on fait les tests 1 et 2 de la diapo "Attention : tests multiples!" quelle est la probabilité d'au moins un rejet, comme fonction de $\alpha$?
+
+### Cours 3
+
+#### Lectures avant le cours
+
+### Lectures
+
+1. Dans Tsay, 3e édition :
+    - 2.4 Intro (avant 2.4.1)
+    - 2.5 Intro (avant 2.5.1)
+    - 2.6 Intro (avant 2.6.1)
 
 #### Autres lectures
 

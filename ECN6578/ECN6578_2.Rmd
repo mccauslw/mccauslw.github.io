@@ -1,9 +1,10 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2019"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
 subtitle: "Cours 2"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: beamer_presentation
+urlcolor: blue
 ---
 
 ## Plan
@@ -19,7 +20,7 @@ output: beamer_presentation
 - La fonction $r = \log (1+R)$ est concave et $r \leq R$
 
 ```{r concave, fig.height=5}
-R = seq(-0.9,1.0,by=0.01)
+R = seq(-0.9, 1.0, by=0.01)
 plot(R, log(1+R), xlab="R", ylab="r", type='l')
 lines(R, R, col='blue')
 ```
@@ -50,7 +51,7 @@ $$ \lim_{n\to \infty} n \log (1+r/n) = \lim_{n\to \infty} n \left[\frac{r}{n} - 
 ## Annualisation
 
 * Mettons que l'unité de temps est l'année.
-* Question : Pour quelle valeur de $R$ un rendement net annuel constant de $R$ pendant $k$ ans donne-t-il un rendement net après $k$ périodes de $R_t[k]$?
+* Question : Quelle rendement net annuel constant $R$ pendant $k$ ans donne-t-il un rendement net après $k$ périodes de $R_t[k]$?
 * C'est à dire quelle valeur de $R$ vérifie
 $1+R_t[k] = (1+R)^k$?
 * L'annualisation d'un rendement multipériode :
@@ -70,7 +71,7 @@ $$ S = E[(X-\mu)^3]/\sigma^3, \quad K = E[(X-\mu)^4]/\sigma^4. $$
 
 * Pour l'asymétrie et l'aplatissement de l'échantillon, on utilise les moments de l'échantillon.
 
-* Asymétrie et aplatissement dans le tableau 1.2
+* Asymétrie et aplatissement dans le tableau 1.2 de Tsay.
     * Asymétrie (skewness) souvent négative---actions et indices.
     * Aplatissement (kurtosis) toujours plus grand que 3---actions et indices.
     * $S$ et $K$ plus sévères pour $r_t$ que pour $R_t$.
@@ -100,7 +101,7 @@ lines(x, dnorm(x, mu, sigma), col='green')
 
 ## Tests de normalité basés sur $S$ et $K$
 
-* L'hypothèse nulle ici: $H_0: r_t \sim \mathrm{iid}\, N(\mu,\sigma^2)$, $t=1,\ldots,T$.
+* L'hypothèse nulle ici : $H_0: r_t \sim \mathrm{iid}\, N(\mu,\sigma^2)$, $t=1,\ldots,T$.
 
 * Loi asymptotique de l'assymétrie de l'échantillon sous $H_0$:
 $$ z_S = \frac{\hat{S}_{ch}}{\sqrt{6/T}} \sim N(0,1). $$
@@ -217,7 +218,7 @@ $$ \begin{aligned} \mathrm{Cov}[X_1^2, X_2^2] &= E[\mathrm{Cov}[X_1^2,X_2^2|\ome
 
 ```{r scatter2, fig.height=5}
 nu = 2
-T = 1000
+T = 1000; set.seed(12345)
 omega = rchisq(T, nu)
 X1 = rnorm(T, 0, sqrt(nu/omega))
 X2 = rnorm(T, 0, sqrt(nu/omega))
@@ -267,55 +268,25 @@ pacf(abs(r))
 * Les lois ici sont asymtotiques, sous $H_0$.
 * Test avec une autocorrélation isolée :
 $$ \hat{\rho}_k \sim N(0,T^{-1}) $$
-* Test portmanteau avec plusieurs autocorrélations, Box-Pierce :
+* Test portmanteau (avec plusieurs autocorrélations) Box-Pierce :
 $$ T \sum_{l=1}^m \hat{\rho}_l^2 \sim \chi^2(m) $$
-* Avec correction de biais, Ljung-Box (dist. asym.)
+* Test portmanteau Ljung-Box (avec correction de biais)
 $$ T(T+2) \sum_{l=1}^m \frac{\hat{\rho}_l^2}{T-l} \sim \chi^2(m) $$
 
 ## Faits empiriques de Cont (2001)
 
 1. Peu d'autocorrelation ($r_t$) sauf à une échelle de moins de 20 minutes.
 2. Aplatissement inconditionnel plus grand que 3.
-3. Asymmétrie négative pour des actifs et des indices.
+3. Asymmétrie négative pour les actifs et les indices.
 4. Loi de $r_t$ "plus gaussienne" à une échelle temporelle plus grande.
 5. Variation de volatilité à toute échelle temporelle.
 6. Persistence de volatilité.
 7. Aplatissement conditionnel moins grand que l'aplatissement inconditionnel, mais toujours plus grand que 3.
-8. La fonction d'autocorrélation de $|r_t|$ décroit selon une loi de puissance (plus lentement que de taux exponentiel). (Long mémoire)
+8. La fonction d'autocorrélation de $|r_t|$ décroit selon une loi de puissance (plus lentement que de taux exponentiel). (Longue mémoire)
 9. Effet de levier: changement de volatilité négativement corrélé avec le rendement actuel.
 10. Corrélation positive entre volume et volatilité.
-
-## Questions théoriques
-
-1. La v.a. $X$ suit une loi qui est un mélange de deux lois gaussiennes, chacune avec probabilité 0.5 : $N(\mu,\sigma^2)$ et $N(-\mu,\sigma^2)$.
-Calculez l'aplatissement $K_x$ et $\lim_{\sigma^2 \downarrow 0} K_x$.
-
-1. Trouvez l'asymétrie et l'aplatissement d'un mélange général de deux v.a. gaussiennes.
-Trouvez ici les quatres premiers moments non centraux d'une v.a. $N(\mu,\sigma^2)$ :
-<https://fr.wikipedia.org/wiki/Loi_normale#Moments>.
-
-1. Le prix d'un actif le 4 janvier est de 12.55 dollars. Le prix de l'actif le 15 fevrier est de 13.05. Quel est le rendement simple annualisé et le log rendement annualisé?
-
-1. On observe un échantillon $X_1,\ldots,X_T$, où $X_t \sim \mathrm{iid}\, N(\mu,\sigma^2)$.
-Si on fait les tests 1 et 2 de la diapo "Attention : tests multiples!" quelle est la probabilité d'au moins un rejet, commen fonction de $\alpha$?
-
-## Exercises R
-
-1. Télécharger le fichier des données `d-intc7208.txt` est faire la graphique des rendements avec la commande `plot`.
-1. Avec les rendements journaliers de l'action Intel, faites les tests suivant.
-Utilisez les commandes ``qnorm`` et ``qchisq`` pour calculer les valeures critiques.
-    a. Un test de l'hypothèse que les rendements sont iid gaussiens, avec la statistique test Jarque-Bera.
-    a. Un test de l'hypothèse que les rendements sont iid avec variance finie, avec la statistique test Box-Pierce. Utilisez la commande `acf` pour obtenir la fonction d'autocorrélation. Utilisez $m=10$ retards.
 
 ## Cours 3, la semaine prochaine
 
 ### Plan préliminaire
 1. Modèles ARMA(p,q) de base
-
-### Lectures
-
-- Dans Tsay, 3e édition :
-    - 2.3,
-    - 2.4 Intro, 2.4.1,
-    - 2.5 Intro, 2.5.1,
-    - 2.6 Intro, 2.6.1

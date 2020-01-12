@@ -1,5 +1,6 @@
 ---
-title: "ECN 6578, Cours 12 : Valeur à risque"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+subtitle: "Cours 12 : Valeur à risque"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: beamer_presentation

@@ -1,5 +1,6 @@
 ---
-title: "ECN 6578, Cours 11 : données de haute fréquence (cont.)"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+subtitle: "Cours 11 : données de haute fréquence (cont.)"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: beamer_presentation
