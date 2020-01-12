@@ -12,7 +12,8 @@ urlcolor: blue
 
 #### Lectures
 
-1. Tsay, 3e édition : 1.1 Rendements
+1. Tsay, 3e édition :
+    a. 1.1 rendements
 
 #### Exercices
 
@@ -37,7 +38,6 @@ Les deux façons :
     a. 1.2.2 la loi des rendements
     a. 1.2.3 rendements multivariés
     a. 1.2.5 propriétés empiriques des rendements
-1. Tsay, 3e édition :
     a. 2.1 stationnarité
     a. 2.2 corrélation et la fonction d'autocorrélation
     a. 2.3 le bruit blanc et les séries temporelles linéaires
@@ -46,7 +46,7 @@ Les deux façons :
 
 1. L'article de Cont (2001) que j'ai mis sur StudiUM.
 1. Tsay, 3e édition :
-    a. 1.2.1 (lois statistiques et leurs moments)
+    a. 1.2.1 lois statistiques et leurs moments
 
 #### Exercices
 
@@ -67,10 +67,10 @@ Si on fait les tests 1 et 2 de la diapo "Attention : tests multiples!" quelle es
 
 ### Lectures
 
-1. Dans Tsay, 3e édition :
-    - 2.4 Intro (avant 2.4.1)
-    - 2.5 Intro (avant 2.5.1)
-    - 2.6 Intro (avant 2.6.1)
+1. Tsay, 3e édition :
+    a. 2.4 Intro (avant 2.4.1)
+    a. 2.5 Intro (avant 2.5.1)
+    a. 2.6 Intro (avant 2.6.1)
 
 #### Autres lectures
 
