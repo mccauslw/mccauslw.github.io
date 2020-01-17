@@ -21,7 +21,7 @@ urlcolor: blue
 
 1. Étudiez la preuve du théorème de variance totale et prouvez le théorème de covariance totale : pour variables aléatoires $X$, $Y$ et $Z$ telles que les moments suivants existent,
 \[
-  \mathrm{Cov}[X,Y|Z] = E[\mathrm{Cov}[X,Y|Z]] + \mathrm{Cov}[E[X|Z], E[Y|Z]].
+  \mathrm{Cov}[X,Y] = E[\mathrm{Cov}[X,Y|Z]] + \mathrm{Cov}[E[X|Z], E[Y|Z]].
 \]
 
 1. Trouvez $\mathrm{Var}[\mu]$ dans l'Application II de la loi des espérances itérées.
