@@ -52,7 +52,7 @@ $$ E[r_{t-1}r_t] = \phi E[r_{t-1}^2] + E[r_{t-1} a_t] \quad\mbox{ou}\quad \gamma
 
 ### Récursion pour trouver $\gamma_k$, $k>1$
 
-- Pour $k>1$
+- Pour $k>1$,
 $$ \gamma_k = E[r_t r_{t-k}] = E[(\phi r_{t-1} + a_t) r_{t-k}] = \phi \gamma_{k-1}. $$
 
 ## Modèle AR(1) : Calcul de la fonction d'autocovariance II
@@ -83,6 +83,7 @@ ts.plot(ts.sim)
 - Notez que $(1-\omega_1 B)(1-\omega_2 B)r_t = a_t$.
 - Autrement dit, $[1-(\omega_1 + \omega_2)B+\omega_1\omega_2B^2] r_t = a_t$.
 - Alors $r_t$ est un AR(2).
+- Notez la symétrie $(1-\omega_1 B) (1-\omega_2 B) = (1-\omega_2 B) (1-\omega_1 B)$ : l'ordre des opérations n'importe pas.
 
 ## Modèle AR(2) avec moyenne zéro : spécification
 
@@ -102,7 +103,7 @@ $$r_t = (1 - \phi_1 B - \phi_2 B^2)^{-1} a_t$$
 
 ## Racines du polynôme caractéristique et la stationnarité
 
-- Les racines $\omega_1^{-1}$ et $\omega_2^{-1}$ sont réelles ou sont complèxe conjugées :
+- Les racines $\omega_1^{-1}$ et $\omega_2^{-1}$ sont réelles ou sont complèxes conjugées :
 \[
   \omega_1^{-1} = a + bi, \qquad \omega_2^{-1} = a - bi,
 \]
@@ -308,7 +309,7 @@ où $\mu = E[r_t]$,
 ## Exemple en R de l'estimation des paramètres ARMA
 
 ```{r ARMAest}
-t=read.table('../Data/m-ibm3dx2608.txt',header=T)
+t=read.table('m-ibm3dx2608.txt', header=T)
 arima(t$vwrtn, order=c(3,0,1))
 ```
 
@@ -332,34 +333,6 @@ arima(t$vwrtn, order=c(3,0,1))
 \]
 alors augmenter la vraisemblance, c'est réduire la variance estimée de l'innovation.
 
-## Questions théoriques
-
-1. Ecrivez les équations Yule-Walker pour un process AR(3) et pour un processus ARMA(1,1).
-
-1. Trouvez la fonction d'autocorrélation pour un processus MA(3).
-
-1. Considérez le process AR(3) suivant :
-\[
-  r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t.
-\]
-    a. Trouvez les racines du polynome caracteristique du processus.
-    a. Est-ce que la condition de stationnarité tient?
-
-1. Trouvez $\psi_1,\psi_2,\psi_3$ pour un ARMA(1,2) général.
-
-## Exercises R
-
-1. Considérez le process ARMA(3,1) suivant :
-\[
-  r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t - 0.3 a_{t-1}.
-\]
-    a. Simulez le séries pour $T=500$ observations.
-    a. Faites la graphique de la fonction d'autocorrélation de la population.
-    a. Faites la graphique de la fonction d'autocorrélation de l'échantillon.
-    a. Estimez les paramètres d'un modèle ARMA(3,1) en vous servant de l'échantillon que vous avez tirer.
-
-1. Tsay, Exercice 2.4 (b)
-
 ## Cours 4, la semaine prochaine
 
 ### Plan préliminaire
@@ -367,8 +340,3 @@ alors augmenter la vraisemblance, c'est réduire la variance estimée de l'innov
 1. Modèles d'héteroscédasticité conditionnelle autorégressive
 1. Introduction à l'inférence bayésienne
 1. Modèles de volatilité stochastique
-
-### Lectures
-
-- Dans Tsay, 3e édition :
-    - Chapitre 3 jusqu'à la fin de 3.4.2.

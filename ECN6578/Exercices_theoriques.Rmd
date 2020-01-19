@@ -65,12 +65,40 @@ Si on fait les tests 1 et 2 de la diapo "Attention : tests multiples!" quelle es
 
 #### Lectures avant le cours
 
-### Lectures
-
 1. Tsay, 3e édition :
     a. 2.4 Intro (avant 2.4.1)
     a. 2.5 Intro (avant 2.5.1)
     a. 2.6 Intro (avant 2.6.1)
+
+#### Autres lectures
+
+1. Tsay, 3e édition :
+    a. 2.4
+    a. 2.5
+    a. 2.6
+    a. 2.8.1 et 2.8.2 (pour faire l'exercise 2.4)
+
+#### Exercices
+
+1. Ecrivez les équations Yule-Walker pour un process AR(3) et pour un processus ARMA(1,1).
+
+1. Trouvez la fonction d'autocorrélation pour un processus MA(3).
+
+1. Considérez le process AR(3) suivant :
+\[
+  r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t.
+\]
+    a. Trouvez les racines du polynome caracteristique du processus.
+    a. Est-ce que la condition de stationnarité tient?
+
+1. Trouvez $\psi_1,\psi_2,\psi_3$ de la représentation MA infinie pour un ARMA(1,2) général.
+
+### Cours 4
+
+#### Lectures avant le cours
+
+1. Tsay, 3e édition :
+    a. Chapitre 3 jusqu'à l'introduction de 3.4 (avant 3.4.1) 
 
 #### Autres lectures
 

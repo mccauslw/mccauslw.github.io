@@ -15,3 +15,15 @@ output: pdf_document
     a. Téléchargez le fichier des données `d-3m7008.txt` et faites la graphique des rendements journaliers de l'action 3M avec la commande `plot`.
     a. Faites un test de l'hypothèse que les rendements sont iid gaussiens, avec la statistique test Jarque-Bera. Calculez les valeurs critiques en utilisant la fonction de quantile (comme `qnorm` ou `qchisq`) de la loi asymptotique de la statistique test sous l'hypothèse nulle.
     a. Faites un test de l'hypothèse que les rendements sont iid avec variance finie, avec la statistique test Box-Pierce. Utilisez la commande `acf` pour obtenir la fonction d'autocorrélation et calculez la statistique test à partir de cette fonction. Utilisez $m=10$ retards. Confirmez ensuite votre réponse en utilisant la commande `Box.test`.
+
+1. Travail, cours du 20 janvier
+    a. Considérez le process ARMA(3,1) suivant :
+\[
+  r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t - 0.3 a_{t-1}.
+\]
+        i. Simulez le séries pour $T=500$ observations.
+        i. Faites la graphique de la fonction d'autocorrélation $\rho_k$ de la population, pour $k=1,\ldots,25$
+        i. Faites la graphique de la fonction d'autocorrélation $\hat\rho_k$ de l'échantillon, pour $k=1,\ldots,25$.
+        i. Estimez les paramètres d'un modèle ARMA(3,1) en vous servant de l'échantillon que vous avez tiré. Donnez des estimations ponctuelles avec leurs écarts-types.
+    a. Tsay, Exercice 2.4. Lisez les sections 2.8.1 et 2.8.2 sur la saisonnalité.
+

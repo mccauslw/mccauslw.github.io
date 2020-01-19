@@ -16,3 +16,5 @@
 [Diapos, Cours 1, code source](./ECN6578/ECN6578_1.Rmd)
 
 [Diapos, Cours 2](./ECN6578/ECN6578_2.pdf)
+
+[Diapos, Cours 3](./ECN6578/ECN6578_3.pdf)
