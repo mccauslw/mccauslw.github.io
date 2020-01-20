@@ -62,7 +62,7 @@ $$ \gamma_k = \frac{\sigma_a^2}{1-\phi^2}\, \phi^k, $$
 et la fonction d'autocorrélation
 $$ \rho_k = \phi^k. $$
 
-- La fonction d'autocorrélation diminue à un taux exponentielle.
+- La fonction d'autocorrélation diminue à un taux exponentiel.
 
 - La valeur $\phi^{-1}$ est la racine du polynôme caracteristique $1-\phi x$, où $x$ replace $B$ dans l'expression $1-\phi B$.
 
@@ -107,7 +107,7 @@ $$r_t = (1 - \phi_1 B - \phi_2 B^2)^{-1} a_t$$
 \[
   \omega_1^{-1} = a + bi, \qquad \omega_2^{-1} = a - bi,
 \]
-pour $a$ et $b$ réelle.
+pour $a$ et $b$ réels.
 
 - Dans les deux cas, la stationnarité implique $|\omega_1| < 1$ et $|\omega_2| < 1$
 - Condition équivalente : $|\omega_1^{-1}| > 1$ et $|\omega_2^{-1}| > 1$.
@@ -117,7 +117,7 @@ pour $a$ et $b$ réelle.
 
 ### Équations Yule-Walker pour trouver $\gamma_0$, $\gamma_1$, $\gamma_2$
 
-- Multiplie $r_t = \phi_1 r_{t-1} + \phi_2 r_{t-2} + a_t$ par $r_t$, $r_{t-1}$, $r_{t-2}$ et prenez l'espérance:
+- Multipliez $r_t = \phi_1 r_{t-1} + \phi_2 r_{t-2} + a_t$ par $r_t$, $r_{t-1}$, $r_{t-2}$ et prenez l'espérance:
 $$ E[r_t^2] = \phi_1 E[r_t r_{t-1}] + \phi_2 E[r_t r_{t-2}] + E[r_t a_t], $$
 $$ E[r_{t-1} r_t] = \phi_1 E[r_{t-1}^2] + \phi_2 E[r_{t-1}r_{t-2}] + E[r_{t-1} a_t], $$
 $$ E[r_{t-2} r_{t}] = \phi_1 E[r_{t-2} r_{t-1}] + \phi_2 E[r_{t-2}^2] + E[r_{t-2}a_t]. $$
@@ -229,7 +229,7 @@ et $\gamma_0,\ldots,\gamma_p$ détermine $c_1,\ldots,c_p$.
 \[
   \gamma_h = \phi_1 \gamma_{h-1} - \ldots - \phi_p \gamma_{h-p} - \theta_h E[a_{t-h}r_{t-h}] - \ldots - \theta_q E[a_{t-q}r_{t-h}]
 \]
-- En utilisant la représentation AR infinie,
+- En utilisant la représentation MA infinie,
 \[
   \gamma_h = \phi_1 \gamma_{h-1} - \ldots - \phi_p \gamma_{h-p} - \theta_h \psi_0 \sigma_a^2 - \ldots - \theta_q \psi_{q-h} \sigma_a^2
 \]
@@ -271,7 +271,7 @@ plot(PACF)
 ## Évaluation de la vraisemblance gaussienne I
 
 - Attention: voici une façon directe mais *très* inefficace.
-- Soit $r=(r_1,\ldots,r_T)$, un vecteur ligne.
+- Soit $r=(r_1,\ldots,r_T)$, un vecteur colonne.
 - Si $r$ est stationnaire et gaussien, sa densité est
 \[
   f(r) = \frac{1}{(2\pi)^{T/2}} |\Gamma|^{-1/2} \exp\left[-\frac{1}{2}(r-\mu \iota)^T \Gamma^{-1} (r-\mu \iota) \right],
