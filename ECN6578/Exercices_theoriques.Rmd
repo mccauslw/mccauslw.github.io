@@ -103,3 +103,27 @@ Si on fait les tests 1 et 2 de la diapo "Attention : tests multiples!" quelle es
 #### Autres lectures
 
 #### Exercices
+
+1. Mettons que $r_t$ suit un modèle ARMA(1,3) avec moyenne zéro.
+Au moment $t$, trouvez les prévisions de $r_{t+1}$ et de $r_{t+2}$ qui minimisent l'erreur moyenne carrée.
+Trouvez la variance de l'erreur de prévision dans les deux cas.
+
+1. Mettons que $r_t$ suit un GARCH(1,1) gaussien avec moyenne zéro.
+Calculez la variance, l'asymétrie et l’aplatissement de $r_t$. Vous pouvez vérifier la variance et l'aplatissement en comparant vos résultats aux résultats à la page 132 de Tsay.
+
+### Cours 5
+
+#### Lectures avant le cours
+
+#### Lectures
+
+- Dans Tsay, 3e édition :
+    - Sections 1.2.2, 1.2.4, 3.8 intro, 3.8.1
+    
+- Au site web suivant : https://fr.wikipedia.org/wiki/Maximum_de_vraisemblance
+    - Sections Exemple, Principe, Définitions, Propriétés, Exemples
+
+#### Autres lectures
+
+#### Exercices
+

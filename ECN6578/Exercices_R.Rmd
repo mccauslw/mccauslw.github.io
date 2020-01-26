@@ -27,3 +27,10 @@ output: pdf_document
         i. Estimez les paramètres d'un modèle ARMA(3,1) en vous servant de l'échantillon que vous avez tiré. Donnez des estimations ponctuelles avec leurs écarts-types.
     a. Tsay, Exercice 2.4. Lisez les sections 2.8.1 et 2.8.2 sur la saisonnalité.
 
+1. Travail, cours du 27 janvier
+    a. Prenez le code de la diapo 'Simulation du modèle ARCH(3)' et modifiez-le pour simuler un GARCH(1,1) gaussien à moyenne zéro pendant $T=1000$ périodes.
+Utilisez les valeurs des paramètres $\alpha_0 = 0.000084$, $\alpha_1 = 0.1213$, $\beta_1 = 0.8523$.
+    a. Calculez la variance, l'asymétrie et l'aplatissement de l'échantillon.
+Suggestion : comparez à la variance, à l'asymétrie et l’aplatissement de la population obtenues dans les exercices théoriques.
+    a. Faites la graphique de $r_t$ et de $\sigma_t^2$. 
+
