@@ -25,7 +25,7 @@ output: beamer_presentation
 - Avec les coefficients $\phi_i$ et $\theta_i$, on peut évaluer $E[r_{t+h}|F_t]$.
 - Ajouter $\sigma_a^2$ et on peut évaluer $\mathrm{Var}[r_{t+h}|F_t]$ aussi.
 - Pour simplifier un peu, $F_t$ comprend $r_t,r_{t-1},\ldots$ et $a_t,a_{t-1},\ldots$.
-- En réalité, on observe un échantillon $r_1,\ldots,r_T$ et recouvrit $a_1,\ldots,a_T$ seulement de façon approximative.
+- En réalité, on observe un échantillon $r_1,\ldots,r_T$ et recouvre $a_1,\ldots,a_T$ seulement de façon approximative.
 
 ## Prévision avec un modèle ARMA(2,2) à un horizon $h=1$
 
