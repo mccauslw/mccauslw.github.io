@@ -11,6 +11,10 @@
 
 [Exercices R](./ECN6578/Exercices_R.pdf)
 
+[Examen Intra, hiver 2019](./ECN6578/EI19.pdf)
+
+[Examen Intra, automne 2017](./ECN6578/ECN6578A_EI17.pdf)
+
 [Diapos, Cours 1](./ECN6578/ECN6578_1.pdf)
 
 [Diapos, Cours 1, code source](./ECN6578/ECN6578_1.Rmd)

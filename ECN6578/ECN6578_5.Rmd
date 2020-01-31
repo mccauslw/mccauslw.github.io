@@ -37,14 +37,14 @@ où
     * Fonction de masse de probabilité $f(y|\theta) = \theta^{n_1} (1-\theta)^{n_0}$.
     * Fonction de vraisemblance ${\cal L}(\theta; y) = \theta^{n_1} (1-\theta)^{n_0}$.
 * $f(y|\theta)$ donne, pour $\theta$ fixe, les probabilités relatives de plusieurs séquences $(y_1,\ldots,y_n)$.
-* ${\cal L}(\theta; y)$ donne, pour $y$ fixe (le vecteur des données observées) une note (ou score) à
+* ${\cal L}(\theta; y)$ donne, pour $y$ fixe (le vecteur des données observées) une note (ou évaluation) à
 chaque valeur $\theta$ pour la qualité de sa prévision des données observées.
 * Soit $L(\theta; y) = \log {\cal L}(\theta; y)$, la log-vraisemblance.
 
 ## La vraisemblance Bernoulli pour $n_0 = 200$, $n_1 = 230$
 
 ```{r vrai}
-n_0 = 200; n_1 = 230; theta = seq(0,1,by=0.01)
+n_0 = 200; n_1 = 230; theta = seq(0, 1, by=0.001)
 L = theta^n_1 * (1-theta)^n_0
 plot(theta, L, type='l')
 ```
@@ -53,7 +53,7 @@ plot(theta, L, type='l')
 
 ```{r lvrai}
 logL = n_1 * log(theta) + n_0 * log(1-theta)
-plot(theta, logL, type='l')
+plot(theta, logL, type='l', ylim=c(-400, max(logL)))
 ```
 
 ## La fonction de vraisemblance pour une séries chronologique
@@ -101,7 +101,7 @@ plot(theta, logL, type='l')
     1. $L(\theta;r) \equiv \log f(r|\theta)$ a toujours un maximum global unique.
     1. Le gradient de $L(\theta;r)$ est toujours borné.
     1. La matrice ${\cal I}(\theta)$ suivante (matrice d'information de Fisher) est définie positive:
-    $$ {\cal I}(\theta) = E\left[ \frac{\partial L(\theta;r)}{\partial \theta^\top} \frac{\partial L(\theta;r)}{\partial \theta} \right]. $$
+    $$ {\cal I}(\theta) = E_{r|\theta}\left[ \frac{\partial L(\theta;r)}{\partial \theta^\top} \frac{\partial L(\theta;r)}{\partial \theta} \right]. $$
 
 ## Maximum de vraisemblance : résultats
 
@@ -110,13 +110,14 @@ Résultats :
 1. $\hat{\theta} = \arg \max_{\theta} L(\theta;r)$ existe, est unique.
 1. $\hat{\theta} \to_p \theta_0$ (loi de grands nombres)
 1. $\sqrt{n}(\hat{\theta}-\theta_0) \to_d N(0,{\cal I}(\theta_0)^{-1})$ (théorème central limite)
-1. ${\cal I}(\theta) = -E\left[ \frac{\partial^2 L(\theta;r)}{\partial \theta \partial \theta^\top} \right]$
+1. $E_{r|\theta}\left[\frac{\partial L(\theta;r)}{\partial \theta}\right] = 0$, alors ${\cal I}(\theta) = \mathrm{Var}_{r|\theta}\left[\frac{\partial L(\theta;r)}{\partial \theta}\right]$.
+1. ${\cal I}(\theta)  = E_{r|\theta}\left[ -\frac{\partial^2 L(\theta;r)}{\partial \theta \partial \theta^\top} \right].$
 
 Problèmes restants :
 
 1. Il faut trouver $\hat{\theta}$.
-1. $\theta_0$ est inconnu.
-1. L'espérance dans l'expression de ${\cal I}(\theta)$ est difficile à évaluer analytiquement, même pour une valeur de $\theta$ donnée.
+1. La variance asymptotique ${\cal I}(\theta_0)^{-1}$ dépend de $\theta_0$, qui est inconnu.
+1. L'espérance dans l'expression de ${\cal I}(\theta)$ est difficile à évaluer analytiquement.
 
 ## Comment trouver $\hat{\theta}$ I
 
@@ -142,10 +143,9 @@ $$ \theta_{k+1} = \theta_k - \lambda_k H(\theta_k) s(\theta_k). $$
 
 * Des fois, on utilise souvent, au lieu de $H(\theta)$,
 $$ \hat{H}(\theta) = -\sum_{t=1}^T
-\frac{\partial \log f(r_t|\theta)}{\partial \theta^\top}
-\frac{\partial \log f(r_t|\theta)}{\partial \theta}, $$
-mais il faut avoir $r_t$ indépendents.
-* Avec $r_t$ indépendents, $\hat{H}(\theta) \approx E[s(\theta)s(\theta)^\top] = {\cal I}(\theta) = - E[H(\theta)]$
+\frac{\partial \log f(r_t|r_1,\ldots,r_{t-1},\theta)}{\partial \theta^\top}
+\frac{\partial \log f(r_t|r_1,\ldots,r_{t-1},\theta)}{\partial \theta}. $$
+* Avec $r_t$ indépendents, une loi de grands nombres donne $$ \hat{H}(\theta_0) \to_p E[s(\theta_0)s(\theta_0)^\top] = {\cal I}(\theta_0) = - E[H(\theta_0)]. $$
 
 ## Approximation de ${\cal I}(\theta_0)$
 
