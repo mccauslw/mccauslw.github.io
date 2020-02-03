@@ -132,3 +132,19 @@ Calculez la variance, l'asymétrie et l’aplatissement de $r_t$. Vous pouvez v�
 
 #### Exercices
 
+1. Trouvez la moyenne et la variance de $\ln \sigma^2_t$ pour un modèle EGARCH(1,1)
+
+1. Faites des prévision du rendement $r_{T+1}$ pour une modèle AR(1)-GARCH(1,1).
+Quelle est la variance conditionnelle des erreurs de prévision? Exprime le résultat en termes des paramètres, de $r_T$ et de $\sigma_T^2$.
+
+### Cours 6
+
+#### Lectures avant le cours
+
+1. Dans Tsay, 3e édition :
+    a. 3.12 (Modèle de volatilité stochastique)
+    a. 12.3 intro, 12.3.1 (inférence bayésienne, lois postérieures)
+
+#### Autres lectures
+
+#### Exercices

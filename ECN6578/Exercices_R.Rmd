@@ -34,3 +34,14 @@ Utilisez les valeurs des paramètres $\alpha_0 = 0.000084$, $\alpha_1 = 0.1213$,
 Suggestion : comparez à la variance, à l'asymétrie et l’aplatissement de la population obtenues dans les exercices théoriques.
     a. Faites la graphique de $r_t$ et de $\sigma_t^2$. 
 
+1. Travail, cours du 3 février
+    a. Pour cette question, utilisez les données dans le fichier d-3m7008.txt (action 3M, rendements journaliers, 1970-2008).
+Je recommande le paquet fGARCH.
+Pour tous les modèles suivants, calculez la valeur maximale de la log-vraisemblance.
+Quel est le meilleur modèle selon le critère AIC?
+Pour ce modèle, reportez les estimations MV (maximum de vraisemblance) des paramètres et leurs écarts-types asymptotiques et faites la graphique de la séquence de volatilités estimées.
+        i. GARCH(1,1), distribution conditionnelle gaussienne.
+        i. GARCH(1,1), distribution conditionnelle $t$ de Student.
+        i. ARCH(2), distribution conditionnelle $t$ de Student.
+        i. GARCH(2,1), distribution conditionnelle $t$ de Student.
+        i. AR(1)-GARCH(1,1), distribution conditionnelle $t$ de Student.

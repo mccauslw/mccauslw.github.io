@@ -10,10 +10,10 @@ output: beamer_presentation
 
 1. Maximum de vraisemblance : l'exemple le plus simple
 1. Maximum de vraisemblance : un peu de théorie
-1. La vraisemblance d'un ARCH(1), de la semaine passée.
-1. Prévision de la volatilité avec un ARCH(m), de la semaine passée.
+1. Le modèle EGARCH
+1. Estimation des modèles GARCH, quelques résultats
 
-## Le modèle binomial
+## Le modèle Bernoulli
 
 * Supposons que les $y_i$ sont iid Bernoulli avec probabilité $\theta \in [0,1]$ :
 \[
@@ -75,7 +75,7 @@ plot(theta, logL, type='l', ylim=c(-400, max(logL)))
 
 * Vraisemblance : ${\cal L}(\theta;y) = \theta^{n_1} (1-\theta)^{n_0}$.
 * Log vraisemblance : $L(\theta;y) = n_1 \log(\theta) + n_0 \log(1-\theta)$
-* Deux dérivées de la log vraisemblance
+* Deux dérivées de la log vraisemblance :
 \[
   \frac{\partial L(\theta;y)}{\partial \theta} = \frac{n_1}{\theta} - \frac{n_0}{1-\theta}
 \]
@@ -119,12 +119,37 @@ Problèmes restants :
 1. La variance asymptotique ${\cal I}(\theta_0)^{-1}$ dépend de $\theta_0$, qui est inconnu.
 1. L'espérance dans l'expression de ${\cal I}(\theta)$ est difficile à évaluer analytiquement.
 
+## Exemple Bernoulli
+
+* La moyenne du score :
+\[
+  E_{y|\theta}\left[\frac{\partial L}{\partial \theta}\right]
+  = E_{y|\theta}\left[\frac{n_1}{\theta} - \frac{n_0}{(1-\theta)}\right]
+  = \frac{n\theta}{\theta} - \frac{n(1-\theta)}{(1-\theta)}
+  = 0
+\]
+* La matrice d'information de Fisher :
+\[
+  \begin{aligned}
+  {\cal I}(\theta)
+  &= E_{y|\theta}\left[-\frac{\partial^2 L}{\partial \theta^2}\right]
+  = E_{y|\theta}\left[\frac{n_1}{\theta^2} + \frac{n_0}{(1-\theta)^2}\right] \\
+  &= \frac{n\theta}{\theta^2} + \frac{n(1-\theta)}{(1-\theta)^2}
+  = \frac{n}{\theta(1-\theta)}.
+  \end{aligned}
+\]
+* La variance de $\hat{\theta}$ (exacte, pas asymptotique) :
+\[
+  \mathrm{Var}[\hat{\theta}] = \mathrm{Var}\left[\frac{n_1}{n}\right]
+  = \frac{1}{n^2} n \mathrm{Var}[y_i] = \frac{1}{n} (\theta-\theta^2) = \frac{\theta(1-\theta)}{n}.
+\]
+
 ## Comment trouver $\hat{\theta}$ I
 
 * Gradient (score) et hessienne de la log-vraisemblance :
 $$ s(\theta) \equiv \frac{\partial L(\theta;r)}{\partial \theta^\top},\quad H(\theta) \equiv
 \frac{\partial^2 L(\theta;r)}{\partial \theta \partial \theta^\top}. $$
-* Processus iteratif pour trouver $\hat{\theta}$: $\theta_1, \theta_2, \ldots,$
+* Processus iteratif pour trouver $\hat{\theta}$ : $\theta_1, \theta_2, \ldots,$
 * Approximation quadratique local autour de $\theta_k$ :
 $$ \tilde{L}(\theta;r) = L(\theta_k;r) + s(\theta_k)^\top (\theta-\theta_k) + \frac{1}{2} (\theta-\theta_k)^\top H(\theta_k) (\theta - \theta_k). $$
 * Le gradient $\tilde{s}(\theta)$ de $\tilde{L}(\theta;r)$ :
@@ -154,11 +179,34 @@ ${\cal I}(\theta_0)$, qui est inconnu.
 
 * Convergence de $\hat{\theta}$ à $\theta_0$.
 
-* Convergence de $\hat{H}(\cdot)$ à $H(\cdot)$
+* Convergence de $\hat{H}(\theta_0)$ ou $H(\theta_0)$ à ${\cal I}(\theta_0) = E[H(\theta_0)]$.
 
-* Convergence de $H(\theta_0)$ à ${\cal I}(\theta_0) = E[H(\theta_0)]$.
+* Ensemble, convergence de $H(\hat\theta)$ ou $\hat{H}(\hat{\theta})$ à ${\cal I}(\theta_0)$.
 
-* Ensemble, convergence de $\hat{H}(\hat{\theta})$ à ${\cal I}(\theta_0)$.
+## Le modèle EGARCH
+
+Le modèle EGARCH(1,1) :
+\[
+  a_t = \sigma_t \epsilon_t
+  \quad \ln \sigma^2_t = \alpha \ln \sigma^2_{t-1} + (1-\alpha) \alpha_0 + g(\epsilon_t)
+  \quad \epsilon_t \sim (0,1)
+\]
+Notes :
+
+* $E[\epsilon_t] = 0$, $E[|\epsilon_t| - E[|\epsilon_t|]] = 0$, $E[g(\epsilon_t)] = 0$.
+* Par exemple, si $\epsilon_t \sim N(0,1)$, $E[|\epsilon_t|] = \sqrt{2/\pi}$
+* $\ln \sigma_t^2$ est un processus AR(1).
+* Pour $\theta < 0$, il y a un effet de levier.
+* Pas besoin de contraintes pour assurer la positivité de la volatilité.
+
+## La fonction $g(\epsilon)$ de l'équation (3.31) (un exemple)
+
+```{r geps, echo=TRUE}
+eps = seq(-3, 3, by=0.01)
+theta = -0.0795; gamma = 0.2647
+g = theta * eps + gamma * (abs(eps) - sqrt(2/pi))
+plot(eps, g, type='l')
+```
 
 ## Ajustement de plusieurs modèles GARCH (code)
 
@@ -275,34 +323,8 @@ plot(gst, which=13)
 * Le modèle asymétrique capture un peu mieux l'asymétrie conditionnel.
 * Le modèle ne capture pas bien les (mettons) 10 valeurs les plus extrêmes (sur $\approx$ 9000)
 
-## Exercices R
-
-Pour ces questions, utilisez les données dans le fichier d-3m7008.txt. (3M, rendements journaliers, 1970-2008)
-Je recommande le paquet fGARCH.
-
-1. Pour quel modèle est-ce que la vraisemblance est plus élevé?  Quelles différences voyez-vous dans la séquence de volatilités estimées?
-    a. Modèle GARCH(1,1), distribution conditionnelle $t$ de Student.
-    b. Modèle ARCH(2), distribution conditionnelle $t$ de Student.
-
-2. Pour quel modèle est-ce que la vraisemblance est plus élevé?
-    a. Modèle GARCH(2,1), distribution conditionnelle $t$ de Student.
-    b. Modèle GARCH(1,2), distribution conditionnelle $t$ de Student.
-    c. Modèle AR(1)-GARCH(1,1), distribution conditionnelle $t$ de Student.
-    
-3. Parmi les cinq modèles ci-dessus, quel est le meilleur selon le critère AIC?
-
-## Question théorique
-
-1. Faites des prévision des rendement $r_{T+1}$ et $r_{T+2}$ pour une modèle AR(1)-GARCH(1,1).
-Quelle est la variance conditionnelle des erreurs de prévision? Exprime le résultat en termes des paramètres, $r_T$ et $\sigma_T^2$.
-
 ## Cours 6, la semaine prochaine
 
 ### Plan préliminaire
-1. Modèle EGARCH et l'effet de levier
 1. Introduction à l'inférence bayésienne
 1. Modèles de volatilité stochastique
-
-### Lectures
-
-Tsay, 3.8 intro, 3.8.1. 3.12, 12.3.1
