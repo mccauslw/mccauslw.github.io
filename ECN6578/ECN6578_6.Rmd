@@ -10,7 +10,7 @@ output: beamer_presentation
 
 1. Un modèle de volatilité stochastique
 1. Inférence bayésienne : un peu de théorie
-1. Inférence bayésienne : computation
+1. Inférence bayésienne : un peu de computation
 
 ## Un modèle de volatilité stochastique
 
@@ -20,33 +20,41 @@ $$ \log h_t = \alpha_0 + \alpha_1 \log h_{t-1} + v_t. $$
 $$ \begin{bmatrix} \epsilon_t \\ v_t \end{bmatrix}
 \sim N\left(0,\begin{bmatrix} 1 & 0 \\ 0 & \omega_v^{-2} \end{bmatrix} \right). $$
 
-* La volatilité n'est pas une fonction déterministe de rendements passés.
+* La volatilité n'est pas une fonction déterministe de rendements passés, comme dans les modèles (G)ARCH.
 
-* Évaluer la vraisemblance $f(r|\mu,\alpha_0,\alpha_1,\sigma_v^2)$ est difficile.
+* Évaluer la vraisemblance est difficile :
+\[
+  f(r|\mu,\alpha_0,\alpha_1,\sigma_v^2) = \int f(h|\mu,\alpha_0,\alpha_1,\sigma_v^2) f(r|h,\mu,\alpha_0,\alpha_1,\sigma_v^2)\, dh,
+\]
+où $r \equiv (r_1, \ldots, r_T)$, $h \equiv (h_1, \ldots, h_T)$.
 
 * On peut introduire une corrélation négative entre $\epsilon_t$ et $v_t$ pour capturer l'effet de levier.
 
-## Motivation des méthodes Bayésiennes
+## Motivation des méthodes bayésiennes
 
-* Analyse simple et élégante des modèles avec variables latentes
-* En faisant des prévisions, on tient compte de l'incertitude sur les paramètres, les ordres ($p$ et $q$ par exemple) et les modèles.
-* Il n'y a pas de recours au résultats asymptotiques.
+* Analyse simple et élégante des modèles avec variables latentes : on peut le faire avec seulement des évaluations de $f(h,r|\mu,\alpha_0,\alpha_1,\sigma_v^2)$. On n'a pas besoin d'évaluer la vraisemblance $f(r|\mu,\alpha_0,\alpha_1,\sigma_v^2)$.
+* En faisant des prévisions, on tient compte de l'incertitude sur
+    - les paramètres,
+    - les variables latentes,
+    - les ordres ($p$ et $q$ par exemple) et
+    - les modèles.
+* Il n'y a pas de recours aux résultats asymptotiques en $n$.
 
 ## Éléments de l'analyse bayésienne
 
-* Quantités pertinentes
-    * $\theta$, un vecteur de paramètres inconnus
-    * $y=(y_1,\ldots,y_T)$, un vecteur des variables observables
-    * $y^\circ$, le vecteur observé
+* Quantités pertinentes :
+    * $\theta$, un vecteur de paramètres inconnus,
+    * $y=(y_1,\ldots,y_T)$, un vecteur aléatoire des variables observables, et
+    * $y^\circ$, le vecteur observé.
     
-* Densités pertinentes
-    * $f(y|\theta)$, densité conditionnnelles des données (modèle)
-    * $L(\theta;y^\circ) = \log(f(y^\circ)|\theta)$, vraisemblance
-    * $f(\theta)$, densité *a priori*
-    * $f(\theta,y)$, densité conjointe
-    * $f(\theta|y)$, densité *a posteriori*
-    * $f(y)$, densité marginale des données
-    * $f(y^\circ)$, vraisemblance marginale (un nombre)
+* Densités pertinentes :
+    * $f(y|\theta)$, la densité conditionnelle des données (modèle),
+    * ${\cal L}(\theta;y^\circ) = f(y^\circ|\theta)$, la vraisemblance,
+    * $f(\theta)$, la densité *a priori*,
+    * $f(\theta,y)$, la densité conjointe,
+    * $f(\theta|y)$, la densité *a posteriori*,
+    * $f(y)$, la densité marginale des données,
+    * $f(y^\circ)$, la vraisemblance marginale (un nombre).
 
 ## Inférence bayésienne
 
@@ -57,6 +65,8 @@ $$ f(\theta|y^\circ) = \frac{f(\theta,y^\circ)}{f(y^\circ)} = \frac{f(\theta)f(y
 * $f(\theta)$ représente notre incertitude sur $\theta$ avant l'observation de $y$.
 
 * $f(\theta|y^\circ)$ resprésente notre incertitude sur $\theta$ après qu'observe $y=y^\circ$.
+
+* Un point important à retenir : $f(\theta|y^\circ) \propto f(\theta,y^\circ)$.
 
 ## Reprise et extension de l'exemple Bernoulli
 
@@ -94,7 +104,8 @@ $$ \begin{aligned} f(y|\theta) &= \prod_{t=1}^T \sqrt{\frac{h}{2\pi}} \exp\left[
 
 * Mettons qu'on choisit une loi *a priori* où $h$ et $\mu$ sont indépendents,
 avec
-$$ \mu \sim N(\bar{\mu},\bar{\omega}^{-1}), \quad \bar{s}h \sim \chi^2(\bar{\nu}). $$
+$$ \mu \sim N(\bar{\mu},\bar{\omega}^{-1}), \quad \bar{s}h \sim \chi^2(\bar{\nu}), $$
+où $\bar{\mu}$, $\bar{\omega}$, $\bar{s}$ et $\bar{\nu}$ sont des hyperparamètres constants choisis par l'investigateur.
 * La densité *a priori* est
 $$ f(\theta) \propto \exp \left[-\frac{\bar{\omega}}{2}(\mu-\bar{\mu})^2\right]
 \cdot h^{(\bar{\nu}-2)/2} \exp\left[-\frac{1}{2}\bar{s}^2 h\right]. $$
@@ -103,10 +114,10 @@ $$ f(\theta,y) \propto h^{(\bar{\nu}+T-2)/2} \exp\left[-\frac{\bar{\omega}}{2} (
 
 ## L'intégration et les objectifs de l'analyse bayésienne
 
-* Plusieurs problèmes d'inférence bayésienne ont, comme solution, des intégrales.
+* Plusieurs problèmes d'inférence bayésienne ont, comme solution, une intégrale par rapport à la densité *a posteriori*.
 
 * Exemple 1, estimation ponctuelle de $\theta_k$ sous perte quadratique:
-$$ \hat{\theta}_k = E[\theta_k | y^\circ]. $$
+$$ \hat{\theta}_k = E[\theta_k | y^\circ] = \int \theta_k f(\theta|y^\circ)\, d\theta. $$
 
 * Exemple 2, quantification de l'incertitude sur $\theta_k$ :
 $$ \mathrm{Var}[\theta|y^\circ] = E[(\theta_k - E[\theta_k|y^\circ])^2|y^\circ]. $$
@@ -126,17 +137,32 @@ E[f(y_{T+1}&|y_1,\ldots,y_T,\theta)|y_1,\ldots,y_T] \\
 ## Méthodes pour trouver $E[g(\theta)|y^\circ]$
 
 * Calcul analytique : élégant, exacte, presque toujours insoluble.
-
 * Simulation Monte Carlo indépendante :
     * Si on peut simuler $\theta^m \sim \mathrm{iid}\, \theta|y^\circ$,
     $$ \frac{1}{M} \sum_{m=1}^M g(\theta^m) \rightarrow_p E[g(\theta)|y^\circ]. $$
     * Cependant, cette simulation est rarement faisable.
-
-* Simulation Monte Carlo chaîne markovienne (MCMC) :
+* Simulation Monte Carlo chaîne de markov (MCMC) :
     * On choisit un processus markovien avec densité de transition $f(\theta^m|\theta^{m-1})$ telle que la loi *a posteriori* $\theta|y^\circ$ est la loi stationnaire du processus. C'est à dire :
     $$ \theta^{m-1} \sim f(\theta|y^\circ) \Rightarrow \theta^m \sim f(\theta|y^\circ). $$
     * Sous quelques conditions techniques, la loi de $\theta^m$ converge à la loi *a posteriori* et
 $$ \frac{1}{M} \sum_{m=1}^M g(\theta^m) \rightarrow_p E[g(\theta)|y^\circ]. $$
+
+## Exemple, densité de prévision
+
+* L'objectif est la densité $f(y_{T+1}|y_1,\ldots,y_T)$ sur une grille.
+* Fixez une valeur $y_{T+1}$ arbitraire sur une grille.
+* On a vu (dans un modèle sans variables latentes)
+\[
+  f(y_{T+1}|y_1,\ldots,y_T) = E[f(y_{T+1}|y_1,\ldots,y_T,\theta)|y_1,\ldots,y_T].
+\]
+* Ici, $g(\theta) = f(y_{T+1}|y_1,\ldots,y_T,\theta)$. Notez que les données observées $y_1,\ldots,y_T$ et le point de grille $y_{T+1}$ sont fixes.
+* Avec l'échantillon $\theta^m$, $m=1,\ldots,M$, on calcule la quantité à gauche, qui converge à la quantité voulue à droite :
+\[
+  \frac{1}{M} \sum_{m=1}^M f(y_{T+1}|y_1,\ldots,y_T,\theta^m) \to_p
+  f(y_{T+1}|y_1,\ldots,y_T).
+\]
+* Répétez pour chaque point sur la grille.
+* À notez : asymptotique en $M$ et non en $T$.
 
 ## MCMC 1 : marche aléatoire metropolis-hastings
 
@@ -147,7 +173,7 @@ $$ \frac{1}{M} \sum_{m=1}^M g(\theta^m) \rightarrow_p E[g(\theta)|y^\circ]. $$
     1. Accepter $\theta^*$ avec probabilité $\min(1, H)$.
 * Accepter $\theta^*$ veut dire $\theta^m = \theta^*$ ; si on n'accepte pas, $\theta^m = \theta^{m-1}$.
 * On peut utiliser $f(\theta,y^\circ)$ au lieu de $f(\theta|y^\circ)$ parce que les constantes $f(y^\circ)$ s'annulent.
-* La convergence tient pour n'importe quelle $\Sigma$, mais il y a des choix qui sont meilleures que d'autres.
+* La convergence tient pour n'importe quelle $\Sigma$, mais il y a des choix qui sont meilleurs que d'autres.
 
 ## Initialisation
 
@@ -157,8 +183,8 @@ vrai.mu = 6
 vrai.h = 0.04
 vrai.sigma = 1/sqrt(vrai.h)
 
-# Données simulatées, statistiques suffisantes
-n = 10
+# Données simulées, statistiques suffisantes
+n = 10; set.seed(12345)
 y = rnorm(n, vrai.mu, vrai.sigma)
 y.bar = mean(y)
 y2.bar = mean(y^2)
@@ -200,12 +226,12 @@ lnp.mu.h..y = function(mu,h) {
 
 # Fonction pour faire un graphique de la densité a posteriori
 do.plot = function() {
-	mu = seq(0,12,by=0.01)
-	h = seq(0,0.12,by=0.0001)
-	p = outer(mu,h,FUN=lnp.mu.h..y)
-	levels = c(-46,-47,-48,-49,-50,-51,-52,-53,-54,-55,-56)
-	contour(mu,h,p,xlab='mu',ylab='h',levels=levels)
-	points(vrai.mu, vrai.h, col='red')	
+	mu = seq(0, 12, by=0.01)
+	h = seq(0, 0.12, by=0.0001)
+	p = outer(mu, h, FUN=lnp.mu.h..y)
+	levels = seq(ceiling(max(p)), ceiling(max(p))-10, by=-1)
+	contour(mu, h, p, xlab='mu', ylab='h', levels=levels)
+	points(vrai.mu, vrai.h, col='red')
 }
 ```
 
@@ -219,10 +245,10 @@ do.plot()
 
 ```{r MH}
 Metro.sim = function(M) {
-  mu = vector('numeric',M); h = vector('numeric',M)
+  mu = vector('numeric', M); h = vector('numeric', M)
   mu[1] = 0; h[1] = 1
   lnp = lnp.mu.h..y(mu[1], h[1])
-  for( m in seq(2,M) ) {
+  for( m in seq(2, M) ) {
     h.et=rnorm(1,h[m-1],0.05); mu.et=rnorm(1,mu[m-1],2.0)
     if( h.et > 0.0 ) {
       lnp.et = lnp.mu.h..y(mu.et, h.et)
@@ -270,15 +296,15 @@ hist(sim.MH$mu[101:1000], 20)
     1. $h^m \sim h|y=y^\circ, \mu=\mu^m$.
 * Une preuve que $\theta|y^\circ$ est la loi stationnaire de cette loi de transition :
     * Mettons que la loi de $\theta^{m-1} = (\mu^{m-1},h^{m-1})$ est la loi *a posteriori* $\theta|y=y^\circ$.
-    * Alors la loi de $h^{m-1}$ est la loi $h|y=y^\circ$.
+    * Alors la loi marginale de $h^{m-1}$ est la loi $h|y=y^\circ$.
     * Après l'étape 1, la loi de $(\mu^m,h^{m-1})$ est la loi *a posteriori*.
-    * Alors la loi de $\mu^m$ est la loi $\mu|y=y^\circ$.
+    * Alors la loi marginale de $\mu^m$ est la loi $\mu|y=y^\circ$.
     * Après l'étape 2, la loi de $\theta^m = (\mu^m,h^m)$ est la loi *a posteriori*.
 * L'idée se généralise (diviser un problème en parties soluables)
 
-## Dérivation de loi *a posteriori* conditionnelle de $\mu|y=y^\circ,h$
+## Dérivation, loi *a posteriori* conditionnelle de $\mu|y=y^\circ,h$
 
-* On peut écrire
+* On peut écrire ($c_1$ et $c_2$ constants)
 $$ \begin{aligned} -\frac{\bar{\omega}}{2} &(\mu-\bar{\mu})^2 - \frac{h}{2} \sum_{t=1}^T (y_t - \mu)^2 \\ &= -\frac{\bar{\omega}}{2} (\mu-\bar{\mu})^2 - \frac{h}{2} \left[ \sum_{t=1}^T (y_t - \bar{y})^2 + T(\mu-\bar{y})^2 \right] \\ &= c_1 - \frac{\bar{\omega}}{2} (\mu-\bar{\mu})^2 - \frac{hT}{2} (\mu-\bar{y})^2 \\
 &= c_2 - \frac{\bar{\omega} + hT}{2} [\mu - (\bar{\omega} \bar{\mu} + hT  \bar{y})/(\bar{\omega} + hT)]^2. \end{aligned} $$
 
@@ -296,13 +322,3 @@ Faire $M$ fois :
 1. Tirer $\omega_v$ de la loi *a posterior* conditionnelle $\omega_v|y,\alpha_0,\alpha_1,h_1,\ldots,h_T$
 1. Tirer $h_1,\ldots,h_T$ de la loi *a posteriori* conditionnelle
 $h_1,\ldots,h_T|y,\alpha_0,\alpha_1,\omega_v$.
-
-## Questions théoriques
-
-1. Trouvez la loi *a posteriori* quand les observations sont iid $\mathrm{Poisson}(\lambda)$ et la loi *a priori* de $\lambda$ est la loi $\mathrm{Gamma(\alpha, \beta)}$.
-
-1. Trouvez la loi *a posteriori* conditionnelle de $h$ dans le modèle gaussien.
-
-1. Dans le modèle de volatilité stochastique, montrez que
-$$ \begin{aligned} f(y_{T+1}|y_1,\ldots,y_T) = E[&f(\log h_{T+1}|\log h_T, \theta, y_1,\ldots,y_T) \cdot \\ &f(y_{T+1}|\log h_{T+1}, \log h_T, \theta, y_1,\ldots,y_T)], \end{aligned} $$
-où l'espérance est par rapport à la loi conditionnelle de $(\theta,h_T)$ sachant $y_1,\ldots,y_T$. Écrivez les densités $f(\log h_{T+1}|\log h_T, \theta, y_1,\ldots,y_T)$ et $f(y_{T+1}|\log h_{T+1}, \log h_T, \theta, y_1,\ldots,y_T)$ en utilisant les équations d'état et d'observation. Comment peut-on approximer la densité prédictive $f(y_{T+1}|y_1,\ldots,y_T)$ sur une grille à partir d'un échantillon de la loi de $\theta,\log h_T|y_1,\ldots,y_T$?
