@@ -151,3 +151,18 @@ Quelle est la variance conditionnelle des erreurs de prévision? Exprime le rés
 #### Autres lectures
 
 #### Exercices
+
+1. Trouvez la loi *a posteriori* quand les observations sont iid $\mathrm{Poisson}(\lambda)$ et la loi *a priori* de $\lambda$ est la loi $\mathrm{Gamma(\bar\alpha, \bar\beta)}$, où $\bar\alpha$ et $\bar\beta$ sont des hyperparamètres fixes.
+
+1. Trouvez la loi *a posteriori* conditionnelle de $h$ dans le modèle gaussien.
+
+1. Prenez le modèle de volatilité stochastique. L'exercice est de trouver comment construire la densité prédictive $f(y_{T+1}|y_1,\ldots,y_T)$ sur une grille de points.
+    a. Montrez que
+\[
+  f(y_{T+1}|y_1,\ldots,y_T) = E[f(\log h_{T+1}|\log h_T, \theta, y_1,\ldots,y_T)
+  \cdot
+  f(y_{T+1}|\log h_{T+1}, \log h_T, \theta, y_1,\ldots,y_T)],
+\]
+où l'espérance est par rapport à la loi conditionnelle de $(\theta,h_T)$ sachant $y_1,\ldots,y_T$.
+    a. Écrivez les densités $f(\log h_{T+1}|\log h_T, \theta, y_1,\ldots,y_T)$ et $f(y_{T+1}|\log h_{T+1}, \log h_T, \theta, y_1,\ldots,y_T)$ en utilisant les équations d'état et d'observation.
+    a. Comment peut-on approximer la densité prédictive $f(y_{T+1}|y_1,\ldots,y_T)$ sur une grille à partir d'un échantillon de la loi de $\theta,\log h_T|y_1,\ldots,y_T$? Indice: comme étape intermédiaire, créez un échantillon de la loi de $\theta,\log h_T,\log h_{T+1}|y_1,\ldots,y_T$.

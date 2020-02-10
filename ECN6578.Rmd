@@ -26,3 +26,6 @@
 [Diapos, Cours 4](./ECN6578/ECN6578_4.pdf)
 
 [Diapos, Cours 5](./ECN6578/ECN6578_5.pdf)
+
+[Diapos, Cours 6](./ECN6578/ECN6578_6.pdf)
+
