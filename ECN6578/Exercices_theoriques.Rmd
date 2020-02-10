@@ -130,6 +130,9 @@ Calculez la variance, l'asymétrie et l’aplatissement de $r_t$. Vous pouvez v�
 
 #### Autres lectures
 
+1. Dans Tsay, 3e édition :
+    a. 3.5.1 (exemple GARCH)
+
 #### Exercices
 
 1. Trouvez la moyenne et la variance de $\ln \sigma^2_t$ pour un modèle EGARCH(1,1)
