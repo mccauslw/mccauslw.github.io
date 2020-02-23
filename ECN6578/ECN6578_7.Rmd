@@ -470,10 +470,3 @@ où
     * changements des rendements des obligations
     * inflation imprévue
 
-## Exercices R
-
-Les rendements mensuelles de $N=4$ actifs pendant 1962-1999 se trouvent dans les fichiers `m-ibm6299` (IBM), `m-gm6299` (GM), `g-hsy6299` (Hershey Foods) et `g-aa6299` (Alcoa). Les commandes R `cbind` (empilation horizontale des vecteurs) `%*%` (multiplication matricielle) et `scan` (chargement des données) seront utiles.
-
-1. Trouvez les estimations maximum de vraisemblance $\hat{\mu}$ et $\hat{\Sigma}$ pour le modèle où le vecteur des rendements réels des $N$ actions est iid $N(\mu,\Sigma)$. (Comme dans le cas univarié, l'estimateur MV de la moyenne de la population, $\mu$, est la moyenne de l'échantillon et l'estimateur MV de la variance de la population, $\Sigma$, est la variance de l'échantillon, avec le nombre de périodes $T$ au dénominateur).
-1. Trouvez la courbe de la frontière minimum variance des portefeuilles construits à partir des $N$ actions. Utilisez $\hat{\mu}$ et $\hat{\Sigma}$ de la première question pour la moyenne et la variance.
-1. Sur le même graphique, mettez les points qui représente la moyenne et l'écart type du rendement de chaque action.
