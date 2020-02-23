@@ -12,48 +12,50 @@ output: beamer_presentation
 1. CAPM
 1. APT
 
-## Références
-
-1. CLM 5.0, 5.1, 5.2, 5.3
-1. CLM 5.7.1 (anomalies)
-1. CLM 6.0, 6.1 (APT)
-
 ## Modèles à facteurs : motivation
 
-* Considérez le modèle suivant pour $N$ actifs :
+* Il y a de la variation commune des prix des actifs différents.
+* Considérez le modèle (incomplet) suivant pour $N$ actifs :
 $$ R_t = a_t + \epsilon_t, \quad \epsilon_t \sim (0,\Sigma_t), $$
-où $R_t$, $a_t$ et $\epsilon_t$ sont $N \times 1$, $\Sigma$ est $N \times N$ avec $N(N+1)/2$ éléments distincts.
-* $O(N^2)$ paramètres représente trop de degrés de liberté à spécifier ou à estimer (danger de surapprentissage).
+où
+    - $R_t$, $N \times 1$, est un vecteur de rendements,
+    - $E[\epsilon_t|{\cal F}_{t-1}] = 0$,
+    - $a_t = E[R_t|{\cal F}_{t-1}]$ est $N \times 1$,
+    - $\Sigma_t = \mathrm{Var}[R_t|{\cal F}_{t-1}]$ est $N \times N$. ($N(N+1)/2$ éléments distincts)
+* $O(N^2)$ variables par période, c'est trop à modeliser directement (danger de surapprentissage) avec seulement $O(N)$ observations par période.
+* Même si $\Sigma_t = \Sigma$ (constant), il y a trop de paramêtres à estimer.
 * Les modèles à facteurs capturent la covariance des actifs de façon plus parcimonieuse.
 
 ## Modèle à facteur : définition
 
 * Considérez le modèle alternatif suivant :
-$$ R_t = a_t + Bf_t + \epsilon_t, \quad \epsilon_t \sim (0, \Sigma_t), $$
-où $f_t \sim (0, \Omega_t)$ est un vecteur $K \times 1$ de facteurs, $B$ est une matrice $N \times K$ de coefficients de saturation (factor loadings) et $\Sigma_t$ est une matrice diagonale.
+$$ R_t = a_t + Bf_t + \epsilon_t, \quad \epsilon_t \sim (0, \Sigma), $$
+où $f_t \sim (0, \Omega)$ est un vecteur $K \times 1$ de facteurs, $B$ est une matrice $N \times K$ de coefficients de saturation (factor loadings) et $\Sigma$ est une matrice diagonale.
 * $K$ est beaucoup moins grand que $N$ (souvent $K=1$).
 * $B$ a $KN$ éléments, $\Sigma$ a $N$ éléments non-nuls, $\Omega$ a $K(K+1)/2$ éléments distincts.
 * Un petit nombre de facteurs capture la covariance des rendements.
-* $\mathrm{Var}[r_t] = B\Omega_tB^\top + \Sigma_t$.
+* $\mathrm{Var}[R_t] = B\Omega B^\top + \Sigma$.
 * $f_t$ peut être observé (rendement du marché par exemple) ou latent.
 
 ## Interprétation des facteurs
 
 * Dans le modèle CAPM, $K=1$ et le seul facteur est $R_{mt}$, le rendement du marché (le portefeuille de tous les actifs d'une économie).
 * Souvent les facteurs sont des portefeuilles construits pour capturer autant de covariation que possible.
+* Souvent les facteurs sont des portefeuilles construits pour résumer les sources de risque commun.
 * Souvent les facteurs sont des variables macroéconomiques observable.
-* Souvent les facteurs sont latents. On donne une loi paramétrique pour les facteurs et on estime conjointement les facteurs et leurs paramètres avec les autres paramètres.
+* Souvent les facteurs sont latents. On donne une loi paramétrique pour les facteurs et on estime conjointement les facteurs, les paramètres qui gouvernent les facteurs ainsi que les autres paramètres du modèle.
 
 ## Le modèle CAPM
 
-* Les préférences dépendent seulement de la moyenne et de la variance du rendement.
+* Un modèle simple avec des agents qui font des placements.
+* Leurs préférences dépendent seulement de la moyenne et de la variance du rendement.
 * Chacune des hypothèses suivantes justifie cette approche :
-    * les agents ont des utilités quadratiques : $$v(w) = -(w-\alpha)^2.$$
+    * les agents ont des utilités espérées quadratiques : $$v(w) = -(w-\alpha)^2.$$
     * la loi du vecteur des rendements est gaussienne
 * Les décisions sont statiques, pas dynamiques.
 * On suppose que la moyenne et la variance du vecteur $R = (R_1,\ldots,R_N)$ sont constantes.
 * On utilise toutes les observations pour estimer la moyenne et la variance.
-* On utilise souvent les données mensuelles, où les hypothèses de normalité et homoscédasticité sont plus raisonables.
+* On utilise souvent des données mensuelles, où les hypothèses de normalité et homoscédasticité sont plus raisonables.
 
 ## L'importance de la diversification
 
@@ -86,8 +88,8 @@ où $f_t \sim (0, \Omega_t)$ est un vecteur $K \times 1$ de facteurs, $B$ est un
 ## Illustration : code
 
 ```{r frontier2a}
-mu1 = 0.02; s1 = 0.05;
-mu2 = -0.01; s2 = 0.10; rho = 0.5
+mu1 = 0.02; s1 = 0.10;
+mu2 = 0.01; s2 = 0.05; rho = 0.5
 omega1 = seq(-1,2,by=0.001); omega2 = 1-omega1
 mup = omega1*mu1 + omega2*mu2
 s2p = omega1^2*s1^2 + 2*omega1*omega2*rho*s1*s2 + omega2^2*s2^2
@@ -97,7 +99,7 @@ sp = sqrt(s2p)
 ## Illustration : graphique
 
 ```{r frontier2b}
-plot(sp, mup, type='l')
+plot(sp, mup, type='l', xlim=c(0,0.15))
 points(c(s1,s2), c(mu1,mu2))
 ```
 
@@ -111,13 +113,14 @@ $$ \mu_p = \omega_1 \mu_1 + \omega_2 \mu_2 $$
 \[
   (\omega_1\sigma_1 - \omega_2\sigma_2)^2 \leq \sigma_p^2 \leq (\omega_1\sigma_1 + \omega_2\sigma_2)^2
 \]
-* Le pire cas, sans ventes à découvert, est pour $\rho = 1$, auquel cas $(\sigma_p,\mu_p)$ est une combinaison convexe de $(\sigma_1,\mu_1)$ et $(\sigma_2,\mu_2)$.
+    * Inégalité à gauche : $\rho = -1$
+    * Inégalité à droite : $\rho = 1$.
+* Dans le pire cas, $\rho = 1$, $(\sigma_p,\mu_p)$ est une combinaison convexe de $(\sigma_1,\mu_1)$ et $(\sigma_2,\mu_2)$.
 
 ## Version Black du CAPM
 
-* $N$ actifs: $R$, $\omega$, $\mu$ sont $N \times 1$, $\Omega$ est $N \times N$.
-* Les rendements sont réels.
-* Pour l'analyse empirique, il faut les rendre réels avec une indice des prix.
+* $N$ actifs : $R$, $\omega$, $\mu$ sont $N \times 1$, $\Omega$ est $N \times N$.
+* Les rendements sont réels. Pour l'analyse empirique, il faut les rendre réels avec une indice des prix.
 * L'ensemble de $(\sigma_p,\mu_p)$ faisable est
 $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 * La frontière minimum variance (FMV) est
@@ -141,46 +144,42 @@ $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 
 ## Comment trouver la FMV I
 
-* Soit $\mu_p$ un paramètre.
+* Soit $\mu_p$ une valeur arbitraire de la moyenne.
+* Pour ce qui suit, $\mu_p$ est un paramètre; on choisit le portefeuille à variance minimale parmi les portefeuilles ayant cette moyenne.
 * On trouve la solution paramétrique de
   \[
     \min_{\omega} \omega'\Omega\omega \; \text{tel que} \;
     \omega'\mu = \mu_p, \; \omega'\iota = 1.
   \]
-* La fonction de Lagrange est
+* La fonction de Lagrange est (le facteur $\frac{1}{2}$ pour simplifier)
   \[
-    L = \omega'\Omega\omega +
+    L = \tfrac{1}{2}\omega'\Omega\omega +
     \delta_1(\mu_p - \omega'\mu) +
     \delta_2(1-\omega' \iota).
   \]
- * $\Omega$ est défini positif, alors il y a un minimum unique o\`u
-  \[ 2\Omega\omega - \delta_1\mu - \delta_2\iota = 0 \]
+* $\Omega$ est défini positif, alors il y a un minimum unique où
+  \[ \Omega\omega - \delta_1\mu - \delta_2\iota = 0 \]
   \[ \mu_p = \omega'\mu \]
   \[ 1 = \omega'\iota \]
+* La première équation est vectorielle ($N$ équations scalaires).
 
 ## Comment trouver la FMV II
 
-* Avec $2\Omega\omega - \delta_1\mu - \delta_2\iota = 0$, on trouve $\omega$ en termes de $\delta_1$ et $\delta_2$ :
+* Avec $\Omega\omega - \delta_1\mu - \delta_2\iota = 0$, on trouve $\omega$ en termes de $\delta_1$ et $\delta_2$ :
   \[
-    \omega =
-    \frac{1}{2} \Omega^{-1}\mu \cdot \delta_1 +
-    \frac{1}{2} \Omega^{-1}\iota \cdot \delta_2.
+    \omega = (\Omega^{-1}\mu) \delta_1 + (\Omega^{-1}\iota) \delta_2.
   \]
 * La substitution de $\omega$ dans $\mu_p = \omega'\mu$ et $1 = \omega'\iota$ donne deux équations scalaires en termes des scalaires $\delta_1$ et $\delta_2$ :
   \[
     \mu_p =
-    \frac{1}{2}
-    \mu'\Omega^{-1}\mu \cdot \delta_1 +
-    \frac{1}{2}
-    \iota'\Omega^{-1}\mu \cdot \delta_2
+    (\mu'\Omega^{-1}\mu) \delta_1 +
+    (\iota'\Omega^{-1}\mu) \delta_2
     \equiv B\delta_1 + A\delta_2.
   \]
   \[
     1 =
-    \frac{1}{2}
-    \mu'\Omega^{-1}\iota \cdot \delta_1 +
-    \frac{1}{2}
-    \iota'\Omega^{-1}\iota \cdot \delta_2
+    (\mu'\Omega^{-1}\iota) \delta_1 +
+    (\iota'\Omega^{-1}\iota) \delta_2
     \equiv A\delta_1 + C\delta_2.
   \]
 * Leur solution est
@@ -213,11 +212,11 @@ $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 ## Comment trouver la FMV III
 
 * La substitution de $\delta_1$ et $\delta_2$ dans 
-  $\omega = \frac{1}{2} \Omega^{-1}\mu \cdot \delta_1 + \frac{1}{2} \Omega^{-1}\iota \cdot \delta_2$ donne
-  \[ \omega_p = g + h\mu_p \]
+  $\omega = (\Omega^{-1}\mu) \delta_1 + (\Omega^{-1}\iota) \delta_2$ donne
+  \[ \omega_p = g + h\mu_p, \]
   où
-  \[ g \equiv \frac{B\Omega^{-1}\iota-A\Omega^{-1}\mu}{2(BC-A^2)} \]
-  \[ h \equiv \frac{C\Omega^{-1}\mu-A\Omega^{-1}\iota}{2(BC-A^2)}, \]
+  \[ g \equiv \frac{B\Omega^{-1}\iota-A\Omega^{-1}\mu}{(BC-A^2)}, \]
+  \[ h \equiv \frac{C\Omega^{-1}\mu-A\Omega^{-1}\iota}{(BC-A^2)}, \]
   qui donne $(\sqrt{\omega_p' \Omega \omega_p},\mu_p)$ sur la FMV.
 * Remarquez que $\iota' g = 1$ et $\iota' h = 0$.
 * $g$ est le vecteur de poids d'un portefeuille.
@@ -276,9 +275,10 @@ $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 * En plus des $N$ actifs, on a un actif sans risque, avec un rendement $R_f$ non-aléatoire.
 * Pour trouver la FMV, on trouve la solution paramétrique $\omega_p$ de
   \[
-    \min_{\omega} \omega'\Omega\omega \; \text{tel que} \;
-    \omega'\mu + (1-\omega'\iota) R_f = \mu_p.
+    \min_{\omega} \tfrac{1}{2} \omega'\Omega\omega \; \text{tel que} \;
+    \omega'\mu + (1-\omega'\iota) R_f = \mu_p,
   \]
+  où $\mu_p$, le cible pour la moyenne, est un paramètre.
 * La solution est
   \[
     \omega_p =
@@ -292,7 +292,7 @@ $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 ## Version Sharpe-Lintner du CAPM II
 
 * Notez que $\bar{\omega}$ ne dépend pas de $\mu_p$.
-* On met $\omega_p \iota$ dans le portefeuille $\omega_q$ des actifs avec risque.
+* On place $\omega_p \iota$ dans le portefeuille $\omega_q$ des actifs avec risque.
   \[
     \omega_q = \frac{\bar{\omega}}{\iota'\bar{\omega}} =
     \frac{1}{\iota'\Omega^{-1}(\mu - R_f\iota)} \,
@@ -469,23 +469,6 @@ où
     * innovation en PNB
     * changements des rendements des obligations
     * inflation imprévue
-
-## Questions théoriques
-
-1. Prouvez les 5 résultats des diapos 16 et 17, «Résultats I» et «Résultats II»
-
-* Voici des suggestions pour chacun des 5 résultats :
-1. Le résultat dépend de l'unicité de la solution $g + \mu_p h$.
-Si vous n'en servez pas, la solution est incorrecte.
-1. Exprimez $\sigma_p^2 \equiv (g + \mu_ph) \Omega (g + \mu_ph)$ et minimisez. Écrivez le résultat en terms de $\mu$, $\Omega$.
-1. La covariance entre le rendement du portefeuille
-$g + \mu_p h$ et celui du portefeuille $g + \mu_q h$ est
-$(g+\mu_ph)\Omega(g+\mu_qh)$.
-1. Servez-vous du troisième résultat pour trouver le $\mu_{op}$ unique, en termes de $\mu_p$, qui donne $\mathrm{Cov}[R_p,R_{op}] = 0$.
-1. La covariance entre le rendement du portefeuille $p$ sur le FMV et le portefeuille arbitraire $\omega$ est
-$(g+\mu_ph)\Omega\omega$.
-Écrivez-la en forme $\lambda \mu_i + \gamma$, où $\mu_i = E[R_i]$, et $\lambda$ et $\gamma$ sont des fonctions de $\mu_p, A, B, C, D$.
-Écrivez l'équation pour deux cas spéciaux, $i=op$ et $i=p$, pour obtenir (5.2.19) dans le manuel CLM.
 
 ## Exercices R
 
