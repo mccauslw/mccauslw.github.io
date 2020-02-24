@@ -318,12 +318,16 @@ Si tous les investisseurs ont les mêmes attentes
 ($\mu$ et $\Omega$ sont pareils pour tous),
 et tous choississent un portfeuille efficace, le portefeuille
 $m$ du marché (le portefeuille global) doit être efficace.
+* On utilise souvent une indice comme le S\&P 500 comme proxy du marché, et les bon du trésor comme proxy de l'actif sans risque dans la version S-L.
 
 ## Implications Testables : Version S-L
 
+* Dans la version S-L, le rendement du marché $R_m$ est le rendement FMV $R_p$, $R_f$ est le rendement zéro-bêta $R_{op}$.
+* L'équation $R_a = (1-\beta_{ap}) R_{op} + \beta_{ap} R_p + \epsilon_p$ devient, pour le portefeuille $a$ égale à l'actif $i$,
+$R_i = (1-\beta_{im}) R_f + \beta_{im} R_m + \epsilon_p$.
 * La version Sharpe-Lintner entraîne les implications testables suivantes:
-  \[ E[R_i] = R_f + \beta_{im}(E[R_m]-R_f) \]
-  \[ \beta_{im} = \frac{\mathrm{cov}[R_i,R_m]}{\mathrm{var}[R_m]} \]
+  \[ E[R_i] = R_f + \beta_{im}(E[R_m]-R_f), \]
+  \[ \beta_{im} = \frac{\mathrm{cov}[R_i,R_m]}{\mathrm{var}[R_m]}. \]
 * Si on défine le rendement excédentaire $Z_i \equiv R_i - R_f$ de l'actif $i$, on obtient
   \[ E[Z_i] = \beta_{im}E[Z_m], \]
   où
@@ -341,18 +345,6 @@ Autrement dit
 où
 \[ \alpha = E[R_{om}]. \]
 * Notez bien que la constante $\alpha$ ne dépend pas de $i$, ce qui est une restriction testable.
-
-## Détails économétriques
-
-* On suppose souvent que les rendements sont i.i.d. $N(\mu,\Omega)$.
-* On se sert souvent des rendements mensuels. L'approximation gaussien n'est pas si mal.
-* On utilise souvent une indice comme le S\&P 500 comme proxy du marché, et les bon du trésor comme proxy de l'actif sans risque.
-* Selon la méthode GMM, on fait de l'estimation à partir des conditions de moment
-    \[ E[g_t(\theta)] = E[h_t \otimes \epsilon_t] = 0. \]
-* Pour la version Sharpe-Lintner, les conditions $E[\epsilon_t] = 0$ et $E[\epsilon_t Z_{mt}] = 0$ s'expriment avec
-    \[ h_t' = \begin{bmatrix} 1 & Z_{mt} \end{bmatrix}, \]
-    \[ e_t = Z_t - \alpha - \beta Z_{mt} \]
-    et $\theta = (\alpha', \beta')'$.
 
 ## Modèle de marché pour la version Sharpe-Lintner
 
@@ -377,8 +369,27 @@ où
 \[ \mathrm{cov}[R_{mt},\epsilon_t] = 0_N \]
 * $R_t$ est le vecteur $N\times 1$ des rendements réels
 * Hypothèse nulle entraînée par le CAPM:
-$H_0:\alpha=(\iota-\beta)\gamma$, pour un $\gamma$ scalaire quelconque
+$H_0:\alpha=(\iota-\beta)\gamma$, pour un $\gamma$ scalaire quelconque, qui représente la quantité $E[R_{op}]$ inobservée.
 * Autrement identique.
+
+## Détails économétriques : versions gaussiennes
+
+* On suppose souvent que les rendements sont i.i.d. $N(\mu,\Omega)$.
+* On se sert souvent des rendements mensuels. L'approximation gaussien n'est pas si mal.
+* Pour la fonction de vraisemblance, les estimateurs MV, est les statistiques tests du CAPM : CLM, Section 5.3.
+    * Dans la version S-L, le modèle est très standard et il y a une expression à forme réduite des estimateurs.
+    * Dans la version Black, le paramètre $\gamma$, qui représente $E[R_{op}]$, cause des problèmes, mais il y a un processus itératif pour trouver les estimateurs.
+
+## Détails économétriques : version non-gaussienne
+
+* Quand on ne veut pas supposer que les rendements sont gaussien, on utilise souvent l'approche GMM (détails la semaine prochaine). Voyez CLM, Section 5.6.
+* Avec la méthode GMM, on fait de l'estimation à partir des conditions de moment
+    \[ E[g_t(\theta)] = E[h_t \otimes \epsilon_t] = 0, \]
+    où $g_t(\theta)$ est une fonction des paramètres et des données.
+* Pour la version Sharpe-Lintner, les conditions $E[\epsilon_t] = 0$ et $E[\epsilon_t Z_{mt}] = 0$ s'expriment avec
+    \[ h_t' = \begin{bmatrix} 1 & Z_{mt} \end{bmatrix}, \]
+    \[ \epsilon_t = Z_t - \alpha - \beta Z_{mt} \]
+    et $\theta = (\alpha', \beta')'$.
 
 ## Anomalies I
 
