@@ -194,3 +194,14 @@ $(g+\mu_ph)\Omega(g+\mu_qh)$.
 $(g+\mu_ph)\Omega\omega$.
 Écrivez-la en forme $\lambda \mu_i + \gamma$, où $\mu_i = E[R_i]$, et $\lambda$ et $\gamma$ sont des fonctions de $\mu_p, A, B, C, D$.
 Écrivez l'équation pour deux cas spéciaux, $i=op$ et $i=p$, pour obtenir (5.2.19) dans le manuel CLM.
+
+### Cours 8
+
+#### Lectures avant le cours
+
+1. CLM 8 intro, 8.1 avant 8.1.1
+
+#### Autres lectures
+
+#### Exercices
+
