@@ -15,6 +15,8 @@
 
 [Examen Intra, automne 2017](./ECN6578/ECN6578A_EI17.pdf)
 
+[Notes, hiver 2020](./ECN6578/Notes.pdf)
+
 [Diapos, Cours 1](./ECN6578/ECN6578_1.pdf)
 
 [Diapos, Cours 1, code source](./ECN6578/ECN6578_1.Rmd)
@@ -30,4 +32,5 @@
 [Diapos, Cours 6](./ECN6578/ECN6578_6.pdf)
 
 [Diapos, Cours 7](./ECN6578/ECN6578_7.pdf)
+
 

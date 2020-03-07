@@ -49,7 +49,7 @@ Pour ce modèle, reportez les estimations MV (maximum de vraisemblance) des para
 ### Deuxième travail pratique
 
 1. Travail, cours du 23 février.
-Les rendements mensuelles de $N=4$ actifs pendant 1962-1999 se trouvent dans les fichiers `m-ibm6299` (IBM), `m-gm6299` (GM), `g-hsy6299` (Hershey Foods) et `g-aa6299` (Alcoa). Les commandes R `cbind` (empilation horizontale des vecteurs) `%*%` (multiplication matricielle) et `scan` (chargement des données) seront utiles.
+Les rendements mensuelles de $N=4$ actifs pendant 1962-1999 se trouvent dans les fichiers `m-ibm6299` (IBM), `m-gm6299` (GM), `m-hsy6299` (Hershey Foods) et `m-aa6299` (Alcoa). Les commandes R `cbind` (empilation horizontale des vecteurs) `%*%` (multiplication matricielle) et `scan` (chargement des données) seront utiles.
 
     a. Trouvez les estimations maximum de vraisemblance $\hat{\mu}$ et $\hat{\Sigma}$ pour le modèle où le vecteur des rendements réels des $N$ actions est iid $N(\mu,\Sigma)$. (Comme dans le cas univarié, l'estimateur MV de la moyenne de la population, $\mu$, est la moyenne de l'échantillon et l'estimateur MV de la variance de la population, $\Sigma$, est la variance de l'échantillon, avec le nombre de périodes $T$ au dénominateur).
     a. Trouvez la courbe de la frontière minimum variance des portefeuilles construits à partir des $N$ actions. Utilisez $\hat{\mu}$ et $\hat{\Sigma}$ de la première question pour la moyenne et la variance.

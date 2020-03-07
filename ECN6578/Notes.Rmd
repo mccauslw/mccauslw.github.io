@@ -1,0 +1,15 @@
+---
+title: "Notes, ECN 6578, Hiver 2020"
+author: "William McCausland"
+date: "07/03/2020"
+output: pdf_document
+---
+
+```{r extract, echo=FALSE}
+library(readxl)
+library(knitr)
+setwd("~/Dropbox/ECN 6578/2020")
+spreadsheet <- read_xlsx('ECN6578-A-H20 Notes.xlsx')
+spr = spreadsheet[, c('Matricule', 'EI')]
+kable(spr)
+```
