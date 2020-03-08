@@ -10,22 +10,16 @@ output: beamer_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Références
-
-*  CLM 8.1 FAS
-*  CLM 8.2 CCAPM, utilité isoélastique, casse-têtes empiriques
-*  CLM 8.4 Utilité Epstein-Zin, utilité non-séparable
-*  CLM A.2 GMM
-
 ## Le facteur d'actualisation dans un monde sans risque
 
 *  Supposons un monde sans risque, avec taux d'intérêt $R_t$.
-*  La valeur actuelle d'un dollar dans un an est de
+*  La valeur à $t$ d'un dollar un an plus tard est de
     \[ M_{t+1}=\frac{1}{1+R_{t+1}}. \]
-*  On appelle $M_t$ le facteur d'actualisation.
+*  On appelle $M_{t+1}$ le facteur d'actualisation.
+*  Il actualise (donne une valeur à $t$ à) un paiement à $t+1$.
 *  L'absence d'arbitrage entraîne, pour chaque actif $i$,
     \[ P_{it} = P_{i,t+1} M_{t+1}. \]
-*  En termes équivalents :,
+*  En termes équivalents,
     \[ \frac{P_{i,t+1}}{P_{it}} M_{t+1} = (1+R_{i,t+1})M_{t+1} = 1. \]
 
 ## Le facteur d'actualisation stochastique (FAS)
@@ -38,10 +32,10 @@ knitr::opts_chunk$set(echo = FALSE)
     \[ E[(1+R_{it})M_t] = 1. \]
 *  Avec $\mathrm{cov}[X,Y] = E[XY] - \mu_X\mu_Y$, on obtient
     \[
-    1 = \mathrm{cov}[R_{it},M_t] + E[1+R_{it}]E[M_t]
+      1 = \mathrm{cov}[R_{it},M_t] + E[1+R_{it}]E[M_t]
     \]
     \[
-    E[1+R_{it}] = \frac{1}{E[M_t]} (1-\mathrm{cov}[R_{it},M_t]).
+      E[1+R_{it}] = \frac{1}{E[M_t]} (1-\mathrm{cov}[R_{it},M_t]).
     \]
 *  Notez bien que $M_t$ ne dépend pas de $i$.
 
@@ -694,42 +688,3 @@ knitr::opts_chunk$set(echo = FALSE)
       $N(0,(G'S^{-1}G)^{-1})$.
 *  Avec la matrice $2\times 2$ de covariance asymptotique
     $(G'S^{-1}G)^{-1}$, reportez les écarts types (racines carrées des éléments diagonaux)
-
-## Questions théoriques I
-
-1. Considérez le milieu introduit à la diapo "Absence d'arbitrage et le FAS". Il y a $S=2$ états et 2 actifs. Le premier actif a un rendement net $R_f$ dans les deux états et coûte 100 $. Le deuxième actif a un rendement net $R_1$ dans le permier état et un rendement net $R_2$ dans le deuxième et coûte 500 $.
-    a. Donnez les matrices $X$ et $G$ et le vecteur $q$ en termes de $R_f$, $R_1$ et $R_2$.
-    a. Donnez une condition nécessaire et suffisante sur $R_f$, $R_1$ et $R_2$ pour la complétion du marché.
-    a. Supposant que le marché est complet, trouvez le vecteur des prix d'états et donnez une condition supplémentaire sur $R_f$, $R_1$ et $R_2$ pour l’absence d'arbitrage.
-    a. Si les états sont équiprobable ($\pi_1 = \pi_2 = 0.5$) trouvez le facteur d'actualisation stochastique.
-
-## Questions théoriques II
-
-2. Considérez le problème à la diapo "Un problème à deux périodes sans incertitude".
-    a. Démontrez que si $(C_t^{(i)}, C_{t+1}^{(i)})$ est une solution du problème pour un consommateur avec revenu $m_i$, $i=1,2$, que $(C_t^{(1)}+C_t^{(2)}, C_{t+1}^{(1)}+C_{t+1}^{(2)})$ est une solution du problème pour un consommateur avec revenu $m_1 + m_2$. 
-    a. Généralisez le problème à trois périodes. Le taux d'intérêt $R$ est constant et la pondération de $U(C_{t+2})$ est $\delta^2$. Démontrez que pour la solution $(C_t, C_{t+1}, C_{t+2})$, les ratios $C_{t+2}/C_t$ et $C_{t+1}/C_t$ ne dépendent pas du revenu $m$.
-    
-## Exercices R
-
-Pour les exercices suivantes, utilisez les log-rendements mensuels des $N=4$ actions des exercices R du cours 7 : IBM, GM, Hershey Foods et Alcoa.
-Utilisez l'index S&P 500 pour le marché et le CPI (consumer price index) pour rendre réels les rendements au besoin.
-Le (nouveau) fichier CAPM.zip contient toutes les données nécessaires : regardez la description à la prochaine diapo.
-
-1. Effectuer les tests $J_0$, $J_1$, $J_2$ et $J_3$ de la version Sharpe-Lintner du CAPM.
-Utilisez le rendement de l'obligation de trésor d'un an comme le rendement $R_f$ sans risque.
-1. Effectuer les tests $J_4$ et $J_5$ de la version Black du CAPM. Une condition raisonnable de convergence est que le changement fractionnaire de $\hat{\gamma}^*$ est $10^{-6}$.
-Vous devriez utiliser une boucle `while` en R. Il y a beaucoup de ressources sur internet pour apprendre comment programmer des boucles. Par exemple, <https://fr.wikibooks.org/wiki/Programmer_en_R/Programmer_une_boucle>.
-
-## Données pour les exercices R
-
-Le fichier `CAPM.zip` contient :
-
-|fichier|description|
-|-------|-----------|
-|`CPI.txt`|indice des prix à la consommation, 1962/01 - 2000/01|
-|`tresor.txt`|rendement de l'obligation de trésor, 1962/01 - 1999/12|
-|`m-sp6299`|rendement du S&P 500, 1962/01 - 1999/12|
-|`m-ibm6299`|rendement de l'action IBM, 1962/01 - 1999/12|
-|`m-gm6299`|rendement de l'action GM, 1962/01 - 1999/12|
-|`m-hsy6299`|rendement de l'action Hershey Foods, 1962/01 - 1999/12|
-|`m-aa6299`|rendement de l'action Alcoa, 1962/01 - 1999/12|

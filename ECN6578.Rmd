@@ -33,4 +33,4 @@
 
 [Diapos, Cours 7](./ECN6578/ECN6578_7.pdf)
 
-
+[Diapos, Cours 8, 9](./ECN6578/ECN6578_8.pdf)

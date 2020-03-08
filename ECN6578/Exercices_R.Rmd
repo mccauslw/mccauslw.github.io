@@ -54,3 +54,23 @@ Les rendements mensuelles de $N=4$ actifs pendant 1962-1999 se trouvent dans les
     a. Trouvez les estimations maximum de vraisemblance $\hat{\mu}$ et $\hat{\Sigma}$ pour le modèle où le vecteur des rendements réels des $N$ actions est iid $N(\mu,\Sigma)$. (Comme dans le cas univarié, l'estimateur MV de la moyenne de la population, $\mu$, est la moyenne de l'échantillon et l'estimateur MV de la variance de la population, $\Sigma$, est la variance de l'échantillon, avec le nombre de périodes $T$ au dénominateur).
     a. Trouvez la courbe de la frontière minimum variance des portefeuilles construits à partir des $N$ actions. Utilisez $\hat{\mu}$ et $\hat{\Sigma}$ de la première question pour la moyenne et la variance.
     a. Sur le même graphique, mettez les points qui représente la moyenne et l'écart type du rendement de chaque action.
+    
+1. Travail, cours du 9 mars. Pour les exercices suivantes, utilisez les log-rendements mensuels des $N=4$ actions des exercices R du cours 7 : IBM, GM, Hershey Foods et Alcoa.
+Utilisez l'index S&P 500 pour le marché et le CPI (consumer price index) pour rendre réels les rendements au besoin.
+Le (nouveau) fichier CAPM.zip contient toutes les données nécessaires : regardez la description à la prochaine diapo.
+    a. Effectuer le test $J_0$ de la version Sharpe-Lintner du CAPM.
+Utilisez le rendement de l'obligation de trésor d'un an comme le rendement $R_f$ sans risque.
+    a. Effectuer le test $J_4$ de la version Black du CAPM. Une condition raisonnable de convergence est que le changement fractionnaire de $\hat{\gamma}^*$ est $10^{-6}$.
+Vous devriez utiliser une boucle `while` en R. Il y a beaucoup de ressources sur internet pour apprendre comment programmer des boucles. Par exemple, <https://fr.wikibooks.org/wiki/Programmer_en_R/Programmer_une_boucle>.
+
+Le fichier `CAPM.zip` contient :
+
+|fichier|description|
+|-------|-----------|
+|`CPI.txt`|indice des prix à la consommation, 1962/01 - 2000/01|
+|`tresor.txt`|rendement de l'obligation de trésor, 1962/01 - 1999/12|
+|`m-sp6299`|rendement du S&P 500, 1962/01 - 1999/12|
+|`m-ibm6299`|rendement de l'action IBM, 1962/01 - 1999/12|
+|`m-gm6299`|rendement de l'action GM, 1962/01 - 1999/12|
+|`m-hsy6299`|rendement de l'action Hershey Foods, 1962/01 - 1999/12|
+|`m-aa6299`|rendement de l'action Alcoa, 1962/01 - 1999/12|
