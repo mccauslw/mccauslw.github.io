@@ -25,19 +25,21 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Le facteur d'actualisation stochastique (FAS)
 
 *  Le FAS $M_t$ vérifie pour tout actif (ou portefeuille) $i$ :
-    \[ P_{it} = E_t[P_{i,t+1} M_{t+1}]
+    \[ P_{it} = E_t[P_{i,t+1} M_{t+1}],
     \quad E_t[(1+R_{i,t+1})M_{t+1}] = 1. \]
+*  Notez bien que $M_t$ ne dépend pas de $i$.
 *  Version inconditionnelle (prendre l'espérance
     des deux côtés) :
+    \[ E[(1+R_{i,t+1})M_{t+1}] = 1. \]
+*  Avancée : 
     \[ E[(1+R_{it})M_t] = 1. \]
 *  Avec $\mathrm{cov}[X,Y] = E[XY] - \mu_X\mu_Y$, on obtient
     \[
       1 = \mathrm{cov}[R_{it},M_t] + E[1+R_{it}]E[M_t]
     \]
-    \[
+    \begin{equation}\label{e:general}
       E[1+R_{it}] = \frac{1}{E[M_t]} (1-\mathrm{cov}[R_{it},M_t]).
-    \]
-*  Notez bien que $M_t$ ne dépend pas de $i$.
+    \end{equation}
 
 ## Le rendement zéro-bêta
 
@@ -45,9 +47,10 @@ knitr::opts_chunk$set(echo = FALSE)
     *zéro-bêta inconditionnel* si $\mathrm{cov}[R_{ot},M_t] = 0$.
 *  Pour un tel actif,
     \[ E[1+R_{ot}] = \frac{1}{E[M_t]}, \]
-    et on obtient
+    et on obtient (soustraire cette équation de \eqref{e:general})
     \[ E[R_{it}-R_{ot}] = -E[1+R_{ot}]\mathrm{cov}[R_{it},M_t]. \]
 *  Remarquez qu'un actif sans risque est toujours un actif zéro-bêta inconditionnel.
+(Une constante est non-corrélée avec n'importe quelle v.a.)
 
 ## Deux approches à la dérivation du FAS
 
@@ -59,11 +62,11 @@ knitr::opts_chunk$set(echo = FALSE)
 *  Voici une fonction d'utilité sur les chemins aléatoires
     $\{C_{\tau}\}_{\tau=t}^{\infty}$ de la consommation :
     \[ V = E_t\left[ \sum_{j=0}^{\infty} \delta^j U(C_{t+j}) \right]. \]
-*  $V$ est séparable en temps,
-*  $V$ est séparable en état (utilité espérée)
+*  $V$ est additivement séparable en temps,
+*  $V$ est additivement séparable en état (utilité espérée)
 *  Le taux de préférence de temps ($\delta$) est constant.
 *  La maximisation de $V$ sous des contraints
-    (richesse, actifs disponible) donne
+    (richesse, actifs disponibles) donne plusieurs conditions de première ordre, dont
     \[ U'(C_t) = \delta E_t[ (1+R_{i,t+1}) U'(C_{t+1}) ], \]
     où $R_{i,t+1}$ est le rendement de l'actif $i$ à $t+1$.
 *  C'est une équation dite d'Euler.
@@ -75,11 +78,11 @@ knitr::opts_chunk$set(echo = FALSE)
     qui est toujours positif.
 *  Intuition pour
     \[ E[R_{it}-R_{ot}] = -E[1+R_{ot}]\mathrm{cov}[R_{it},M_t] : \]
-    Si $\mathrm{cov}[R_{it},M_t] > 0$, $i$ a un rendement
-    élevé quand la consommation future est plus valorisée
-    (i.e. quand $U'(C_{t+1})$ est élevé). Son prix
-    est plus élevé et son rendement moyen est moins élevé.
-*  L'investisseur supporte ce rendement moyen moins élevé
+    * Si $\mathrm{cov}[R_{it},M_t] > 0$, $i$ a une valeur relativement
+    élevée quand la consommation future est plus valorisée
+    (i.e. quand $U'(C_{t+1})$ est élevé).
+    * En équilibre, son prix est plus élevé (par rapport a un actif $j$ où $\mathrm{cov}[R_{jt}M_t] < 0$) et son rendement moyen est moins élevé.
+    * L'investisseur supporte ce rendement moyen moins élevé
     car l'actif paie quand la consommation est plus valorisée.
 
 ## Absense d'arbitrage et le FAS
@@ -94,6 +97,10 @@ knitr::opts_chunk$set(echo = FALSE)
     *  Actif $i$ a un prix $q_i$ en période 1.
     *  Actif $i$ paie $X_{si}$ si l'état $s$ se produit.
     *  $\pi$, $X$ et $q$ sont primitifs.
+* Un arbitrage est un portefeuille $\omega$ tel que
+    * $\omega^\top q \leq 0$ (on ne paie rien dans la première période)
+    * $X\omega \geq 0$ (on ne peut pas perdre dans la deuxième), et
+    * $X\omega \neq 0$ (on gagne dans au moins un état du monde).
 
 ## Prix et rendements
 
@@ -131,7 +138,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Prix d'états
 
-*  Définition: vecteur $p$ ($S \times 1$) est un vecteur
+*  L'idée : le prix de l'état $s$ est le prix dans la première période d'un actif
+   qui paie 1 si l'état se produit, 0 autrement.
+*  Définition : vecteur $p$ ($S \times 1$) est un vecteur
     des prix d'états si
     \[ X'p = q, \]
     ou, ce qui est équivalent, pour chaque actif $i$,
@@ -139,9 +148,12 @@ knitr::opts_chunk$set(echo = FALSE)
 *  Si on divise chaque rangée $i$ de $X'p = q$ par $q_i$, on
     obtient
     \[ G'p = \iota. \]
+* Ligne $i$ de cette équation vectorielle, $i = 1,\ldots,N$ :
+    \[ 1 = \sum_{s=1}^S G_{si} p_s = \sum_{s=1}^S (1+R_i) p_s. \]
 
 ## Implications de l'absence d'arbitrage
 
+*  Possible en principle : aucun vecteur $p$, un $p$, plusieurs $p$ (une question d'algèbre linéaire)
 *  Résultat très important : pas d'arbitrage ssi
     il existe un vecteur $p$ positif des prix d'états.
 *  Si, en plus, $\mathrm{rang}(X) = S$, le marché est dit complet
@@ -151,7 +163,7 @@ knitr::opts_chunk$set(echo = FALSE)
     $M_s = p_s/\pi_s$.
 *  L'absence d'arbitrage implique qu'il existe un $p$ positif t.q.
     $G'p = \iota$.
-*  Donc, il existe un $M > 0$ tel que
+*  Donc, $M > 0$ et
     \[
     1 = \sum_{s=1}^S p_s(1+R_{si}) = \sum_{s=1}^S \pi_s M_s(1+R_{si})
     = E[(1+R_i)M].
@@ -170,7 +182,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## La fonction d'utilité isoélastique
 
 *  La fonction d'utilité isoélastique est
-    \[ U(C_t) = \frac{C_t^{1-\gamma}-1}{1-\gamma} \quad \gamma>0 \]
+    \[ U(C_t) = \frac{C_t^{1-\gamma}-1}{1-\gamma}, \quad \gamma>0. \]
 * 
     $\lim_{\gamma \rightarrow 1} U(C_t) = \log C_t$
 * 
@@ -257,7 +269,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \end{equation}
 * Pour tester le CCAPM, on peut estimer $\gamma$ et tester
     cette restriction sous une hypothèse supplémentaire :
-    $(1+R_i,C)$ est log-normal et homoscédastique.
+    $(1+R_{it},C_t)$ est log-normal et homoscédastique.
 
 ## La loi log-normale
 
