@@ -11,6 +11,8 @@
 
 [Exercices R](./ECN6578/Exercices_R.pdf)
 
+[Examen Intra, hiver 2020](./ECN6578/EI20.pdf)
+
 [Examen Intra, hiver 2019](./ECN6578/EI19.pdf)
 
 [Examen Intra, automne 2017](./ECN6578/ECN6578A_EI17.pdf)
