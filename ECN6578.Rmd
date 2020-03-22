@@ -7,6 +7,8 @@
 
 [Plan de Cours](./ECN6578/ECN6578A-H20-PC.pdf)
 
+[Mesures accommodements H2020](./ECN6578/Formulaire mesures accommodements H2020 copy.pdf)
+
 [Lectures et exercices théoriques](./ECN6578/Exercices_theoriques.pdf)
 
 [Exercices R](./ECN6578/Exercices_R.pdf)
