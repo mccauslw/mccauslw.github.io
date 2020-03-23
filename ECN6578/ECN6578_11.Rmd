@@ -10,10 +10,6 @@ output: beamer_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Lectures
-
-* Tsay 5.4.1, 5.5, Appendix B du chapitre 5.
-
 ## Durées et comptes
 
 ### Durées (durations)
@@ -185,7 +181,7 @@ $$ \ln \Delta t_i = \sum_{k=0}^K \beta_k P_k(\tau_i) + \ln \Delta t_i^*. $$
 ## Code en R préliminaire
 
 ```{r preliminary, include=TRUE, echo = TRUE}
-t = read.table('../Data/ibm.txt')
+t = read.table('ibm.txt')
 n = nrow(t)
 colnames(t) = c('datetime','volume','bid','ask','price')
 t$time = t$datetime %% 100000

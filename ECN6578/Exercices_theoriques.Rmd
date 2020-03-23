@@ -219,5 +219,37 @@ $(g+\mu_ph)\Omega\omega$.
 2. Considérez le problème à la diapo "Un problème à deux périodes sans incertitude".
     a. Démontrez que si $(C_t^{(i)}, C_{t+1}^{(i)})$ est une solution du problème pour un consommateur avec revenu $m_i$, $i=1,2$, que $(C_t^{(1)}+C_t^{(2)}, C_{t+1}^{(1)}+C_{t+1}^{(2)})$ est une solution du problème pour un consommateur avec revenu $m_1 + m_2$. 
     a. Généralisez le problème à trois périodes. Le taux d'intérêt $R$ est constant et la pondération de $U(C_{t+2})$ est $\delta^2$. Démontrez que pour la solution $(C_t, C_{t+1}, C_{t+2})$, les ratios $C_{t+2}/C_t$ et $C_{t+1}/C_t$ ne dépendent pas du revenu $m$.
-    
+
+### Cours 10
+
+#### Lectures
+
+* CLM 10.1, 11.1 (Obligations)
+* CLM 3.1, 3.2 (Données de haute fréquence)
+* Tsay 5.1, 5.2 (Données de haute fréquence)
+
+#### Exercices
+
+1. Dérivez les équations (11.1.21) et (11.1.23) dans CLM.
+
+1. Terminez la preuve de
+$$ \mathrm{Cov}[r_{At}^\circ,r_{A,t-k}^\circ] = -\pi_A^k \mu_A^2. $$
+
+1. Dans le modèle de rebond acheteur/vendeur, supposez qu'un achat (au cours vendeur) est plus probable quand le prix latent augmente.
+Plus spécifiquement, supposez qu'avec probabilité $1/2$, $P_t^* \sim (P_{t-1}^* + \mu, \sigma^2)$ et $P_t = P_t^* + S/2$ et qu'avec probabilité $1/2$, $P_t^* \sim (P_{t-1}^* - \mu, \sigma^2)$ et $P_t = P_t^* - S/2$.
+Trouvez $E[\Delta P_t]$, puis $\mathrm{Cov}[\Delta P_t,\Delta P_{t-1}]$.
+
+### Cours 11
+
+#### Lectures
+
+* Tsay 5.4.1, 5.5, Appendix B du chapitre 5.
+
+### Cours 12
+
+#### Lectures
+
+* Tsay 7 (intro), 7.1, 7.2, 7.3, 7.4
+
+
 

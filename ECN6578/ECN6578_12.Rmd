@@ -10,10 +10,6 @@ output: beamer_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Lectures
-
-* Tsay 7 (intro), 7.1, 7.2, 7.3, 7.4
-
 ## Pourquoi la valeur à risque I
 
 * L'objectif de l'investisseur : choisir un portefeuille selon ses préférences.
