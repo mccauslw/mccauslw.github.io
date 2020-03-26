@@ -442,7 +442,7 @@ knitr::opts_chunk$set(echo = FALSE)
     r_{f,t+1} =
     -\log \delta
     + \frac{\theta-1}{2} \sigma_m^2
-    - \frac{\theta}{2\psi^2} \sigma_i^2
+    - \frac{\theta}{2\psi^2} \sigma_c^2
     + \frac{1}{\psi} E_t[\Delta c_{t+1}]
     \]
     \[
