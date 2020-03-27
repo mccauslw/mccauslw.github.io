@@ -557,15 +557,47 @@ knitr::opts_chunk$set(echo = FALSE)
 *  Mais une telle aversion pour le risque est plus cohérente avec
     un rendement sans risque plus bas.
 
-## Motivation pour GMM
+## Motivation pour la GMM
 
 * GMM, c'est la Méthode de Moments Généralisée
 * La log-normalité de $(C_{t+1}, R_{i,t+1})$ est une hypothèse très forte.
-* L'approche GMM n'exige qu'une condition de moment inconditionnel comme $E[(1+R_{it})M_t] = 1$.
+* L'approche GMM n'exige, comme modèle, qu'une condition de moment inconditionnel comme $E[(1+R_{it})M_t] = 1$.
+* Rappelons que dans le modèle CCAPM
+\[
+  M_{t+1} = \delta \frac{U'(C_{t+1})}{U'(C_t)},
+\]
+et dans le cas spécial d'utilité isoélastique,
+\[
+  M_{t+1} = \delta \left(\frac{C_{t+1}}{C_t}\right)^{-\gamma},
+\]
+donc la *fonction de moment* $(1+R_{it})M_t$ à l'intérieur de l'espérance est une fonction et des données et des paramètres inconnus.
 
-## Éléments de GMM
+## Moments conditionels et inconditionels
 
-*  Vecteur de variables aléatoires : $w_t\;$ ($J\times 1$)
+* La version conditionnelle de la condition de moment:
+\[
+  E_t[(1+R_{i,t+1}) M_{t+1}] = 1.
+\]
+* La version inconditionelle de la condition de moment:
+\[
+  E[(1+R_{i,t+1}) M_{t+1}] = 1.
+\]
+* Problème : la version inconditionnelle est beaucoup moins forte
+    - moins d'information pertinente pour estimer les paramètres
+    - moins d'implications falsifiable, dans un contexte de test
+* Solution : si la version conditionnelle tient et un instrument $Z_t$ est observé à chaque période $t$,
+\[
+  \begin{aligned}
+    E[(1+R_{i,t+1}) M_{t+1} Z_t] &= E[E_t[(1+R_{i,t+1}) M_{t+1} Z_t]] \\
+    &= E[Z_t E_t[(1+R_{i,t+1}) M_{t+1}]] \\
+    &= E[Z_t]
+  \end{aligned}
+\]
+* Alors la condition $E[((1+R_{i,t+1}) M_{t+1} - 1)Z_t] = 0$ est une *autre* condition de moment inconditionnelle.
+
+## Éléments de la GMM
+
+*  Une séries de vecteurs aléatoires : $w_t\;$ ($J\times 1$ à chaque période $t$, observé en $T$ périodes)
 *  Vecteur de paramètres : $\theta_0\;$ ($P\times 1$)
 *  Fonction de moment : $g(w_t,\theta_0)\;$ ($Q\times 1$)
 *  Condition de moment de la population : $E[g(w_t,\theta_0)]=0$
