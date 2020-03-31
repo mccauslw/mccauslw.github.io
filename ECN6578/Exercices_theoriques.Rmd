@@ -220,6 +220,16 @@ $(g+\mu_ph)\Omega\omega$.
     a. Démontrez que si $(C_t^{(i)}, C_{t+1}^{(i)})$ est une solution du problème pour un consommateur avec revenu $m_i$, $i=1,2$, que $(C_t^{(1)}+C_t^{(2)}, C_{t+1}^{(1)}+C_{t+1}^{(2)})$ est une solution du problème pour un consommateur avec revenu $m_1 + m_2$. 
     a. Généralisez le problème à trois périodes. Le taux d'intérêt $R$ est constant et la pondération de $U(C_{t+2})$ est $\delta^2$. Démontrez que pour la solution $(C_t, C_{t+1}, C_{t+2})$, les ratios $C_{t+2}/C_t$ et $C_{t+1}/C_t$ ne dépendent pas du revenu $m$.
 
+#### Questions (Cours 9)
+
+1. Regardez l'expression pour $r_{f,t+1}$ dans le modèle CCAPM avec préférences Epstein-Zin. Pourquoi est-ce la moyenne historique de $r_{f,t+1}$ est plus cohérente avec ce modèle, par rapport au modèle avec préférences isoélastique, quand $\gamma$ est très élevé?
+1. Regardez l'expression pour la prime de risque associée à l'actif $i$ dans le même modèle. Quelle est la prime de risque associée au marché (ou portefeuille agrégé)? Pourquoi est-ce que les préférences E-Z aident à capturer la prime historique des actions, par rapport aux préférences isoélastique?
+1. Supposons qu'on utilise la méthode GMM pour estimer les paramètres $\delta$ et $\gamma$ du modèle CCAPM avec utilité isoélastique.
+On observe $w_t = (C_t, C_{t+1}, R_{t+1}, Z_t)$, $t=1,\ldots,T$.
+    a. Pourquoi est-ce qu'on ne devrait pas utiliser, comme élément de $Z_t$, une variable qui n'est pas observée à $t+1$?
+    a. Mettons que $Z_t$ comprend une variable observée à $t$ mais qui n'aide pas à prévoir la consommation future $C_{t+1}$. Quelles sont les implications pour l'inférence GMM?
+1. Si la fonction de moment $g(w_t,\theta)$ (un vecteur) a un élément qui est une fonction de $w_t$ mais pas de $\theta$, quelles sont les implications pour l'estimation est les tests.
+
 ### Cours 10
 
 #### Lectures
