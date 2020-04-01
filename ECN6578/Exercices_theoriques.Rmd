@@ -249,6 +249,23 @@ $$ \mathrm{Cov}[r_{At}^\circ,r_{A,t-k}^\circ] = -\pi_A^k \mu_A^2. $$
 Plus spécifiquement, supposez qu'avec probabilité $1/2$, $P_t^* \sim (P_{t-1}^* + \mu, \sigma^2)$ et $P_t = P_t^* + S/2$ et qu'avec probabilité $1/2$, $P_t^* \sim (P_{t-1}^* - \mu, \sigma^2)$ et $P_t = P_t^* - S/2$.
 Trouvez $E[\Delta P_t]$, puis $\mathrm{Cov}[\Delta P_t,\Delta P_{t-1}]$.
 
+#### Questions
+
+Tableau de $P_{nt}$
+
+$n\backslash t$| 0 | 1 | 2
+-|-----|-----|-----
+1|0.990|0.985|0.990
+2|0.980|0.995
+3|0.960
+
+1. Pour le tableau de prix d'obligations ci-haut :
+    a. À quelle période le prix $P_{12}$ est-il observé?
+    a. Trouvez les valeurs de $Y_{02}$ et $y_{02}$.
+    a. Trouvez la valeur du rendement "holding period" $R_{3,2}$. À quelle période est-il observé?
+    a. Trouvez la structure à terme à la période $t=0$.
+    a. Trouvez la valeur du cours à terme $F_{20}$. À quelle période est-il observé?
+
 ### Cours 11
 
 #### Lectures
