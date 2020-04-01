@@ -256,7 +256,7 @@ Tableau de $P_{nt}$
 $n\backslash t$| 0 | 1 | 2
 -|-----|-----|-----
 1|0.990|0.985|0.990
-2|0.980|0.995
+2|0.980|0.975
 3|0.960
 
 1. Pour le tableau de prix d'obligations ci-haut :
