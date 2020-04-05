@@ -272,6 +272,22 @@ $n\backslash t$| 0 | 1 | 2
 
 * Tsay 5.4.1, 5.5, Appendix B du chapitre 5.
 
+#### Questions
+
+1. Considérez un mélange de deux distributions exponentielles, avec densité
+$$ f(t) = \pi \lambda_1 \exp(-\lambda_1 t) + (1-\pi) \lambda_2 \exp(-\lambda_2 t). $$
+Supposons que $\lambda_2 > \lambda_1$. Soit $h(t)$ le taux d'incidence pour le mélange.
+    a. Trouvez $h(0)$.
+    a. Trouvez $\lim_{t\to \infty} h(t)$.
+    a. Montrez que la fonction $h(t)$ est décroissante.
+Une généralisation utile : le mélange de plusieurs distributions, ayant chacune un taux d'incidence faiblement décroissant, a un taux d'incidence faiblement décroissant.
+
+1. Considérez une variable aléatoire qui est la somme de deux variables iid exponentielles avec taux d'incidence $\lambda$. Soit $h(t)$ le taux d'incidence pour la somme. (Indice : la somme est une variable aléatoire $\mathrm{Gamma}(2, \lambda)$).
+    a. Trouvez $h(0)$.
+    a. Trouvez $\lim_{t\to \infty} h(t)$.
+    a. Montrez que $h(t)$ est croissant. 
+Une généralisation utile : une somme de variables aléatoires indépendentes, ayant chacune un taux d'incidence faiblement croissant, a un taux d'incidence faiblement croissant.)
+
 ### Cours 12
 
 #### Lectures
