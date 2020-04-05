@@ -288,6 +288,17 @@ Une généralisation utile : le mélange de plusieurs distributions, ayant chacu
     a. Montrez que $h(t)$ est croissant. 
 Une généralisation utile : une somme de variables aléatoires indépendentes, ayant chacune un taux d'incidence faiblement croissant, a un taux d'incidence faiblement croissant.)
 
+1. Considérez le modèle ACD suivant :
+\[
+  x_i = \psi_i \epsilon_i, \quad \psi_i = \omega + \gamma x_{i-1} + \lambda \psi_{i-1}, \quad \epsilon_i \sim \mathrm{iid}\,\mathrm{Exp}(1).
+\]
+Supposons que $x_i$ est faiblement stationnaire.
+Soit $\gamma = 0.15$, $\lambda = 0.80$, $\omega = 0.75s$.
+    a. Si $x_i$ est faiblement stationnaire, quelles sont sa moyenne et sa variance inconditionnelle?
+    a. Si $x_i = 8s$ et $\psi_i = 20s$, quelle est la loi conditionnelle de $x_{i+1}$? Quelles sont sa moyenne et sa variance conditionnelle?
+
+1. Pour les valeurs estimées des diapos "Résultats empiriques I" quelle est la probabilité que le prix de la prochaine transaction égale le prix de la précédente? Supposons que $x_i\beta = 0.13$ et $\sigma_i^2(w_i) = 1.4$.
+
 ### Cours 12
 
 #### Lectures
