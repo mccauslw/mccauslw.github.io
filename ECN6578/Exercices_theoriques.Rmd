@@ -305,5 +305,6 @@ Soit $\gamma = 0.15$, $\lambda = 0.80$, $\omega = 0.75s$.
 
 * Tsay 7 (intro), 7.1, 7.2, 7.3, 7.4
 
+#### Questions
 
-
+1. Examen Intra 2017, Question 6
