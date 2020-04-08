@@ -61,15 +61,16 @@ $$ \mathrm{cov}[r_{t+i}, r_{t+j}|F_t] = E[\sigma_{t+i}\sigma_{t+j}\epsilon_{t+i}
 
 ## RiskMetrics : variance multipériode
 
-* Du diapos précédent : $\mathrm{cov}[r_{t+i}, r_{t+j}|F_t] = 0$. Alors
+* De la diapo précédente : $\mathrm{cov}[r_{t+i}, r_{t+j}|F_t] = 0$. Alors
 
 $$
 \begin{aligned}
   \mathrm{Var}[a_{t+i}|F_t] &= \mathrm{Var}[E[a_{t+i}|F_{t+i-1}]|F_t] + E[\mathrm{Var}[a_{t+i}|F_{t+i-1}]|F_t]\\
-  &= E[\sigma^2_{t+i}|F_t]
+  &= E[\sigma^2_{t+i}|F_t].
 \end{aligned}
 $$
 
+* Maintenant la variance conditionnelle (à $t$) du rendement $k$-période est
 $$ \sigma^2_t[k] = \sum_{i=1}^k \mathrm{Var}[a_{t+i}|F_t] = \sum_{i=1}^k E[\sigma^2_{t+i}|F_t]. $$
 
 ## Une récursion pour modèle IGARCH Gaussien de RiskMetrics
@@ -88,12 +89,12 @@ $$
 \sigma_{t+i}^2 = \sigma_{t+i-1}^2 + (1-\alpha) \sigma^2_{t+i-1} (\epsilon_{t+i-1}^2-1)
 $$
 
-* Espérences itérées donne ($E[E[\cdot|F_{t+i-2}]|F_t]$)
+* La loi des espérences itérées donne ($E[E[\cdot|F_{t+i-2}]|F_t]$)
 $$
 E[\sigma_{t+i}^2|F_t] = E[\sigma^2_{t+i-1}|F_t].
 $$
 
-* On peut écrire maintenant
+* Par induction, $E[\sigma_{t+i}^2|F_t] = \sigma_{t+1}^2$ pour chaque $i$, alors
 $$ \sigma_t^2[k] = k\sigma_{t+1}^2. $$
 
 ## Calcul de VaR RiskMetrics
@@ -105,7 +106,7 @@ $$ P_tQ \times \Phi^{-1}(0.05) \sigma_{t+1} \approx P_tQ  \times 1.65 \sigma_{t+
 $$ P_tQ \times \Phi^{-1}(0.05) \sqrt{k} \sigma_{t+1} \approx P_tQ  \times 1.65 \sqrt{k} \sigma_{t+1} $$
 * Notez l'approximation $R_t = r_t$.
 * Exemple 7.1 :
-    * $\sigma_t = 0.53\%$ (écart-type empirique du taux d'échange DM/Dollar, juin 1997)
+    * $\sigma_t = 0.53\%$ (écart-type empirique du rendement journalier pour le taux d'échange DM/Dollar, juin 1997)
     * $P_tQ = 10^7\, \$$
     * $p = 0.05$ ($\Phi^{-1}(0.05) \approx 1.65$)
     * $\mathrm{VaR}(1) = 10^7 \times 1.65 \times 0.0053 = 87450\,\$$
@@ -118,16 +119,12 @@ $$ P_tQ \times \Phi^{-1}(0.05) \sqrt{k} \sigma_{t+1} \approx P_tQ  \times 1.65 \
 
 ## Approche économétrique I
 
-* Mettons qu'on a un modèle ARMA(p,q)-GARCH(u,v) pour les rendements $r_1,\ldots,r_n$ :
+* Un modèle ARMA(p,q)-GARCH(u,v) pour $r_1,\ldots,r_n$ :
 $$ \mu_t = \phi_0 + \sum_{i=1}^p \phi_i r_{t-i} + a_t - \sum_{j=1}^q \theta_j a_{t-j} $$
 $$ \sigma^2_t = \alpha_0 + \sum_{i=1}^u \alpha_i a_{t-i}^2 + \sum_{j=1}^v \beta_j \sigma^2_{t-j}. $$
-
 * En évaluant la vraisemblance, on obtient les $\mu_t$, $\sigma^2_t$.
-
 * Chaque $\mu_t$ et $\sigma^2_t$ est une fonction de tous les $r_1,\ldots,r_{t-1}$
-
 * Par la suite, on peut calculer $a_t = r_t - \mu_t$, $t=1,\ldots,n$.
-
 * Sachant $r_1,\ldots,r_n$, $r_{n+1} \sim (\mu_{n+1}, \sigma_{n+1})$, où
 $$ \mu_{n+1} = \phi_0 + \sum_{i=1}^p \phi_i r_{n+1-i} - \sum_{j=1}^q \theta_j a_{n+1-j} $$
 $$ \sigma^2_{n+1} = \alpha_0 + \sum_{i=1}^u \alpha_i a_{n+1-i}^2 + \sum_{j=1}^v \beta_j \sigma^2_{n+1-j}. $$
@@ -147,7 +144,7 @@ $$ \mathrm{VaR} = \mu_{n+1} + \frac{t_\nu(p) \sigma_{n+1}}{\sqrt{\nu/(\nu-2)}}. 
 
 * Mettons que $\mu_{n+1} = 0.001$, $\sigma_{n+1} = 0.02$, $\nu = 12$.
 
-* Calcul du VaR pour $p=0.05$
+* Exemple, calcul du VaR, par unité de valeur, pour $p=0.05$
 ```{r studentvar, echo=TRUE}
 p = 0.05
 nu = 12
@@ -241,7 +238,7 @@ abline(v=x.ch.p)
 ## Régression quantile I
 
 * Rappel : la moyenne $E[r]$ est la solution du problème
-$$ \mu = \arg\min_\beta E[(r-\beta)^2] = \arg\min_\beta E(r-E[r])^2 + (E[r]-\beta)^2. $$
+$$ \mu = \arg\min_\beta E[(r-\beta)^2] = \arg\min_\beta E[(r-E[r])^2] + (E[r]-\beta)^2. $$
 * La quantile $x_p = F^{-1}(p)$ est la solution du problème
 $$ q_p = \arg\min_\beta E[w_p(r-\beta)], $$
 * La fonction de perte $w_p$ est
@@ -249,16 +246,22 @@ $$ w_p(z) = \begin{cases} pz, & z \geq 0 \\ -(1-p)z, & z < 0. \end{cases} $$
 * La quantile empirique (ou de l'échantillon) est la solution de
 $$ \hat{q}_p = \arg\min_\beta \sum_{i=1}^n w_p(r_i-\beta). $$
 
+## La fonction $w_p(z)$
+
+```{r wp, echo=TRUE, fig.height=6}
+z = seq(-1, 1, by=0.1)
+p=0.5; plot(z, p*z*(z>=0) - (1-p)*z*(z<0), col='blue', type='l', xlab='z', ylab='w')
+p=0.8; lines(z, p*z*(z>=0) - (1-p)*z*(z<0), col='red')
+p=0.2; lines(z, p*z*(z>=0) - (1-p)*z*(z<0), col='green')
+```
+
 ## Régression quantile II
 
 * Supposons que la quantile conditionnelle $q_p|x$ est linéaire en $x$ : $q_p|x = \beta_p^\top x$.
-
 * Alors $\beta_p$ est la solution de
 $$ \beta_p = \arg\min_\beta E[w_p(r-\beta^\top x)]. $$
-
 * L'analogue dans l'échantillon donne l'estimateur
 $$ \hat{\beta}_p = \arg\min_\beta \sum_{t=1}^n w_p(r_t-\beta^\top x_t). $$
-
 * Notes
     * Dans le contexte de VaR, $x_t$ comprend des variables dans $F_{t-1}$.
     * la fonction de perte $w_p$ est moins sensible aux valeurs aberrantes que la fonction de perte quadratique.
