@@ -39,11 +39,11 @@ knitr::opts_chunk$set(echo = FALSE)
     1. Fonction de répartition $F_l(\cdot)$ pour le gain de valeur d'un portefeuille en $l$ périodes,
 
 * la valeur à risque (VaR) est (par définition) la solution de l'équation
-$$ p = F_l(\mathrm{VaR}). $$
+$$ p = F_l(-\mathrm{VaR}). $$
 
 * la question de conditionnement
     * loi inconditionelle, longue terme, non-paramétrique
-    * loi condtionnelle, court terme, besoin d'un modèle (régression quantile ou plein modèle)
+    * loi conditionnelle, court terme, besoin d'un modèle (régression quantile ou plein modèle)
     
 ## RiskMetrics
 
@@ -61,15 +61,14 @@ $$ \mathrm{cov}[r_{t+i}, r_{t+j}|F_t] = E[\sigma_{t+i}\sigma_{t+j}\epsilon_{t+i}
 
 ## RiskMetrics : variance multipériode
 
-* De la diapo précédente : $\mathrm{cov}[r_{t+i}, r_{t+j}|F_t] = 0$. Alors
-
+* De la diapo précédente : $\mathrm{cov}[r_{t+i}, r_{t+j}|F_t] = 0$.
+* Prochaine étape :
 $$
 \begin{aligned}
   \mathrm{Var}[a_{t+i}|F_t] &= \mathrm{Var}[E[a_{t+i}|F_{t+i-1}]|F_t] + E[\mathrm{Var}[a_{t+i}|F_{t+i-1}]|F_t]\\
   &= E[\sigma^2_{t+i}|F_t].
 \end{aligned}
 $$
-
 * Maintenant la variance conditionnelle (à $t$) du rendement $k$-période est
 $$ \sigma^2_t[k] = \sum_{i=1}^k \mathrm{Var}[a_{t+i}|F_t] = \sum_{i=1}^k E[\sigma^2_{t+i}|F_t]. $$
 
@@ -101,14 +100,14 @@ $$ \sigma_t^2[k] = k\sigma_{t+1}^2. $$
 
 * À $t$, on détient une quantité $Q$ d'un portefeuille à prix $P_t$.
 * Pour $p=0.05$, $l=1$, la VaR est de
-$$ P_tQ \times \Phi^{-1}(0.05) \sigma_{t+1} \approx P_tQ  \times 1.65 \sigma_{t+1} $$
+$$ P_tQ \times -\Phi^{-1}(0.05) \sigma_{t+1} \approx P_tQ  \times 1.65 \sigma_{t+1} $$
 * Pour $p=0.05$, $l=k$, la VaR est de
-$$ P_tQ \times \Phi^{-1}(0.05) \sqrt{k} \sigma_{t+1} \approx P_tQ  \times 1.65 \sqrt{k} \sigma_{t+1} $$
+$$ P_tQ \times -\Phi^{-1}(0.05) \sqrt{k} \sigma_{t+1} \approx P_tQ  \times 1.65 \sqrt{k} \sigma_{t+1} $$
 * Notez l'approximation $R_t = r_t$.
 * Exemple 7.1 :
     * $\sigma_t = 0.53\%$ (écart-type empirique du rendement journalier pour le taux d'échange DM/Dollar, juin 1997)
     * $P_tQ = 10^7\, \$$
-    * $p = 0.05$ ($\Phi^{-1}(0.05) \approx 1.65$)
+    * $p = 0.05$ ($\Phi^{-1}(0.05) \approx -1.65$)
     * $\mathrm{VaR}(1) = 10^7 \times 1.65 \times 0.0053 = 87450\,\$$
     * $\mathrm{VaR}(10) = 10^7 \times \sqrt{10} \times 1.65 \times 0.0053 = 276541\,\$$
 
@@ -132,13 +131,13 @@ $$ \sigma^2_{n+1} = \alpha_0 + \sum_{i=1}^u \alpha_i a_{n+1-i}^2 + \sum_{j=1}^v 
 ## Approche économétrique II
 
 * Si $r_{n+1}|r_1,\ldots,r_n \sim N(\mu_{n+1},\sigma^2_{n+1})$, la VaR pour une période avec $p=0.05$ est, par unité de valeur
-$$ \mathrm{VaR} = \mu_{n+1} + \Phi(0.05) \sigma_{n+1} = \mu_{n+1} - 1.65 \sigma_{n+1}. $$
+$$ -\mathrm{VaR} = \mu_{n+1} + \Phi(0.05) \sigma_{n+1} = \mu_{n+1} - 1.65 \sigma_{n+1}. $$
 
 * Si $r_{n+1}|r_1,\ldots,r_n \sim t(\mu_{n+1},\sigma^2_{n+1},\nu)$ :
     * La variance d'un aléa $t$ de Student standard avec $\nu$ degrés de liberté est $\nu/(\nu-2)$.
     * Soit $t_\nu(p)$ la quantile d'un aléa $t(\nu)$.
     * La valeur à risque est, par unité de valeur
-$$ \mathrm{VaR} = \mu_{n+1} + \frac{t_\nu(p) \sigma_{n+1}}{\sqrt{\nu/(\nu-2)}}. $$
+$$ -\mathrm{VaR} = \mu_{n+1} + \frac{t_\nu(p) \sigma_{n+1}}{\sqrt{\nu/(\nu-2)}}. $$
 
 ## Exemple, calcul du VaR ou $r_{n+1}|r_1,\ldots,r_n$ est un $t$ de Student
 
@@ -151,8 +150,8 @@ nu = 12
 mu.np1 = 0.001
 sigma.np1 = 0.02
 t.nu.p = qt(p, nu)
-VaR = mu.np1 + t.nu.p * sigma.np1 / (sqrt(nu/(nu-2)))
-VaR
+mVaR = mu.np1 + t.nu.p * sigma.np1 / (sqrt(nu/(nu-2)))
+-mVaR
 ```
 
 ## Estimation quantile, approche inconditionnelle
@@ -164,10 +163,10 @@ $$ r_{(1)} \leq r_{(2)} \leq \ldots \leq r_{(n)}. $$
 
 * On veux estimer $x_p = F^{-1}(p)$, la quantile $p$ de la population
 
-* Pour $l=np$ entier
-$$ r_{(l)} \sim_\mathrm{asy} N\left( x_p, \frac{p(1-p)}{n[f(x_p)]^2} \right) $$
+* Pour $l=np$ entier, $r_{(l)}$ est la quantile $p$ de l'échantillon et
+$$ r_{(l)} \sim_\mathrm{asy} N\left( x_p, \frac{p(1-p)}{n[f(x_p)]^2} \right). $$
 
-* $r_{(l)}$ est une estimation de $x_p$
+* $r_{(l)}$ est une estimation de $x_p$.
 
 * Il faut estimer $f(x_p)$ pour calculer la variance de l'estimateur.
 
@@ -181,7 +180,7 @@ $$ r_{(l)} \sim_\mathrm{asy} N\left( x_p, \frac{p(1-p)}{n[f(x_p)]^2} \right) $$
 
 * Trouver $\hat{x}_p$ entre $\hat{x}_{p_1}$ et $\hat{x}_{p_2}$ :
 
-$$ \hat{x}_p = \frac{p_2 - p}{p_2 - p_1} r_{(l_1)} + \frac{p - p_1}{p_2 - p_1} r{(l_2)} $$
+$$ \hat{x}_p = \frac{p_2 - p}{p_2 - p_1} r_{(l_1)} + \frac{p - p_1}{p_2 - p_1} r_{(l_2)} $$
 
 ## Exemple à longue terme
 
