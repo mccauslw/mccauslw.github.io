@@ -262,7 +262,7 @@ $n\backslash t$| 0 | 1 | 2
 1. Pour le tableau de prix d'obligations ci-haut :
     a. À quelle période le prix $P_{12}$ est-il observé?
     a. Trouvez les valeurs de $Y_{20}$ et $y_{20}$.
-    a. Trouvez la valeur du rendement "holding period" $R_{2,2}$. À quelle période est-il observé?
+    a. Trouvez la valeur du rendement "holding period" $R_{22}$. À quelle période est-il observé?
     a. Trouvez la structure à terme à la période $t=0$.
     a. Trouvez la valeur du cours à terme $F_{20}$. À quelle période est-il observé?
 
