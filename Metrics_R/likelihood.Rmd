@@ -181,3 +181,48 @@ and evaluating this function at the true value $\theta_0$ gives
 \[
   E_{\theta_0}[H(\theta_0;X)] = -n \left[\frac{1}{\theta_0} + \frac{1}{1-\theta_0}\right] = -\frac{n}{\theta_0(1-\theta_0)}.
 \]
+
+### A Gaussian likelihood
+
+We now turn to a simple model with two parameters.
+The observables $X_i$, $i=1,\ldots$ are independent and identically distributed, with $X_i \sim N(\mu,\sigma^2)$, $i=1,\ldots,n$.
+The density of a single $X_i$ is
+\[
+  f(x_i) = \frac{1}{\sqrt{2\pi\sigma^2}}
+  \exp\left[-\frac{1}{2\sigma^2}(x_i-\mu)^2\right].
+\]
+Thus the joint density of $X = (X_1,\ldots,X_n)$ is
+\[
+  f(x) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}
+  \exp\left[-\frac{1}{2\sigma^2}(x_i-\mu)^2\right]
+  = (2\pi\sigma^2)^{-n/2} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2\right].
+\]
+Each term of the sum in the exponential function is quadratic in $\mu$, with a negative coefficient of $\mu^2$.
+Therefore the sum itself is quadratic in $\mu$, with a negative coefficient of $\mu^2$.
+
+> Exercise: proof the identity $$\sum_{i=1}^n (x_i-\mu)^2 = n(\bar x - \mu)^2 + \sum_{i=1}^n (x_i - \bar x)^2.$$
+
+Dividing the identity by $n$ gives a sample analogue of the following population identity, which is also helpful to know. Its proof is very similar.
+\[
+  E[(X-a)^2] = E[(X-E[X])^2] + (E[X] - a)^2 = \mathrm{Var}[X] + (E[X] - a)^2.
+\]
+
+Now we can write the joint density of $f(x)$ as
+\[
+  f(x) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}
+\exp\left[-\frac{1}{2\sigma^2}(x_i-\mu)^2\right]
+  = (2\pi)^{-n/2} (\sigma^2)^{-n/2} \exp\left[-\frac{S + n (\bar x - \mu)^2}{2\sigma^2}
+  \right],
+\]
+where $S = \sum_{i=1}^n (x_i-\mu)^2$.
+
+Defining $\theta = (\mu, \sigma^2)$, the log likelihood function is
+\[
+  L(\theta;x) = -\frac{n}{2} \log 2\pi\sigma^2 - \frac{S + n (\bar x - \mu)^2}{2\sigma^2}.
+\]
+It is easy to see that for every value of $\sigma^2$, $\hat \mu = \bar x$ gives the largest value of $L(\theta; x)$.
+Setting $\mu = \bar x$ in $L(\theta; x)$ gives a univariate function of $\sigma^2$ that is easier to maximize.
+
+> Exercise: show that $\hat\theta = (\bar x, S/n)$ maximizes the log likelihood function.
+
+
