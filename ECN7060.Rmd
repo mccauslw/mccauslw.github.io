@@ -5,7 +5,7 @@
 
 ### Documents pour ECN 7060, Probabilités pour Économistes
 
-[Plan de Cours](./ECN7060/ECN7060A-A19-PC.pdf)
+[Plan de Cours](./ECN7060/ECN7060A-A20-PC.pdf)
 
 [Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf) (jusqu'au cours 13, inclusif)
 
