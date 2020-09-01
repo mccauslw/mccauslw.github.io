@@ -23,31 +23,31 @@
 
 [Devoirs et Lectures](./ECN7060/ECN7060_DL_2019.pdf)
 
-[Diapos, Cours 1, 2019/09/04](./ECN7060/ECN7060_1.pdf)
+[Diapos, Cours 1, 2019/09/04](./ECN7060/ECN7060_1_2019.pdf)
 
-[Diapos, Cours 2, 2019/09/11](./ECN7060/ECN7060_2.pdf)
+[Diapos, Cours 2, 2019/09/11](./ECN7060/ECN7060_2_2019.pdf)
 
-[Diapos, Cours 3, 2019/09/18](./ECN7060/ECN7060_3.pdf)
+[Diapos, Cours 3, 2019/09/18](./ECN7060/ECN7060_3_2019.pdf)
 
-[Diapos, Cours 4, 2019/09/25](./ECN7060/ECN7060_4.pdf)
+[Diapos, Cours 4, 2019/09/25](./ECN7060/ECN7060_4_2019.pdf)
 
-[Diapos, Cours 5, 2019/10/02](./ECN7060/ECN7060_5.pdf)
+[Diapos, Cours 5, 2019/10/02](./ECN7060/ECN7060_5_2019.pdf)
 
-[Diapos, Cours 6, 2019/10/09](./ECN7060/ECN7060_6.pdf)
+[Diapos, Cours 6, 2019/10/09](./ECN7060/ECN7060_6_2019.pdf)
 
-[Diapos, Cours 7, 2019/10/16](./ECN7060/ECN7060_7.pdf)
+[Diapos, Cours 7, 2019/10/16](./ECN7060/ECN7060_7_2019.pdf)
 
-[Diapos, Cours 8, 2019/10/30](./ECN7060/ECN7060_8.pdf)
+[Diapos, Cours 8, 2019/10/30](./ECN7060/ECN7060_8_2019.pdf)
 
-[Diapos, Cours 9, 2019/11/06](./ECN7060/ECN7060_9.pdf)
+[Diapos, Cours 9, 2019/11/06](./ECN7060/ECN7060_9_2019.pdf)
 
-[Diapos, Cours 10, 2019/11/13](./ECN7060/ECN7060_10.pdf)
+[Diapos, Cours 10, 2019/11/13](./ECN7060/ECN7060_10_2019.pdf)
 
-[Diapos, Cours 11, 2019/11/20](./ECN7060/ECN7060_11.pdf)
+[Diapos, Cours 11, 2019/11/20](./ECN7060/ECN7060_11_2019.pdf)
 
-[Diapos, Cours 12, 2019/11/27](./ECN7060/ECN7060_12.pdf)
+[Diapos, Cours 12, 2019/11/27](./ECN7060/ECN7060_12_2019.pdf)
 
-[Diapos, Cours 13, 2019/12/04](./ECN7060/ECN7060_13.pdf)
+[Diapos, Cours 13, 2019/12/04](./ECN7060/ECN7060_13_2019.pdf)
 
 [Questionnaire 6, 2018, sur les probabilités et espérances conditionnelles](./ECN7060/Quiz_6_2018.pdf)
 
