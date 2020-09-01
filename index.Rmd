@@ -27,22 +27,22 @@ The courses I am teaching now or have taught recently are:
 1. Econometrics of Financial Markets, ECN 6578 (M.Sc.)  
 
 *** 
-Je suis professeur agrégé dans le département de sciences économiques de l'université de Montréal.
+Je suis professeur agrégé au département de sciences économiques de l'université de Montréal.
 
-Mes recherches actuelles portent sur deux champs:
+Mes intérêts de recherche actuels se situent dans deux domaines principaux :
 
 1. Analyse du choix discret stochastique
-    + collecte et analysis des données provenant des expériences en choix discret
+    + collecte et analyse des données d'expériences de choix discrets
     + analyse bayésienne des modèles de choix discret abstrait
-    + tests de l'utilité aléatoire et d'autres axiomes de choix discret probabiliste
-    + anomalies de choix tels les effets de context et les intransitivités stochastiques
-1. Modèles espace-état non-linéaires et non-gaussiens
-    + modèles de volatilité stochastique, des comptes et des durées
+    + tests de l'utilité aléatoire et autres axiomes de choix discret probabiliste
+    + anomalies de choix telles que les effets de contexte et l'intransitivité stochastique
+1. Modèles d'espaces d'états non linéaires et non gaussiens
+    + modèles de volatilité, de comptage et de durée stochastiques
     + modèles multivariés
-    + simulation smoothing
+    + lissage par simulation
     + analyse bayésienne
     
-Les cours que j'enseigne actuellement et récemment :
+Les cours que j'enseigne actuellement ou que j'ai enseigné récemment sonts :
 
 1. Probabilités pour économistes, ECN 7060 (3ième cycle)
 1. Éléments de microéconomie, ECN 6013 (2ième cycle)
