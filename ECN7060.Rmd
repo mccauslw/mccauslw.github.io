@@ -7,13 +7,21 @@
 
 [Plan de Cours](./ECN7060/ECN7060A-A20-PC.pdf)
 
-[Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf) (jusqu'au cours 13, inclusif)
+[Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf)
 
-[Examen intra](./ECN7060/EI19.pdf)
+[Examen intra 2019](./ECN7060/EI19.pdf)
+
+[Examen final 2019](./ECN7060/EF19.pdf)
 
 [Examen final 2018](./ECN7060/EF18A.pdf)
 
 [Examen final 2017](./ECN7060/EF17A.pdf)
+
+***
+
+#### Documents de l'année passée
+
+[Devoirs et Lectures](./ECN7060/ECN7060_DL_2019.pdf)
 
 [Diapos, Cours 1, 2019/09/04](./ECN7060/ECN7060_1.pdf)
 

@@ -7,8 +7,8 @@ navbar:
       href: research.html
     - text: "CV"
       href: ./CV/CVMcCausland.pdf
-    - text: "ECN 6013"
-      href: ECN6013.html
+#    - text: "ECN 6013"
+#      href: ECN6013.html
     - text: "ECN 7060"
       href: ECN7060.html
     - text: "ECN 6578"
