@@ -3,6 +3,7 @@ title: "ECN 7060, Cours 1"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: beamer_presentation
+urlcolor: blue
 ---
 
 ## Matières
@@ -12,7 +13,7 @@ output: beamer_presentation
 * Variables aléatoires, lois, indépendance
 * Espérance
 * Convergence en probabilité, convergence presque sûre
-* Fonctions caractéristiques, convergence en distribution et le théorème centrale limite
+* Fonctions caractéristiques, convergence en loi, le théorème centrale limite
 * Probabilité et espérance conditionnelles
 
 ### Partie 2, Livre de Casella et Berger
@@ -26,28 +27,43 @@ output: beamer_presentation
 [//]: Probabilité conditionnelle: économétrie bayésienne, micro, macro
 
 ## Les éléments de la note finale :
-1. Questionnaires : 20% (meilleurs $n-1$ de $n \approx 10$)
-1. Examen intra maison : 25%
+1. Interrogations : 20% (meilleures $n-1$ de $n \approx 11$)
+1. Examen intra maison : 25% (de 23h le 15 octobre à 23h le 27 octobre)
 1. Participation, cours et séance TP : 5%
 1. Examen final : 50%
 
 [//]: For people who don't benefit from TPs, participation based on class only
 [//]: Participation in TP can help, non-participation cannot hurt
 
-## Le cycle mercredi-mardi :
+## Le cycle mercredi 13h-mercredi 12h
 1. Mercredi 13h-16h, cours :
-    + retour des questionnaires corrigés du cours précédent
-    + réponses aux questions des étudiants
-    + questionnaire sur les lectures (matière du cours actuel)
-    + correction des questionnaires du cours actuel
+    + retour des interrogations corrigées du cours précédent
+    + questions des étudiants
+    + interrogation sur les lectures (matière du cours actuel)
+    + correction des interrogations du cours actuel
     + enseignement magistral avec participation des étudiants
-    + aperçu de la matière de la semaine prochaine
-    + attribution des lectures (pour la semaine prochaine) avec questions simple de lecture, des devoirs sur la matière du cours actuel
+    + aperçu de la matière de la semaine suivante
+    
+1. Mercredi avant la fin de la journée 
+    + attribution des lectures (pour la semaine suivante)
+    + questions simples de lecture
+    + devoirs sur la matière du cours actuel
 
-2. Mardi 11h30-13h, séance de travail pratique avec Narcisse
-    + discussion des devoirs
+1. Mardi suivant
+    + chargement des diapos du lendemain
 
-Mon site web : <https://mccauslw.github.io>
+1. Mercredi 10h30-12h, séance de travail pratique
+    + discussion des devoirs avec Eugène
+
+## Communications
+1. Documents à mon site web : <https://mccauslw.github.io/ECN7060.html>
+    + Diapos (un fichier pour chaque cours)
+    + Devoirs et lectures (un fichier)
+    + Examens précédents
+    
+1. StudiUM
+    + Nouvelles
+    + Questions et réponses écrites
 
 ## Attentes :
 ### Avant le cours
@@ -90,7 +106,7 @@ $\{0,1\}$ | 1
     - $\omega_1$: Le parti PLC gagne l’élection fédérale prochaine
     - $\omega_2$: Le parti PLC ne gagne pas
     
-+ Un agent offre des prix (cours acheteur et cours vendeur) pour ces contrats:
++ Un agent offre des prix (un prix est à la fois le cours acheteur et le cours vendeur) pour tous ces contrats:
     1. paie 1\$ si ni $\omega_1$ ni $\omega_2$ se produit (l'événement $\emptyset$)
     2. paie 1\$ si $\omega_1$ se produit (l'événement $\{\omega_1\}$)
     3. paie 1\$ si $\omega_2$ se produit (l'événement $\{\omega_2\}$)
@@ -100,7 +116,7 @@ $\{0,1\}$ | 1
 
 + Ils sont cohérents ssi les prix vérifient les axiomes de probabilité.
 
-+ Contribution de Ramsey: accommoder l'aversion pour le risque et mesurer à la fois les jugements de probabilité et l'utilité.
++ Contribution de Ramsey : accommoder l'aversion pour le risque et mesurer à la fois les jugements de probabilité et l'utilité.
 
 + Ch. 2 de Diaconis et Skyrms, "Ten Great Ideas about Chance".
 
@@ -114,7 +130,7 @@ $\{0,1\}$ | 1
 
 ## Interprétation fréquentiste de probabilité
 
-+ Venn et von Mises essaient de définir la probabilité en termes des (limites des) fréquences des événements semblables.
++ Venn et (Richard) von Mises essaient de définir la probabilité en termes des (limites des) fréquences des événements semblables.
 
 + Plusieurs fréquentistes rejettent l'aspect subjectif des définitions qui repose sur les jugements cohérents.
 
@@ -161,7 +177,7 @@ Quelques ensembles :
 1. $\mathbb{Z}^2$
 1. $\mathbb{Q} = \{a/b \colon a,b \in \mathbb{Z}, b \neq 0 \}$
 1. $\mathbb{Z}^n$
-1. $\mathbb{R}$
+1. $[0,1)$, $\mathbb{R}$
 1. $2^\mathbb{N}$, l'ensemble des sous-ensembles de $\mathbb{N}$
 1. L'ensemble des fonctions $f \colon \mathbb{N} \to \{0,1\}$
 1. L'ensemble des fichiers (livres, dessins, audio, vidéo)
