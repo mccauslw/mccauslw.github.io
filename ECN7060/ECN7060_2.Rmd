@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Plan de route, Chapitre 2
 
 * 2.1 Définition d'un espace de probabilité
-* 2.2 Construction de $(\Omega, {\cal F}, P)$ pour $\Omega$ dénombrable,
+* 2.2 Construction de $(\Omega, {\cal F}, P)$ pour $\Omega$ indénombrable,
       une spécification suffisante (un semi-algèbre ${\cal J}$ et un
       $P\colon{\cal J}\to [0,1]$ avec superadditivité plus monotonicité
       dénombrable) pour $\Omega = [0,1]$
@@ -23,9 +23,15 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Théorème d'extension
 
+Application : spécifier $\Omega$, semi-algèbre ${\cal J}$, $P \colon {\cal J} \to [0,1]$,
+obtenir $(\Omega, {\cal F}, P)$.
+
 Conditions sur $\Omega$, ${\cal J}$ et $P \colon {\cal J} \to [0,1]$ :
 
-1. ${\cal J}$ est une semi-algèbre sur $\Omega$.
+1. ${\cal J}$ est une semi-algèbre sur $\Omega$, c'est à dire
+    a. $\emptyset \in {\cal J}$, $\Omega \in {\cal J}$,
+    a. ${\cal J}$ est stable pour les intersections finies,
+    a. Si $A \in {\cal J}$, $A^c$ est une réunion disjointe finie des éléments de ${\cal J}$.
 1. $P$ est finiement superadditive.
 1. $P$ est dénombrablement monotone.
 
@@ -37,38 +43,40 @@ Conclusion : il y a une tribu ${\cal M}$ sur $\Omega$ et une probabilité $P^*$ 
 
 ## Deux tribus pour $\Omega = \mathbb{R}$ (Exercise 2.4.5)
 
-* ${\cal J}$ est une semi-algèbre si
-    * $\emptyset \in {\cal J}$, $\Omega \in {\cal J}$,
-    * ${\cal J}$ est stable pour les intersections finies,
-    * Si $A \in {\cal J}$, $A^c$ est une réunion disjointe finie des éléments de ${\cal J}$.
-* Un intervalle de $\mathbb{R}$ est n'importe $[a,b]$, $[a,b)$, $(a,b]$ ou $(a,b)$, où $a=\infty$, $b=\infty$, $a=b$ (auquel cas $[a,b] = \{a\}$) et $a<b$ (auquel cas $(a,b) = \emptyset$) sont permis.
-* Soit ${\cal A}_2 = \{ \mbox{tous intervalles dans}\; \mathbb{R} \}$.
-    * Un semi-algèbre?
-    * ${\cal B} \equiv \sigma({\cal A}_2)$, la tribu la plus petite qui contient ${\cal A}_2$.
-    * Il ne suffit pas de mettre les réunions dénombrables dans ${\cal F}$.
-    * Spécification de $P\colon {\cal A}_2 \to [0,1]$?
+* Un intervalle de $\mathbb{R}$ est n'importe $[a,b]$, $[a,b)$, $(a,b]$ ou $(a,b)$, où $a,b \in \mathbb{R} \cup \{\infty, -\infty\}$.
+(Si $a>b$, l'intervalle est vide.)
+* Soit ${\cal A}_2 = \{ \mbox{tous intervalles de}\; \mathbb{R} \}$.
+    * ${\cal A}_2$ est-elle une semi-algèbre?
+    * ${\cal A}_2$ plus toutes les réunions dénombrables n'est pas une tribu. 
+    * La spécification de $P\colon {\cal A}_2 \to [0,1]$ est toujours difficile.
+* Soit ${\cal B} \equiv \sigma({\cal A}_2)$, la tribu la plus petite qui contient ${\cal A}_2$.
 * Soit ${\cal A}_1 = \{ (-\infty, x] \colon x \in \mathbb{R} \}$.
-    * Un semi-algèbre?
-    * Pourquoi utile?
-* Montrez que $\sigma({\cal A}_1) = {\cal B}$.
+    * ${\cal A}_1$ est-elle une semi-algèbre?
+    * Pourquoi ${\cal A}_1$ est-elle utile?
+* Prochaine diapos : montrez que $\sigma({\cal A}_1) = {\cal B}$.
 
 ## Démonstration de $\sigma({\cal A}_1) = {\cal B} \equiv \sigma({\cal A}_2)$
 
 * ${\cal A}_1 \subset {\cal A}_2$ alors $\sigma({\cal A}_1) \subseteq \sigma({\cal A}_2)$.
 
 * L'autre direction, $\sigma({\cal A}_2) \subseteq \sigma({\cal A}_1)$ :
-    * $(a,b] = (-\infty, b] \cap (-\infty, a]^c$ doit être un élément de $\sigma({\cal A}_1)$.
-    * $(a,b) = (\cup_n (-\infty, b-1/n]) \cap (-\infty, a]^c \in \sigma({\cal A}_1)$.
-    * $[a,b] = (-\infty, b] \cap (\cup_n (-\infty, a-1/n]^c) \in \sigma({\cal A}_1)$.
-    * $[a,b) = (\cup_n (-\infty, b-1/n]) \cap (\cup_n (-\infty, a-1/n]^c) \in \sigma({\cal A}_1)$.
+    * Les intervalles suivants doivent être des éléments de $\sigma({\cal A}_1)$ :
+    $$(a,\infty) = (-\infty, a]^c,$$
+    $$(-\infty, b) = \cup_n (-\infty, b-1/n],$$
+    $$[a, \infty) = (-\infty, a)^c.$$
+    * Alors
+        * $(a,b] = (-\infty, b] \cap (a,\infty) \in \sigma({\cal A}_1)$, 
+        * $(a,b) = (-\infty, b) \cap (a,\infty) \in \sigma({\cal A}_1)$,
+        * $[a,b] = (-\infty, b] \cap [a,\infty) \in \sigma({\cal A}_1)$,
+        * $[a,b) = (-\infty, b) \cap [a,\infty) \in \sigma({\cal A}_1)$.
 
 * Alors $\sigma({\cal A}_1) = {\cal B} \equiv \sigma({\cal A}_2)$.
 
 ## Un semi-algèbre pour $\Omega = \{(r_1,r_2,\ldots): r_i \in \{0,1\}\}$
 
-* $\Omega$ est l'ensemble de séquences infinie des 'piles ou faces'.
-* $A_{a_1a_2\ldots a_n} \equiv \{(r_1,r_2,\ldots) \in \Omega \colon r_i = a_i, 1 \leq i \leq n\} \subseteq \Omega$.
-* $A_{a_1a_2\ldots a_n}$ est l'ensembles de séquences infinies avec l'histoire initial $a_1a_2\ldots a_n$.
+* $\Omega$ est l'ensemble de suites infinies des 'piles ou faces'.
+* Soit $A_{a_1a_2\ldots a_n} \equiv \{(r_1,r_2,\ldots) \in \Omega \colon r_i = a_i, 1 \leq i \leq n\} \subseteq \Omega$.
+* $A_{a_1a_2\ldots a_n}$ est l'ensemble de suites infinies avec l'histoire initial $a_1a_2\ldots a_n$.
 * ${\cal J} \equiv \{A_{a_1a_2\ldots a_n} \colon n\in \mathbb{N}, a_1,\ldots,a_n \in \{0,1\} \}
 \cup \{\emptyset, \Omega\}$.
 * $A_{a_1a_2\ldots a_n}$ comme un interval de $[0,1)$.
@@ -95,7 +103,7 @@ $$P(A_{a_1a_2\ldots a_n}) = 1/2^n,\quad P(\emptyset) = 0,\quad P(\Omega) = 1.$$
 
 ## Un semialgèbre pour $\Omega_1 \times \Omega_2$
 
-* Commençons avec deux espaces de probabilité : $(\Omega_1,{\cal F}_1,P_1)$ et $(\Omega_2,{\cal F}_2,P_2)$.
+* Soit $(\Omega_1,{\cal F}_1,P_1)$ et $(\Omega_2,{\cal F}_2,P_2)$ deux espaces de probabilité.
 
 * Nous voulons construire un semi-algèbre pour $\Omega = \Omega_1 \times \Omega_2$.
 
@@ -125,11 +133,11 @@ $$ \begin{aligned} \sum_{i=1}^n P(A_i \times B_i) &= \sum_{j\in J} \sum_{k\in K}
 * Définition d'une variable aléatoire :
 $X \colon \Omega \to \mathbb{R}$ telle que $\{X \leq x\} \in {\cal F}$ pour chaque $x \in \mathbb{R}$.
 
-* Ce qu'on peut construire sans s'inquiéter si elle est une variable aléatoire ou non:
-    * Les indicateurs $1_A(\omega)$, où $A \in {\cal F}$.
-    * La somme de deux variables aléatoires, les multiples scalaires des variables aléatoires
-    * Les limites des variables aléatoires
-    ($Z(\omega) = \lim_{n \to \infty} Z_n(\omega)$ pour $\omega \in \Omega)$)
+* Quelques fonctions sur $\Omega$ qui sont des variables aléatoires :
+    * les indicateurs $1_A(\omega)$, où $A \in {\cal F}$,
+    * la somme de deux variables aléatoires, les multiples scalaires des variables aléatoires,
+    * les limites des variables aléatoires:
+    ($Z(\omega) = \lim_{n \to \infty} Z_n(\omega)$ pour $\omega \in \Omega)$).
 
 * Indépendence
     * d'événements (du même espace de probabilité)
@@ -138,7 +146,7 @@ $X \colon \Omega \to \mathbb{R}$ telle que $\{X \leq x\} \in {\cal F}$ pour chaq
 
 ## Aperçu du Chapitre 3, partie II
 
-Convergence monotone d'événements :
+Convergence monotone d'événements (exemples) :
 
 * Pour $A_n \equiv [0, 1/n]$, $A_n \searrow \cap_n [0, 1/n] = \{0\}$.
 * Pour $A_n \equiv [0, 1-1/n]$, $A_n \nearrow \cup_n [0, 1-1/n] = [0,1)$.
