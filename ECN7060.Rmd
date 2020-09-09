@@ -11,6 +11,8 @@
 
 [Diapos, Cours 1, 2020/09/02](./ECN7060/ECN7060_1.pdf)
 
+[Diapos, Cours 2, 2020/09/09](./ECN7060/ECN7060_2.pdf)
+
 [Examen intra 2019](./ECN7060/EI19.pdf)
 
 [Examen final 2019](./ECN7060/EF19.pdf)
