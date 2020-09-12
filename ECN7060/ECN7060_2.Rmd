@@ -170,5 +170,6 @@ Pour les suites d'événements, pas forcément monotone,
 * $\liminf_{n \to \infty} A_n = \cup_{n=1}^\infty \cap_{k=n}^\infty A_k$
 * $\limsup_{n \to \infty} A_n = \cap_{n=1}^\infty \cup_{k=n}^\infty A_k$
 
-Exemple : $H_n \equiv \{(r_1,r_2,\ldots) \in \Omega \colon r_n = 1\}$.
+Exemple : $H_n \equiv \{(r_1,r_2,\ldots) \in \Omega \colon r_n = 1\}$, où $\Omega = \{(r_1,r_2,\ldots) \colon r_i \in \{0,1\}\}$.
+Trouvez 
 $\liminf_n H_n$ ($H_n$ presque toujours) et $\limsup_n H_n$ ($H_n$ infiniment souvent).
