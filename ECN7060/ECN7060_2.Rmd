@@ -163,7 +163,7 @@ Pour les séquences réels,
 * $\liminf_{n \to \infty} x_n \equiv \lim_{n \to \infty} (\inf_{m \geq n} x_m)$
 * $\limsup_{n \to \infty} x_n \equiv \lim_{n \to \infty} (\sup_{m \geq n} x_m)$
 
-Exemple : $A_n \equiv (-1)^n (1+1/n) = 2, -3/2, 4/3, -5/3, \ldots$
+Exemple : $x_n \equiv (-1)^n (1+1/n) = 2, -3/2, 4/3, -5/4, \ldots$
 
 Pour les suites d'événements, pas forcément monotone,
 
