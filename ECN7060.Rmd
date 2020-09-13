@@ -9,13 +9,18 @@
 
 [Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf)
 
-[Diapos, Cours 1, 2020/09/02](./ECN7060/ECN7060_1.pdf)
+#### Cours 1, 2020/09/02
 
-[Tableau, Cours 1, 2020/09/02](./ECN7060/Tableau_Cours_1.pdf)
+[Diapos](./ECN7060/ECN7060_1.pdf) [Tableau](./ECN7060/Tableau_Cours_1.pdf)
+[Réunion 1](https://umontreal.zoom.us/rec/share/PykJRDaR0NlufGmlnyrw6NthNr9sG0ZnHS5YOR8WxuAvir6zHNRBLsHIguyioUbc.pPSUU2vekQowglPz) (2 sept. 2020 12:29)
+[Réunion 2](https://umontreal.zoom.us/rec/share/oUOQG2m5XAjBUnox3pQEIVOBS1ZebHFG31GHYOtAQ3DGS_Yw4FohBWAylmqxBLoO.oXfAXhPZEOMdeNwR) (5 sept. 2020 09:23)
 
-[Diapos, Cours 2, 2020/09/09](./ECN7060/ECN7060_2.pdf)
+#### Cours 2, 2020/09/09
 
-[Tableau, Cours 2, 2020/09/09](./ECN7060/Tableau_Cours_2.pdf)
+[Diapos](./ECN7060/ECN7060_2.pdf) [Tableau](./ECN7060/Tableau_Cours_2.pdf)
+[Réunion](https://umontreal.zoom.us/rec/share/9H6nHbW_jIFRUiSQTiWXvuBX3qxH754iAmAcLK5TVM_HyDmst35ztM6QOc-UlIk0.RnlG5DTfcqDDhsVG) (12 sept. 2020 08:27)
+
+#### Examens récents
 
 [Examen intra 2019](./ECN7060/EI19.pdf)
 
