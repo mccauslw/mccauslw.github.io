@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 * 2.1 Définition d'un espace de probabilité
 * 2.2 Construction de $(\Omega, {\cal F}, P)$ pour $\Omega$ indénombrable,
-      une spécification suffisante (un semi-algèbre ${\cal J}$ et un
+      une spécification suffisante (une semi-algèbre ${\cal J}$ et un
       $P\colon{\cal J}\to [0,1]$ avec superadditivité plus monotonicité
       dénombrable) pour $\Omega = [0,1]$
 * 2.3 Théorème d'extension : un outil pour construire ${\cal F}$, $P$
@@ -72,7 +72,7 @@ Conclusion : il y a une tribu ${\cal M}$ sur $\Omega$ et une probabilité $P^*$ 
 
 * Alors $\sigma({\cal A}_1) = {\cal B} \equiv \sigma({\cal A}_2)$.
 
-## Un semi-algèbre pour $\Omega = \{(r_1,r_2,\ldots): r_i \in \{0,1\}\}$
+## Une semi-algèbre pour $\Omega = \{(r_1,r_2,\ldots): r_i \in \{0,1\}\}$
 
 * $\Omega$ est l'ensemble de suites infinies des 'piles ou faces'.
 * Soit $A_{a_1a_2\ldots a_n} \equiv \{(r_1,r_2,\ldots) \in \Omega \colon r_i = a_i, 1 \leq i \leq n\} \subseteq \Omega$.
@@ -82,7 +82,7 @@ Conclusion : il y a une tribu ${\cal M}$ sur $\Omega$ et une probabilité $P^*$ 
 * $A_{a_1a_2\ldots a_n}$ comme un interval de $[0,1)$.
 * $A_{01011} \cap A_{0110000} = ?$, $A_{01} \cap A_{01101} = ?$, $A_{a_1a_2\ldots a_n} \cap A_{b_1b_2\ldots b_{n'}} = ?$
 * $A_{010}^c = ?$, $A_{a_1a_2\ldots a_n}^c = ?$
-* ${\cal J}$ est-il un semi-algèbre?
+* ${\cal J}$ est-elle une semi-algèbre?
 
 ## Une proto-probabilité pour $\Omega = \{(r_1,r_2,\ldots): r_i \in \{0,1\}\}$
 
@@ -101,11 +101,11 @@ $$P(A_{a_1a_2\ldots a_n}) = 1/2^n,\quad P(\emptyset) = 0,\quad P(\Omega) = 1.$$
 
 * Pourquoi le cas d'additivité dénombrable n'est pas trivial?
 
-## Un semialgèbre pour $\Omega_1 \times \Omega_2$
+## Une semi-algèbre pour $\Omega_1 \times \Omega_2$
 
 * Soit $(\Omega_1,{\cal F}_1,P_1)$ et $(\Omega_2,{\cal F}_2,P_2)$ deux espaces de probabilité.
 
-* Nous voulons construire un semi-algèbre pour $\Omega = \Omega_1 \times \Omega_2$.
+* Nous voulons construire une semi-algèbre pour $\Omega = \Omega_1 \times \Omega_2$.
 
 * Soit ${\cal J} \equiv \{A \times B \colon A \in {\cal F}_1, B \in {\cal F}_2 \}$.
 
