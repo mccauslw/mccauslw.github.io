@@ -111,11 +111,10 @@ Alors
   \end{aligned}
 \]
 
-Notes :
+## Notes sur les limites ponctuelles
 
 1. Fonctions sur $\Omega = \mathbb{R}$ avec un ensemble dénombrable de discontinuités.
-
-1. Avec des limites et des sommes finies, on a des sommes infinies convergentes.
+1. Comme les limites ponctuelles et les sommes finies de v.a. sont des variables aléatoires, les sommes infinies convergentes sont des variables aléatoires.
 
 ## Indépendance de deux événements sur $(\Omega,{\cal F},P)$
 
@@ -147,7 +146,7 @@ $P(A\cap C) = P(A)P(C)$ et $P(A\cap B\cap C) = P(A)P(B)P(C)$.
 
 ## Indépendance d'un ensemble $I$ d'événements
 
-* L'ensemble $I$ peut être indénombrable (Exemple : processus stochastique en temps continu)
+* L'ensemble $I$ peut être indénombrable (Exemple : processus stochastique $X_t(\omega)$ en temps continu)
 * $\{A_\alpha\}_{\alpha \in I}$ sont indépendants si pour chaque $j \in \mathbb{N}$ et chaque
 $\alpha_1,\ldots,\alpha_j$,
 $$ P(A_{\alpha_1} \cap A_{\alpha_2} \cap \ldots \cap A_{\alpha_j})
@@ -197,7 +196,7 @@ $$B_1 = A_1,\, B_2 = A_2 \cap A_1^c,\, \ldots,\, B_n = A_n \cap A_{n-1}^c,\, \ld
 
 * Notez que $B_n \in {\cal F}$, $A_n = \cup_{m=1}^n B_m$ et $A = \cup_{m=1}^\infty B_m$.
 
-* Alors
+* Alors $A \in {\cal F}$ et
 $$ P(A) = P(\cup_{m=1}^\infty B_m) = \sum_{m=1}^\infty P(B_m) = \lim_{n\to \infty} \sum_{m=1}^n P(B_n) = \lim_{n\to \infty} P(A_n).$$
 
 * Si $A_n \searrow A$ et $A_n \in {\cal F}$, $A_n^c \nearrow A^c$ puis
