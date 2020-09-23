@@ -40,7 +40,7 @@ $$ \int_{0}^\infty X(t)\, dt = \lim_{b\to \infty} \int_0^b X(t)\, dt,
 * Pour tous $n$, $L \int_0^1 1_{\mathbb{Q}_n}(t) = U \int_0^1 1_{\mathbb{Q}_n}(t) = 0$.
 
 * Notez que
-    * $\lim_{n\to \infty} 1_{\mathbb{Q}_n}(t) = 1_\mathbb{Q}(t)$ pour tous $t$,
+    * $\lim_{n\to \infty} 1_{\mathbb{Q}_n}(t) = 1_\mathbb{Q}(t)$ pour tous $t \in [0,1]$,
     * $0 = \lim_{n\to \infty} U \int_0^1 1_{\mathbb{Q}_n}(t) \neq U \int_0^1 1_\mathbb{Q}(t) = 1$.
     * $1_{\mathbb{Q}_n}(t) \leq 1_{\mathbb{Q}_{n+1}}(t)$ pour tous $t$,
 
@@ -58,13 +58,13 @@ et pour tous $t \neq 0$,
 
 ## Une variable aléatoire simple sur $\Omega = [0,1]$
 
-* Trois façons d'écrire la même variable aléatoire :
+* Trois façons d'écrire la même variable aléatoire simple $X$ :
 
     1. $X(\omega) = 2 \cdot 1_{[0,1/4) \cup (1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
     1. $X(\omega) = 2 \cdot 1_{[0,1/4)}(\omega) + 2 \cdot 1_{(1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
     1. $X(\omega) = 2 \cdot 1_{\Omega}(\omega) + 1 \cdot 1_{[1/4,1/2]}(\omega)$
     
-* L'image de $X$ est $\{x_1,x_2\} = \{2, 3\}$, un ensemble fini.
+* L'image de $\Omega$ par $X$ est $\{x_1,x_2\} = \{2, 3\}$, un ensemble fini.
 
 * Dans 1, $X$ est de la forme canonique
 $$ X(\omega) = \sum_{x \in X(\Omega)} x \cdot 1_{\{X^{-1}(\{x\})\}}(\omega). $$
@@ -101,7 +101,7 @@ $$ E[X] = E[X^+] - E[X^-]. $$
     * Cohérence des trois définitions.
     * Valeurs possibles; quand la troisième n'est pas bien définie.
 
-## Exemples pertinents de l'espérance d'une v.a. simple
+## L'espérance de la fonction irrégulière $1_Q$ est bien définie
 
 * Soit $(\Omega, {\cal F}, P)$ l'espace de probabilité $([0,1], {\cal B}, \mu)$ où $\mu$ est la mesure de Lebesgue.
 
@@ -137,7 +137,7 @@ Toutes les intersections $A_i \cap B_j$ :
 
 | \hspace{2cm}  | $A_1=[0,1/4)$   | $A_2=[1/4,1/2]$ | $A_3=(1/2,1]$  |
 |:-------------:|:---------------:|:---------------:|:--------------:|
-|$B_1=[0,3/4]$  | $A_1$           | $A_2$           | $(1/2,1]$      |
+|$B_1=[0,3/4]$  | $A_1$           | $A_2$           | $(1/2,3/4]$      |
 |$B_2=(3/4,1]$  | $\emptyset$     | $\emptyset$     | $B_2$          |
 
 ## Linéarité de l'espérance, variables aléatoires simples II
@@ -204,7 +204,7 @@ Pour toute variable aléatoire $X \geq 0$,
 |$v^+ < \infty$|$v^- = \infty$|$-\infty$  |
 |$v^+ = \infty$|$v^- = \infty$|pas défini |
 
-* Attention : la valeur d'une v.a. n'est jamais $\infty$ ou $-\infty$. La valeur d'un $\sup$, $\inf$ ou $\lim$ peut l'être.
+* Attention : la valeur d'un $\sup$, $\inf$ ou $\lim$ peut être $\infty$ ou $-\infty$, même si la valeur d'une v.a. est toujours finie.
 
 ## Les espérances et les intégrales impropres
 
@@ -227,6 +227,24 @@ Exemples :
 ##
 ![](Figures/Singularites_regions_bornees.png)
 
+## Convergence monotone de $X_n$ simple à $X$ non-négative
+
+* Les fonctions $\Psi_n \colon \mathbb{R} \to \mathbb{R}$ :
+$$ \Psi_n(x) = \min(n,2^{-n} \lfloor 2^n x \rfloor). $$
+* Propriétés de $\Psi_n(x)$ :
+    * $0 \leq \Psi_n(x) \leq x$, $x \geq 0$.
+    * Pour tout $x \in \mathbb{R}$, $\Psi_n(x) \nearrow x$.
+    * Pour tout $n$, $\Psi_n(\mathbb{R})$ est fini.
+* Construction $X_n(\omega) = \Psi_n(X(\omega))$.
+* Propriétés de $X_n$ :
+    * $X_n$ est simple
+    * $X_n \leq X_{n+1} \leq X$
+    * $\lim_{n\to \infty} X_n(\omega) = X(\omega)$, $\omega \in \Omega$.
+    * $E[X_n] \leq E[X]$ (définition de $E[X]$)
+    * $\lim_{n\to \infty} E[X_n(\omega)] \leq E[X]$
+* Pourquoi pas $\Psi_n(x) = \min(n, n^{-1} \lfloor nx \rfloor)$? $\Psi_n(x) = 2^{-n} \lfloor 2^n x \rfloor)$?
+* Remarquez la discrétisation de $X(\Omega)$, pas $\Omega$.
+
 ## La fonction $\Psi_n(x)$
 
 ```{r Psi}
@@ -244,7 +262,7 @@ y3 = Psi_fcn(x, 3)
 ## Graphique de la fonction $\Psi_n(x)$, $n=1,2,3$
 
 ```{r Psi_graph}
-plot(x, Psi_fcn(x, 1), 'l', xlim=c(0, 2))
+plot(x, Psi_fcn(x, 1), 'l', xlim=c(0, 4), ylim=c(0, 4))
 lines(x, Psi_fcn(x, 2), col='green')
 lines(x, Psi_fcn(x, 3), col='blue')
 ```
@@ -272,53 +290,37 @@ lines(x, X1, col='black'); lines(x, X2, col='green');
 lines(x, X3, col='blue')
 ```
 
-## Convergence monotone de $X_n$ simple à $X$ non-négative
-
-* Les fonctions $\Psi_n \colon \mathbb{R} \to \mathbb{R}$ :
-$$ \Psi_n(x) = \min(n,2^{-n} \lfloor 2^n x \rfloor). $$
-* Propriétés de $\Psi_n(x)$ :
-    * $0 \leq \Psi_n(x) \leq x$, $x \geq 0$.
-    * Pour tout $x \in \mathbb{R}$, $\Psi_n(x) \nearrow x$.
-    * Pour tout $n$, $\Psi_n(\mathbb{R})$ est fini.
-* Construction $X_n(\omega) = \Psi_n(X(\omega))$.
-* Propriétés de $X_n$ :
-    * $X_n$ est simple
-    * $X_n \leq X_{n+1} \leq X$
-    * $\lim_{n\to \infty} X_n(\omega) = X(\omega)$, $\omega \in \Omega$.
-    * $E[X_n] \leq E[X]$ (définition de $E[X]$)
-    * $\lim_{n\to \infty} E[X_n(\omega)] \leq E[X]$
-* Pourquoi pas $\Psi_n(x) = \min(n, n^{-1} \lfloor nx \rfloor)$? $\Psi_n(x) = 2^{-n} \lfloor 2^n x \rfloor)$?
-* Remarquez la discrétisation de $X(\Omega)$, pas $\Omega$.
-
 ## Théorème de convergence monotone
 
-* Supposez que $X_1, X_2,\ldots$ sont des variables aléatoires non-négatives avec $X_n(\omega) \nearrow X(\omega)$ pour tout $\omega \in \Omega$.
+* Théorème : supposez que $X_1, X_2,\ldots$ sont des variables aléatoires non-négatives avec $X_n(\omega) \nearrow X(\omega)$ pour tout $\omega \in \Omega$.
 Alors $X$ est une variable aléatoire et $E[X] = \lim_{n\to \infty} E[X_n]$.
 
 * Remarque : les $X_n$ ne sont pas forcément simples.
 
-* Par monotonicité, $E[X_1] \leq E[X_2] \leq \ldots \leq E[X]$.
+* Par monotonicité, $E[X_1] \leq E[X_2] \leq \ldots \leq E[X]$ et en conséquence immédiate,
+$$ \lim_{n\to \infty} E[X_n] \leq E[X]. $$
 
 * Attention : $E[X_n] = \infty$, $E[X] = \infty$ possible.
-
-* Immédiatement, $\lim_{n\to \infty} E[X_n] \leq E[X]$.
 
 * Il reste à prouver que $\lim_{n\to \infty} E[X_n] \geq E[X]$.
 
 ## Preuve de $\lim_{n\to \infty} E[X_n] \geq E[X]$
 
 * Soit $Y$ simple, $Y \leq X$ (alors $E[Y] \leq E[X]$). Soit $\epsilon > 0$.
-* $Y = \sum_i v_i 1_{A_i}$ où $\{A_i\}$ est une partition de $\Omega$ en événements et $v_i \leq X(\omega)$ pour tout $\omega \in A_i$.
+* $Y = \sum_i v_i 1_{A_i}$ où $\{A_i\}$ est une partition de $\Omega$ en événements et $v_i \leq X(\omega)$ pour tous $\omega \in A_i$.
 * Pour tout $i$ et $n$, soit $A_{in} \equiv \{\omega \in A_i \colon X_n(\omega) \geq v_i - \epsilon\}$.
 * Alors pour tout $i$, $\{A_{in}\} \nearrow A_i$. (monotonicité, convergence) 
 * Alors $E[X_n] \geq \sum_i (v_i - \epsilon) P(A_{in})$. (à droite : $E[Y_n]$, $Y_n$ simple)
 * Par convergence de probabilité :
 \[
-  \lim_{n\to \infty} \sum_i (v_i - \epsilon) P(A_{in}) = \left(\sum_i v_i P(A_i)\right) - P(\cup_i A_i) \epsilon,
+  \lim_{n\to \infty} \sum_i (v_i - \epsilon) P(A_{in}) = \left(\sum_i v_i P(A_i)\right) - P(\cup_i A_i) \epsilon = E[Y] - \epsilon,
 \]
 * Alors $lim_{n\to \infty} E[X_n] \geq E[Y] - \epsilon$.
 * $\epsilon > 0$ est arbitraire alors $\lim_{n\to \infty} E[X_n] \geq E[Y]$.
 * $Y$ est arbitraire, alors $\lim_{n\to \infty} E[X_n] \geq E[X]$.
+
+##
+![](./Figures/Convergence_monotone.png)
 
 ## Remarques
 
