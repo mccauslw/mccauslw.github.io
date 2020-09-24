@@ -42,15 +42,15 @@ knitr::opts_chunk$set(echo = FALSE)
   P[|Y-\mu_Y| \geq \epsilon] \leq \frac{1}{\epsilon^2} \mathrm{Var}[Y].
 \]
 * Preuve :
-    * Sit $X = (Y-\mu_Y)^2$, soit $\alpha = \epsilon^2$.
+    * Soit $X = (Y-\mu_Y)^2$, $\alpha = \epsilon^2$.
     * Alors par l'inégalité de Markov,
     \[
       P(|Y-\mu_Y| \geq \epsilon) = P(X \geq \epsilon^2) \leq \frac{1}{\epsilon^2}\mathrm{Var}[Y].
     \]
 * Notes :
-    * $\mathrm{Var}[Y] = \infty$ est possible, mais l'inégalité ne contraint pas.
+    * $\mathrm{Var}[Y] = \infty$ est possible, auquel cas l'inégalité ne contraint pas.
     * $\epsilon^{-2}$ peut être très grand, mais c'est fini.
-    * Application : borner la probabilité d'une valeur loin de la moyenne, pour une v.a. $X_n$ d'une suite où la variance devient arbitrairement petite. On veut choisir $n$ après $\epsilon$.
+    * Application : borner la probabilité d'une déviation plus grande qu'epsilon, pour chaque $X_n$ d'une suite, où $\mathrm{Var}[X_n] \rightarrow 0$. On veut choisir $n$ après $\epsilon$.
     
 ## Définitions
 
@@ -59,7 +59,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \[
   \lim_{n\to \infty} Z_n(\omega) = Z(\omega).
 \]
-* Convergence de $Z_n$ à $Z$ presque sur, $Z_n \overset{p.s.}{\to} Z$ :
+* Convergence de $Z_n$ à $Z$ presque sûre, $Z_n \overset{p.s.}{\to} Z$ :
 \[
   P[\{Z_n \to Z\}] = 1,\;\mbox{ou}\; P(Z_n \to Z) = 1.
 \]
@@ -84,11 +84,11 @@ $A_4 = [0,1/4)$, $A_5 = [1/4,1/2)$, $A_6 = [1/2,3/4)$, $A_7 = [3/4,1]$, ...
 
 ## Une condition suffisante pour convergence p.s.
 
-La condition : pour tout $\epsilon > 0$, $\sum_n P(|Z_n - Z|\geq \epsilon) < \infty.$
+La condition : pour tout $\epsilon > 0$, $\sum_{n=1}^\infty P(|Z_n - Z|\geq \epsilon) < \infty.$
 
 Preuve :
 
-* Soit $\epsilon > 0$ et supposez que $\sum_n P(|Z_n - Z|\geq \epsilon) < \infty.$
+* Soit $\epsilon > 0$ et supposez que $\sum_{n=1}^\infty P(|Z_n - Z|\geq \epsilon) < \infty.$
 * Alors
 \[
   \lim_{m \to \infty} \sum_{k=m}^\infty P(|Z_k - Z| \geq \epsilon) = 0.
@@ -146,10 +146,17 @@ Preuve :
 
 ## Deux exemples
 
-Soit $Y = Z = 0$, $Y_n$, $Z_n$ des suites de v.a. telles que
+Soit $Y = Z = 0$, $Y_n$, $Z_n$ des suites de v.a. sur un espace de probabilité $(\Omega, {\cal F}, P)$ telles que
 
 * $\Pr[Y_n = 0] = 1-1/n^2$, $\Pr[Y_n = 1] = 1/n^2$.
 * $\Pr[Z_n = 0] = 1-1/n$, $\Pr[Z_n = 1] = 1/n$.
+
+Par exemple, sur $(\mathbb{R}, {\cal B}, P)$, où $P((a,b]) = \min(b,1) - \max(a,0)$ pour $b \geq a$,
+
+* $Y_n = 1_{[0, 1/n^2]}$
+* $Z_n = 1_{[0, 1/n]}$
+
+## Deux exemples, suite
 
 Pour la suite $Y_n$ :
 
@@ -212,7 +219,7 @@ $\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$
     * $g(x) = ax+b$
     * $g(x) \leq \phi(x)$
     * $g(E[X]) = \phi(E[X])$
-* Notez que $\phi$ n'a pas forcément une dérivée à $E[X]$, auquel cas $g$ n'est pas unique.
+* Il est possible que $\phi$ n'ait pas de dérivée à $E[X]$, auquel cas $g$ n'est pas unique.
 * L'inégalité de Jensen :
 \[
   E[\phi(X)] \geq E[g(X)] = aE[X] + b = \phi(E[X]).
