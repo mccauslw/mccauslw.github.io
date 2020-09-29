@@ -25,13 +25,16 @@ knitr::opts_chunk$set(echo = FALSE)
         \alpha & X(\omega) \geq \alpha.
       \end{cases}
     \]
-    * Alors, par monotonicitè,
+    * $Z \leq X$ alors par monotonicitè,
     \[
       E[Z] = \alpha P[X \geq \alpha] \leq E[X].
     \]
 * Questions :
     1. Donnez un exemple d'un $X \geq 0$ qui donne une égalité.
     2. Donnez des conditions nécessaires et suffisantes pour une égalité.
+
+##
+![](./Figures/Inegalite_Markov.png)
 
 ## Inégalité de Chebychev
 
@@ -72,7 +75,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 * Prenez l'espace de probabilité $(\Omega, {\cal F}, P)$ où $\Omega = [0,1]$, ${\cal F} = {\cal B}$, $P$ la mesure de Lebesgue.
 * Soit $A_1 = \Omega = [0,1]$, $A_2 = [0,1/2)$, $A_3 = [1/2,1]$,
-$A_4 = [0,1/4)$, $A_5 = [1/4,1/2)$, $A_6 = [1/2,3/4)$, $A_7 = [3/4,1]$, ...
+$A_4 = [0,1/4)$, $A_5 = [1/4,1/2)$, $A_6 = [1/2,3/4)$, $A_7 = [3/4,1]$, $A_8 = [0,1/8)$, ... (prochaine diapo).
 * Soit $X = 0$ et pour tout $n \in \mathbb{N}$, $X_n = 1_{A_n}(\omega)$.
 * Convergence presque sûre?
     * Pour tous $\omega$, $\liminf_n X_n(\omega) = 0$, $\limsup_n X_n(\omega) = 1$.
@@ -82,11 +85,14 @@ $A_4 = [0,1/4)$, $A_5 = [1/4,1/2)$, $A_6 = [1/2,3/4)$, $A_7 = [3/4,1]$, ...
     * $P(X_n = X) \approx 1-1/n \to 1$.
     * Alors pour tout $\epsilon > 0$, $P(|X_n - X| \geq \epsilon) \to 0$.
 
+##
+![](./Figures/Convergence_p_ps.png)
+
 ## Une condition suffisante pour convergence p.s.
 
 La condition : pour tout $\epsilon > 0$, $\sum_{n=1}^\infty P(|Z_n - Z|\geq \epsilon) < \infty.$
 
-Preuve :
+Preuve de suffisance :
 
 * Soit $\epsilon > 0$ et supposez que $\sum_{n=1}^\infty P(|Z_n - Z|\geq \epsilon) < \infty.$
 * Alors
@@ -102,6 +108,9 @@ Preuve :
   \end{aligned}
 \]
 * Puisque $m$ est arbitraire, $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
+
+##
+![](./Figures/Infiniment_pt.png)
 
 ## Preuve, continuée
 
