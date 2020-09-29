@@ -32,7 +32,7 @@
 
 #### Cours 5, 2020/09/30
 
-[Diapos](.ECN7060/ECN7060_5.pdf)
+[Diapos](./ECN7060/ECN7060_5.pdf)
 
 #### Examens récents
 
