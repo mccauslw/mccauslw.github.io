@@ -109,9 +109,6 @@ Preuve de suffisance :
 \]
 * Puisque $m$ est arbitraire, $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
 
-##
-![](./Figures/Infiniment_pt.png)
-
 ## Preuve, continuée
 
 Rappel : la condition suffisante de l'avant-dernière diapo entraine $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
@@ -120,7 +117,7 @@ Alors (nous utilisons ce résultat à la dernière équation)
 \[
   \begin{aligned}
     P(\exists \epsilon > 0, |Z_n - Z| \geq \epsilon\; i.o)
-    &\leq P(\exists \epsilon' > 0, \epsilon' \in \mathbb{Q}, |Z_n - Z| \geq \epsilon\; i.o.) \\
+    &\leq P(\exists \epsilon' > 0, \epsilon' \in \mathbb{Q}, |Z_n - Z| \geq \epsilon'\; i.o.) \\
     &= P(\cup_{\epsilon \in \mathbb{Q}_{++}} |Z_n - Z| \geq \epsilon\; i.o.) \\
     &\leq \sum_{\epsilon \in \mathbb{Q}, \epsilon > 0} P(|Z_n - Z| \geq \epsilon\; i.o.) = 0.
   \end{aligned}
@@ -133,6 +130,9 @@ Alors
 \[
   P(Z_n \to Z) = 1.
 \]
+
+##
+![](./Figures/Infiniment_pt.png)
 
 ## Convergence presque sûre $\to$ convergence en probabilité
 
@@ -240,7 +240,7 @@ $\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$.
 
 ## Applications de l'inégalité de Jensen
 
-1. Kurtosis $K$, s'il existe, est toujours plus grand que 1, où
+1. Kurtosis $K$, s'il existe, vérifie $K\geq 1$, où
 \[
   K \equiv \frac{E[(Z-\mu)^4]}{E[(Z-\mu)^2]^2}.
 \]
@@ -248,10 +248,10 @@ Supposons que les quatre premiers moments existent et sont finis.
 Soit $Y=Z-\mu$. Prenez $\phi(x) = x^2$, $X = Y^2$.
 1. Kurtosis d'un mélange-échelle $Z$ de v.a. gaussiennes. Soit $Y=Z-\mu$.
 \[
-  E[Y^4] = E[E[X^4|\sigma^2]] = E[3\sigma^4] \geq 3E[\sigma^2]^2,
+  E[Y^4] = E[E[Y^4|\sigma^2]] = E[3\sigma^4] \geq 3E[\sigma^2]^2,
 \]
 \[
-  E[Y^2] = E[E[X^2|\sigma^2]] = E[\sigma^2],
+  E[Y^2] = E[E[Y^2|\sigma^2]] = E[\sigma^2],
 \]
 \[
   K \geq 3.
@@ -270,7 +270,7 @@ Première équation : $X = \sigma^2$, $\phi(x) = x^2$.
 
 * Continuité à droite : $x_n \searrow x \Rightarrow (-\infty,x_n] \searrow (-\infty,x] \Rightarrow F(x_n) \to F(x)$, par continuité de probabilité.
 
-* Continuité à gauche? : $x_n \nearrow x \Rightarrow (-\infty,x_n] \nearrow (-\infty,x) \Rightarrow F(x_n) \to F(x) - \Pr[\{x\}]$.
+* Continuité à gauche? : $x_n \nearrow x,\, x_n < x \Rightarrow (-\infty,x_n] \nearrow (-\infty,x) \Rightarrow F(x_n) \to F(x) - \Pr[\{x\}]$.
 
 * $\lim_{x\to \infty} F(x) = P(\Omega) = 1$, $\lim_{x\to -\infty} F(x) = P(\emptyset) = 0$ par continuité de probabilité.
 
