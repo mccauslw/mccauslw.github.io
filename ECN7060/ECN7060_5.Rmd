@@ -114,13 +114,13 @@ Preuve de suffisance :
 
 ## Preuve, continuée
 
-Rappel : la condition entraine $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
+Rappel : la condition suffisante de l'avant-dernière diapo entraine $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
 
-Alors
+Alors (nous utilisons ce résultat à la dernière équation)
 \[
   \begin{aligned}
     P(\exists \epsilon > 0, |Z_n - Z| \geq \epsilon\; i.o)
-    &= P(\exists \epsilon \in \mathbb{Q}, \epsilon > 0, |Z_n - Z| \geq \epsilon\; i.o.) \\
+    &\leq P(\exists \epsilon' > 0, \epsilon' \in \mathbb{Q}, |Z_n - Z| \geq \epsilon\; i.o.) \\
     &= P(\cup_{\epsilon \in \mathbb{Q}_{++}} |Z_n - Z| \geq \epsilon\; i.o.) \\
     &\leq \sum_{\epsilon \in \mathbb{Q}, \epsilon > 0} P(|Z_n - Z| \geq \epsilon\; i.o.) = 0.
   \end{aligned}
@@ -176,7 +176,7 @@ Pour la suite $Z_n$ :
 
 * $\Pr[Z_n \neq Z] = 1/n \to 0$ alors $Z_n \overset{p}{\to} Z$.
 * Mais $\sum_{n=1}^\infty \Pr[|Z_n - Z| \geq 1] = \sum_{n=1}^\infty 1/n = \infty$.
-* Si $Z_n = 1_{(0,1/n)}$, $P$ est la mesure de Lebesgue sur $\Omega = [0,1]$,
+* Si $Z_n = 1_{[0,1/n]}$ et $P$ est la mesure de Lebesgue sur $\Omega = [0,1]$, (comme dans l'exemple de la diapo précédente)
 $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 * Par contre, si les $Z_n$ sont indépendants, par Borel-Cantelli (ii)
 \[
@@ -187,7 +187,7 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 
 * Une faible loi de grands nombres :
     * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_i$.
-    * Supposez que pour tous $n$, $E[X_n] = m$ et $\mathrm{Var}[X_n] < v < \infty$.
+    * Supposez que pour tous $n$, $E[X_n] = m < \infty$ et $\mathrm{Var}[X_n] < v < \infty$.
     * Alors $S_n \overset{p}{\to} m$.
 * Preuve :
     * Pour tous $n$, $E[S_n] = m$ et $\mathrm{Var}[S_n] \leq v/n$.
@@ -197,7 +197,7 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 
 * Une forte loi de grands nombres
     * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_i$.
-    * Supposez que pour tous $n$, $E[X_n] = m$, $E[(X_n-m)^4] \leq a < \infty$.
+    * Supposez que pour tous $n$, $E[X_n] = m < \infty$, $E[(X_n-m)^4] \leq a < \infty$.
     * Alors $P(S_n \to m) = 1$.
 
 ## Preuve, forte loi de grands nombres
@@ -234,6 +234,9 @@ $\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$
   E[\phi(X)] \geq E[g(X)] = aE[X] + b = \phi(E[X]).
 \]
 * Note : Si $g$ n'est pas unique, tous les choix donnent le même résultat.
+
+##
+![](./Figures/Inegalite_Jensen.png)
 
 ## Applications de l'inégalité de Jensen
 
