@@ -202,7 +202,7 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 
 ## Preuve, forte loi de grands nombres
 
-* Notez que $(X_i - m)^2 \leq (X_i-m)^4 + 1$ pour tout $\omega \in \Omega$. (Soit $(X_i-m)^2 > 1$, soit non; $y^2 - y + 1$ n'a pas de racine réelle)
+* Notez que $(X_i - m)^2 \leq (X_i-m)^4 + 1$ pour tout $\omega \in \Omega$. (Si $(X_i-m)^2 > 1$, $(X_i - m)^2 < (X_i - m)^4$.
 * Supposez que $m = 0$, sans perte de généralité.
 * Remarquez que $S_n^4 = \frac{1}{n^4} \sum_{i,j,k,l} X_i X_j X_k X_l$.
 * Alors
@@ -218,7 +218,7 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
   P(|S_n| \geq \epsilon) = P(|S_n|^4 \geq \epsilon^4) \leq \frac{a + 3v^2}{n^2\epsilon^4}
 \]
 et la somme suivante converge :
-$\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$
+$\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$.
 
 ## Inégalité de Jensen
 
