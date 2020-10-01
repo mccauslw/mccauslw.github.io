@@ -21,7 +21,7 @@ $$ E[\liminf_{n\to \infty} X_n] \leq \liminf_{n\to \infty} E[X_n]. $$
     
 * Construction d'une séquence convergente : $Y_n \equiv \inf_{k\geq n} X_k$.
     1. $0 \leq Y_n \leq X_n$.
-    1. $Y_n \leq Y_{n+1}$ ($\{k \geq n\}$ décroissant).
+    1. $Y_n \leq Y_{n+1}$ ($\{n, n+1, \ldots \}$ décroissant en $n$).
     1. $Y_n \nearrow Y \equiv \liminf_{n\to \infty} X_n$.
 
 * Preuve :
