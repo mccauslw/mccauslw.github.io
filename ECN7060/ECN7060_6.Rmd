@@ -50,7 +50,7 @@ $P(X_n \to X) = 1$, $|X_n| \leq Y$ et $E[Y] < \infty$.
 $$ \lim_{n\to \infty} E[X_n] = E[X]. $$
 
 * Notes :
-    1. La condition avec $Y$ (dominance) plus faible que $|X_n|$ uniformement bornés ($Y=c$); le résultat est donc plus fort.
+    1. La dominance par une $Y$ à moyenne finie est plus faible qu'une borne uniform pour $|X_n|$ ($Y=c$); le résultat est donc plus fort.
     1. Même v.a. dominante $Y$ pour tous les $n$.
 
 * Preuve :
@@ -60,14 +60,15 @@ $$ E[Y] - E[X] = \ldots \leq \ldots = E[Y] - \limsup_n E[X_n]. $$
 $$ \limsup_n E[X_n] \leq E[X] \leq \liminf_n E[X_n]. $$
 $$ \lim_n E[X_n] = E[X]. $$
 
-## Remarque sur les ensembles non-dénombrables de variables aléatoires
+## Sur les ensembles non-dénombrables de variables aléatoires
 
 * Soit $\{X_t\}_{t\geq 0}$, un ensemble non-dénombrable de variables aléatoires.
 * Exemples :
-    * $e^{sX}$, dont l'espérance est $M_X(s)$, une fonction de $s$ réel.
-    * $X \sim N(\mu, \sigma^2)$, $\mu$ et $\sigma^2$ inconnus. $E[f(X)]$ est une fonction de $\mu$, $\sigma^2$.
+    * $X_s = e^{sX}$, dont l'espérance est $M_X(s)$, une fonction de $s$ réel.
+    * $X \sim N(\mu, \sigma^2)$, $\mu$ et $\sigma^2$ inconnus. $E[f(X)]$ est une fonction de $\mu$, $\sigma^2$,
+    * $X_t$ est un processus aléatoire en temps continu.
 * Supposons que
-    * $\lim_{t \downarrow 0}X_t(\omega) = X(\omega)$, $\omega \in \Omega$,
+    * $\lim_{t \downarrow 0}X_t(\omega) = X(\omega)$, $\omega \in \Omega$, et
     * il exist une v.a. $Y$ telle que $|X_t| < Y$ et $E[Y] < \infty$.
 * Alors pour toute suite $t_n \downarrow 0$,
 $$ E[X_{t_n}] \to E[X_0]. $$
@@ -79,11 +80,11 @@ $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
 * Soit $\{F_t\}_{a<t<b}$ un ensemble de variables aléatoires.
 * Conditions suffisantes pour $\frac{dE[F_t]}{dt} = E[F_t']$ :
     1. Pour tout $t \in (a,b)$ : $-\infty < E[F_t] < \infty$.
-    1. Il existe une v.a. $Y$ telle que $E[Y] < \infty$ et pour tous $t \in (a,b)$ et $\omega \in \Omega$, $F_t'(\omega)$ existe et $|F_t'(\omega)| \leq Y(\omega)$.
+    1. Il existe une v.a. $Y$ telle que $E[Y] < \infty$ et pour tout $t \in (a,b)$ et $\omega \in \Omega$, $F_t'(\omega)$ existe et $|F_t'(\omega)| \leq Y(\omega)$.
 * Preuve : fixez $t\in (a,b)$. Alors
     1. $F_t' = \lim_{n\to \infty} n(F_{t+1/n}-F_t)$, la limite d'une séquence de
     variables aléatoires, est une variable alétoire.
-    1. Pour tous $h$, $0 < h < b-t$,
+    1. Pour tout $h$, $0 < h < b-t$,
     (théorème des accroissements finis, mean value theorem)
     $$ \left|\frac{F_{t+h}-F_t}{h}\right| \leq Y. $$
     1. Alors
@@ -99,13 +100,13 @@ $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
     * $M_X$ n'existe pas toujours, même si $E[X] < \infty$.
     * $M_{X+Y}(s) = M_X(s)M_Y(s)$ pour v.a. indépendentes $X,Y$.
     * il y a des tableaux avec plusieurs v.a. standardes
-    * la fonction caractéristique est souvent plus utile
+    * la fonction caractéristique est semblable et souvent plus utile
 
 ## Résultat sur $M_X(s)$
 
 * Supposons que $X$ est une v.a. et qu'il existe $s_0 > 0$ tel que $M_X(s) < \infty$ pour $|s|<s_0$.
-* Alors
-$$ E[|X^n|] < \infty,\, M_X(s) = \sum_{n=0}^\infty E[X^n] s^n / n!. $$
+* Alors $E[|X^n|] < \infty$ pour tout $n$ et
+$$ M_X(s) = \sum_{n=0}^\infty E[X^n] s^n / n!. $$
 * Preuve :
     1. Soit $Z_n = \sum_{k=0}^n (sX)^k / k!$.
     1. $Z_n \to e^{sX}$ (définition de somme infinie)
@@ -133,6 +134,27 @@ $$ \mu = {\cal L}(X) = PX^{-1}. $$
     * $\mu([a,b]) = P(\{X \in [a,b]\}),$
     * $\{X \in [a,b]\} \subset \Omega$,
     * $\{X \in [a,b]\} \in {\cal F}$.
+
+## Exemple, suites de tirages au pile ou face
+
+* Soit $\Omega = \{(r_1,r_2,\ldots) \colon r_i \in \{P,F\}\}$.
+* Soit ${\cal F}$, $P$ l'extension de ${\cal J}$ et $P$ de la Section 2.6 de Rosenthal.
+* Rappel: la probabilité de l'histoire $A_{a_1a_2\ldots a_n}$ est $2^{-n}$.
+* Soit
+\[
+  X_n = \begin{cases} 1 & r_n = F, \\ 0 & r_n = P. \end{cases}
+\]
+* Soit $S_n = \frac{1}{n} (X_1 + \ldots + X_n)$.
+* Soit $t_n = \sqrt{n}(S_n - \frac{1}{2})$.
+
+## Exemple, continué
+
+```{r clt, eval=FALSE, include=FALSE}
+n_4 = seq(0,4); n_8 = seq(0,8); n_16 = seq(0,16)
+tvals_4 = sqrt(4) * (n_4 - 0.5*4)
+pvals_4 = dbinom(n_4, 4, 0.5)
+plot(tvals_4, pvals_4, 'p')
+```
 
 ## Convergence en distribution
 
@@ -170,7 +192,7 @@ alors pour tout $n \in \mathbb{N}$,
 $$ \{X \leq x-\epsilon\} \subseteq \{X_n \leq x\} \cup \{|X_n-X| \geq \epsilon\}, $$
 alors
 $$ F(x-\epsilon) \leq \liminf_n F_n(x) + \liminf_n P(|X_n-X| \geq \epsilon) $$
-$$ F(x-\epsilon) \leq \liminf_n F_n(x) $$
+$$ F(x-\epsilon) \leq \liminf_n F_n(x) + 0 $$
 * $\epsilon$ arbitraire, alors
 $$ F(x) - P(\{x\}) \leq \liminf_n F_n(x) $$
 * Maintenant si $P(\{x\}) = 0$,
