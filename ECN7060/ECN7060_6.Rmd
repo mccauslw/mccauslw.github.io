@@ -93,6 +93,9 @@ $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
     = E\left[\lim_{h \downarrow 0} \frac{F_{t+h}-F_t}{h} \right] $$
     $$ \frac{dE[F_t]}{dt} = E[F_t'] \leq E[Y] < \infty. $$ 
 
+## Théorème des accroissements finis
+![](./Figures/Accroissements_finis.png)
+
 ## Fonction génératrice des moments
 
 * Définition : pour une v.a. $X$, $M_X(s) = E[e^{sX}]$, $s\in R$.
@@ -135,25 +138,64 @@ $$ \mu = {\cal L}(X) = PX^{-1}. $$
     * $\{X \in [a,b]\} \subset \Omega$,
     * $\{X \in [a,b]\} \in {\cal F}$.
 
-## Exemple, suites de tirages au pile ou face
+## Exemple, suites de tirages au pile (P) ou face (F), partie I
 
 * Soit $\Omega = \{(r_1,r_2,\ldots) \colon r_i \in \{P,F\}\}$.
-* Soit ${\cal F}$, $P$ l'extension de ${\cal J}$ et $P$ de la Section 2.6 de Rosenthal.
+* Soit ${\cal F}$, $P$ les extension de ${\cal J}$ et $P$ de Rosenthal, 2.6.
 * Rappel: la probabilité de l'histoire $A_{a_1a_2\ldots a_n}$ est $2^{-n}$.
-* Soit
+* Soit $X_n \colon \Omega \to \mathbb{R}$ définie par
 \[
-  X_n = \begin{cases} 1 & r_n = F, \\ 0 & r_n = P. \end{cases}
+  X_n(\omega) = \begin{cases} 1 & r_n = F, \\ 0 & r_n = P. \end{cases}
 \]
+* On peut calculer $E[X_n] = 1/2$, $\mathrm{Var}[X_n] = 1/4$.
 * Soit $S_n = \frac{1}{n} (X_1 + \ldots + X_n)$.
-* Soit $t_n = \sqrt{n}(S_n - \frac{1}{2})$.
+* Soit $z_n = \sqrt{n}(S_n - \frac{1}{2})/(1/2)$.
+* Soit $\omega^* = (0,0,1,0,1,0,1,0,0,0,1,1,1,0,0,1,\ldots)$. Alors
+    - $S_4(\omega^*) = 1/4$,
+    - $S_8(\omega^*) = 3/8$,
+    - $S_{16}(\omega^*) = 7/16$.
 
-## Exemple, continué
+## Exemple, partie II
 
-```{r clt, eval=FALSE, include=FALSE}
-n_4 = seq(0,4); n_8 = seq(0,8); n_16 = seq(0,16)
-tvals_4 = sqrt(4) * (n_4 - 0.5*4)
-pvals_4 = dbinom(n_4, 4, 0.5)
-plot(tvals_4, pvals_4, 'p')
+* Soit $(\mathbb{R}, {\cal B}, P)$ l'espace de probabilité avec
+$$ P(B) = \int_B f\, d\lambda, \quad B \in {\cal B}, $$
+où $f \colon \mathbb{R} \to \mathbb{R}$ est définie par
+$$ f(x) = \frac{1}{\sqrt{2\pi}} e^{x^2/2} $$
+et $\lambda \colon {\cal B} \to \mathbb{R}$ est la mesure de Lebesgue.
+
+## Exemple, partie III, \textcolor{blue}{$n=4$}, \textcolor{red}{$n=8$}, \textcolor{green}{$n=16$}
+
+```{r lln, echo=FALSE}
+plot(NULL, xlim=c(0,1), ylim=c(0,0.5), ylab="masse de probabilité", xlab="S_n")
+ns = c(4,8,16)
+cols = c('blue', 'red', 'green')
+obs = c(1, 3, 7)
+for (i in 1:3) {
+  n = ns[i]
+  grid = seq(0,n)
+  Svals = grid/n
+  pvals = dbinom(grid, n, 0.5)
+  points(Svals, pvals, col=cols[i])
+  abline(v=obs[i]/n, col=cols[i])
+}
+```
+
+## Exemple, partie IV, \textcolor{blue}{$n=4$}, \textcolor{red}{$n=8$}, \textcolor{green}{$n=16$}
+
+```{r clt, echo=FALSE}
+z = seq(-4, 4, by=0.01)
+plot(z, dnorm(z), 'l', ylab='densité ou masse de probabilité', xlab="z_n")
+ns = c(4,8,16)
+cols = c('blue', 'red', 'green')
+obs = c(1, 3, 7)
+for (i in 1:3) {
+  n = ns[i]
+  grid = seq(0,n)
+  zvals = 2 * sqrt(n) * (grid/n - 0.5)
+  pvals = dbinom(grid, n, 0.5)
+  points(zvals, pvals, col=cols[i])
+  abline(v=2*sqrt(n)*(obs[i]/n - 0.5), col=cols[i])
+}
 ```
 
 ## Convergence en distribution
