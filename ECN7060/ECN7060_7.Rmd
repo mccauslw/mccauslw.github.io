@@ -5,6 +5,18 @@ date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
+## Quatre racines de $x^4 = 1$
+![](./Figures/Quatre_racines.png)
+
+## La module et l'angle d'un nombre complexe
+![](./Figures/Module_angle.png)
+
+## Multiplication des nombres complexes
+![](./Figures/Multiplication_complexe.png)
+
+## Des expansions des fonctions $\exp(\cdot)$, $\cos(\cdot)$, $\sin(\cdot)$
+![](./Figures/Expansion_exp_sin_cos.png)
+
 ## La fonction caractéristique
 
 * Comme $F$, une autre représentation de la loi d'une v.a. qui existe et qui est unique.
@@ -13,6 +25,9 @@ output: beamer_presentation
     * L'opération de convolution versus l'opération de multiplication.
     * Théorème central limite
     * Inférence quand les moments n'existent pas.
+
+## La fonction caractéristique comme un film
+![](./Figures/Film_caracteristique.png)
 
 ## Propriétés de la fonction caractéristique
 
