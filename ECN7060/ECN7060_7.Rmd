@@ -8,7 +8,7 @@ output: beamer_presentation
 ## Quatre racines de $x^4 = 1$
 ![](./Figures/Quatre_racines.png)
 
-## La module et l'angle d'un nombre complexe
+## Le module et l'argument (l'angle) d'un nombre complexe
 ![](./Figures/Module_angle.png)
 
 ## Multiplication des nombres complexes

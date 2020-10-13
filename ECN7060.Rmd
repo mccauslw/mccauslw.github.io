@@ -40,6 +40,10 @@
 [Diapos](./ECN7060/ECN7060_6.pdf)
 [Réunion](https://umontreal.zoom.us/rec/share/sD4ucJyHSnoo_jOi-cpdxmRbX0Z4n5oRZhGiu_UCPrM53fUcinC9TCcRscT0Nb5P.BKoLPugj4p0li7CH) (7 oct. 2020, 13:00)
 
+#### Cours 7, 2020/10/14
+
+[Diapos](./ECN7060/ECN7060_7.pdf)
+
 #### Examens récents
 
 [Examen intra 2019](./ECN7060/EI19.pdf)
