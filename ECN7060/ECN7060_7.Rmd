@@ -26,7 +26,7 @@ output: beamer_presentation
     * Utilisée pour prouver le théorème central limite
     * Inférence quand les moments n'existent pas.
 
-## La fonction caractéristique comme un films
+## La fonction caractéristique comme un film
 ![](./Figures/Film_caracteristique.png)
 
 ## Propriétés de la fonction caractéristique
@@ -45,6 +45,11 @@ output: beamer_presentation
     a. $\Re(\phi(t)) = E[\cos tX]$ est paire.
     a. $\Im(\phi(t)) = E[\sin tX]$ est impaire.
 1. Pour $X$ symétrique ($F(-x) = 1-F(x)$ au points de continuité), $\phi$ est réelle.
+
+## L'extension de deux définitions
+
+1. Une fonction $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire si $\Re(Z)$ et $\Im(Z)$ le sont.
+1. Si $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire, $E[Z] \equiv E[\Re(Z)] + iE[\Im(Z)]$.
 
 ## Fonction caractéristique d'une loi $U(a,b)$
 
@@ -160,7 +165,7 @@ plot(t, Im(phi), type='l', ylim=c(-1,1))
 
 ## Fonction caractéristique d'une loi $N(0,1)$
 
-* Puisque $\sin(tx)$ est impair, $e^{-x^2/2}$ est pair,
+* Puisque $\sin(tx)$ est impair et $e^{-x^2/2}$ est pair,
 $$ \phi(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \cos tx \cdot e^{-x^2/2}\, dx $$
 $$ \phi'(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty -\sin tx \cdot x e^{-x^2/2}\, dx $$
 * Intégration par parties, $u = -\sin tx$, $dv = xe^{-x^2/2}\,dx$, $du = -t\cos tx$, $v = -e^{-x^2/2}$, donne
@@ -239,7 +244,7 @@ $$ \lim_{T\to \infty} \int_{-T}^T \frac{\sin \theta t}{t} \, dt
 si $a<b$ et $\mu(\{a\}) = \mu(\{b\}) = 0$,
 $$ \mu([a,b]) = \frac{1}{2\pi} \lim_{T\to \infty} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t)\,dt $$
 * Puisque
-$$ \left|\frac{e^{-ita}-e^{-itb}}{it}\right| = \left|\int_a^b e^{itr}\, dr\right| < \infty $$
+$$ \left|\frac{e^{-ita}-e^{-itb}}{it}\right| = \left|\int_a^b e^{-itr}\, dr\right| \leq \int_a^b |e^{-itr}|\, dr = b-a < \infty $$
 l'intégral entre $-T$ et $T$ est fini.
 * Par Fubini,
 \[
