@@ -108,7 +108,7 @@ $$ P_0(A_1) = p_{11} + p_{12} + p_{13} $$
 $$ P_0(A_2) = p_{21} + p_{22} + p_{23} $$
 $$ P_0(A_3) = p_{31} + p_{32} + p_{33} $$
 * Notez que $P_0(A) = 0 \Rightarrow \nu(A) = 0$, $A \in {\cal G}_1$ : c-à-d $\nu \ll P_0$.
-* $P(\Lambda|{\cal G}_1)(\omega) \equiv \nu(A)/P_0(A)$, $\omega \in A \in {\cal G}_1$.
+* Si $P_0(A)>0$, $P(\Lambda|{\cal G}_1)(\omega) = \nu(A)/P_0(A)$, $\omega \in A \in {\cal G}_1$.
 
 ## Espérances conditionnelles de $Y$
 
