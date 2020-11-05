@@ -51,9 +51,9 @@ $$
 $$ f(x|\theta) = \theta^{n_1} (1-\theta)^{n_0} $$
 où $n_1$ est le nombre de fois que $x_i=1$, $n_0 = n-n_1$ est le nombre de fois que $x_i=0$.
 
-## Une statistique suffisante
+## Une statistique exhaustive
 
-* Proposition : $T(x) = n_1$ est une statistique suffisante.
+* Proposition : $T(x) = n_1$ est une statistique exhaustive.
 
 * Vérification par ratio :
     * $n_1 \sim \mathrm{Bi}(n,\theta)$,
@@ -71,13 +71,13 @@ où $n_1$ est le nombre de fois que $x_i=1$, $n_0 = n-n_1$ est le nombre de fois
 $$ \prod_{i=1}^n \frac{e^{-\theta} \theta^{x_i}}{x_i!}
 = \frac{e^{-n\theta} \theta^{\sum_{i=1}^n x_i}}{\prod_{i=1}^n x_i!}. $$
 
-* $\sum_{i=1}^n x_i$ est une statistique suffisante minimale.
+* $\sum_{i=1}^n x_i$ est une statistique exhaustive minimale.
 
 * Le facteur $h(x) = \left(\prod_{i=1}^n x_i!\right)^{-1}$ ne dépend pas de $\theta$.
 
-## Minimalité de la statistique suffisante $T(x) = n_1$ dans le modèle binomial
+## Minimalité de la statistique exhaustive $T(x) = n_1$ dans le modèle binomial
 
-* Proposition : $T(x) = n_1$ est une statistique suffisante minimale.
+* Proposition : $T(x) = n_1$ est une statistique exhaustive minimale.
 
 * Vérification par ratio de vraisemblances
     * Ratio de deux vraisemblances :
