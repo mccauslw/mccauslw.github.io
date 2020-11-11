@@ -52,7 +52,7 @@ $$ R(\theta,\delta) = E[L(\theta,\delta(X))|\theta]. $$
 * Le risque de Bayes, pour une densité *a priori* $\pi(\theta)$ donnée, est
 \[
   \begin{aligned}
-    r(\pi,\delta) &\equiv E[R(\theta,\delta(X))]
+    r(\pi,\delta) &\equiv E[R(\theta,\delta)]
     = \int \pi(\theta) E[L(\theta,\delta(X))|\theta] \, d\theta \\
     &= E[E[L(\theta,\delta(X))|\theta]] \\ &= E[L(\theta,\delta(X))],
   \end{aligned}
