@@ -52,7 +52,7 @@ c_I & \theta \in \Theta_0 \\
 
 * Notes :
     * $c_I$ est le coût d'une erreur du type I, $c_{II}$ le coût d'une erreur du type II
-    * Avec cette généralité, on peut briser la symétrie des deux hypothèses.
+    * Avec cette généralité, on peut briser la symétrie des deux hypothèses : choisir $c_I \neq c_{II}$.
 
 ## Les fonctions de risque et de puissance
 
@@ -101,7 +101,44 @@ $$
 * Notes :
     * C'est une exercise *ex post*.
     * La distinction entre $H_0$ et $H_1$ est seulement en termes de $c_{II}/c_I$.
-    
+
+## Intuition Neyman Pearson I
+
+* Supposons qu'il y a deux valeurs possibles de $\theta$ : $\theta_0$ et $\theta_1$.
+* On divise $\cal X$ en deux : $R$ où $\delta(x) = a_1$ et $R^c$ où $\delta(x) = a_0$.
+* On choisit $R$ pour maximiser $p(R|\theta_1)$ sous la contrainte $p(R|\theta_0) \leq c$.
+* Une fonction de Lagrange pour ce problème :
+\[
+  P[R|\theta_1] - \lambda (P[R|\theta_0]-c). 
+\]
+* Pour $x_2 \in \cal X$ à la frontière entre $R$ optimal et $R^c$ et un voisinage infinitessimal $dR_2$ autour de $x_2$,
+\[
+  P[R+dR_2|\theta_1] - P[R|\theta_1] - \lambda (P[R+dR_2|\theta_0] - P[R|\theta_0]) = 0.
+\]
+ou
+\[
+  p(x_2|\theta_1) - \lambda p(x_2|\theta_0) = 0.
+\]
+
+## Intuition Neyman Pearson II
+
+* De la diapo précédente :
+\[
+  \frac{p(x_2|\theta_1)}{p(x_2|\theta_0)} = \lambda.
+\]
+* Pour $x_1 \in \cal X$ à l'intérieure de $R$,
+\[
+  \frac{p(x_1|\theta_1)}{p(x_1|\theta_0)} > \lambda. 
+\]
+* Pour $x_3 \in \cal X$ à l'intérieure de $R^c$,
+\[
+  \frac{p(x_3|\theta_1)}{p(x_3|\theta_0)} < \lambda. 
+\]
+
+## Illustration pour l'intuition Neyman Pearson
+
+![](./Figures/Neyman_Pearson.png)
+
 ## Exemple récurrent Bernoulli
 
 * Rappel :
@@ -124,15 +161,15 @@ $$ \lambda(x) =
 ## Les valeures de $\lambda(x)$ pour $n=12$
 
 |$r$|$\lambda(x)$|$P_\theta(R \leq r)$|
-|---|------------|--------------------|
-|0|0.0002441406|$(1-\theta)^n$|
-|1|0.007629489|$(1-\theta)^n + n\theta(1-\theta)^{n-1}$|
-|2|0.054419558||
-|3|0.208098359||
-|4|0.506821632||
-|5|0.845821466||
+|---|--------|--------------------|
+|0|0.000244|$(1-\theta)^n$|
+|1|0.007629|$(1-\theta)^n + n\theta(1-\theta)^{n-1}$|
+|2|0.054420|$(1-\theta)^n + n\theta(1-\theta)^{n-1} + \binom{n}{2}\theta^2 (1-\theta)^{n-2}$|
+|3|0.208098|$\cdots$|
+|4|0.506822||
+|5|0.845821||
 |6|1||
-|$\cdots$|||
+|$\cdots$|$\cdots$||
 |12|1|1|
 
 ## La forme d'un LRT
