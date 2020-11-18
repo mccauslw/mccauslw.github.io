@@ -269,7 +269,7 @@ lines(theta, beta_2); lines(theta, beta_1)
 * $\theta|x \sim \mathrm{Be}(\alpha+r, \beta+n-r)$
 * Si on observe (mettons) $r=4$, $\theta|x \sim \mathrm{Be}(5, 9)$
 * $P(\theta \geq 1/2|r(x) = 4) = 1-F_{\mathrm{Be}(5,9)}(1/2) = `r 1-pbeta(0.5, 5, 9)`$.
-* On choisit $a_1$ ssi
+* On choisit $a_0$ ssi
 \[
   \frac{c_I}{c_{II}} \cdot \frac{1-F_{\mathrm{Be}(5,9)}(1/2)}{F_{\mathrm{Be}(5,9)}(1/2)} \geq 1.
 \]
