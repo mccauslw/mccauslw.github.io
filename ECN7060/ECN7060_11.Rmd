@@ -139,6 +139,10 @@ ou
 
 ![](./Figures/Neyman_Pearson.png)
 
+## ROC
+
+![](./Figures/ROC.png)
+
 ## Exemple récurrent Bernoulli
 
 * Rappel :
