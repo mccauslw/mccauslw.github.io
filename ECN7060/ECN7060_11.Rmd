@@ -106,7 +106,7 @@ $$
 
 * Supposons qu'il y a deux valeurs possibles de $\theta$ : $\theta_0$ et $\theta_1$.
 * On divise $\cal X$ en deux : $R$ où $\delta(x) = a_1$ et $R^c$ où $\delta(x) = a_0$.
-* On choisit $R$ pour maximiser $p(R|\theta_1)$ sous la contrainte $p(R|\theta_0) \leq c$.
+* On choisit $R$ pour maximiser $P[R|\theta_1]$ sous la contrainte $P[R|\theta_0] \leq c$.
 * Une fonction de Lagrange pour ce problème :
 \[
   P[R|\theta_1] - \lambda (P[R|\theta_0]-c). 
@@ -147,7 +147,7 @@ ou
 
 * Rappel :
     1. $X_1,\ldots,X_n \sim \mathrm{iid}\, \mathrm{Bn}(\theta)$, $\theta \in [0,1]$.
-    1. $L(\theta,x) = \theta^r (1-\theta)^{(n-r)}$, où $r$ est le nombre de uns.
+    1. $L(\theta|x) = \theta^r (1-\theta)^{(n-r)}$, où $r$ est le nombre de uns.
     1. $\hat{\theta}_{\mathrm{EMV}} = \hat{\theta} = r/n$.
 * Considérons les hypothèses $H_0:\theta \geq 1/2$ et $H_1:\theta < 1/2$
     * $\Theta_0 = [1/2,1]$, $\Theta = [0,1]$, $\Theta_0^c = [0,1/2)$
@@ -197,7 +197,7 @@ $$ \{x \in {\cal X} \colon \sum_{i}x_i \leq r\},\quad r=0,1,2,3,4,5,12 $$
 ```{r betar, include=TRUE, echo=TRUE}
 theta = seq(0, 1, by=0.01); n=12
 beta_0 = pbinom(0, n, theta) # R = {r <= 0}
-beta_1 = pbinom(1, n, theta) # R = {r <= 0}
+beta_1 = pbinom(1, n, theta) # R = {r <= 1}
 beta_2 = pbinom(2, n, theta) # R = {r <= 2}
 beta_3 = pbinom(3, n, theta)
 beta_4 = pbinom(4, n, theta)
@@ -222,21 +222,21 @@ $$ \lambda(x) = \frac{(n/2)^n}{r^r(n-r)^{n-r}}. $$
 
 ## Les valeures de $\lambda(x)$ pour $n=12$
 
-|$r$|$\lambda(x)$|
-|---|------------|
-|0|0.0002441406|
-|1|0.0076294893|
-|2|0.0544195584|
-|3|0.2080983590|
-|4|0.5068216324|
-|5|0.8458214659|
-|6|1.0000000000|
-|7|0.8458214659|
-|8|0.5068216324|
-|9|0.2080983590|
-|10|0.0544195584|
-|11|0.0076294893|
-|12|0.0002441406|
+|$r$\hspace{1cm}|$\lambda(x)$|
+|---|---|
+|0|0.000244|
+|1|0.007629|
+|2|0.054420|
+|3|0.208098|
+|4|0.506822|
+|5|0.845821|
+|6|1.000000|
+|7|0.845821|
+|8|0.506822|
+|9|0.208098|
+|10|0.054420|
+|11|0.007629|
+|12|0.000244|
 
 ## Quelques fonctions de puissance $\beta_r(\theta)$
 
@@ -269,13 +269,17 @@ lines(theta, beta_2); lines(theta, beta_1)
 * $\theta|x \sim \mathrm{Be}(\alpha+r, \beta+n-r)$
 * Si on observe (mettons) $r=4$, $\theta|x \sim \mathrm{Be}(5, 9)$
 * $P(\theta \geq 1/2|r(x) = 4) = 1-F_{\mathrm{Be}(5,9)}(1/2) = `r 1-pbeta(0.5, 5, 9)`$.
+* On choisit $a_1$ ssi
+\[
+  \frac{c_I}{c_{II}} \cdot \frac{1-F_{\mathrm{Be}(5,9)}(1/2)}{F_{\mathrm{Be}(5,9)}(1/2)} \geq 1.
+\]
 
 ## La probabilité *a posteriori* $P(\theta \geq 1/2|x)$, plusieurs $r$
 
 * Soit $n=12$, $\alpha=1$, $\beta=1$, $\Omega_0 = [1/2,1]$
 * La probabilité *a posterior* dépend du $r$ observé :
 
-|$r$|$P[\theta \in \Omega_0\|x]$|
+|$r$|$P[\theta \in \Omega_0|x]$|
 |---|----------------------|
 |0|0.0001220703|
 |1|0.0017089844|
@@ -298,11 +302,11 @@ sont aléatoires :
 \[
   \begin{aligned}
     f(M,\theta,x) &= \Pr[M=H_0] 1_{\{H_0\}}(M) \delta_{1/2}(\theta) (1/2)^n \\
-    &+ \Pr[M=H_1] 1_{\{H_1\}}(m) f_{\mathrm{Be}}(\theta; \alpha, \beta) \theta^r (1-\theta)^{n-r}.
+    &+ \Pr[M=H_1] 1_{\{H_1\}}(M) f_{\mathrm{Be}}(\theta; \alpha, \beta) \theta^r (1-\theta)^{n-r}.
   \end{aligned}
 \]
 
-Après l'intégration de $x$,
+Après l'intégration par rapport à $\theta$,
 \[
   f(M,x) = \Pr[M=H_0] 1_{\{H_0\}}(M) f_0(x) + \Pr[M=H_1] 1_{\{H_1\}}(M) f_1(x),
 \]
