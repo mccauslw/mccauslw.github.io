@@ -20,7 +20,7 @@ $$ P_\theta[L(X) \leq \theta \leq U(X)]. $$
     * arbitrage : haute probabilité de couvrage v. intervalle court
 * Les propriétés bayésiennes concernent la probabilité
 $$ P[L(x) \leq \theta \leq U(x)|x] \quad \mbox{ou} \quad P[l\leq \theta \leq u|x] $$
-    * Stratégie symmétrique : $L(x)$ et $U(x)$ sont les quantiles $\alpha/2$ et $1-\alpha/2$, $U(x) - L(x)$ pas forcément minimale
+    * Stratégie symmétrique : $L(x)$ et $U(x)$ sont les quantiles $\alpha/2$ et $1-\alpha/2$ de $\theta$, $U(x) - L(x)$ n'est pas forcément minimale
     * Intervalle de haute probabilité *a posteriori* : $U(x) - L(x)$ minimale sous la contrainte $P[L(x) \leq \theta \leq U(x)|x] = 1-\alpha$.
 
 ## Régions de haute probabilité et intervalles interquantile
@@ -120,9 +120,21 @@ $$ 1-\alpha = P_\theta(\chi_{n-1,1-\alpha/2} \leq (n-1)S^2/\sigma^2 \leq \chi_{n
 où
 $$ C(X) = \left\{\sigma^2 \colon \frac{(n-1)S^2}{\chi_{n-1,\alpha/2}} \leq \sigma^2 \leq \frac{(n-1)S^2}{\chi_{n-1,1-\alpha/2}}\right\}. $$
 
+## Un aparté
+
+* Soit $T$ une variable aléatoire avec fonction de répartion $F$ inversible.
+* $F(t)$ est une fonction, $F(T)$ est une variable aléatoire avec une loi sur $[0,1]$.
+* Soit $G$ la fonction de répartition de $F(T)$.
+* Pour $u \in [0,1]$,
+\[
+  G(u) = P[F(T) \leq u] = P[T \leq F^{-1}(u)] = F[F^{-1}(u)] = u.
+\]
+* Alors $F(T) \sim U(0,1)$.
+
 ## Pivot de la fonction de répartition
 
 * Soit $T$ une statistique avec fonction de répartition $F_T(t|\theta)$.
+* Si $F_T$ est toujours inversible, $F_T(T|\theta) \sim U(0,1)$, une loi qui ne dépend pas de $\theta$.
 * Supposons que $T$ est stochastiquement croissante en $\theta$.
 * C'est à dire que $F_T(t,\theta)$ est décroissante en $\theta$.
 * Pour $t$ donné, soit $\theta_L(t)$ et $\theta_U(t)$ les solutions de
@@ -130,7 +142,7 @@ $$ F_T(t|\theta_U(t)) = \alpha_1 \quad F_T(\theta_L(t)) = 1-\alpha_2. $$
 * Pour tous $t$, $\theta$,
 $$ \theta > \theta_U(t) \Leftrightarrow F_T(t,\theta) < \alpha_1 $$
 $$ \theta < \theta_L(t) \Leftrightarrow F_T(t,\theta) > 1- \alpha_2 $$
-* Alors
+* Considérer l'intervalle de confiance $[\theta_L, \theta_U]$ :
 $$ \{t\colon\theta_L(t) \leq \theta \leq \theta_U(t) \}
 = \{t\colon \alpha_1 \leq F_T(t|\theta) \leq 1-\alpha_2\}, $$
 $$ P_\theta[\theta_L(T) \leq \theta \leq \theta_U(T)] = P_\theta[\alpha_1 \leq F_T(T|\theta) \leq 1-\alpha_2] = 1-\alpha_1-\alpha_2. $$
