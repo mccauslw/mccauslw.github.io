@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 * Estimateur par intervalle $[L(X),U(X)]$, estimation par intervalle $[L(x),U(x)]$.
 * Les propriétés fréquentistes concernent la probabilité de couvrage
-$$ P_\theta(L(X) \leq \theta \leq U(X)). $$
+$$ P_\theta[L(X) \leq \theta \leq U(X)]. $$
     * souvent une fonction de $\theta$, pas toujours (idéalement non)
     * restrictions sur le modèle pour obtenir cette non-dépendance
     * coefficient de confiance $\inf_\theta P_\theta(L(X)\leq \theta \leq U(X))$.
@@ -23,11 +23,21 @@ $$ P[L(x) \leq \theta \leq U(x)|x] \quad \mbox{ou} \quad P[l\leq \theta \leq u|x
     * Stratégie symmétrique : $L(x)$ et $U(x)$ sont les quantiles $\alpha/2$ et $1-\alpha/2$, $U(x) - L(x)$ pas forcément minimale
     * Intervalle de haute probabilité *a posteriori* : $U(x) - L(x)$ minimale sous la contrainte $P[L(x) \leq \theta \leq U(x)|x] = 1-\alpha$.
 
+## Régions de haute probabilité et intervalles interquantile
+
+![](./Figures/HPD.png)
+
 ## Estimation par ensemble
 
 * Estimateur par ensemble $C(X)$, estimation par ensemble $C(x)$.
 * Probabilité d'intérêt fréquentiste : $P_\theta(\theta \in C(X))$.
+    - $\theta$ est fixe
+    - la région $C(X)$ est aléatoire
+    - analyse *ex ante*
 * Probabilité d'intérêt bayésienne : $P(\theta \in C(x)|x)$.
+    - $x$ est fixe (l'échantillon observé)
+    - l'élément $\theta$ est aléatoire (la probabilité est conditionnelle)
+    - analyse *ex post*
 
 ## Inversion d'une statistique test
 
@@ -42,7 +52,11 @@ $$ P[L(x) \leq \theta \leq U(x)|x] \quad \mbox{ou} \quad P[l\leq \theta \leq u|x
     * Alors
     $$ P_\theta[\theta \in C(X)] = P_\theta[X \in A(\theta)] \geq (1-\alpha). $$
     * La première inégalité est sharp donc la deuxième l'est aussi.
-    
+
+## $C(\bar{x})$ et $A(\theta)$ pour un exemple gaussien
+
+![](./Figures/Intervalle_Region.png)
+
 ## Exemple gaussien, $\sigma^2$ connu
 
 * Supposons que $X_1,\ldots,X_n \sim \mathrm{iid}\, N(\mu,\sigma^2)$, $\sigma^2$ connu.
@@ -120,3 +134,7 @@ $$ \theta < \theta_L(t) \Leftrightarrow F_T(t,\theta) > 1- \alpha_2 $$
 $$ \{t\colon\theta_L(t) \leq \theta \leq \theta_U(t) \}
 = \{t\colon \alpha_1 \leq F_T(t|\theta) \leq 1-\alpha_2\}, $$
 $$ P_\theta[\theta_L(T) \leq \theta \leq \theta_U(T)] = P_\theta[\alpha_1 \leq F_T(T|\theta) \leq 1-\alpha_2] = 1-\alpha_1-\alpha_2. $$
+
+## Graphique, pivot de la fonction de répartition
+
+![](./Figures/Pivot_cdf.png)
