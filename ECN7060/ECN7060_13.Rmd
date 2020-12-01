@@ -9,6 +9,12 @@ output: beamer_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Plan (résultats asymptotique)
+
+* Les résultats asymptotiques reposent sur des conditions de regularité.
+* Illustration des violations de ces conditions.
+* Théorie asymptotique des estimateurs MV.
+
 ## Un modèle de mélange I
 
 * Les $X_i$ sont iid, chaque $X_i$ un mélange de deux gaussiens
@@ -26,6 +32,16 @@ $$ F(x_i|\theta) = p \Phi\left(\frac{x_i-\mu_1}{\sigma_1}\right) +
     * (non-identification sous l'hypothèse $p=1$)
     $$ f(X|(1,\mu_1,\mu_2,\sigma_1,\sigma_2)) $$ ne dépend pas de $\mu_2$, $\sigma_2$.
 
+## Des mélanges de deux gaussiens
+
+```{r mixtures, include=TRUE, echo=TRUE, fig.height=6}
+x = seq(-3, 3, by=0.001); y = dnorm(x, 0, 1)
+y1 = 0.5 * dnorm(x, 0, 1) + 0.5 * dnorm(x, 0, 3/2)
+y2 = 0.8 * dnorm(x, -1/4, 1) + 0.2 * dnorm(x, 1, 1)
+plot(x, y, type='l'); lines(x, y1, col='green')
+lines(x, y2, col='red')
+```
+
 ## La question d'identification (ponctuelle)
 
 * Identification I : $\theta_0$ est la vrai valeur
@@ -36,14 +52,13 @@ $$ \theta \neq \theta_0 \Rightarrow f(\cdot|\theta) \neq f(\cdot|\theta_0). $$
 * Identification II :
 $$ \theta_1 \neq \theta_2 \Rightarrow f(\cdot|\theta_1) \neq f(\cdot|\theta_2). $$
 
-* C'est plus fort, mais on peut le vérifier.
+* La deuxième condition est plus forte. En pratique, elle est souvent la condition à vérifier, mais quelquefois l'identification (ou l'absense) est locale.
 
-## Un mélange de deux gaussiens
+## Un mélange extrème de deux gaussiens
 
 * Ici, $p = 0.01$, $\mu_1 = 0$, $\mu_2 = 2$, $\sigma_1 = 1$, $\sigma_2 = 0.01$.
 
 ```{r mixture, include=TRUE, echo = TRUE, fig.height=6}
-x = seq(-3, 3, by=0.001)
 y = 0.01*dnorm(x, 2, 0.01) + 0.99*dnorm(x, 0, 1)
 plot(x, y, type='l')
 ```
@@ -53,7 +68,7 @@ plot(x, y, type='l')
 * Rappel : $\theta = (p,\mu_1,\mu_2,\sigma_1,\sigma_2)$
 * Irregularité II : la vraisemblance n'est pas bornée
     * $x = (x_1,\ldots,x_n)$ est arbitraire. Soit $\bar{x} = n^{-1}\sum x_i$.
-    * Soit $\theta(\epsilon) = (n^{-1}, x_1, \bar{x}, \epsilon, s)$.
+    * Soit $\theta(\epsilon) = (p, \mu_1, \mu_2, \sigma_1, \sigma_2) = (n^{-1}, x_1, \bar{x}, \epsilon, s)$.
     * $f(x_1|\theta(\epsilon)) = n^{-1} \frac{1}{\sqrt{2\pi}\epsilon} + (1-n^{-1}) \frac{1}{\sqrt{2\pi}s} e^{-(x_1-\bar{x})/2s^2}$
     * $\lim_{\epsilon \downarrow 0} f(x_2,\ldots,x_n|\theta(\epsilon)) \neq 0$
     * $\lim_{\epsilon \downarrow 0} f(x|\theta(\epsilon)) = \infty$.
@@ -65,10 +80,17 @@ plot(x, y, type='l')
 
 ## Le modèle de mélange, implications pour la loi *a posteriori*
 
-* Pour certaines lois *a priori*, la densité *a posteriori* est bornée.
+* Mettons que la vraisemblance n'est pas bornée.
+* Pour certaines lois *a priori*, la densité *a posteriori* est bornée:
+    - Si $X_i \sim N(\mu,\omega^{-1})$ et $\omega \sim \mathrm{Ga}(\alpha, \beta)$,
+    \[
+      f(x_i) \propto \omega^{1/2} \exp\left[ -\tfrac{1}{2} \omega (x_i-\mu)^2 \right],
+      \quad
+      f(\omega) \propto \omega^{\alpha-1} e^{-\beta \omega}.
+    \]
 * Bornée ou non, si la densité *a priori* est propre, la densité *a posteriori* l'est aussi.
 * Même si la densité *a priori* est impropre, la densité *a posteriori* est souvent propre (mais il faut le vérifier).
-* Même si la densité postérieure n'est pas bornée, la région où la densité postérieure est plus grande que le maximum local régulier a une probabilité négligable.
+* Même si la densité postérieure n'est pas bornée, la région où la densité postérieure est plus grande que le maximum local régulier a souvent une probabilité négligable.
 
 ## Un modèle Bernoulli
 
@@ -78,19 +100,31 @@ plot(x, y, type='l')
 
 * Si $r = 0$,
     * $f(x|p) = (1-p)^n$,
-    * $\hat{p}_{MV}(x) = 0$,
+    * $\hat{p}_{MV}(x) = 0$ (solution de coin),
     * $\mathrm{Var}_p[\hat{p}_{MV}(X)] = 0$ quand $p = \hat{p}_{MV}(x)$.
 
 * Irregularité :
     * $\hat{p}_{MV}(x)$ se trouve sur la frontière de $\Theta = [0,1]$.
     * La dérivée (à droite) de $\log f(x|p)$ n'égale pas à zéro à l'estimation MV :
     \[
-      \left. \frac{\partial n\log(1-p)}{\partial p} \right|_{p=0}
+      \left. \frac{\partial \log f(x|p)}{\partial p} \right|_{p=0}
+      = \left. \frac{\partial n\log(1-p)}{\partial p} \right|_{p=0}
       = \left. -n/(1-p) \right|_{p=0} = -n.
     \]
 
 * D'autres cas :
-    * Modèles avec restrictions sur les paramètres
+    * Modèles avec restrictions sur les paramètres.
+
+## Un modèle Bernoulli, continué
+
+Si $p \sim \mathrm{Be}(\alpha, \beta)$, $p|r \sim \mathrm{Be}(\alpha, \beta+n)$ quand $r=0$.
+
+Voici la densité pour $r=0$, $n=10$, $\alpha = \beta = 1/2$:
+
+```{r Beta_post}
+p = seq(0, 1, by=0.001)
+plot(p, dbeta(p, 0.5, 10.5), 'l')
+```
 
 ## Un modèle uniform
 
@@ -144,6 +178,74 @@ $$
 
 * Attention : existence des dérivées, changement de l'ordre.
 
+## Un remarque
+
+Si l'espérance du score est nulle,
+\[
+  E_\theta\left[
+    \frac{\partial \log f(X|\theta)}{\partial \theta^\top}
+  \right] = 0,
+\]
+alors
+\[
+  E_\theta\left[
+      \frac{\partial \log f(X|\theta)}{\partial \theta^\top}
+      \frac{\partial \log f(X|\theta)}{\partial \theta}
+  \right] = \mathrm{Var}\left[
+    \frac{\partial \log f(X|\theta)}{\partial \theta^\top}
+  \right]
+\]
+
+## Exemple gaussien
+
+Supposons que $y = X\beta + u$, $u \sim N(0,\sigma^2I_n)$, la matrice de covariance $X$ est
+$n \times K$, le paramètre $\beta$ est $K \times 1$ et le paramètre scalaire $\sigma^2$ est connu.
+Alors
+\[
+  \begin{aligned}
+    {\cal L}(\beta ;y)
+    &= \frac{n}{2} \log (2\pi \sigma^2) - \frac{1}{2\sigma^2} (y-X\beta)^\top(y-X\beta) \\
+    &= \frac{n}{2} \log (2\pi \sigma^2)
+    - \frac{1}{2\sigma^2} (y^\top y -2\beta^\top X^\top y + \beta^\top X^\top X \beta)
+  \end{aligned},
+\]
+\[
+  \frac{\partial {\cal L}(\beta ;y)}{\partial \beta^\top} = - \frac{1}{\sigma^2} (X^\top X \beta - X^\top y) = \frac{1}{\sigma^2} X^\top u.
+\]
+Puisque $E[u] = 0$,
+\[
+  E\left[ \frac{\partial {\cal L}(\beta ;y)}{\partial \beta^\top} \right]
+  = 0.
+\]
+La matrice hessienne est constante :
+\[
+  \frac{\partial^2 {\cal L}(\beta ;y)}{\partial \beta^\top \partial \beta} = - \frac{1}{\sigma^2} X^\top X.
+\]
+
+## Exemple gaussien, continué
+
+Ici, la variance du score est l'espérance de la matrice hessienne :
+\[
+  \begin{aligned}
+    \mathrm{Var}\left[
+      \frac{\partial {\cal L}(\beta ;y)}{\partial \beta^\top}
+    \right]
+    &=
+    E\left[
+      \frac{\partial {\cal L}(\beta ;y)}{\partial \beta^\top} \frac{\partial {\cal L}(\beta ;y)}{\partial \beta}
+    \right] \\
+    &= -\frac{1}{\sigma^4} E[X^\top u u^\top X] = -\frac{1}{\sigma^2} E[X^\top X]
+  \end{aligned}
+\]
+
+Dans un contexte bayésien où $\beta \sim N(\bar{\beta}, \bar{H}^{-1})$,
+\[
+  \beta|y,X \sim N(\bar{\bar{\beta}}, \bar{\bar{H}}^{-1}),
+\]
+où $\bar{\bar{H}} = \bar{H} + \sigma^{-2} X^\top X$,
+$\bar{\bar{\beta}} = \bar{H} \bar{\beta} + \sigma^{-2} X^\top X b$ et
+$b = (X^\top X)^{-1} X^\top y$.
+
 ## Additivité de l'information de Fisher
 
 On considère ici les modèles où les $X_i$ sont iid et on peut échanger l'ordre de l'espérance et le gradient.
@@ -167,18 +269,17 @@ $$
 
 * Soit $l(\theta;x) \equiv \sum_{i=1}^n \log f(x_i|\theta)$.
 * Soit $\hat{\theta}$ l'estimateur MV, $\theta_0$ la vraie valeur du paramètre.
-* Expansion du gradient à $\hat{\theta}$
+* Expansion Taylor du gradient à $\hat{\theta}$ (où $\lim_{\theta \to \theta_0} h(\theta) = 0_{K\times K}$)
 $$
 \frac{\partial l(\hat{\theta};x)}{\partial \theta^\top}
-\approx \frac{\partial l(\theta_0;x)}{\partial \theta^\top} + \frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} (\hat{\theta} - \theta_0).
+= \frac{\partial l(\theta_0;x)}{\partial \theta^\top} + \frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} (\hat{\theta} - \theta_0) + h(\hat{\theta}) (\hat{\theta} - \theta_0).
 $$
-* Alors si le gradient à gauche est nulle
-$$ (\hat{\theta}-\theta_0) \approx -\left[\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} $$
+* Alors si le gradient à gauche est nulle,
+$$ (\hat{\theta}-\theta_0) = -\left[\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + h(\hat{\theta}) \right]^{-1} \frac{\partial l(\theta_0;x)}{\partial \theta^\top}$$
 
 * Notes : on a besoin de
     * l'existence d'un maximum intérieur de la vraisemblance
-    * l'existence des dérivées
-    * la négligeabilité du terme résiduel
+    * l'existence des dérivées jusqu'au deuxième ordre
     * la non-singularité de la matrice hessienne
 
 ## Continuous mapping theorem
@@ -197,9 +298,9 @@ $$ X_n \to_d X \Rightarrow g(X_n) \to_d g(X). $$
 ## Pour préparer une analyse asymptotique
 
 * Pour préparer une analyse asymptotique, on peut écrire
-$$ (\hat{\theta}-\theta_0) \approx \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
+$$ (\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + \frac{1}{n} h(\hat{\theta}) \right]^{-1} \left[\frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
 
-$$ \sqrt{n}(\hat{\theta}-\theta_0) \approx \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
+$$ \sqrt{n}(\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + \frac{1}{n} h(\hat{\theta}) \right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
 
 ## Théorème limite central, loi de grand nombres pour le gradient
 
@@ -233,7 +334,7 @@ $$ \frac{1}{n}\frac{\partial^2 l(\theta_0;X)}{\partial \theta \partial \theta^\t
 
 * Par le théorème « continuous mapping, »
 $$ \left[
-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}
+\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + h(\hat{\theta}) 
 \right]^{-1} \to_p I(\theta_0)^{-1}. $$
 
 ## Combinaison des résultats
