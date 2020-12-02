@@ -44,7 +44,7 @@ lines(x, y2, col='red')
 
 ## La question d'identification (ponctuelle)
 
-* Identification I : $\theta_0$ est la vrai valeur
+* Identification I : (où $\theta_0$ est la vrai valeur)
 $$ \theta \neq \theta_0 \Rightarrow f(\cdot|\theta) \neq f(\cdot|\theta_0). $$
 
 * Sinon, $\theta$ et $\theta_0$ sont observationnellement équivalent.
@@ -68,7 +68,7 @@ plot(x, y, type='l')
 * Rappel : $\theta = (p,\mu_1,\mu_2,\sigma_1,\sigma_2)$
 * Irregularité II : la vraisemblance n'est pas bornée
     * $x = (x_1,\ldots,x_n)$ est arbitraire. Soit $\bar{x} = n^{-1}\sum x_i$.
-    * Soit $\theta(\epsilon) = (p, \mu_1, \mu_2, \sigma_1, \sigma_2) = (n^{-1}, x_1, \bar{x}, \epsilon, s)$.
+    * Soit $\theta(\epsilon) = (p, \mu_1, \mu_2, \sigma_1(\epsilon), \sigma_2) = (n^{-1}, x_1, \bar{x}, \epsilon, s)$.
     * $f(x_1|\theta(\epsilon)) = n^{-1} \frac{1}{\sqrt{2\pi}\epsilon} + (1-n^{-1}) \frac{1}{\sqrt{2\pi}s} e^{-(x_1-\bar{x})/2s^2}$
     * $\lim_{\epsilon \downarrow 0} f(x_2,\ldots,x_n|\theta(\epsilon)) \neq 0$
     * $\lim_{\epsilon \downarrow 0} f(x|\theta(\epsilon)) = \infty$.
@@ -182,7 +182,7 @@ $$
 
 * Attention : existence des dérivées, changement de l'ordre.
 
-## Un remarque
+## Une remarque
 
 Si l'espérance du score est nulle,
 \[
@@ -228,7 +228,7 @@ La matrice hessienne est constante :
 
 ## Exemple gaussien, continué
 
-Ici, la variance du score est l'espérance de la matrice hessienne :
+Ici, la variance du score est moins l'espérance de la matrice hessienne :
 \[
   \begin{aligned}
     \mathrm{Var}\left[
@@ -238,7 +238,7 @@ Ici, la variance du score est l'espérance de la matrice hessienne :
     E\left[
       \frac{\partial {\cal L}(\beta ;y)}{\partial \beta^\top} \frac{\partial {\cal L}(\beta ;y)}{\partial \beta}
     \right] \\
-    &= -\frac{1}{\sigma^4} E[X^\top u u^\top X] = -\frac{1}{\sigma^2} E[X^\top X]
+    &= \frac{1}{\sigma^4} E[X^\top u u^\top X] = \frac{1}{\sigma^2} X^\top X
   \end{aligned}
 \]
 
@@ -302,9 +302,9 @@ $$ X_n \to_d X \Rightarrow g(X_n) \to_d g(X). $$
 ## Pour préparer une analyse asymptotique
 
 * Pour préparer une analyse asymptotique, on peut écrire
-$$ (\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + \frac{1}{n} h(\hat{\theta}) \right]^{-1} \left[\frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
+$$ (\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + \frac{1}{n} h_n(\hat{\theta}) \right]^{-1} \left[\frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
 
-$$ \sqrt{n}(\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + \frac{1}{n} h(\hat{\theta}) \right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
+$$ \sqrt{n}(\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + \frac{1}{n} h_n(\hat{\theta}) \right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
 
 ## Théorème limite central, loi de grand nombres pour le gradient
 
@@ -338,7 +338,7 @@ $$ \frac{1}{n}\frac{\partial^2 l(\theta_0;X)}{\partial \theta \partial \theta^\t
 
 * Par le théorème « continuous mapping, »
 $$ \left[
-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + \frac{1}{n} h(\hat{\theta}) 
+\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}
 \right]^{-1} \to_p I(\theta_0)^{-1}. $$
 
 ## Combinaison des résultats
