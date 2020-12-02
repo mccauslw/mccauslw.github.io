@@ -78,6 +78,10 @@ plot(x, y, type='l')
         * échange d'index
     * D'autres modèles de mélange
 
+## Une vraisemblance non-bornée
+
+![](./Figures/Vraisemblance_non_bornee.png)
+
 ## Le modèle de mélange, implications pour la loi *a posteriori*
 
 * Mettons que la vraisemblance n'est pas bornée.
@@ -334,7 +338,7 @@ $$ \frac{1}{n}\frac{\partial^2 l(\theta_0;X)}{\partial \theta \partial \theta^\t
 
 * Par le théorème « continuous mapping, »
 $$ \left[
-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + h(\hat{\theta}) 
+\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + \frac{1}{n} h(\hat{\theta}) 
 \right]^{-1} \to_p I(\theta_0)^{-1}. $$
 
 ## Combinaison des résultats
