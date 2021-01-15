@@ -5,13 +5,7 @@
 
 ### Documents pour ECN 6578, Économétrie des marchés financiers
 
-[Plan de Cours](./ECN6578/ECN6578A-H20-PC.pdf)
-
-[Mesures accommodements H2020](./ECN6578/Formulaire mesures accommodements H2020 copy.pdf)
-
-[Lectures et exercices théoriques](./ECN6578/Exercices_theoriques.pdf)
-
-[Exercices R](./ECN6578/Exercices_R.pdf)
+[Plan de Cours](./ECN6578/ECN6578A-H21-PC.pdf)
 
 [Examen Intra, hiver 2020](./ECN6578/EI20.pdf)
 
@@ -19,35 +13,9 @@
 
 [Examen Intra, automne 2017](./ECN6578/ECN6578A_EI17.pdf)
 
+[Examen Final, hiver 2020](./ECN6578/EF20.pdf)
+
 [Examen Final, hiver 2019](./ECN6578/EF19.pdf)
 
 [Examen Final, automne 2017](./ECN6578/EF17A.pdf)
-
-[Notes, hiver 2020](./ECN6578/Notes.pdf)
-
-[Diapos, Cours 1](./ECN6578/ECN6578_1.pdf)
-
-[Diapos, Cours 1, code source](./ECN6578/ECN6578_1.Rmd)
-
-[Diapos, Cours 2](./ECN6578/ECN6578_2.pdf)
-
-[Diapos, Cours 3](./ECN6578/ECN6578_3.pdf)
-
-[Diapos, Cours 4](./ECN6578/ECN6578_4.pdf)
-
-[Diapos, Cours 5](./ECN6578/ECN6578_5.pdf)
-
-[Diapos, Cours 6](./ECN6578/ECN6578_6.pdf)
-
-[Diapos, Cours 7](./ECN6578/ECN6578_7.pdf)
-
-[Diapos, Cours 8, 9](./ECN6578/ECN6578_8.pdf)
-
-[Diapos, Cours 10](./ECN6578/ECN6578_10.pdf)
-
-[Diapos, Cours 11](./ECN6578/ECN6578_11.pdf)
-
-[Diapos, Cours 12](./ECN6578/ECN6578_12.pdf)
-
-[Vidéo, Examen Intra 2020, Question 5](https://www.dropbox.com/s/xb6sq72yebfpht2/EI_Q5.mov?dl=0)
 
