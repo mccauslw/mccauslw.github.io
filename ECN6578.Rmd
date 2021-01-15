@@ -7,6 +7,8 @@
 
 [Plan de Cours](./ECN6578/ECN6578A-H21-PC.pdf)
 
+[Examen des préalables](./ECN6578/examen_prealables.pdf)
+
 [Examen Intra, hiver 2020](./ECN6578/EI20.pdf)
 
 [Examen Intra, hiver 2019](./ECN6578/EI19.pdf)
