@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2021"
 subtitle: "Cours 1"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -9,7 +9,7 @@ urlcolor: blue
 
 ## Plan
 
-1. Introduction
+1. Introduction au cours
 1. Les éléments de la note finale
 1. Notation pour les rendements
 1. Mélanges versus fonctions linéaires de variables aléatoires
@@ -37,16 +37,20 @@ urlcolor: blue
 
 ## Les éléments de la note finale
 
-1. Examen intra, le lundi 17 février : 40%
+1. Examen intra, le lundi 22 février : 35%
+1. Un nombre aléatoire de quiz, en forme de devoir StudiUM : 15%
+    a. quiz certain : le 25 janvier
+    a. quiz aléatoires : les 8 dates possibles sont les 1, 8, 15 février; les 8, 15, 22, 29 mars; le 12 avril. La probabilité d'un quiz est de 0,5.
+    a. 8h30 - 8h45. La semaine prochaine, vendredi le 22 à 8h30 lundi.
 1. Deux travaux pratiques de computation en R
-    a. premier à remettre le 24 février avant minuit : 10%
-    a. deuxième à remettre le 8 avril avant minuit : 10%
-1. Examen final, date à déterminer : 40%
+    a. premier à remettre vendredi le 26 février avant minuit : 10%
+    a. deuxième à remettre vendredi le 15 avril avant minuit : 5%
+1. Examen final, date à déterminer : 35%
 
 ### Notes
 - Les deux examens sont théoriques.
 - Les travaux pratiques en R sont complémentaires des examens.
-- Le premier travail consiste en les exercices pratiques données jusqu'au 10 février (inclusif) ; le deuxième, les exercices pratiques données jusqu'au 30 mars (inclusif).
+- Le premier travail consiste en les exercices pratiques données jusqu'au 15 février (inclusif) ; le deuxième, les exercices pratiques données jusqu'au 29 mars (inclusif).
 
 ## Documents au site web
 
@@ -84,7 +88,7 @@ urlcolor: blue
 
 ## Attentes
 1. Faites les lectures préparatoires avant le cours.
-1. Essayez les questions seuls, puis discutez-en parmi vous, puis demandez de l'aide.
+1. Essayez les exercices seuls, puis discutez-en parmi vous, puis demandez de l'aide.
 1. Le contenu du cours comprend les lectures.
 
 ## Notation pour les rendements en temps discret
@@ -100,7 +104,7 @@ urlcolor: blue
 \]
 - Notes :
     * Les trois rendements ne dépendent pas de l'unité de valeur.
-    * Ils dépendent tous de l'unité du temps.
+    * L'unité de mesure d'un rendement annuel (par exemple) est $1/a$.
     * L'indice $t$ indique souvent le moment où la quantité est connue.
     * Les rendements sont plus "stationnaires" que les prix et plus comparables.
 
@@ -164,14 +168,14 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
 
 - Mettons que $(\mu,\sigma^2)$ égale $(\mu_1,\sigma_1^2)$ avec probabilité $\pi$ et $(\mu_2,\sigma_2^2)$ avec probabilité $(1-\pi)$.
 - $(\mu, \sigma)$ est aléatoire, $(\mu_1, \sigma_1)$, $(\mu_2, \sigma_2)$ et $\pi$ ne le sont pas.
-- Mettons que $R|(\mu,\sigma) \sim N(\mu,\sigma^2)$.
-- La loi marginale de $R$ est un mélange de deux lois gaussiennes.
+- Mettons que $R|(\mu,\sigma) \sim N(\mu,\sigma^2)$. Une loi *conditionnelle*
+- La loi *marginale* de $R$ est un mélange de deux lois gaussiennes.
 - La densité de $R$ est
 \[
   f(x) = \pi \frac{1}{\sqrt{2\pi}\sigma_1} \exp\left[-\frac{(x-\mu_1)^2}{2\sigma_1^2}\right] + (1-\pi) \frac{1}{\sqrt{2\pi}\sigma_2} \exp\left[-\frac{(x-\mu_2)^2}{2\sigma_2^2}\right].
 \]
 
-### Cas général
+### Un mélange plus général
 
 - Si la densité conditionnelle de $X$ sachant $\theta$ est $f(x|\theta)$ et la densité de $\theta$ est $f(\theta)$, alors la densité marginale de $X$, $f(x) = \int f(x|\theta) f(\theta) \, d\theta$, est un mélange.
 
