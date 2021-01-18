@@ -245,9 +245,13 @@ lines(x, fmelange, col='black')
   E[R^2] = E[E[R^2|\mu,\sigma^2]] = \pi (\mu_1^2 + \sigma_1^2) + (1-\pi) (\mu_2^2 + \sigma_2^2)
 \]
 \[
+  \mathrm{Var}[R] = E[R^2] - E[R]^2
+\]
+ou
+\[
   \begin{aligned}
     \mathrm{Var}[R] &= E[Var[R|\mu,\sigma^2]] + \mathrm{Var}[E[R|\mu,\sigma^2]] \\
-    &= \pi \sigma_1^2 + (1-\pi) \sigma_2^2 + \mathrm{Var}[\mu]
+    &= [\pi \sigma_1^2 + (1-\pi) \sigma_2^2] + [\pi \mu_1^2 + (1-\pi) \mu_2^2 - (\pi \mu_1 + (1-\pi) \mu_2)^2]
   \end{aligned}
 \]
 
