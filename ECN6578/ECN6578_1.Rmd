@@ -74,8 +74,8 @@ urlcolor: blue
 
 - Remettez les travaux pratiques en équipes de 1, 2 ou 3.
 - Écrivez tous les noms sur la première page.
-- Envoyez une copie en PDF (un seul fichier) avant minuit à la date de l'échéance.
-- Envoyez-la par courriel, avec sujet 'Travail pratique', à <william.j.mccausland@umontreal.ca>  
+- Les deux travaux pratiques seront des "Devoirs" sous StudiUM.
+- Chargez une copie avant minuit à la date de l'échéance.
 - Téléchargement de R, RStudio
     - R : <https://www.r-project.org>
     - R Studio : <https://www.rstudio.com>
@@ -214,7 +214,7 @@ lines(x, fmelange, col='black')
 
 ### Un exemple temporel
 \[
-  E[R_{t+2}|R_t] = E[E[R_{t+2}|R_{t+1}]|R_t].
+  E[R_{t+2}|R_t] = E[E[R_{t+2}|R_{t+1},R_t]|R_t].
 \]
 
 ## Application I: théorème de la variance total
