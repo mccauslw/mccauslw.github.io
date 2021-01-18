@@ -1,0 +1,99 @@
+---
+title: "Lectures, exercices théoriques, exercices avec R"
+subtitle: "ECN 6578, Hiver 2021"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: pdf_document
+urlcolor: blue
+---
+
+## Cours 1, le 18 janvier
+
+#### Sujets
+
+1. Notation pour les rendements des actifs et des portfeuilles
+1. Fonctions linéaires des variables aléatoires, mélanges des lois.
+1. La loi des espérances itérées, avec applications
+1. L'inégalité de Jensen, avec applications
+
+#### Exercices théoriques
+
+1. Pour les deux placements décrits à la diapo "Fonctions linéaires vs mélanges, un exemple", calculez la moyenne et la variance du rendement.
+
+1. Étudiez la preuve du théorème de variance totale et prouvez le théorème de covariance totale : pour variables aléatoires $X$, $Y$ et $Z$ telles que les moments suivants existent,
+\[
+  \mathrm{Cov}[X,Y] = E[\mathrm{Cov}[X,Y|Z]] + \mathrm{Cov}[E[X|Z], E[Y|Z]].
+\]
+
+1. Soit $Z$ une variable aléatoire qui prend la valeur 1 avec probabilité 1/2 et la valeur -1 avec probabilité 1/2.
+Soit $(X,Y)$ un vecteur aléatoire avec la loi conditionnelle sachant $Z$ suivante: $(X,Y)|Z \sim N((Z, -Z), I)$, où $I$ est la matrice identitaire $2\times 2$.
+Trouvez $\mathrm{Cov}[X,Y]$.
+
+1. Trouvez l'aplatissement du mélange suivant de deux lois gaussiennes, chacune avec probabilité 0.5 : $N(0,0.9)$ et $N(0,1.1)$.
+
+#### Exercices avec R
+
+(Travail préliminaire, pas à remettre)
+
+1. Téléchargez R et R Studio.
+1. Créez un fichier HTML à partir du gabarit R Markdown.
+
+\pagebreak
+
+## Cours 2, le 25 janvier
+
+#### Sujets
+
+1. Log rendements, rendements multi-période, annualisation
+1. Asymmétrie et aplatissement, non-normalité des rendements
+1. Stationnarité et covariance-stationnarité
+1. Non-corrélation versus indépendence.
+1. Autocorrélation
+1. Faits empiriques
+
+#### Lectures préparatoire (à faire avant le cours)
+
+Dans le livre de Tsay, 3e édition
+
+1. Dans la section 1.1, "Asset Returns"
+    a. Multiperiod simple returns
+    a. Continuous compounding
+    a. Continuously compounded returns
+1. Dans la section 1.2, "Distributional properties of returns"
+    a. Moments of a random variable (jusqu'à la fin de la page 9)
+1. Dans la section 2.2, "Correlation and Autocorrelation"
+    a. Introduction (sans nom)
+    a. Autocorrelation
+
+#### Autres lectures
+
+1. L'article de Cont (2001) que j'ai mis sur StudiUM.
+1. Tsay, 3e édition :
+    a. 1.2.1 (lois statistiques et leurs moments)
+    a. 1.2.2 (la loi des rendements)
+    a. 1.2.3 (rendements multivariés)
+    a. 1.2.5 (propriétés empiriques des rendements)
+    a. 2.1 (stationnarité)
+    a. 2.2 (corrélation et la fonction d'autocorrélation)
+    a. 2.3 (le bruit blanc et les séries temporelles linéaires)
+
+#### Exercices
+
+1. La v.a. $X$ suit une loi qui est un mélange de deux lois gaussiennes, chacune avec probabilité 0.5 : $N(\mu,\sigma^2)$ et $N(-\mu,\sigma^2)$.
+Calculez l'aplatissement $K_x$ et $\lim_{\sigma^2 \downarrow 0} K_x$.
+
+1. Trouvez l'asymétrie et l'aplatissement d'un mélange général de deux v.a. gaussiennes.
+Le site suivant donne les quatres premiers moments non centraux d'une v.a. $N(\mu,\sigma^2)$ : <https://fr.wikipedia.org/wiki/Loi_normale#Moments>.
+
+1. Le prix d'un actif le 4 janvier est de 14.50 dollars. Le prix de l'actif le 15 fevrier est de 13.15. Quel est le rendement simple annualisé et le log rendement annualisé?
+
+1. On observe un échantillon $X_1,\ldots,X_T$, où $X_t \sim \mathrm{iid}\, N(\mu,\sigma^2)$.
+Si on fait les tests 1 et 2 de la diapo "Attention : tests multiples!" quelle est la probabilité d'au moins un rejet, comme fonction de $\alpha$?
+
+#### Exercices avec R
+
+Travail, cours du 25 janvier
+
+1. Téléchargez le fichier des données `d-3m7008.txt` et faites la graphique des rendements journaliers de l'action 3M avec la commande `plot`, option 'l' (L minuscule).
+1. Faites un test de l'hypothèse que les rendements sont iid gaussiens, avec la statistique test Jarque-Bera. Calculez les valeurs critiques en utilisant la fonction de quantile (comme `qnorm` ou `qchisq`) de la loi asymptotique de la statistique test sous l'hypothèse nulle.
+1. Faites un test de l'hypothèse que les rendements sont iid avec variance finie, avec la statistique test Box-Pierce. Utilisez la commande `acf` pour obtenir la fonction d'autocorrélation et calculez la statistique test à partir de cette fonction. Utilisez $m=10$ retards. Confirmez ensuite votre réponse en utilisant la commande `Box.test`.

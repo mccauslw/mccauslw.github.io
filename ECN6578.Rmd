@@ -9,11 +9,17 @@
 
 [Examen des préalables](./ECN6578/examen_prealables.pdf)
 
+[Lectures et exercices](./ECN6578/LX.pdf)
+
 ***
 
-[Diapos, cours 1](./ECN6578/ECN6578_1.pdf)
+##### Cours 1, le 18 janvier
 
-[Diapos, cours 1, code source](./ECN6578/ECN6578_1.Rmd)
+[Diapos](./ECN6578/ECN6578_1.pdf)
+
+[Diapos, code source](./ECN6578/ECN6578_1.Rmd)
+
+[Réunion zoom](https://umontreal.zoom.us/rec/share/37iwZakvuh9CC7YLVH0NmXAd6ao1NDjlWxWS1XY9piOWpz-136NxtFME6IdKcpPg.AXIAk-hOcdOINCWA)
 
 ***
 
