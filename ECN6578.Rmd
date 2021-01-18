@@ -13,6 +13,8 @@
 
 [Diapos, cours 1](./ECN6578/ECN6578_1.pdf)
 
+[Diapos, cours 1, code source](./ECN6578/ECN6578_1.Rmd)
+
 ***
 
 [Examen Intra, hiver 2020](./ECN6578/EI20.pdf)
