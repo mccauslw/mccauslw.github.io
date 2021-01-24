@@ -20,7 +20,7 @@ urlcolor: blue
 - La fonction $r = \log (1+R)$ est concave et $r \leq R$
 
 ```{r concave, fig.height=5}
-R = seq(-0.9, 1.0, by=0.01)
+R = seq(-0.5, 1.0, by=0.01)
 plot(R, log(1+R), xlab="R", ylab="r", type='l')
 lines(R, R, col='blue')
 ```
@@ -116,7 +116,15 @@ $$ z_K = \frac{\hat{K}_{ch}-3}{\sqrt{24/T}} \sim N(0,1). $$
 * Loi asymptotique de la statistique Jarque-Bera sous $H_0$:
 $$ \mathrm{JB} = \frac{\hat{S}^2}{6/T} + \frac{(\hat{K}-3)^2}{24/T} \sim \chi^2(2). $$
 
-## Exemple 1: test de l'hypothèse $H_0$ contre $H_1:S \neq 0$ à un niveau de 5\%
+## Tests statistiques unilatéraux et bilatéraux
+
+* Un test avec la statistique $\hat{S}$ est souvent bilatéral---l'hypothèse alternative est $S \neq 0$. On peut défendre aussi un test unilatéral avec une hypothèse alternative $S < 0$.
+
+* Un test avec la statistique $\hat{K}$ peut être unilatéral, auquel cas l'hypothèse alternative est $K > 3$, ou bilatéral, auquel cas l'hypothèse alterative est $K \neq 3$.
+
+* Un test avec la statistique $\mathrm{JB}$ est toujours unilatéral. On ne rejette pas la normalité si l'aplatissement et l'asymétrie sont plus près de 3 et 0 que d'habitude sous l'hypothèse nulle.
+
+## Exemple 1: test de l'hypothèse $H_0$ contre $H_1:S \neq 0$ à un niveau de 5\% (rendement IBM)
 
 ```{r Stest, results='asis'}
 T = length(r)            # Taille de l'échantillon
@@ -128,8 +136,8 @@ cat(sprintf('Statistique test : %f', z_S))
 cat(sprintf('Région de non rejet : [%f, %f]', c_1, c_2))
 ```
 
-## Exemple 2: test de l'hypothèse $H_0$ contre $H_1:K > 3$ à un niveau de 1\%
-
+## Exemple 2: test de l'hypothèse $H_0$ contre $H_1:K > 3$ à un niveau de 1\% (rendement IBM)
+ 
 ```{r Ktest, results='asis'}
 alpha = 0.01              # Niveau du test
 z_K = (K_ch-3)/sqrt(24/T) # Statistique test
@@ -199,7 +207,7 @@ $$ (r_{t_1},r_{t_2},\ldots,r_{t_k}), \quad (r_{t_1-\tau},r_{t_2-\tau},\ldots,r_{
 
 ## Non-corrélation versus indépendence I
 
-* Tirer un parametre d'échelle
+* Tirer un parametre d'échelle commun
 $\omega \sim \chi^2(\nu)$.
 
 * Sachant $\omega$, tirer $X_1$ et $X_2$, conditionnellement iid et gaussiens :
@@ -212,7 +220,7 @@ $$ X_i \sim t(\nu),\; i=1,2. $$
 $$ \mathrm{Cov}[X_1, X_2] = E[\mathrm{Cov}[X_1,X_2|\omega]] + \mathrm{Cov}[E[X_1|\omega], E[X_2|\omega]] = 0 $$
 
 * $X_1$ et $X_2$ ne sont pas indépendents :
-$$ \begin{aligned} \mathrm{Cov}[X_1^2, X_2^2] &= E[\mathrm{Cov}[X_1^2,X_2^2|\omega]] + \mathrm{Cov}[E[X_1^2|\omega], E[X_2^2|\omega]] \\ &= \mathrm{Var}[\nu/\omega] \neq 0. \end{aligned} $$
+$$ \begin{aligned} \mathrm{Cov}[X_1^2, X_2^2] &= E[\mathrm{Cov}[X_1^2,X_2^2|\omega]] + \mathrm{Cov}[E[X_1^2|\omega], E[X_2^2|\omega]] \\ &= 0 + \mathrm{Var}[\nu/\omega] \neq 0. \end{aligned} $$
 
 ## Non-corrélation versus indépendence II
 
@@ -244,13 +252,13 @@ Quand $r_t$ est covariance stationnaire, $\phi_\tau$ est le coefficient $\phi_{\
 $$ r_t = \phi_{1\tau} r_{t-1} + \ldots + \phi_{\tau \tau} r_{t-\tau} + \epsilon_t,
 \quad E[\epsilon_t | r_{t-1},\ldots,r_{t-\tau}] = 0. $$
 
-## Fonction d'autocorrélation de $r_t$
+## Fonction d'autocorrélation de $r_t$ (rendement IBM)
 
 ```{r acf, fig.height=6}
 acf(r)
 ```
 
-## Fonction d'autocorrélation de $|r_t|$
+## Fonction d'autocorrélation de $|r_t|$ (rendement IBM)
 
 ```{r acfabs, fig.height=6}
 acf(abs(r))
