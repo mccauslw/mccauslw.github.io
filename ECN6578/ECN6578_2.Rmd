@@ -104,10 +104,10 @@ lines(x, dnorm(x, mu, sigma), col='green')
 * L'hypothèse nulle ici : $H_0: r_t \sim \mathrm{iid}\, N(\mu,\sigma^2)$, $t=1,\ldots,T$.
 
 * Loi asymptotique de l'assymétrie de l'échantillon sous $H_0$:
-$$ z_S = \frac{\hat{S}_{ch}}{\sqrt{6/T}} \sim N(0,1). $$
+$$ z_S = \frac{\hat{S}}{\sqrt{6/T}} \sim N(0,1). $$
 
 * Loi asymptotique de l'aplatissement de l'échantillon sous $H_0$:
-$$ z_K = \frac{\hat{K}_{ch}-3}{\sqrt{24/T}} \sim N(0,1). $$
+$$ z_K = \frac{\hat{K}-3}{\sqrt{24/T}} \sim N(0,1). $$
 
 * Il s'avère que $z_S$ et $z_K$ sont asymtotiquement indépendents.
 
