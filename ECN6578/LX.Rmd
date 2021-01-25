@@ -97,3 +97,62 @@ Travail, cours du 25 janvier
 1. Téléchargez le fichier des données `d-3m7008.txt` et faites la graphique des rendements journaliers de l'action 3M avec la commande `plot`, option 'l' (L minuscule).
 1. Faites un test de l'hypothèse que les rendements sont iid gaussiens, avec la statistique test Jarque-Bera. Calculez les valeurs critiques en utilisant la fonction de quantile (comme `qnorm` ou `qchisq`) de la loi asymptotique de la statistique test sous l'hypothèse nulle.
 1. Faites un test de l'hypothèse que les rendements sont iid avec variance finie, avec la statistique test Box-Pierce. Utilisez la commande `acf` pour obtenir la fonction d'autocorrélation et calculez la statistique test à partir de cette fonction. Utilisez $m=10$ retards. Confirmez ensuite votre réponse en utilisant la commande `Box.test`.
+
+\pagebreak
+
+## Cours 3, le 1 février
+
+#### Sujets
+
+1. Le bruit blanc et des séries temporelles linéaires
+1. Le modèle AR(p)
+1. Le modèle MA(p)
+1. Le modèle ARMA(p,q)
+
+#### Lectures préparatoire
+
+1. Tsay, 3e édition :
+    a. 2.3
+    a. 2.4 Intro (avant 2.4.1)
+    a. 2.5 Intro (avant 2.5.1)
+    a. 2.6 Intro (avant 2.6.1)
+
+#### Autres lectures
+
+1. Tsay, 3e édition :
+    a. 2.4 (modèles AR)
+    a. 2.5 (modèles MA)
+    a. 2.6 (modèles ARMA)
+    a. 2.8.1 et 2.8.2 (pour faire l'exercise 2.4)
+
+#### Exercices
+
+1. Ecrivez les équations Yule-Walker pour un process AR(3) et pour un processus ARMA(1,1).
+
+1. Trouvez la fonction d'autocorrélation pour un processus MA(3).
+
+1. Considérez le process AR(3) suivant :
+\[
+  r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t.
+\]
+    a. Trouvez les racines du polynome caracteristique du processus.
+    a. Est-ce que la condition de stationnarité tient?
+
+1. Trouvez $\psi_1,\psi_2,\psi_3$ de la représentation MA infinie pour un ARMA(1,2) général.
+
+#### Exercices en R
+
+Travail, cours du 20 janvier
+
+1. Considérez le process ARMA(3,1) suivant :
+\[
+  r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t - 0.3 a_{t-1}.
+\]
+    a. Simulez le séries pour $T=500$ observations.
+    a. Faites la graphique de la fonction d'autocorrélation $\rho_k$ de la population, pour $k=1,\ldots,25$
+    a. Faites la graphique de la fonction d'autocorrélation $\hat\rho_k$ de l'échantillon, pour $k=1,\ldots,25$.
+    a. Estimez les paramètres d'un modèle ARMA(3,1) en vous servant de l'échantillon que vous avez tiré. Donnez des estimations ponctuelles avec leurs écarts-types.
+
+1. Tsay, Exercice 2.4. Lisez les sections 2.8.1 et 2.8.2 sur la saisonnalité.
+
+
