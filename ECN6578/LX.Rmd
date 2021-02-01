@@ -135,7 +135,8 @@ Travail, cours du 25 janvier
 \[
   r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t.
 \]
-    a. Trouvez les racines du polynome caracteristique du processus.
+    a. Il y a une racine réelle du polynôme caractéristique du processus : $0.9^{-1}$.
+    Trouvez les autres racines.
     a. Est-ce que la condition de stationnarité tient?
 
 1. Trouvez $\psi_1,\psi_2,\psi_3$ de la représentation MA infinie pour un ARMA(1,2) général.

@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2021"
 subtitle: "Cours 2"
 author: "William McCausland"
 date: "`r Sys.Date()`"
