@@ -156,4 +156,21 @@ Travail, cours du 20 janvier
 
 1. Tsay, Exercice 2.4. Lisez les sections 2.8.1 et 2.8.2 sur la saisonnalité.
 
+\pagebreak
 
+## Cours 4, le 8 février
+
+#### Sujets
+
+1. Prévision avec un modèle ARMA(p,q)
+1. Modèles pour la moyenne conditionnelle, modèles pour la variance conditionnelle.
+1. Modèles ARCH et GARCH
+    a. propriétés théorique, moments
+    a. simulation
+    a. évaluation de la log-vraisemblance
+
+#### Lectures préparatoires
+
+1. Tsay, 3e édition
+    a. 3.1
+    a. 3.2
