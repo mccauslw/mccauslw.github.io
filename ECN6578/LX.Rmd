@@ -141,7 +141,7 @@ Travail, cours du 25 janvier
 
 1. Trouvez $\psi_1,\psi_2,\psi_3$ de la représentation MA infinie pour un ARMA(1,2) général.
 
-#### Exercices en R
+#### Exercices avec R
 
 Travail, cours du 20 janvier
 
