@@ -1,0 +1,19 @@
+---
+title: "Solutions aux quiz"
+date: "07/02/2021"
+output: pdf_document
+---
+
+### Quiz 1, 31 janvier
+
+1. $(1+R_t[2]) = (1+R_t)(1+R_{t-1}) = 1.0296$ alors $R_t[2] = 0.0296$.
+2. $S = E[X^3]/E[X^2]^{3/2} \approx 0.1061$, $K = E[X^4]/E[X^2]^2 = 3.75$.
+3. $\rho_1 = \mathrm{Cov}[r_tr_{t-1}]/\mathrm{Var}[r_t] = 0.05$.
+
+### Quiz 2, 1 février
+
+1.
+    a. MA(1). Il n'y a pas de term autoregressif $r_{t-l}$ à droite. (Ce n'est pas demandé, mais pour trouver la forme canonique, équation 2.22, divisez l'équation dans le quiz par $\psi_0$.)
+    b. Par (2.5), on a $\mathrm{Var}[r_t] = (\psi_0^2 + \psi_1^2) \sigma_a^2$. Seulement les termes $i=0$ et $i=0$ sont non-nuls.
+Par (2.6), on a $\mathrm{Cov}[r_tr_{t-1}] = \psi_0\psi_1 \sigma_a^2$.
+On cherche $\gamma_l$ pour $l=1$ et seulement le terme $j=0$ est non-nul.
