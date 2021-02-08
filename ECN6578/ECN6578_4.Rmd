@@ -46,17 +46,27 @@ output: beamer_presentation
   \mathrm{Var}[r_{t+1}|F_t] = \mathrm{Var}[a_{t+1}|F_t] = \sigma_a^2.
 \]
 
-## Prévision à un horizon $h=2$ : 1er perspectif de trois
+## Prévision à un horizon $h=2$ : la prévision
 
 - Équation pour $r_{t+2}$ :
 \[
   r_{t+2} = \phi_1 r_{t+1} + \phi_2 r_t + a_{t+2} - \theta_1 a_{t+1} - \theta_2 a_t.
 \]
-- Prenez l'espérance conditionnelle $E[\cdot|F_t]$ des deux côtés pour obtenir une prévision :
+- Prenez l'espérance conditionnelle $E[\cdot|F_t]$ des deux côtés pour obtenir :
 \[
   E[r_{t+2}|F_t] = \phi_1 E[r_{t+1}|F_t] + \phi_2 r_t - \theta_2 a_t,
 \]
 où $E[r_{t+1}|F_t] = \phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t-1}$.
+- Alors la prévision à $h=2$ est
+\[
+  \begin{aligned}
+  E[r_{t+2}|F_t] &= \phi_1 [\phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t-1}] + \phi_2 r_t - \theta_2 a_t \\
+  &= (\phi_1^2 + \phi_2) r_t + \phi_1 \phi_2 r_{t-1} - (\phi_1 \theta_1 + \theta_2) a_t - \phi_1 \theta_2 a_{t-1}.
+  \end{aligned}
+\]
+
+## Variance de l'erreur ($h=2$) : 1er perspectif de trois
+
 - Calculez l'erreur de la prévision :
 \[
   \begin{aligned}
@@ -69,7 +79,7 @@ où $E[r_{t+1}|F_t] = \phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t
   \mathrm{Var}[r_{t+2}|F_t] = [(\phi_1 - \theta_1)^2 + 1] \sigma_a^2.
 \]
 
-## Prévision à un horizon $h=2$ : 2e perspectif de trois
+## Variance de l'erreur ($h=2$) : 2e perspectif de trois
 
 - Par la loi de variance totale :
 \[
@@ -81,14 +91,14 @@ où $E[r_{t+1}|F_t] = \phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t
 \]
 - Puisque $E[r_{t+2}|F_{t+1}] = \phi_1 r_{t+1} + \phi_2 r_t - \theta_1 a_{t+1} - \theta_2 a_t$,
 \[
-  \mathrm{Var}[E[r_{t+2}|F_{t+1}]|F_t] = \mathrm{Var}[(\phi_1 - \theta_1) a_{t+1}] = (\phi_1 - \theta_1)^2 \sigma_a^2
+  \mathrm{Var}[E[r_{t+2}|F_{t+1}]|F_t] = \mathrm{Var}[(\phi_1 - \theta_1) a_{t+1}|F_t] = (\phi_1 - \theta_1)^2 \sigma_a^2
 \]
 - Alors,
 \[
   \mathrm{Var}[r_{t+2}|F_t] = [1+(\phi_1-\theta_1)^2] \sigma_a^2.
 \]
 
-## Prévision à un horizon $h=2$ : 3e perspectif de trois
+## Variance de l'erreur ($h=2$) : 3e perspectif de trois
 
 - La représentation MA infinie donne
 \[
