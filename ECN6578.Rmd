@@ -11,6 +11,8 @@
 
 [Lectures et exercices](./ECN6578/LX.pdf)
 
+[Solutions aux quiz](./ECN6578/Quiz_solutions.pdf)
+
 ***
 
 ##### Cours 1, le 18 janvier
