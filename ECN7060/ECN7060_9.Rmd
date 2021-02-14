@@ -15,9 +15,9 @@ knitr::opts_chunk$set(echo = FALSE)
 * Vraisemblance:
 $$ f(x|\theta) = \prod_{i=1}^n 1_{[\theta,\theta+1]}(x_i)
 = \prod_{i=1}^n 1_{[x_i-1,x_i]}(\theta) = 1_{[x_{(n)}-1, x_{(1)}]}(\theta), $$
-où $x_{(1)},x_{(2)},\ldots,x_{(n)}$ sont les statistiques d'ordre.
+où $x_{(1)} \leq x_{(2)} \leq \cdots \leq x_{(n)}$ sont les statistiques d'ordre.
 
-* Par le théorème de factorisation, $T(x) = (x_{(1)}, x_{(n)})$ est suffisante pour $\theta$.
+* Par le théorème de factorisation, $T(x) = (x_{(1)}, x_{(n)})$ est exhaustive pour $\theta$.
 
 * Vérification de minimalité par ratio :
 $$ \frac{f(x|\theta)}{f(y|\theta)} = \frac{1_{[x_{(n)}-1, x_{(1)}]}(\theta)}{1_{[y_{(n)}-1, y_{(1)}]}(\theta)} $$
@@ -25,7 +25,7 @@ ne dépend pas de $\theta$ seulement si $x_{(1)} = y_{(1)}$ et $x_{(n)} = y_{(n)
 
 ## Un paradoxe II
 
-* Une autre statistique suffisante minimale est $T'(x) = (x_{(1)}+x_{(n)}, x_{(n)}-x_{(1)})$.
+* Une autre statistique exhaustive minimale est $T'(x) = (x_{(1)}+x_{(n)}, x_{(n)}-x_{(1)})$.
 
 * Pourquoi? $T(x)$ et $T'(x)$ sont chacun une fonction de l'autre :
 \[
@@ -34,9 +34,9 @@ ne dépend pas de $\theta$ seulement si $x_{(1)} = y_{(1)}$ et $x_{(n)} = y_{(n)
   \begin{bmatrix} x_{(1)} \\ x_{(n)} \end{bmatrix}.
 \]
 
-* Le paradoxe : $x_{(1)}+x_{(n)}$ n'est pas suffisante et $x_{(n)}-x_{(1)}$ est ancillaire---sa distribution ne dépend pas de $\theta$.
+* Le paradoxe : $x_{(1)}+x_{(n)}$ n'est pas exhaustive seule et $x_{(n)}-x_{(1)}$ est libre---sa distribution ne dépend pas de $\theta$.
 
-* C'est pourquoi nous avons besoin du concept de statistique complète.
+* Le concept de statistique complète est utile parce qu'une statistique complète et exhaustive est indépendante de n'importe quelle statistique libre.
 
 ## Modèle binomial
 
@@ -51,9 +51,9 @@ $$
 $$ f(x|\theta) = \theta^{n_1} (1-\theta)^{n_0} $$
 où $n_1$ est le nombre de fois que $x_i=1$, $n_0 = n-n_1$ est le nombre de fois que $x_i=0$.
 
-## Une statistique suffisante
+## Une statistique exhaustive
 
-* Proposition : $T(x) = n_1$ est une statistique suffisante.
+* Proposition : $T(x) = n_1$ est une statistique exhaustive.
 
 * Vérification par ratio :
     * $n_1 \sim \mathrm{Bi}(n,\theta)$,
@@ -71,13 +71,13 @@ où $n_1$ est le nombre de fois que $x_i=1$, $n_0 = n-n_1$ est le nombre de fois
 $$ \prod_{i=1}^n \frac{e^{-\theta} \theta^{x_i}}{x_i!}
 = \frac{e^{-n\theta} \theta^{\sum_{i=1}^n x_i}}{\prod_{i=1}^n x_i!}. $$
 
-* $\sum_{i=1}^n x_i$ est une statistique suffisante minimale.
+* $\sum_{i=1}^n x_i$ est une statistique exhaustive minimale.
 
 * Le facteur $h(x) = \left(\prod_{i=1}^n x_i!\right)^{-1}$ ne dépend pas de $\theta$.
 
-## Minimalité de la statistique suffisante $T(x) = n_1$ dans le modèle binomial
+## Minimalité de la statistique exhaustive $T(x) = n_1$ dans le modèle binomial
 
-* Proposition : $T(x) = n_1$ est une statistique suffisante minimale.
+* Proposition : $T(x) = n_1$ est une statistique exhaustive minimale.
 
 * Vérification par ratio de vraisemblances
     * Ratio de deux vraisemblances :

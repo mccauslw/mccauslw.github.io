@@ -1,14 +1,20 @@
 ---
 title: "ECN 7060, Cours 3"
 author: "William McCausland"
-date: '2018-09-19'
+date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
+## Plan
+
+1. Variables aléatoires
+2. Indépendance
+3. Continuité de probabilité
+
 ## Variables aléatoires sur $(\Omega,{\cal F},P)$
 
-* Une fonction $X(\omega)$ est une variable aléatoire si pour tout $x \in \mathbb{R}$
-$$ \{X \leq x\} \equiv \{\omega \in \Omega \colon X(\omega) \leq x\} \in {\cal F} $$
+* Une fonction $X \colon \Omega \rightarrow \mathbb{R}$ est une variable aléatoire sur $(\Omega,{\cal F},P)$ si
+$$ \{X \leq x\} \equiv \{\omega \in \Omega \colon X(\omega) \leq x\} \in {\cal F} \; \mbox{pour tous} \; x \in \mathbb{R}. $$
 
 * Soit $X$, $Y$, $Z_1,Z_2,\ldots$ des variables aléatoires, $c>0$.
 
@@ -22,7 +28,10 @@ $$ \{X \leq x\} \equiv \{\omega \in \Omega \colon X(\omega) \leq x\} \in {\cal F
 * Supposez que $\lim_{n\to \infty} Z_n(\omega)$ existe et égale $Z(\omega)$ pour chaque
 $\omega \in \Omega$. $Z(\omega)$ est-elle une variable aléatoire?
     * Notez le mode de convergence : ponctuel, pas uniforme
-    
+
+##
+![](Figures/Convergence_ponctuelle.png)
+
 ## Fonctions indicatrices
 
 Notation pour une fonction indicatrice sur $\Omega$, où $(\Omega, {\cal F}, P)$ est un espace de probabilité :
@@ -34,6 +43,9 @@ Si $A \in {\cal F}$,
 \]
 et $\emptyset, A^c, \Omega \in {\cal F}$. Alors $1_A(x)$ est une variable aléatoire.
 
+##
+![](Figures/Preimage_indicatrice.png)
+
 ## Multiplication scalaire
 
 Soit $X(\omega)$ une variable aléatoire, $c>0$ et $W(\omega) \equiv cX(\omega)$.
@@ -44,19 +56,28 @@ Pour tout $x \in \mathbb{R}$,
   \{\omega \in \Omega \colon W(\omega) \leq x\} &= \{\omega \in \Omega \colon cX(\omega) \leq x\} \\ &= \{\omega \in \Omega \colon X(\omega) \leq x/c\} \\ &\in {\cal F}.
   \end{aligned}
 \]
-
-Avec une notation plus simple :
+En notation plus simple :
 \[
   \{W \leq x\} = \{cX \leq x\} = \{X \leq x/c\} \in {\cal F}. 
 \]
-
 Notes :
 
 * pour le cas $c<0$ il faut utiliser 
 \[
-  \{X \geq x/c\} = \left( \cup_{n=1}^\infty \{X \leq x/c - 1/n\} \right)^c {\cal F}.
+  \{W \leq x\} = \{X \geq x/c\} = \left( \cup_{n=1}^\infty \{X \leq x/c - 1/n\} \right)^c \in {\cal F}.
 \]
 * pour $c=0$, $W = 0$ est trivialement une variable aléatoire.
+
+##
+![](Figures/Deux_variables_aleatoires.png)
+
+## Discussion : minimum, maximum, infimum
+
+Rappel : $X, Y, Z_1, Z_2, \ldots$ sont des variables aléatoires sur $(\Omega, {\cal F}, P)$.
+
+1. $W = \min(X, Y)$
+1. $W = \max(X, Y)$
+1. $W = \inf_n Z_n$
 
 ## Addition
 
@@ -76,13 +97,8 @@ Notes pour la première équation :
 * Pour inclure le point $(x, w-x+\epsilon)$ arbitraire qui vérifie $x+y>w$, choisit $q \in (x-\epsilon,x)$.
 * Entre deux nombres réels, il y a toujours un nombre rationnel (la densité des rationnels dans les réels).
 
-## Discussion : minimum, maximum, infimum
-
-Rappel : $X, Y, Z_1, Z_2, \ldots$ sont des variables aléatoires sur $(\Omega, {\cal F}, P)$.
-
-1. $W = \min(X, Y)$
-1. $W = \max(X, Y)$
-1. $W = \inf_n Z_n$
+---
+![](Figures/Somme_XY.png)
 
 ## Limites ponctuelles
 
@@ -95,11 +111,10 @@ Alors
   \end{aligned}
 \]
 
-Notes :
+## Notes sur les limites ponctuelles
 
 1. Fonctions sur $\Omega = \mathbb{R}$ avec un ensemble dénombrable de discontinuités.
-
-1. Avec des limites et des sommes finies, on a des sommes infinies convergentes.
+1. Comme les limites ponctuelles et les sommes finies de v.a. sont des variables aléatoires, les sommes infinies convergentes sont des variables aléatoires.
 
 ## Indépendance de deux événements sur $(\Omega,{\cal F},P)$
 
@@ -126,16 +141,19 @@ $P(A\cap C) = P(A)P(C)$ et $P(A\cap B\cap C) = P(A)P(B)P(C)$.
     * Mais $P(A\cap B \cap C) = 0$ et $P(A)P(B)P(C) = 0.125$.
     * Intuition: si $\omega \in C$, $\omega \in A\cap B$ est impossible, tandis que si $\omega \notin C$, c'est possible.
 
+##
+![](Figures/Independance_par_pair.png)
+
 ## Indépendance d'un ensemble $I$ d'événements
 
-* L'ensemble $I$ peut être indénombrable (processus stochastique en temps continu)
+* L'ensemble $I$ peut être indénombrable (Exemple : processus stochastique $X_t(\omega)$ en temps continu)
 * $\{A_\alpha\}_{\alpha \in I}$ sont indépendants si pour chaque $j \in \mathbb{N}$ et chaque
 $\alpha_1,\ldots,\alpha_j$,
 $$ P(A_{\alpha_1} \cap A_{\alpha_2} \cap \ldots \cap A_{\alpha_j})
 = P(A_{\alpha_1})P(A_{\alpha_2})\cdots P(A_{\alpha_j}) $$
 
 * Si les $\{A_\alpha\}_{\alpha \in I}$ sont indépendants et $a \in I$, $\{A_\alpha\}_{\alpha \in I \backslash \{a\}}
-\cup \{A_a^c\}$ le sont aussi. (On peut remplacer un événement arbitraire par son complément.)
+\cup \{A_a^c\}$ le sont aussi. (On peut remplacer un évènement arbitraire par son complément.)
 
 ## Indépendance des variables aléatoires
 
@@ -150,6 +168,9 @@ $$ P(X_{\alpha_1} \in S_1, \ldots, X_{\alpha_j} \in S_j)
 * Indépendance de $f(X)$ et $g(Y)$ pour $X,Y$ indépendant, $f$ et $g$ réelles et mesurables
 
 * Suffisance de $F(x,y) = F(x)F(y)$ pour indépendance.
+
+##
+![](Figures/Independance_fg.png)
 
 ## Continuité de probabilité (résultat)
 
@@ -175,11 +196,14 @@ $$B_1 = A_1,\, B_2 = A_2 \cap A_1^c,\, \ldots,\, B_n = A_n \cap A_{n-1}^c,\, \ld
 
 * Notez que $B_n \in {\cal F}$, $A_n = \cup_{m=1}^n B_m$ et $A = \cup_{m=1}^\infty B_m$.
 
-* Alors
+* Alors $A \in {\cal F}$ et
 $$ P(A) = P(\cup_{m=1}^\infty B_m) = \sum_{m=1}^\infty P(B_m) = \lim_{n\to \infty} \sum_{m=1}^n P(B_n) = \lim_{n\to \infty} P(A_n).$$
 
 * Si $A_n \searrow A$ et $A_n \in {\cal F}$, $A_n^c \nearrow A^c$ puis
 $P(A^c) = \lim_{n\to \infty} P(A_n^c)$, $P(A) = \lim_{n\to \infty} P(A_n)$.
+
+##
+![](Figures/Construction_AB.png)
 
 ## Convergence : suites d'événements $A_n$ non-monotones
 

@@ -5,25 +5,51 @@ date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
-## La fonction caractéristique
+## Quatre racines de $x^4 = 1$
+![](./Figures/Quatre_racines.png)
 
-* Comme $F$, une autre représentation de la loi d'une v.a. qui existe et qui est unique.
+## Le module et l'argument (l'angle) d'un nombre complexe
+![](./Figures/Module_angle.png)
+
+## Multiplication des nombres complexes
+![](./Figures/Multiplication_complexe.png)
+
+## Des expansions des fonctions $\exp(\cdot)$, $\cos(\cdot)$, $\sin(\cdot)$
+![](./Figures/Expansion_exp_sin_cos.png)
+
+## La fonction caractéristique $\phi$
+
+* Comme la fonction de répartition $F$, $\phi$ est une autre représentation de la loi d'une v.a. qui existe et qui est unique.
 * Applications :
-    * Calcul des moments : moins convenable que la fonction génératrice des moments, mais elle existe toujours
-    * L'opération de convolution versus l'opération de multiplication.
-    * Théorème central limite
+    * Calcul des moments (mais moins convenable que la fonction génératrice des moments)
+    * L'opération de convolution versus l'opération de multiplication, pour le produit des v.a. indépendantes.
+    * Utilisée pour prouver le théorème central limite
     * Inférence quand les moments n'existent pas.
+
+## La fonction caractéristique comme un film
+![](./Figures/Film_caracteristique.png)
 
 ## Propriétés de la fonction caractéristique
 
 1. $\phi_X(0) = E[e^0] = 1$, peut importe $X$.
-1. $|\phi_X(t)| \leq E[|e^{itX}|] = 1$.
-1. Si $X$ et $Y$ sont indépendants, $\phi_{X+Y}(t) = E[e^{it(X+Y)}] = E[e^{itX}e^{itY}] = E[e^{itX}]E[e^{itY}]$.
+1. $|\phi_X(t)| = |E[e^{itX}]| \leq E[|e^{itX}|] = 1$.
+1. Si $X$ et $Y$ sont indépendantes,
+\[
+  \begin{aligned}
+    \phi_{X+Y}(t) &= E[e^{it(X+Y)}] = E[e^{itX}e^{itY}] = E[e^{itX}]E[e^{itY}] \\
+    &= \phi_X(t) \phi_Y(t).
+  \end{aligned}
+\]
 1. $\phi(t) = E[\cos tX] + iE[\sin tX]$, par linéarité de l'espérance.
 1. Pour $X$ réelle,
     a. $\Re(\phi(t)) = E[\cos tX]$ est paire.
     a. $\Im(\phi(t)) = E[\sin tX]$ est impaire.
 1. Pour $X$ symétrique ($F(-x) = 1-F(x)$ au points de continuité), $\phi$ est réelle.
+
+## L'extension de deux définitions
+
+1. Une fonction $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire si $\Re(Z)$ et $\Im(Z)$ le sont.
+1. Si $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire, $E[Z] \equiv E[\Re(Z)] + iE[\Im(Z)]$.
 
 ## Fonction caractéristique d'une loi $U(a,b)$
 
@@ -74,8 +100,12 @@ lines(t, 1/abs(t), col='red')
   \phi_X(t) = \exp[\lambda(e^{it}-1)].
 \]
 
-## Illustration, cas Bernoulli avec valeurs $x_0$ et $x_1$
+## Cas discret, illustrations
+![](Figures/Fonction_caracteristique_cas_discret.png)
 
+## Illustration, cas Bernoulli avec valeurs $x_0 = 1$ et $x_1 = 6$
+
+Voici le code pour les trois prochaines figures:
 ```{r bern}
 t = seq(-2*pi, 2*pi, length.out = 200)
 x0 = 1; x1 = 6; p = 0.25
@@ -83,6 +113,13 @@ phi = (1-p)*exp(complex(imaginary=t*x0))
 phi = phi + p*exp(complex(imaginary=t*x1))
 
 cercle = exp(complex(imaginary=t))
+```
+
+## Trajet dans le cercle unitaire
+
+```{r berncirc}
+plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
+lines(Re(cercle), Im(cercle), col='red')
 ```
 
 ## Partie réelle
@@ -97,19 +134,21 @@ plot(t, Re(phi), type='l', ylim=c(-1,1))
 plot(t, Im(phi), type='l', ylim=c(-1,1))
 ```
 
-## Trajet dans le cercle unitaire
+## Illustration, cas Poisson, $\lambda = 2$
 
-```{r berncirc}
-plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
-lines(Re(cercle), Im(cercle), col='red')
-```
-
-## Illustration, cas Poisson
-
+Voici le code pour les trois prochaines figures:
 ```{r Po}
 t = seq(-2*pi, 2*pi, length.out = 200)
 lambda = 2
 phi = exp(lambda*(exp(complex(imaginary = t))-1))
+```
+
+## Trajet dans le cercle unitaire
+
+```{r Pocirc}
+plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
+lines(Re(cercle), Im(cercle), col='red')
+points(0, 0, col='green')
 ```
 
 ## Partie réelle
@@ -124,17 +163,9 @@ plot(t, Re(phi), type='l', ylim=c(-1,1))
 plot(t, Im(phi), type='l', ylim=c(-1,1))
 ```
 
-## Trajet dans le cercle unitaire
-
-```{r Pocirc}
-plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
-lines(Re(cercle), Im(cercle), col='red')
-points(0, 0, col='green')
-```
-
 ## Fonction caractéristique d'une loi $N(0,1)$
 
-* Puisque $\sin(tx)$ est impair, $e^{-x^2/2}$ est pair,
+* Puisque $\sin(tx)$ est impair et $e^{-x^2/2}$ est pair,
 $$ \phi(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \cos tx \cdot e^{-x^2/2}\, dx $$
 $$ \phi'(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty -\sin tx \cdot x e^{-x^2/2}\, dx $$
 * Intégration par parties, $u = -\sin tx$, $dv = xe^{-x^2/2}\,dx$, $du = -t\cos tx$, $v = -e^{-x^2/2}$, donne
@@ -175,11 +206,14 @@ $$ \lim_{h \downarrow 0} E\left[\left| e^{i(t+h)X} - e^{itX} \right|\right]
 * Selon la première,
 $$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] = E[0] = 0. $$
 
+## Arc et corde
+![](Figures/Arc_et_corde.png)
+
 ## Dérivée de la fonction caractéristique
 
-* Soit $X$ une variables aléatoire, $\phi(t)$ sa fonction caractéristique.
+* Soit $X$ une variable aléatoire, $\phi(t)$ sa fonction caractéristique.
 * Si $E[|X|^k] < \infty$, alors pour $0 \leq j \leq k$, $\phi^{(j)}(t) = E[(iX)^j e^{itX}]$.
-* Preuve par induction :
+* Preuve par induction : fixons $k$ et supposons que $E[|X|^k] < \infty$.
     * $E[(iX)^0 e^{itX}] = E[e^{itX}] = \phi(t) = \phi^{(0)}(t)$, alors vrai pour $j=0$.
     * Supposez que $\phi^{(j-1)}(t) = E[(iX)^{j-1} e^{itX}]$.
     * $|(iX)^j e^{itX}| = |i|^j|X|^j|e^{itX}| = |X|^j$
@@ -210,7 +244,7 @@ $$ \lim_{T\to \infty} \int_{-T}^T \frac{\sin \theta t}{t} \, dt
 si $a<b$ et $\mu(\{a\}) = \mu(\{b\}) = 0$,
 $$ \mu([a,b]) = \frac{1}{2\pi} \lim_{T\to \infty} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t)\,dt $$
 * Puisque
-$$ \left|\frac{e^{-ita}-e^{-itb}}{it}\right| = \left|\int_a^b e^{itr}\, dr\right| < \infty $$
+$$ \left|\frac{e^{-ita}-e^{-itb}}{it}\right| = \left|\int_a^b e^{-itr}\, dr\right| \leq \int_a^b |e^{-itr}|\, dr = b-a < \infty $$
 l'intégral entre $-T$ et $T$ est fini.
 * Par Fubini,
 \[

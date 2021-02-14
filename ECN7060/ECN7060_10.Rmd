@@ -5,7 +5,34 @@ date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
-## Fonction de risque, risque de Bayes
+## Éléments de la théorie de décision
+
+Objets :
+
+* $X = (X_1,\ldots,X_n)$, données aléatoires
+* $x = (x_1,\ldots,x_n)$, réalisation des données
+* $\theta$, le paramètre de la loi des données
+* $a$, une action (par exemple, le choix d'une estimation de $\theta$)
+
+Fonctions primitives :
+
+* $f(x|\theta)$, la densité des données
+* $\pi(\theta)$, la densité *a priori* de $\theta$
+* $L(\theta,a)$, une fonction de perte
+
+Fonction (ou règle) de décision :
+
+* $\delta(X)$ est l'action comme fonction des données.
+
+## Fréquentiste et bayésien avant l'observation des données
+
+![](./Figures/Freq_Bayes_ex_ante.png)
+
+## Fréquentiste et bayésien après l'observation des données
+
+![](./Figures/Freq_Bayes_ex_post.png)
+
+## Fonction de risque
 
 * Pour une fonction de perte $L(\theta,a)$ donnée et un estimateur $\delta(X)$ donné,
 la fonction de risque (une fonction de $\theta$) est, dans la notation de Casella et Berger :
@@ -15,9 +42,22 @@ $$ R(\theta,\delta) = E_\theta[L(\theta,\delta(X))]. $$
 
 * Pour un bayésien, $\theta$ est aléatoire et on peut écrire
 $$ R(\theta,\delta) = E[L(\theta,\delta(X))|\theta]. $$
+* Problèmes :
+    - Besoin de spécifier $\delta(x)$ pour tout résultat $x$ possible.
+    - Calculer $R(\theta,\delta)$ même pour une valeur de $\theta$ est souvent infaisable. Un recours aux méthodes asymptotiques est habituel.
+    - $R(\theta,\delta)$ est une fonction de $\theta$. Ce qui marche bien pour une valeur de $\theta$ ne marche pas toujours bien pour une autre.
+
+## Risque de Bayes
 
 * Le risque de Bayes, pour une densité *a priori* $\pi(\theta)$ donnée, est
-$$ \begin{aligned} r(\pi,\delta) &\equiv \int \pi(\theta) E[L(\theta,\delta(X))|\theta] \, d\theta = E[E[L(\theta,\delta(X))|\theta]] \\ &= E[L(\theta,\delta(X))] \end{aligned} $$
+\[
+  \begin{aligned}
+    r(\pi,\delta) &\equiv E[R(\theta,\delta)]
+    = \int \pi(\theta) E[L(\theta,\delta(X))|\theta] \, d\theta \\
+    &= E[E[L(\theta,\delta(X))|\theta]] \\ &= E[L(\theta,\delta(X))],
+  \end{aligned}
+\]
+où la denière espérance est par rapport à la loi conjointe de $\theta$ et $X$. (La première est l'espérance d'une fonction de $\theta$ seulement.)
 
 * En même temps,
 $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
@@ -26,13 +66,13 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 
 * Rappel : $r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]].$
 
-* Une *règle de Bayes* est une fonction de décision $\delta^*$ qui minimise $r(\pi,\delta)$ pour $\pi$ et $L(\theta,a)$ donné.
+* Une *règle de Bayes* est une fonction de décision $\delta^*$ qui minimise $r(\pi,\delta)$ pour $\pi(\theta)$ et $L(\theta,a)$ donnés.
 
-* Difficultés possibles
+* Difficultés potentielles :
     * non-unicité de $\delta$
     * absence d'une solution parce que $R(\theta,\delta) = \infty$ pour tous $\delta$
 
-* Même si $r(\pi,\delta)$ est toujours infini, on peut souvent trouver, pour $x$ donné, $\delta(x)$ qui minimise la perte *a posteriori* espérée $E[L(\theta,\delta(X))|X]$ à $\{X=x\}$.
+* Même si $r(\pi,\delta)$ est toujours infini, on peut souvent trouver, pour $x$ donné, $\delta(x)$ qui minimise la perte *a posteriori* espérée $E[L(\theta,\delta(X))|X]$ quand $X=x$.
     * C'est une règle de Bayes *généralisée*.
     * En pratique, on le fait pour $x$ observée seulement; $\delta(x)$ a souvent la même dimension que $\theta$.
     * Pour la perte quadratique, $\delta(x)$ est la moyenne *a posteriori*.
@@ -45,9 +85,9 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 
 * Une fonction de décision est admissible s'il n'y a pas d'autre fonction de décision qui la domine.
 
-* Supposons que $\delta(x)$ minimise $r(\pi,\delta) = \int R(\theta,\delta) \pi(\theta)\, d\theta$, pour une fonction $\pi \colon \Theta \to \mathbb{R}_+$.
-    * Si $\delta(x)$ est inadmissible, il existe une $\delta^*(x)$ qui la domine : il y a un ensemble $\bar{\Theta}$ où $R(\theta,\delta) > R(\theta,\delta^*)$.
-    Il faut que $\pi(\bar{\Theta}) = 0$. Sinon, $\delta(x)$ ne minimise $r(\pi,\delta)$.
+* Supposons que $\delta$ minimise $r(\pi,\delta) = \int R(\theta,\delta) \pi(\theta)\, d\theta$, pour une fonction $\pi \colon \Theta \to \mathbb{R}_+$.
+    * Si $\delta$ est inadmissible, il existe une $\delta^*$ qui la domine : il y a un ensemble $\bar{\Theta}$ où $R(\theta,\delta) > R(\theta,\delta^*)$.
+    Il faut que $\pi(\bar{\Theta}) = 0$. Sinon, $\delta(x)$ ne minimise $r(\pi,\delta)$ parce que $r(\pi,\delta^*) < r(\pi,\delta)$.
     
 * À quelques conditions techniques près, un estimateur admissible est une règle de Bayes généralisée (avec possiblement une loi *a priori* impropre).
 
@@ -77,7 +117,7 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
     * Pour $\lambda = 10$, $e^{-3\lambda} \approx 9.357623\times 10^{-14}$.
 * Mais non-biaisé :
 \[
-  E[T] = e^{-\lambda} \sum_{k=0}^\infty \frac{(-2\lambda)^x}{x!} = e^{-3\lambda}.
+  E[T] = e^{-\lambda} \sum_{k=0}^\infty \frac{(-2)^x \lambda^x}{x!} = e^{-3\lambda}.
 \]
 * Par complétion de la famille de loi Poisson, $T$ est l'estimateur unique non-biaisé de $\tau(\lambda)$.
     * Si $E_\theta[g(X)] = 0$ pour tous $\theta$, $P(\{g(X)=0\}) = 1$.
@@ -156,31 +196,47 @@ $$ E\left[ \frac{\partial \log L(\theta;x)}{\partial \theta^\top} \right]
 
 * Échantillon $X_1,\ldots,X_n$, pas nécessairement iid, densité $f(x|\theta)$.
 
-* Supposons que $E[V(\theta,X)] = 0$, $\mathrm{Var}_\theta[W(X)] < \infty$,
+* Supposons que $E[V(\theta,X)] = 0$, où $V(\theta,X)$ est la fonction de score.
+
+* Supposons que $W(X)$ est un estimateur de $\tau(\theta)$, $\mathrm{Var}_\theta[W(X)] < \infty$, et
 $$ \frac{d}{d\theta} E_\theta[W(X)] = \int \frac{\partial }{\partial \theta} [W(x) f(x|\theta)]\, dx. $$
 
 * Alors
 $$ \mathrm{Var}_\theta[W(X)] \geq \frac{\left(\frac{d}{d\theta}E_\theta[W(X)]\right)^2}
 {E_\theta\left[V(\theta,X)^2\right]}. $$
 
-* Preuve I :
-$$
-\begin{aligned}
-\frac{d}{d\theta} E_\theta[W(X)] & = \int W(x) \left[\frac{\partial }{\partial \theta} f(x|\theta) \right]\, dx \\
-& = E_\theta\left[W(X) V(\theta,X) \right] = \mathrm{Cov}_\theta[W(X), V(\theta,X)]
-\end{aligned}
-$$
-$$
-\mathrm{Var}_\theta[V(\theta,X)] = E_\theta[V(\theta,X)^2]
-$$
+## Preuve de l'inégalité Cramér-Rao
 
-* Preuve, II : le reste par l'inégalité de covariance $\mathrm{Var}_\theta[W(X)] \mathrm{Var}_\theta[V(\theta,X)] \geq \mathrm{Cov}_\theta[W(X),V(\theta,X)]^2$
+* L'égalité encore :
+$$ \mathrm{Var}_\theta[W(X)] \geq \frac{\left(\frac{d}{d\theta}E_\theta[W(X)]\right)^2}
+{E_\theta\left[V(\theta,X)^2\right]}. $$
+
+* Preuve :
+\[
+  \begin{aligned}
+  \frac{d}{d\theta} E_\theta[W(X)]
+  &= \int W(x) \left[\frac{\partial f(x|\theta)}{\partial \theta}  \right]\, dx \\
+  &= \int W(x) \left[\frac{\partial \log f(x|\theta)}{\partial \theta}  \right]f(x|\theta) \, dx \\
+  &= E_\theta\left[W(X) V(\theta,X) \right] = \mathrm{Cov}_\theta[W(X), V(\theta,X)]
+  \end{aligned}
+\]
+et
+\[
+\mathrm{Var}_\theta[V(\theta,X)] = E_\theta[V(\theta,X)^2]
+\]
+et par l'inégalité de Cauchy-Schwarz :
+\[
+  \mathrm{Var}_\theta[W(X)] \mathrm{Var}_\theta[V(\theta,X)]
+  \geq \mathrm{Cov}_\theta[W(X),V(\theta,X)]^2.
+\]
 
 ## Remarques, inégalité Cramér-Rao
 
-* Le dénominateur est l'information Fisher, qui dépend du modèle et non l'estimateur.
-* L'inégalité est très utile dans le cas où $W(X)$ est non-biaisé pour $\theta$ : $E_\theta[W(X)] = \theta$, numérateur = 1, la variance a une borne qui ne dépend pas de l'estimateur.
-* Toujours une fonction de $\theta$, par contre.
+* Le dénominateur est l'information de Fisher, qui dépend du modèle et non l'estimateur.
+* L'inégalité est très utile dans le cas où $W(X)$ est non-biaisé pour $\tau(\theta) = \theta$ :
+    - $E_\theta[W(X)] = \theta$ alors le numérateur est 1
+    - la variance $\mathrm{Var}[W(X)]$ a une borne qui ne dépend pas de l'estimateur.
+* La borne est toujours une fonction de $\theta$, par contre.
 * Un estimateur qui atteint la borne est dit "efficace".
 * Attention :
     * un estimateur biaisé peut avoir une EMQ en dessous de cette borne.
@@ -189,13 +245,14 @@ $$
 ## Théorème Rao-Blackwell
 
 * Soit $W$ un estimateur non-biaisé de $\tau(\theta)$, $T$ une statistique suffisante pour $\theta$. Alors $\phi(T) = E[W|T]$ est un estimateur de $\tau(\theta)$ qui est non-biaisé et uniformement meilleur en termes de variance.
-* Preuve: $\phi(T)$ est une fonction de $T$ et alors une fonction de l'échantillon seulement.
-* Non-biais :
-$$ E_\theta[\phi(T)] = E_\theta[E[W|T]] = E_\theta[W] = \tau(\theta). $$
-* Uniformement meilleur en termes de variance :
-$$
+* Preuve :
+    - $\phi(T)$ est une fonction de $T$ et alors une fonction de l'échantillon seulement.
+    - Non-biais : $E_\theta[\phi(T)] = E_\theta[E[W|T]] = E_\theta[W] = \tau(\theta).$
+    - Uniformement meilleur en termes de variance :
+\[
 \begin{aligned}
-\mathrm{Var}_\theta[W] & = \mathrm{Var}_\theta[E[W|T]] + E_\theta[\mathrm{Var[W|T]}] \\
-& = \mathrm{Var}_\theta[\phi(T)] + E_\theta[\mathrm{Var[W|T]}] \\
+  \mathrm{Var}_\theta[W] &= \mathrm{Var}_\theta[E[W|T]] + E_\theta[\mathrm{Var[W|T]}] \\
+  &= \mathrm{Var}_\theta[\phi(T)] + E_\theta[\mathrm{Var[W|T]}] \\
+  &\geq \mathrm{Var}_\theta[\phi(T)]. \\
 \end{aligned}
-$$
+\]

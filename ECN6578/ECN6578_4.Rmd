@@ -46,17 +46,27 @@ output: beamer_presentation
   \mathrm{Var}[r_{t+1}|F_t] = \mathrm{Var}[a_{t+1}|F_t] = \sigma_a^2.
 \]
 
-## Prévision à un horizon $h=2$ : 1er perspectif de trois
+## Prévision à un horizon $h=2$ : la prévision ponctuelle
 
 - Équation pour $r_{t+2}$ :
 \[
   r_{t+2} = \phi_1 r_{t+1} + \phi_2 r_t + a_{t+2} - \theta_1 a_{t+1} - \theta_2 a_t.
 \]
-- Prenez l'espérance conditionnelle $E[\cdot|F_t]$ des deux côtés pour obtenir une prévision :
+- Prenez l'espérance conditionnelle $E[\cdot|F_t]$ des deux côtés pour obtenir :
 \[
   E[r_{t+2}|F_t] = \phi_1 E[r_{t+1}|F_t] + \phi_2 r_t - \theta_2 a_t,
 \]
 où $E[r_{t+1}|F_t] = \phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t-1}$.
+- Alors la prévision à $h=2$ est
+\[
+  \begin{aligned}
+  E[r_{t+2}|F_t] &= \phi_1 [\phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t-1}] + \phi_2 r_t - \theta_2 a_t \\
+  &= (\phi_1^2 + \phi_2) r_t + \phi_1 \phi_2 r_{t-1} - (\phi_1 \theta_1 + \theta_2) a_t - \phi_1 \theta_2 a_{t-1}.
+  \end{aligned}
+\]
+
+## Variance de l'erreur ($h=2$) : 1er perspectif de trois
+
 - Calculez l'erreur de la prévision :
 \[
   \begin{aligned}
@@ -69,7 +79,7 @@ où $E[r_{t+1}|F_t] = \phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t
   \mathrm{Var}[r_{t+2}|F_t] = [(\phi_1 - \theta_1)^2 + 1] \sigma_a^2.
 \]
 
-## Prévision à un horizon $h=2$ : 2e perspectif de trois
+## Variance de l'erreur ($h=2$) : 2e perspectif de trois
 
 - Par la loi de variance totale :
 \[
@@ -81,14 +91,14 @@ où $E[r_{t+1}|F_t] = \phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t
 \]
 - Puisque $E[r_{t+2}|F_{t+1}] = \phi_1 r_{t+1} + \phi_2 r_t - \theta_1 a_{t+1} - \theta_2 a_t$,
 \[
-  \mathrm{Var}[E[r_{t+2}|F_{t+1}]|F_t] = \mathrm{Var}[(\phi_1 - \theta_1) a_{t+1}] = (\phi_1 - \theta_1)^2 \sigma_a^2
+  \mathrm{Var}[E[r_{t+2}|F_{t+1}]|F_t] = \mathrm{Var}[(\phi_1 - \theta_1) a_{t+1}|F_t] = (\phi_1 - \theta_1)^2 \sigma_a^2
 \]
 - Alors,
 \[
   \mathrm{Var}[r_{t+2}|F_t] = [1+(\phi_1-\theta_1)^2] \sigma_a^2.
 \]
 
-## Prévision à un horizon $h=2$ : 3e perspectif de trois
+## Variance de l'erreur ($h=2$) : 3e perspectif de trois
 
 - La représentation MA infinie donne
 \[
@@ -153,7 +163,7 @@ $$ \sigma_t^2 = \alpha_0 + \alpha_1 a_{t-1}^2 + \ldots + \alpha_m a_{t-m}^2, $$
 $$ a_t = \sigma_t \epsilon_t, \quad \epsilon_t|F_{t-1} \sim (0,1). $$
 * On suppose que $a_t$ est covariance stationnaire, ce qui entraîne des restrictions aux paramètres.
 * Une spécification de $\sigma_t^2$ et non $\mu_t$.
-* $\sigma_t$ connu à $t-1$, $\epsilon_t$ à $t$.
+* $\sigma_t$ connu à $t-1$; $a_t$ et $\epsilon_t$ connus à $t$.
 
 ## Moyenne et variance inconditionnelle du modèle ARCH(1)
 
@@ -171,16 +181,16 @@ $$ (1-\alpha_1) \mathrm{Var}[a_t] = \alpha_0, \qquad \mathrm{Var}[a_t] = \alpha_
 
 * L'asymétrie conditionnelle, $E[a_t^3|F_{t-1}]$, est souvent zéro, constant ou non spécifiée.
 * L'effet de levier est $\mathrm{Cov}[(\sigma_{t+1}^2-\sigma_t^2), a_t] < 0$.
-* Pas assez d'information pour calculer l’effet de levier:
+* L’effet de levier en termes de l'asymmétrie inconditionnelle :
 $$ E[(\sigma_{t+1}^2-\sigma_t^2) a_t] = E[(\alpha_0 + \alpha_1 a_t^2 - \sigma_t^2) a_t] = \alpha_1  E[a_t^3]. $$
 * Si l'asymétrie conditionnelle est nulle, l'asymétrie inconditionnelle et $\mathrm{Cov}[(\sigma_{t+1}^2-\sigma_t^2), a_t]$ sont nulles aussi.
 $$ E[a_t^3] = E[E[a_t^3|F_{t-1}]] = E[0] = 0. $$
 * Conclusion: pour un ARCH(1), une asymétrie inconditionnelle ou un effet de levier doit passer par une asymétrie conditionnelle. Si la loi conditionnelle est symétrique, il n'y a pas d'asymétrie inconditionnelle.
 * Même chose pour un ARCH(m).
 
-## Aplatissement
+## Aplatissement d'un ARCH(1) gaussien
 
-* En général, on ne connait pas le 4ième moment conditionnel.
+* Le 4ième moment conditionnel dépend du choix de la loi de $a_t$.
 * Pour un modèle ARCH(1) gaussien,
 $$ E[a_t^4|F_{t-1}] = 3E[\sigma_t^4|F_{t-1}] = 3(\alpha_0 + \alpha_1 a_{t-1}^2)^2. $$
 $$ E[a_t^4] = 3E[\alpha_0^2 + 2\alpha_0\alpha_1a_{t-1}^2 + \alpha_1^2 a_{t-1}^4] $$
@@ -188,7 +198,10 @@ $$ E[a_t^4] = 3E[\alpha_0^2 + 2\alpha_0\alpha_1a_{t-1}^2 + \alpha_1^2 a_{t-1}^4]
 $$ E[a_t^4] = \frac{3\alpha_0^2(1+\alpha_1)}{(1-\alpha_1)(1-3\alpha_1^2)}. $$
 * Il faut que $\alpha_1^2 < 1/3$ pour l'existence de l'aplatissement.
 Un peu inflexible.
-* L'aplatissement, s'il existe, est de $3(1-\alpha_1^2)/(1-3\alpha_1^2) > 3$.
+* L'aplatissement inconditionnel, s'il existe, est de
+\[
+  \frac{E[a_t^4]}{E[a_t^2]^2} = 3(1-\alpha_1^2)/(1-3\alpha_1^2) > 3.
+\]
 
 ## Les autocorrélations
 
@@ -214,8 +227,8 @@ Le modèle ARCH
 * capture l'aplatissement inconditionnel plus grand que 3
 * un peu d'inflexibilité pour l'autocorrélation de $a_t^2$
 * ne capture pas la longue mémoire pour la volatilité
-* ne capture pas l'asymétrie inconditionnelle, indépendant de l'asymétrie conditionnelle
-* ne capture pas l’effet de levier, indépendant de l'asymétrie conditionnelle
+* ne capture pas l'asymétrie inconditionnelle, indépendamment de l'asymétrie conditionnelle
+* ne capture pas l’effet de levier, indépendamment de l'asymétrie conditionnelle
 
 ## Simulation du modèle ARCH(3)
 

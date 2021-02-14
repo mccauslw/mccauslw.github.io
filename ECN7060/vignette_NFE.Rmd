@@ -1,0 +1,29 @@
+---
+title: "Une note sur des nombres, des fonctions et des ensembles"
+date: "24/10/2020"
+output: pdf_document
+---
+
+Dans ce document, je veux clarifier des conceptes reliés à des nombres, des fonctions et des ensembles ainsi que les opérations $\liminf$, $\limsup$ et $\lim$.
+Les opérations $\liminf$, $\limsup$ et $\lim$ ont des définitions différentes pour les nombres, les fonctions et les ensembles.
+Ainsi,
+
+* le $\liminf$ d'une suite de nombres réels est un nombre réel,
+* le $\liminf$ d'une suite de fonctions est une fonction,
+* le $\liminf$ d'une suite d'ensembles est une ensemble.
+
+Même chose pour les opérations $\liminf$ et $\lim$.
+La signification de « croissant » et « décroissant » dépend de l'objet qualifié.
+Dans la graphique, les flêches indiquent le genre d'objet qui est le résultat de l'opération indiquée.
+Une flêche pointillée indique que le résultat n'est pas toujours bien défini.
+
+Voici des notes qui correspondent aux chiffres encerclés dans la graphique.
+
+1. Cette limite n'existe pas toujours. Si elle existe, c'est le même nombre que le $\liminf$ et le $\limsup$.
+2. Cette limite n'existe pas toujours. Si elle existe, c'est la même fonction que le $\liminf$ et le $\limsup$.
+3. L'espérance existe seulement quand $X$ est une variable aléatoire.
+4. La probabilité existe seuelement quand $A$ est une évènement.
+5. Toujours bien définie; cependant, le résultat est une variable aléatoire ssi $A$ est une évènement.
+6. Toujours bien définie. Le résultat est une évènement si $B$ est une ensemble borélienne et $X$ est une variable aléatoire.
+
+![](./nombres_fonctions_ensembles.pdf)

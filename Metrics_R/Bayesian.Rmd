@@ -17,6 +17,8 @@ As a practical matter, the distribution of $\hat\theta(X)$ is intractable and pe
 Bayesian analysis treats the parameter $\theta$ as a random variable, and its (marginal) distribution represents uncertainty we have about its value before we observe the data $(x_1,\ldots,x_n)$, a single realization of the random vector $X$.
 This marginal distribution of $\theta$ is called the *prior* distribution and must be specified in order to do inference.
 
+### Bayes' rule and the elements of Bayesian analysis
+
 Two different ways of expressing the joint density of $\theta$ and $X$ appear on the two sides of this equation:
 \[
   f(\theta) f(X|\theta) = f(X) f(\theta|X).
@@ -40,7 +42,8 @@ The formula for $f(\theta|x)$ is given by Bayes' rule, a rearrangement of the tw
 ### A coin-tossing example
 
 We revisit the coin-tossing example, where $X_i$ is Bernoulli with parameter $\theta$.
-Recall that the likelihood function for the coin-tossing model is
+Let $x\equiv (x_1,\ldots,x_n)$ be a realization of $n$ coin-tosses.
+We saw that the likelihood function is
 \[
   {\cal L}(\theta;x) = \theta^{n_1} (1-\theta)^{n_0},
 \]
@@ -52,15 +55,14 @@ The beta density has the convenient property that it has the same functional for
   f(\theta|\alpha,\beta) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} \theta^{\alpha-1} (1-\theta)^{\beta-1},
 \]
 where $\Gamma(\cdot)$ is the [gamma function](https://en.wikipedia.org/wiki/Gamma_function), and $\alpha,\beta>0$ are *hyper-parameters*---parameters of the prior distribution.
-
-As an aside, take note that the above density integrates to one; in a sense, we can take this information as a kind of entry in a table of integrals giving
+We know this density integrates to one; it is like finding the following entry in a table of integrals:
 \[
-  \int_0^1 x^{\alpha-1} (1-x)^{\beta-1} = \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)}
+  \int_0^1 x^{\alpha-1} (1-x)^{\beta-1} = \frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha + \beta)},
+  \qquad \alpha, \beta > 0.
 \]
-for all $\alpha, \beta>0$.
 
-If we want to use a beta distribution as our prior distribution of $\theta$, we just need to select values of $\alpha$ and $\beta$; $\alpha = \beta = 1$ gives the uniform distribution on $[0,1]$.
-When we do this, we can write the joint density of $\theta$ and $X$ as
+If we want to use a beta distribution as our prior distribution of $\theta$, we just need to select values of $\alpha$ and $\beta$; choosing $\alpha = \beta = 1$ gives the uniform distribution on $[0,1]$.
+If $\theta \sim \mathrm{Be}(\alpha,\beta)$, the joint density of $\theta$ and $X$ is
 \[
   f(\theta,x) = f(\theta) f(x|\theta) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} \theta^{\alpha-1} (1-\theta)^{\beta-1}
   \cdot \theta^{n_1} (1-\theta)^{n_0}
@@ -74,15 +76,18 @@ The only density integrating to one and proportional to $\theta^{\alpha + n_1 -1
 \[
   f(\theta|x) = \frac{\Gamma(\alpha + \beta + n)}{\Gamma(\alpha + n_1) \Gamma(\beta + n_0)} \theta^{\alpha + n_1 -1} (1-\theta)^{\beta + n_0 -1}.
 \]
-Learning from the data changes the representation of uncertainty about beta from a beta density with parameters $\alpha$ and $\beta$ to a beta density with parameters $\alpha + n_1$ and $\beta + n_0$.
+Our uncertainty about beta changes when we observe the data $x$.
+Before, it is represented by a $\mathrm{Be}(\alpha, \beta)$; after, by a $\mathrm{Be}(\alpha + n_1, \beta + n_0)$.
 
-Suppose we express our uncertainty about the probability $\theta$ of an unemployment spell ending for someone in a population using a beta distribution with parameters $\alpha = 8$ and $\beta = 2$. We observe a sample of people from the population and find that $n_1 = 57$ people found employment and $n_0 = 16$ people did not.
-Then the prior distribution of
+Suppose we have a sample from a population of unemployed people, and we observe whether they are still unemployed after a year.
+We can express our prior uncertainty about the probability $\theta$ of an unemployment spell ending using a beta distribution with parameters $\alpha = 8$ and $\beta = 2$.
+Then we observe that $n_1 = 57$ people found employment and $n_0 = 16$ people did not.
+The prior and posterior densities are shown in this graphic:
 ```{r beta_prior_post, echo=TRUE}
 alpha = 8; beta = 2; n_1 = 57; n_0 = 16
 theta = seq(0, 1, by=0.001)
 plot(theta, dbeta(theta, alpha + n_1, beta + n_0), type='l',
-     main='Prior and posterior densities of theta', xlab='theta', ylab='density')
-lines(theta, dbeta(theta, alpha, beta))
+     main='Prior (dashed) and posterior (solid) densities of theta', xlab='theta', ylab='density')
+lines(theta, dbeta(theta, alpha, beta), lt='dashed')
 ```
 

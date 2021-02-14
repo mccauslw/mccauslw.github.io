@@ -25,13 +25,16 @@ knitr::opts_chunk$set(echo = FALSE)
         \alpha & X(\omega) \geq \alpha.
       \end{cases}
     \]
-    * Alors, par monotonicitè,
+    * $Z \leq X$ alors par monotonicitè,
     \[
       E[Z] = \alpha P[X \geq \alpha] \leq E[X].
     \]
 * Questions :
     1. Donnez un exemple d'un $X \geq 0$ qui donne une égalité.
     2. Donnez des conditions nécessaires et suffisantes pour une égalité.
+
+##
+![](./Figures/Inegalite_Markov.png)
 
 ## Inégalité de Chebychev
 
@@ -42,15 +45,15 @@ knitr::opts_chunk$set(echo = FALSE)
   P[|Y-\mu_Y| \geq \epsilon] \leq \frac{1}{\epsilon^2} \mathrm{Var}[Y].
 \]
 * Preuve :
-    * Sit $X = (Y-\mu_Y)^2$, soit $\alpha = \epsilon^2$.
+    * Soit $X = (Y-\mu_Y)^2$, $\alpha = \epsilon^2$.
     * Alors par l'inégalité de Markov,
     \[
       P(|Y-\mu_Y| \geq \epsilon) = P(X \geq \epsilon^2) \leq \frac{1}{\epsilon^2}\mathrm{Var}[Y].
     \]
 * Notes :
-    * $\mathrm{Var}[Y] = \infty$ est possible, mais l'inégalité ne contraint pas.
+    * $\mathrm{Var}[Y] = \infty$ est possible, auquel cas l'inégalité ne contraint pas.
     * $\epsilon^{-2}$ peut être très grand, mais c'est fini.
-    * Application : borner la probabilité d'une valeur loin de la moyenne, pour une v.a. $X_n$ d'une suite où la variance devient arbitrairement petite. On veut choisir $n$ après $\epsilon$.
+    * Application : borner la probabilité d'une déviation plus grande qu'epsilon, pour chaque $X_n$ d'une suite, où $\mathrm{Var}[X_n] \rightarrow 0$. On veut choisir $n$ après $\epsilon$.
     
 ## Définitions
 
@@ -59,7 +62,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \[
   \lim_{n\to \infty} Z_n(\omega) = Z(\omega).
 \]
-* Convergence de $Z_n$ à $Z$ presque sur, $Z_n \overset{p.s.}{\to} Z$ :
+* Convergence de $Z_n$ à $Z$ presque sûre, $Z_n \overset{p.s.}{\to} Z$ :
 \[
   P[\{Z_n \to Z\}] = 1,\;\mbox{ou}\; P(Z_n \to Z) = 1.
 \]
@@ -72,7 +75,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 * Prenez l'espace de probabilité $(\Omega, {\cal F}, P)$ où $\Omega = [0,1]$, ${\cal F} = {\cal B}$, $P$ la mesure de Lebesgue.
 * Soit $A_1 = \Omega = [0,1]$, $A_2 = [0,1/2)$, $A_3 = [1/2,1]$,
-$A_4 = [0,1/4)$, $A_5 = [1/4,1/2)$, $A_6 = [1/2,3/4)$, $A_7 = [3/4,1]$, ...
+$A_4 = [0,1/4)$, $A_5 = [1/4,1/2)$, $A_6 = [1/2,3/4)$, $A_7 = [3/4,1]$, $A_8 = [0,1/8)$, ... (prochaine diapo).
 * Soit $X = 0$ et pour tout $n \in \mathbb{N}$, $X_n = 1_{A_n}(\omega)$.
 * Convergence presque sûre?
     * Pour tous $\omega$, $\liminf_n X_n(\omega) = 0$, $\limsup_n X_n(\omega) = 1$.
@@ -82,13 +85,16 @@ $A_4 = [0,1/4)$, $A_5 = [1/4,1/2)$, $A_6 = [1/2,3/4)$, $A_7 = [3/4,1]$, ...
     * $P(X_n = X) \approx 1-1/n \to 1$.
     * Alors pour tout $\epsilon > 0$, $P(|X_n - X| \geq \epsilon) \to 0$.
 
+##
+![](./Figures/Convergence_p_ps.png)
+
 ## Une condition suffisante pour convergence p.s.
 
-La condition : pour tout $\epsilon > 0$, $\sum_n P(|Z_n - Z|\geq \epsilon) < \infty.$
+La condition : pour tout $\epsilon > 0$, $\sum_{n=1}^\infty P(|Z_n - Z|\geq \epsilon) < \infty.$
 
-Preuve :
+Preuve de suffisance :
 
-* Soit $\epsilon > 0$ et supposez que $\sum_n P(|Z_n - Z|\geq \epsilon) < \infty.$
+* Soit $\epsilon > 0$ et supposez que $\sum_{n=1}^\infty P(|Z_n - Z|\geq \epsilon) < \infty.$
 * Alors
 \[
   \lim_{m \to \infty} \sum_{k=m}^\infty P(|Z_k - Z| \geq \epsilon) = 0.
@@ -105,13 +111,13 @@ Preuve :
 
 ## Preuve, continuée
 
-Rappel : la condition entraine $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
+Rappel : la condition suffisante de l'avant-dernière diapo entraine $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
 
-Alors
+Alors (nous utilisons ce résultat à la dernière équation)
 \[
   \begin{aligned}
     P(\exists \epsilon > 0, |Z_n - Z| \geq \epsilon\; i.o)
-    &= P(\exists \epsilon \in \mathbb{Q}, \epsilon > 0, |Z_n - Z| \geq \epsilon\; i.o.) \\
+    &\leq P(\exists \epsilon' > 0, \epsilon' \in \mathbb{Q}, |Z_n - Z| \geq \epsilon'\; i.o.) \\
     &= P(\cup_{\epsilon \in \mathbb{Q}_{++}} |Z_n - Z| \geq \epsilon\; i.o.) \\
     &\leq \sum_{\epsilon \in \mathbb{Q}, \epsilon > 0} P(|Z_n - Z| \geq \epsilon\; i.o.) = 0.
   \end{aligned}
@@ -124,6 +130,9 @@ Alors
 \[
   P(Z_n \to Z) = 1.
 \]
+
+##
+![](./Figures/Infiniment_pt.png)
 
 ## Convergence presque sûre $\to$ convergence en probabilité
 
@@ -146,10 +155,17 @@ Preuve :
 
 ## Deux exemples
 
-Soit $Y = Z = 0$, $Y_n$, $Z_n$ des suites de v.a. telles que
+Soit $Y = Z = 0$, $Y_n$, $Z_n$ des suites de v.a. sur un espace de probabilité $(\Omega, {\cal F}, P)$ telles que
 
 * $\Pr[Y_n = 0] = 1-1/n^2$, $\Pr[Y_n = 1] = 1/n^2$.
 * $\Pr[Z_n = 0] = 1-1/n$, $\Pr[Z_n = 1] = 1/n$.
+
+Par exemple, sur $(\mathbb{R}, {\cal B}, P)$, où $P((a,b]) = \min(b,1) - \max(a,0)$ pour $b \geq a$,
+
+* $Y_n = 1_{[0, 1/n^2]}$
+* $Z_n = 1_{[0, 1/n]}$
+
+## Deux exemples, suite
 
 Pour la suite $Y_n$ :
 
@@ -160,7 +176,7 @@ Pour la suite $Z_n$ :
 
 * $\Pr[Z_n \neq Z] = 1/n \to 0$ alors $Z_n \overset{p}{\to} Z$.
 * Mais $\sum_{n=1}^\infty \Pr[|Z_n - Z| \geq 1] = \sum_{n=1}^\infty 1/n = \infty$.
-* Si $Z_n = 1_{(0,1/n)}$, $P$ est la mesure de Lebesgue sur $\Omega = [0,1]$,
+* Si $Z_n = 1_{[0,1/n]}$ et $P$ est la mesure de Lebesgue sur $\Omega = [0,1]$, (comme dans l'exemple de la diapo précédente)
 $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 * Par contre, si les $Z_n$ sont indépendants, par Borel-Cantelli (ii)
 \[
@@ -171,7 +187,7 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 
 * Une faible loi de grands nombres :
     * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_i$.
-    * Supposez que pour tous $n$, $E[X_n] = m$ et $\mathrm{Var}[X_n] < v < \infty$.
+    * Supposez que pour tous $n$, $E[X_n] = m < \infty$ et $\mathrm{Var}[X_n] < v < \infty$.
     * Alors $S_n \overset{p}{\to} m$.
 * Preuve :
     * Pour tous $n$, $E[S_n] = m$ et $\mathrm{Var}[S_n] \leq v/n$.
@@ -181,12 +197,12 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 
 * Une forte loi de grands nombres
     * Soit $X_1,X_2,\ldots$ des v.a. indépendents, $S_n = \frac{1}{n} \sum_{i=1}^n X_i$.
-    * Supposez que pour tous $n$, $E[X_n] = m$, $E[(X_n-m)^4] \leq a < \infty$.
+    * Supposez que pour tous $n$, $E[X_n] = m < \infty$, $E[(X_n-m)^4] \leq a < \infty$.
     * Alors $P(S_n \to m) = 1$.
 
 ## Preuve, forte loi de grands nombres
 
-* Notez que $(X_i - m)^2 \leq (X_i-m)^4 + 1$ pour tout $\omega \in \Omega$. (Soit $(X_i-m)^2 > 1$, soit non; $y^2 - y + 1$ n'a pas de racine réelle)
+* Notez que $(X_i - m)^2 \leq (X_i-m)^4 + 1$ pour tout $\omega \in \Omega$. (Si $(X_i-m)^2 > 1$, $(X_i - m)^2 < (X_i - m)^4$.
 * Supposez que $m = 0$, sans perte de généralité.
 * Remarquez que $S_n^4 = \frac{1}{n^4} \sum_{i,j,k,l} X_i X_j X_k X_l$.
 * Alors
@@ -202,7 +218,7 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
   P(|S_n| \geq \epsilon) = P(|S_n|^4 \geq \epsilon^4) \leq \frac{a + 3v^2}{n^2\epsilon^4}
 \]
 et la somme suivante converge :
-$\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$
+$\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$.
 
 ## Inégalité de Jensen
 
@@ -212,16 +228,19 @@ $\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$
     * $g(x) = ax+b$
     * $g(x) \leq \phi(x)$
     * $g(E[X]) = \phi(E[X])$
-* Notez que $\phi$ n'a pas forcément une dérivée à $E[X]$, auquel cas $g$ n'est pas unique.
+* Il est possible que $\phi$ n'ait pas de dérivée à $E[X]$, auquel cas $g$ n'est pas unique.
 * L'inégalité de Jensen :
 \[
   E[\phi(X)] \geq E[g(X)] = aE[X] + b = \phi(E[X]).
 \]
 * Note : Si $g$ n'est pas unique, tous les choix donnent le même résultat.
 
+##
+![](./Figures/Inegalite_Jensen.png)
+
 ## Applications de l'inégalité de Jensen
 
-1. Kurtosis $K$, s'il existe, est toujours plus grand que 1, où
+1. Kurtosis $K$, s'il existe, vérifie $K\geq 1$, où
 \[
   K \equiv \frac{E[(Z-\mu)^4]}{E[(Z-\mu)^2]^2}.
 \]
@@ -229,10 +248,10 @@ Supposons que les quatre premiers moments existent et sont finis.
 Soit $Y=Z-\mu$. Prenez $\phi(x) = x^2$, $X = Y^2$.
 1. Kurtosis d'un mélange-échelle $Z$ de v.a. gaussiennes. Soit $Y=Z-\mu$.
 \[
-  E[Y^4] = E[E[X^4|\sigma^2]] = E[3\sigma^4] \geq 3E[\sigma^2]^2,
+  E[Y^4] = E[E[Y^4|\sigma^2]] = E[3\sigma^4] \geq 3E[\sigma^2]^2,
 \]
 \[
-  E[Y^2] = E[E[X^2|\sigma^2]] = E[\sigma^2],
+  E[Y^2] = E[E[Y^2|\sigma^2]] = E[\sigma^2],
 \]
 \[
   K \geq 3.
@@ -251,7 +270,7 @@ Première équation : $X = \sigma^2$, $\phi(x) = x^2$.
 
 * Continuité à droite : $x_n \searrow x \Rightarrow (-\infty,x_n] \searrow (-\infty,x] \Rightarrow F(x_n) \to F(x)$, par continuité de probabilité.
 
-* Continuité à gauche? : $x_n \nearrow x \Rightarrow (-\infty,x_n] \nearrow (-\infty,x) \Rightarrow F(x_n) \to F(x) - \Pr[\{x\}]$.
+* Continuité à gauche? : $x_n \nearrow x,\, x_n < x \Rightarrow (-\infty,x_n] \nearrow (-\infty,x) \Rightarrow F(x_n) \to F(x) - \Pr[\{x\}]$.
 
 * $\lim_{x\to \infty} F(x) = P(\Omega) = 1$, $\lim_{x\to -\infty} F(x) = P(\emptyset) = 0$ par continuité de probabilité.
 

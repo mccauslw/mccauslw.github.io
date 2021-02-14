@@ -1,0 +1,39 @@
+---
+title: "Examen des préalables, ECN 6578"
+date: "`r Sys.Date()`"
+output: pdf_document
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Questions
+
+1. La fonction de répartition d'une loi exponentielle est $F(x) = 1-e^{-\lambda x}$, où $\lambda>0$ est un paramètre. Le taux d'incidence d'une variable aléatoire $X$ non-négative est la fonction $h(x) = f(x)/(1-F(x))$, où $F(x)$ est sa fonction de répartition et $f(x)$ est sa fonction de densité. Trouvez le taux d'incidence d'une loi exponentielle.
+
+1. Trouvez le vecteur $p$ (des prix d'états) qui vérifie l'équation $G'p = \iota$, où
+\[
+  G = \begin{bmatrix} 1+R_f & 1+R_1 \\ 1+R_f & 1+R_2 \end{bmatrix}, \qquad
+  \iota = \begin{bmatrix} 1 \\ 1 \end{bmatrix}
+\]
+et $R_1 < R_f < R_2$ sont constants.
+
+1. Trouvez les racines de l'équation $1-1.6x-0.63x^2 = 0$.
+
+1. Soit $c_1$ et $c_2$ des constantes arbitraires. Montrez que chacune des séquences $\rho_k^{(1)} = c_1 (0.9)^k$ et $\rho_k^{(2)} = c_2 (0.7)^k$, $k=0,1,\ldots$, vérifie l'équation de récurrence $\rho_k = 1.6 \rho_{k-1} - 0.63 \rho_{k-2}$.
+
+1. Soit $X_1$, $X_2$ et $X_3$ trois variables aléatoires indépendantes avec moyennes $\mu_1$, $\mu_2$ et $\mu_3$ et variances $\sigma_1^2$, $\sigma_2^2$ et $\sigma_3^2$.
+Trouvez $\mathrm{Var}[a + b X_1 + c X_2]$ et $\mathrm{Cov}[a + b X_1 + c X_2, d + e X_1 + f X_3]$, où $a$, $b$, $c$, $d$, $e$ et $f$ sont des constantes.
+
+1. Soit $X_i$ une séquence de variables aléatoires indépendentes du type gamma, avec paramètres $\alpha$ et $\beta$ : $X_i \sim \mathrm{iid}\, \mathrm{Ga}(\alpha, \beta)$.
+La fonction de densité pour $X_i$ est
+\[
+  f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}.
+\]
+Donnez la densité conjointe $f(x_1,\ldots,x_n)$ de $(X_1,\ldots,X_n)$ comme fonction des paramètres ($\alpha$ et $\beta$), $\sum_{i=1}^n x_i$ et $\prod_{i=1}^n x_i$.
+
+1. Trouvez les valeurs $(C_1^*, C_2^*)$ qui maximisent $U(C_1, C_2) = C_1^{1/2} + \delta C_2^{1/2}$ sous la contrainte $C_1 + C_2/(1+R) = m$, où $m>0$ et $R>0$ sont constants.
+
+1. Supposons que $c_1$ et $c_2$ sont scalaires, $\iota$ et $\mu$ sont des vecteurs $n \times 1$ et $\Omega$ est une matrice inversible $n \times n$. Simplifiez l'expression $(c_1 \Omega^{-1} \iota)' \Omega (c_2 \Omega^{-1} \mu)$.
