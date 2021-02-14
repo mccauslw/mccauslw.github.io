@@ -17,29 +17,34 @@
 
 ##### Cours 1, le 18 janvier
 
-[Diapos](./ECN6578/ECN6578_1.pdf)
+[Diapos](./ECN6578/ECN6578_1.pdf),
+réunion
+[zoom](https://umontreal.zoom.us/rec/share/37iwZakvuh9CC7YLVH0NmXAd6ao1NDjlWxWS1XY9piOWpz-136NxtFME6IdKcpPg.AXIAk-hOcdOINCWA)
 
 [Diapos, code source](./ECN6578/ECN6578_1.Rmd)
 
-[Réunion zoom](https://umontreal.zoom.us/rec/share/37iwZakvuh9CC7YLVH0NmXAd6ao1NDjlWxWS1XY9piOWpz-136NxtFME6IdKcpPg.AXIAk-hOcdOINCWA)
 
 ##### Cours 2, le 25 janvier
 
-[Diapos](./ECN6578/ECN6578_2.pdf)
-
-[Réunion zoom](https://umontreal.zoom.us/rec/share/dJyZp_4v9RX2NDSo6PIUp2ELUGF1bxDtmaDKIAdPEE0xp-M1SJk8MOUmB_jy_ktY.0XmxuUxN2LEbWkVS)
+[Diapos](./ECN6578/ECN6578_2.pdf),
+réunion
+[zoom](https://umontreal.zoom.us/rec/share/dJyZp_4v9RX2NDSo6PIUp2ELUGF1bxDtmaDKIAdPEE0xp-M1SJk8MOUmB_jy_ktY.0XmxuUxN2LEbWkVS)
 
 ##### Cours 3, le 1 février
 
-[Diapos](./ECN6578/ECN6578_3.pdf)
-
-[Réunion zoom](https://umontreal.zoom.us/rec/share/I8Uf0KiYV9J4e0Yzr5dNzjv_zi8Tc3FBUd5-dyI1bv2pmdmSBuVvi00b5G8YACXZ.Gz5ycC3-Gm2H5aNb)
+[Diapos](./ECN6578/ECN6578_3.pdf),
+réunion
+[zoom](https://umontreal.zoom.us/rec/share/I8Uf0KiYV9J4e0Yzr5dNzjv_zi8Tc3FBUd5-dyI1bv2pmdmSBuVvi00b5G8YACXZ.Gz5ycC3-Gm2H5aNb)
 
 ##### Cours 4, le 8 février
 
-[Diapos](./ECN6578/ECN6578_4.pdf)
+[Diapos](./ECN6578/ECN6578_4.pdf),
+réunion
+[zoom](https://umontreal.zoom.us/rec/share/eXVhCYNzvMC_9WvQfeGBuPFjCsqYe1cMXL1nuawSE2cTtqyHRwBCziRkaXk_eLh5.QMhJmlvZo11cYsLw)
 
-[Réunion zoom](https://umontreal.zoom.us/rec/share/eXVhCYNzvMC_9WvQfeGBuPFjCsqYe1cMXL1nuawSE2cTtqyHRwBCziRkaXk_eLh5.QMhJmlvZo11cYsLw)
+##### Cours 5, le 15 février
+
+[Diapos](./ECN6578/ECN6578_5.pdf)
 
 ***
 
