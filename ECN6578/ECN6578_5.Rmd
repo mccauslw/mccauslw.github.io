@@ -65,11 +65,31 @@ plot(theta, logL, type='l', ylim=c(-400, max(logL)))
 * Chaque densité $f(r_t|r_1,\ldots,r_{t-1})$ est un genre de prévision conditionnelle de $r_t$ sachant $r_1,\ldots,r_{t-1}$.
 * La log vraisemblance est
 \[
-  L(\theta; r) = \sum_{t=1}^T f(r_t|r_1,\ldots,r_{t-1},\theta).
+  L(\theta; r) = \sum_{t=1}^T \log f(r_t|r_1,\ldots,r_{t-1},\theta).
 \]
 * Pourquoi la log-vraisemblance et non juste la vraisemblance?
     * Pas de underflow numérique (soupassement arithmétique)
     * Plus facile à maximiser (la dérivée d'une somme est la somme des dérivées)
+
+## Exemple : évaluation de la log vraisemblance GARCH(1,1)
+
+* Juste avant l'itération $t$ on a la valeur $\sigma_t^2$ et observe $r_t$.
+* À l'itération $t$,
+
+1. On calcule le terme $\log f(r_t|r_1,\ldots,r_{t-1})$ de la log vraisemblance.
+Dans le cas gaussien,
+\[
+  \log f(r_t|r_1,\ldots,r_{t-1}) = -\tfrac{1}{2} (\log 2\pi + \log \sigma_t^2) - \tfrac{1}{2} r_t^2/\sigma_t^2.
+\]
+et plus en général,
+\[
+  \log f(r_t|r_1,\ldots,r_{t-1}) = -\log \sigma_t + \log f_\epsilon(r_t/\sigma_t),
+\]
+où $f_\epsilon(\epsilon)$ et la densité des $\epsilon_t$.
+1. On calcule la valeur $\sigma_{t+1}^2$ :
+\[
+  \sigma_{t+1}^2 = \alpha_0 + \alpha_1 r_t^2 + \beta_1 \sigma_t^2.
+\]
 
 ## Maximum de la vraisemblance Bernoulli
 
@@ -189,8 +209,10 @@ Le modèle EGARCH(1,1) :
 \[
   a_t = \sigma_t \epsilon_t
   \quad \ln \sigma^2_t = \alpha \ln \sigma^2_{t-1} + (1-\alpha) \alpha_0 + g(\epsilon_t)
-  \quad \epsilon_t \sim (0,1)
+  \quad \epsilon_t \sim (0,1),
 \]
+où $g(\epsilon) = \theta \epsilon + \gamma [|\epsilon| - E[|\epsilon|]]$.
+
 Notes :
 
 * $E[\epsilon_t] = 0$, $E[|\epsilon_t| - E[|\epsilon_t|]] = 0$, $E[g(\epsilon_t)] = 0$.
@@ -205,7 +227,7 @@ Notes :
 eps = seq(-3, 3, by=0.01)
 theta = -0.0795; gamma = 0.2647
 g = theta * eps + gamma * (abs(eps) - sqrt(2/pi))
-plot(eps, g, type='l')
+plot(eps, g, type='l'); abline(h=0, lty=2)
 ```
 
 ## Ajustement de plusieurs modèles GARCH (code)
@@ -223,9 +245,6 @@ agn = garchFit(~arma(1,0)+garch(1,1), cond.dist='norm', data=r)
 
 # GARCH(1, 1) t de Student
 gt = garchFit(~garch(1,1), cond.dist='std', data=r)
-
-# GARCH(1, 1) t de Student avec asymétrie
-gst = garchFit(~garch(1,1), cond.dist='sstd', data=r)
 ```
 
 ```{r prepare, message=FALSE, warning=FALSE, include=FALSE}
@@ -241,21 +260,12 @@ agn = garchFit(~arma(1,0)+garch(1,1), cond.dist='norm', data=r)
 
 # GARCH(1, 1) t de Student
 gt = garchFit(~garch(1,1), cond.dist='std', data=r)
-
-# GARCH(1, 1) t de Student avec asymétrie
-gst = garchFit(~garch(1,1), cond.dist='sstd', data=r)
 ```
 
 ## Données IBM journalière, $r_t$
 
 ```{r gn_r}
 plot(gn, which=1)
-```
-
-## ACF($r_t$)
-
-```{r gn_acfr}
-plot(gn, which=4)
 ```
 
 ## GARCH(1,1) gaussien, $\hat{\sigma}_t$
@@ -268,12 +278,6 @@ plot(gn, which=2)
 
 ```{r gn_e}
 plot(gn, which=9)
-```
-
-## GARCH(1,1) gaussien, ACF($\hat{\epsilon}_t$)
-
-```{r gn_acfe}
-plot(gn, which=10)
 ```
 
 ## GARCH(1,1) gaussien, ACF($r_t^2$)
@@ -311,19 +315,15 @@ plot(gt, which=9)
 plot(gt, which=13)
 ```
 
-## GARCH(1,1) $t$ de Student asymétrique, graphique Q-Q pour $\hat{\epsilon}_t$
-
-```{r gst_acfQQ}
-plot(gst, which=13)
-```
-
 ## GARCH(1,1) $t$ de Student, sommaire des résultats
 
-* Le modèle capture mieux l'aplatissement conditionnel.
-* Le modèle asymétrique capture un peu mieux l'asymétrie conditionnel.
-* Le modèle ne capture pas bien les (mettons) 10 valeurs les plus extrêmes (sur $\approx$ 9000)
+* Le modèle capture mieux l'aplatissement conditionnel que le modèle GARCH(1,1) gaussien,
+* mais pas parfaitement :
+    - le modèle ne capture pas bien les (mettons) 10 valeurs les plus extrêmes (sur $\approx$ 9000)
+    - il y a plus de valeurs extrêmes que prévu par le modèle (mauvaise spécification de l'évolution de la variance conditionnelle $\sigma_t$ ou de la loi conditionnelle ou des deux?)
+* Une asymétrie : les valeurs extrêmes négatives sont particulièrement extrêmes.
 
-## Cours 6, la semaine prochaine
+## Cours 6, après la semaine d'activités libres
 
 ### Plan préliminaire
 1. Introduction à l'inférence bayésienne
