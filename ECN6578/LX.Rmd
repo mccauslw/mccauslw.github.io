@@ -143,7 +143,7 @@ Travail, cours du 25 janvier
 
 #### Exercices avec R
 
-Travail, cours du 20 janvier
+Travail, cours du 1 février
 
 1. Considérez le process ARMA(3,1) suivant :
 \[
@@ -195,7 +195,7 @@ Calculez la variance, l'asymétrie et l’aplatissement de $r_t$. Vous pouvez v�
 
 #### Exercices en R
 
-Travail, cours du 27 janvier
+Travail, cours du 8 février
 
 1.
     a. Prenez le code de la diapo 'Simulation du modèle ARCH(3)' et modifiez-le pour simuler un GARCH(1,1) gaussien à moyenne zéro pendant $T=1000$ périodes.
@@ -227,12 +227,28 @@ Suggestion : comparez à la variance, à l'asymétrie et l’aplatissement de la
 
 #### Autres lectures
 
-À venir
+1. Dans Tsay, 3e édition :
+    a. 3.5.1 (exemple GARCH)
 
 #### Exercices
 
-À venir
+1. Trouvez la moyenne et la variance de $\ln \sigma^2_t$ pour un modèle EGARCH(1,1) avec $\theta = 0$ et $\epsilon_t \sim N(0,1)$.
+
+1. Faites des prévision du rendement $r_{T+1}$ pour une modèle AR(1)-GARCH(1,1).
+Quelle est la variance conditionnelle des erreurs de prévision? Exprime le résultat en termes des paramètres, de $r_T$ et de $\sigma_T^2$.
 
 #### Exercices avec R
 
-À venir
+Travail, cours du 15 février
+
+1. Pour cette question, utilisez les données dans le fichier d-3m7008.txt (action 3M, rendements journaliers, 1970-2008).
+Je recommande le paquet fGARCH, utilisé pour les démonstrations du cours 5.
+Pour tous les modèles suivants, calculez la valeur maximale de la log-vraisemblance.
+Quel est le meilleur modèle selon le critère AIC?
+Pour ce modèle, reportez les estimations MV (maximum de vraisemblance) des paramètres et leurs écarts-types asymptotiques et faites la graphique de la séquence de volatilités estimées.
+    a. GARCH(1,1), distribution conditionnelle gaussienne.
+    a. GARCH(1,1), distribution conditionnelle $t$ de Student.
+    a. ARCH(2), distribution conditionnelle $t$ de Student.
+    a. GARCH(2,1), distribution conditionnelle $t$ de Student.
+    a. AR(1)-GARCH(1,1), distribution conditionnelle $t$ de Student.
+
