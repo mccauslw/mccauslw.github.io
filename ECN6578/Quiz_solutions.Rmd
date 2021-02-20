@@ -17,3 +17,15 @@ output: pdf_document
     b. Par (2.5), on a $\mathrm{Var}[r_t] = (\psi_0^2 + \psi_1^2) \sigma_a^2$. Seulement les termes $i=0$ et $i=0$ sont non-nuls.
 Par (2.6), on a $\mathrm{Cov}[r_tr_{t-1}] = \psi_0\psi_1 \sigma_a^2$.
 On cherche $\gamma_l$ pour $l=1$ et seulement le terme $j=0$ est non-nul.
+
+### Quiz 3, 15 février
+
+1. 
+\[
+  \mathrm{Var}[a_{t+1}|F_t] = \sigma_{t+1}^2 = \alpha_0 + \alpha_1 a_t^2 + \beta_1 \sigma_t^2 = \alpha_0 + \alpha_1 (0.03)^2 + \beta_1 (0.02).
+\]
+1.
+\[
+  f(y_1,\ldots,y_n)
+  = \prod_{i=1}^n \lambda e^{-\lambda y_i} = \lambda^n e^{-\lambda \sum_{i=1}^n y_i}
+\]
