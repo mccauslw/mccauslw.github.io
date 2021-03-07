@@ -38,9 +38,9 @@ où $r \equiv (r_1, \ldots, r_T)$, $h \equiv (h_1, \ldots, h_T)$.
     - les variables latentes,
     - les ordres ($p$ et $q$ par exemple) et
     - les modèles.
-* Il n'y a pas de recours aux résultats asymptotiques en $n$.
+* Il n'y a pas de recours aux résultats asymptotiques en $T$.
 
-## Éléments de l'analyse bayésienne
+## Éléments de l'analyse bayésienne (modèle sans variables latentes)
 
 * Quantités pertinentes :
     * $\theta$, un vecteur de paramètres inconnus,
@@ -53,6 +53,25 @@ où $r \equiv (r_1, \ldots, r_T)$, $h \equiv (h_1, \ldots, h_T)$.
     * $f(\theta)$, la densité *a priori*,
     * $f(\theta,y)$, la densité conjointe,
     * $f(\theta|y)$, la densité *a posteriori*,
+    * $f(y)$, la densité marginale des données,
+    * $f(y^\circ)$, la vraisemblance marginale (un nombre).
+
+## Éléments de l'analyse bayésenne (modèle avec variables latentes)
+
+* Quantités pertinentes :
+    * $\theta$, un vecteur de paramètres inconnus,
+    * $h=(h_1,\ldots,h_T)$, un vecteur aléatoire des variables d'état,
+    * $y=(y_1,\ldots,y_T)$, un vecteur aléatoire des variables observables, et
+    * $y^\circ$, le vecteur observé.
+
+* Densités pertinentes :
+    * $f(h|\theta)$, la densité des variables d'état
+    * $f(y|\theta,h)$, la densité conditionnelle des données (modèle),
+    * ${\cal L}(\theta;y^\circ) = f(y^\circ|\theta)$, la vraisemblance,
+    * $f(\theta)$, la densité *a priori*,
+    * $f(\theta,h,y)$, la densité conjointe,
+    * $f(\theta,h|y)$, la densité *a posteriori*,
+    * $f(\theta|h,y)$ et $f(h|\theta,y)$ des densités *a posteriori* conditionnelles,
     * $f(y)$, la densité marginale des données,
     * $f(y^\circ)$, la vraisemblance marginale (un nombre).
 
@@ -280,13 +299,13 @@ plot(sim.MH$mu)
 ## Histogramme de $h$
 
 ```{r hist_h}
-hist(sim.MH$h[101:1000], 20)
+hist(sim.MH$h[201:1000], 20)
 ```
 
 ## Histogramme de $\mu$
 
 ```{r hist_mu}
-hist(sim.MH$mu[101:1000], 20)
+hist(sim.MH$mu[201:1000], 20)
 ```
 
 ## MCMC 2 : échantillonage de gibbs pour le modèle gaussien
@@ -322,3 +341,9 @@ Faire $M$ fois :
 1. Tirer $\omega_v$ de la loi *a posterior* conditionnelle $\omega_v|y,\alpha_0,\alpha_1,h_1,\ldots,h_T$
 1. Tirer $h_1,\ldots,h_T$ de la loi *a posteriori* conditionnelle
 $h_1,\ldots,h_T|y,\alpha_0,\alpha_1,\omega_v$.
+
+Notes :
+
+- La loi $\alpha_0,\alpha_1|y,\omega_v,h_1,\ldots,h_T$ est presque gaussienne et on peut générer une proposition $(\alpha_0^*,\alpha_1^*)$ de l'approximation gaussienne. Une étape "accepter ou rejeter" "corrige" l'approximation.
+- La loi $\omega_v|y,\alpha_0,\alpha_1,h_1,\ldots,h_T$ est un khi-carré avec un paramètre d'échelle. On peut tirer de cette loi directement.
+- Il y a plusieurs façons de tirer $h$ de façon efficace. Les détail'expostion est trop détaillée pour le cours.
