@@ -252,3 +252,41 @@ Pour ce modèle, reportez les estimations MV (maximum de vraisemblance) des para
     a. GARCH(2,1), distribution conditionnelle $t$ de Student.
     a. AR(1)-GARCH(1,1), distribution conditionnelle $t$ de Student.
 
+\pagebreak
+
+## Cours 6, le 8 mars
+
+#### Sujets
+
+1. Un modèle de volatilité stochastique
+1. L'analyse bayésienne
+1. La computation bayésienne
+
+#### Lectures préparatoires
+
+1. Dans Tsay, 3e édition :
+    a. 3.12 (Modèle de volatilité stochastique)
+    a. 12.3 intro, 12.3.1 (inférence bayésienne, lois postérieures)
+
+#### Autres lectures
+
+1. Dans Tsay, 3e édition :
+    a. 12.3.2 (lois *a priori* conjuguées)
+    a. 12.4.1, 12.4.2 Algorithme Metropolis-Hastings
+
+#### Exercices
+
+1. Trouvez la loi *a posteriori* quand les observations sont iid $\mathrm{Poisson}(\lambda)$ et la loi *a priori* de $\lambda$ est la loi $\mathrm{Gamma(\bar\alpha, \bar\beta)}$, où $\bar\alpha$ et $\bar\beta$ sont des hyperparamètres fixes.
+
+1. Trouvez la loi *a posteriori* conditionnelle de $h$ dans le modèle gaussien.
+
+1. Prenez le modèle de volatilité stochastique. L'exercice est de trouver comment construire la densité prédictive $f(y_{T+1}|y_1,\ldots,y_T)$ sur une grille de points.
+    a. Montrez que
+\[
+  f(y_{T+1}|y_1,\ldots,y_T) = E[f(\log h_{T+1}|\log h_T, \theta, y_1,\ldots,y_T)
+  \cdot
+  f(y_{T+1}|\log h_{T+1}, \log h_T, \theta, y_1,\ldots,y_T)],
+\]
+où l'espérance est par rapport à la loi conditionnelle de $(\theta,h_T)$ sachant $y_1,\ldots,y_T$.
+    a. Écrivez les densités $f(\log h_{T+1}|\log h_T, \theta, y_1,\ldots,y_T)$ et $f(y_{T+1}|\log h_{T+1}, \log h_T, \theta, y_1,\ldots,y_T)$ en utilisant les équations d'état et d'observation.
+    a. Comment peut-on approximer la densité prédictive $f(y_{T+1}|y_1,\ldots,y_T)$ sur une grille à partir d'un échantillon de la loi de $\theta,\log h_T|y_1,\ldots,y_T$? Indice: comme étape intermédiaire, créez un échantillon de la loi de $\theta,\log h_T,\log h_{T+1}|y_1,\ldots,y_T$.
