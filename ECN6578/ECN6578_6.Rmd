@@ -18,7 +18,7 @@ output: beamer_presentation
 $$ r_t = \mu + \sqrt{h_t} \epsilon_t, $$
 $$ \log h_t = \alpha_0 + \alpha_1 \log h_{t-1} + v_t. $$
 $$ \begin{bmatrix} \epsilon_t \\ v_t \end{bmatrix}
-\sim N\left(0,\begin{bmatrix} 1 & 0 \\ 0 & \omega_v^{-2} \end{bmatrix} \right). $$
+\sim N\left(0,\begin{bmatrix} 1 & 0 \\ 0 & \sigma_v^2 \end{bmatrix} \right). $$
 
 * La volatilité n'est pas une fonction déterministe de rendements passés, comme dans les modèles (G)ARCH.
 
@@ -337,13 +337,13 @@ $$ \begin{aligned} -\frac{\bar{\omega}}{2} &(\mu-\bar{\mu})^2 - \frac{h}{2} \sum
 
 Faire $M$ fois :
 
-1. Tirer $\alpha_0$ et $\alpha_1$ de la loi *a posteriori* conditionnelle $(\alpha_0,\alpha_1)|y,\omega_v,h_1,\ldots,h_T$.
-1. Tirer $\omega_v$ de la loi *a posterior* conditionnelle $\omega_v|y,\alpha_0,\alpha_1,h_1,\ldots,h_T$
+1. Tirer $\alpha_0$ et $\alpha_1$ de la loi *a posteriori* conditionnelle $(\alpha_0,\alpha_1)|y,\sigma_v,h_1,\ldots,h_T$.
+1. Tirer $\omega_v = \sigma_v^{-2}$ de la loi *a posterior* conditionnelle $\omega_v|y,\alpha_0,\alpha_1,h_1,\ldots,h_T$
 1. Tirer $h_1,\ldots,h_T$ de la loi *a posteriori* conditionnelle
 $h_1,\ldots,h_T|y,\alpha_0,\alpha_1,\omega_v$.
 
 Notes :
 
-- La loi $\alpha_0,\alpha_1|y,\omega_v,h_1,\ldots,h_T$ est presque gaussienne et on peut générer une proposition $(\alpha_0^*,\alpha_1^*)$ de l'approximation gaussienne. Une étape "accepter ou rejeter" "corrige" l'approximation.
-- La loi $\omega_v|y,\alpha_0,\alpha_1,h_1,\ldots,h_T$ est un khi-carré avec un paramètre d'échelle. On peut tirer de cette loi directement.
-- Il y a plusieurs façons de tirer $h$ de façon efficace. Les détail'expostion est trop détaillée pour le cours.
+- La loi $\alpha_0,\alpha_1|y,\omega_v,h_1,\ldots,h_T$ est presque gaussienne. On peut tirer une proposition $(\alpha_0^*,\alpha_1^*)$ de l'approximation gaussienne. Une étape "accepter ou rejeter" "corrige" l'approximation.
+- Si la loi *a priori* $\omega_v$ est khi-carré avec un paramètre d'échelle, la loi conditionelle *a posteriori* $\omega_v|y,\alpha_0,\alpha_1,h_1,\ldots,h_T$ l'est aussi. On peut tirer de cette loi directement.
+- Il y a plusieurs façons de tirer $h$ de façon efficace. Les détails sont trop avancés pour le cours.
