@@ -23,7 +23,6 @@ réunion
 
 [Diapos, code source](./ECN6578/ECN6578_1.Rmd)
 
-
 ##### Cours 2, le 25 janvier
 
 [Diapos](./ECN6578/ECN6578_2.pdf),
@@ -50,7 +49,8 @@ réunion
 
 ##### Cours 6, le 8 mars
 
-[Diapos](./ECN6578/ECN6578_6.pdf)
+[Diapos](./ECN6578/ECN6578_6.pdf), réunion
+[zoom](https://umontreal.zoom.us/rec/share/YZJBwXyQuGW7ttzFwZZ-_aln6qMyBJ7kGtGmg4Sd6KwnuGgV0j_GvRgfeI5TLoDL.C7UZj7zT22DQHtl-)
 
 ***
 
