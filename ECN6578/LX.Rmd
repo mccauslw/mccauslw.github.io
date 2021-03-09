@@ -317,7 +317,7 @@ Faites la graphique de la densité prédictive de $r_{T+1}$ sur une grille de po
 1. CLM 5.2, 5.3
 1. CLM 5.7.1 (anomalies)
 1. CLM 6.0, 6.1 (APT)
-1. Fama et French (1993), "Common risk factors in the returns on stocks and bonds", *Journal of Financial Economics*.
+1. Fama et French (1993), "Common risk factors in the returns on stocks and bonds", *Journal of Financial Economics*. Focalisez sur les Sections 1, 2, 3, 4, 7.
 
 #### Exercices
 
