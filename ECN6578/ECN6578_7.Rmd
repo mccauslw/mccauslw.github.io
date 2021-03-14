@@ -23,18 +23,18 @@ où
     - $a_t = E[R_t|{\cal F}_{t-1}]$ est $N \times 1$,
     - $\Sigma_t = \mathrm{Var}[R_t|{\cal F}_{t-1}]$ est $N \times N$. ($N(N+1)/2$ éléments distincts)
 * $O(N^2)$ variables par période, c'est trop à modeliser directement (danger de surapprentissage) avec seulement $O(N)$ observations par période.
-* Même si $\Sigma_t = \Sigma$ (constant), il y a trop de paramêtres à estimer.
+* Même si $\Sigma_t = \Sigma$ (constant), il y a trop de paramêtres à estimer quand $N$ est très grand.
 * Les modèles à facteurs capturent la covariance des actifs de façon plus parcimonieuse.
 
 ## Modèle à facteur : définition
 
 * Considérez le modèle alternatif suivant :
 $$ R_t = a_t + Bf_t + \epsilon_t, \quad \epsilon_t \sim (0, \Sigma), $$
-où $f_t \sim (0, \Omega)$ est un vecteur $K \times 1$ de facteurs, $B$ est une matrice $N \times K$ de coefficients de saturation (factor loadings) et $\Sigma$ est une matrice diagonale.
+où $f_t \sim (0, \Omega)$ est un vecteur $K \times 1$ de facteurs, $B$ est une matrice $N \times K$ de coefficients de saturation (factor loadings), $\Sigma$ est une matrice diagonale et $\epsilon_t$ est un vecteur de bruits blanc indépendant de $f_t$.
+* $\mathrm{Var}[R_t] = B\Omega B^\top + \Sigma$.
 * $K$ est beaucoup moins grand que $N$ (souvent $K=1$).
 * $B$ a $KN$ éléments, $\Sigma$ a $N$ éléments non-nuls, $\Omega$ a $K(K+1)/2$ éléments distincts.
 * Un petit nombre de facteurs capture la covariance des rendements.
-* $\mathrm{Var}[R_t] = B\Omega B^\top + \Sigma$.
 * $f_t$ peut être observé (rendement du marché par exemple) ou latent.
 
 ## Interprétation des facteurs
@@ -42,7 +42,7 @@ où $f_t \sim (0, \Omega)$ est un vecteur $K \times 1$ de facteurs, $B$ est une 
 * Dans le modèle CAPM, $K=1$ et le seul facteur est $R_{mt}$, le rendement du marché (le portefeuille de tous les actifs d'une économie).
 * Souvent les facteurs sont des portefeuilles construits pour capturer autant de covariation que possible.
 * Souvent les facteurs sont des portefeuilles construits pour résumer les sources de risque commun.
-* Souvent les facteurs sont des variables macroéconomiques observable.
+* Souvent les facteurs sont des variables macroéconomiques observables.
 * Souvent les facteurs sont latents. On donne une loi paramétrique pour les facteurs et on estime conjointement les facteurs, les paramètres qui gouvernent les facteurs ainsi que les autres paramètres du modèle.
 
 ## Le modèle CAPM
@@ -52,9 +52,8 @@ où $f_t \sim (0, \Omega)$ est un vecteur $K \times 1$ de facteurs, $B$ est une 
 * Chacune des hypothèses suivantes justifie cette approche :
     * les agents ont des utilités espérées quadratiques : $$v(w) = -(w-\alpha)^2.$$
     * la loi du vecteur des rendements est gaussienne
-* Les décisions sont statiques, pas dynamiques.
-* On suppose que la moyenne et la variance du vecteur $R = (R_1,\ldots,R_N)$ sont constantes.
-* On utilise toutes les observations pour estimer la moyenne et la variance.
+* Les préférences sont statiques, pas dynamiques.
+* On suppose que la moyenne et la variance du vecteur $R = (R_1,\ldots,R_N)$ de $N$ actifs sont constantes et on utilise toutes les observations pour estimer la moyenne et la variance.
 * On utilise souvent des données mensuelles, où les hypothèses de normalité et homoscédasticité sont plus raisonables.
 
 ## L'importance de la diversification
@@ -89,17 +88,23 @@ où $f_t \sim (0, \Omega)$ est un vecteur $K \times 1$ de facteurs, $B$ est une 
 
 ```{r frontier2a}
 mu1 = 0.02; s1 = 0.10;
-mu2 = 0.01; s2 = 0.05; rho = 0.5
+mu2 = 0.01; s2 = 0.05; rho1 = 0.1; rho2 = 0.5; rho3 = 0.9
 omega1 = seq(-1,2,by=0.001); omega2 = 1-omega1
 mup = omega1*mu1 + omega2*mu2
-s2p = omega1^2*s1^2 + 2*omega1*omega2*rho*s1*s2 + omega2^2*s2^2
-sp = sqrt(s2p)
+s2p1 = omega1^2*s1^2 + 2*omega1*omega2*rho1*s1*s2 + omega2^2*s2^2
+sp1 = sqrt(s2p1)
+s2p2 = omega1^2*s1^2 + 2*omega1*omega2*rho2*s1*s2 + omega2^2*s2^2
+sp2 = sqrt(s2p2)
+s2p3 = omega1^2*s1^2 + 2*omega1*omega2*rho3*s1*s2 + omega2^2*s2^2
+sp3 = sqrt(s2p3)
 ```
 
 ## Illustration : graphique
 
 ```{r frontier2b}
-plot(sp, mup, type='l', xlim=c(0,0.15))
+plot(sp1, mup, type='l', xlim=c(0,0.15), col='blue')
+lines(sp2, mup, type='l', xlim=c(0,0.15), col='green')
+lines(sp3, mup, type='l', xlim=c(0,0.15), col='red')
 points(c(s1,s2), c(mu1,mu2))
 ```
 
@@ -144,7 +149,7 @@ $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 
 ## Comment trouver la FMV I
 
-* Soit $\mu_p$ une valeur arbitraire de la moyenne.
+* Soit $\mu_p$ une valeur arbitraire de la moyenne $E[R_p]$ à cibler.
 * Pour ce qui suit, $\mu_p$ est un paramètre; on choisit le portefeuille à variance minimale parmi les portefeuilles ayant cette moyenne.
 * On trouve la solution paramétrique de
   \[
@@ -272,7 +277,7 @@ $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 
 ## Version Sharpe-Lintner du CAPM I
 
-* En plus des $N$ actifs, on a un actif sans risque, avec un rendement $R_f$ non-aléatoire.
+* Dans cette version, en plus des $N$ actifs, on a un actif sans risque, avec un rendement $R_f$ non-aléatoire.
 * Pour trouver la FMV, on trouve la solution paramétrique $\omega_p$ de
   \[
     \min_{\omega} \tfrac{1}{2} \omega'\Omega\omega \; \text{tel que} \;
