@@ -278,6 +278,9 @@ $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 ## Version Sharpe-Lintner du CAPM I
 
 * Dans cette version, en plus des $N$ actifs, on a un actif sans risque, avec un rendement $R_f$ non-aléatoire.
+* Soit $(\omega, 1-\omega \iota)$ le vecteur de poids pour $N+1$ actifs, le dernier étant l'actif $f$ sans risque.
+* $\mu$ et $\Omega$ sont comme avant, $N\times 1$ et $N \times N$.
+* On n'a plus besoin de contrainte pour la somme des poids.
 * Pour trouver la FMV, on trouve la solution paramétrique $\omega_p$ de
   \[
     \min_{\omega} \tfrac{1}{2} \omega'\Omega\omega \; \text{tel que} \;
@@ -408,13 +411,13 @@ $H_0:\alpha=(\iota-\beta)\gamma$, pour un $\gamma$ scalaire quelconque, qui repr
 
 * Banz (1981) montre l'effet de taille. Le plus bas la taille de l'entreprise, la plus grande la moyenne (relative).
 * Les deux anomalies pourraient être reliées, car les deux quantités sont corrélées.
-* Fama-French (1992, 1993) montre que les actifs avec un grand ratio valeur comptable/valeur marchande ont des moyennes ``trop'' grandes.
+* Fama-French (1992, 1993) montre que les actifs avec un grand ratio valeur comptable/valeur marchande ont des moyennes "trop" grandes.
 * DeBondt et Thaler(1985) et Jegadeesh et Titman (1993) montre que les perdants (actions dont le rendement du passé récent était faible) ont des moyennes trop grandes (et l'inverse pour les gagnants).
 
 ## Démonstration des anomalies
 
 * Une façon de démontrer ses anomalies et de
-    * construire un ``bon'' portefeuille selon l'effet en question
+    * construire un "bon" portefeuille selon l'effet en question
       (e.g. avec moins d'actions des grandes entreprises
       et plus d'actions des petites, relatif au marché)
     * démontrer que son ratio de Sharpe est plus grand que celui
@@ -423,7 +426,7 @@ $H_0:\alpha=(\iota-\beta)\gamma$, pour un $\gamma$ scalaire quelconque, qui repr
 ## Des ripostes
 
 * On peut riposter :
-    * ``Data Snooping'' : on essaye plusieurs tests, sans motivation théorique,
+    * "Data Snooping" : on essaye plusieurs tests, sans motivation théorique,
       et par hasard, quelques-uns indiquent un départ significatif.
     * biais de sélection : les actifs des entreprises qui font faillite sont écartés de l'échantillon. Les petites sont plus probable à échouer, et les survivants ont un rendement plus élevé.
     * C'est seulement l'efficacité du proxy du marché qui est mise en cause par les tests. Mais Kandel et Stambaugh (1987) et Shanken (1987) démontrent que si la corrélation entre le proxy et le marché est plus grand que 0.7, le rejet du CAPM avec le proxy entraîne le rejet du CAPM avec le marché inobservable.
@@ -466,7 +469,7 @@ où
 
 ## Résultats II
 
-* Cette relation exprime ``l'évaluation exacte par facteurs''.
+* Cette relation exprime "l'évaluation exacte par facteurs".
 * Avec $N$ fini, elle tiens approximativement.
 * On peut la dériver également à partir des conditions d'équilibre: ICAPM (I pour Intertemporel).
 * Elle donne des restrictions des paramètres du modèle du marché.
@@ -477,10 +480,9 @@ où
     * marché $m$ dans le CAPM,
     * portefeuilles construits selon les caractéristiques
       des actions (e.g. Fama-French, note sous Table 6.1.)
-    * portefeuilles construits avec les méthodes statistiques qui cherche les facteurs qui rendent compte de la variation commun.
-    * Deux méthodes (234-238) :
+    * portefeuilles construits avec les méthodes statistiques qui cherche les facteurs qui rendent compte de la variation commun. Deux méthodes (234-238) :
         * analyse des facteurs (factor analysis)
-        * analyse ``composants principales'' (principal components analysis)
+        * analyse "composants principales" (principal components analysis)
 * Variables macroéconomiques :
     * innovation en PNB
     * changements des rendements des obligations

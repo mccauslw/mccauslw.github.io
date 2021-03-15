@@ -337,5 +337,52 @@ $(g+\mu_ph)\Omega\omega$.
 Écrivez-la en forme $\lambda \mu_i + \gamma$, où $\mu_i = E[R_i]$, et $\lambda$ et $\gamma$ sont des fonctions de $\mu_p, A, B, C, D$.
 Écrivez l'équation pour deux cas spéciaux, $i=op$ et $i=p$, pour obtenir (5.2.19) dans le manuel CLM.
 
+\pagebreak
 
+## Cours 8, 9, le 22 et le 29 mars
+
+#### Lectures préliminaires, Cours 8
+
+1. CLM 8 intro, 8.1 avant 8.1.1.
+Ceux qui n'ont jamais vu l'optimisation intertemporel en macroéconomie devraient lire la courte section sur le modèle de Fisher ici :
+https://fr.wikipedia.org/wiki/Choix_intertemporel
+Le modèle de la première partie de 8.1 est une extension avec un nombre infini de périodes et avec l'incertitude.
+C'est plus important de comprendre les détails du modèle discret, page 295-6.
+
+#### Sujets
+
+1. Les facteurs d'actualisation stochastiques
+1. Le modèle CCAPM avec utilité isoélastique
+1. Les casse-têtes empiriques
+1. Utilité Epstein-Zin, utilité isoélastique
+1. GMM (Méthode des Moments Généralisée)
+
+#### Autres Lectures
+
+1. CLM 8.1 (FAS)
+1. CLM 8.2 (CCAPM, utilité isoélastiques, casse-têtes empiriques)
+1. CLM 8.4 Utilité Epstein-Zin, utilité non-séparable
+1. CLM A.2 GMM
+
+#### Exercices, Cours 8
+
+1. Considérez le milieu introduit à la diapo "Absence d'arbitrage et le FAS". Il y a $S=2$ états et 2 actifs. Le premier actif a un rendement net $R_f$ dans les deux états et coûte 100 $. Le deuxième actif a un rendement net $R_1$ dans le permier état et un rendement net $R_2$ dans le deuxième et coûte 500 $.
+    a. Donnez les matrices $X$ et $G$ et le vecteur $q$ en termes de $R_f$, $R_1$ et $R_2$.
+    a. Donnez une condition nécessaire et suffisante sur $R_f$, $R_1$ et $R_2$ pour la complétion du marché.
+    a. Supposant que le marché est complet, trouvez le vecteur des prix d'états et donnez une condition supplémentaire sur $R_f$, $R_1$ et $R_2$ pour l’absence d'arbitrage.
+    a. Si les états sont équiprobable ($\pi_1 = \pi_2 = 0.5$) trouvez le facteur d'actualisation stochastique.
+
+2. Considérez le problème à la diapo "Un problème à deux périodes sans incertitude".
+    a. Démontrez que si $(C_t^{(i)}, C_{t+1}^{(i)})$ est une solution du problème pour un consommateur avec revenu $m_i$, $i=1,2$, que $(C_t^{(1)}+C_t^{(2)}, C_{t+1}^{(1)}+C_{t+1}^{(2)})$ est une solution du problème pour un consommateur avec revenu $m_1 + m_2$. 
+    a. Généralisez le problème à trois périodes. Le taux d'intérêt $R$ est constant et la pondération de $U(C_{t+2})$ est $\delta^2$. Démontrez que pour la solution $(C_t, C_{t+1}, C_{t+2})$, les ratios $C_{t+2}/C_t$ et $C_{t+1}/C_t$ ne dépendent pas du revenu $m$.
+
+#### Questions (Cours 9)
+
+1. Regardez l'expression pour $r_{f,t+1}$ dans le modèle CCAPM avec préférences Epstein-Zin. Pourquoi est-ce la moyenne historique de $r_{f,t+1}$ est plus cohérente avec ce modèle, par rapport au modèle avec préférences isoélastique, quand $\gamma$ est très élevé?
+1. Regardez l'expression pour la prime de risque associée à l'actif $i$ dans le même modèle. Quelle est la prime de risque associée au marché (ou portefeuille agrégé)? Pourquoi est-ce que les préférences E-Z aident à capturer la prime historique des actions, par rapport aux préférences isoélastique?
+1. Supposons qu'on utilise la méthode GMM pour estimer les paramètres $\delta$ et $\gamma$ du modèle CCAPM avec utilité isoélastique.
+On observe $w_t = (C_t, C_{t+1}, R_{t+1}, Z_t)$, $t=1,\ldots,T$.
+    a. Pourquoi est-ce qu'on ne devrait pas utiliser, comme élément de $Z_t$, une variable qui n'est pas observée à $t+1$?
+    a. Mettons que $Z_t$ comprend une variable observée à $t$ mais qui n'aide pas à prévoir la consommation future $C_{t+1}$. Quelles sont les implications pour l'inférence GMM?
+1. Si la fonction de moment $g(w_t,\theta)$ (un vecteur) a un élément qui est une fonction de $w_t$ mais pas de $\theta$, quelles sont les implications pour l'estimation est les tests.
 
