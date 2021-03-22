@@ -474,7 +474,7 @@ où
 * On peut la dériver également à partir des conditions d'équilibre: ICAPM (I pour Intertemporel).
 * Elle donne des restrictions des paramètres du modèle du marché.
 
-## Choix des facteurs
+## Choix des facteurs dans les modèles à facteurs
   
 * Rendements des portfeuilles des actifs :
     * marché $m$ dans le CAPM,
