@@ -31,9 +31,9 @@ knitr::opts_chunk$set(echo = FALSE)
 *  Version inconditionnelle (prendre l'espérance
     des deux côtés) :
     \[ E[(1+R_{i,t+1})M_{t+1}] = 1. \]
-*  Avancée : 
+*  Du point de vue de la période $t-1$ : 
     \[ E[(1+R_{it})M_t] = 1. \]
-*  Avec $\mathrm{cov}[X,Y] = E[XY] - \mu_X\mu_Y$, on obtient
+*  Avec $\mathrm{cov}[X,Y] = E[XY] - E[X]E[Y]$, on obtient
     \[
       1 = \mathrm{cov}[R_{it},M_t] + E[1+R_{it}]E[M_t]
     \]
@@ -54,36 +54,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Deux approches à la dérivation du FAS
 
-*  maximisation de l'utilité (hypothèse plus forte), et
-*  absence de l'arbitrage (moins forte).
-
-## Maximisation d'utilité espérée intertemporelle
-
-*  Voici une fonction d'utilité sur les chemins aléatoires
-    $\{C_{\tau}\}_{\tau=t}^{\infty}$ de la consommation :
-    \[ V = E_t\left[ \sum_{j=0}^{\infty} \delta^j U(C_{t+j}) \right]. \]
-*  $V$ est additivement séparable en temps,
-*  $V$ est additivement séparable en état (utilité espérée)
-*  Le taux de préférence de temps ($\delta$) est constant.
-*  La maximisation de $V$ sous des contraints
-    (richesse, actifs disponibles) donne plusieurs conditions de première ordre, dont
-    \[ U'(C_t) = \delta E_t[ (1+R_{i,t+1}) U'(C_{t+1}) ], \]
-    où $R_{i,t+1}$ est le rendement de l'actif $i$ à $t+1$.
-*  C'est une équation dite d'Euler.
-
-## Maximisation d'utilité et le FAS
-
-*  Le FAS est le taux marginal inter-temporel de substitution:
-    \[ M_{t+1} = \delta U'(C_{t+1})/U'(C_t), \]
-    qui est toujours positif.
-*  Intuition pour
-    \[ E[R_{it}-R_{ot}] = -E[1+R_{ot}]\mathrm{cov}[R_{it},M_t] : \]
-    * Si $\mathrm{cov}[R_{it},M_t] > 0$, $i$ a une valeur relativement
-    élevée quand la consommation future est plus valorisée
-    (i.e. quand $U'(C_{t+1})$ est élevé).
-    * En équilibre, son prix est plus élevé (par rapport a un actif $j$ où $\mathrm{cov}[R_{jt}M_t] < 0$) et son rendement moyen est moins élevé.
-    * L'investisseur supporte ce rendement moyen moins élevé
-    car l'actif paie quand la consommation est plus valorisée.
+*  absence de l'arbitrage (hypothèse moins forte) et
+*  maximisation de l'utilité (plus forte).
 
 ## Absense d'arbitrage et le FAS
 
@@ -169,6 +141,34 @@ knitr::opts_chunk$set(echo = FALSE)
     = E[(1+R_i)M].
     \]
 *  Le résultat se généralise (plusieurs périodes, temps continu).
+
+## Maximisation d'utilité espérée intertemporelle
+
+*  Voici une fonction d'utilité sur les chemins aléatoires
+    $\{C_{\tau}\}_{\tau=t}^{\infty}$ de la consommation :
+    \[ V = E_t\left[ \sum_{j=0}^{\infty} \delta^j U(C_{t+j}) \right]. \]
+*  $V$ est additivement séparable en temps,
+*  $V$ est additivement séparable en état (utilité espérée)
+*  Le taux de préférence de temps ($\delta$) est constant.
+*  La maximisation de $V$ sous des contraints
+    (richesse, actifs disponibles) donne plusieurs conditions de première ordre, dont
+    \[ U'(C_t) = \delta E_t[ (1+R_{i,t+1}) U'(C_{t+1}) ], \]
+    où $R_{i,t+1}$ est le rendement de l'actif $i$ à $t+1$.
+*  C'est une équation dite d'Euler.
+
+## Maximisation d'utilité et le FAS
+
+*  Le FAS est le taux marginal inter-temporel de substitution:
+    \[ M_{t+1} = \delta U'(C_{t+1})/U'(C_t), \]
+    qui est toujours positif.
+*  Intuition pour
+    \[ E[R_{it}-R_{ot}] = -E[1+R_{ot}]\mathrm{cov}[R_{it},M_t] : \]
+    * Si $\mathrm{cov}[R_{it},M_t] > 0$, $i$ a une valeur relativement
+    élevée quand la consommation future est plus valorisée
+    (i.e. quand $U'(C_{t+1})$ est élevé).
+    * En équilibre, son prix est plus élevé (par rapport a un actif $j$ où $\mathrm{cov}[R_{jt}M_t] < 0$) et son rendement moyen est moins élevé.
+    * L'investisseur supporte ce rendement moyen moins élevé
+    car l'actif paie quand la consommation est plus valorisée.
 
 ## Le modèle CCAPM
 
