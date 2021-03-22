@@ -30,7 +30,7 @@ On cherche $\gamma_l$ pour $l=1$ et seulement le terme $j=0$ est non-nul.
   = \prod_{i=1}^n \lambda e^{-\lambda y_i} = \lambda^n e^{-\lambda \sum_{i=1}^n y_i}
 \]
 
-### Quiz 4, 22 février
+### Quiz 4, 22 mars
 
 1.
     a.
