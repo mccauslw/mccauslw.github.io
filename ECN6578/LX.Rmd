@@ -280,20 +280,20 @@ Pour ce modèle, reportez les estimations MV (maximum de vraisemblance) des para
 
 1. Trouvez la loi *a posteriori* conditionnelle de $h$ dans le modèle gaussien.
 
-1. Prenez le modèle de volatilité stochastique. L'exercice est de trouver comment construire la densité prédictive $f(y_{T+1}|y_1,\ldots,y_T)$ sur une grille de points.
+1. Prenez le modèle de volatilité stochastique avec $\mu=0$. L'exercice est de trouver comment construire la densité prédictive $f(r_{T+1}|r_1,\ldots,r_T)$ sur une grille de points.
     a. Montrez que
 \[
-  f(y_{T+1}|y_1,\ldots,y_T) = E[f(\log h_{T+1}|\log h_T, \theta, y_1,\ldots,y_T)
-  \cdot
-  f(y_{T+1}|\log h_{T+1}, \log h_T, \theta, y_1,\ldots,y_T)],
+  f(r_{T+1}|r_1,\ldots,r_T) = E[f(r_{T+1}|\log h_{T+1}, \log h_T, \theta, r_1,\ldots,r_T)],
 \]
-où l'espérance est par rapport à la loi conditionnelle de $(\theta,h_T)$ sachant $y_1,\ldots,y_T$.
-    a. Écrivez les densités $f(\log h_{T+1}|\log h_T, \theta, y_1,\ldots,y_T)$ et $f(y_{T+1}|\log h_{T+1}, \log h_T, \theta, y_1,\ldots,y_T)$ en utilisant les équations d'état et d'observation.
-    a. Comment peut-on approximer la densité prédictive $f(y_{T+1}|y_1,\ldots,y_T)$ sur une grille à partir d'un échantillon de la loi de $\theta,\log h_T|y_1,\ldots,y_T$? Indice: comme étape intermédiaire, créez un échantillon de la loi de $\theta,\log h_T,\log h_{T+1}|y_1,\ldots,y_T$.
+où l'espérance est par rapport à la loi conditionnelle de $(\theta,h_T,h_{T+1})$ sachant $r_1,\ldots,r_T$.
+    a. Écrivez la densité $f(r_{T+1}|\log h_{T+1}, \log h_T, \theta, r_1,\ldots,r_T)$ en utilisant l'équation d'observation.
+    a. Comment peut-on approximer la densité prédictive $f(r_{T+1}|r_1,\ldots,r_T)$ sur une grille à partir d'un échantillon de la loi de $\theta,\log h_T|r_1,\ldots,r_T$? Indice: comme étape intermédiaire, créez un échantillon de la loi de $\theta,\log h_T,\log h_{T+1}|r_1,\ldots,r_T$.
 
 #### Exercices avec R
 
-1. Dans le fichier postsim.txt se trouve un échantillon MCMC qui représente la loi *a posteriori* des paramètres $\alpha_0$, $\alpha_1$ et $\omega_v$, ainsi que la log-volatilité $\log h_T$ du modèle de volatilité stochastique décrit dans le cours.
+1. Considérez le modèle de volatilité stochastique décrit dans le cours, avec $\mu=0$.
+Regardez aussi la question théorique 3 ci-haut.
+Dans le fichier postsim.txt se trouve un échantillon MCMC qui représente la loi *a posteriori* des paramètres $\alpha_0$, $\alpha_1$ et $\omega_v \equiv 1/\sigma_v^2$, ainsi que la log-volatilité $x_T \equiv \log h_T$.
 L'échantillon des données utilisé pour l'analyse comprend 3139 log rendments du taux d'échange entre le dollar canadien et l'euro, du 3 janvier 2000 au 4 avril 2012.
 Faites la graphique de la densité prédictive de $r_{T+1}$ sur une grille de points dans l'intervalle $[-0.01, 0.01]$.
 
