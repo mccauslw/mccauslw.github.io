@@ -575,16 +575,17 @@ $\log XY = \log X + \log Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\sig
 
 * GMM, c'est la Méthode de Moments Généralisée
 * La log-normalité de $(C_{t+1}, R_{i,t+1})$ est une hypothèse très forte.
-* L'approche GMM n'exige, comme modèle, qu'une condition de moment inconditionnel comme $E[(1+R_{it})M_t] = 1$.
+* L'approche GMM n'exige, comme modèle, des conditions de moment inconditionnel comme $E[(1+R_{it})M_t] = 1$.
 * Rappelons que dans le modèle CCAPM
 \[
   M_{t+1} = \delta \frac{U'(C_{t+1})}{U'(C_t)},
 \]
 et dans le cas spécial d'utilité isoélastique,
 \[
-  M_{t+1} = \delta \left(\frac{C_{t+1}}{C_t}\right)^{-\gamma},
+  M_{t+1} = \delta \left(\frac{C_{t+1}}{C_t}\right)^{-\gamma}.
 \]
-donc la *fonction de moment* $(1+R_{it})M_t$ à l'intérieur de l'espérance est une fonction et des données et des paramètres inconnus.
+* La *fonction de moment* $(1+R_{it})M_t$ est une fonction et des données et des paramètres inconnus.
+* Avec GMM, on peut utiliser les données pour évaluer la théorie et apprendre les détails comme les valeurs des paramètres.
 
 ## Moments conditionels et inconditionels
 
@@ -681,9 +682,9 @@ donc la *fonction de moment* $(1+R_{it})M_t$ à l'intérieur de l'espérance est
     *  Si le modèle est vrai, il devrait y avoir une valeur du
       paramètre $\theta$ pour laquelle $g_T(w,\theta)$ est près de
       zéro.
-    *  On estime $\theta$ avec la valeur pour laquelle
-      $g_T(w,\theta)$ est le plus près à zéro.
-    *  $g_T(w,\theta)$ étant vecteur, il faut choisir un distance
+    *  Une estimation GMM est la valeur $\theta$ pour laquelle
+      $g_T(w,\theta)$ est le plus près de zéro, selon un critère donné.
+    *  $g_T(w,\theta)$ étant vecteur, il faut choisir une distance
       à zéro.
     *  On peut évaluer le modèle par la proximité de
       $g_T(w,\theta)$ à zéro.
