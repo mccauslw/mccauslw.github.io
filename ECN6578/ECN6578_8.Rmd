@@ -286,6 +286,20 @@ knitr::opts_chunk$set(echo = FALSE)
 \[
     E[X] = e^{\mu + \sigma^2/2}.
 \]
+* Si $(X,Y)$ est log-normal multivarié, $XY$ est log-normal :
+\[
+  \begin{bmatrix} \log X \\ \log Y \end{bmatrix}
+  \sim N\left(
+    \begin{bmatrix} \mu_X \\ \mu_Y \end{bmatrix},
+    \begin{bmatrix}
+      \sigma_X^2 & \sigma_{XY} \\ \sigma_{XY} & \sigma_Y^2
+    \end{bmatrix}
+  \right),
+\]
+$\log XY = \log X + \log Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\sigma_{XY})$, et
+\[
+  E[XY] = \exp(\mu_X + \mu_Y + \tfrac{1}{2} (\sigma_X^2 + \sigma_Y^2 + 2\sigma_{XY})).
+\]
 
 ## CCAPM avec log-normalité
 
@@ -616,7 +630,7 @@ donc la *fonction de moment* $(1+R_{it})M_t$ à l'intérieur de l'espérance est
 
 *  Vecteur de paramètres :
     \[ \theta_0 = (\delta_0,\gamma_0) \]
-*  $\delta_0$ et $\gamma_0$ sont des ``vraies'' valeurs des paramètres
+*  $\delta_0$ et $\gamma_0$ sont des "vraies" valeurs des paramètres
     d'utilité isoélastique :
     \[ V = E\left[\sum_{\tau=0}^\infty \delta_0^\tau
       \frac{C_\tau^{1-\gamma_0}}{1-\gamma_0}\right] \]
