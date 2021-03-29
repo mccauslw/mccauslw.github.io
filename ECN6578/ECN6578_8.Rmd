@@ -367,7 +367,7 @@ $\log XY = \log X + \log Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\sig
 *  Les moyennes historiques sont:
     * $E[r_{ft}]$: 1.8\%
     * $g$: 1.8\%
-    * $\sigma_c^2$: 3.3\%
+    * $\sigma_c$: 3.3\%
 	
 *  Mais $\gamma = 19$ implique $\delta = 1.12 > 1$.
 *  Intuition : une grande aversion pour le risque implique
@@ -485,7 +485,7 @@ $\log XY = \log X + \log Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\sig
     où
     * Habitude interne: $X_t = C_{t-1}^{\kappa}$ où $C_t$ est
       la consommation individuelle, ou
-    * Habitude externe: $X_t = \bar{C}_{t-1}^{\kappa}$ où $C_t$ est
+    * Habitude externe: $X_t = \bar{C}_{t-1}^{\kappa}$ où $\bar{C}_t$ est
       la consommation agrégée.
 
 ## Habitude interne
@@ -599,7 +599,7 @@ et dans le cas spécial d'utilité isoélastique,
 \]
 * Problème : la version inconditionnelle est beaucoup moins forte
     - moins d'information pertinente pour estimer les paramètres
-    - moins d'implications falsifiable, dans un contexte de test
+    - moins d'implications falsifiables, dans un contexte de test
 * Solution : si la version conditionnelle tient et un instrument $Z_t$ est observé à chaque période $t$,
 \[
   \begin{aligned}
@@ -612,7 +612,7 @@ et dans le cas spécial d'utilité isoélastique,
 
 ## Éléments de la GMM
 
-*  Une séries de vecteurs aléatoires : $w_t\;$ ($J\times 1$ à chaque période $t$, observé en $T$ périodes)
+*  Une séries de vecteurs aléatoires (données) : $w_t\;$ ($J\times 1$ à chaque période $t$, observé en $T$ périodes)
 *  Vecteur de paramètres : $\theta_0\;$ ($P\times 1$)
 *  Fonction de moment : $g(w_t,\theta_0)\;$ ($Q\times 1$)
 *  Condition de moment de la population : $E[g(w_t,\theta_0)]=0$
