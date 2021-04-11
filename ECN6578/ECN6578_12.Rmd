@@ -35,7 +35,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 * Pour les quantités suivantes
     1. Terme (ou horizon) $l$ (en périodes),
-    1. Probabilité $p$ de grande perte,
+    1. Probabilité $p$ de grande perte, (souvent p = 0.01)
     1. Fonction de répartition $F_l(\cdot)$ pour le gain de valeur d'un portefeuille en $l$ périodes,
 
 * la valeur à risque (VaR) est (par définition) la solution de l'équation
@@ -56,7 +56,7 @@ où $\epsilon_t \sim \mathrm{N}(0,1)$.
 
 * Utile à court terme, pour les rendements journaliers.
 
-* Pour $i<j$,
+* Pour $j>i>0$,
 $$ \mathrm{cov}[r_{t+i}, r_{t+j}|F_t] = E[\sigma_{t+i}\sigma_{t+j}\epsilon_{t+i}E[\epsilon_{t+j}|F_{t+j-1}]|F_t] = 0. $$
 
 ## RiskMetrics : variance multipériode
@@ -72,7 +72,7 @@ $$
 * Maintenant la variance conditionnelle (à $t$) du rendement $k$-période est
 $$ \sigma^2_t[k] = \sum_{i=1}^k \mathrm{Var}[a_{t+i}|F_t] = \sum_{i=1}^k E[\sigma^2_{t+i}|F_t]. $$
 
-## Une récursion pour modèle IGARCH Gaussien de RiskMetrics
+## Une récursion pour le modèle RiskMetrics
 
 * Pour tous $t$,
 $$
