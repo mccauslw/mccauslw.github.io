@@ -397,13 +397,13 @@ On observe $w_t = (C_t, C_{t+1}, R_{t+1}, Z_t)$, $t=1,\ldots,T$.
 
 #### Lectures préliminaires
 
-1. CLM chapitre 7 intro, 7.1
+1. Tsay chapitre 7 intro, 7.1
 
 #### Autres Lectures
 
-1. CLM 7.2 Riskmetrics
-1. CLM 7.3 Approche économétrique à la valeur à risque
-1. CLM 7.4 Régression quantile
+1. Tsay 7.2 Riskmetrics
+1. Tsay 7.3 Approche économétrique à la valeur à risque
+1. Tsay 7.4 Régression quantile
 
 #### Exercices
 
