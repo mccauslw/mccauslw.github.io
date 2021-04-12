@@ -107,7 +107,7 @@ $$ P_tQ \times -\Phi^{-1}(0.05) \sqrt{k} \sigma_{t+1} \approx P_tQ  \times 1.65 
 * Exemple 7.1 :
     * $\sigma_t = 0.53\%$ (écart-type empirique du rendement journalier pour le taux d'échange DM/Dollar, juin 1997)
     * $P_tQ = 10^7\, \$$
-    * $p = 0.05$ ($\Phi^{-1}(0.05) \approx -1.65$)
+    * $p = 0.05$ alors $\Phi^{-1}(p) = \Phi^{-1}(0.05) \approx -1.65$
     * $\mathrm{VaR}(1) = 10^7 \times 1.65 \times 0.0053 = 87450\,\$$
     * $\mathrm{VaR}(10) = 10^7 \times \sqrt{10} \times 1.65 \times 0.0053 = 276541\,\$$
 
@@ -124,13 +124,13 @@ $$ \sigma^2_t = \alpha_0 + \sum_{i=1}^u \alpha_i a_{t-i}^2 + \sum_{j=1}^v \beta_
 * En évaluant la vraisemblance, on obtient les $\mu_t$, $\sigma^2_t$.
 * Chaque $\mu_t$ et $\sigma^2_t$ est une fonction de tous les $r_1,\ldots,r_{t-1}$
 * Par la suite, on peut calculer $a_t = r_t - \mu_t$, $t=1,\ldots,n$.
-* Sachant $r_1,\ldots,r_n$, $r_{n+1} \sim (\mu_{n+1}, \sigma_{n+1})$, où
+* Sachant $(r_1,\ldots,r_n)$, $r_{n+1} \sim (\mu_{n+1}, \sigma_{n+1})$, où
 $$ \mu_{n+1} = \phi_0 + \sum_{i=1}^p \phi_i r_{n+1-i} - \sum_{j=1}^q \theta_j a_{n+1-j} $$
 $$ \sigma^2_{n+1} = \alpha_0 + \sum_{i=1}^u \alpha_i a_{n+1-i}^2 + \sum_{j=1}^v \beta_j \sigma^2_{n+1-j}. $$
 
 ## Approche économétrique II
 
-* Si $r_{n+1}|r_1,\ldots,r_n \sim N(\mu_{n+1},\sigma^2_{n+1})$, la VaR pour une période avec $p=0.05$ est, par unité de valeur
+* Si $r_{n+1}|r_1,\ldots,r_n \sim N(\mu_{n+1},\sigma^2_{n+1})$, la VaR pour une période avec $p=0.05$ est, par unité de valeur et avec l'approximation $R_{t+1} = r_{t+1}$,
 $$ -\mathrm{VaR} = \mu_{n+1} + \Phi(0.05) \sigma_{n+1} = \mu_{n+1} - 1.65 \sigma_{n+1}. $$
 
 * Si $r_{n+1}|r_1,\ldots,r_n \sim t(\mu_{n+1},\sigma^2_{n+1},\nu)$ :
@@ -159,7 +159,7 @@ mVaR = mu.np1 + t.nu.p * sigma.np1 / (sqrt(nu/(nu-2)))
 * Trier les rendements $r_1,\ldots,r_n$ pour calculer les statistiques d'ordre :
 $$ r_{(1)} \leq r_{(2)} \leq \ldots \leq r_{(n)}. $$
 
-* Supposons que $r_t$ sont iid avec fonction de répartition $F$ et densité $f$.
+* Supposons que $r_t$ est iid avec fonction de répartition $F$ et densité $f$.
 
 * On veux estimer $x_p = F^{-1}(p)$, la quantile $p$ de la population
 
