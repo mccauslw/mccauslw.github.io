@@ -327,13 +327,13 @@ Voici des suggestions pour les 5 résultats :
 
 1. Le résultat dépend de l'unicité de la solution $g + \mu_p h$.
 Si vous n'en servez pas, la solution est incorrecte.
-1. Exprimez $\sigma_p^2 \equiv (g + \mu_ph) \Omega (g + \mu_ph)$ et minimisez. Écrivez le résultat en terms de $\mu$, $\Omega$.
+1. Exprimez $\sigma_p^2 \equiv (g + \mu_ph)^\top \Omega (g + \mu_ph)$ et minimisez. Écrivez le résultat en terms de $\mu$, $\Omega$.
 1. La covariance entre le rendement du portefeuille
 $g + \mu_p h$ et celui du portefeuille $g + \mu_q h$ est
-$(g+\mu_ph)\Omega(g+\mu_qh)$.
+$(g+\mu_ph)^\top\Omega(g+\mu_qh)$.
 1. Servez-vous du troisième résultat pour trouver le $\mu_{op}$ unique, en termes de $\mu_p$, qui donne $\mathrm{Cov}[R_p,R_{op}] = 0$.
 1. La covariance entre le rendement du portefeuille $p$ sur le FMV et le portefeuille arbitraire $\omega$ est
-$(g+\mu_ph)\Omega\omega$.
+$(g+\mu_ph)^\top\Omega\omega$.
 Écrivez-la en forme $\lambda \mu_i + \gamma$, où $\mu_i = E[R_i]$, et $\lambda$ et $\gamma$ sont des fonctions de $\mu_p, A, B, C, D$.
 Écrivez l'équation pour deux cas spéciaux, $i=op$ et $i=p$, pour obtenir (5.2.19) dans le manuel CLM.
 
@@ -407,5 +407,5 @@ On observe $w_t = (C_t, C_{t+1}, R_{t+1}, Z_t)$, $t=1,\ldots,T$.
 
 #### Exercices
 
-1. Supposez que les rendements journaliers d'un actif suivent un modèle GARCH(1,1) gaussien avec $\alpha_0 = 4.2 \times 10^{-6}$, $\alpha_1 = 0.12$, $\beta = 0.85$.
-Selons les données $(r_1,\ldots,r_n)$ observées, $\sigma_n = 0.012$ et $r_n = -0.007$. Quelle est la valeur à risque pendant une période d'un jour d'un montant de cet actif qui vaut 10000 dollars à $t=n$?
+1. Supposez que les rendements journaliers d'un actif suivent un modèle GARCH(1,1) gaussien à moyenne zéro, avec $\alpha_0 = 4.2 \times 10^{-6}$, $\alpha_1 = 0.12$, $\beta = 0.85$.
+Selons les données $(r_1,\ldots,r_n)$ observées, $\sigma_n = 0.012$ et $r_n = -0.007$. Quelle est la valeur à risque pendant une période d'un jour d'un montant de cet actif qui vaut 10000 dollars à $t=n$? Utilisez $p=0.01$.

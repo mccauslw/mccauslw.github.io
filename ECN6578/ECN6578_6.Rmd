@@ -123,7 +123,7 @@ $$ \begin{aligned} f(y|\theta) &= \prod_{t=1}^T \sqrt{\frac{h}{2\pi}} \exp\left[
 
 * Mettons qu'on choisit une loi *a priori* où $h$ et $\mu$ sont indépendents,
 avec
-$$ \mu \sim N(\bar{\mu},\bar{\omega}^{-1}), \quad \bar{s}h \sim \chi^2(\bar{\nu}), $$
+$$ \mu \sim N(\bar{\mu},\bar{\omega}^{-1}), \quad \bar{s}^2h \sim \chi^2(\bar{\nu}), $$
 où $\bar{\mu}$, $\bar{\omega}$, $\bar{s}$ et $\bar{\nu}$ sont des hyperparamètres constants choisis par l'investigateur.
 * La densité *a priori* est
 $$ f(\theta) \propto \exp \left[-\frac{\bar{\omega}}{2}(\mu-\bar{\mu})^2\right]
