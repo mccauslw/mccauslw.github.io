@@ -119,7 +119,7 @@ $$ P_tQ \times -\Phi^{-1}(0.05) \sqrt{k} \sigma_{t+1} \approx P_tQ  \times 1.65 
 ## Approche économétrique I
 
 * Un modèle ARMA(p,q)-GARCH(u,v) pour $r_1,\ldots,r_n$ :
-$$ \mu_t = \phi_0 + \sum_{i=1}^p \phi_i r_{t-i} + a_t - \sum_{j=1}^q \theta_j a_{t-j} $$
+$$ \mu_t = \phi_0 + \sum_{i=1}^p \phi_i r_{t-i} - \sum_{j=1}^q \theta_j a_{t-j} $$
 $$ \sigma^2_t = \alpha_0 + \sum_{i=1}^u \alpha_i a_{t-i}^2 + \sum_{j=1}^v \beta_j \sigma^2_{t-j}. $$
 * En évaluant la vraisemblance, on obtient les $\mu_t$, $\sigma^2_t$.
 * Chaque $\mu_t$ et $\sigma^2_t$ est une fonction de tous les $r_1,\ldots,r_{t-1}$
@@ -131,7 +131,7 @@ $$ \sigma^2_{n+1} = \alpha_0 + \sum_{i=1}^u \alpha_i a_{n+1-i}^2 + \sum_{j=1}^v 
 ## Approche économétrique II
 
 * Si $r_{n+1}|r_1,\ldots,r_n \sim N(\mu_{n+1},\sigma^2_{n+1})$, la VaR pour une période avec $p=0.05$ est, par unité de valeur et avec l'approximation $R_{t+1} = r_{t+1}$,
-$$ -\mathrm{VaR} = \mu_{n+1} + \Phi(0.05) \sigma_{n+1} = \mu_{n+1} - 1.65 \sigma_{n+1}. $$
+$$ -\mathrm{VaR} = \mu_{n+1} + \Phi^{-1}(0.05) \sigma_{n+1} = \mu_{n+1} - 1.65 \sigma_{n+1}. $$
 
 * Si $r_{n+1}|r_1,\ldots,r_n \sim t(\mu_{n+1},\sigma^2_{n+1},\nu)$ :
     * La variance d'un aléa $t$ de Student standard avec $\nu$ degrés de liberté est $\nu/(\nu-2)$.
@@ -231,19 +231,19 @@ abline(v=x.ch.p)
 * Inconvénients :
     1. L'hypothèse de iid peu crédible : il y a plus d'incertitude quand les rendements ne sont pas indépendents.
     1. Pas de conditionnement à l'information pertinente.
-    1. Les quantiles empiriques ne sont pas efficaces pour $p$ petit.
+    1. Les quantiles empiriques ne sont pas précises pour $p$ petit.
     1. Pas de changement de distribution entre la période de l'échantillon et la période de prévision.
 
 ## Régression quantile I
 
-* Rappel : la moyenne $E[r]$ est la solution du problème
-$$ \mu = \arg\min_\beta E[(r-\beta)^2] = \arg\min_\beta E[(r-E[r])^2] + (E[r]-\beta)^2. $$
-* La quantile $x_p = F^{-1}(p)$ est la solution du problème
-$$ q_p = \arg\min_\beta E[w_p(r-\beta)], $$
+* Rappel : la moyenne $E[r]$ est la solution du problème suivant de minimization de perte quadratique espérée :
+$$ \arg\min_\beta E[(r-\beta)^2] = \arg\min_\beta E[(r-E[r])^2] + (E[r]-\beta)^2. $$
+* La quantile $x_p = F^{-1}(p)$ est la solution du problème suivant minimization de perte espérée :
+$$ x_p = \arg\min_\beta E[w_p(r-\beta)], $$
 * La fonction de perte $w_p$ est
 $$ w_p(z) = \begin{cases} pz, & z \geq 0 \\ -(1-p)z, & z < 0. \end{cases} $$
 * La quantile empirique (ou de l'échantillon) est la solution de
-$$ \hat{q}_p = \arg\min_\beta \sum_{i=1}^n w_p(r_i-\beta). $$
+$$ \hat{x}_p = \arg\min_\beta \sum_{i=1}^n w_p(r_i-\beta). $$
 
 ## La fonction $w_p(z)$
 
@@ -256,7 +256,7 @@ p=0.2; lines(z, p*z*(z>=0) - (1-p)*z*(z<0), col='green')
 
 ## Régression quantile II
 
-* Supposons que la quantile conditionnelle $q_p|x$ est linéaire en $x$ : $q_p|x = \beta_p^\top x$.
+* Supposons que la quantile conditionnelle de $r_t$ sachant $x_t$, dénoté $q_p|x_t$, est linéaire en $x_t$ : $q_p|x = \beta_p^\top x$.
 * Alors $\beta_p$ est la solution de
 $$ \beta_p = \arg\min_\beta E[w_p(r-\beta^\top x)]. $$
 * L'analogue dans l'échantillon donne l'estimateur
