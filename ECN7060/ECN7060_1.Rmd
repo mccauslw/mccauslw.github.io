@@ -27,33 +27,35 @@ urlcolor: blue
 [//]: Probabilité conditionnelle: économétrie bayésienne, micro, macro
 
 ## Les éléments de la note finale :
-1. Interrogations : 20% (meilleures $n-1$ de $n \approx 11$)
-1. Examen intra maison : 25% (de 23h le 15 octobre à 23h le 27 octobre)
+1. Quiz : 20% (meilleures $n-1$ de $n \approx 9$)
+1. Examen intra : 35% (le 27 octobre)
 1. Participation, cours et séance TP : 5%
-1. Examen final : 50%
+1. Examen final : 40% (le 22 décembre)
 
 [//]: For people who don't benefit from TPs, participation based on class only
 [//]: Participation in TP can help, non-participation cannot hurt
 
-## Le cycle mercredi 13h-mercredi 12h
+## Le cycle mercredi 13h-mardi soir
 1. Mercredi 13h-16h, cours :
-    + retour des interrogations corrigées du cours précédent
+    + retour des quiz corrigés du cours précédent
     + questions des étudiants
-    + interrogation sur les lectures (matière du cours actuel)
-    + correction des interrogations du cours actuel
+    + quiz sur les lectures (matière du cours actuel)
+    + correction du quiz du cours actuel
     + enseignement magistral avec participation des étudiants
     + aperçu de la matière de la semaine suivante
+    
     
 1. Mercredi avant la fin de la journée 
     + attribution des lectures (pour la semaine suivante)
     + questions simples de lecture
     + devoirs sur la matière du cours actuel
 
-1. Mardi suivant
+1. Mardi 13h-14h30, séance de travail pratique
+    + discussion des devoirs avec Féraud
+
+1. Mardi soir
     + chargement des diapos du lendemain
 
-1. Mercredi 10h30-12h, séance de travail pratique
-    + discussion des devoirs avec Eugène
 
 ## Communications
 1. Documents à mon site web : <https://mccauslw.github.io/ECN7060.html>
@@ -180,8 +182,7 @@ Quelques ensembles :
 1. $[0,1)$, $\mathbb{R}$
 1. $2^\mathbb{N}$, l'ensemble des sous-ensembles de $\mathbb{N}$
 1. L'ensemble des fonctions $f \colon \mathbb{N} \to \{0,1\}$
-1. L'ensemble des fichiers (livres, dessins, audio, vidéo)
-1. L'ensemble des programmes informatiques
+1. L'ensemble des fichiers finis (livres, documents, dessins, audio, vidéo, programmes informatiques
 
 [//]: Do diagonalisation argument
 [//]: Why doesn't it work on Q? Get a number not in Q.
@@ -206,7 +207,7 @@ Quelques ensembles :
 
 ### Impossible! Preuve :
 1. Définir $x \sim y$ ssi $y-x \in \mathbb{Q}$ ; $\sim$ est transitive et réflexive.
-2. Partitionner $[0,1]$ en classes d'équivalence : $\{0, 1/3, 1/5, \ldots\}$, $\{\pi, \pi - 3, \pi - 3.1, \ldots\}$, $\{e, e - 2.7, e - 2.71 \}$, etc.
+2. Partitionner $[0,1]$ en classes d'équivalence : $\{0, 1/3, 1/5, \ldots\}$, $\{\pi - 3, \pi - 3.1, \pi - 3.14, \ldots\}$, $\{e - 2.7, e - 2.71, e - 2.717 \}$, etc.
 3. Construire $H$, un ensemble avec un élément de chaque classe.
 4. Noter que $[0,1] = \cup_{r \in [0,1] \cap \mathbb{Q}} (H \oplus r)$ (ensembles disjoints).
 5. Constater l'implication impossible :
