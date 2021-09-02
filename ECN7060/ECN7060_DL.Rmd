@@ -1,11 +1,11 @@
 ---
-title: "Devoirs et Lectures, 2020"
+title: "Devoirs et Lectures, 2021"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: pdf_document
 ---
 
-## Cours 1, le 2 septembre
+## Cours 1, le 1 septembre
 
 ### Devoirs, Rosenthal (matière du cours 1)
 
@@ -37,7 +37,7 @@ Soit $\Omega = \{1,\ldots,n\}$. Montrez que
     c. tous les éléments de ${\cal J}$ ont un complément par rapport à $\Omega$ qui égale une réunion disjointe finie des éléments de ${\cal J}$,
     d. ${\cal J}$ est une semi-algèbre de parties de $\Omega$.
     
-## Cours 2, le 9 septembre
+## Cours 2, le 8 septembre
 
 ### Devoirs, Rosenthal (matière du cours 2)
 
@@ -67,7 +67,7 @@ Définitions importantes : variable aléatoire, $\searrow$, $\nearrow$, $\liminf
     a. Donnez une fonction $X \colon \Omega \to \mathbb{R}$ qui est une variable aléatoire sur $(\Omega,{\cal F})$.
     b. Donnez une fonction $f \colon \Omega \to \mathbb{R}$ qui n'est pas une variable aléatoire sur $(\Omega,{\cal F})$.
     
-## Cours 3, le 16 septembre
+## Cours 3, le 15 septembre
 
 ### Devoirs, Rosenthal (matière du cours 3)
 
@@ -103,7 +103,7 @@ $$ Y(\omega) = \begin{cases} 1, & \omega\, \mbox{irrationel},\, \omega < 1/2 \\
 7, & \mbox{autrement}. \end{cases} $$
 Trouver $E[Y]$.
 
-## Cours 4, le 23 septembre
+## Cours 4, le 22 septembre
 
 ### Devoirs, Rosenthal (matière du cours 4)
 
@@ -128,7 +128,7 @@ Lesquelles des affirmations suivantes sont vraies? Expliquez. Pour $Z_n = n1_{A_
     b. $Z_n$ converge à $Z$ presque surement.
     c. $Z_n$ converge à $Z$ en probabilité.
 
-## Cours 5, le 30 septembre
+## Cours 5, le 29 septembre
 
 ### Devoirs, Rosenthal (matière du cours 5)
 
@@ -162,7 +162,7 @@ $E[\liminf_{n\to \infty} X_n] = \infty$ et $\liminf_{n\to \infty} E[X_n] = \inft
 
 1. Donnez la fonction génératrice des moments pour une v.a. Bernoulli avec probabilité $p$ de succès.
 
-## Cours 6, le 7 octobre
+## Cours 6, le 6 octobre
 
 ### Devoirs, Rosenthal (matière du cours 6)
 
@@ -198,7 +198,7 @@ Définitions importantes : nombres complexes et les operations de base (addition
     a. La variable aléatoire $Y=\sum_{k=1}^n X_k$ suit une loi $\mathrm{Bi}(n,p)$ (Binomial). Trouvez la fonction caractéristique $\phi_Y(t)$ de $Y$.
     a. Soit $Z=\sqrt{n}(n^{-1}Y-p)$. Trouvez la fonction caractéristique $\phi_Z(t)$ de $Z$.
 
-## Cours 7, le 14 octobre
+## Cours 7, le 13 octobre
 
 ### Devoirs, Rosenthal (matière du cours 7)
 
@@ -217,7 +217,11 @@ Définitions importantes : nombres complexes et les operations de base (addition
 1. Exercises 13.4.1, 13.4.2, 13.4.5
 1. Généralisez le théorème de variance totale (théorème 13.3.1) à un théorème de covariance totale (aléas $X$ et $Y$, sous-tribu ${\cal G}$)
 
-## Cours 8, le 28 octobre
+## Examen Intra, le 27 octobre
+
+(le 20 octobre est pendant la semaine d'activités libres et il n'y a pas de cours)
+
+## Cours 8, le 3 novembre
 
 ### Devoirs, Rosenthal (matière du cours 8)
 
@@ -233,7 +237,7 @@ Définitions importantes : nombres complexes et les operations de base (addition
 1. Assez de 6.2, 6.3 pour faire les exercices 6.3, 6.6, 6.12(a), 6.14, 6.18
 1. Assez de 7.2 pour faire l'exercice 7.9
 
-## Cours 9, le 4 novembre
+## Cours 9, le 10 novembre
 
 ### Devoirs, Casella et Berger (matière du cours 9)
 
@@ -248,7 +252,7 @@ Définitions importantes : nombres complexes et les operations de base (addition
 1. Page Wikipédia https://en.wikipedia.org/wiki/Admissible_decision_rule
 1. Questions suggérées : 7.19, 7.20, 7.21, 7.22
 
-## Cours 10, le 11 novembre
+## Cours 10, le 17 novembre
 
 ### Devoirs, Casella et Berger (matière du cours 10)
 
@@ -262,7 +266,7 @@ Définitions importantes : nombres complexes et les operations de base (addition
 1. Chapitre 8 (pas tous les détails des exemples)
 1. Questions suggérées : 8.6, 8.16
 
-## Cours 11, le 18 novembre
+## Cours 11, le 24 novembre
 
 ### Devoirs, Casella et Berger (matière du cours 11)
 
@@ -275,7 +279,7 @@ Définitions importantes : nombres complexes et les operations de base (addition
 1. Chapitre 9 (pas tous les détails des exemples)
 1. Questions suggérées : 9.1, 9.2, 9.6, 9.26
 
-## Cours 12, le 25 novembre
+## Cours 12, le 1 decembre
 
 ### Devoirs, Casella et Berger (matière du cours 12)
 
@@ -289,7 +293,7 @@ Définitions importantes : nombres complexes et les operations de base (addition
 1. Chapitre 10 (accent sur 10.1, 10.3)
 1. Questions suggérées : 10.2, 10.7, prouvez le théorème 10.1.3.
 
-## Cours 13, le 1 décembre
+## Cours 13, le 8 décembre
 
 ### Devoirs, Casella et Berger (matière du cours 13)
 
