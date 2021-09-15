@@ -113,7 +113,7 @@ Alors
 
 ## Notes sur les limites ponctuelles
 
-1. Fonctions sur $\Omega = \mathbb{R}$ avec un ensemble dénombrable de discontinuités.
+1. Fonctions sur $\Omega = \mathbb{R}$ avec un ensemble dénombrable de discontinuités, à travers la construction des suites de combinaisons linéaires de fonctions indicatrices.
 1. Comme les limites ponctuelles et les sommes finies de v.a. sont des variables aléatoires, les sommes infinies convergentes sont des variables aléatoires.
 
 ## Indépendance de deux événements sur $(\Omega,{\cal F},P)$
