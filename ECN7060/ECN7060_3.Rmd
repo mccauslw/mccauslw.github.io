@@ -166,7 +166,7 @@ $$ P(X_{\alpha_1} \in S_1, \ldots, X_{\alpha_j} \in S_j)
 
 * Indépendance de $f(X)$ et $g(Y)$ pour $X,Y$ indépendant, $f$ et $g$ réelles et mesurables
 
-* Suffisance de $F(x,y) = F(x)F(y)$ pour indépendance.
+* Pour indépendance, la nécessité de $F(x,y) = F(x)F(y)$ est évidente. La preuve de la Proposition 3.2.4 établie la suffisance.
 
 ##
 ![](Figures/Independance_fg.png)
