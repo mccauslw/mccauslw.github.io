@@ -17,6 +17,10 @@
 
 [Diapos](./ECN7060/ECN7060_2.pdf)
 
+#### Cours 3, 2021/09/15
+
+[Diapos](./ECN7060/ECN7060_3.pdf)
+
 #### Examens récents
 
 [Examen intra 2020](./ECN7060/EI20.pdf)

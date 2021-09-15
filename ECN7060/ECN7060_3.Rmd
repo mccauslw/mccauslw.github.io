@@ -21,9 +21,9 @@ $$ \{X \leq x\} \equiv \{\omega \in \Omega \colon X(\omega) \leq x\} \in {\cal F
 * Les fonctions suivantes sont-elles des variables aléatoires?
     1. $1_A(\omega)$ où $A \in {\cal F}$
     1. $W(\omega) = cX(\omega)$
-    1. $W = X + Y$
     1. $W = \min(X, Y)$, $W = \max(X, Y)$
     1. $W = \inf_n Z_n$, $W = \sup_n Z_n$
+    1. $W = X + Y$
 
 * Supposez que $\lim_{n\to \infty} Z_n(\omega)$ existe et égale $Z(\omega)$ pour chaque
 $\omega \in \Omega$. $Z(\omega)$ est-elle une variable aléatoire?
@@ -41,7 +41,7 @@ Si $A \in {\cal F}$,
   \{\omega \in \Omega : 1_A(\omega) \leq x\}
   = \begin{cases} \Omega & x \geq 1, \\ A^c & 0 \leq x < 1, \\ \emptyset & x < 0, \end{cases}
 \]
-et $\emptyset, A^c, \Omega \in {\cal F}$. Alors $1_A(x)$ est une variable aléatoire.
+et $\emptyset, A^c, \Omega \in {\cal F}$. Alors $1_A(\omega)$ est une variable aléatoire.
 
 ##
 ![](Figures/Preimage_indicatrice.png)
@@ -135,10 +135,10 @@ $P(A\cap B^c) = P(A)(1-P(B)) = P(A)P(B^c)$.
 $P(A\cap C) = P(A)P(C)$ et $P(A\cap B\cap C) = P(A)P(B)P(C)$.
 
 * Importance de $P(A\cap B\cap C) = P(A)P(B)P(C)$ :
-    * $\Omega = \{1,2,3,4\}$, $P(\{i\}) = 0.25$ pour $i=1,2,3,4$.
+    * $\Omega = \{1,2,3,4\}$, $P(\{i\}) = \tfrac{1}{4}$ pour $i=1,2,3,4$.
     * Soit $A = \{1,2\}$, $B = \{1,3\}$, $C = \{2,3\}$.
-    * $P(A\cap B) = P(A)P(B) = 0.25$, $P(A\cap C) = P(A)P(C) = 0.25$, $P(B\cap C) = P(B)P(C) = 0.25$.
-    * Mais $P(A\cap B \cap C) = 0$ et $P(A)P(B)P(C) = 0.125$.
+    * $P(A\cap B) = P(A)P(B) = \tfrac{1}{4}$, $P(A\cap C) = P(A)P(C) = \tfrac{1}{4}$, $P(B\cap C) = P(B)P(C) = \tfrac{1}{4}$.
+    * Mais $P(A\cap B \cap C) = 0$ et $P(A)P(B)P(C) = \tfrac{1}{8}$.
     * Intuition: si $\omega \in C$, $\omega \in A\cap B$ est impossible, tandis que si $\omega \notin C$, c'est possible.
 
 ##
@@ -146,9 +146,8 @@ $P(A\cap C) = P(A)P(C)$ et $P(A\cap B\cap C) = P(A)P(B)P(C)$.
 
 ## Indépendance d'un ensemble $I$ d'événements
 
-* L'ensemble $I$ peut être indénombrable (Exemple : processus stochastique $X_t(\omega)$ en temps continu)
-* $\{A_\alpha\}_{\alpha \in I}$ sont indépendants si pour chaque $j \in \mathbb{N}$ et chaque
-$\alpha_1,\ldots,\alpha_j$,
+* L'ensemble $I$ peut être indénombrable (Exemple : processus stochastique $X_t(\omega)$ en temps continu, $t \in \mathbb{R}$)
+* $\{A_\alpha\}_{\alpha \in I}$ sont indépendants si pour chaque $j \in \mathbb{N}$ et chaque $\alpha_1,\ldots,\alpha_j$,
 $$ P(A_{\alpha_1} \cap A_{\alpha_2} \cap \ldots \cap A_{\alpha_j})
 = P(A_{\alpha_1})P(A_{\alpha_2})\cdots P(A_{\alpha_j}) $$
 
