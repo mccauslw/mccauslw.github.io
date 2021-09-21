@@ -8,16 +8,18 @@ output: beamer_presentation
 ## Intégration riemannienne
 
 $$ L \int_a^b X = 
-\sup\left\{
+\sup_{n, t_1,\ldots,t_{n-1}}\left\{
 \sum_{i=1}^n (t_i-t_{i-1})
-\inf_{t\in [t_{i-1},t_i]} X(t) \colon a=t_0<t_1<\ldots<t_n = b
+\inf_{t\in [t_{i-1},t_i]} X(t) \colon t_0<t_1<\ldots<t_n
 \right\} $$
 
 $$ U \int_a^b X = 
-\inf\left\{
+\inf_{n,t_1,\ldots,t_{n-1}}\left\{
 \sum_{i=1}^n (t_i-t_{i-1})
-\sup_{t\in [t_{i-1},t_i]} X(t) \colon a=t_0<t_1<\ldots<t_n = b
-\right\} $$
+\sup_{t\in [t_{i-1},t_i]} X(t) \colon t_0<t_1<\ldots<t_n
+\right\}, $$
+où $t_0 = a$, $t_n = b$.
+
 Notes :
 
 * L'existence et la valeur de l'intégral.
@@ -69,7 +71,7 @@ et pour tous $t \neq 0$,
 * Dans 1, $X$ est de la forme canonique
 $$ X(\omega) = \sum_{x \in X(\Omega)} x \cdot 1_{\{X^{-1}(\{x\})\}}(\omega). $$
 
-* Dans 2, $X$ n'est pas de cette forme, mais $[0,1/4)$, $[1/4,1/2]$ et $(1/2,1]$ forment une partition de $[0,1]$.
+* Dans 2, $X$ n'est pas de cette forme, mais $[0,1/4)$, $[1/4,1/2]$ et $(1/2,1]$ forment une partition de $[0,1]$ en intervalles.
 
 * Dans 3, $\{[0,1],[1/4,1/2]\}$ n'est pas une partition de $[0,1]$.
 
@@ -130,15 +132,18 @@ Même $X(\omega)$ sur $\Omega = [0,1]$ qu'on a vu avant :
 
 Une autre variable aléatoire $Y(\omega)$ sur $\Omega$ :
 \[
-  Y(\omega) = \begin{cases} 5 & \omega \in B_1 \equiv [0,3/4], \\ 4 & \omega \in B_2 = (3/4,1]. \end{cases}
+  Y(\omega) = \begin{cases}
+    4 & \omega \in B_1 = [0,3/4), \\
+    5 & \omega \in B_2 \equiv [3/4,1].
+  \end{cases}
 \]
 
 Toutes les intersections $A_i \cap B_j$ :
 
 | \hspace{2cm}  | $A_1=[0,1/4)$   | $A_2=[1/4,1/2]$ | $A_3=(1/2,1]$  |
 |:-------------:|:---------------:|:---------------:|:--------------:|
-|$B_1=[0,3/4]$  | $A_1$           | $A_2$           | $(1/2,3/4]$      |
-|$B_2=(3/4,1]$  | $\emptyset$     | $\emptyset$     | $B_2$          |
+|$B_1=[0,3/4)$  | $A_1$           | $A_2$           | $(1/2,3/4)$      |
+|$B_2=[3/4,1]$  | $\emptyset$     | $\emptyset$     | $B_2$          |
 
 ## Linéarité de l'espérance, variables aléatoires simples II
 
@@ -154,8 +159,8 @@ Toutes les intersections $A_i \cap B_j$ :
 
 Notes :
 
-* L'additivité établie l'égalité des formes 1 et 2 de $E[X]$.
-* La linéarité établie l'égalité des formes 2 et 3 de $E[X]$.
+* L'additivité de $P$ établie l'égalité des formes 1 et 2 de $E[X]$.
+* La linéarité de $E$ pour les v.a. simples établie l'égalité des formes 2 et 3 de $E[X]$.
 
 ## Monotonicité, variables aléatoires simples
 
@@ -168,6 +173,7 @@ Preuve :
     X \leq Y &\Rightarrow Y-X \geq 0 \\
     &\Rightarrow E[Y-X] \geq 0 \\
     &\Rightarrow E[Y] - E[X] \geq 0 \\
+    &\Rightarrow E[X] \leq E[Y] \\
   \end{aligned}
 \]
 
@@ -241,7 +247,7 @@ $$ \Psi_n(x) = \min(n,2^{-n} \lfloor 2^n x \rfloor). $$
     * $X_n \leq X_{n+1} \leq X$
     * $\lim_{n\to \infty} X_n(\omega) = X(\omega)$, $\omega \in \Omega$.
     * $E[X_n] \leq E[X]$ (définition de $E[X]$)
-    * $\lim_{n\to \infty} E[X_n(\omega)] \leq E[X]$
+    * $\lim_{n\to \infty} E[X_n] \leq E[X]$
 * Pourquoi pas $\Psi_n(x) = \min(n, n^{-1} \lfloor nx \rfloor)$? $\Psi_n(x) = 2^{-n} \lfloor 2^n x \rfloor)$?
 * Remarquez la discrétisation de $X(\Omega)$, pas $\Omega$.
 
@@ -310,7 +316,7 @@ $$ \lim_{n\to \infty} E[X_n] \leq E[X]. $$
 * $Y = \sum_i v_i 1_{A_i}$ où $\{A_i\}$ est une partition de $\Omega$ en événements et $v_i \leq X(\omega)$ pour tous $\omega \in A_i$.
 * Pour tout $i$ et $n$, soit $A_{in} \equiv \{\omega \in A_i \colon X_n(\omega) \geq v_i - \epsilon\}$.
 * Alors pour tout $i$, $\{A_{in}\} \nearrow A_i$. (monotonicité, convergence) 
-* Alors $E[X_n] \geq \sum_i (v_i - \epsilon) P(A_{in})$. (à droite : $E[Y_n]$, $Y_n$ simple)
+* Aussi $E[X_n] \geq \sum_i (v_i - \epsilon) P(A_{in})$. (à droite : $E[Y_n]$, $Y_n$ simple)
 * Par convergence de probabilité :
 \[
   \lim_{n\to \infty} \sum_i (v_i - \epsilon) P(A_{in}) = \left(\sum_i v_i P(A_i)\right) - P(\cup_i A_i) \epsilon = E[Y] - \epsilon,
@@ -328,7 +334,7 @@ $$ \lim_{n\to \infty} E[X_n] \leq E[X]. $$
 $$ P(\{X_n(\omega) \nearrow X(\omega)\}) = 1. $$
 * Autrement dit, $X_n \nearrow X$ presque surement.
 * Importance de monotonicité, positivité
-* Échec de convergence monotone pour l'intégration riemannienne
+* Rappel : échec de convergence monotone pour l'intégration riemannienne
 * Linéarité de $E[\cdot]$ pour variables aléatoires positives :
 soit $X_n = \Psi_n(X)$, $Y_n = \Psi_n(Y)$, $a,b\geq 0$. Alors
 \[
