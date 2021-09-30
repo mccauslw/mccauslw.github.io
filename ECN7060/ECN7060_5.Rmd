@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 * Preuve :
     * Soit
     \[
-      Z \equiv
+      Z(\omega) \equiv
       \begin{cases}
         0 & X(\omega) < \alpha, \\
         \alpha & X(\omega) \geq \alpha.
@@ -55,7 +55,7 @@ knitr::opts_chunk$set(echo = FALSE)
     * $\epsilon^{-2}$ peut être très grand, mais c'est fini.
     * Application : borner la probabilité d'une déviation plus grande qu'epsilon, pour chaque $X_n$ d'une suite, où $\mathrm{Var}[X_n] \rightarrow 0$. On veut choisir $n$ après $\epsilon$.
     
-## Définitions
+## Définitions de trois modes de convergence
 
 * Soit $Z_1, Z_2,\ldots$ une suite de v.a., $Z$ une v.a.
 * Convergence ponctuelle de $Z_n$ à $Z$ : pour tout $\omega \in \Omega$,
@@ -94,8 +94,11 @@ La condition : pour tout $\epsilon > 0$, $\sum_{n=1}^\infty P(|Z_n - Z|\geq \eps
 
 Preuve de suffisance :
 
-* Soit $\epsilon > 0$ et supposez que $\sum_{n=1}^\infty P(|Z_n - Z|\geq \epsilon) < \infty.$
+* Supposez que la condition soit vraie. Soit $\epsilon > 0$.
 * Alors
+\[
+  \sum_{n=1}^\infty P(|Z_n - Z|\geq \epsilon) < \infty,
+\]
 \[
   \lim_{m \to \infty} \sum_{k=m}^\infty P(|Z_k - Z| \geq \epsilon) = 0.
 \]
@@ -111,12 +114,12 @@ Preuve de suffisance :
 
 ## Preuve, continuée
 
-Rappel : la condition suffisante de l'avant-dernière diapo entraine $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
+Rappel : la condition (dite suffisante) de l'avant-dernière diapo entraine $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
 
 Alors (nous utilisons ce résultat à la dernière équation)
 \[
   \begin{aligned}
-    P(\exists \epsilon > 0, |Z_n - Z| \geq \epsilon\; i.o)
+    P(\exists \epsilon > 0, |Z_n - Z| \geq \epsilon\; i.o.)
     &\leq P(\exists \epsilon' > 0, \epsilon' \in \mathbb{Q}, |Z_n - Z| \geq \epsilon'\; i.o.) \\
     &= P(\cup_{\epsilon \in \mathbb{Q}_{++}} |Z_n - Z| \geq \epsilon\; i.o.) \\
     &\leq \sum_{\epsilon \in \mathbb{Q}, \epsilon > 0} P(|Z_n - Z| \geq \epsilon\; i.o.) = 0.
@@ -246,7 +249,7 @@ $\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$.
 \]
 Supposons que les quatre premiers moments existent et sont finis.
 Soit $Y=Z-\mu$. Prenez $\phi(x) = x^2$, $X = Y^2$.
-1. Kurtosis d'un mélange-échelle $Z$ de v.a. gaussiennes. Soit $Y=Z-\mu$.
+1. Kurtosis d'un mélange-échelle $Z$ de v.a. gaussiennes. Soit $Y=Z-\mu$, $\sigma^2$ la variance aléatoire.
 \[
   E[Y^4] = E[E[Y^4|\sigma^2]] = E[3\sigma^4] \geq 3E[\sigma^2]^2,
 \]
@@ -262,7 +265,7 @@ Première équation : $X = \sigma^2$, $\phi(x) = x^2$.
   -E[u(X)] = E[-u(X)] \geq -u(E[X]), \quad u(E(X)) \geq E[u(X)].
 \]
 
-## Une note sur les distributions
+## Une note sur les fonctions de répartition
 
 * La fonction de répartition : $F(x) \equiv \Pr[(-\infty,x]]$.
 

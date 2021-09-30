@@ -27,7 +27,7 @@
 
 #### Cours 5, 2021/09/29
 
-[Diapos](./ECN7060/ECN7060_5.pdf)
+[Diapos](./ECN7060/ECN7060_5.pdf) $\hspace{1cm}$ [Solutions, quiz](./ECN7060/Quiz 1 2021 solutions.pdf)
 
 #### Examens récents
 
