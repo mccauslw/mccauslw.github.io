@@ -29,6 +29,10 @@
 
 [Diapos](./ECN7060/ECN7060_5.pdf) $\hspace{1cm}$ [Solutions, quiz](./ECN7060/Quiz 1 2021 solutions.pdf)
 
+#### Cours 6, 2021/10/06
+
+[Diapos](./ECN7060/ECN7060_6.pdf)
+
 #### Examens récents
 
 [Examen intra 2020](./ECN7060/EI20.pdf)
