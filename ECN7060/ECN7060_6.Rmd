@@ -120,18 +120,18 @@ $$ M_X(s) = \sum_{n=0}^\infty E[X^n] s^n / n!. $$
     
 ## Signification de « génératrice des moments »
 
-* Rappel $M_X(s) = \sum_{n=0}^\infty E[X^n]s^n/n!$
+* Rappel $M_X(s) = \sum_{n=0}^\infty E[X^n]\frac{s^n}{n!} = 1 + \sum_{n=1}^\infty E[X^n] \frac{s^n}{n!}$.
 * Première dérivée:
 \[
   \begin{aligned}
-    M_X'(s) &= \sum_{n=0} E[X^n] ns^{n-1} / n! \\
-    &= \sum_{n=1}^\infty E[X^n] s^{n-1} / n! \\
-    &= \sum_{n=0}^\infty E[X^{n+1}]s^n/n!
+    M_X'(s) &= \sum_{n=1}^\infty E[X^n] \frac{ns^{n-1}}{n!} \\
+    &= \sum_{n=1}^\infty E[X^n] \frac{s^{n-1}}{(n-1)!} \\
+    &= \sum_{n=0}^\infty E[X^{n+1}] \frac{s^n}{n!}
   \end{aligned}
 \]
 * $m$-ième dérivée :
 \[
-  M_X^{(m)}(s) = \sum_{n=0}^\infty E[X^{n+m}]s^n/n!
+  M_X^{(m)}(s) = \sum_{n=0}^\infty E[X^{n+m}]\frac{s^n}{n!}
 \]
 * $M_X(0) = 1$, $M_X'(0) = E[X]$, $M_X^{(m)}(0) = E[X^m]$.
 
@@ -260,9 +260,9 @@ alors
 $$ F(x-\epsilon) \leq \liminf_n F_n(x) + \liminf_n P(|X_n-X| \geq \epsilon) $$
 $$ F(x-\epsilon) \leq \liminf_n F_n(x) + 0 $$
 * $\epsilon$ arbitraire, alors
-$$ F(x) - P(\{x\}) \leq \liminf_n F_n(x) $$
-* Maintenant si $P(\{x\}) = 0$,
-$$ \liminf_n F_n(x) = \limsup_n F_n(x) = \lim_n F_n(x) = F(x) $$
+$$ F(x) - \mu(\{x\}) \leq \liminf_n F_n(x) $$
+* Maintenant si $\mu(\{x\}) = 0$, (c-à-d $P(\{X=x\}) = 0$)
+$$ \liminf_n F_n(x) = \limsup_n F_n(x) = \lim_n F_n(x) = F(x). $$
 
 ## Aperçu du cours 7
 
