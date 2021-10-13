@@ -73,7 +73,7 @@ lines(t, 1/abs(t), col='red')
 
 ## Cas discret
 
-1. $X = x$
+1. $X = x$, une constante
 \[
   \phi_X(t) = E[e^{itx}] = e^{itx}.
 \]
@@ -183,10 +183,10 @@ Si $X \sim N(0,1)$ et $Y=\mu + \sigma X$ alors $Y \sim N(\mu, \sigma^2)$ et
   = e^{i\mu t} \phi_X(\sigma t) = e^{i\mu t} e^{-\sigma^2 t^2/2}
 \]
 
-La densité de $Y$ est de la même forme fonctionnelle :
+La densité de $Y$, en $y$, est de la même forme fonctionnelle de $\phi_Y(t)$, en $t$ :
 \[
   f_Y(y) = \frac{1}{\sqrt{2\pi \sigma^2}}
-  \exp\left[-\frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}\right].
+  \exp\left[-\frac{1}{2} \frac{(y-\mu)^2}{\sigma^2}\right].
 \]
 
 ## Continuité de la fonction caractéristique
@@ -237,6 +237,14 @@ $$ \frac{\sin \theta (-t)}{-t} = \frac{\sin \theta t}{t} $$
 1. Lemme 11.1.3 du livre,
 $$ \lim_{T\to \infty} \int_{-T}^T \frac{\sin \theta t}{t} \, dt
 = \begin{cases} \pi & \theta > 0 \\ 0 & \theta = 0 \\ -\pi & \theta < 0 \end{cases} $$
+
+## La fonction $\mathsf{\theta sinc(\theta t)}$
+
+```{r sinctheta, echo=FALSE}
+t = seq(-6*pi, 6*pi, length.out = 200)
+plot(t, sin(t)/t, type='l', xaxt='n', yaxt='n')
+abline(h=0, v=0)
+```
 
 ## Théorème d'inversion I
 

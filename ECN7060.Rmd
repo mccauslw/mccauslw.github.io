@@ -33,6 +33,10 @@
 
 [Diapos](./ECN7060/ECN7060_6.pdf) $\hspace{1cm}$ [Solutions, quiz](./ECN7060/Quiz 2 2021 solutions.pdf)
 
+#### Cours 7, 2021/10/13
+
+[Diapos](./ECN7060/ECN7060_7.pdf)
+
 #### Examens récents
 
 [Examen intra 2020](./ECN7060/EI20.pdf)
