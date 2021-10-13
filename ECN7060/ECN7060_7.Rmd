@@ -29,6 +29,11 @@ output: beamer_presentation
 ## La fonction caractéristique comme un film
 ![](./Figures/Film_caracteristique.png)
 
+## L'extension de deux définitions
+
+1. Une fonction $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire si $\Re(Z)$ et $\Im(Z)$ le sont.
+1. Si $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire, $E[Z] \equiv E[\Re(Z)] + iE[\Im(Z)]$.
+
 ## Propriétés de la fonction caractéristique
 
 1. $\phi_X(0) = E[e^0] = 1$, peut importe $X$.
@@ -45,11 +50,6 @@ output: beamer_presentation
     a. $\Re(\phi(t)) = E[\cos tX]$ est paire.
     a. $\Im(\phi(t)) = E[\sin tX]$ est impaire.
 1. Pour $X$ symétrique ($F(-x) = 1-F(x)$ au points de continuité), $\phi$ est réelle.
-
-## L'extension de deux définitions
-
-1. Une fonction $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire si $\Re(Z)$ et $\Im(Z)$ le sont.
-1. Si $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire, $E[Z] \equiv E[\Re(Z)] + iE[\Im(Z)]$.
 
 ## Fonction caractéristique d'une loi $U(a,b)$
 
@@ -166,7 +166,8 @@ plot(t, Im(phi), type='l', ylim=c(-1,1))
 ## Fonction caractéristique d'une loi $N(0,1)$
 
 * Puisque $\sin(tx)$ est impair et $e^{-x^2/2}$ est pair,
-$$ \phi(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \cos tx \cdot e^{-x^2/2}\, dx $$
+$$ \phi(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \cos tx \cdot e^{-x^2/2}\, dx. $$
+* Dérivée par rapport à $t$ :
 $$ \phi'(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty -\sin tx \cdot x e^{-x^2/2}\, dx $$
 * Intégration par parties, $u = -\sin tx$, $dv = xe^{-x^2/2}\,dx$, $du = -t\cos tx$, $v = -e^{-x^2/2}$, donne
 $$ \phi'(t) = [uv]_{-\infty}^\infty - \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty t \cos tx \cdot e^{-x^2/2} \, dx = -t \phi(t). $$
@@ -238,7 +239,7 @@ $$ \frac{\sin \theta (-t)}{-t} = \frac{\sin \theta t}{t} $$
 $$ \lim_{T\to \infty} \int_{-T}^T \frac{\sin \theta t}{t} \, dt
 = \begin{cases} \pi & \theta > 0 \\ 0 & \theta = 0 \\ -\pi & \theta < 0 \end{cases} $$
 
-## La fonction $\mathsf{\theta sinc(\theta t)}$
+## La fonction $\mathsf{\theta sinc(\theta t)} = (\sin \theta t) / t$
 
 ```{r sinctheta, echo=FALSE}
 t = seq(-6*pi, 6*pi, length.out = 200)
@@ -248,7 +249,7 @@ abline(h=0, v=0)
 
 ## Théorème d'inversion I
 
-* Soit $\mu$ une mesure borélienne, $\phi(t)$ sa fonction caractéristique. Alors
+* Le théorème : Soit $\mu$ une mesure borélienne, $\phi(t)$ sa fonction caractéristique. Alors
 si $a<b$ et $\mu(\{a\}) = \mu(\{b\}) = 0$,
 $$ \mu([a,b]) = \frac{1}{2\pi} \lim_{T\to \infty} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t)\,dt $$
 * Puisque
