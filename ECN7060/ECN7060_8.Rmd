@@ -5,6 +5,10 @@ date: "`r Sys.Date()`"
 output: beamer_presentation
 ---
 
+## Théorème de Bayes, événements de probabilité positive
+
+![](Figures/Cancer_sachant_test.png)
+
 ## Un peu de Chapitre 12
 
 * $\mu$, $\nu$, $\lambda$ des mesures boréliennes sur $\mathbb{R}$, $\lambda$ Lebesgue.
@@ -20,32 +24,34 @@ output: beamer_presentation
 
 ![](./Figures/Absolument_continue.png)
 
-## Un peu plus sur la mesurabilité
+## Un peu plus sur la mesurabilité I
 
-* Soit $(\Omega, {\cal F}, P)$ un espace de probabilité, ${\cal G} \subseteq {\cal F}$ une tribu.
+* Soit $(\Omega, {\cal F}, P)$ un espace de probabilité.
 * Soit $X \colon \Omega \to \mathbb{R}$ une variable aléatoire sur $(\Omega, {\cal F}, P)$.
-* Si $X$ est ${\cal G}$-mesurable ($\{X \leq c\} \in {\cal G}$, tout $c$ réel)
-    * $\{X = c\} = \{X \leq c\} \backslash \cap_n \{X \leq c-1/n\} \in {\cal G}$.
-* Si on sait assez pour répondre à la question suivante pour tous $c$, on connait la valeur de $X(\omega)$.
+* Définer $\sigma(X) \equiv \sigma(\{\{X \leq c\} \colon c \in \mathbb{R}\})$.
+* Notez que $\{X = c\} = \{X \leq c\} \backslash \left( \cup_n \{X \leq c-1/n\} \right) \in \sigma(X)$
+* Si on sait assez pour répondre à la question suivante pour tout $c \in \mathbb{R}$, on connait la valeur de $X(\omega)$ : Est-ce que $\omega \in \{X \leq c\}$?
+* Soit ${\cal G} \subseteq {\cal F}$ une tribu.
+* Si $X$ est ${\cal G}$-mesurable (c.-à-d. $\{X \leq c\} \in {\cal G}$, tout $c \in \mathbb{R}$),
+    * $\sigma(X) \subseteq {\cal G} \subseteq {\cal F}$ (c.-à-d. ${\cal G}$ est (faiblement) plus fine que $\sigma(X)$).
+* Une variable aléatoire sur $(\Omega, {\cal F}, P)$ est ${\cal F}$-mesurable par définition. Une fonction $f\colon \Omega \rightarrow \mathbb{R}$ qui n'est pas une variable aléatoire n'est pas ${\cal F}$-mesurable.
 
-> Est-ce que $\omega \in \{X \leq c\}$?
-
-* Défine $\sigma(X) \equiv \sigma(\{\{X \leq c\} \colon c \in \mathbb{R}\})$.
-* Si une variable aléatoire est $\sigma(X)$-mesurable, c'est une fonction seulement de $X$---elle dépend de $\omega$ seulement à travers $X(\omega)$.
-    * Supposons que $Z(\omega)$ est $\sigma(X)$-mesurable.
-    * Pour tous $z \in \mathbb{R}$, il existe $B_z \in {\cal B}$ tel que $\{Z=z\} = \{X \in B_z\}$. Alors $Z = f(X)$, où $f(x) = z$ pour tous $x \in B_z$.
-
-## Quelques évènements dans $\sigma(X)$
+## Deux évènements dans $\sigma(X)$
 
 ![](Figures/Courbe_niveau.png)
+
+## Un peu plus sur la mesurabilité II
+
+* Si une variable aléatoire est $\sigma(X)$-mesurable, c'est une fonction seulement de $X$---elle dépend de $\omega$ seulement à travers $X(\omega)$.
+    * Supposons que la variable aléatoire $Z$ est $\sigma(X)$-mesurable.
+    * Pour tous $z \in \mathbb{R}$, il existe une unique $B_z \in {\cal B}$ tel que $\{Z=z\} = \{X \in B_z\}$. (Notez que $\{X \in B_z\} \subseteq \sigma(X)$.)
+    * Considérez ceci comme la définition de $B_z$ pour tout $z \in \mathbb{R}$.
+    * Alors $Z = f(X)$, où la fonction $f$ est définie par : pour tout $z \in \mathbb{R}$ et tout $x \in B_z$, $f(x) = z$.
+    * $\sigma(Z) \subseteq \sigma(X)$ mais $\sigma(X) \subseteq \sigma(Z)$ n'est pas vrai en général.
 
 ## Exemple, probabilités et espérances conditionelles
 
 ![](Figures/Probabilite_esperance_conditionnelle.png)
-
-## Théorème de Bayes, événements de probabilité positive
-
-![](Figures/Cancer_sachant_test.png)
 
 ## Définitions de probabilité, espérance conditionnelle
 
@@ -109,6 +115,16 @@ $$ P_0(A_2) = p_{21} + p_{22} + p_{23} $$
 $$ P_0(A_3) = p_{31} + p_{32} + p_{33} $$
 * Notez que $P_0(A) = 0 \Rightarrow \nu(A) = 0$, $A \in {\cal G}_1$ : c-à-d $\nu \ll P_0$.
 * Si $P_0(A)>0$, $P(\Lambda|{\cal G}_1)(\omega) = \nu(A)/P_0(A)$, $\omega \in A \in {\cal G}_1$.
+
+## Trouvez $E[Y|{\cal G}_1]$
+
+Les conditions sur $E[Y|{\cal G}_1]$
+
+* Doit être ${\cal G}_1$-mesurable, où ${\cal G}_1 = \sigma(A_1,A_2,A_3,\Omega)$.
+* $E[E[Y|{\cal G}_1] 1_{A_1}] = E[Y1_{A_1}] =$
+* $E[E[Y|{\cal G}_1] 1_{A_2}] = E[Y1_{A_2}] =$
+* $E[E[Y|{\cal G}_1] 1_{A_3}] = E[Y1_{A_3}] =$
+* Autres éléments de ${\cal G}_1$ par linéarité.
 
 ## Espérances conditionnelles de $Y$
 
