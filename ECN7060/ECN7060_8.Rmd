@@ -234,7 +234,7 @@ $$ E[E[Y|{\cal G}_2]|{\cal G}_1] = E[Y|{\cal G}_1] \; \mbox{avec probabilité 1}
 $$ E[E[Y|{\cal G}]|{\cal G}] = E[Y|{\cal G}] $$
 * Deux autres cas spéciaux :
     - $E[E[X|Y]] = E[X]$ pour ${\cal G}_1 = \{\emptyset, \Omega\} \subseteq {\cal G}_2 = \sigma(Y)$.
-    - $E[E[X|Y,Z]|Z] = E[X|Z]$ pour ${\cal G}_1 = \sigma(Z) \in {\cal G}_2 = \sigma(Y,Z)$
+    - $E[E[X|Y,Z]|Z] = E[X|Z]$ pour ${\cal G}_1 = \sigma(Z) \subseteq {\cal G}_2 = \sigma(Y,Z)$.
 
 ## Loi de covariance total
 
