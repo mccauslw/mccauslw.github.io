@@ -212,7 +212,7 @@ Définitions importantes : nombres complexes et les operations de base (addition
 
 1. Chapitre 13 de Rosenthal
 
-### Questions sur les lectures (pas de questionnaire, cours 8)
+### Questions sur les lectures
 
 1. Exercises 13.4.1, 13.4.2, 13.4.5
 1. Généralisez le théorème de variance totale (théorème 13.3.1) à un théorème de covariance totale (aléas $X$ et $Y$, sous-tribu ${\cal G}$)

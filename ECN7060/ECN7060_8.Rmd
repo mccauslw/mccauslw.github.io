@@ -66,6 +66,22 @@ output: beamer_presentation
   E[E[Y|X]1_{X\in S}] = E[Y1_{X\in S}].
 \]
 
+## Définitions plus large
+
+* Soit $A$ un évènement : $A \in {\cal F}$.
+* Soit ${\cal G}$ une sous-tribu de ${\cal F}$.
+* La *probabilité conditionnelle* $P(A|{\cal G})$ est une variable aléatoire, ${\cal G}$-mesurable, telle que pour tout $G \in {\cal G}$
+\[
+  E[P[A|{\cal G}]1_G] = P[A \cap G].
+\]
+* Soit $Y$ une variable aléatoire
+* L'*espérance conditionnelle* $E[Y|{\cal G}]$ est une variable aléatoire,
+${\cal G}$-mesurable, telle que pour tout $G \in {\cal G}$,
+\[
+  E[E[Y|{\cal G}]1_G] = E[Y1_G].
+\]
+* Notez que la cohérence des définitions : $P[A|X] = P[A|\sigma(X)]$ et $E[Y|X] = E[Y|\sigma(X)]$.
+
 ## Trouver $P(\Lambda|{\cal G}_1)$
 
 ![](Figures/Probabilte_conditionelle.png)
@@ -172,7 +188,7 @@ et notez que $\rho^+ \ll P_0$ alors $\rho^+(A) = \int_A E[Y|{\cal G}_1] P_0(dx)$
     * $P_0(A_1) = P(A_1) = p_{11} + p_{12} + p_{13}$
 * Les cas $A = A_2$, $A = A_3$ sont semblables.
 * Pour chaque $\omega \in A \in {\cal G}_1$, $E[Y^+|{\cal G}_1](\omega) = \rho^+(A)/P_0(A)$.
-* Pour $\omega \in A_1$,
+* Pour $\omega \in A_1$, par exemple,
 \[
   E[Y^+|{\cal G}_1](\omega) = \frac{4(p_{11}+p_{13}) + 5p_{12}}{p_{11} + p_{12} + p_{13}}.
 \]
