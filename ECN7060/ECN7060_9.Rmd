@@ -17,7 +17,7 @@ $$ f(x|\theta) = \prod_{i=1}^n 1_{[\theta,\theta+1]}(x_i)
 = \prod_{i=1}^n 1_{[x_i-1,x_i]}(\theta) = 1_{[x_{(n)}-1, x_{(1)}]}(\theta), $$
 où $x_{(1)} \leq x_{(2)} \leq \cdots \leq x_{(n)}$ sont les statistiques d'ordre.
 
-* Par le théorème de factorisation, $T(x) = (x_{(1)}, x_{(n)})$ est exhaustive pour $\theta$.
+* Par le théorème de factorisation, $T(x) = (x_{(1)}, x_{(n)})$ est exhaustive (sufficient) pour $\theta$.
 
 * Vérification de minimalité par ratio :
 $$ \frac{f(x|\theta)}{f(y|\theta)} = \frac{1_{[x_{(n)}-1, x_{(1)}]}(\theta)}{1_{[y_{(n)}-1, y_{(1)}]}(\theta)} $$
@@ -27,18 +27,18 @@ ne dépend pas de $\theta$ seulement si $x_{(1)} = y_{(1)}$ et $x_{(n)} = y_{(n)
 
 * Une autre statistique exhaustive minimale est $T'(x) = (x_{(1)}+x_{(n)}, x_{(n)}-x_{(1)})$.
 
-* Pourquoi? $T(x)$ et $T'(x)$ sont chacun une fonction de l'autre :
+* Pourquoi? $T(x)$, $T'(x)$ sont chacune une fonction de l'autre :
 \[
   \begin{bmatrix} x_{(1)} + x_{(n)} \\ x_{(n)} - x_{(1)} \end{bmatrix}
   = \begin{bmatrix} 1 & 1 \\ -1 & 1 \end{bmatrix}
   \begin{bmatrix} x_{(1)} \\ x_{(n)} \end{bmatrix}.
 \]
 
-* Le paradoxe : $x_{(1)}+x_{(n)}$ n'est pas exhaustive seule et $x_{(n)}-x_{(1)}$ est libre---sa distribution ne dépend pas de $\theta$.
+* Le paradoxe : $x_{(1)}+x_{(n)}$ n'est pas exhaustive seule et $x_{(n)}-x_{(1)}$ est libre (ancillary) : sa distribution ne dépend pas de $\theta$.
 
 * Le concept de statistique complète est utile parce qu'une statistique complète et exhaustive est indépendante de n'importe quelle statistique libre.
 
-## Modèle binomial
+## Modèle Bernoulli
 
 * Modèle, $X_i \sim \mathrm{iid}\,\mathrm{Bn}(\theta)$, $\theta \in [0,1]$ :
 $$

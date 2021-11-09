@@ -44,6 +44,10 @@ L'examen intra aura lieu le 27 octobre.
 
 [Diapos](./ECN7060/ECN7060_8.pdf)
 
+#### Cours 9, 2021/11/10
+
+[Diapos](./ECN7060/ECN7060_9.pdf)
+
 #### Examens récents
 
 [Examen intra 2020](./ECN7060/EI20.pdf)
