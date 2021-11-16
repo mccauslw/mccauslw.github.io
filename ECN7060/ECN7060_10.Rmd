@@ -44,7 +44,7 @@ $$ R(\theta,\delta) = E_\theta[L(\theta,\delta(X))]. $$
 $$ R(\theta,\delta) = E[L(\theta,\delta(X))|\theta]. $$
 * Problèmes :
     - Besoin de spécifier $\delta(x)$ pour tout résultat $x$ possible.
-    - Calculer $R(\theta,\delta)$ même pour une valeur de $\theta$ est souvent infaisable. Un recours aux méthodes asymptotiques est habituel.
+    - Calculer $R(\theta,\delta)$ même pour une seule valeur de $\theta$ est souvent infaisable. Un recours aux méthodes asymptotiques est habituel.
     - $R(\theta,\delta)$ est une fonction de $\theta$. Ce qui marche bien pour une valeur de $\theta$ ne marche pas toujours bien pour une autre.
 
 ## Risque de Bayes
@@ -85,7 +85,7 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 
 * Une fonction de décision est admissible s'il n'y a pas d'autre fonction de décision qui la domine.
 
-* Supposons que $\delta$ minimise $r(\pi,\delta) = \int R(\theta,\delta) \pi(\theta)\, d\theta$, pour une fonction $\pi \colon \Theta \to \mathbb{R}_+$.
+* Supposons que $\delta$ minimise $r(\pi,\delta) = \int \pi(\theta) R(\theta,\delta)\, d\theta$, pour une fonction $\pi \colon \Theta \to \mathbb{R}_+$.
     * Si $\delta$ est inadmissible, il existe une $\delta^*$ qui la domine : il y a un ensemble $\bar{\Theta}$ où $R(\theta,\delta) > R(\theta,\delta^*)$.
     Il faut que $\pi(\bar{\Theta}) = 0$. Sinon, $\delta(x)$ ne minimise $r(\pi,\delta)$ parce que $r(\pi,\delta^*) < r(\pi,\delta)$.
     
@@ -101,7 +101,7 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 * L'importance du biais et l'EMQ est largement due à la solubilité des problèmes.
 
 * La perte quadratique est seulement un choix possible parmi plusieurs. Quelques problèmes :
-    * paramètres d'échelle toujours positifs,
+    * paramètres d'échelle, qui sont toujours positifs,
     * impossibilité de la perte asymétrique,
     * non-existance de la moyenne ou la variance d'un estimateur.
 
@@ -119,7 +119,7 @@ $$ r(\pi,\delta) = E[E[L(\theta,\delta(X))|X]]. $$
 \[
   E[T] = e^{-\lambda} \sum_{k=0}^\infty \frac{(-2)^x \lambda^x}{x!} = e^{-3\lambda}.
 \]
-* Par complétion de la famille de loi Poisson, $T$ est l'estimateur unique non-biaisé de $\tau(\lambda)$.
+* Par complétion de la famille de loi Poisson, $T$ est l'estimateur *unique* non-biaisé de $\tau(\lambda)$.
     * Si $E_\theta[g(X)] = 0$ pour tous $\theta$, $P(\{g(X)=0\}) = 1$.
     * Soit $g(x) = T(x) - T'(x)$ la différence entre deux candidats pour un estimateur non-biaisé.
 
@@ -235,7 +235,7 @@ et par l'inégalité de Cauchy-Schwarz :
 * Le dénominateur est l'information de Fisher, qui dépend du modèle et non l'estimateur.
 * L'inégalité est très utile dans le cas où $W(X)$ est non-biaisé pour $\tau(\theta) = \theta$ :
     - $E_\theta[W(X)] = \theta$ alors le numérateur est 1
-    - la variance $\mathrm{Var}[W(X)]$ a une borne qui ne dépend pas de l'estimateur.
+    - la variance $\mathrm{Var}_\theta[W(X)]$ a une borne qui ne dépend pas de l'estimateur.
 * La borne est toujours une fonction de $\theta$, par contre.
 * Un estimateur qui atteint la borne est dit "efficace".
 * Attention :
@@ -251,8 +251,8 @@ et par l'inégalité de Cauchy-Schwarz :
     - Uniformement meilleur en termes de variance :
 \[
 \begin{aligned}
-  \mathrm{Var}_\theta[W] &= \mathrm{Var}_\theta[E[W|T]] + E_\theta[\mathrm{Var[W|T]}] \\
-  &= \mathrm{Var}_\theta[\phi(T)] + E_\theta[\mathrm{Var[W|T]}] \\
+  \mathrm{Var}_\theta[W] &= \mathrm{Var}_\theta[E[W|T]] + E_\theta[\mathrm{Var_\theta[W|T]}] \\
+  &= \mathrm{Var}_\theta[\phi(T)] + E_\theta[\mathrm{Var_\theta[W|T]}] \\
   &\geq \mathrm{Var}_\theta[\phi(T)]. \\
 \end{aligned}
 \]
