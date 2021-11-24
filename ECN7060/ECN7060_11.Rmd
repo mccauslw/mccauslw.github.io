@@ -102,9 +102,26 @@ $$
     * C'est une exercise *ex post*.
     * La distinction entre $H_0$ et $H_1$ est seulement en termes de $c_{II}/c_I$.
 
+## Lemme Neyman Pearson
+
+### Définition 8.3.5
+
+Pour $\alpha \in [0,1]$, un test avec fonction de puissance $\beta(\theta)$ a un niveau de $\alpha$ si $\sup_{\theta \in \Theta_0} \beta(\theta) \leq \alpha$.
+
+### Définition 8.3.11
+
+Pour $\alpha \in [0,1]$, un test de niveau $\alpha$ avec fonction de puissance $\beta(\theta)$ est uniforment plus puissant si pour chaque $\theta \in \Theta_0^c$ et pour chaque fonction de puissance $\beta'(\theta)$ d'un test de niveau $\alpha$, $\beta(\theta) \geq \beta'(\theta)$.
+
+### Lemme Neyman Pearson
+
+* Supposons que la densité des données est $f(x|\theta_0)$ ou $f(x|\theta_1)$, selon la valeur de $\theta \in \Theta = \{\theta_0, \theta_1\}$.
+
+* On considère des tests de l'hypothèse $H_0\colon \theta=\theta_0$ contre l'hypothèse $H_1\colon \theta=\theta_1$.
+
+* À une condition technique près, un test de niveau $\alpha$ est uniformement plus puissant ssi le test prend la forme $R = \{x \in {\cal X} \colon f(x|\theta_1) > k f(x|\theta_0) \}$ et $P_{\theta_0}[R] = \alpha$.
+
 ## Intuition Neyman Pearson I
 
-* Supposons qu'il y a deux valeurs possibles de $\theta$ : $\theta_0$ et $\theta_1$.
 * On divise $\cal X$ en deux : $R$ où $\delta(x) = a_1$ et $R^c$ où $\delta(x) = a_0$.
 * On choisit $R$ pour maximiser $P[R|\theta_1]$ sous la contrainte $P[R|\theta_0] \leq c$.
 * Une fonction de Lagrange pour ce problème :
