@@ -12,15 +12,15 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Introduction, estimation par intervalle
 
 * Estimateur par intervalle $[L(X),U(X)]$, estimation par intervalle $[L(x),U(x)]$.
-* Les propriétés fréquentistes concernent la probabilité de couvrage
+* Les propriétés fréquentistes concernent la probabilité de couverture
 $$ P_\theta[L(X) \leq \theta \leq U(X)]. $$
     * souvent une fonction de $\theta$, pas toujours (idéalement non)
     * restrictions sur le modèle pour obtenir cette non-dépendance
     * coefficient de confiance $\inf_\theta P_\theta(L(X)\leq \theta \leq U(X))$.
-    * arbitrage : haute probabilité de couvrage v. intervalle court
+    * arbitrage : haute probabilité de couverture v. intervalle court
 * Les propriétés bayésiennes concernent la probabilité
 $$ P[L(x) \leq \theta \leq U(x)|x] \quad \mbox{ou} \quad P[l\leq \theta \leq u|x] $$
-    * Stratégie symmétrique : $L(x)$ et $U(x)$ sont les quantiles $\alpha/2$ et $1-\alpha/2$ de $\theta$, $U(x) - L(x)$ n'est pas forcément minimale
+    * Stratégie symétrique : $L(x)$ et $U(x)$ sont les quantiles $\alpha/2$ et $1-\alpha/2$ de $\theta$, $U(x) - L(x)$ n'est pas forcément minimale
     * Intervalle de haute probabilité *a posteriori* : $U(x) - L(x)$ minimale sous la contrainte $P[L(x) \leq \theta \leq U(x)|x] = 1-\alpha$.
 
 ## Régions de haute probabilité et intervalles interquantile
@@ -29,7 +29,8 @@ $$ P[L(x) \leq \theta \leq U(x)|x] \quad \mbox{ou} \quad P[l\leq \theta \leq u|x
 
 ## Estimation par ensemble
 
-* Estimateur par ensemble $C(X)$, estimation par ensemble $C(x)$.
+* Estimateur par ensemble $C(X)$, où $C(X) \subseteq \Theta$.
+* Estimation par ensemble $C(x)$.
 * Probabilité d'intérêt fréquentiste : $P_\theta(\theta \in C(X))$.
     - $\theta$ est fixe
     - la région $C(X)$ est aléatoire
@@ -94,6 +95,7 @@ $$
 
 ## Utiliser une quantité pivotale pour construire un ensemble de confiance
 
+* Supposez que $Q(X,\theta)$ est une quantité pivotale, ${\cal A}$ est un ensemble.
 * $C(X) = \{\theta \colon Q(X,\theta) \in {\cal A}\}$ est un estimateur par ensemble de $\theta$ dont la probabilité $P_\theta(C(X))$ ne dépend pas de $\theta$.
 * Stratégie : trouver une quantité pivotale $Q(X,\theta)$ et un ensemble ${\cal A}$ avec de bonnes propriétés ($C(X)$ petit, $P_\theta(C(X))$ grand).
 
@@ -124,17 +126,19 @@ $$ C(X) = \left\{\sigma^2 \colon \frac{(n-1)S^2}{\chi_{n-1,\alpha/2}} \leq \sigm
 
 * Soit $T$ une variable aléatoire avec fonction de répartion $F$ inversible.
 * $F(t)$ est une fonction, $F(T)$ est une variable aléatoire avec une loi sur $[0,1]$.
-* Soit $G$ la fonction de répartition de $F(T)$.
-* Pour $u \in [0,1]$,
+* Proposition : $F(T) \sim U(0,1)$.
+* Preuve :
+    * Soit $G$ la fonction de répartition de $F(T)$.
+    * Pour $u \in [0,1]$,
 \[
   G(u) = P[F(T) \leq u] = P[T \leq F^{-1}(u)] = F[F^{-1}(u)] = u.
 \]
-* Alors $F(T) \sim U(0,1)$.
+    * Alors $F(T) \sim U(0,1)$.
 
 ## Pivot de la fonction de répartition
 
 * Soit $T$ une statistique avec fonction de répartition $F_T(t|\theta)$.
-* Si $F_T$ est toujours inversible, $F_T(T|\theta) \sim U(0,1)$, une loi qui ne dépend pas de $\theta$.
+* Si $F_T$ est toujours inversible (c.-à-d. pour tous $\theta$), $F_T(T|\theta) \sim U(0,1)$, une loi qui ne dépend pas de $\theta$.
 * Supposons que $T$ est stochastiquement croissante en $\theta$.
 * C'est à dire que $F_T(t,\theta)$ est décroissante en $\theta$.
 * Pour $t$ donné, soit $\theta_L(t)$ et $\theta_U(t)$ les solutions de
@@ -142,7 +146,7 @@ $$ F_T(t|\theta_U(t)) = \alpha_1 \quad F_T(\theta_L(t)) = 1-\alpha_2. $$
 * Pour tous $t$, $\theta$,
 $$ \theta > \theta_U(t) \Leftrightarrow F_T(t,\theta) < \alpha_1 $$
 $$ \theta < \theta_L(t) \Leftrightarrow F_T(t,\theta) > 1- \alpha_2 $$
-* Considérer l'intervalle de confiance $[\theta_L, \theta_U]$ :
+* Considérer l'intervalle de confiance $[\theta_L(T), \theta_U(T)]$ :
 $$ \{t\colon\theta_L(t) \leq \theta \leq \theta_U(t) \}
 = \{t\colon \alpha_1 \leq F_T(t|\theta) \leq 1-\alpha_2\}, $$
 $$ P_\theta[\theta_L(T) \leq \theta \leq \theta_U(T)] = P_\theta[\alpha_1 \leq F_T(T|\theta) \leq 1-\alpha_2] = 1-\alpha_1-\alpha_2. $$

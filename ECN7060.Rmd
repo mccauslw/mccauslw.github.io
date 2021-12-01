@@ -37,9 +37,6 @@
 
 [Diapos](./ECN7060/ECN7060_7.pdf) $\hspace{1cm}$ [Solutions, quiz](./ECN7060/Quiz 2 2021 solutions.pdf)
 
-Notez qu'il n'y a pas de cours le 20 octobre.
-L'examen intra aura lieu le 27 octobre.
-
 #### Cours 8, 2021/11/03
 
 [Diapos](./ECN7060/ECN7060_8.pdf)
@@ -55,6 +52,10 @@ L'examen intra aura lieu le 27 octobre.
 #### Cours 11, 2021/11/24
 
 [Diapos](./ECN7060/ECN7060_11.pdf)
+
+#### Cours 12, 2021/12/01
+
+[Diapos](./ECN7060/ECN7060_12.pdf)
 
 #### Examens récents
 
