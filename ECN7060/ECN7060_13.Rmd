@@ -70,13 +70,14 @@ plot(x, y, type='l')
     * $x = (x_1,\ldots,x_n)$ est arbitraire. Soit $\bar{x} = n^{-1}\sum x_i$.
     * Soit $\theta(\epsilon) = (p, \mu_1, \mu_2, \sigma_1(\epsilon), \sigma_2) = (n^{-1}, x_1, \bar{x}, \epsilon, s)$.
     * $f(x_1|\theta(\epsilon)) = n^{-1} \frac{1}{\sqrt{2\pi}\epsilon} + (1-n^{-1}) \frac{1}{\sqrt{2\pi}s} e^{-(x_1-\bar{x})/2s^2}$
-    * $\lim_{\epsilon \downarrow 0} f(x_2,\ldots,x_n|\theta(\epsilon)) \neq 0$
-    * $\lim_{\epsilon \downarrow 0} f(x|\theta(\epsilon)) = \infty$.
+    * $\lim_{\epsilon \downarrow 0} f(x_1|\theta(\epsilon)) = \infty$,
+    * $\lim_{\epsilon \downarrow 0} f(x_2,\ldots,x_n|\theta(\epsilon)) \neq 0$,
+    * alors $\lim_{\epsilon \downarrow 0} f(x|\theta(\epsilon)) = \infty$.
     * D'autres chemins où la vraisemblance croit sans borne
         * $p\in(0,1)$ arbitraire
         * d'autres choix de $\mu_2$, $\sigma_2$
         * échange d'index
-    * D'autres modèles de mélange
+* D'autres modèles de mélange
 
 ## Une vraisemblance non-bornée
 
@@ -94,8 +95,9 @@ plot(x, y, type='l')
     \]
 * Bornée ou non, si la densité *a priori* est propre, la densité *a posteriori* l'est aussi.
 * Même si la densité *a priori* est impropre, la densité *a posteriori* est souvent propre (mais il faut le vérifier).
-* Même si la densité postérieure n'est pas bornée, la région où la densité postérieure est plus grande que le maximum local régulier a souvent une probabilité négligable.
-
+* Dans le cas où la densité *a posteriori* est propre,
+    * la région où la densité postérieure est plus grande que le maximum local régulier a souvent une probabilité négligeable, même si la densité postérieure n'est pas bornée.
+    
 ## Un modèle Bernoulli
 
 * $X_1,\ldots,X_n \sim \mathrm{iid}\, \mathrm{Bn}(p)$
@@ -200,9 +202,42 @@ alors
   \right]
 \]
 
+## Information de Fisher pour une observation
+
+La même démarche pour $f(x_i|\theta)$ au lieu de $f(x|\theta)$ donne
+
+$$
+E_\theta\left[
+    \frac{\partial^2 \log f(X_i|\theta)}{\partial \theta \partial \theta^\top}
+\right]
+= -E_\theta\left[
+    \frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
+    \frac{\partial \log f(X_i|\theta)}{\partial \theta}
+\right] \equiv -I(\theta)
+$$
+
+## Additivité de l'information de Fisher
+
+On considère ici les modèles où les $X_i$ sont iid et on peut échanger l'ordre de l'espérance et le gradient.
+
+* Si les $X_i$ sont indépendantes, les $\partial \log f(X_i|\theta)/\partial \theta$ le sont aussi.
+* Si on peut changer l'ordre de l'espérance et le gradient, ils ont une expérance de $0$.
+* Alors
+$$ \begin{aligned}
+I_n(\theta) &= E_\theta\left[
+\sum_{i=1}^n \frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
+\sum_{i=1}^n \frac{\partial \log f(X_i|\theta)}{\partial \theta} \right] \\
+&= \sum_{i=1}^n E_\theta\left[
+\frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
+\frac{\partial \log f(X_i|\theta)}{\partial \theta}
+\right] \\
+&\equiv nI(\theta).
+\end{aligned}
+$$
+
 ## Exemple gaussien
 
-Supposons que $y = X\beta + u$, $u \sim N(0,\sigma^2I_n)$, la matrice de covariance $X$ est
+Supposons que $y = X\beta + u$, $u \sim N(0,\sigma^2I_n)$, la matrice $X$ des covariables est
 $n \times K$, le paramètre $\beta$ est $K \times 1$ et le paramètre scalaire $\sigma^2$ est connu.
 Alors
 \[
@@ -221,7 +256,7 @@ Puisque $E[u] = 0$,
   E\left[ \frac{\partial {\cal L}(\beta ;y)}{\partial \beta^\top} \right]
   = 0.
 \]
-La matrice hessienne est constante :
+La matrice hessienne ne dépend pas de $\beta$ :
 \[
   \frac{\partial^2 {\cal L}(\beta ;y)}{\partial \beta^\top \partial \beta} = - \frac{1}{\sigma^2} X^\top X.
 \]
@@ -249,25 +284,6 @@ Dans un contexte bayésien où $\beta \sim N(\bar{\beta}, \bar{H}^{-1})$,
 où $\bar{\bar{H}} = \bar{H} + \sigma^{-2} X^\top X$,
 $\bar{\bar{\beta}} = \bar{H} \bar{\beta} + \sigma^{-2} X^\top X b$ et
 $b = (X^\top X)^{-1} X^\top y$.
-
-## Additivité de l'information de Fisher
-
-On considère ici les modèles où les $X_i$ sont iid et on peut échanger l'ordre de l'espérance et le gradient.
-
-* Si les $X_i$ sont indépendantes, les $\partial \log f(X_i|\theta)/\partial \theta$ le sont aussi.
-* Si on peut changer l'ordre de l'espérance et le gradient, ils ont une expérance de $0$.
-* Alors
-$$ \begin{aligned}
-I_n(\theta) &= E_\theta\left[
-\sum_{i=1}^n \frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
-\sum_{i=1}^n \frac{\partial \log f(X_i|\theta)}{\partial \theta} \right] \\
-&= \sum_{i=1}^n E_\theta\left[
-\frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
-\frac{\partial \log f(X_i|\theta)}{\partial \theta}
-\right] \\
-&\equiv nI(\theta).
-\end{aligned}
-$$
 
 ## Gradient de la log vraisemblance
 
@@ -306,14 +322,14 @@ $$ (\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\
 
 $$ \sqrt{n}(\hat{\theta}-\theta_0) = \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top} + \frac{1}{n} h_n(\hat{\theta}) \right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right]. $$
 
-## Théorème limite central, loi de grand nombres pour le gradient
+## Théorème central limite, loi de grand nombres pour le gradient
 
 $$
 \sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;X)}{\partial \theta^\top}
 = \sqrt{n} \frac{1}{n} \sum_{i=1}^n \frac{\partial \log f(X_i|\theta_0)}{\partial \theta^\top}
 $$
 
-* Pour la vraie valeur $\theta_0$,
+* Pour la vraie valeur $\theta_0$, les termes sont iid, avec
 $$ E_{\theta_0}\left[ \frac{\partial 
 \log f(X_i|\theta_0)}{\partial \theta^\top} \right] = 0, \qquad
 \mathrm{Var}_{\theta_0}\left[ \frac{\partial \log f(X_i|\theta_0)}{\partial \theta^\top} \right] = I(\theta_0). $$

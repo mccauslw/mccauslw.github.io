@@ -61,6 +61,7 @@ $$ P[L(x) \leq \theta \leq U(x)|x] \quad \mbox{ou} \quad P[l\leq \theta \leq u|x
 ## Exemple gaussien, $\sigma^2$ connu
 
 * Supposons que $X_1,\ldots,X_n \sim \mathrm{iid}\, N(\mu,\sigma^2)$, $\sigma^2$ connu.
+* Encore, $\bar{X} \equiv n^{-1} \sum_{i=1}^n X_i$, $S^2 \equiv (n-1)^{-1} \sum_{i=1}^n (X_i - \bar{X})^2$.
 * Statistique LRT pour $H_0\colon \mu=\mu_0$ contre $H_1\colon \mu \neq \mu_0$ :
 $$ \lambda(x) = \frac{\exp\left[ -\frac{1}{2\sigma^2} \sum_{i=1}^n (x_i-\mu_0)^2 \right]}
 {\exp\left[ -\frac{1}{2\sigma^2} \sum_{i=1}^n (x_i-\bar{x})^2\right]} $$
