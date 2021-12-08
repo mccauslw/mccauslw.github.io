@@ -153,6 +153,20 @@ plot(p, dbeta(p, 0.5, 10.5), 'l')
     \quad \mbox{mais} \quad
     \int_0^\theta \frac{\partial}{\partial \theta} f(x_i|\theta)\, dx = \int_0^\theta \frac{-1}{\theta^2}\, dx = -\frac{1}{\theta}. $$
     
+## Conditions de Régularité (page 516)
+
+Pour convergence de l'estimateur MV :
+
+1. $X_i \sim \mathrm{iid}\; f(x|\theta)$ pour $\theta = \theta_0 \in \Theta$.
+1. $\theta = \theta' \rightarrow f(\cdot|\theta) \neq f(\cdot|\theta')$.
+1. Le support de $f(x|\theta)$ ne dépend pas de $\theta$, $f(x|\theta)$ est dérivable en $\theta$.
+1. $\theta_0 \in \mathrm{int}(\omega)$, pour $\omega \subseteq \Theta$, $\omega$ ouvert.
+
+Pour la normalité et l'efficacité asymptotique on rajoute :
+
+5. Pour tout $x\in {\cal X}$, $f(x|\theta)$ est trois fois continuement dérivable par rapport à $\theta$; $\int f(x|\theta)$ peut être dérivable trois fois à l'intérieure de l'intégral.
+1. Une borne sur le troisième dérivé de $\log f(x|\theta)$.
+
 ## Information de Fisher, deux formes
 
 * Ici, $X=(X_1,\ldots,X_n)$, $x=(x_1,\ldots,x_n)$.
@@ -282,7 +296,7 @@ Dans un contexte bayésien où $\beta \sim N(\bar{\beta}, \bar{H}^{-1})$,
   \beta|y,X \sim N(\bar{\bar{\beta}}, \bar{\bar{H}}^{-1}),
 \]
 où $\bar{\bar{H}} = \bar{H} + \sigma^{-2} X^\top X$,
-$\bar{\bar{\beta}} = \bar{H} \bar{\beta} + \sigma^{-2} X^\top X b$ et
+$\bar{\bar{\beta}} = \bar{\bar{H}}^{-1} (\bar{H} \bar{\beta} + \sigma^{-2} X^\top X b)$ et
 $b = (X^\top X)^{-1} X^\top y$.
 
 ## Gradient de la log vraisemblance
@@ -374,9 +388,10 @@ $$
 
 ## Distribution asymptotique de la statistique test LRT
 
+* Considérez l'hypothèse ponctuelle $H_0 : \theta = \theta_0$.
 * Développement quadratique de $l(\theta|x)$ autour de $\theta_0$, évalué à $\hat{\theta}$ :
 $$ l(\theta_0|x) = l(\hat{\theta}|x) + \frac{1}{2} (\hat{\theta}-\theta_0)^\top
-\frac{\partial^2 l(\tilde{\theta};x)}{\partial \theta \partial \theta^\top} (\hat{\theta}-\theta_0) + \ldots $$
+\frac{\partial^2 l(\hat{\theta};x)}{\partial \theta \partial \theta^\top} (\hat{\theta}-\theta_0) + \ldots $$
 
 * Sous l'hypothèse nulle $H_0 : \theta = \theta_0$,
 $$
