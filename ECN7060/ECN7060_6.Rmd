@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578, Cours 6"
+title: "ECN 7060, Cours 6"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: beamer_presentation
