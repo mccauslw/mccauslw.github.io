@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2021"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
 subtitle: "Cours 1"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -37,20 +37,20 @@ urlcolor: blue
 
 ## Les éléments de la note finale
 
-1. Examen intra, le lundi 22 février : 35%
-1. Un nombre aléatoire de quiz, en forme de devoir StudiUM : 15%
-    a. quiz certain : le 25 janvier
-    a. quiz aléatoires : les 8 dates possibles sont les 1, 8, 15 février; les 8, 15, 22, 29 mars; le 12 avril. La probabilité d'un quiz est de 0,5.
-    a. 8h30 - 8h45. La semaine prochaine, vendredi le 22 à 8h30 lundi.
+1. Examen intra, le lundi 7 mars : 35%
+1. Nombre aléatoire de quiz, en forme de devoir StudiUM : 15%
+    a. quiz certain : le 17 janvier
+    a. quiz aléatoires : les 10 dates possibles sont les 24, 31 janvier, les 7, 14, 21 février; les 14, 21, 28 mars; les 4, 11 avril. La probabilité d'un quiz est de 0,5.
+    a. 8h30 - 8h45. La semaine prochaine seulement, aujourd'hui à 8h30 lundi.
 1. Deux travaux pratiques de computation en R
-    a. premier à remettre vendredi le 26 février avant minuit : 10%
-    a. deuxième à remettre vendredi le 15 avril avant minuit : 5%
-1. Examen final, date à déterminer : 35%
+    a. premier à remettre vendredi le 25 février avant minuit : 10%
+    a. deuxième à remettre vendredi le 8 avril avant minuit : 5%
+1. Examen final, le *jeudi* 14 avril : 35%
 
 ### Notes
 - Les deux examens sont théoriques.
 - Les travaux pratiques en R sont complémentaires des examens.
-- Le premier travail consiste en les exercices pratiques données jusqu'au 15 février (inclusif) ; le deuxième, les exercices pratiques données jusqu'au 29 mars (inclusif).
+- Le premier travail consiste en les exercices pratiques données jusqu'au 21 février (inclusif) ; le deuxième, les exercices pratiques données jusqu'au 4 avril (inclusif).
 
 ## Documents au site web
 
@@ -63,6 +63,7 @@ urlcolor: blue
 1. Exercices pratiques en R (organisé par cours)
 1. Plan de cours
 1. Diapos en pdf
+1. Enregistrements des vidéos
 
 ### Notes
 
@@ -76,6 +77,7 @@ urlcolor: blue
 - Écrivez tous les noms sur la première page.
 - Les deux travaux pratiques seront des "Devoirs" sous StudiUM.
 - Chargez une copie avant minuit à la date de l'échéance.
+- Chaque membre de l'équipe soumet le même travail.
 - Téléchargement de R, RStudio
     - R : <https://www.r-project.org>
     - R Studio : <https://www.rstudio.com>
@@ -121,7 +123,31 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
 * Rendement net : $R_{pt} = \sum_{i=1}^n \omega_i R_{it}$.
 * La linéarité des rendements simples (et non des log rendements) donne l'avantage à ceux-là.
 
-## Fonctions linéaires des v.a. vs mélanges, un exemple
+## Fonctions linéaires des v.a. vs mélanges, exemple 1
+
+```{r flm1}
+# Valeurs de x sur une grille
+x = seq(-0.03, 0.03, length.out=1000)
+
+# Densité de la variable aléatoire X_1
+f1 = dnorm(x, -0.01, 0.005)
+# Densité de la variable aléatoire X_2
+f2 = dnorm(x,  0.01, 0.005)
+
+# Densité du mélange avec poids 1/2, 1/2
+fm = 0.5 * f1 + 0.5 * f2
+
+# Densité de (X_1) + X_2)/2
+ffl = dnorm(x, 0, sqrt(0.5*0.005^2))
+```
+
+## Graphiques, exemple 1
+
+```{r flm2, echo=FALSE}
+par(mfrow=c(4, 1), mar=c(5, 4, 0, 0)); plot(x, f1, 'l'); plot(x, f2, 'l'); plot(x, fm, 'l'); plot(x, ffl, 'l')
+```
+
+## Fonctions linéaires des v.a. vs mélanges, exemple 2
 
 ### Éléments communs
 

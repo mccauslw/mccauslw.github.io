@@ -9,6 +9,14 @@
 
 [Examen des préalables](./ECN6578/examen_prealables.pdf)
 
+[Lectures et exercices](./ECN6578/LX.pdf)
+
+##### Cours 1, le 10 janvier
+  
+[Diapos](./ECN6578/ECN6578_1.pdf),
+
+[Diapos, code source](./ECN6578/ECN6578_1.Rmd)
+
 ***
 
 [Examen Intra, hiver 2021](./ECN6578/EI21.pdf)

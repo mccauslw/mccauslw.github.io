@@ -1,13 +1,13 @@
 ---
 title: "Lectures et exercices"
-subtitle: "ECN 6578, Hiver 2021"
+subtitle: "ECN 6578, Hiver 2022"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: pdf_document
 urlcolor: blue
 ---
 
-## Cours 1, le 18 janvier
+## Cours 1, le 10 janvier
 
 #### Sujets
 
@@ -40,7 +40,7 @@ Trouvez $\mathrm{Cov}[X,Y]$.
 
 \pagebreak
 
-## Cours 2, le 25 janvier
+## Cours 2, le 17 janvier
 
 #### Sujets
 
@@ -92,7 +92,7 @@ Si on fait les tests 1 et 2 de la diapo "Attention : tests multiples!" quelle es
 
 #### Exercices avec R
 
-Travail, cours du 25 janvier
+Travail, cours 2
 
 1. Téléchargez le fichier des données `d-3m7008.txt` et faites la graphique des rendements journaliers de l'action 3M avec la commande `plot`, option 'l' (L minuscule).
 1. Faites un test de l'hypothèse que les rendements sont iid gaussiens, avec la statistique test Jarque-Bera. Calculez les valeurs critiques en utilisant la fonction de quantile (comme `qnorm` ou `qchisq`) de la loi asymptotique de la statistique test sous l'hypothèse nulle.
@@ -100,7 +100,7 @@ Travail, cours du 25 janvier
 
 \pagebreak
 
-## Cours 3, le 1 février
+## Cours 3, le 24 janvier
 
 #### Sujets
 
@@ -143,7 +143,7 @@ Travail, cours du 25 janvier
 
 #### Exercices avec R
 
-Travail, cours du 1 février
+Travail, cours 3
 
 1. Considérez le process ARMA(3,1) suivant :
 \[
@@ -158,7 +158,7 @@ Travail, cours du 1 février
 
 \pagebreak
 
-## Cours 4, le 8 février
+## Cours 4, le 31 janvier
 
 #### Sujets
 
@@ -195,7 +195,7 @@ Calculez la variance, l'asymétrie et l’aplatissement de $r_t$. Vous pouvez v�
 
 #### Exercices en R
 
-Travail, cours du 8 février
+Travail, cours 4
 
 1.
     a. Prenez le code de la diapo 'Simulation du modèle ARCH(3)' et modifiez-le pour simuler un GARCH(1,1) gaussien à moyenne zéro pendant $T=1000$ périodes.
@@ -206,7 +206,7 @@ Suggestion : comparez à la variance, à l'asymétrie et l’aplatissement de la
 
 \pagebreak
 
-## Cours 5, le 15 février
+## Cours 5, le 7 février
 
 #### Sujets
 
@@ -239,7 +239,7 @@ Quelle est la variance conditionnelle des erreurs de prévision? Exprime le rés
 
 #### Exercices avec R
 
-Travail, cours du 15 février
+Travail, cours 5
 
 1. Pour cette question, utilisez les données dans le fichier d-3m7008.txt (action 3M, rendements journaliers, 1970-2008).
 Je recommande le paquet fGARCH, utilisé pour les démonstrations du cours 5.
@@ -254,7 +254,7 @@ Pour ce modèle, reportez les estimations MV (maximum de vraisemblance) des para
 
 \pagebreak
 
-## Cours 6, le 8 mars
+## Cours 6, le 14 février
 
 #### Sujets
 
@@ -291,6 +291,8 @@ où l'espérance est par rapport à la loi conditionnelle de $(\theta,h_T,h_{T+1
 
 #### Exercices avec R
 
+Travail, cours 6
+
 1. Considérez le modèle de volatilité stochastique décrit dans le cours, avec $\mu=0$.
 Regardez aussi la question théorique 3 ci-haut.
 Dans le fichier postsim.txt se trouve un échantillon MCMC qui représente la loi *a posteriori* des paramètres $\alpha_0$, $\alpha_1$ et $\omega_v \equiv 1/\sigma_v^2$, ainsi que la log-volatilité $x_T \equiv \log h_T$.
@@ -299,7 +301,7 @@ Faites la graphique de la densité prédictive de $r_{T+1}$ sur une grille de po
 
 \pagebreak
 
-## Cours 7, le 15 mars
+## Cours 7, le 21 février
 
 #### Sujets
 
@@ -339,7 +341,7 @@ $(g+\mu_ph)^\top\Omega\omega$.
 
 \pagebreak
 
-## Cours 8, 9, le 22 et le 29 mars
+## Cours 8, 9, le 14 et le 21 mars
 
 #### Sujets
 
@@ -388,7 +390,7 @@ On observe $w_t = (C_t, C_{t+1}, R_{t+1}, Z_t)$, $t=1,\ldots,T$.
 
 \pagebreak
 
-## Cours 10, le 12 avril
+## Cours 10, le 28 mars
 
 #### Sujets
 
