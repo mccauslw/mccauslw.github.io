@@ -56,14 +56,14 @@ urlcolor: blue
 
 ### Documents
 
-1. Lectures et exercices théorique (organisé par cours)
+1. Lectures et exercices théoriques (organisées par cours)
     a. lectures préparatoires à faire avant le cours
     a. lectures associées aux cours
     a. exercices théoriques
 1. Exercices pratiques en R (organisé par cours)
 1. Plan de cours
 1. Diapos en pdf
-1. Enregistrements des vidéos
+1. Vidéos (enregistrements des réunions zoom)
 
 ### Notes
 
@@ -87,6 +87,7 @@ urlcolor: blue
 - Regardez la documentation de [R Markdown](https://rmarkdown.rstudio.com) pour voir comment
     - inclure du code R dans les documents,
     - inclure les résultats de R (y compris des tableaux et des graphiques) dans les documents.
+- Le code source de ces diapos se trouve au site web du cours.
 
 ## Attentes
 1. Faites les lectures préparatoires avant le cours.
@@ -96,7 +97,7 @@ urlcolor: blue
 ## Notation pour les rendements en temps discret
 
 - Soit $P_t$ le prix d'un actif à $t$, $t=1,\ldots,T$.
-- Soit $p_t = \log P_t$.
+- Soit $p_t = \log P_t$. (logarithme naturel)
 - Unités habituelles : $P_t$ en dollars, $t$ en jours, mois ou ans
 - Rendements simples nets et bruts, log rendements :
 \[
@@ -129,7 +130,7 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
 # Valeurs de x sur une grille
 x = seq(-0.03, 0.03, length.out=1000)
 
-# Densité de la variable aléatoire X_1
+# Densité de la variable aléatoire X_1 sur la grille
 f1 = dnorm(x, -0.01, 0.005)
 # Densité de la variable aléatoire X_2
 f2 = dnorm(x,  0.01, 0.005)
@@ -194,7 +195,7 @@ par(mfrow=c(4, 1), mar=c(5, 4, 0, 0)); plot(x, f1, 'l'); plot(x, f2, 'l'); plot(
 
 - Mettons que $(\mu,\sigma^2)$ égale $(\mu_1,\sigma_1^2)$ avec probabilité $\pi$ et $(\mu_2,\sigma_2^2)$ avec probabilité $(1-\pi)$.
 - $(\mu, \sigma)$ est aléatoire, $(\mu_1, \sigma_1)$, $(\mu_2, \sigma_2)$ et $\pi$ ne le sont pas.
-- Mettons que $R|(\mu,\sigma) \sim N(\mu,\sigma^2)$. Une loi *conditionnelle*
+- Mettons que $R|(\mu,\sigma) \sim N(\mu,\sigma^2)$. (Une loi *conditionnelle*.)
 - La loi *marginale* de $R$ est un mélange de deux lois gaussiennes.
 - La densité de $R$ est
 \[
@@ -249,7 +250,7 @@ lines(x, fmelange, col='black')
 \[
   \mathrm{Var}[Y] = E[\mathrm{Var}[Y|X]] + \mathrm{Var}[E[Y|X]]
 \]
-- [\textcolor{blue}{Preuve}](https://fr.wikipedia.org/wiki/Théorème_de_la_variance_totale)
+- [Preuve](https://fr.wikipedia.org/wiki/Théorème_de_la_variance_totale)
 - Exemple 1 : $Y$ est le rendement d'une action, $X$ indique l'industrie  ($X=1$ pour la construction, $X=2$ pour le tourisme, $X=3$ pour les mines, ...).
 - Exemple 2 : $Y$ est le rendement d'un actif, $X$ est une mesure observable de la volatilité de l'actif.
     - Conditionner réduit la variance en moyenne car le deuxième terme à droite est non-négatif.
