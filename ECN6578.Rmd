@@ -11,11 +11,16 @@
 
 [Lectures et exercices](./ECN6578/LX.pdf)
 
+
 ##### Cours 1, le 10 janvier
   
 [Diapos](./ECN6578/ECN6578_1.pdf),&nbsp;&nbsp;
 [Diapos, code source](./ECN6578/ECN6578_1.Rmd),&nbsp;&nbsp;
 [Video](https://umontreal.zoom.us/rec/share/SRoyRJ9zZhlSyU3QrfWbL4QJSTrNWtAY1GRd42_0PLHGNIL-scRN91vf4-B0As8A.rjqyvEHNJmTdw8qB?startTime=1641823227000)
+
+##### Cours 2, le 17 janvier
+
+[Diapos](./ECN6578/ECN6578_2.pdf),&nbsp;&nbsp;
 
 ***
 
