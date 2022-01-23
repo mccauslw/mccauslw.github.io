@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2021"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
 subtitle: "Cours 3"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -20,7 +20,7 @@ output: beamer_presentation
 1. Spécification alternative : moyenne $\mu$, variance $\sigma^2$ et fonction d'autocorrélation $\rho_k$, $k=1,2,\ldots$, avec $\sigma^2 = \gamma_0$, $\rho_k = \gamma_k/\gamma_0$.
 1. On peut trouver les moments d'ordre un et deux de toutes les fonctions linéaires des $r_t$ si on connait $\mu$, $\gamma_k$, $k=1,\ldots$.
 1. Un processus gaussien est complètement spécifié par ces moments d'ordre un et deux.
-1. Il est très utile de définir un processus $r_t$ en termes d'une transformation d'un bruit blanc $a_t$ telle que la valeur $r_t$ dépend seulement du passé ($r_{t-1}, r_{t-2}, \ldots$) et *l'innovation* $a_t$.
+1. Il est très utile de définir un processus $r_t$ en termes d'une transformation d'un bruit blanc $a_t$ telle que la valeur $r_t$ dépend seulement du passé ($r_{t-1}, a_{t-1}, r_{t-2}, a_{t-2}, \ldots$) et *l'innovation* $a_t$.
 1. Pour aujourd'hui, la notation $a_t$ signifie toujours un bruit blanc et on suppose que $r_t$ est toujours un processus covariance-stationnaire.
 
 ## Modèle AR(1) : spécification
