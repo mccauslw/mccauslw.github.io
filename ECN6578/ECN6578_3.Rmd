@@ -20,10 +20,12 @@ output: beamer_presentation
 1. Spécification alternative : moyenne $\mu$, variance $\sigma^2$ et fonction d'autocorrélation $\rho_k$, $k=1,2,\ldots$, avec $\sigma^2 = \gamma_0$, $\rho_k = \gamma_k/\gamma_0$.
 1. On peut trouver les moments d'ordre un et deux de toutes les fonctions linéaires des $r_t$ si on connait $\mu$, $\gamma_k$, $k=1,\ldots$.
 1. Un processus gaussien est complètement spécifié par ces moments d'ordre un et deux.
-1. Il est très utile de définir un processus $r_t$ en termes d'une transformation d'un bruit blanc $a_t$ telle que la valeur $r_t$ dépend seulement du passé ($r_{t-1}, a_{t-1}, r_{t-2}, a_{t-2}, \ldots$) et *l'innovation* $a_t$.
+1. Il est très utile de définir un processus $r_t$ en termes d'une transformation d'un bruit blanc $a_t$ telle que la valeur $r_t$ dépend seulement du passé ($r_{t-1}, a_{t-1}, r_{t-2}, a_{t-2}, \ldots$) et *l'innovation* $a_t$, non-corrélé avec les valeurs passées.
 1. Pour aujourd'hui, la notation $a_t$ signifie toujours un bruit blanc et on suppose que $r_t$ est toujours un processus covariance-stationnaire.
 
 ## Modèle AR(1) : spécification
+
+- Supposons que $|\phi| < 1$.
 
 ### AR(1) avec moyenne zéro, expressions équivalentes:
 - $r_t = \phi r_{t-1} + a_t$
@@ -39,9 +41,9 @@ output: beamer_presentation
 - $r_t = (1-\phi) \mu + \phi r_{t-1} + a_t$
 - $r_t = \phi_0 + \phi_1 r_{t-1} + a_t$, si $\phi_0 = (1-\phi)\mu$ et $\phi_1 = \phi$.
 
-## Modèle AR(1) : Calcul de la fonction d'autocovariance II
+## Modèle AR(1) : Calcul de la fonction d'autocovariance I
 
-- Supposons que $\mu=0$, $\phi$ et $\sigma_a^2 \equiv \mathrm{Var}[a_t]$ sont donnés.
+- Supposons que $\mu=0$, $\phi$ et $\sigma_a^2 \equiv \mathrm{Var}[a_t]$ sont donnés, $|\phi| < 0$.
 
 ### Équations Yule-Walker pour trouver $\gamma_0$, $\gamma_1$
 
@@ -158,21 +160,21 @@ $$ (1-(0.4+0.5i)B)(1-(0.4-0.5i)B) = 1 - 0.8 B + 0.41 B^2. $$
 
 ```{r ACF1, echo=TRUE}
 ACF = ARMAacf(ar = c(0.8, -0.16), lag.max=10)
-plot(ACF)
+plot(ACF, ylim=c(0, 1))
 ```
 
 ## ACF pour $\omega_1 = -0.1$, $\omega_2 = 0.9$
 
 ```{r ACF2, echo=TRUE}
 ACF = ARMAacf(ar = c(0.8, 0.09), lag.max=10)
-plot(ACF)
+plot(ACF, ylim=c(0, 1))
 ```
 
 ## ACF pour $\omega_1 = 0.4 + 0.5i$, $\omega_2 = 0.4 - 0.5i$
 
 ```{r ACF3, echo=TRUE}
 ACF = ARMAacf(ar = c(0.8, -0.41), lag.max=10)
-plot(ACF)
+plot(ACF, ylim=c(-1,1))
 ```
 
 ## Extensions aux AR(p)
@@ -211,7 +213,7 @@ et $\gamma_0,\ldots,\gamma_p$ détermine $c_1,\ldots,c_p$.
   r_t = \psi(B) a_t
 \]
 
-3. Représentation AR infinie (si le processus est invertible)
+3. Représentation AR infinie (si le processus est inversible)
 \[
   \frac{\phi(B)}{\theta(B)} = 1 - \pi_1 B - \pi_2 B^2 - \ldots \equiv \pi(B)
 \]
