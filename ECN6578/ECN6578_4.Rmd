@@ -161,9 +161,10 @@ $$ \sigma_t^2 = \alpha_0 + \sum_{i=1}^m \alpha_i a_{t-1}^2 + \sum_{j=1}^s \beta_
 * Le modèle ARCH(m) d'Engle :
 $$ \sigma_t^2 = \alpha_0 + \alpha_1 a_{t-1}^2 + \ldots + \alpha_m a_{t-m}^2, $$
 $$ a_t = \sigma_t \epsilon_t, \quad \epsilon_t|F_{t-1} \sim (0,1). $$
+* La spécification implicite de $\mu_t$ ici est $\mu_t = 0$.
+* Puisque $r_t \equiv \mu_t + a_t$, $r_t$ et $a_t$ ici sont pareille.
+* La spécification de $\sigma_t^2$ dépend du passé du processus.
 * On suppose que $a_t$ est covariance stationnaire, ce qui entraîne des restrictions aux paramètres.
-* Une spécification de $\sigma_t^2$ qui dépend du passé du processus.
-* La spécification de $\mu_t$ est $\mu_t = 0$.
 * $\sigma_t$ connu à $t-1$; $a_t$ et $\epsilon_t$ connus à $t$.
 
 ## Moyenne et variance inconditionnelle du modèle ARCH(1)
@@ -178,15 +179,21 @@ $$ (1-\alpha_1) \mathrm{Var}[a_t] = \alpha_0, \qquad \mathrm{Var}[a_t] = \alpha_
 * Il faut que $\alpha_1 < 1$ par covariance stationnarité.
 * Il faut que $\alpha_0 > 0$ et $\alpha_1 \geq 0$ par positivité de la variance.
 
-## Asymétrie et effet de levier
+## Asymétrie conditionnelle et l'effet de levier
 
-* L'asymétrie conditionnelle, $E[a_t^3|F_{t-1}]$, est souvent zéro, constant ou non spécifiée.
-* L'effet de levier est $\mathrm{Cov}[(\sigma_{t+1}^2-\sigma_t^2), a_t] < 0$.
-* L’effet de levier en termes de l'asymmétrie inconditionnelle :
+* L'asymétrie conditionnelle est $E[r_t^3|F_{t-1}]/\sigma_t^3$.
+* L'effet de levier est souvent exprimé comme $\mathrm{Cov}[(\sigma_{t+1}^2-\sigma_t^2), a_t] < 0$.
+* Il faut avoir un modèle pour parler des moments conditionnels en général, et les faits empiriques concernant l'asymétrie conditionnelle et l'effet de levier en particulier.
+
+## L'asymétrie d'un modèle ARCH(1)
+
+* Souvent les modèles de volatilité spécifie $E[a_t^3|F_{t-1}]$ comme étant zéro ou constant; souvent, ils ne le spécifient pas.
+* L’effet de levier en termes du troisième moment inconditionnel :
 $$ E[(\sigma_{t+1}^2-\sigma_t^2) a_t] = E[(\alpha_0 + \alpha_1 a_t^2 - \sigma_t^2) a_t] = \alpha_1  E[a_t^3]. $$
+* Troisième moment inconditionnel en termes du troisième moment conditionnel :
+$$ E[a_t^3] = E[E[a_t^3|F_{t-1}]]. $$
 * Si l'asymétrie conditionnelle est nulle, l'asymétrie inconditionnelle et $\mathrm{Cov}[(\sigma_{t+1}^2-\sigma_t^2), a_t]$ sont nulles aussi.
-$$ E[a_t^3] = E[E[a_t^3|F_{t-1}]] = E[0] = 0. $$
-* Conclusion: pour un ARCH(1), une asymétrie inconditionnelle ou un effet de levier doit passer par une asymétrie conditionnelle. Si la loi conditionnelle est symétrique, il n'y a pas d'asymétrie inconditionnelle.
+* Conclusion: pour un ARCH(1), une asymétrie inconditionnelle ou un effet de levier doit passer par une asymétrie conditionnelle.
 * Même chose pour un ARCH(m).
 
 ## Aplatissement d'un ARCH(1) gaussien
@@ -195,7 +202,7 @@ $$ E[a_t^3] = E[E[a_t^3|F_{t-1}]] = E[0] = 0. $$
 * Pour un modèle ARCH(1) gaussien,
 $$ E[a_t^4|F_{t-1}] = 3E[\sigma_t^4|F_{t-1}] = 3(\alpha_0 + \alpha_1 a_{t-1}^2)^2. $$
 $$ E[a_t^4] = 3E[\alpha_0^2 + 2\alpha_0\alpha_1a_{t-1}^2 + \alpha_1^2 a_{t-1}^4] $$
-* Si $E[a_t^4] = E[a_{t-1}^4]$ (une conséquence de stationnarité) alors
+* Si $E[a_t^4] = E[a_{t-1}^4]$ (une conséquence de stationnarité, mais pas de covariance-stationnarité) alors
 $$ E[a_t^4] = \frac{3\alpha_0^2(1+\alpha_1)}{(1-\alpha_1)(1-3\alpha_1^2)}. $$
 * Il faut que $\alpha_1^2 < 1/3$ pour l'existence de l'aplatissement.
 Un peu inflexible.
@@ -311,7 +318,7 @@ $$ \log f(r_t|r_{t-1}) = -\frac{1}{2} \left[\log [\alpha_0 + \alpha_1 a_{t-1}^2]
 
 * La somme de tous les termes donne $L(\mu,\alpha_0,\alpha_1;r_1,\ldots,r_T)$
 
-* Les ``constantes'' qui importent.
+* Les "constantes" de normalisation importent. Même si elles ne dépendent pas des $r_t$ actuelles, elles dépendent des paramètres et des rendements retardés.
 
 * Pourquoi en logs?
 
