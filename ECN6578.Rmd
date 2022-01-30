@@ -27,6 +27,9 @@
 [Diapos](./ECN6578/ECN6578_3.pdf),&nbsp;&nbsp;
 [Video](https://umontreal.zoom.us/rec/share/KsTUwa63bzqDL579KUExOVSI5Jy3cNDHpF6n3LOsgZGyhLzEwEvHG_IfBH2L_yZc.tVxiO1FDHmW_YauO)
 
+##### Cours 4, le 31 janvier
+[Diapos](./ECN6578/ECN6578_4.pdf)
+
 ***
 
 [Examen Intra, hiver 2021](./ECN6578/EI21.pdf)

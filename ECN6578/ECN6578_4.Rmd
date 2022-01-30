@@ -23,7 +23,7 @@ output: beamer_presentation
 - Si l'objectif est de choisir $\hat{r}_t(h)$ pour minimiser $E[(r_{t+h}-\hat{r}_t(h))^2|F_t]$, la meilleure prévision ponctuelle est $\hat{r}_t(h) = E[r_{t+h}|F_t]$ et la valeur minimal est $\mathrm{Var}[r_{t+h}|F_t]$.
 - Dans un modèle ARMA(p,q), $E[r_{t+h}|F_t]$ est linéaire en $r_t,r_{t-1},\ldots,r_{t-p}$ et $a_t,a_{t-1},\ldots,a_{t-q}$.
 - Avec les coefficients $\phi_i$ et $\theta_i$, on peut évaluer $E[r_{t+h}|F_t]$.
-- Ajouter $\sigma_a^2$ et on peut évaluer $\mathrm{Var}[r_{t+h}|F_t]$ aussi.
+- Avec $\sigma_a^2$ aussi on peut évaluer $\mathrm{Var}[r_{t+h}|F_t]$.
 - Pour simplifier un peu, $F_t$ comprend $r_t,r_{t-1},\ldots$ et $a_t,a_{t-1},\ldots$.
 - En réalité, on observe un échantillon $r_1,\ldots,r_T$ et recouvre $a_1,\ldots,a_T$ seulement de façon approximative.
 
@@ -162,7 +162,8 @@ $$ \sigma_t^2 = \alpha_0 + \sum_{i=1}^m \alpha_i a_{t-1}^2 + \sum_{j=1}^s \beta_
 $$ \sigma_t^2 = \alpha_0 + \alpha_1 a_{t-1}^2 + \ldots + \alpha_m a_{t-m}^2, $$
 $$ a_t = \sigma_t \epsilon_t, \quad \epsilon_t|F_{t-1} \sim (0,1). $$
 * On suppose que $a_t$ est covariance stationnaire, ce qui entraîne des restrictions aux paramètres.
-* Une spécification de $\sigma_t^2$ et non $\mu_t$.
+* Une spécification de $\sigma_t^2$ qui dépend du passé du processus.
+* La spécification de $\mu_t$ est $\mu_t = 0$.
 * $\sigma_t$ connu à $t-1$; $a_t$ et $\epsilon_t$ connus à $t$.
 
 ## Moyenne et variance inconditionnelle du modèle ARCH(1)
