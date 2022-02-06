@@ -8,10 +8,23 @@ output: beamer_presentation
 
 ## Plan
 
-1. Maximum de vraisemblance : l'exemple le plus simple
-1. Maximum de vraisemblance : un peu de théorie
+1. La fonction de vraisemblance : exemples bernoullien, poissonien
+1. Maximisation de vraisemblance : exemples simples
+1. Maximum de vraisemblance : propriétés (un peu de théorie)
 1. Le modèle EGARCH
 1. Estimation des modèles GARCH, quelques résultats
+
+## Éléments de l'analyse maximum de vraisemblance
+
+* Quantités pertinentes :
+    * $\theta$, un vecteur de paramètres inconnus,
+    * $y=(y_1,\ldots,y_T)$, un vecteur aléatoire des variables observables,
+    * $y^\circ$, le vecteur observé.
+    
+* Fonctions pertinentes :
+    * $f(y|\theta)$, la densité conditionnelle des données (modèle),
+    * ${\cal L}(\theta;y) = f(y|\theta)$, la vraisemblance,
+    * ${\cal L}(\theta;y^\circ) = f(y^\circ|\theta)$, la vraisemblance réalisée.
 
 ## Le modèle Bernoulli
 
@@ -56,20 +69,39 @@ logL = n_1 * log(theta) + n_0 * log(1-theta)
 plot(theta, logL, type='l', ylim=c(-400, max(logL)))
 ```
 
-## La fonction de vraisemblance pour une séries chronologique
+## Le modèle poissonien
 
-* La vraisemblance en général pour un modèle qui donne la densité $f(r_1,\ldots,r_T,\theta)$.
+* Supposez que les $y_i$ sont iid Poisson avec moyenne $\theta > 0$.
+* La fonction de masse de probabilité de $y_i$ est
 \[
-  {\cal L}(\theta; r) = f(r_1|\theta) f(r_2|r_1,\theta) \cdots f(r_T|r_1,\ldots,r_{T-1},\theta)
+  f(y_i|\theta) = e^{-\theta} \frac{\theta^{y_i}}{y_i!}.
 \]
-* Chaque densité $f(r_t|r_1,\ldots,r_{t-1})$ est un genre de prévision conditionnelle de $r_t$ sachant $r_1,\ldots,r_{t-1}$.
-* La log vraisemblance est
+* On observe le vecteur aléatoire $y = (y_1,\ldots,y_n)$ ; la fonction de masse de probabilité de $y$ est
 \[
-  L(\theta; r) = \sum_{t=1}^T \log f(r_t|r_1,\ldots,r_{t-1},\theta).
+  f(y|\theta) = \prod_{i=1}^n f(y_i|\theta)
+  = \prod_{i=1}^n e^{-\theta} \frac{\theta^{y_i}}{y_i!}
+  = \left[ \prod_{i=1}^n \frac{1}{y_i!} \right]
+  e^{-n\theta} \theta^{\sum_{i=1}^n y_i}.
 \]
-* Pourquoi la log-vraisemblance et non juste la vraisemblance?
-    * Pas de underflow numérique (soupassement arithmétique)
-    * Plus facile à maximiser (la dérivée d'une somme est la somme des dérivées)
+* Pour simplifier un facteur qui importe peu,
+\[
+  c \equiv \left[ \prod_{i=1}^n \frac{1}{y_i!} \right].
+\]
+
+## Vraisemblance poissonienne pour $n = 60$, $\sum_{i=1}^n y_i = 230$
+
+```{r vrai_poisson}
+n = 60; somme_y = 230; theta = seq(0, 10, by=0.001)
+cal_L = exp(-n*theta) * theta^somme_y
+plot(theta, cal_L, type='l')
+```
+
+## Log vraisemblance poissonienne, $n = 60$, $\sum_{i=1}^n y_i = 230$
+
+```{r lvrai_poisson}
+L = -n*theta + somme_y*log(theta)
+plot(theta, L, type='l', ylim=c(-200, max(L)))
+```
 
 ## Exemple : évaluation de la log vraisemblance GARCH(1,1)
 
@@ -106,6 +138,40 @@ où $f_\epsilon(\epsilon)$ et la densité des $\epsilon_t$.
 \[
   \hat{\theta} = \frac{n_1}{n_0 + n_1} = \frac{n_1}{n}.
 \]
+
+## Maximum de la vraisemblance poissonienne
+
+* Vraisemblance : ${\cal L}(\theta;y) = c e^{-n\theta} \theta^{\sum_{i=1}^n y_i}$.
+* Log vraisemblance : $L(\theta;y) = \log c - n\theta + \left(\sum_{i=1}^n y_i\right) \log \theta$.
+* Deux dérivées de la log vraisemblance :
+\[
+  \frac{\partial L(\theta;y)}{\partial \theta}
+  = -n + \frac{\sum_{i=1}^n y_i}{\theta}
+\]
+\[
+  \frac{\partial^2 L(\theta;y)}{\partial \theta^2}
+  = -\frac{\sum_{i=1}^n y_i}{\theta^2} < 0.
+\]
+* La valeur $\hat\theta$ (souvent vue comme une variable aléatoire) qui maximise la vraisemblance et la log-vraisemblance est
+\[
+  \hat{\theta} = \tfrac{1}{n} \sum_{i=1}^n y_i.
+\]
+* Pour $n = 60$ et $\sum_{i=1}^n y_i = 230$, $\hat\theta = \frac{23}{6} \approx 3.833$.
+
+## La fonction de vraisemblance pour une séries chronologique
+
+* La vraisemblance en général pour un modèle qui donne la densité $f(r_1,\ldots,r_T,\theta)$.
+\[
+  {\cal L}(\theta; r) = f(r_1|\theta) f(r_2|r_1,\theta) \cdots f(r_T|r_1,\ldots,r_{T-1},\theta)
+\]
+* Chaque densité $f(r_t|r_1,\ldots,r_{t-1})$ est un genre de prévision conditionnelle de $r_t$ sachant $r_1,\ldots,r_{t-1}$.
+* La log vraisemblance est
+\[
+  L(\theta; r) = \sum_{t=1}^T \log f(r_t|r_1,\ldots,r_{t-1},\theta).
+\]
+* Pourquoi la log-vraisemblance et non juste la vraisemblance?
+    * Pas de underflow numérique (soupassement arithmétique)
+    * Plus facile à maximiser (la dérivée d'une somme est la somme des dérivées)
 
 ## Maximum de vraisemblance : conditions de régularité
 
@@ -163,6 +229,25 @@ Problèmes restants :
   \mathrm{Var}[\hat{\theta}] = \mathrm{Var}\left[\frac{n_1}{n}\right]
   = \frac{1}{n^2} n \mathrm{Var}[y_i] = \frac{1}{n} (\theta-\theta^2) = \frac{\theta(1-\theta)}{n}.
 \]
+
+## Exemple poissonien
+
+* Un autre cas rare où les calculs analytiques sont faisables.
+* La matrice d'information de Fisher : ($E[y_i] = \theta$, $\mathrm{Var}[y_i] = \theta$)
+\[
+  {\cal I}(\theta)
+  = E_{y|\theta}\left[-\frac{\partial^2 L}{\partial \theta^2}\right]
+  = E_{y|\theta}\left[\frac{\sum_{i=1}^n y_i}{\theta^2}\right]
+  = \frac{n\theta}{\theta^2}
+  = \frac{n}{\theta}.
+\]
+* La variance de $\hat{\theta}$ (exacte, pas asymptotique) :
+\[
+  \mathrm{Var}[\hat{\theta}] = \mathrm{Var}\left[\frac{\sum_{i=1}^n y_i}{n}\right]
+  = \frac{1}{n^2} n \mathrm{Var}[y_i] = \frac{\theta}{n}.
+\]
+* Pour $n = 60$ et $\sum_{i=1}^n y_i = 230$, $\mathrm{Var}[\hat{\theta}]$ est de $(0.2528)^2$ pour $\theta = \hat\theta \approx 3.833$, $(0.2236)^2$ pour $\theta = 3$ et $(0.2739)^2$ pour $\theta = 4.5$.
+
 
 ## Comment trouver $\hat{\theta}$ I
 
@@ -322,9 +407,3 @@ plot(gt, which=13)
     - le modèle ne capture pas bien les (mettons) 10 valeurs les plus extrêmes (sur $\approx$ 9000)
     - il y a plus de valeurs extrêmes que prévu par le modèle (mauvaise spécification de l'évolution de la variance conditionnelle $\sigma_t$ ou de la loi conditionnelle ou des deux?)
 * Une asymétrie : les valeurs extrêmes négatives sont particulièrement extrêmes.
-
-## Cours 6, après la semaine d'activités libres
-
-### Plan préliminaire
-1. Introduction à l'inférence bayésienne
-1. Modèles de volatilité stochastique
