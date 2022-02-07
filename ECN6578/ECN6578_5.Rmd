@@ -254,24 +254,24 @@ Problèmes restants :
 * Gradient (score) et hessienne de la log-vraisemblance :
 $$ s(\theta) \equiv \frac{\partial L(\theta;r)}{\partial \theta^\top},\quad H(\theta) \equiv
 \frac{\partial^2 L(\theta;r)}{\partial \theta \partial \theta^\top}. $$
-* Processus iteratif pour trouver $\hat{\theta}$ : $\theta_1, \theta_2, \ldots,$
-* Approximation quadratique local autour de $\theta_k$ :
+* On utilise un processus séquentiel pour trouver $\hat{\theta}$ : $\theta_1, \theta_2, \ldots,$
+* Expansion quadratique de Taylor autour de $\theta_k$ :
 $$ \tilde{L}(\theta;r) = L(\theta_k;r) + s(\theta_k)^\top (\theta-\theta_k) + \frac{1}{2} (\theta-\theta_k)^\top H(\theta_k) (\theta - \theta_k). $$
 * Le gradient $\tilde{s}(\theta)$ de $\tilde{L}(\theta;r)$ :
 $$ \tilde{s}(\theta) = s(\theta_k) + H(\theta_k) (\theta - \theta_k) $$
-* $\tilde{s}(\theta_{k+1}) = 0$ définit $\theta_{k+1}$ de la méthode Newton :
+* La condition $\tilde{s}(\theta_{k+1}) = 0$ définit la mise à jour $\theta_{k+1}$ de la méthode Newton :
 $$ \theta_{k+1} = \theta_k - H(\theta_k)^{-1} s(\theta_k). $$
 
 ## Comment trouver $\hat{\theta}$ II
 
 * Problème de non-convergence si la forme de la log vraisemblance est loin de quadratique et négative définie.
 
-* Solution de BHHH : choisir une valeur scalaire $\lambda_k$ et calculer
+* Une recherche linéaire est plus robuste : choisir une valeur scalaire $\lambda_k$ et calculer
 $$ \theta_{k+1} = \theta_k - \lambda_k H(\theta_k)^{-1} s(\theta_k). $$
     1. Calculez $s(\theta_k)$, $H(\theta_k)$.
     1. Trouvez une bonne valeur de $\lambda_k$ (recherche linéaire)
 
-* Des fois, on utilise souvent, au lieu de $H(\theta)$,
+* Des fois, on utilise souvent, au lieu de $H(\theta)$, une approximation
 $$ \hat{H}(\theta) = -\sum_{t=1}^T
 \frac{\partial \log f(r_t|r_1,\ldots,r_{t-1},\theta)}{\partial \theta^\top}
 \frac{\partial \log f(r_t|r_1,\ldots,r_{t-1},\theta)}{\partial \theta}. $$
@@ -279,14 +279,14 @@ $$ \hat{H}(\theta) = -\sum_{t=1}^T
 
 ## Approximation de ${\cal I}(\theta_0)$
 
-* On utilise $H(\hat{\theta})$ ou $\hat{H}(\hat{\theta})$ au lieu de
+* Rappelons que ${\cal I}(\theta_0)^{-1}$ est la variance asymptotique de l'estimateur MV.
+* Cependant, $\theta_0$ et ${\cal I}(\theta_0)$ sont inconnus.
+* On utilise $-H(\hat{\theta})$ ou $-\hat{H}(\hat{\theta})$ au lieu de
 ${\cal I}(\theta_0)$, qui est inconnu.
-
-* Convergence de $\hat{\theta}$ à $\theta_0$.
-
-* Convergence de $\hat{H}(\theta_0)$ ou $H(\theta_0)$ à ${\cal I}(\theta_0) = E[H(\theta_0)]$.
-
-* Ensemble, convergence de $H(\hat\theta)$ ou $\hat{H}(\hat{\theta})$ à ${\cal I}(\theta_0)$.
+* Heureusement, on a
+    * Convergence de $\hat{\theta}$ à $\theta_0$.
+    * Convergence de $-\hat{H}(\theta_0)$ ou $-H(\theta_0)$ à ${\cal I}(\theta_0) = E[-H(\theta_0)]$.
+    * Ensemble : convergence de $-H(\hat\theta)$ ou $-\hat{H}(\hat{\theta})$ à ${\cal I}(\theta_0)$.
 
 ## Le modèle EGARCH
 
