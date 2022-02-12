@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
 subtitle: "Cours 4"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -368,8 +368,7 @@ où $\sigma_t^2(h-i) = a_{t+h-i}^2$ si $h-i \leq 0$ ($t+h-i \leq t$)
 ## Cours 5, la semaine prochaine
 
 ### Plan préliminaire
+
 1. La théorie des estimateurs maximum de vraisemblance
 1. Évaluation de la vraisemblance des modèles GARCH
 1. Modèle EGARCH et l'effet de levier
-1. Introduction à l'inférence bayésienne
-1. Modèles de volatilité stochastique

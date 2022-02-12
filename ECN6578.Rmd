@@ -30,8 +30,11 @@
 ##### Cours 4, le 31 janvier
 [Diapos](./ECN6578/ECN6578_4.pdf)
 
-##### Cours 5, le 6 février
+##### Cours 5, le 7 février
 [Diapos](./ECN6578/ECN6578_5.pdf)
+
+##### Cours 6, le 14 février
+[Diapos](./ECN6578/ECN6578_6.pdf)
 
 ***
 

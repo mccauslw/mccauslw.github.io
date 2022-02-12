@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
 subtitle: "Cours 5"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -407,3 +407,11 @@ plot(gt, which=13)
     - le modèle ne capture pas bien les (mettons) 10 valeurs les plus extrêmes (sur $\approx$ 9000)
     - il y a plus de valeurs extrêmes que prévu par le modèle (mauvaise spécification de l'évolution de la variance conditionnelle $\sigma_t$ ou de la loi conditionnelle ou des deux?)
 * Une asymétrie : les valeurs extrêmes négatives sont particulièrement extrêmes.
+
+## Cours 6, la semaine prochaine
+
+### Plan préliminaire
+
+1. Un modèle de volatilité stochastique
+1. Inférence bayésienne : un peu de théorie
+1. Inférence bayésienne : un peu de computation
