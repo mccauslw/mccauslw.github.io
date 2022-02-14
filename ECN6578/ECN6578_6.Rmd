@@ -36,8 +36,8 @@ où $r \equiv (r_1, \ldots, r_T)$, $h \equiv (h_1, \ldots, h_T)$.
 * En faisant des prévisions, on tient compte de l'incertitude sur
     - les paramètres,
     - les variables latentes,
-    - les ordres ($p$ et $q$ par exemple) et
-    - les modèles.
+    - les ordres ($p$ et $q$ d'un ARMA(p,q) par exemple) et
+    - les modèles (dans une situation où considère plusieurs modèles concurrents).
 * Il n'y a pas de recours aux résultats asymptotiques en $T$.
 
 ## Éléments de l'analyse bayésienne (modèle sans variables latentes)
@@ -65,8 +65,8 @@ où $r \equiv (r_1, \ldots, r_T)$, $h \equiv (h_1, \ldots, h_T)$.
     * $y^\circ$, le vecteur observé.
 
 * Densités pertinentes :
-    * $f(h|\theta)$, la densité des variables d'état
-    * $f(y|\theta,h)$, la densité conditionnelle des données (modèle),
+    * $f(h|\theta)$, la densité des variables d'état (loi de leur évolution)
+    * $f(y|\theta,h)$, la densité conditionnelle des données (modèle conditionnel),
     * ${\cal L}(\theta;y^\circ) = f(y^\circ|\theta)$, la vraisemblance,
     * $f(\theta)$, la densité *a priori*,
     * $f(\theta,h,y)$, la densité conjointe,
