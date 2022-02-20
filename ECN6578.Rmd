@@ -36,6 +36,9 @@
 ##### Cours 6, le 14 février
 [Diapos](./ECN6578/ECN6578_6.pdf)
 
+##### Cours 7, le 21 février
+[Diapos](./ECN6578/ECN6578_7.pdf)
+
 ***
 
 [Examen Intra, hiver 2021](./ECN6578/EI21.pdf)

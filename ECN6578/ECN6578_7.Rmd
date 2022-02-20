@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
 subtitle: "Cours 7"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -14,6 +14,8 @@ output: beamer_presentation
 
 ## Modèles à facteurs : motivation
 
+* Pour bien prévoir les rendements de portefeuille, il faut considérer les
+covariances entres actifs.
 * Il y a de la variation commune des prix des actifs différents.
 * Considérez le modèle (incomplet) suivant pour $N$ actifs :
 $$ R_t = a_t + \epsilon_t, \quad \epsilon_t \sim (0,\Sigma_t), $$
@@ -22,8 +24,7 @@ où
     - $E[\epsilon_t|{\cal F}_{t-1}] = 0$,
     - $a_t = E[R_t|{\cal F}_{t-1}]$ est $N \times 1$,
     - $\Sigma_t = \mathrm{Var}[R_t|{\cal F}_{t-1}]$ est $N \times N$. ($N(N+1)/2$ éléments distincts)
-* $O(N^2)$ variables par période, c'est trop à modeliser directement (danger de surapprentissage) avec seulement $O(N)$ observations par période.
-* Même si $\Sigma_t = \Sigma$ (constant), il y a trop de paramêtres à estimer quand $N$ est très grand.
+* $O(N^2)$ variables par période, c'est beaucoup à modéliser (danger de surapprentissage) avec seulement $O(N)$ observations par période.
 * Les modèles à facteurs capturent la covariance des actifs de façon plus parcimonieuse.
 
 ## Modèle à facteur : définition
@@ -40,10 +41,11 @@ où $f_t \sim (0, \Omega)$ est un vecteur $K \times 1$ de facteurs, $B$ est une 
 ## Interprétation des facteurs
 
 * Dans le modèle CAPM, $K=1$ et le seul facteur est $R_{mt}$, le rendement du marché (le portefeuille de tous les actifs d'une économie).
-* Souvent les facteurs sont des portefeuilles construits pour capturer autant de covariation que possible.
-* Souvent les facteurs sont des portefeuilles construits pour résumer les sources de risque commun.
-* Souvent les facteurs sont des variables macroéconomiques observables.
-* Souvent les facteurs sont latents. On donne une loi paramétrique pour les facteurs et on estime conjointement les facteurs, les paramètres qui gouvernent les facteurs ainsi que les autres paramètres du modèle.
+* Les facteurs peuvent être :
+    * le rendement des portefeuilles construits pour capturer autant de covariation que possible.
+    * le rendement des portefeuilles construits pour résumer les sources de risque commun.
+    * les variables macroéconomiques observables.
+    * latents, auquel cas on donne une loi paramétrique pour les facteurs et on estime conjointement les facteurs, les paramètres qui gouvernent les facteurs ainsi que les autres paramètres du modèle.
 
 ## Le modèle CAPM
 
@@ -87,8 +89,12 @@ où $f_t \sim (0, \Omega)$ est un vecteur $K \times 1$ de facteurs, $B$ est une 
 ## Illustration : code
 
 ```{r frontier2a}
+# Premier actif, moyenne élevée, risque élevé
 mu1 = 0.02; s1 = 0.10;
-mu2 = 0.01; s2 = 0.05; rho1 = 0.1; rho2 = 0.5; rho3 = 0.9
+# Deuxième actif, plus sécure, moyenne moins élevée
+mu2 = 0.01; s2 = 0.05;
+# Trois valeurs possibles pour la corrélation
+rho1 = 0.1; rho2 = 0.5; rho3 = 0.9
 omega1 = seq(-1,2,by=0.001); omega2 = 1-omega1
 mup = omega1*mu1 + omega2*mu2
 s2p1 = omega1^2*s1^2 + 2*omega1*omega2*rho1*s1*s2 + omega2^2*s2^2
@@ -151,7 +157,7 @@ $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 
 * Soit $\mu_p$ une valeur arbitraire de la moyenne $E[R_p]$ à cibler.
 * Pour ce qui suit, $\mu_p$ est un paramètre; on choisit le portefeuille à variance minimale parmi les portefeuilles ayant cette moyenne.
-* On trouve la solution paramétrique de
+* On trouve la solution paramétrique (comme fonction de $\mu_p$) de
   \[
     \min_{\omega} \omega'\Omega\omega \; \text{tel que} \;
     \omega'\mu = \mu_p, \; \omega'\iota = 1.
