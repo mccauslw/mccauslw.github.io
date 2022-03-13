@@ -62,7 +62,7 @@ knitr::opts_chunk$set(echo = FALSE)
 *  Voici un milieu très simple :
     *  Il y a deux périodes.
     *  L'état du monde est aléatoire dans la deuxième période.
-    *  Il y a $S$ états du monde possible : $1, \ldots, S$.
+    *  Il y a $S$ états du monde possibles : $1, \ldots, S$.
     *  Chaque état $s$ a une probabilités $\pi_s$ d'être réalisé.
     *  Il y a $N$ actifs, chacun avec un paiement dans le deuxième
       période qui dépend de $s$.
@@ -115,13 +115,13 @@ knitr::opts_chunk$set(echo = FALSE)
 *  Définition : vecteur $p$ ($S \times 1$) est un vecteur
     des prix d'états si
     \[ X'p = q, \]
-    ou, ce qui est équivalent, pour chaque actif $i$,
+    ou, ce qui est équivalent, si pour chaque actif $i$,
     \[ q_i = \sum_{s=1}^S X_{si} p_s. \]
 *  Si on divise chaque rangée $i$ de $X'p = q$ par $q_i$, on
     obtient
     \[ G'p = \iota. \]
 * Ligne $i$ de cette équation vectorielle, $i = 1,\ldots,N$ :
-    \[ 1 = \sum_{s=1}^S G_{si} p_s = \sum_{s=1}^S (1+R_i) p_s. \]
+    \[ 1 = \sum_{s=1}^S G_{si} p_s = \sum_{s=1}^S (1+R_{si}) p_s. \]
 
 ## Implications de l'absence d'arbitrage
 
