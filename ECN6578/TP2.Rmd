@@ -1,0 +1,31 @@
+---
+title: "Travail pratique 2 en R"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+1. Effectuer deux tests du CAPM avec $N=4$ actifs pendant 1962-1999.
+Les rendements mensuelles des quatre actifs se trouvent dans les fichiers `m-ibm6299` (IBM), `m-gm6299` (GM), `m-hsy6299` (Hershey Foods) et `m-aa6299` (Alcoa). 
+Utilisez l'index S&P 500 pour le marché et le CPI (consumer price index) pour rendre réels les rendements au besoin.
+Le fichier CAPM.zip contient toutes les données nécessaires : regardez la description ci-bas.
+    a. Effectuer le test $J_0$ de la version Sharpe-Lintner du CAPM.
+Utilisez le rendement de l'obligation de trésor d'un an comme le rendement $R_f$ sans risque.
+    a. Effectuer le test $J_4$ de la version Black du CAPM. Une condition raisonnable de convergence est que le changement fractionnaire de $\hat{\gamma}^*$ est $10^{-6}$.
+Vous devriez utiliser une boucle `while` en R. Il y a beaucoup de ressources sur internet pour apprendre comment programmer des boucles. Par exemple, <https://fr.wikibooks.org/wiki/Programmer_en_R/Programmer_une_boucle>.
+
+Le fichier `CAPM.zip` contient :
+
+|fichier|description|
+|-------|-----------|
+|`CPI.txt`|indice des prix à la consommation, 1962/01 - 2000/01|
+|`tresor.txt`|rendement des obligation de trésor, 1962/01 - 1999/12|
+|`m-sp6299`|rendement du S&P 500, 1962/01 - 1999/12|
+|`m-ibm6299`|rendement de l'action IBM, 1962/01 - 1999/12|
+|`m-gm6299`|rendement de l'action GM, 1962/01 - 1999/12|
+|`m-hsy6299`|rendement de l'action Hershey Foods, 1962/01 - 1999/12|
+|`m-aa6299`|rendement de l'action Alcoa, 1962/01 - 1999/12|
+
+Les rendements sont des log-rendements mensuels nominaux annualisées, en pourcentages.
+La dernière colonne de \texttt{tresor.txt} donne le log-rendement des obligations d'un an.
+
+Les commandes R `cbind` (empilation horizontale des vecteurs) `%*%` (multiplication matricielle) et `scan` (chargement des données) seront utiles.

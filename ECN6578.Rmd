@@ -11,6 +11,7 @@
 
 [Lectures et exercices](./ECN6578/LX.pdf)
 
+[Deuxième Travail Pratique](./ECN6578/TP2.pdf)
 
 ##### Cours 1, le 10 janvier
   
