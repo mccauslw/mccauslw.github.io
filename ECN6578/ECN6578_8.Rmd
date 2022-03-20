@@ -166,7 +166,7 @@ knitr::opts_chunk$set(echo = FALSE)
     * Si $\mathrm{cov}[R_{it},M_t] > 0$, $i$ a une valeur relativement
     élevée quand la consommation future est plus valorisée
     (i.e. quand $U'(C_{t+1})$ est élevé).
-    * En équilibre, son prix est plus élevé (par rapport a un actif $j$ où $\mathrm{cov}[R_{jt}M_t] < 0$) et son rendement moyen est moins élevé.
+    * En équilibre, son prix est plus élevé (par rapport a un actif $j$ où $\mathrm{cov}[R_{jt},M_t] < 0$) et son rendement moyen est moins élevé.
     * L'investisseur supporte ce rendement moyen moins élevé
     car l'actif paie quand la consommation est plus valorisée.
 
@@ -253,7 +253,7 @@ knitr::opts_chunk$set(echo = FALSE)
     isoélastique avec le même $\gamma$ et $\delta$,
     $C$ agrégée est celle d'un consommateur avec cette
     utilité ayant la richesse agrégée.
-* Une rationalisation du consommateur représentatif.
+* Ainsi, l'utilité isoélastique est une rationalisation du consommateur représentatif, un seul consommateur dans le modèle.
 
 ## Tester le CCAPM
 

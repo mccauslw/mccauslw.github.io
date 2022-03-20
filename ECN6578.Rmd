@@ -39,7 +39,7 @@
 ##### Cours 7, le 21 février
 [Diapos](./ECN6578/ECN6578_7.pdf)
 
-##### Cours 8, le 14 mars
+##### Cours 8 et 9, le 14 et le 21 mars
 [Diapos](./ECN6578/ECN6578_8.pdf)
 
 ***
