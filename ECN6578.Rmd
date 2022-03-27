@@ -43,6 +43,9 @@
 ##### Cours 8 et 9, le 14 et le 21 mars
 [Diapos](./ECN6578/ECN6578_8.pdf)
 
+##### Cours 10, le 28 mars
+[Diapos](./ECN6578/ECN6578_12.pdf)
+
 ***
 
 [Examen Intra, hiver 2021](./ECN6578/EI21.pdf)

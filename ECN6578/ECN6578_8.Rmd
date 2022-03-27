@@ -575,7 +575,7 @@ $\log XY = \log X + \log Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\sig
 
 * GMM, c'est la Méthode de Moments Généralisée
 * La log-normalité de $(C_{t+1}, R_{i,t+1})$ est une hypothèse très forte.
-* L'approche GMM n'exige, comme modèle, des conditions de moment inconditionnel comme $E[(1+R_{it})M_t] = 1$.
+* L'approche GMM n'exige, comme modèle, que des conditions de moment inconditionnel comme $E[(1+R_{it})M_t] = 1$.
 * Rappelons que dans le modèle CCAPM
 \[
   M_{t+1} = \delta \frac{U'(C_{t+1})}{U'(C_t)},

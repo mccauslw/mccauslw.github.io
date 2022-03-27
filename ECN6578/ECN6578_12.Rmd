@@ -21,6 +21,7 @@ knitr::opts_chunk$set(echo = FALSE)
 * Simplification 1 : focaliser sur la moyenne et la variance des rendements : (CAPM)
 * Simplification 2 : focaliser sur les grandes pertes et leur probabilité (VaR, ES)
 * Pour un preneur de décisions, les deux sont complémentaires, pas exclusives.
+* Le problème de gestion de risque pour une entreprise est similaire
 
 ## Pourqoui la valeur à risque II
 
@@ -42,7 +43,7 @@ knitr::opts_chunk$set(echo = FALSE)
 $$ p = F_l(-\mathrm{VaR}). $$
 
 * la question de conditionnement
-    * loi inconditionelle, longue terme, non-paramétrique
+    * loi inconditionelle, long terme, non-paramétrique
     * loi conditionnelle, court terme, besoin d'un modèle (régression quantile ou plein modèle)
     
 ## RiskMetrics
