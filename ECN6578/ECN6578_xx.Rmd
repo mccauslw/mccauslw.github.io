@@ -1,0 +1,122 @@
+---
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
+subtitle: "Cours 11"
+author: "William McCausland"
+date: "`r Sys.Date()`"
+output: beamer_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Obligations
+
+* Un obligation est un contrat entre un *émetter* (pays, province, état, municipalité, entreprise) et un *détenteur*.
+* Le détenteur peut vendre l'obligation dans un marché.
+* L’émetteur verse un paiement, la *valeur nominale* (face value) au détenteur à l'*échance*.
+* Habituellement l'émetteur verse des *coupons* réguliers au détenteur jusqu'à l'échéance (inclusif).
+* Pour les obligations *zéro coupon* il n'y a pas de coupon.
+* $P_{nt}$ est le prix à $t$ d'une obligation zéro coupon qui paie un dollar dans $n$ périodes et $p_{nt} \equiv \log(P_{nt})$.
+
+## Rendements des obligations
+
+* Le rendement à l'échéance (yield) $Y_{nt}$ de cette obligation vérifie
+$$ P_{nt} = \frac{1}{(1+Y_{nt})^n}. $$
+* Le log-rendement $y_{nt} = \log (1+Y_{nt})$ vérifie
+$$ y_{nt} = -\frac{p_{nt}}{n}. $$
+
+## Rendements "Holding Period"
+
+* On peut calculer un *rendement pendant la période de détention* (holding period return) pour une obligation :
+$$ (1+R_{n,t+1}) = \frac{P_{n-1,t+1}}{P_{nt}} = \frac{(1+Y_{nt})^n}{(1+Y_{n-1,t+1})^{n-1}}. $$
+* En logarithmes,
+$$ r_{n,t+1} = p_{n-1,t+1} - p_{nt} = y_{nt} - (n-1)(y_{n-1,t+1} - y_{nt}). $$
+* Le rendement à l'échéance (connu à $t$) est la moyenne de rendements à venir :
+$$ y_{nt} = -p_{nt}/n = \frac{1}{n} \sum_{i=0}^{n-1} r_{n-i,t+1+i}. $$
+* Attention : si les taux d'intérêt montent, le prix des obligations tombe.
+
+## La structure à terme
+
+* La *structure à terme* est l'ensemble de rendements à l'échéance pour des obligations zéro coupon de maturité différentes.
+* La courbe de rendement (yield curve) est la graphique de $Y_{nt}$ ou $y_{nt}$ contre $n$.
+* L'écart de rendement (yield spread) à $t$ est $S_{nt} \equiv Y_{nt} - Y_{1t}$ ou $s_{nt} \equiv y_{nt}-y_{1t}$.
+
+## Cours à terme (forward rates)
+
+* Voici une façon de garantir à $t$ un taux d'intérêt entre $t+n$ et $t+n+1$ (le taux étant déterminé par les prix marchands).
+    * acheter une obligation qui paie un dollar à $t+n+1$
+    * vendre assez de l'obligation qui paie un dollar à $t+n$ pour financer cet achat. (c.-à-d. vendre une quantité $P_{n+1,t}/P_{nt})$ de cette obligation)
+* Le *cours à terme* (forward rate) est le taux garanti :
+$$ 1 + F_{nt} = \frac{P_{nt}}{P_{n+1,t}}. $$
+
+## Modèles de la structure à terme
+
+*  Rappel : $P_{nt}$ le prix à $t$ d'une obligation zéro coupon, qui paie 1 dollar à $t+n$.
+*  $P_{nt} = E_t[P_{n-1,t+1} M_{t+1}]$ où $M_{t+1}$ est le
+    facteur d'actualisation stochastique.
+*  L'itération donne $P_{nt}=E_t[M_{t+1}M_{t+2}\cdots M_{t+n}]$.
+*  La log-normalité conjointe conditionnelle des
+    $P_{1t}, P_{2t}, \ldots$ et $M_{t+1}$ donne l'équation
+    de valorisation :
+    \[ p_{nt} = E_t[m_{t+1} + p_{n-1,t+1}] +
+    \frac{1}{2} \mathrm{var}_t[m_{t+1} + p_{n-1,t+1}], \]
+    où
+    \[ p_{nt} = \log(P_{nt}), \quad m_{t+1} = \log(M_{t+1}). \]
+
+## Modèle de Vasicek (1977)
+
+*  Dans ce modèle, $m_{t+1}$ est homoscédastique.
+*  On peut toujours écrire
+    \[ -m_{t+1} = x_t + \epsilon_{t+1}, \]
+    où $E_t[-m_{t+1}] = x_t$ et $E_t[\epsilon_{t+1}] = 0$.
+*  Selon le modèle, le facteur $x_t$ est AR(1) :
+    \[ x_{t+1} = (1-\phi) \mu + \phi x_t + \xi_{t+1}. \]
+*  En général, $\epsilon_{t+1}$ et $\xi_{t+1}$ sont corrélés : $\epsilon_{t+1} = \beta \xi_{t+1} + \eta_{t+1}$.
+*  La partie de $\epsilon_{t+1}$ non-corrélée avec $\xi_{t+1}$ n'est pas
+    importante et on l'élimine, alors
+    \[ -m_{t+1} = x_t + \beta \xi_{t+1}. \]
+*  On a un seul choc dans le système : $\xi_t$. Soit $\sigma^2$
+    sa variance.
+
+## Valorisation des obligations I : Le taux court
+
+*  Le log-prix d'une obligation à une période vérifie
+    (parce que $p_{0,t+1} = \log P_{0,t+1} = \log 1 = 0$)
+    \[ p_{1t} = E_t[m_{t+1}] + \frac{1}{2} \mathrm{var}_t[m_{t+1}]. \]
+*  Dans le modèle de Vasicek,
+    \[ p_{1t} = -x_t + \beta^2 \sigma^2/2. \]
+*  Rappelez que le rendement à l'échéance et
+    \[ y_{1t} = -p_{1t} = x_t - \beta^2 \sigma^2/2. \]
+*  Remarquez que $y_{1t}$ est affine en $x_t$.
+
+## Valorisation des obligations II : d'autres échéances
+
+*  On devine (et vérifie plus tard) que dans le modèle de Vasicek,
+    $p_{nt}$ (et alors $y_{nt} = -p_{nt}/n$) est aussi affine en $x_t$ :
+    \[ -p_{nt} = A_n + B_n x_t \]
+*  On sait déjà que $A_0 = B_0 = 0$, $A_1 = -\beta^2 \sigma^2/2$
+    et $B_1 = 1$.
+*  On vérifie que l'équation de prix affine est correcte et
+    on obtient les coefficients avec
+    \[ E_t[m_{t+1} + p_{n-1,t+1}] =
+    -x_t - A_{n-1} - B_{n-1}(1-\phi)\mu - B_{n-1} \phi x_t \]
+    \[ \mathrm{var}_t[m_{t+1} + p_{n-1,t+1}] = (\beta+B_{n-1})^2 \sigma^2 \]
+*  Après substitution dans l'équation de valorisation, on obtient
+    \[ A_n + B_n x_t - x_t - A_{n-1} - B_{n-1}(1-\phi)\mu - B_{n-1}\phi x_t
+    + (\beta + B_{n-1})^2 \sigma^2/2 = 0 \]
+
+## D'autres échéances, continu
+
+*  Cette équation doit tenir pour chaque $x_t$, alors le coefficient
+    de $x_t$ et le coefficient constant doivent égaler à zéro.
+*  Alors
+    \[ B_n = 1 + \phi B_{n-1} = (1-\phi^n)/(1-\phi) \]
+    \[ A_n = A_{n-1} + (1-\phi) \mu B_{n-1} - (\beta + B_{n-1})^2\sigma^2/2 \]
+*  Une version discrète du modèle célèbre Cox, Ingersoll Ross
+    (1985) est
+    \[ -m_{t+1} = x_t + x_t^{1/2} \epsilon_{t+1} \]
+    \[ x_{t+1} = (1-\phi)\mu + \phi x_t + x_t^{1/2} \xi_{t+1} \]
+*  C'est aussi un modèle affine avec un facteur.
+*  Il y a aussi des modèles avec plusieurs facteurs et des modèles
+    qui ne sont pas affines.
