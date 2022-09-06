@@ -131,6 +131,18 @@ $\{0,1\}$ | 1
 [//]: Pas forcément judicieux: 0.0, 0.01, 0.99, 1.00
 [//]: Nécessité, pas suffisance, de cohérence
 
+## Quatre ``probabilités'' sur $(\Omega, 2^\Omega)$ où $\Omega = \{\omega_1,\omega_2\}$
+
+|$A\in {\cal F}=2^\Omega$| 1 | 2 | 3 | 4 |
+|---|---|---|---|---|
+|$\emptyset$     | 0.2 | 0   | 0    | 0 |
+|$\{\omega_1\}$  | 2.0 | 0.6 | 0.01 | 0.9 |
+|$\{\omega_2\}$  | -1  | 0.5 | 0.99 | 0.0 |
+|$\Omega = \{\omega_1,\omega_2\}$ | 0 | 1 | 1 | 1 |
+
+[//]: First two not real probabilities
+[//]: Une probabilité peu judicieuse
+
 ## Interprétation fréquentiste de probabilité
 
 + Venn et (Richard) von Mises essaient de définir la probabilité en termes des (limites des) fréquences des événements semblables.
@@ -153,6 +165,10 @@ $\{0,1\}$ | 1
 4. $A, B \in {\cal F} \Rightarrow A^c, A \cup B, A \cap B \in {\cal F}$
 
 Par 3 et 4, ${\cal F}$ est une algèbre, pas forcément une tribu.
+
+[//]: Évènements certains et impossible
+[//]: Stabilité par complémentation
+[//]: Stabilité pour les réunions ou intersections finies
 
 ### Une façon de spécifier une probabilité :
 1. Stipuler $\{\omega\} \in {\cal F}$, donner $P(\{\omega\}) = p_\omega \geq 0$, $\omega \in \Omega$, telles que $\sum_{\omega \in \Omega} p_\omega = 1$.
@@ -188,9 +204,52 @@ Quelques ensembles :
 1. L'ensemble des fonctions $f \colon \mathbb{N} \to \{0,1\}$
 1. L'ensemble des fichiers finis (livres, documents, dessins, audio, vidéo, programmes informatiques)
 
-[//]: Do diagonalisation argument
 [//]: Why doesn't it work on Q? Get a number not in Q.
 [//]: Just because you can count them doesn't mean you can order them.
+[//]: Why this matters: with uniform probability on interval, P of R is one; Q, 0
+[//]: And yet, the rationals are dense in the reals, always a sequence of Q that converges to a R
+[//]: Why this matters: power set doesn't work, need F, strange nature of R
+[//]: Specification of F not trivial
+
+## Démonstration que $\mathbb{Z}^2$ et $\mathbb{Q}$ sont dénombrable
+
+## Démonstration que $[0,1)$ est indénombrable
+
+### Une liste présumée d'éléments de $[0,1)$
+
+| $n$ | |
+|-----|-|
+| 1 | 0.3141595358979 $\ldots$ |
+| 2 | 0.0100000000000 $\ldots$ |
+| 3 | 0.01011011101111 $\ldots$ |
+| 4 | 0.1000 $\ldots$ |
+| 5 | 0.000090000900009 $\ldots$ |
+| $\vdots$ | $\vdots$ |
+
+### Construction d'un élément de $[0,1)$ qui n'est pas dans la liste
+
+## Démonstration que $2^\mathbb{N}$ est dénombrable
+
+### Une liste présumée de parties de $\mathbb{N}$ ($S_1 = \{1,4,5,7,9,\ldots\}$)
+
+| $n$ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | $\ldots$ |
+|-----|---|---|---|---|---|---|---|---|---|----------|
+| 1   | \checkmark | | | \checkmark | \checkmark | | \checkmark | | \checkmark | $\ldots$ |
+| 2   | | \checkmark | \checkmark | | | \checkmark | | | | $\ldots$ |
+| 3   | \checkmark | \checkmark | | \checkmark | | \checkmark | | \checkmark | | $\ldots$ |
+| 4   | | | \checkmark | \checkmark | | \checkmark | | \checkmark | | $\ldots$ |
+| 5   | \checkmark | \checkmark | \checkmark | \checkmark | | \checkmark | \checkmark | \checkmark | | $\ldots$ |
+| $\vdots$ | $\vdots$ |
+
+### Construction d'une partie de $\mathbb{N}$ qui n'est pas dans la liste
+
+## Ensembles que ressemblent à $2^\mathbb{N}$
+
+1. $[0,1)$ ($x_i = \sum_{j\in S_i} 2^{-j}$)
+1. ensemble de fonctions $f \colon \mathbb{N} \rightarrow \{0,1\}$
+1. ensemble de suites infinies de tirages à pile ($\notin$) ou face ($\in$)
+
+[//]: Functions from N to {0,1} and computational efficiency
 
 ## Exemples de $\Omega$ : finis, dénombrables, indénombrables
 
@@ -202,6 +261,22 @@ Quelques ensembles :
 1. $\Omega = [0,1]$
 1. $\Omega = \mathbb{R}$, $\Omega = \mathbb{R}_+$.
 1. $\Omega = \mathbb{R}^n$
+
+## Propriétés de $\mathbb{Q}$
+
+### La densité de $\mathbb{Q}$ dans $\mathbb{R}$
+
+1. Entre $x_1 \in \mathbb{R}$ et $x_2 \in \mathbb{R}$, $x_1 \neq x_2$, il y a un nombre dénombrable de rationnels.
+1. Pour chaque nombre réel $x$, il y a une suite dans $\mathbb{Q}$ qui converge à $x$.
+
+### Autres propriétés
+
+1. $\mathbb{Q}$ est dénombrable.
+1. Il n'y a pas de liste ordonnée d'éléments de $\mathbb{Q}$.
+1. Selon l'espace de probabilité pour la loi uniforme sur $U(0,1)$,
+\[
+  \Pr([0,1]) = 1, \, \mbox{mais} \, \Pr([0,1] \cap \mathbb{Q}) = 0.
+\]
 
 ## Construire $(\Omega, {\cal F}, P)$ pour la loi uniforme $[0,1]$
 
@@ -247,7 +322,8 @@ Un espace de probabilité est un $(\Omega,{\cal F},P)$ tel que
 [//]: Why countably additive and not finitely additive: we want to take limits
 [//]: Why not uncountable unions and intersections?
 (What would uncountable additivity mean?)
-[//]: Redundancy with unions or intersections
+[//]: Redundancy with unions or intersections, de Morgan
+[//]: Law of one price
 
 ## Mesures
 
@@ -272,3 +348,4 @@ additivité dénombrable.
 [//]: We saw how difficult it was to specify directly all probabilities.
 [//]: We want tools to construct probability spaces in a well defined way.
 [//]: We know that any attempt to do 3 using power set is doomed to failure or forces us to accept something unpalletable.
+[//]: In a sense, 3 and 4 are the same thing
