@@ -30,30 +30,31 @@ urlcolor: blue
 
 ## Les éléments de la note finale :
 1. Quiz : 20% (meilleures $n-1$ de $n \approx 9$)
-1. Examen intra : 35% (à remettre le 2 novembre)
+1. Examen intra : 35% (à remettre le 2 novembre avant 12h)
 1. Examen final : 45% (le 21 décembre)
 
 ## Le cycle de mercredi 13h à mardi soir
-1. Mercredi 13h-16h, cours :
-    + retour des quiz corrigés du cours précédent
-    + questions des étudiants
-    + quiz sur les lectures (matière du cours actuel)
-    + correction du quiz du cours actuel
+
+1. Mardi 18h - Mercredi 12h, par StudiUM
+    + quiz sur les lectures (sur la matière du cours du même jour)
+
+1. Mercredi 13h-16h, cours
     + enseignement magistral avec participation des étudiants
     + aperçu de la matière de la semaine suivante
-    
-    
+
 1. Mercredi avant la fin de la journée 
-    + attribution des lectures (pour la semaine suivante)
-    + questions simples de lecture
-    + devoirs sur la matière du cours actuel
+    + correction du quiz du cours actuel
+    + solutions du quiz mise au site web (parfois)
+    + mise à jour du document "Devoirs et Lectures"
+        + devoirs sur la matière du cours actuel
+        + lectures sur la matière de la semaine suivante
+        + questions sur la matière de la semaine suivante
 
 1. Lundi 13h-14h30, séance de travail pratique
     + discussion des devoirs avec Sawadogo, le moniteur
 
 1. Mardi soir
     + chargement des diapos du lendemain
-
 
 ## Communications
 1. Documents à mon site web : <https://mccauslw.github.io/ECN7060.html>
