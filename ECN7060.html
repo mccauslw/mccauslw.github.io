@@ -11,15 +11,24 @@
 
 
 
-<title>ECN7060.utf8</title>
+<title>ECN7060.knit</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -36,11 +45,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -53,32 +57,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -90,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +85,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 64px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h2 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h3 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h4 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h5 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h6 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +122,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +134,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +145,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +173,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -276,7 +239,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -304,13 +267,13 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="contact.html">
-    <span class="fas fa-envelope fa-lg"></span>
+    <span class="fa fa-envelope fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="http://github.com/mccauslw">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -319,7 +282,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -327,67 +290,20 @@ $(document).ready(function () {
 </div>
 
 
-<div id="section" class="section level2">
-<h2>—</h2>
 <p><link rel="stylesheet" href="styles.css" type="text/css"></p>
-<div id="documents-pour-ecn-7060-probabilités-pour-économistes" class="section level3">
+<div id="documents-pour-ecn-7060-probabilités-pour-économistes"
+class="section level3">
 <h3>Documents pour ECN 7060, Probabilités pour Économistes</h3>
-<p><a href="./ECN7060/ECN7060A-A21-PC.pdf">Plan de Cours</a></p>
+<p><a href="./ECN7060/ECN7060A-A22-PC.pdf">Plan de Cours</a></p>
 <p><a href="./ECN7060/ECN7060_DL.pdf">Devoirs et Lectures</a></p>
-<div id="cours-1-20210901" class="section level4">
-<h4>Cours 1, 2021/09/01</h4>
+<div id="cours-1-20220901" class="section level4">
+<h4>Cours 1, 2022/09/01</h4>
 <p><a href="./ECN7060/ECN7060_1.pdf">Diapos</a></p>
-</div>
-<div id="cours-2-20210908" class="section level4">
-<h4>Cours 2, 2021/09/08</h4>
-<p><a href="./ECN7060/ECN7060_2.pdf">Diapos</a></p>
-</div>
-<div id="cours-3-20210915" class="section level4">
-<h4>Cours 3, 2021/09/15</h4>
-<p><a href="./ECN7060/ECN7060_3.pdf">Diapos</a></p>
-</div>
-<div id="cours-4-20210922" class="section level4">
-<h4>Cours 4, 2021/09/22</h4>
-<p><a href="./ECN7060/ECN7060_4.pdf">Diapos</a></p>
-</div>
-<div id="cours-5-20210929" class="section level4">
-<h4>Cours 5, 2021/09/29</h4>
-<p><a href="./ECN7060/ECN7060_5.pdf">Diapos</a> <span class="math inline">\(\hspace{1cm}\)</span> <a href="./ECN7060/Quiz%201%202021%20solutions.pdf">Solutions, quiz</a></p>
-</div>
-<div id="cours-6-20211006" class="section level4">
-<h4>Cours 6, 2021/10/06</h4>
-<p><a href="./ECN7060/ECN7060_6.pdf">Diapos</a> <span class="math inline">\(\hspace{1cm}\)</span> <a href="./ECN7060/Quiz%202%202021%20solutions.pdf">Solutions, quiz</a></p>
-</div>
-<div id="cours-7-20211013" class="section level4">
-<h4>Cours 7, 2021/10/13</h4>
-<p><a href="./ECN7060/ECN7060_7.pdf">Diapos</a> <span class="math inline">\(\hspace{1cm}\)</span> <a href="./ECN7060/Quiz%202%202021%20solutions.pdf">Solutions, quiz</a></p>
-</div>
-<div id="cours-8-20211103" class="section level4">
-<h4>Cours 8, 2021/11/03</h4>
-<p><a href="./ECN7060/ECN7060_8.pdf">Diapos</a></p>
-</div>
-<div id="cours-9-20211110" class="section level4">
-<h4>Cours 9, 2021/11/10</h4>
-<p><a href="./ECN7060/ECN7060_9.pdf">Diapos</a></p>
-</div>
-<div id="cours-10-20211117" class="section level4">
-<h4>Cours 10, 2021/11/17</h4>
-<p><a href="./ECN7060/ECN7060_10.pdf">Diapos</a></p>
-</div>
-<div id="cours-11-20211124" class="section level4">
-<h4>Cours 11, 2021/11/24</h4>
-<p><a href="./ECN7060/ECN7060_11.pdf">Diapos</a></p>
-</div>
-<div id="cours-12-20211201" class="section level4">
-<h4>Cours 12, 2021/12/01</h4>
-<p><a href="./ECN7060/ECN7060_12.pdf">Diapos</a></p>
-</div>
-<div id="cours-13-20211208" class="section level4">
-<h4>Cours 13, 2021/12/08</h4>
-<p><a href="./ECN7060/ECN7060_13.pdf">Diapos</a></p>
 </div>
 <div id="examens-récents" class="section level4">
 <h4>Examens récents</h4>
+<p><a href="./ECN7060/EI21.pdf">Examen intra 2021</a></p>
+<p><a href="./ECN7060/EF21.pdf">Examen final 2021</a></p>
 <p><a href="./ECN7060/EI20.pdf">Examen intra 2020</a></p>
 <p><a href="./ECN7060/EF20A.pdf">Examen final 2020</a></p>
 <p><a href="./ECN7060/EI19.pdf">Examen intra 2019</a></p>
@@ -398,23 +314,20 @@ $(document).ready(function () {
 </div>
 <div id="documents-de-lannée-passée" class="section level4">
 <h4>Documents de l’année passée</h4>
-<p><a href="./ECN7060/ECN7060_DL_2020.pdf">Devoirs et Lectures</a></p>
-<p><a href="./ECN7060/ECN7060_1_2020.pdf">Diapos, Cours 1</a></p>
-<p><a href="./ECN7060/ECN7060_2_2020.pdf">Diapos, Cours 2</a></p>
-<p><a href="./ECN7060/ECN7060_3_2020.pdf">Diapos, Cours 3</a></p>
-<p><a href="./ECN7060/ECN7060_4_2020.pdf">Diapos, Cours 4</a></p>
-<p><a href="./ECN7060/ECN7060_5_2020.pdf">Diapos, Cours 5</a></p>
-<p><a href="./ECN7060/ECN7060_6_2020.pdf">Diapos, Cours 6</a></p>
-<p><a href="./ECN7060/ECN7060_7_2020.pdf">Diapos, Cours 7</a></p>
-<p><a href="./ECN7060/ECN7060_8_2020.pdf">Diapos, Cours 8</a></p>
-<p><a href="./ECN7060/ECN7060_9_2020.pdf">Diapos, Cours 9</a></p>
-<p><a href="./ECN7060/ECN7060_10_2020.pdf">Diapos, Cours 10</a></p>
-<p><a href="./ECN7060/ECN7060_11_2020.pdf">Diapos, Cours 11</a></p>
-<p><a href="./ECN7060/ECN7060_12_2020.pdf">Diapos, Cours 12</a></p>
-<p><a href="./ECN7060/ECN7060_13_2020.pdf">Diapos, Cours 13</a></p>
-<p><a href="./ECN7060/Quiz_6_2018.pdf">Questionnaire 6, 2018, sur les probabilités et espérances conditionnelles</a></p>
-<p><a href="./ECN7060/Quiz_7.pdf">Questionnaire 7, 2017, sur les probabilités et espérances conditionnelles</a></p>
-</div>
+<p><a href="./ECN7060/ECN7060_DL_2021.pdf">Devoirs et Lectures</a></p>
+<p><a href="./ECN7060/ECN7060_1_2021.pdf">Diapos, Cours 1</a></p>
+<p><a href="./ECN7060/ECN7060_2_2021.pdf">Diapos, Cours 2</a></p>
+<p><a href="./ECN7060/ECN7060_3_2021.pdf">Diapos, Cours 3</a></p>
+<p><a href="./ECN7060/ECN7060_4_2021.pdf">Diapos, Cours 4</a></p>
+<p><a href="./ECN7060/ECN7060_5_2021.pdf">Diapos, Cours 5</a></p>
+<p><a href="./ECN7060/ECN7060_6_2021.pdf">Diapos, Cours 6</a></p>
+<p><a href="./ECN7060/ECN7060_7_2021.pdf">Diapos, Cours 7</a></p>
+<p><a href="./ECN7060/ECN7060_8_2021.pdf">Diapos, Cours 8</a></p>
+<p><a href="./ECN7060/ECN7060_9_2021.pdf">Diapos, Cours 9</a></p>
+<p><a href="./ECN7060/ECN7060_10_2021.pdf">Diapos, Cours 10</a></p>
+<p><a href="./ECN7060/ECN7060_11_2021.pdf">Diapos, Cours 11</a></p>
+<p><a href="./ECN7060/ECN7060_12_2021.pdf">Diapos, Cours 12</a></p>
+<p><a href="./ECN7060/ECN7060_13_2021.pdf">Diapos, Cours 13</a></p>
 </div>
 </div>
 
@@ -445,7 +358,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
