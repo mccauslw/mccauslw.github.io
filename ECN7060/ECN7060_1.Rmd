@@ -17,25 +17,23 @@ urlcolor: blue
 * Probabilité et espérance conditionnelles
 
 ### Partie 2, Livre de Casella et Berger
-* Statistiques suffisantes et ancillaires, principe de vraisemblance
+* Statistiques exhaustives et libres, principe de vraisemblance
 * Estimation ponctuelle, fréquentiste et bayésienne
 * Estimation d’intervalle, fréquentiste et bayésienne
 * Tests d’hypothèse, fréquentistes et bayésiens
+* Prévision, fréquentiste et bayésienne
 
 [//]: Partie 1: économétrie, micro et macro
 [//]: Convergence: économétrie fréquentiste
 [//]: Probabilité conditionnelle: économétrie bayésienne, micro, macro
+[//]: Pedagogical value of comparitive approach
 
 ## Les éléments de la note finale :
 1. Quiz : 20% (meilleures $n-1$ de $n \approx 9$)
-1. Examen intra : 35% (le 27 octobre)
-1. Participation, cours et séance TP : 5%
-1. Examen final : 40% (le 22 décembre)
+1. Examen intra : 35% (à remettre le 2 novembre)
+1. Examen final : 45% (le 21 décembre)
 
-[//]: For people who don't benefit from TPs, participation based on class only
-[//]: Participation in TP can help, non-participation cannot hurt
-
-## Le cycle mercredi 13h-mardi soir
+## Le cycle de mercredi 13h à mardi soir
 1. Mercredi 13h-16h, cours :
     + retour des quiz corrigés du cours précédent
     + questions des étudiants
@@ -50,8 +48,8 @@ urlcolor: blue
     + questions simples de lecture
     + devoirs sur la matière du cours actuel
 
-1. Mardi 13h-14h30, séance de travail pratique
-    + discussion des devoirs avec Féraud
+1. Lundi 13h-14h30, séance de travail pratique
+    + discussion des devoirs avec Sawadogo, le moniteur
 
 1. Mardi soir
     + chargement des diapos du lendemain
@@ -71,11 +69,13 @@ urlcolor: blue
 ### Avant le cours
 1. Avoir lu les lectures, pouvoir répondre aux questions simples
 
-[//]: Importance of trying first
-[//]: Nature of learning: asking questions and seeking answers
+[//]: Point is to come ready to class
 
 ### Avant la séance TP
 1. Avoir essayé (idéalement complété) les devoirs
+
+[//]: Importance of trying first
+[//]: Nature of learning: asking questions and seeking answers
 
 ## Espaces de probabilité $(\Omega, {\cal F}, P)$ dans un monde fini
 
@@ -98,25 +98,26 @@ $\{0,1\}$ | 1
 
 [//]: Distinction between états et événements élémentaires
 [//]: States of the world not enough, interested in events
-[//]: Apparent redundancy: should notice this
+[//]: Apparent redundancy: why do we need F and not have F = 2^Omega implied
 [//]: Here: direct specification of F and P: note difficulty of doing this even for {1,...,10}.
 [//]: Specify less, and let the axioms do the rest
+[//]: We will need to impose some properties, first let's look at some interpretations.
 
 ## Jugements cohérents (de Finetti et Ramsey)
 
 + Ensemble d'états du monde : $\Omega = \{\omega_1,\omega_2\}$
-    - $\omega_1$: Le parti PLC gagne l’élection fédérale prochaine
-    - $\omega_2$: Le parti PLC ne gagne pas
+    - $\omega_1$: Le parti CAQ gagne l’élection du 3 octobre au Québec.
+    - $\omega_2$: Le parti CAQ ne gagne pas.
     
-+ Un agent offre des prix (un prix est à la fois le cours acheteur et le cours vendeur) pour tous ces contrats:
++ Un agent offre des prix (un prix est à la fois le cours acheteur et le cours vendeur) pour tous ces contrats :
     1. paie 1\$ si ni $\omega_1$ ni $\omega_2$ se produit (l'événement $\emptyset$)
     2. paie 1\$ si $\omega_1$ se produit (l'événement $\{\omega_1\}$)
     3. paie 1\$ si $\omega_2$ se produit (l'événement $\{\omega_2\}$)
     4. paie 1\$ si $\omega_1$ ou $\omega_2$ se produit  (l'événement $\Omega = \{\omega_1, \omega_2\}$)
 
-+ Ces jugements sont *cohérents* si un autre ne peut pas faire un profit sûr peu importe le résultat.
++ Cet ensemble de jugements est *cohérent* si un autre ne peut pas faire un profit sûr peu importe le résultat.
 
-+ Ils sont cohérents ssi les prix vérifient les axiomes de probabilité.
++ Il est cohérents ssi les prix vérifient les axiomes de probabilité.
 
 + Contribution de Ramsey : accommoder l'aversion pour le risque et mesurer à la fois les jugements de probabilité et l'utilité.
 
@@ -154,8 +155,11 @@ $\{0,1\}$ | 1
 Par 3 et 4, ${\cal F}$ est une algèbre, pas forcément une tribu.
 
 ### Une façon de spécifier une probabilité :
-1. Donner $P(\{\omega\}) = p_\omega \geq 0$, $\omega \in \Omega$, où $\sum_{\omega \in \Omega} p_\omega = 1$
-2. Définir l'extension $P(A) = \sum_{\omega \in A} p_\omega$, $A \subseteq \Omega$.
+1. Stipuler $\{\omega\} \in {\cal F}$, donner $P(\{\omega\}) = p_\omega \geq 0$, $\omega \in \Omega$, telles que $\sum_{\omega \in \Omega} p_\omega = 1$.
+2. Laisser les axiomes donner l'extension avec ${\cal F} = 2^\Omega$ et les probabilités
+\[
+  P(A) = \sum_{\omega \in A} p_\omega,\; A \subseteq \Omega.
+\]
 
 [//]: Different order, P then F, for intuition
 [//]: Closed under pairwise to closed under finite, not closed under infinite
@@ -182,10 +186,11 @@ Quelques ensembles :
 1. $[0,1)$, $\mathbb{R}$
 1. $2^\mathbb{N}$, l'ensemble des sous-ensembles de $\mathbb{N}$
 1. L'ensemble des fonctions $f \colon \mathbb{N} \to \{0,1\}$
-1. L'ensemble des fichiers finis (livres, documents, dessins, audio, vidéo, programmes informatiques
+1. L'ensemble des fichiers finis (livres, documents, dessins, audio, vidéo, programmes informatiques)
 
 [//]: Do diagonalisation argument
 [//]: Why doesn't it work on Q? Get a number not in Q.
+[//]: Just because you can count them doesn't mean you can order them.
 
 ## Exemples de $\Omega$ : finis, dénombrables, indénombrables
 
@@ -224,7 +229,7 @@ Supposez que l'espace d'états $\Omega$ est donné, on doit spécifier ${\cal F}
 2. une façon de spécifier une partie de $P$ et laisser les axiomes déterminer le reste
 3. une tribu ${\cal F}$ faisable mais assez riche qu'elle contient les événements d’intérêt.
 
-La semaine prochaine on développe un outil important pour cette construction des espaces de probabilité.
+La semaine prochaine on développe un outil important pour la construction des espaces de probabilité.
 
 ## Axiomes de probabilités
 
@@ -235,7 +240,7 @@ Un espace de probabilité est un $(\Omega,{\cal F},P)$ tel que
     a. $\emptyset, \Omega \in {\cal F}$,
     b. $A \in {\cal F} \to A^c \in {\cal F}$,
     c. $A_1, A_2, \ldots \in {\cal F} \to \cup_{i=1}^\infty A_i, \cap_{i=1}^\infty A_i \in {\cal F}$;
-3. $P \colon {\cal F} \to \mathbb{R}$ satisfait
+3. $P \colon {\cal F} \to [0,\infty)$ satisfait
     a. $P(\emptyset) = 0$, $P(\Omega) = 1$,
     b. $A_1, A_2,\ldots \in {\cal F}\, \mbox{disjoints} \to P(\cup_{i=1}^\infty A_i) = \sum_{i=1}^\infty P(A_i).$     
 
@@ -243,6 +248,19 @@ Un espace de probabilité est un $(\Omega,{\cal F},P)$ tel que
 [//]: Why not uncountable unions and intersections?
 (What would uncountable additivity mean?)
 [//]: Redundancy with unions or intersections
+
+## Mesures
+
+- Si ${\cal F}$ est une tribu sur $\Omega$, $(\Omega,{\cal F})$ est un *espace mesurable*.
+- Une probabilité $P \colon {\cal F} \to [0,\infty)$ (ou mesure de probabilité) vérifie $P(\emptyset) = 0$, $P(\Omega) = 1$, additivité dénombrable.
+- Une mesure $\mu \colon {\cal F} \to [0,\infty)$ vérifie $\mu(\emptyset) = 0$, additivité dénombrable.
+    - On relâche la normalisation $P(\Omega) = 1$.
+    - Applications : calcul de longeur, aire, volume, masse; intégration
+- Une mesure signée $\mu \colon {\cal F} \to \mathbb{R}$ vérifie $\mu(\emptyset) = 0$,
+additivité dénombrable.
+    - On relâche aussi la non-négativité de $\mu$.
+    - Applications : charge électrique, intégration
+- Plusieurs théorèmes dans le cours s'appliquent aux mesures, pas seulement les mesures de probabilité.
 
 ## Aperçu, Rosenthal chapitre 2
 
