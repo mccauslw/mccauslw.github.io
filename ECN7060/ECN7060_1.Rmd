@@ -118,31 +118,30 @@ $\{0,1\}$ | 1
 
 + Cet ensemble de jugements est *cohérent* si un autre ne peut pas faire un profit sûr peu importe le résultat.
 
-+ Il est cohérents ssi les prix vérifient les axiomes de probabilité.
++ Il est cohérent ssi les prix vérifient les axiomes de probabilité.
 
 + Contribution de Ramsey : accommoder l'aversion pour le risque et mesurer à la fois les jugements de probabilité et l'utilité.
 
 + Ch. 2 de Diaconis et Skyrms, "Ten Great Ideas about Chance".
 
 [//]: Axioms of probability and no-arbitrage conditions (loi d'un prix): P as a price
-[//]: 0.0, 0.5, 0.6, 1.0 : achete 4 vend 2 et 3, obtient 0.1
 [//]: Un standard méritoire même si on n'est pas obligé de parier.
 [//]: Marchés de prévision
 [//]: Additivité et la loi d'un prix, absense d’arbitrage
-[//]: Pas forcément judicieux: 0.0, 0.01, 0.99, 1.00
 [//]: Nécessité, pas suffisance, de cohérence
 
-## Quatre ``probabilités'' sur $(\Omega, 2^\Omega)$ où $\Omega = \{\omega_1,\omega_2\}$
+## Quatre "probabilités" sur $(\Omega, 2^\Omega)$ où $\Omega = \{\omega_1,\omega_2\}$
 
 |$A\in {\cal F}=2^\Omega$| 1 | 2 | 3 | 4 |
 |---|---|---|---|---|
 |$\emptyset$     | 0.2 | 0   | 0    | 0 |
 |$\{\omega_1\}$  | 2.0 | 0.6 | 0.01 | 0.9 |
-|$\{\omega_2\}$  | -1  | 0.5 | 0.99 | 0.0 |
+|$\{\omega_2\}$  | -1  | 0.5 | 0.99 | 0.1 |
 |$\Omega = \{\omega_1,\omega_2\}$ | 0 | 1 | 1 | 1 |
 
 [//]: First two not real probabilities
-[//]: Une probabilité peu judicieuse
+[//]: 0.0, 0.5, 0.6, 1.0 : achete 4 vend 2 et 3, obtient 0.1
+[//]: Pas judicieux: 0.0, 0.01, 0.99, 1.00
 
 ## Interprétation fréquentiste de probabilité
 
@@ -170,6 +169,8 @@ Par 3 et 4, ${\cal F}$ est une algèbre, pas forcément une tribu.
 [//]: Évènements certains et impossible
 [//]: Stabilité par complémentation
 [//]: Stabilité pour les réunions ou intersections finies
+[//]: Different order, P then F, for intuition
+[//]: Closed under pairwise to closed under finite, not closed under infinite
 
 ### Une façon de spécifier une probabilité :
 1. Stipuler $\{\omega\} \in {\cal F}$, donner $P(\{\omega\}) = p_\omega \geq 0$, $\omega \in \Omega$, telles que $\sum_{\omega \in \Omega} p_\omega = 1$.
@@ -178,9 +179,6 @@ Par 3 et 4, ${\cal F}$ est une algèbre, pas forcément une tribu.
   P(A) = \sum_{\omega \in A} p_\omega,\; A \subseteq \Omega.
 \]
 
-[//]: Different order, P then F, for intuition
-[//]: Closed under pairwise to closed under finite, not closed under infinite
-[//]: Verify probability triple in previous slide
 [//]: Can't do this for Omega on real interval
 [//]: Idea: specify some probabilities and let axioms do the rest
 [//]: Two issues: coherence, specifying enough
@@ -205,14 +203,9 @@ Quelques ensembles :
 1. L'ensemble des fonctions $f \colon \mathbb{N} \to \{0,1\}$
 1. L'ensemble des fichiers finis (livres, documents, dessins, audio, vidéo, programmes informatiques)
 
-[//]: Why doesn't it work on Q? Get a number not in Q.
-[//]: Just because you can count them doesn't mean you can order them.
-[//]: Why this matters: with uniform probability on interval, P of R is one; Q, 0
-[//]: And yet, the rationals are dense in the reals, always a sequence of Q that converges to a R
-[//]: Why this matters: power set doesn't work, need F, strange nature of R
-[//]: Specification of F not trivial
+[//]: Why doesn't diagonalization argument work on Q? Get a number not in Q.
 
-## Démonstration que $\mathbb{Z}^2$ et $\mathbb{Q}$ sont dénombrable
+## Démonstration que $\mathbb{Z}^2$ et $\mathbb{Q}$ sont dénombrables
 
 ## Démonstration que $[0,1)$ est indénombrable
 
@@ -279,18 +272,23 @@ Quelques ensembles :
   \Pr([0,1]) = 1, \, \mbox{mais} \, \Pr([0,1] \cap \mathbb{Q}) = 0.
 \]
 
-## Construire $(\Omega, {\cal F}, P)$ pour la loi uniforme $[0,1]$
+[//]: Why Q countable matters: with uniform probability on interval, P of R is one; Q, 0
+[//]: And yet, the rationals are dense in the reals, always a sequence of Q that converges to a R
+[//]: Why this matters: power set doesn't work, need F, strange nature of R
+[//]: Specification of F not trivial
 
-### Premier essai: $\Omega = [0,1]$, ${\cal F} = 2^\Omega$, trouver une $P$ qui vérifie
+## Construire $(\Omega, {\cal F}, P)$ pour la loi uniforme $[0,1)$
+
+### Premier essai: $\Omega = [0,1)$, ${\cal F} = 2^\Omega$, trouver une $P$ qui vérifie
 1. $P([a,b]) = P((a,b]) = P([a,b)) = P((a,b)) = b-a$ pour tout $0 \leq a \leq b \leq 1$.
 2. $A_1,A_2,\ldots, \in {\cal F}\, \mbox{disjoints} \Rightarrow P(\cup_{i=1}^\infty A_i) = \sum_{i=1}^\infty P(A_i)$
 3. $P(A \oplus r) = P(A)$, $0 \leq r \leq 1$.
 
 ### Impossible! Preuve :
 1. Définir $x \sim y$ ssi $y-x \in \mathbb{Q}$ ; $\sim$ est transitive et réflexive.
-2. Partitionner $[0,1]$ en classes d'équivalence : $\{0, 1/3, 1/5, \ldots\}$, $\{\pi - 3, \pi - 3.1, \pi - 3.14, \ldots\}$, $\{e - 2.7, e - 2.71, e - 2.717 \}$, etc.
+2. Partitionner $[0,1)$ en classes d'équivalence : $\{0, 1/3, 1/5, \ldots\}$, $\{\pi - 3, \pi - 3.1, \pi - 3.14, \ldots\}$, $\{e - 2.7, e - 2.71, e - 2.717 \}$, etc.
 3. Construire $H$, un ensemble avec un élément de chaque classe.
-4. Noter que $[0,1] = \cup_{r \in [0,1] \cap \mathbb{Q}} (H \oplus r)$ (ensembles disjoints).
+4. Noter que $[0,1) = \cup_{r \in [0,1] \cap \mathbb{Q}} (H \oplus r)$ (ensembles disjoints).
 5. Constater l'implication impossible :
 $$ 1 = P(\Omega) = \sum_{r \in [0,1] \cap \mathbb{Q}} P(H \oplus r) = \sum_{r \in [0,1] \cap \mathbb{Q}} P(H)$$
 
