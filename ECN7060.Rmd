@@ -9,9 +9,13 @@
 
 [Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf)
 
-#### Cours 1, 2022/09/01
+#### Cours 1, 2022/09/07
 
 [Diapos](./ECN7060/ECN7060_1.pdf)
+
+#### Cours 2, 2022/09/14
+
+[Diapos](./ECN7060/ECN7060_2.pdf)
 
 #### Examens récents
 

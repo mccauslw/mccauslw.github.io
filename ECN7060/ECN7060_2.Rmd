@@ -12,19 +12,19 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Plan de route, Chapitre 2
 
 * 2.1 Définition d'un espace de probabilité
-* 2.2 Construction de $(\Omega, {\cal F}, P)$ pour $\Omega$ indénombrable,
-      une spécification suffisante (une semi-algèbre ${\cal J}$ et un
-      $P\colon{\cal J}\to [0,1]$ avec superadditivité plus monotonicité
-      dénombrable) pour $\Omega = [0,1]$
-* 2.3 Théorème d'extension : un outil pour construire ${\cal F}$, $P$
+* 2.2 Construction de $(\Omega, {\cal F}, P)$, possiblement indénombrable, à partir de
+    - une semi-algèbre ${\cal J} \subseteq 2^\Omega$ et
+    - une $P\colon{\cal J}\to [0,1]$ superadditive et dénombrablement monotone.
+* 2.3 Théorème d'extension : pour montrer que ${\cal F}$ est une tribu et que $P$ est une probabilité sur l'espace mesurable $(\Omega, {\cal F})$.
 * 2.4 Application du théorème pour $\Omega = [0,1]$.
 * 2.5 Variations du théorème (conditions alternatives)
 * 2.6 Application du théorème pour d'autres $\Omega$
+    - suites de tirages à pile ou face $\Omega = \{(r_1,r_2,\ldots): r_i \in \{0,1\}\}$
+    - produits cartésien $\Omega = \Omega_1 \times \Omega_2$.
 
-## Théorème d'extension
+## Théorème d'extension I
 
-Application : spécifier $\Omega$, semi-algèbre ${\cal J}$, $P \colon {\cal J} \to [0,1]$,
-obtenir $(\Omega, {\cal F}, P)$.
+Application : spécifier $\Omega$, une semi-algèbre ${\cal J}$, une proto-probabilité $P \colon {\cal J} \to [0,1]$, puis obtenir $(\Omega, {\cal F}, P)$.
 
 Conditions sur $\Omega$, ${\cal J}$ et $P \colon {\cal J} \to [0,1]$ :
 
@@ -32,28 +32,41 @@ Conditions sur $\Omega$, ${\cal J}$ et $P \colon {\cal J} \to [0,1]$ :
     a. $\emptyset \in {\cal J}$, $\Omega \in {\cal J}$,
     a. ${\cal J}$ est stable pour les intersections finies,
     a. Si $A \in {\cal J}$, $A^c$ est une réunion disjointe finie des éléments de ${\cal J}$.
-1. $P$ est finiement superadditive.
-1. $P$ est dénombrablement monotone.
+1. $P(\emptyset) = 0$ et $P(\Omega) = 1$.
+1. $P$ est finiement superadditive : pour $A_1,\ldots,A_k \in {\cal J}$ disjoints tels que $\cup_{i=1}^k A_i \in {\cal J}$,
+\[
+  P\left( \cup_{i=1}^k A_i \right) \geq \sum_{i=1}^k P(A_i).
+\]
+1. $P$ est dénombrablement monotone : pour chaque suite $A_n \in {\cal J}$ telle que $A \equiv \cup_n A_n \in {\cal J}$, $P(A) \leq \sum_n P(A_n)$.
 
-Conclusion : il y a une tribu ${\cal M}$ sur $\Omega$ et une probabilité $P^*$ sur ${\cal M}$ telles que
+## Théorème d'extension II
+
+Si les conditions 1-4 tiennent, il y a une tribu ${\cal M}$ sur $\Omega$ et une probabilité $P^*$ sur ${\cal M}$ telles que
 
 1. ${\cal J} \subseteq {\cal M}$,
 1. $P^*(A) = P(A)$ pour chaque $A \in {\cal J}$.
 
+## Un résultat utile
 
-## Deux tribus pour $\Omega = \mathbb{R}$ (Exercise 2.4.5)
+Soit $\Omega \neq \emptyset$. Alors
+
+- $2^\Omega$ est une tribu.
+- Pour chaque collection de tribus $\{ {\cal F}_i \colon i \in I\}$ sur $\Omega$, l'intersection $\cap_{i \in I} {\cal F}_i$ est une tribu.
+- Pour n'importe quel ensemble ${\cal A} \subseteq 2^\Omega$ de parties de $\Omega$ il y a toujours une seule tribu (dénoté $\sigma({\cal A})$) qui est la tribu la plus petite qui contient ${\cal A}$.
+
+## Deux tribus sur $\Omega = \mathbb{R}$ (Exercice 2.4.5)
 
 * Un intervalle de $\mathbb{R}$ est n'importe $[a,b]$, $[a,b)$, $(a,b]$ ou $(a,b)$, où $a,b \in \mathbb{R} \cup \{\infty, -\infty\}$.
 (Si $a>b$, l'intervalle est vide.)
-* Soit ${\cal A}_2 = \{ \mbox{tous intervalles de}\; \mathbb{R} \}$.
+* Soit ${\cal A}_2$ l'ensemble de tous les intervalles de $\mathbb{R}$.
     * ${\cal A}_2$ est-elle une semi-algèbre?
-    * ${\cal A}_2$ plus toutes les réunions dénombrables n'est pas une tribu. 
-    * La spécification de $P\colon {\cal A}_2 \to [0,1]$ est toujours difficile.
-* Soit ${\cal B} \equiv \sigma({\cal A}_2)$, la tribu la plus petite qui contient ${\cal A}_2$.
+    * ${\cal A}_2$ plus toutes les réunions dénombrables n'est pas une tribu. L'ensemble de Cantor (pages 16-17) est le complément d'une réunion dénombrable d'intervalles mais n'est pas une réunion dénombrable d'intervalles.
+    * Soit ${\cal B} \equiv \sigma({\cal A}_2)$, la tribu la plus petite qui contient ${\cal A}_2$.
+    * La spécification directe de $P\colon {\cal A}_2 \to [0,1]$ est ardue.
 * Soit ${\cal A}_1 = \{ (-\infty, x] \colon x \in \mathbb{R} \}$.
     * ${\cal A}_1$ est-elle une semi-algèbre?
     * Pourquoi ${\cal A}_1$ est-elle utile?
-* Prochaine diapos : montrez que $\sigma({\cal A}_1) = {\cal B}$.
+* Prochaine diapo : démonstration que $\sigma({\cal A}_1) = {\cal B}$.
 
 ## Démonstration de $\sigma({\cal A}_1) = {\cal B} \equiv \sigma({\cal A}_2)$
 
@@ -74,7 +87,7 @@ Conclusion : il y a une tribu ${\cal M}$ sur $\Omega$ et une probabilité $P^*$ 
 
 ## Une semi-algèbre pour $\Omega = \{(r_1,r_2,\ldots): r_i \in \{0,1\}\}$
 
-* $\Omega$ est l'ensemble de suites infinies des 'piles ou faces'.
+* $\Omega$ est l'ensemble de suites infinies des tirages à pile ou face.
 * Soit $A_{a_1a_2\ldots a_n} \equiv \{(r_1,r_2,\ldots) \in \Omega \colon r_i = a_i, 1 \leq i \leq n\} \subseteq \Omega$.
 * $A_{a_1a_2\ldots a_n}$ est l'ensemble de suites infinies avec l'histoire initial $a_1a_2\ldots a_n$.
 * ${\cal J} \equiv \{A_{a_1a_2\ldots a_n} \colon n\in \mathbb{N}, a_1,\ldots,a_n \in \{0,1\} \}
@@ -115,7 +128,7 @@ $$P(A_{a_1a_2\ldots a_n}) = 1/2^n,\quad P(\emptyset) = 0,\quad P(\Omega) = 1.$$
 
 * $(A \times B)^c = ?$
 
-## Une proto-probabilité pour ${\cal J} = \Omega_1 \times \Omega_2$
+## Une proto-probabilité pour $\Omega_1 \times \Omega_2$
 
 Une 'proto-probabilité' $P \colon {\cal J} \to [0,1]$ :
 $P(A \times B) \equiv P_1(A) P_2(B)$.
@@ -137,7 +150,7 @@ $X \colon \Omega \to \mathbb{R}$ telle que $\{X \leq x\} \in {\cal F}$ pour chaq
     * les indicateurs $1_A(\omega)$, où $A \in {\cal F}$,
     * la somme de deux variables aléatoires, les multiples scalaires des variables aléatoires,
     * les limites des variables aléatoires:
-    ($Z(\omega) = \lim_{n \to \infty} Z_n(\omega)$ pour $\omega \in \Omega)$).
+    ($Z(\omega) \equiv \lim_{n \to \infty} Z_n(\omega)$ pour $\omega \in \Omega)$).
 
 * Indépendence
     * d'événements (du même espace de probabilité)
@@ -158,7 +171,7 @@ Par convergence de probabilités (un théorème),
 
 ## Aperçu du Chapitre 3, partie III
 
-Pour les séquences réels,
+Pour les suites réelles,
 
 * $\liminf_{n \to \infty} x_n \equiv \lim_{n \to \infty} (\inf_{m \geq n} x_m)$
 * $\limsup_{n \to \infty} x_n \equiv \lim_{n \to \infty} (\sup_{m \geq n} x_m)$
