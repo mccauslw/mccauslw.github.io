@@ -118,17 +118,17 @@ Alors
 
 ## Indépendance de deux événements sur $(\Omega,{\cal F},P)$
 
-* $A,B \in {\cal F}$ sont indépendants (dénoté $A\perp B$) si $P(A\cap B) = P(A)P(B)$.
+* Définition : $A,B \in {\cal F}$ sont indépendants (dénoté $A\perp B$) si $P(A\cap B) = P(A)P(B)$.
 
 * Résultat : $A \perp B \Rightarrow A \perp B^c,\, A^c \perp B,\, A^c \perp B^c$.
 
-* Deux faits :
+* Preuve du premier : $P(A\cap B^c) + P(A\cap B) = P(A)$ par additivité. Si $P(A\cap B) = P(A)P(B)$,
+$P(A\cap B^c) = P(A)(1-P(B)) = P(A)P(B^c)$.
+
+* Deux faits intéressants :
     * $P(A\cap B) + P(A\cap B^c) + P(A^c \cap B) + P(A^c \cap B^c) = 1$
     * $(P(A) + P(A^c))(P(B) + P(B^c)) = P(A)P(B) + P(A)P(B^c) + P(A^c)P(B) + P(A^c)P(B^c) = 1$.
     
-* $P(A\cap B^c) + P(A\cap B) = P(A)$ par additivité. Si $P(A\cap B) = P(A)P(B)$,
-$P(A\cap B^c) = P(A)(1-P(B)) = P(A)P(B^c)$.
-
 ## Indépendance de trois événements
 
 * $A,B,C \in {\cal F}$ sont indépendants si $P(A\cap B)=P(A)P(B)$, $P(B\cap C)=P(B)P(C)$,
