@@ -196,7 +196,7 @@ $$B_1 = A_1,\, B_2 = A_2 \cap A_1^c,\, \ldots,\, B_n = A_n \cap A_{n-1}^c,\, \ld
 * Notez que $B_n \in {\cal F}$, $A_n = \cup_{m=1}^n B_m$ et $A = \cup_{m=1}^\infty B_m$.
 
 * Alors $A \in {\cal F}$ et
-$$ P(A) = P(\cup_{m=1}^\infty B_m) = \sum_{m=1}^\infty P(B_m) = \lim_{n\to \infty} \sum_{m=1}^n P(B_n) = \lim_{n\to \infty} P(A_n).$$
+$$ P(A) = P(\cup_{m=1}^\infty B_m) = \sum_{m=1}^\infty P(B_m) = \lim_{n\to \infty} \sum_{m=1}^n P(B_m) = \lim_{n\to \infty} P(A_n).$$
 
 * Si $A_n \searrow A$ et $A_n \in {\cal F}$, $A_n^c \nearrow A^c$ puis
 $P(A^c) = \lim_{n\to \infty} P(A_n^c)$, $P(A) = \lim_{n\to \infty} P(A_n)$.
