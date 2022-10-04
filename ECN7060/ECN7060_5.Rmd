@@ -108,16 +108,17 @@ Preuve de suffisance :
 * Pour $m$ fixe,
 \[
   \begin{aligned}
-    P(\cap_{n=1}^\infty \cup_{k=n}^\infty |Z_k - Z| \geq \epsilon)
+    P(|Z_k - Z| \geq \epsilon\; i.o.)
+    &\equiv P(\cap_{n=1}^\infty \cup_{k=n}^\infty |Z_k - Z| \geq \epsilon) \\
     &\leq P(\cup_{k=m}^\infty |Z_k - Z| \geq \epsilon) \\
     &\leq \sum_{k=m}^\infty P(|Z_k - Z|\geq \epsilon).
   \end{aligned}
 \]
-* Puisque $m$ est arbitraire, $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
+* Puisque $m$ est arbitraire, $P(|Z_n - Z| \geq \epsilon\; i.o.) = 0$.
 
 ## Preuve, continuée
 
-Rappel : la condition (dite suffisante) de l'avant-dernière diapo entraine $P(|Z_k - Z| \geq \epsilon\; i.o.) = 0$.
+Rappel : la condition (dite suffisante) de l'avant-dernière diapo entraine $P(|Z_n - Z| \geq \epsilon\; i.o.) = 0$.
 
 Alors (nous utilisons ce résultat à la dernière équation)
 \[
@@ -208,7 +209,8 @@ $P(Z_n \to Z) = 1$ (la condition est suffisante, pas nécessaire).
 
 ## Preuve, forte loi de grands nombres
 
-* Notez que $(X_i - m)^2 \leq (X_i-m)^4 + 1$ pour tout $\omega \in \Omega$. (Si $(X_i-m)^2 > 1$, $(X_i - m)^2 < (X_i - m)^4$.
+* Notez que $(X_i(\omega) - m)^2 \leq (X_i(\omega)-m)^4 + 1$ pour tout $\omega \in \Omega$.
+* Alors $v \equiv E[(X_i-m)^2] \leq a + 1 < \infty$.
 * Supposez que $m = 0$, sans perte de généralité.
 * Remarquez que $S_n^4 = \frac{1}{n^4} \sum_{i,j,k,l} X_i X_j X_k X_l$.
 * Alors
@@ -236,7 +238,7 @@ $\sum_{n=1}^\infty P(|S_n| \geq \epsilon) < \infty$.
 * Preuve : Soit $X_0 = |X|/\sqrt{E[X^2]}$, $Y_0 = |Y|/\sqrt{E[Y^2]}$.
     - $0 \leq E[(X_0 - Y_0)^2] = E[X_0^2 + Y_0^2 + 2X_0Y_0] = 2 - 2E[X_0Y_0]$
     - $E[X_0Y_0] \leq 1$
-    - $E[XY] \leq \sqrt{E[X^2]E[Y^2]}$
+    - $E[|XY|] \leq \sqrt{E[X^2]E[Y^2]}$
 
 ## Inégalité de Jensen
 
