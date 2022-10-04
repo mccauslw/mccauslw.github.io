@@ -25,6 +25,10 @@
 
 [Diapos](./ECN7060/ECN7060_4.pdf)
 
+#### Cours 5, 2022/10/04
+
+[Diapos](./ECN7060/ECN7060_5.pdf)
+
 #### Examens récents
 
 [Examen intra 2021](./ECN7060/EI21.pdf)
