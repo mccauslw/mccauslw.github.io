@@ -16,10 +16,10 @@ $$ E[\liminf_{n\to \infty} X_n] \leq \liminf_{n\to \infty} E[X_n]. $$
 
 * Notes :
     1. Hypothèse très faible concernant $X_n$.
-    1. Résultat pour $X_n \geq C > -\infty$ suit immédiatement.
-    1. Les deux cotés peuvent être infinis.
+    1. Le résultat pour $X_n \geq C > -\infty$ suit immédiatement.
+    1. Le membre de droite ou les deux membres peuvent être infinis.
     
-* Construction d'une séquence convergente : $Y_n \equiv \inf_{k\geq n} X_k$.
+* La construction $Y_n \equiv \inf_{k\geq n} X_k$ satisfait
     1. $0 \leq Y_n \leq X_n$.
     1. $Y_n \leq Y_{n+1}$ ($\{n, n+1, \ldots \}$ décroissant en $n$).
     1. $Y_n \nearrow Y \equiv \liminf_{n\to \infty} X_n$.
@@ -43,6 +43,14 @@ $$ \liminf_n E[X_n] \geq \liminf_n E[Y_n] = \lim_n E[Y_n] = E[Y] = E[\liminf_n X
   \limsup_n E[X_n] \leq E[\limsup_n X_n].
 \]
 
+* Si $|X_n| \leq C < \infty$, on peut mettre les deux ensemble :
+\[
+  E[\liminf_n X_n] \leq \liminf_n E[X_n]
+  \leq \limsup_n E[X_n] \leq E[\limsup_n X_n].
+\]
+* Alors si $|X_n| \leq C < \infty$ et $X_n \overset{p.s.}{\to} X$, $\lim E[X_n] = E[X]$.
+* Mais on peut faire mieux...
+
 ## Théorème de convergence dominée
 
 * Pour une séquence $X_n$ de variables aléatoires, $X$ et $Y$ v.a. telles que
@@ -50,8 +58,8 @@ $P(X_n \to X) = 1$, $|X_n| \leq Y$ et $E[Y] < \infty$.
 $$ \lim_{n\to \infty} E[X_n] = E[X]. $$
 
 * Notes :
-    1. La dominance par une $Y$ à moyenne finie est plus faible qu'une borne uniform pour $|X_n|$ ($Y=c$); le résultat est donc plus fort.
-    1. Même v.a. dominante $Y$ pour tous les $n$.
+    1. La dominance par une $Y$ avec $E[Y] < \infty$ est plus faible que la dominance uniforme ($Y=C$); le résultat est donc plus fort.
+    1. Attention : même v.a. dominante $Y$ pour tous les $n$.
 
 * Preuve :
 $$ E[Y] + E[X] = E[Y+X] = E[Y+\lim_n X_n] = E[Y+\liminf_n X_n] $$
@@ -65,14 +73,14 @@ $$ \lim_n E[X_n] = E[X]. $$
 * Soit $\{X_t\}_{t\geq 0}$, un ensemble non-dénombrable de variables aléatoires.
 * Exemples :
     * $X_s = e^{sX}$, dont l'espérance est $M_X(s)$, une fonction de $s$ réel.
-    * $X \sim N(\mu, \sigma^2)$, $\mu$ et $\sigma^2$ inconnus. $E[f(X)]$ est une fonction de $\mu$, $\sigma^2$,
+    * $X \sim N(\mu, \sigma^2)$, $\mu$ et $\sigma^2$ inconnus. $E[f(X)]$ est une fonction de $\mu$, $\sigma^2$.
     * $X_t$ est un processus aléatoire en temps continu.
 * Supposons que
     * $\lim_{t \downarrow 0}X_t(\omega) = X_0(\omega)$, $\omega \in \Omega$, et
     * il exist une v.a. $Y$ telle que $|X_t| < Y$ et $E[Y] < \infty$.
 * Alors pour toute suite $t_n \downarrow 0$,
-$$ E[X_{t_n}] \to E[X_0]. $$
-* Alors
+$$ E[X_{t_n}] \to E[X_0] $$
+par le théorème de convergence dominée, et alors
 $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
 
 ## La dérivée de l'espérance
@@ -152,7 +160,7 @@ est la *distribution* ou la $loi$ de $X$.
 ## Exemple, suites de tirages au pile ou face, partie I
 
 * Soit $\Omega = \{(r_1,r_2,\ldots) \colon r_i \in \{\mathrm{pile},\mathrm{face}\}\}$.
-* Soit ${\cal F}$, $P$ les extension de ${\cal J}$ et $P$ de Rosenthal, 2.6.
+* Soit ${\cal F}$, $P$ les extensions de ${\cal J}$ et $P$ de Rosenthal, 2.6.
 * Rappel: la probabilité de l'histoire $A_{a_1a_2\ldots a_n}$ est $2^{-n}$.
 * Soit $X_n \colon \Omega \to \mathbb{R}$ définie par
 \[
