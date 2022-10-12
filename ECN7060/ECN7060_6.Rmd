@@ -9,6 +9,9 @@ output: beamer_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Plan de la première partie du cours
+![](./Figures/convergence_plan.pdf)
+
 ## Lemme de Fatou
 
 * Lemme de Fatou : pour une suite $X_n \geq 0$ de v.a.
@@ -85,15 +88,15 @@ $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
 
 ## La dérivée de l'espérance
 
-* Soit $\{F_t\}_{a<t<b}$ un ensemble de variables aléatoires.
-* Conditions suffisantes pour $\frac{dE[F_t]}{dt} = E[F_t']$, où $F_t' = \frac{dF_t}{dt}$ :
+* Soit $\{F_t\}_{a<t<b}$ un ensemble de v.a. tel que $F_t' = \frac{dF_t}{dt}$ existe, $t \in (a,b)$.
+* Conditions suffisantes pour $\frac{dE[F_t]}{dt} = E[F_t']$, $t \in (a,b)$ :
     1. Pour tout $t \in (a,b)$ : $-\infty < E[F_t] < \infty$.
     1. Il existe une v.a. $Y$ telle que $E[Y] < \infty$ et pour tout $t \in (a,b)$ et $\omega \in \Omega$, $F_t'(\omega)$ existe et $|F_t'(\omega)| \leq Y(\omega)$.
 * Preuve : fixez $t\in (a,b)$. Alors
-    1. $F_t' = \lim_{n\to \infty} n(F_{t+1/n}-F_t)$, la limite d'une séquence de
+    1. $F_t' = \lim_{n\to \infty} n(F_{t+1/n}-F_t)$, la limite d'une suite de
     variables aléatoires, est une variable alétoire.
     1. Pour tout $h$, $0 < h < b-t$,
-    (théorème des accroissements finis, mean value theorem)
+    (théorème des accroissements finis)
     $$ \left|\frac{F_{t+h}-F_t}{h}\right| \leq Y. $$
     1. Alors
     $$ \lim_{h \downarrow 0} \frac{E[F_{t+h}]-E[F_t]}{h}
@@ -106,7 +109,7 @@ $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
 
 ## Fonction génératrice des moments
 
-* Définition : pour une v.a. $X$, $M_X(s) = E[e^{sX}]$, $s\in R$.
+* Définition : pour une v.a. $X$, $M_X(s) = E[e^{sX}]$, $s\in \mathbb{R}$.
 * Notes
     * $M_X$ n'existe pas toujours, même si $E[X] < \infty$.
     * $M_{X+Y}(s) = M_X(s)M_Y(s)$ pour v.a. indépendentes $X,Y$.
@@ -120,11 +123,12 @@ $$ \lim_{t\downarrow 0} E[X_t] = E[X_0]. $$
 $$ M_X(s) = \sum_{n=0}^\infty E[X^n] s^n / n!. $$
 * Preuve :
     1. Soit $Z_n = \sum_{k=0}^n (sX)^k / k!$.
-    1. $Z_n \to e^{sX}$ (définition de somme infinie, expansion de la fonction exponentielle)
-    1. Fixez $s$, $|s|<s_0$
-    $$ |Z_n| \leq \sum_{k=0}^n |sX|^k / k! \leq e^{sX} + e^{-sX} \equiv Y, $$
+    1. $Z_n \to e^{sX}$ (définition de somme infinie, expansion exponentielle)
+    1. Fixez $s$, $|s|<s_0$. La suite $Z_n$ vérifie
+    $$ |Z_n| \leq \sum_{k=0}^n |sX|^k / k! \leq e^{sX} + e^{-sX} \equiv Y, $$ et
     $$ E[Y] = M_X(s) + M_X(-s) < \infty. $$
-    1. Par convergence dominée, $E[e^{sX}] = \lim_{n\to \infty} E[Z_n] = \sum_{n=0}^\infty E[X^n]s^n/n!$.
+    1. Par convergence dominée,
+    $$ E[e^{sX}] = \lim_{n\to \infty} E[Z_n] = \sum_{n=0}^\infty E[X^n]s^n/n!. $$
     
 ## Signification de « génératrice des moments »
 
