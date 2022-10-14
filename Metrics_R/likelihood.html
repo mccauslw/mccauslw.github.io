@@ -472,6 +472,38 @@ abline(v=theta_0, col='red')</code></pre>
   E_{\theta_0}[H(\theta_0;X)] = -n \left[\frac{1}{\theta_0} + \frac{1}{1-\theta_0}\right] = -\frac{n}{\theta_0(1-\theta_0)}.
 \]</span></li>
 </ol>
+<<<<<<< HEAD
+=======
+</div>
+<div id="a-gaussian-likelihood" class="section level3">
+<h3>A Gaussian likelihood</h3>
+<p>We now turn to a simple model with two parameters. The observables <span class="math inline">\(X_i\)</span>, <span class="math inline">\(i=1,\ldots\)</span> are independent and identically distributed, with <span class="math inline">\(X_i \sim N(\mu,\sigma^2)\)</span>, <span class="math inline">\(i=1,\ldots,n\)</span>. The density of a single <span class="math inline">\(X_i\)</span> is <span class="math display">\[
+  f(x_i) = \frac{1}{\sqrt{2\pi\sigma^2}}
+  \exp\left[-\frac{1}{2\sigma^2}(x_i-\mu)^2\right].
+\]</span> Thus the joint density of <span class="math inline">\(X = (X_1,\ldots,X_n)\)</span> is <span class="math display">\[
+  f(x) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}
+  \exp\left[-\frac{1}{2\sigma^2}(x_i-\mu)^2\right]
+  = (2\pi\sigma^2)^{-n/2} \exp\left[-\frac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2\right].
+\]</span> Each term of the sum in the exponential function is quadratic in <span class="math inline">\(\mu\)</span>, with a negative coefficient of <span class="math inline">\(\mu^2\)</span>. Therefore the sum itself is quadratic in <span class="math inline">\(\mu\)</span>, with a negative coefficient of <span class="math inline">\(\mu^2\)</span>.</p>
+<blockquote>
+<p>Exercise: proof the identity <span class="math display">\[\sum_{i=1}^n (x_i-\mu)^2 = n(\bar x - \mu)^2 + \sum_{i=1}^n (x_i - \bar x)^2.\]</span></p>
+</blockquote>
+<p>Dividing the identity by <span class="math inline">\(n\)</span> gives a sample analogue of the following population identity, which is also helpful to know. Its proof is very similar. <span class="math display">\[
+  E[(X-a)^2] = E[(X-E[X])^2] + (E[X] - a)^2 = \mathrm{Var}[X] + (E[X] - a)^2.
+\]</span></p>
+<p>Now we can write the joint density of <span class="math inline">\(f(x)\)</span> as <span class="math display">\[
+  f(x) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi\sigma^2}}
+  \exp\left[-\frac{1}{2\sigma^2}(x_i-\mu)^2\right]
+  = (2\pi)^{-n/2} (\sigma^2)^{-n/2} \exp\left[-\frac{S + n (\bar x - \mu)^2}{2\sigma^2}
+  \right],
+\]</span> where <span class="math inline">\(S = \sum_{i=1}^n (x_i-\mu)^2\)</span>.</p>
+<p>Defining <span class="math inline">\(\theta = (\mu, \sigma^2)\)</span>, the log likelihood function is <span class="math display">\[
+  L(\theta;x) = -\frac{n}{2} \log 2\pi\sigma^2 - \frac{S + n (\bar x - \mu)^2}{2\sigma^2}.
+\]</span> It is easy to see that for every value of <span class="math inline">\(\sigma^2\)</span>, <span class="math inline">\(\hat \mu = \bar x\)</span> gives the largest value of <span class="math inline">\(L(\theta; x)\)</span>. Setting <span class="math inline">\(\mu = \bar x\)</span> in <span class="math inline">\(L(\theta; x)\)</span> gives a univariate function of <span class="math inline">\(\sigma^2\)</span> that is easier to maximize.</p>
+<blockquote>
+<p>Exercise: show that <span class="math inline">\(\hat\theta = (\bar x, S/n)\)</span> maximizes the log likelihood function.</p>
+</blockquote>
+>>>>>>> 904b9e2bbb183985998f862afd1e45b4add3e7d6
 </div>
 
 
