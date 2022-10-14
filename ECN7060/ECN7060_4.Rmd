@@ -7,13 +7,13 @@ output: beamer_presentation
 
 ## Intégration riemannienne
 
-$$ L \int_a^b X = 
+$$ L \int_a^b X \equiv 
 \sup_{n, t_1,\ldots,t_{n-1}}\left\{
 \sum_{i=1}^n (t_i-t_{i-1})
 \inf_{t\in [t_{i-1},t_i]} X(t) \colon t_0<t_1<\ldots<t_n
 \right\} $$
 
-$$ U \int_a^b X = 
+$$ U \int_a^b X \equiv 
 \inf_{n,t_1,\ldots,t_{n-1}}\left\{
 \sum_{i=1}^n (t_i-t_{i-1})
 \sup_{t\in [t_{i-1},t_i]} X(t) \colon t_0<t_1<\ldots<t_n
@@ -22,29 +22,49 @@ où $t_0 = a$, $t_n = b$.
 
 Notes :
 
-* L'existence et la valeur de l'intégral.
-* Extensions : (2ième cas : une singularité à $a$ et/ou à $b$)
-$$ \int_{0}^\infty X(t)\, dt = \lim_{b\to \infty} \int_0^b X(t)\, dt,
-\quad \int_a^b X(t)\, dt = \lim_{c \downarrow a} \lim_{d \uparrow b} \int_c^d X(t)\, dt. $$
+* $L \int_a^b X$ et $U \int_a^b X$ existent toujours, valeurs $\pm\infty$ sont possibles.
+* Quand $L \int_a^b X = U \int_a^b X$, l'intégrale riemannienne existe et
+\[
+  \int_a^b X(\omega) \, d\omega \equiv L \int_a^b X = U \int_a^b X.
+\]
 
 ##
 ![](./Figures/Integrales_L_U.png)
 
+## Extensions de l'intégration riemannienne
+
+### Intervalle non-borné
+
+\[
+  \int_{0}^\infty X(t)\, dt \equiv \lim_{b\to \infty} \int_0^b X(t)\, dt,
+\]
+
+### Une singularité à $a$ et/ou à $b$
+
+\[
+  \quad \int_a^b X(t)\, dt = \lim_{c \downarrow a} \lim_{d \uparrow b} \int_c^d X(t)\, dt.
+\]
+
 ##
-![](./Figures/Deux_cas_limites.png)
+![](./Figures/Deux_cas_limites.pdf)
 
 ## Problèmes pour l'intégration riemannienne
 
-* $L \int_0^1 1_\mathbb{Q}(t) = 0$ et $U \int_0^1 1_\mathbb{Q}(t) = 1$
+* $L \int_0^1 1_\mathbb{Q} = 0$ et $U \int_0^1 1_\mathbb{Q} = 1$, donc l'intégrale riemannienne n'existe pas.
 
 * Soit $\mathbb{Q}_n$ l'ensemble des $n$ premiers rationnels dans $[0,1]$. (L'ordre n'est pas importante.)
 
-* Pour tous $n$, $L \int_0^1 1_{\mathbb{Q}_n}(t) = U \int_0^1 1_{\mathbb{Q}_n}(t) = 0$.
+* Pour tous $n$, $L \int_0^1 1_{\mathbb{Q}_n} = U \int_0^1 1_{\mathbb{Q}_n} = 0$.
 
 * Notez que
     * $\lim_{n\to \infty} 1_{\mathbb{Q}_n}(t) = 1_\mathbb{Q}(t)$ pour tous $t \in [0,1]$,
-    * $0 = \lim_{n\to \infty} U \int_0^1 1_{\mathbb{Q}_n}(t) \neq U \int_0^1 1_\mathbb{Q}(t) = 1$.
-    * $1_{\mathbb{Q}_n}(t) \leq 1_{\mathbb{Q}_{n+1}}(t)$ pour tous $t$,
+    * $0 = \lim_{n\to \infty} U \int_0^1 1_{\mathbb{Q}_n} \neq U \int_0^1 1_\mathbb{Q} = 1$.
+    * $1_{\mathbb{Q}_n}(t) \leq 1_{\mathbb{Q}_{n+1}}(t)$ pour tous $t \in [0,1]$,
+
+##
+![](Figures/Fonctions_1Qn.png)
+
+## Delta de Dirac
 
 * $\delta$ de Dirac comme pansement lorsqu'il y a des points avec probabilité positive : défini comme
 \[
@@ -55,9 +75,6 @@ et pour tous $t \neq 0$,
   \delta(t) = 0.
 \]
 
-##
-![](Figures/Fonctions_1Qn.png)
-
 ## Une variable aléatoire simple sur $\Omega = [0,1]$
 
 * Trois façons d'écrire la même variable aléatoire simple $X$ :
@@ -65,7 +82,9 @@ et pour tous $t \neq 0$,
     1. $X(\omega) = 2 \cdot 1_{[0,1/4) \cup (1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
     1. $X(\omega) = 2 \cdot 1_{[0,1/4)}(\omega) + 2 \cdot 1_{(1/2,1]}(\omega) + 3 \cdot 1_{[1/4,1/2]}(\omega)$
     1. $X(\omega) = 2 \cdot 1_{\Omega}(\omega) + 1 \cdot 1_{[1/4,1/2]}(\omega)$
-    
+
+* Chaque cas est de la forme $\sum_{i=1}^n x_i 1_{A_i}(\omega)$.
+
 * L'image de $\Omega$ par $X$ est $\{x_1,x_2\} = \{2, 3\}$, un ensemble fini.
 
 * Dans 1, $X$ est de la forme canonique
@@ -99,9 +118,14 @@ $$ E[X] = \sup \{E[Y] \colon Y \leq X,\, Y\,\mbox{simple}\}. $$
 * Pour une variable aléatoire générale :
 $$ E[X] = E[X^+] - E[X^-]. $$
 * Notes :
-    * Quand l'expression de $X$ simple n'est pas de forme canonique.
     * Cohérence des trois définitions.
     * Valeurs possibles; quand la troisième n'est pas bien définie.
+
+## Formes non-canoniques d'une variable aléatoire simple
+
+* Soit $X$ une variable aléatoire simple.
+* Il y a des formes $X = \sum_{i=1}^n x_i 1_{A_i}(\omega)$ non-canoniques.
+* Mais $\sum_{i=1}^n x_i P(A_i) = E[X]$ toujours, par l'additivité de $P$.
 
 ## L'espérance de la fonction irrégulière $1_Q$ est bien définie
 
@@ -125,7 +149,7 @@ Même $X(\omega)$ sur $\Omega = [0,1]$ qu'on a vu avant :
 \[
   X(\omega) = \begin{cases}
     2 & \omega \in A_1 \equiv [0,1/4), \\
-    3 & \omega \in A_2 \equiv [1/4,1/2] \\
+    3 & \omega \in A_2 \equiv [1/4,1/2], \\
     2 & \omega \in A_3 \equiv (1/2,1].
   \end{cases}
 \]
@@ -147,6 +171,8 @@ Toutes les intersections $A_i \cap B_j$ :
 
 ## Linéarité de l'espérance, variables aléatoires simples II
 
+* Soit $X = \sum_{i=1}^n x_i 1_{A_i}(\omega)$ et $Y = \sum_{i=1}^n y_i 1_{B_i}(\omega)$ des variables aléatoires simples.
+* Alors
 \[
   \begin{aligned}
     E[aX + bY] &= E\left[\sum_{i,j} (ax_i + by_j) 1_{A_i \cap B_j}\right] \\
@@ -156,11 +182,7 @@ Toutes les intersections $A_i \cap B_j$ :
     &= aE[X] + bE[Y].
   \end{aligned}
 \]
-
-Notes :
-
-* L'additivité de $P$ établie l'égalité des formes 1 et 2 de $E[X]$.
-* La linéarité de $E$ pour les v.a. simples établie l'égalité des formes 2 et 3 de $E[X]$.
+* Même si les expressions pour $X$ et $Y$ sont canoniques, l'expression pour $aX + bY$ ne l'est pas forcément.
 
 ## Monotonicité, variables aléatoires simples
 
@@ -301,7 +323,9 @@ lines(x, X3, col='blue')
 * Théorème : supposez que $X_1, X_2,\ldots$ sont des variables aléatoires non-négatives avec $X_n(\omega) \nearrow X(\omega)$ pour tout $\omega \in \Omega$.
 Alors $X$ est une variable aléatoire et $E[X] = \lim_{n\to \infty} E[X_n]$.
 
-* Remarque : les $X_n$ ne sont pas forcément simples.
+* Remarques :
+    - les $X_n$ ne sont pas forcément simples.
+    - pour une variable aléatoire $X \geq 0$ donnée, on peut construire une suite $X_1,X_2,\ldots$ avec les propriétés ci-haut.
 
 * Par monotonicité, $E[X_1] \leq E[X_2] \leq \ldots \leq E[X]$ et en conséquence immédiate,
 $$ \lim_{n\to \infty} E[X_n] \leq E[X]. $$

@@ -11,11 +11,43 @@
 
 [Lectures et exercices](./ECN6578/LX.pdf)
 
+[Deuxième Travail Pratique](./ECN6578/TP2.pdf)
+
 ##### Cours 1, le 10 janvier
   
-[Diapos](./ECN6578/ECN6578_1.pdf),
+[Diapos](./ECN6578/ECN6578_1.pdf),&nbsp;&nbsp;
+[Diapos, code source](./ECN6578/ECN6578_1.Rmd),&nbsp;&nbsp;
+[Video](https://umontreal.zoom.us/rec/share/SRoyRJ9zZhlSyU3QrfWbL4QJSTrNWtAY1GRd42_0PLHGNIL-scRN91vf4-B0As8A.rjqyvEHNJmTdw8qB?startTime=1641823227000)
 
-[Diapos, code source](./ECN6578/ECN6578_1.Rmd)
+##### Cours 2, le 17 janvier
+
+[Diapos](./ECN6578/ECN6578_2.pdf),&nbsp;&nbsp;
+[Video](https://umontreal.zoom.us/rec/share/7Z8snd12uSmtjH-Io7QkEboBMU2u39ecSeyFzb_xcrdzTvAZJkAdgKX2hGG81Lty.O4rglM63NC7ALhZv)
+
+##### Cours 3, le 24 janvier
+[Diapos](./ECN6578/ECN6578_3.pdf),&nbsp;&nbsp;
+[Video](https://umontreal.zoom.us/rec/share/KsTUwa63bzqDL579KUExOVSI5Jy3cNDHpF6n3LOsgZGyhLzEwEvHG_IfBH2L_yZc.tVxiO1FDHmW_YauO)
+
+##### Cours 4, le 31 janvier
+[Diapos](./ECN6578/ECN6578_4.pdf)
+
+##### Cours 5, le 7 février
+[Diapos](./ECN6578/ECN6578_5.pdf)
+
+##### Cours 6, le 14 février
+[Diapos](./ECN6578/ECN6578_6.pdf)
+
+##### Cours 7, le 21 février
+[Diapos](./ECN6578/ECN6578_7.pdf)
+
+##### Cours 8 et 9, le 14 et le 21 mars
+[Diapos](./ECN6578/ECN6578_8.pdf)
+
+##### Cours 10, le 28 mars
+[Diapos](./ECN6578/ECN6578_12.pdf)
+
+##### Cours 11, le 4 avril
+[Diapos](./ECN6578/ECN6578_xx.pdf)
 
 ***
 

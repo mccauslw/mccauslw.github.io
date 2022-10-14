@@ -126,7 +126,7 @@ $$ P_{p,t-1} = \sum_{i=1}^n \frac{\omega_i}{P_{i,t-1}} P_{i,t-1} = 1 $$
 
 ## Fonctions linéaires des v.a. vs mélanges, exemple 1
 
-```{r flm1}
+```{r flm1, echo=TRUE}
 # Valeurs de x sur une grille
 x = seq(-0.03, 0.03, length.out=1000)
 
@@ -138,7 +138,7 @@ f2 = dnorm(x,  0.01, 0.005)
 # Densité du mélange avec poids 1/2, 1/2
 fm = 0.5 * f1 + 0.5 * f2
 
-# Densité de (X_1) + X_2)/2
+# Densité de (X_1 + X_2)/2
 ffl = dnorm(x, 0, sqrt(0.5*0.005^2))
 ```
 

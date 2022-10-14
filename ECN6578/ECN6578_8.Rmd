@@ -62,7 +62,7 @@ knitr::opts_chunk$set(echo = FALSE)
 *  Voici un milieu très simple :
     *  Il y a deux périodes.
     *  L'état du monde est aléatoire dans la deuxième période.
-    *  Il y a $S$ états du monde possible : $1, \ldots, S$.
+    *  Il y a $S$ états du monde possibles : $1, \ldots, S$.
     *  Chaque état $s$ a une probabilités $\pi_s$ d'être réalisé.
     *  Il y a $N$ actifs, chacun avec un paiement dans le deuxième
       période qui dépend de $s$.
@@ -115,13 +115,13 @@ knitr::opts_chunk$set(echo = FALSE)
 *  Définition : vecteur $p$ ($S \times 1$) est un vecteur
     des prix d'états si
     \[ X'p = q, \]
-    ou, ce qui est équivalent, pour chaque actif $i$,
+    ou, ce qui est équivalent, si pour chaque actif $i$,
     \[ q_i = \sum_{s=1}^S X_{si} p_s. \]
 *  Si on divise chaque rangée $i$ de $X'p = q$ par $q_i$, on
     obtient
     \[ G'p = \iota. \]
 * Ligne $i$ de cette équation vectorielle, $i = 1,\ldots,N$ :
-    \[ 1 = \sum_{s=1}^S G_{si} p_s = \sum_{s=1}^S (1+R_i) p_s. \]
+    \[ 1 = \sum_{s=1}^S G_{si} p_s = \sum_{s=1}^S (1+R_{si}) p_s. \]
 
 ## Implications de l'absence d'arbitrage
 
@@ -166,7 +166,7 @@ knitr::opts_chunk$set(echo = FALSE)
     * Si $\mathrm{cov}[R_{it},M_t] > 0$, $i$ a une valeur relativement
     élevée quand la consommation future est plus valorisée
     (i.e. quand $U'(C_{t+1})$ est élevé).
-    * En équilibre, son prix est plus élevé (par rapport a un actif $j$ où $\mathrm{cov}[R_{jt}M_t] < 0$) et son rendement moyen est moins élevé.
+    * En équilibre, son prix est plus élevé (par rapport a un actif $j$ où $\mathrm{cov}[R_{jt},M_t] < 0$) et son rendement moyen est moins élevé.
     * L'investisseur supporte ce rendement moyen moins élevé
     car l'actif paie quand la consommation est plus valorisée.
 
@@ -253,7 +253,7 @@ knitr::opts_chunk$set(echo = FALSE)
     isoélastique avec le même $\gamma$ et $\delta$,
     $C$ agrégée est celle d'un consommateur avec cette
     utilité ayant la richesse agrégée.
-* Une rationalisation du consommateur représentatif.
+* Ainsi, l'utilité isoélastique est une rationalisation du consommateur représentatif, un seul consommateur dans le modèle.
 
 ## Tester le CCAPM
 
@@ -575,7 +575,7 @@ $\log XY = \log X + \log Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\sig
 
 * GMM, c'est la Méthode de Moments Généralisée
 * La log-normalité de $(C_{t+1}, R_{i,t+1})$ est une hypothèse très forte.
-* L'approche GMM n'exige, comme modèle, des conditions de moment inconditionnel comme $E[(1+R_{it})M_t] = 1$.
+* L'approche GMM n'exige, comme modèle, que des conditions de moment inconditionnel comme $E[(1+R_{it})M_t] = 1$.
 * Rappelons que dans le modèle CCAPM
 \[
   M_{t+1} = \delta \frac{U'(C_{t+1})}{U'(C_t)},

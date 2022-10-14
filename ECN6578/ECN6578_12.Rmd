@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
 subtitle: "Cours 12 : Valeur à risque"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -21,6 +21,7 @@ knitr::opts_chunk$set(echo = FALSE)
 * Simplification 1 : focaliser sur la moyenne et la variance des rendements : (CAPM)
 * Simplification 2 : focaliser sur les grandes pertes et leur probabilité (VaR, ES)
 * Pour un preneur de décisions, les deux sont complémentaires, pas exclusives.
+* Le problème de gestion de risque pour une entreprise est similaire
 
 ## Pourqoui la valeur à risque II
 
@@ -42,7 +43,7 @@ knitr::opts_chunk$set(echo = FALSE)
 $$ p = F_l(-\mathrm{VaR}). $$
 
 * la question de conditionnement
-    * loi inconditionelle, longue terme, non-paramétrique
+    * loi inconditionelle, long terme, non-paramétrique
     * loi conditionnelle, court terme, besoin d'un modèle (régression quantile ou plein modèle)
     
 ## RiskMetrics
@@ -134,8 +135,8 @@ $$ \sigma^2_{n+1} = \alpha_0 + \sum_{i=1}^u \alpha_i a_{n+1-i}^2 + \sum_{j=1}^v 
 $$ -\mathrm{VaR} = \mu_{n+1} + \Phi^{-1}(0.05) \sigma_{n+1} = \mu_{n+1} - 1.65 \sigma_{n+1}. $$
 
 * Si $r_{n+1}|r_1,\ldots,r_n \sim t(\mu_{n+1},\sigma^2_{n+1},\nu)$ :
-    * La variance d'un aléa $t$ de Student standard avec $\nu$ degrés de liberté est $\nu/(\nu-2)$.
-    * Soit $t_\nu(p)$ la quantile d'un aléa $t(\nu)$.
+    * La variance d'une variable aléatoire $t$ de Student standard avec $\nu$ degrés de liberté est $\nu/(\nu-2)$.
+    * Soit $t_\nu(p)$ la quantile d'une variable aléatoire $t(\nu)$.
     * La valeur à risque est, par unité de valeur
 $$ -\mathrm{VaR} = \mu_{n+1} + \frac{t_\nu(p) \sigma_{n+1}}{\sqrt{\nu/(\nu-2)}}. $$
 
@@ -174,7 +175,7 @@ $$ r_{(l)} \sim_\mathrm{asy} N\left( x_p, \frac{p(1-p)}{n[f(x_p)]^2} \right). $$
 
 * Trouver $l_1$, $l_2$ entiers tels que $l_2 = l_1 + 1$, $l_1 < np < l_2$.
 
-* Alors $l_1$ est le plancher de $np$.
+* Alors $l_1$ est le plancher de $np$ : $\lfloor np \rfloor$.
 
 * Soit $p_1 = l_1/n$, $p_2 = l_2/n$.
 
@@ -196,7 +197,7 @@ l2 = ceiling(p*n); p2 = l2/n;
 x.ch.p = ((p2-p) * r.sort[l1] + (p-p1) * r.sort[l2]) / (p2-p1)
 # Calcul de f(x-chapeau-p)
 ds = density(r)
-x.ch.p.index = which.min((ds$x-x.ch.p)^2)
+x.ch.p.index = findInterval(x.ch.p, ds$x)
 f.x.ch.p = ds$y[x.ch.p.index]
 sigma = sqrt(p*(1-p)/n)/f.x.ch.p
 ```
@@ -227,9 +228,10 @@ abline(v=x.ch.p)
 * Avantages :
     1. Simple
     1. Pas de modèle
+    1. Plus de précision dans les ailles
     
 * Inconvénients :
-    1. L'hypothèse de iid peu crédible : il y a plus d'incertitude quand les rendements ne sont pas indépendents.
+    1. L'hypothèse de iid peu crédible : quand la volatilité est persistante, la variance asymptotique de la quantile de l'échantillon est plus grande.
     1. Pas de conditionnement à l'information pertinente.
     1. Les quantiles empiriques ne sont pas précises pour $p$ petit.
     1. Pas de changement de distribution entre la période de l'échantillon et la période de prévision.

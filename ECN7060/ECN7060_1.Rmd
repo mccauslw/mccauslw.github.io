@@ -17,45 +17,44 @@ urlcolor: blue
 * Probabilité et espérance conditionnelles
 
 ### Partie 2, Livre de Casella et Berger
-* Statistiques suffisantes et ancillaires, principe de vraisemblance
+* Statistiques exhaustives et libres, principe de vraisemblance
 * Estimation ponctuelle, fréquentiste et bayésienne
 * Estimation d’intervalle, fréquentiste et bayésienne
 * Tests d’hypothèse, fréquentistes et bayésiens
+* Prévision, fréquentiste et bayésienne
 
 [//]: Partie 1: économétrie, micro et macro
 [//]: Convergence: économétrie fréquentiste
 [//]: Probabilité conditionnelle: économétrie bayésienne, micro, macro
+[//]: Pedagogical value of comparitive approach
 
 ## Les éléments de la note finale :
 1. Quiz : 20% (meilleures $n-1$ de $n \approx 9$)
-1. Examen intra : 35% (le 27 octobre)
-1. Participation, cours et séance TP : 5%
-1. Examen final : 40% (le 22 décembre)
+1. Examen intra : 35% (à remettre le 2 novembre avant 12h)
+1. Examen final : 45% (le 21 décembre)
 
-[//]: For people who don't benefit from TPs, participation based on class only
-[//]: Participation in TP can help, non-participation cannot hurt
+## Le cycle de mercredi 13h à mardi soir
 
-## Le cycle mercredi 13h-mardi soir
-1. Mercredi 13h-16h, cours :
-    + retour des quiz corrigés du cours précédent
-    + questions des étudiants
-    + quiz sur les lectures (matière du cours actuel)
-    + correction du quiz du cours actuel
+1. Mardi 18h - Mercredi 12h, par StudiUM
+    + quiz sur les lectures (sur la matière du cours du même jour)
+
+1. Mercredi 13h-16h, cours
     + enseignement magistral avec participation des étudiants
     + aperçu de la matière de la semaine suivante
-    
-    
-1. Mercredi avant la fin de la journée 
-    + attribution des lectures (pour la semaine suivante)
-    + questions simples de lecture
-    + devoirs sur la matière du cours actuel
 
-1. Mardi 13h-14h30, séance de travail pratique
-    + discussion des devoirs avec Féraud
+1. Mercredi avant la fin de la journée 
+    + correction du quiz du cours actuel
+    + solutions du quiz mise au site web (parfois)
+    + mise à jour du document "Devoirs et Lectures"
+        + devoirs sur la matière du cours actuel
+        + lectures sur la matière de la semaine suivante
+        + questions sur la matière de la semaine suivante
+
+1. Lundi 13h-14h30, séance de travail pratique
+    + discussion des devoirs avec Sawadogo, le moniteur
 
 1. Mardi soir
     + chargement des diapos du lendemain
-
 
 ## Communications
 1. Documents à mon site web : <https://mccauslw.github.io/ECN7060.html>
@@ -71,11 +70,13 @@ urlcolor: blue
 ### Avant le cours
 1. Avoir lu les lectures, pouvoir répondre aux questions simples
 
-[//]: Importance of trying first
-[//]: Nature of learning: asking questions and seeking answers
+[//]: Point is to come ready to class
 
 ### Avant la séance TP
 1. Avoir essayé (idéalement complété) les devoirs
+
+[//]: Importance of trying first
+[//]: Nature of learning: asking questions and seeking answers
 
 ## Espaces de probabilité $(\Omega, {\cal F}, P)$ dans un monde fini
 
@@ -98,37 +99,49 @@ $\{0,1\}$ | 1
 
 [//]: Distinction between états et événements élémentaires
 [//]: States of the world not enough, interested in events
-[//]: Apparent redundancy: should notice this
+[//]: Apparent redundancy: why do we need F and not have F = 2^Omega implied
 [//]: Here: direct specification of F and P: note difficulty of doing this even for {1,...,10}.
 [//]: Specify less, and let the axioms do the rest
+[//]: We will need to impose some properties, first let's look at some interpretations.
 
 ## Jugements cohérents (de Finetti et Ramsey)
 
 + Ensemble d'états du monde : $\Omega = \{\omega_1,\omega_2\}$
-    - $\omega_1$: Le parti PLC gagne l’élection fédérale prochaine
-    - $\omega_2$: Le parti PLC ne gagne pas
+    - $\omega_1$: Le parti CAQ gagne l’élection du 3 octobre au Québec.
+    - $\omega_2$: Le parti CAQ ne gagne pas.
     
-+ Un agent offre des prix (un prix est à la fois le cours acheteur et le cours vendeur) pour tous ces contrats:
++ Un agent offre des prix (un prix est à la fois le cours acheteur et le cours vendeur) pour tous ces contrats :
     1. paie 1\$ si ni $\omega_1$ ni $\omega_2$ se produit (l'événement $\emptyset$)
     2. paie 1\$ si $\omega_1$ se produit (l'événement $\{\omega_1\}$)
     3. paie 1\$ si $\omega_2$ se produit (l'événement $\{\omega_2\}$)
     4. paie 1\$ si $\omega_1$ ou $\omega_2$ se produit  (l'événement $\Omega = \{\omega_1, \omega_2\}$)
 
-+ Ces jugements sont *cohérents* si un autre ne peut pas faire un profit sûr peu importe le résultat.
++ Cet ensemble de jugements est *cohérent* si un autre ne peut pas faire un profit sûr peu importe le résultat.
 
-+ Ils sont cohérents ssi les prix vérifient les axiomes de probabilité.
++ Il est cohérent ssi les prix vérifient les axiomes de probabilité.
 
 + Contribution de Ramsey : accommoder l'aversion pour le risque et mesurer à la fois les jugements de probabilité et l'utilité.
 
 + Ch. 2 de Diaconis et Skyrms, "Ten Great Ideas about Chance".
 
 [//]: Axioms of probability and no-arbitrage conditions (loi d'un prix): P as a price
-[//]: 0.0, 0.5, 0.6, 1.0 : achete 4 vend 2 et 3, obtient 0.1
 [//]: Un standard méritoire même si on n'est pas obligé de parier.
 [//]: Marchés de prévision
 [//]: Additivité et la loi d'un prix, absense d’arbitrage
-[//]: Pas forcément judicieux: 0.0, 0.01, 0.99, 1.00
 [//]: Nécessité, pas suffisance, de cohérence
+
+## Quatre "probabilités" sur $(\Omega, 2^\Omega)$ où $\Omega = \{\omega_1,\omega_2\}$
+
+|$A\in {\cal F}=2^\Omega$| 1 | 2 | 3 | 4 |
+|---|---|---|---|---|
+|$\emptyset$     | 0.2 | 0   | 0    | 0 |
+|$\{\omega_1\}$  | 2.0 | 0.6 | 0.01 | 0.9 |
+|$\{\omega_2\}$  | -1  | 0.5 | 0.99 | 0.1 |
+|$\Omega = \{\omega_1,\omega_2\}$ | 0 | 1 | 1 | 1 |
+
+[//]: First two not real probabilities
+[//]: 0.0, 0.5, 0.6, 1.0 : achete 4 vend 2 et 3, obtient 0.1
+[//]: Pas judicieux: 0.0, 0.01, 0.99, 1.00
 
 ## Interprétation fréquentiste de probabilité
 
@@ -153,13 +166,19 @@ $\{0,1\}$ | 1
 
 Par 3 et 4, ${\cal F}$ est une algèbre, pas forcément une tribu.
 
-### Une façon de spécifier une probabilité :
-1. Donner $P(\{\omega\}) = p_\omega \geq 0$, $\omega \in \Omega$, où $\sum_{\omega \in \Omega} p_\omega = 1$
-2. Définir l'extension $P(A) = \sum_{\omega \in A} p_\omega$, $A \subseteq \Omega$.
-
+[//]: Évènements certains et impossible
+[//]: Stabilité par complémentation
+[//]: Stabilité pour les réunions ou intersections finies
 [//]: Different order, P then F, for intuition
 [//]: Closed under pairwise to closed under finite, not closed under infinite
-[//]: Verify probability triple in previous slide
+
+### Une façon de spécifier une probabilité :
+1. Stipuler $\{\omega\} \in {\cal F}$, donner $P(\{\omega\}) = p_\omega \geq 0$, $\omega \in \Omega$, telles que $\sum_{\omega \in \Omega} p_\omega = 1$.
+2. Laisser les axiomes donner l'extension avec ${\cal F} = 2^\Omega$ et les probabilités
+\[
+  P(A) = \sum_{\omega \in A} p_\omega,\; A \subseteq \Omega.
+\]
+
 [//]: Can't do this for Omega on real interval
 [//]: Idea: specify some probabilities and let axioms do the rest
 [//]: Two issues: coherence, specifying enough
@@ -182,10 +201,49 @@ Quelques ensembles :
 1. $[0,1)$, $\mathbb{R}$
 1. $2^\mathbb{N}$, l'ensemble des sous-ensembles de $\mathbb{N}$
 1. L'ensemble des fonctions $f \colon \mathbb{N} \to \{0,1\}$
-1. L'ensemble des fichiers finis (livres, documents, dessins, audio, vidéo, programmes informatiques
+1. L'ensemble des fichiers finis (livres, documents, dessins, audio, vidéo, programmes informatiques)
 
-[//]: Do diagonalisation argument
-[//]: Why doesn't it work on Q? Get a number not in Q.
+[//]: Why doesn't diagonalization argument work on Q? Get a number not in Q.
+
+## Démonstration que $\mathbb{Z}^2$ et $\mathbb{Q}$ sont dénombrables
+
+## Démonstration que $[0,1)$ est indénombrable
+
+### Une liste présumée d'éléments de $[0,1)$
+
+| $n$ | |
+|-----|-|
+| 1 | 0.3141595358979 $\ldots$ |
+| 2 | 0.0100000000000 $\ldots$ |
+| 3 | 0.01011011101111 $\ldots$ |
+| 4 | 0.1000 $\ldots$ |
+| 5 | 0.000090000900009 $\ldots$ |
+| $\vdots$ | $\vdots$ |
+
+### Construction d'un élément de $[0,1)$ qui n'est pas dans la liste
+
+## Démonstration que $2^\mathbb{N}$ est dénombrable
+
+### Une liste présumée de parties de $\mathbb{N}$ ($S_1 = \{1,4,5,7,9,\ldots\}$)
+
+| $n$ | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | $\ldots$ |
+|-----|---|---|---|---|---|---|---|---|---|----------|
+| 1   | \checkmark | | | \checkmark | \checkmark | | \checkmark | | \checkmark | $\ldots$ |
+| 2   | | \checkmark | \checkmark | | | \checkmark | | | | $\ldots$ |
+| 3   | \checkmark | \checkmark | | \checkmark | | \checkmark | | \checkmark | | $\ldots$ |
+| 4   | | | \checkmark | \checkmark | | \checkmark | | \checkmark | | $\ldots$ |
+| 5   | \checkmark | \checkmark | \checkmark | \checkmark | | \checkmark | \checkmark | \checkmark | | $\ldots$ |
+| $\vdots$ | $\vdots$ |
+
+### Construction d'une partie de $\mathbb{N}$ qui n'est pas dans la liste
+
+## Ensembles que ressemblent à $2^\mathbb{N}$
+
+1. $[0,1)$ ($x_i = \sum_{j\in S_i} 2^{-j}$)
+1. ensemble de fonctions $f \colon \mathbb{N} \rightarrow \{0,1\}$
+1. ensemble de suites infinies de tirages à pile ($\notin$) ou face ($\in$)
+
+[//]: Functions from N to {0,1} and computational efficiency
 
 ## Exemples de $\Omega$ : finis, dénombrables, indénombrables
 
@@ -198,18 +256,39 @@ Quelques ensembles :
 1. $\Omega = \mathbb{R}$, $\Omega = \mathbb{R}_+$.
 1. $\Omega = \mathbb{R}^n$
 
-## Construire $(\Omega, {\cal F}, P)$ pour la loi uniforme $[0,1]$
+## Propriétés de $\mathbb{Q}$
 
-### Premier essai: $\Omega = [0,1]$, ${\cal F} = 2^\Omega$, trouver une $P$ qui vérifie
+### La densité de $\mathbb{Q}$ dans $\mathbb{R}$
+
+1. Entre $x_1 \in \mathbb{R}$ et $x_2 \in \mathbb{R}$, $x_1 \neq x_2$, il y a un nombre dénombrable de rationnels.
+1. Pour chaque nombre réel $x$, il y a une suite dans $\mathbb{Q}$ qui converge à $x$.
+
+### Autres propriétés
+
+1. $\mathbb{Q}$ est dénombrable.
+1. Il n'y a pas de liste ordonnée d'éléments de $\mathbb{Q}$.
+1. Selon l'espace de probabilité pour la loi uniforme sur $U(0,1)$,
+\[
+  \Pr([0,1]) = 1, \, \mbox{mais} \, \Pr([0,1] \cap \mathbb{Q}) = 0.
+\]
+
+[//]: Why Q countable matters: with uniform probability on interval, P of R is one; Q, 0
+[//]: And yet, the rationals are dense in the reals, always a sequence of Q that converges to a R
+[//]: Why this matters: power set doesn't work, need F, strange nature of R
+[//]: Specification of F not trivial
+
+## Construire $(\Omega, {\cal F}, P)$ pour la loi uniforme $[0,1)$
+
+### Premier essai: $\Omega = [0,1)$, ${\cal F} = 2^\Omega$, trouver une $P$ qui vérifie
 1. $P([a,b]) = P((a,b]) = P([a,b)) = P((a,b)) = b-a$ pour tout $0 \leq a \leq b \leq 1$.
 2. $A_1,A_2,\ldots, \in {\cal F}\, \mbox{disjoints} \Rightarrow P(\cup_{i=1}^\infty A_i) = \sum_{i=1}^\infty P(A_i)$
 3. $P(A \oplus r) = P(A)$, $0 \leq r \leq 1$.
 
 ### Impossible! Preuve :
 1. Définir $x \sim y$ ssi $y-x \in \mathbb{Q}$ ; $\sim$ est transitive et réflexive.
-2. Partitionner $[0,1]$ en classes d'équivalence : $\{0, 1/3, 1/5, \ldots\}$, $\{\pi - 3, \pi - 3.1, \pi - 3.14, \ldots\}$, $\{e - 2.7, e - 2.71, e - 2.717 \}$, etc.
+2. Partitionner $[0,1)$ en classes d'équivalence : $\{0, 1/3, 1/5, \ldots\}$, $\{\pi - 3, \pi - 3.1, \pi - 3.14, \ldots\}$, $\{e - 2.7, e - 2.71, e - 2.717 \}$, etc.
 3. Construire $H$, un ensemble avec un élément de chaque classe.
-4. Noter que $[0,1] = \cup_{r \in [0,1] \cap \mathbb{Q}} (H \oplus r)$ (ensembles disjoints).
+4. Noter que $[0,1) = \cup_{r \in [0,1] \cap \mathbb{Q}} (H \oplus r)$ (ensembles disjoints).
 5. Constater l'implication impossible :
 $$ 1 = P(\Omega) = \sum_{r \in [0,1] \cap \mathbb{Q}} P(H \oplus r) = \sum_{r \in [0,1] \cap \mathbb{Q}} P(H)$$
 
@@ -224,7 +303,7 @@ Supposez que l'espace d'états $\Omega$ est donné, on doit spécifier ${\cal F}
 2. une façon de spécifier une partie de $P$ et laisser les axiomes déterminer le reste
 3. une tribu ${\cal F}$ faisable mais assez riche qu'elle contient les événements d’intérêt.
 
-La semaine prochaine on développe un outil important pour cette construction des espaces de probabilité.
+La semaine prochaine on développe un outil important pour la construction des espaces de probabilité.
 
 ## Axiomes de probabilités
 
@@ -235,14 +314,28 @@ Un espace de probabilité est un $(\Omega,{\cal F},P)$ tel que
     a. $\emptyset, \Omega \in {\cal F}$,
     b. $A \in {\cal F} \to A^c \in {\cal F}$,
     c. $A_1, A_2, \ldots \in {\cal F} \to \cup_{i=1}^\infty A_i, \cap_{i=1}^\infty A_i \in {\cal F}$;
-3. $P \colon {\cal F} \to \mathbb{R}$ satisfait
+3. $P \colon {\cal F} \to [0,\infty)$ satisfait
     a. $P(\emptyset) = 0$, $P(\Omega) = 1$,
     b. $A_1, A_2,\ldots \in {\cal F}\, \mbox{disjoints} \to P(\cup_{i=1}^\infty A_i) = \sum_{i=1}^\infty P(A_i).$     
 
 [//]: Why countably additive and not finitely additive: we want to take limits
 [//]: Why not uncountable unions and intersections?
 (What would uncountable additivity mean?)
-[//]: Redundancy with unions or intersections
+[//]: Redundancy with unions or intersections, de Morgan
+[//]: Law of one price
+
+## Mesures
+
+- Si ${\cal F}$ est une tribu sur $\Omega$, $(\Omega,{\cal F})$ est un *espace mesurable*.
+- Une probabilité $P \colon {\cal F} \to [0,\infty)$ (ou mesure de probabilité) vérifie $P(\emptyset) = 0$, $P(\Omega) = 1$, additivité dénombrable.
+- Une mesure $\mu \colon {\cal F} \to [0,\infty)$ vérifie $\mu(\emptyset) = 0$, additivité dénombrable.
+    - On relâche la normalisation $P(\Omega) = 1$.
+    - Applications : calcul de longeur, aire, volume, masse; intégration
+- Une mesure signée $\mu \colon {\cal F} \to \mathbb{R}$ vérifie $\mu(\emptyset) = 0$,
+additivité dénombrable.
+    - On relâche aussi la non-négativité de $\mu$.
+    - Applications : charge électrique, intégration
+- Plusieurs théorèmes dans le cours s'appliquent aux mesures, pas seulement les mesures de probabilité.
 
 ## Aperçu, Rosenthal chapitre 2
 
@@ -254,3 +347,4 @@ Un espace de probabilité est un $(\Omega,{\cal F},P)$ tel que
 [//]: We saw how difficult it was to specify directly all probabilities.
 [//]: We want tools to construct probability spaces in a well defined way.
 [//]: We know that any attempt to do 3 using power set is doomed to failure or forces us to accept something unpalletable.
+[//]: In a sense, 3 and 4 are the same thing

@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2021"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
 subtitle: "Cours 2"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -41,12 +41,16 @@ $$ r_t[k] = (p_{t-k+1} - p_{t-k}) + \ldots + (p_{t-1} - p_{t-2}) + (p_t - p_{t-1
     - soit $r/n$ le rendement net à chaque sous-période,
     - soit $R$ le rendement net pour la période entière.
 * Alors
-$$ (1+R) = (1 + r/n)^n $$
-* Le rendement net $R$ est croissant en $n$ grace au rendements composés \ldots
+$$ (1+R) = (1 + r/n)^n. $$
+* $1+R$ est croissant en $n$ grace au rendements composés \ldots
 * \ldots mais il y a une limite : (rendement continument composé)
 $$ (1+R) = \lim_{n\to \infty} (1 + r/n)^n = e^r. $$
 * En logs (Séries Mercator) :
 $$ \lim_{n\to \infty} n \log (1+r/n) = \lim_{n\to \infty} n \left[\frac{r}{n} - \frac{1}{2} \left(\frac{r}{n}\right)^2 + \frac{1}{3}\left(\frac{r}{n}\right)^3 - \ldots\right] = r. $$
+* Pour un log-rendement constant $r$ et une valeur initial $V_0$ à $t_0$,
+\[
+  V_t = e^{r(t-t_0)}.
+\]
 
 ## Annualisation
 
@@ -120,7 +124,7 @@ $$ \mathrm{JB} = \frac{\hat{S}^2}{6/T} + \frac{(\hat{K}-3)^2}{24/T} \sim \chi^2(
 
 * Un test avec la statistique $\hat{S}$ est souvent bilatéral---l'hypothèse alternative est $S \neq 0$. On peut défendre aussi un test unilatéral avec une hypothèse alternative $S < 0$.
 
-* Un test avec la statistique $\hat{K}$ peut être unilatéral, auquel cas l'hypothèse alternative est $K > 3$, ou bilatéral, auquel cas l'hypothèse alterative est $K \neq 3$.
+* Un test avec la statistique $\hat{K}$ peut être unilatéral, auquel cas l'hypothèse alternative devrait être $K > 3$, ou bilatéral, auquel cas l'hypothèse alterative est $K \neq 3$.
 
 * Un test avec la statistique $\mathrm{JB}$ est toujours unilatéral. On ne rejette pas la normalité si l'aplatissement et l'asymétrie sont plus près de 3 et 0 que d'habitude sous l'hypothèse nulle.
 
@@ -158,10 +162,10 @@ où $\alpha$ est le niveau du test; $q_{N,p}$, la quantile $p$ d'une loi $N(0,1)
 $$ q_{N,\alpha/2} < z_K < q_{N,1-\alpha/2}. $$
 1. Test avec la statistique test JB, $H_0$ contre $H_1:S \neq 0\, \mbox{ou}\, K \neq 3$.
 La région de non-rejet est
-$$ JB < q_{\chi^2(2),1-\alpha}, $$
+$$ JB = z_S^2 + z_K^2 < q_{\chi^2(2),1-\alpha}, $$
 où $q_{\chi^2(2),p}$ est la quantile $p$ d'une loi $\chi^2(2)$.
 
-Si on fait les tests 1 et 2, la probabilité d'un rejet sous $H_0$ excède $\alpha$.
+Si on fait les deux tests 1 et 2, la probabilité d'au moins un rejet sous $H_0$ excède $\alpha$.
 
 ## Régions de non-rejet pour les trois tests, $\alpha = 0.01$
 
@@ -200,7 +204,7 @@ $$ (r_{t_1},r_{t_2},\ldots,r_{t_k}), \quad (r_{t_1-\tau},r_{t_2-\tau},\ldots,r_{
 * Pertinence des deux types de stationnarité
     * Des hypothèses que le futur ressemble, dans un sens, au passé.
 * Pertinence de covariance-stationnarité
-    * Sauf pour l'existence des moment, moins fort
+    * Sauf pour l'existence des moment, elle est moins forte.
     * Les variances et covariances des fonctions linéaires des v.a. dépendent seulement des variances et covariances de ces v.a.
     * Les fonctions d'autocorrélation et d'autocorrélation partielle sont bien définies.
     * Conditions de covariance-stationnarité en termes des coefficients ARMA(p,q)
@@ -275,11 +279,11 @@ pacf(abs(r))
 * Hypothèse $H_0$ : $r_t$ est iid, de variance finie.
 * Les lois ici sont asymtotiques, sous $H_0$.
 * Test avec une autocorrélation isolée :
-$$ \hat{\rho}_k \sim N(0,T^{-1}) $$
+$$ \hat{\rho}_k \sim N(0,T^{-1}). $$
 * Test portmanteau (avec plusieurs autocorrélations) Box-Pierce :
-$$ T \sum_{l=1}^m \hat{\rho}_l^2 \sim \chi^2(m) $$
+$$ T \sum_{l=1}^m \hat{\rho}_l^2 \sim \chi^2(m). $$
 * Test portmanteau Ljung-Box (avec correction de biais)
-$$ T(T+2) \sum_{l=1}^m \frac{\hat{\rho}_l^2}{T-l} \sim \chi^2(m) $$
+$$ T(T+2) \sum_{l=1}^m \frac{\hat{\rho}_l^2}{T-l} \sim \chi^2(m). $$
 
 ## Faits empiriques de Cont (2001)
 

@@ -5,63 +5,39 @@
 
 ### Documents pour ECN 7060, Probabilités pour Économistes
 
-[Plan de Cours](./ECN7060/ECN7060A-A21-PC.pdf)
+[Plan de Cours](./ECN7060/ECN7060A-A22-PC.pdf)
 
 [Devoirs et Lectures](./ECN7060/ECN7060_DL.pdf)
 
-#### Cours 1, 2021/09/01
+#### Cours 1, 2022/09/07
 
 [Diapos](./ECN7060/ECN7060_1.pdf)
 
-#### Cours 2, 2021/09/08
+#### Cours 2, 2022/09/14
 
 [Diapos](./ECN7060/ECN7060_2.pdf)
 
-#### Cours 3, 2021/09/15
+#### Cours 3, 2022/09/21
 
 [Diapos](./ECN7060/ECN7060_3.pdf)
 
-#### Cours 4, 2021/09/22
+#### Cours 4, 2022/09/28
 
 [Diapos](./ECN7060/ECN7060_4.pdf)
 
-#### Cours 5, 2021/09/29
+#### Cours 5, 2022/10/05
 
-[Diapos](./ECN7060/ECN7060_5.pdf) $\hspace{1cm}$ [Solutions, quiz](./ECN7060/Quiz 1 2021 solutions.pdf)
+[Diapos](./ECN7060/ECN7060_5.pdf)
 
-#### Cours 6, 2021/10/06
+#### Cours 6, 2022/10/12
 
-[Diapos](./ECN7060/ECN7060_6.pdf) $\hspace{1cm}$ [Solutions, quiz](./ECN7060/Quiz 2 2021 solutions.pdf)
-
-#### Cours 7, 2021/10/13
-
-[Diapos](./ECN7060/ECN7060_7.pdf) $\hspace{1cm}$ [Solutions, quiz](./ECN7060/Quiz 2 2021 solutions.pdf)
-
-#### Cours 8, 2021/11/03
-
-[Diapos](./ECN7060/ECN7060_8.pdf)
-
-#### Cours 9, 2021/11/10
-
-[Diapos](./ECN7060/ECN7060_9.pdf)
-
-#### Cours 10, 2021/11/17
-
-[Diapos](./ECN7060/ECN7060_10.pdf)
-
-#### Cours 11, 2021/11/24
-
-[Diapos](./ECN7060/ECN7060_11.pdf)
-
-#### Cours 12, 2021/12/01
-
-[Diapos](./ECN7060/ECN7060_12.pdf)
-
-#### Cours 13, 2021/12/08
-
-[Diapos](./ECN7060/ECN7060_13.pdf)
+[Diapos](./ECN7060/ECN7060_6.pdf)
 
 #### Examens récents
+
+[Examen intra 2021](./ECN7060/EI21.pdf)
+
+[Examen final 2021](./ECN7060/EF21.pdf)
 
 [Examen intra 2020](./ECN7060/EI20.pdf)
 
@@ -79,34 +55,30 @@
 
 #### Documents de l'année passée
 
-[Devoirs et Lectures](./ECN7060/ECN7060_DL_2020.pdf)
+[Devoirs et Lectures](./ECN7060/ECN7060_DL_2021.pdf)
 
-[Diapos, Cours 1](./ECN7060/ECN7060_1_2020.pdf)
+[Diapos, Cours 1](./ECN7060/ECN7060_1_2021.pdf)
 
-[Diapos, Cours 2](./ECN7060/ECN7060_2_2020.pdf)
+[Diapos, Cours 2](./ECN7060/ECN7060_2_2021.pdf)
 
-[Diapos, Cours 3](./ECN7060/ECN7060_3_2020.pdf)
+[Diapos, Cours 3](./ECN7060/ECN7060_3_2021.pdf)
 
-[Diapos, Cours 4](./ECN7060/ECN7060_4_2020.pdf)
+[Diapos, Cours 4](./ECN7060/ECN7060_4_2021.pdf)
 
-[Diapos, Cours 5](./ECN7060/ECN7060_5_2020.pdf)
+[Diapos, Cours 5](./ECN7060/ECN7060_5_2021.pdf)
 
-[Diapos, Cours 6](./ECN7060/ECN7060_6_2020.pdf)
+[Diapos, Cours 6](./ECN7060/ECN7060_6_2021.pdf)
 
-[Diapos, Cours 7](./ECN7060/ECN7060_7_2020.pdf)
+[Diapos, Cours 7](./ECN7060/ECN7060_7_2021.pdf)
 
-[Diapos, Cours 8](./ECN7060/ECN7060_8_2020.pdf)
+[Diapos, Cours 8](./ECN7060/ECN7060_8_2021.pdf)
 
-[Diapos, Cours 9](./ECN7060/ECN7060_9_2020.pdf)
+[Diapos, Cours 9](./ECN7060/ECN7060_9_2021.pdf)
 
-[Diapos, Cours 10](./ECN7060/ECN7060_10_2020.pdf)
+[Diapos, Cours 10](./ECN7060/ECN7060_10_2021.pdf)
 
-[Diapos, Cours 11](./ECN7060/ECN7060_11_2020.pdf)
+[Diapos, Cours 11](./ECN7060/ECN7060_11_2021.pdf)
 
-[Diapos, Cours 12](./ECN7060/ECN7060_12_2020.pdf)
+[Diapos, Cours 12](./ECN7060/ECN7060_12_2021.pdf)
 
-[Diapos, Cours 13](./ECN7060/ECN7060_13_2020.pdf)
-
-[Questionnaire 6, 2018, sur les probabilités et espérances conditionnelles](./ECN7060/Quiz_6_2018.pdf)
-
-[Questionnaire 7, 2017, sur les probabilités et espérances conditionnelles](./ECN7060/Quiz_7.pdf)
+[Diapos, Cours 13](./ECN7060/ECN7060_13_2021.pdf)
