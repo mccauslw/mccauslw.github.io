@@ -200,7 +200,7 @@ for (i in 1:3) {
 * Soit $(\mathbb{R}, {\cal B}, P)$ l'espace de probabilité avec
 $$ P(B) = \int_B f\, d\lambda, \quad B \in {\cal B}, $$
 où $f \colon \mathbb{R} \to \mathbb{R}$ est définie par
-$$ f(x) = \frac{1}{\sqrt{2\pi}} e^{x^2/2} $$
+$$ f(x) = \frac{1}{\sqrt{2\pi}} e^{-x^2/2} $$
 et $\lambda \colon {\cal B} \to \mathbb{R}$ est la mesure de Lebesgue.
 * $f$ est la densité pour la loi $P$, $N(0,1)$, $F(x) = P((-\infty,x])$ est la fonction de répartition.
 
