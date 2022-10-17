@@ -59,7 +59,11 @@ $$ \phi(t) = \frac{1}{t(b-a)} \left[ \sin tx - i \cos tx \right]_a^b
 $$ \phi(t) = \frac{e^{itb} - e^{ita}}{it(b-a)} $$
 
 * Cas spécial $a = -\theta$, $b = \theta$ :
-$$ \phi(t) = \frac{\sin \theta t}{\theta t}. $$
+\[
+  \phi(t) = \frac{e^{it\theta} - e^{-it\theta}}{2it\theta}
+   = \frac{\cos t\theta - \cos t\theta + i\sin t\theta + i\sin t\theta}{2it\theta}
+   = \frac{\sin \theta t}{\theta t}.
+\]
 * Cas spécial, $a=-1$, $b=1$ :
 $$ \phi(t) = \frac{\sin t}{t} \equiv \mathsf{sinc}(t). $$
 
