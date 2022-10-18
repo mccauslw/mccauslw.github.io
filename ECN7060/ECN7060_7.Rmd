@@ -22,9 +22,29 @@ output: beamer_presentation
 * Comme la fonction de répartition $F$, $\phi$ est une autre représentation de la loi d'une v.a. qui existe et qui est unique.
 * Applications :
     * Calcul des moments (mais moins convenable que la fonction génératrice des moments)
-    * L'opération de convolution versus l'opération de multiplication, pour le produit des v.a. indépendantes.
+    * L'opération de convolution versus l'opération de multiplication, pour la somme des v.a. indépendantes.
     * Utilisée pour prouver le théorème central limite
     * Inférence quand les moments n'existent pas.
+
+## Aparté sur la convolution
+
+* Soit $X$ et $Y$ deux v.a. indépendantes, soit $Z = X + Y$.
+* Dénotez $F_x$, $F_y$, $F_z$ les fonctions de répartition de $X$, $Y$, $Z$.
+* On peut écrire
+\[
+  F_z(z) = P(X+Y\leq z) = \int_{\mathbb{R}} F_x(z-y) dF_y(y).
+\]
+* Si la densité $f_y$ de $Y$ existe,
+\[
+  F_z(z) = \int_{\mathbb{R}} F_x(z-y) f_y(y) dy.
+\]
+* Si la densité $f_x$ de $X$ existe aussi,
+\[
+  f_z(z) = \int_{\mathbb{R}} f_x(z-y) f_y(y) dy \equiv f_x * f_y.
+\]
+* $f_x * f_y$ est la convolution de $f_x$ et $f_y$.
+
+
 
 ## La fonction caractéristique comme un film
 ![](./Figures/Film_caracteristique.png)
@@ -301,6 +321,25 @@ $X$ a une densité
 * Par la définition de convergence en loi et la continuité des fonctions $\cos xt$ et $\sin xt$ en $x$ pour $t$ donné, si $\mu_n$ converge en loi à $\mu$, $\phi_n(t) \to \phi(t)$ pour $t\in \mathbb{R}$.
 * L'autre direction est plus difficile.
 
+## La notation petit-$o$ de Landau
+
+Soit $f \colon \mathbb{R} \to \mathbb{R}$, $g \colon \mathbb{R} \to \mathbb{R}$.
+
+- $f(x) \in o(g(x))$ veut dire $\lim_{x\to \infty} f(x)/g(x) = 0$.
+- Autrement dit :
+    - $f(x) = o(g(x))$.
+    - $f$ est négligeable devant $g$ asymptotiquement.
+    - $g$ est prépondérant devant $f$ asymptotiquement.
+
+Soit $f \colon \mathbb{N} \to \mathbb{R}$, $g \colon \mathbb{N} \to \mathbb{R}$.
+
+- $f(n) \in o(g(n))$ veut dire $\lim_{n\to \infty} f(n)/g(n) = 0$.
+- Si $f(n) \in o(n^{-1})$,
+    - $\lim_{n\to \infty} nf(n) = 0$,
+    - $\lim_{n\to \infty} [nf(n)]^i = 0$, $i \in \mathbb{N}$,
+    - $\lim_{n\to \infty} n[f(n)]^i = 0$, $i \in \mathbb{N}$,
+    - $[f(n)]^i \in o(n^{-i})$, $[f(n)]^i \in o(n^{-1})$.
+    
 ## Théorème centrale limite I
 
 * Supposez que $X_1,X_2,\ldots,$ sont iid, avec moyenne 0, variance 1.
