@@ -17,9 +17,18 @@ output: beamer_presentation
 ## Des expansions des fonctions $\exp(\cdot)$, $\cos(\cdot)$, $\sin(\cdot)$
 ![](./Figures/Expansion_exp_sin_cos.png)
 
+## L'extension de deux définitions
+
+1. Une fonction $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire si $\Re(Z)$ et $\Im(Z)$ le sont.
+1. Si $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire, $E[Z] \equiv E[\Re(Z)] + iE[\Im(Z)]$.
+
 ## La fonction caractéristique $\phi$
 
 * Comme la fonction de répartition $F$, $\phi$ est une autre représentation de la loi d'une v.a. qui existe et qui est unique.
+* Si $X$ est une v.a. la fonction caractéristique $\phi_X \colon \mathbb{R} \to \mathbb{C}$ est définie par
+\[
+  \phi_X(t) \equiv E[e^{itX}].
+\]
 * Applications :
     * Calcul des moments (mais moins convenable que la fonction génératrice des moments)
     * L'opération de convolution versus l'opération de multiplication, pour la somme des v.a. indépendantes.
@@ -44,15 +53,22 @@ output: beamer_presentation
 \]
 * $f_x * f_y$ est la convolution de $f_x$ et $f_y$.
 
+## Aparté sur les fonctions paires et impaires
 
-
-## La fonction caractéristique comme un film
-![](./Figures/Film_caracteristique.png)
-
-## L'extension de deux définitions
-
-1. Une fonction $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire si $\Re(Z)$ et $\Im(Z)$ le sont.
-1. Si $Z \colon \Omega \to \mathbb{C}$ est une variable aléatoire, $E[Z] \equiv E[\Re(Z)] + iE[\Im(Z)]$.
+* Une fonction $f\colon \mathbb{R} \to \mathbb{R}$ est
+    - *paire* si $f(-x) = f(x)$ pour $x \in \mathbb{R}$,
+    - *impaire* si $f(-x) = -f(x)$ pour $x \in \mathbb{R}$.
+* Soit $g$, $g_1$, $g_2$ des fonctions paires; $h$, $h_1$, $h_2$, impaires.
+* $\int_{-a}^a h(x) dx = 0$.
+* Fonctions paires :
+    - $\cos x$, $x^i$ pour $i$ pair
+    - $g_1 + g_2$, $g_1g_2$, $h_1h_2$, $h_1/h_2$, $g \circ h$, $h \circ g$, $h'$.
+* Fonctions impaires :
+    - $\sin x$, $x^i$ pour $i$ impair
+    - $h_1 + h_2$, $gh$, $g/h$, $h/g$, $h_1 \circ h_2$, $g'$
+* Pour une fonction $f$ arbitraire, $f = g_f + h_f$ ou
+    - $g_f(x) \equiv (f(x) + f(-x))/2$ est paire et
+    - $h_f(x) \equiv (f(x) - f(-x))/2$ est impaire.
 
 ## Propriétés de la fonction caractéristique
 
@@ -70,6 +86,9 @@ output: beamer_presentation
     a. $\Re(\phi(t)) = E[\cos tX]$ est paire.
     a. $\Im(\phi(t)) = E[\sin tX]$ est impaire.
 1. Pour $X$ symétrique ($F(-x) = 1-F(x)$ au points de continuité), $\phi$ est réelle.
+
+## La fonction caractéristique comme un film
+![](./Figures/Film_caracteristique.png)
 
 ## Fonction caractéristique d'une loi $U(a,b)$
 
@@ -142,7 +161,7 @@ cercle = exp(complex(imaginary=t))
 ## Trajet dans le cercle unitaire
 
 ```{r berncirc}
-plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
+plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1), asp=1)
 lines(Re(cercle), Im(cercle), col='red')
 ```
 
@@ -170,9 +189,9 @@ phi = exp(lambda*(exp(complex(imaginary = t))-1))
 ## Trajet dans le cercle unitaire
 
 ```{r Pocirc}
-plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1))
+plot(Re(phi), Im(phi), type='l', xlim=c(-1,1), ylim=c(-1,1), asp=1)
 lines(Re(cercle), Im(cercle), col='red')
-points(0, 0, col='green')
+points(0, 0, col='blue', pch=20)
 ```
 
 ## Partie réelle
@@ -196,7 +215,7 @@ $$ \phi'(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty -\sin tx \cdot x e^{-x
 * Intégration par parties, $u = -\sin tx$, $dv = xe^{-x^2/2}\,dx$, $du = -t\cos tx$, $v = -e^{-x^2/2}$, donne
 $$ \phi'(t) = [uv]_{-\infty}^\infty - \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty t \cos tx \cdot e^{-x^2/2} \, dx = -t \phi(t). $$
 * La solution de l'équation différentielle $\log \phi(0) = 0$,
-$\frac{d\log \phi(t)}{dt} = -t$
+$\frac{d\log \phi(t)}{dt} = \frac{\phi'(t)}{\phi(t)} = -t$
 est $\log \phi(t) = \int_0^t -s\, ds = -t^2/2$.
 * Alors $\phi(t) = e^{-t^2/2}$.
 
@@ -208,11 +227,13 @@ Si $X \sim N(0,1)$ et $Y=\mu + \sigma X$ alors $Y \sim N(\mu, \sigma^2)$ et
   = e^{i\mu t} \phi_X(\sigma t) = e^{i\mu t} e^{-\sigma^2 t^2/2}
 \]
 
-La densité de $Y$, en $y$, est de la même forme fonctionnelle de $\phi_Y(t)$, en $t$ :
+La densité de $Y$, en $y$, est :
 \[
   f_Y(y) = \frac{1}{\sqrt{2\pi \sigma^2}}
   \exp\left[-\frac{1}{2} \frac{(y-\mu)^2}{\sigma^2}\right].
 \]
+
+Pour $\mu=0$, la densité a la même forme fonctionnelle, en $y$, que $\phi_Y(t)$, en $t$.
 
 ## Continuité de la fonction caractéristique
 
@@ -237,7 +258,10 @@ $$ E\left[\lim_{h \downarrow 0} \left| e^{i(t+h)X} - e^{itX} \right|\right] = E[
 ## Dérivée de la fonction caractéristique
 
 * Soit $X$ une variable aléatoire, $\phi(t)$ sa fonction caractéristique.
-* Si $E[|X|^k] < \infty$, alors pour $0 \leq j \leq k$, $\phi^{(j)}(t) = E[(iX)^j e^{itX}]$.
+* Résultat : si $E[|X|^k] < \infty$, alors
+\[
+  \phi^{(j)}(t) = E[(iX)^j e^{itX}], \; 0 \leq j \leq k
+\]
 * Preuve par induction : fixons $k$ et supposons que $E[|X|^k] < \infty$.
     * $E[(iX)^0 e^{itX}] = E[e^{itX}] = \phi(t) = \phi^{(0)}(t)$, alors vrai pour $j=0$.
     * Supposez que $\phi^{(j-1)}(t) = E[(iX)^{j-1} e^{itX}]$.
@@ -273,8 +297,7 @@ abline(h=0, v=0)
 
 ## Théorème d'inversion I
 
-* Le théorème : Soit $\mu$ une mesure borélienne, $\phi(t)$ sa fonction caractéristique. Alors
-si $a<b$ et $\mu(\{a\}) = \mu(\{b\}) = 0$,
+* Le théorème : Soit $\mu$ une mesure borélienne, $\phi(t)$ sa fonction caractéristique. Si $-\infty<a<b<\infty$ et $\mu(\{a\}) = \mu(\{b\}) = 0$,
 $$ \mu([a,b]) = \frac{1}{2\pi} \lim_{T\to \infty} \int_{-T}^T \frac{e^{-ita}-e^{-itb}}{it} \phi(t)\,dt $$
 * Puisque
 $$ \left|\frac{e^{-ita}-e^{-itb}}{it}\right| = \left|\int_a^b e^{-itr}\, dr\right| \leq \int_a^b |e^{-itr}|\, dr = b-a < \infty $$
