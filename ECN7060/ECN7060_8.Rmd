@@ -47,7 +47,27 @@ output: beamer_presentation
     * Pour tous $z \in \mathbb{R}$, il existe une unique $B_z \in {\cal B}$ tel que $\{Z=z\} = \{X \in B_z\}$. (Notez que $\{X \in B_z\} \subseteq \sigma(X)$.)
     * Considérez ceci comme la définition de $B_z$ pour tout $z \in \mathbb{R}$.
     * Alors $Z = f(X)$, où la fonction $f$ est définie par : pour tout $z \in \mathbb{R}$ et tout $x \in B_z$, $f(x) = z$.
-    * $\sigma(Z) \subseteq \sigma(X)$ mais $\sigma(X) \subseteq \sigma(Z)$ n'est pas vrai en général.
+    * $\sigma(Z) \subseteq \sigma(X)$ mais $\sigma(X) \subseteq \sigma(Z)$ n'est pas vrai en général : Si $Z = \max(0,X)$, $\{X \leq -3\} \not \subseteq \sigma(Z)$.
+* Si $A \in \sigma(X)$ et il n'existe pas $B \subset A$ telle que $B \in \sigma(X)$,
+$X$ est constante sur $A$.
+    * Mettons que $X(\omega_0) = x_0 < x_1 = X(\omega_1)$ pour $\omega_0,\omega_1 \in A$.
+    Alors $A \cap \{X \leq x_0\} \in \sigma(X)$ et $A \cap \{X \leq x_0\} \subset A$.
+
+## Objets d'intérêt
+
+* Soit $A,B \in {\cal F}$, $X,Y$ des variables aléatoires sur $(\Omega,{\cal F},P)$,
+${\cal G} \subseteq {\cal F}$ une tribu.
+
+* Nombres :
+    * $P(A|B)$, (Si $P(B) > 0$, $P(A|B) = P(A\cup B)/P(B))$.
+    * $E[Y|B]$. (Si $P(B) > 0$, $E[Y|B] = E[Y1_B]/P(B))$.
+* Variables aléatoires, ${\cal G}$-mesurables :
+    * $P(A|{\cal G})$,
+    * $E[Y|{\cal G}]$.
+* Variables aléatoires, $\sigma(X)$-mesurables :
+    * $P(A|X) \equiv P(A|\sigma(X))$,
+    * $E[Y|X] \equiv E[Y|\sigma(X)]$.
+* $\sigma(X) \equiv \sigma(\{\{X < c\} \colon c \in \mathbb{R}\}\})$.
 
 ## Exemple, probabilités et espérances conditionelles
 
@@ -117,7 +137,7 @@ $$ E[P(\Lambda|{\cal G}_1)1_{A_1}] = E\left[\frac{p_{13}}{P(A_1)}1_{A_1}\right] 
   \end{aligned}
 \]
 $$ E[P(\Lambda|{\cal G}_1)1_{A_3}] = E\left[\frac{p_{32}}{P(A_3)}1_{A_3}\right] = \frac{p_{32}}{P(A_3)}E[1_{A_3}] = p_{32} = P(\Lambda \cap A_3) $$
-* Le reste par linéarité de l'espérance, additivité de probabilité
+* Le reste ($A_1 \cup A_2$, etc.) par linéarité de l'espérance, additivité de probabilité
 
 ## Construction de $P(\Lambda|{\cal G}_1) = \frac{d\nu}{dP_0}$
 
@@ -136,7 +156,7 @@ $$ P_0(A_3) = p_{31} + p_{32} + p_{33} $$
 
 Les conditions sur $E[Y|{\cal G}_1]$
 
-* Doit être ${\cal G}_1$-mesurable, où ${\cal G}_1 = \sigma(A_1,A_2,A_3,\Omega)$.
+* Doit être ${\cal G}_1$-mesurable, où ${\cal G}_1 = \sigma(\{A_1,A_2,A_3\})$.
 * $E[E[Y|{\cal G}_1] 1_{A_1}] = E[Y1_{A_1}] =$
 * $E[E[Y|{\cal G}_1] 1_{A_2}] = E[Y1_{A_2}] =$
 * $E[E[Y|{\cal G}_1] 1_{A_3}] = E[Y1_{A_3}] =$
@@ -217,7 +237,7 @@ et notez que $\rho^+ \ll P_0$ alors $\rho^+(A) = \int_A E[Y|{\cal G}_1] P_0(dx)$
     * Soit $G_0,G \in {\cal G}$, $X = 1_{G_0}$. Alors
     $$ E[XE[Y|{\cal G}]1_G] = E[E[Y|{\cal G}]1_{G \cap G_0}] = E[Y1_{G \cap G_0}] = E[XY1_{G}]. $$
     $$ E[E[XY|{\cal G}]1_G] = E[XY1_{G}]. $$
-    * $G$ est arbitraire, alors $XE[Y|{\cal G}] = E[XY|{\cal G}]$ avec probabilité 1, tous $X=1_{G_0}$.
+    * $G$ est arbitraire, alors $XE[Y|{\cal G}] = E[XY|{\cal G}]$ avec probabilité 1, pour $X=1_{G_0}$.
     * $G_0$ est arbitraire, alors la même chose tient pour $X$ simple (linéarité), positive (convergence dominée), générale.
 
 ## Proposition 13.2.7 (espérances itérées)
