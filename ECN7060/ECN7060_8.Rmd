@@ -59,7 +59,7 @@ $X$ est constante sur $A$.
 ${\cal G} \subseteq {\cal F}$ une tribu.
 
 * Nombres :
-    * $P(A|B)$, (Si $P(B) > 0$, $P(A|B) = P(A\cup B)/P(B))$.
+    * $P(A|B)$, (Si $P(B) > 0$, $P(A|B) = P(A\cap B)/P(B))$.
     * $E[Y|B]$. (Si $P(B) > 0$, $E[Y|B] = E[Y1_B]/P(B))$.
 * Variables aléatoires, ${\cal G}$-mesurables :
     * $P(A|{\cal G})$,
