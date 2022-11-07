@@ -67,7 +67,6 @@ ${\cal G} \subseteq {\cal F}$ une tribu.
 * Variables aléatoires, $\sigma(X)$-mesurables :
     * $P(A|X) \equiv P(A|\sigma(X))$,
     * $E[Y|X] \equiv E[Y|\sigma(X)]$.
-* $\sigma(X) \equiv \sigma(\{\{X < c\} \colon c \in \mathbb{R}\}\})$.
 
 ## Exemple, probabilités et espérances conditionelles
 
