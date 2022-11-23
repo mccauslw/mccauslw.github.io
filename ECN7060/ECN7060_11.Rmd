@@ -19,12 +19,12 @@ knitr::opts_chunk$set(echo = FALSE)
     * Les hypothèses viennent d'une question scientifique d'intérêt.
     * Il n'y a rien ici de classique ou de bayésien.
     * La spécification de $\Theta_0$ devrait précèder la recherche d'un test et l'évaluation d'un test.
-    * Il y a une asymmétrie qui n'est pas explicite ici.
+    * Il n'y a pas d'asymétrie explicite ici entre $H_0$ et $H_1$.
     * L'asymétrie est une question d'erreur : on favorise le control d'un type d'erreur.
 
 ## Tests
 
-* Deux décisions (même notation pour les actions)
+* Deux décisions (même notation pour les actions que la semaine passée)
     * $a_0$, ne pas rejeter $H_0$
     * $a_1$, rejeter $H_0$
 
@@ -36,7 +36,7 @@ knitr::opts_chunk$set(echo = FALSE)
     * Une règle de décision est un $\delta \colon {\cal X} \to \{a_0,a_1\}$
     * $R = \{x \colon \delta(x) = a_1 \}$, $R^c = \{x \colon \delta(x) = a_0\}$.
     * réduction de dimension, comme dans le cas d'estimation ponctuelle : il y a souvent une statistique $W(X)$ scalaire tel que $R$ ou $R^c$ prend la forme $\{x \colon W(x) \in [a,b]\},$ des fois avec $a=-\infty$ ou $b=\infty$.
-    * attention : quand $W(X)$ est un estimateur de $\theta$, il est facile de confondre une hypothèse avec une région ($R$ ou $R^c$).
+    * attention : quand $W(X)$ est un estimateur de $\theta$, il est facile de confondre une hypothèse avec $R$ ou $R^c$.
     
 ## Optimalité par fonction de perte
 
@@ -52,7 +52,8 @@ c_I & \theta \in \Theta_0 \\
 
 * Notes :
     * $c_I$ est le coût d'une erreur du type I, $c_{II}$ le coût d'une erreur du type II
-    * Avec cette généralité, on peut briser la symétrie des deux hypothèses : choisir $c_I \neq c_{II}$.
+    * Avec cette généralité, on peut briser la symétrie entre les deux hypothèses : choisir $c_I \neq c_{II}$.
+    * Si la mesure de coût est l'espérance de l'erreur, la spécification du coût se réduit à la choix de $c_I/c_{II}$.
 
 ## Les fonctions de risque et de puissance
 
@@ -72,7 +73,7 @@ c_{II} (1-\beta(\theta)), & \theta \in \Theta_0^c
 \end{cases}
 $$
 
-* Rappel : c'est une exercise *ex ante*.
+* Rappel : ce calcul est une exercice *ex ante*.
     
 ## Risque de Bayes
 
@@ -99,8 +100,8 @@ a_1, & \mbox{autrement}.
 $$
 
 * Notes :
-    * C'est une exercise *ex post*.
-    * La distinction entre $H_0$ et $H_1$ est seulement en termes de $c_{II}/c_I$.
+    * Ce calcul est une exercice *ex post*.
+    * L'asymétrie entre $H_0$ et $H_1$ est seulement en termes de $c_{II}/c_I$.
 
 ## Lemme Neyman Pearson
 
@@ -128,6 +129,7 @@ Pour $\alpha \in [0,1]$, un test de niveau $\alpha$ avec fonction de puissance $
 \[
   P[R|\theta_1] - \lambda (P[R|\theta_0]-c). 
 \]
+* Si $(\lambda^*,R^*)$ est la solution, $\lambda^*$ est le prix d'ombre de la puissance.
 * Pour $x_2 \in \cal X$ à la frontière entre $R$ optimal et $R^c$ et un voisinage infinitessimal $dR_2$ autour de $x_2$,
 \[
   P[R+dR_2|\theta_1] - P[R|\theta_1] - \lambda (P[R+dR_2|\theta_0] - P[R|\theta_0]) = 0.
@@ -160,28 +162,61 @@ ou
 
 ![](./Figures/ROC.png)
 
+## Test du rapport de vraisemblance (LRT, likelihood ratio test)
+
+* La région de rejet d'un test LRT en général, avec $c \in [0,1]$ à spécifier:
+$$ R = \left\{x \in {\cal X} \colon \lambda(x) \equiv \frac{\sup_{\theta \in \Theta_0} L(\theta|x)}{\sup_{\theta \in \Theta}L(\theta|x)} \leq c \right\} $$
+
+* Notes :
+    * attrait intuitive dans la lumière du lemme Neymann-Pearson
+    * réduction de dimension (on spécifie seulement le scalaire $c$)
+    * on utilise souvent $-2 \log \lambda$ comme la statistique test à cause de sa loi khi-carré asymptotique.
+
 ## Exemple récurrent Bernoulli
 
 * Rappel :
-    1. $X_1,\ldots,X_n \sim \mathrm{iid}\, \mathrm{Bn}(\theta)$, $\theta \in [0,1]$.
-    1. $L(\theta|x) = \theta^r (1-\theta)^{(n-r)}$, où $r$ est le nombre de uns.
-    1. $\hat{\theta}_{\mathrm{EMV}} = \hat{\theta} = r/n$.
+    - $X_1,\ldots,X_n \sim \mathrm{iid}\, \mathrm{Bn}(\theta)$, $\theta \in [0,1]$.
+    - $L(\theta|x) = \theta^r (1-\theta)^{(n-r)}$, où $r$ est le nombre de uns.
+    - $\hat{\theta}_{\mathrm{EMV}} = \hat{\theta} = r/n$.
+    - $r$ est une statistique exhaustive minimale.
 * Considérons les hypothèses $H_0:\theta \geq 1/2$ et $H_1:\theta < 1/2$
-    * $\Theta_0 = [1/2,1]$, $\Theta = [0,1]$, $\Theta_0^c = [0,1/2)$
+    - Alors $\Theta_0 = [1/2,1]$,
+    - $\Theta = [0,1]$
+    - $\Theta_0^c = [0,1/2)$
+    
+## Exemple Bernoulli (cont.)
+
 * Calculer le rapport des vraisemblances
-$$ \sup_{\theta \in \Theta_0} L(\theta|x) =
-\begin{cases} L(\hat{\theta}|x) & \hat{\theta} \geq 1/2 \\ L(\frac{1}{2}|x) = \left(\frac{1}{2}\right)^n & \hat{\theta} < 1/2 \end{cases} $$
-$$ \sup_{\theta \in \Theta} L(\theta|x) = L(\hat{\theta}|x) $$
-$$ \lambda(x) = 
-\begin{cases}
+\[
+  \sup_{\theta \in \Theta_0} L(\theta|x) =
+  \begin{cases}
+    L(\hat{\theta}|x) = \left(\frac{r}{n}\right)^r \left(\frac{n-r}{n}\right)^{n-r}
+      & \hat{\theta} \geq 1/2 \\
+    L(\frac{1}{2}|x) = \left(\frac{1}{2}\right)^n
+      & \hat{\theta} < 1/2
+  \end{cases}
+\]
+\[
+  \sup_{\theta \in \Theta} L(\theta|x) = L(\hat{\theta}|x)
+  = \left(\frac{r}{n}\right)^r \left(\frac{n-r}{n}\right)^{n-r}
+\]
+\[
+  \lambda(x) = 
+  \begin{cases}
     1, & r \geq n/2, \\
     \frac{(n/2)^n}{r^r (n-r)^{n-r}}, & r < n/2.
-\end{cases} $$
-* Une fonction de la statistique suffisante. En général, on peut utiliser $f(t|\theta)$ directement, obtenir le même résultat.
+  \end{cases}
+\]
+* $\lambda(x)$ est une fonction de la statistique exhaustive $r$.
+* En général, on peut utiliser $f(t|\theta)$ directement, obtenir le même résultat.
+* Les régions de rejet des tests LRT sont
+\[
+  R_r = \{x \in {\cal X} \colon \sum_{i}x_i \leq r\},\quad r=0,1,2,3,4,5,12.
+\]
 
 ## Les valeures de $\lambda(x)$ pour $n=12$
 
-|$r$|$\lambda(x)$|$P_\theta(R \leq r)$|
+|$r$|$\lambda(x)$|$\beta_r(\theta) = P_\theta(R \leq r)$|
 |---|--------|--------------------|
 |0|0.000244|$(1-\theta)^n$|
 |1|0.007629|$(1-\theta)^n + n\theta(1-\theta)^{n-1}$|
@@ -192,20 +227,6 @@ $$ \lambda(x) =
 |6|1||
 |$\cdots$|$\cdots$||
 |12|1|1|
-
-## La forme d'un LRT
-
-* La forme en général :
-$$ \left\{x \in {\cal X} \colon \lambda(x) \equiv \frac{\sup_{\theta \in \Theta_0} L(\theta|x)}{\sup_{\theta \in \Theta}L(\theta|x)} \leq c \right\} $$
-
-* Notes :
-    * attrait intuitive
-    * réduction de dimension
-
-* $c \in [0,1]$ à spécifier
-
-* Ici, la forme d'un LRT est
-$$ \{x \in {\cal X} \colon \sum_{i}x_i \leq r\},\quad r=0,1,2,3,4,5,12 $$
 
 ## Quelques fonctions de puissance $\beta_r(\theta)$
 
@@ -234,8 +255,12 @@ lines(theta, beta_4); lines(theta, beta_5); lines(theta, beta_12)
 
 * Considérons les hypothèses $H_0:\theta = 1/2$ et $H_1:\theta \neq 1/2$
 
-* Ici, la LRT $\lambda(x)$ est
-$$ \lambda(x) = \frac{(n/2)^n}{r^r(n-r)^{n-r}}. $$
+* Ici, le rapport de vraisemblance est
+\[
+  \lambda(x) = \frac{L(\tfrac{1}{2})}{L(\hat{\theta})}
+  = \frac{(\tfrac{1}{2})^n}{\left(\frac{r}{n}\right)^r \left(\frac{n-r}{n}\right)^{n-r}}
+  = \frac{(n/2)^n}{r^r(n-r)^{n-r}}.
+\]
 
 ## Les valeures de $\lambda(x)$ pour $n=12$
 
@@ -265,6 +290,7 @@ theta = seq(0, 1, by=0.01); n=12
 beta_6 = pbinom(0, n, theta) + pbinom(0, n, 1-theta)
 # R = {0,1,11,12}
 beta_5 = pbinom(1, n, theta) + pbinom(1, n, 1-theta)
+# Autres régions de rejet R
 beta_4 = pbinom(2, n, theta) + pbinom(2, n, 1-theta) 
 beta_3 = pbinom(3, n, theta) + pbinom(3, n, 1-theta)
 beta_2 = pbinom(4, n, theta) + pbinom(4, n, 1-theta)
@@ -280,16 +306,33 @@ lines(theta, beta_4); lines(theta, beta_3)
 lines(theta, beta_2); lines(theta, beta_1)
 ```
 
-## La probabilité *a posteriori* $P(\theta \geq 1/2|x)$, $r=4$
+## Un test bayésien de $H_0:\theta \geq \tfrac{1}{2}$ contre $H_1:\theta < \tfrac{1}{2}$.
 
-* Soit $n=12$, $\theta \sim \mathrm{Be}(\alpha, \beta)$, où $\alpha=1$, $\beta=1$.
-* $\theta|x \sim \mathrm{Be}(\alpha+r, \beta+n-r)$
-* Si on observe (mettons) $r=4$, $\theta|x \sim \mathrm{Be}(5, 9)$
-* $P(\theta \geq 1/2|r(x) = 4) = 1-F_{\mathrm{Be}(5,9)}(1/2) = `r 1-pbeta(0.5, 5, 9)`$.
+* Soit $n=12$, comme avant.
+* Soit $\theta \sim \mathrm{Be}(\alpha, \beta)$, où $\alpha=1$, $\beta=1$ (loi uniforme).
+* La loi *a posteriori* est $\theta|x \sim \mathrm{Be}(\alpha+r, \beta+n-r)$.
+* Mettons qu'on observe $r=4$.
+* La loi *a posteriori* est $\theta|x \sim \mathrm{Be}(5, 9)$ (prochaine diapo).
+* Aparté : considérons la possibilité d'arrêter ici.
+* La probabilité *a posteriori* de $H_0$ est
+\[
+  P(\theta \geq 1/2|r(x) = 4) = 1-F_{\mathrm{Be}(5,9)}(1/2) = `r 1-pbeta(0.5, 5, 9)`.
+\]
 * On choisit $a_0$ ssi
 \[
-  \frac{c_I}{c_{II}} \cdot \frac{1-F_{\mathrm{Be}(5,9)}(1/2)}{F_{\mathrm{Be}(5,9)}(1/2)} \geq 1.
+  \frac{c_I}{c_{II}} \cdot \frac{1-F_{\mathrm{Be}(5,9)}(1/2)}{F_{\mathrm{Be}(5,9)}(1/2)} \geq 1,
 \]
+ou si
+\[
+  \frac{c_I}{c_{II}} \geq `r pbeta(0.5, 5, 9)/(1-pbeta(0.5, 5, 9))`.
+\]
+
+## La densité *a posteriori* $\mathrm{Be}(5,9)$
+
+```{r denpost}
+theta = seq(0, 1, length.out = 1000)
+plot(theta, dbeta(theta, 5, 9), type = 'l')
+```
 
 ## La probabilité *a posteriori* $P(\theta \geq 1/2|x)$, plusieurs $r$
 
@@ -314,8 +357,9 @@ lines(theta, beta_2); lines(theta, beta_1)
 
 ## Test d'une hypothèse ponctuelle, une approche bayésienne
 
-Un modèle composé, où le modèle $M$, le paramètre $\theta$ et les données
-sont aléatoires :
+Un modèle composé, où
+le modèle $M \in \{H_0 : \theta=\tfrac{1}{2},H_1 : \theta\neq\tfrac{1}{2}\}$,
+le paramètre $\theta$ et les données sont aléatoires :
 \[
   \begin{aligned}
     f(M,\theta,x) &= \Pr[M=H_0] 1_{\{H_0\}}(M) \delta_{1/2}(\theta) (1/2)^n \\
@@ -336,20 +380,38 @@ où
 
 ## (cont.)
 
-Les probabilités posterieures :
+* Les probabilités posterieures :
 \[
   \Pr[M=H_0|x] = \frac{\Pr[M=H_0] f_0(x)}{\Pr[M=H_0] f_0(x) + \Pr[M=H_1] f_1(x)}
 \]
 \[
   \Pr[M=H_1|x] = \frac{\Pr[M=H_1] f_1(x)}{\Pr[M=H_0] f_0(x) + \Pr[M=H_1] f_1(x)}
 \]
-
-Le rapport de chances (rapport des cotes) postérieur :
+* Le rapport de chances (rapport des cotes) postérieur :
 \[
-  \frac{\Pr[M=H_0|x]}{\Pr[M=H_1|x]} = \frac{\Pr[M=H_0]}{\Pr[M=H_1]} \frac{f_0(x)}{f_1(x)}
+  \frac{\Pr[M=H_0|x]}{\Pr[M=H_1|x]} = \frac{\Pr[M=H_0]}{\Pr[M=H_1]}
+  \cdot \frac{f_0(x)}{f_1(x)},
+\]
+où
+    - Le premier facteur est le rapport des cotes *a priori*
+    - Le deuxième facteur est le facteur de Bayes, le ratio de *vraisemblances marginales*
+    - La vraisemblance marginal $f_0(x)$ est un genre de score de succès de prévision hors échantillon du modèle $H_0$ où $\theta = \tfrac{1}{2}$
+    - $f_1(x)$ est celui du modèle $H_1$.
+
+## La décision optimale
+
+Pour la loi *a priori* $\mathrm{Be}(\alpha, \beta)$, $\alpha = \beta = 1$, $r=4$ et
+$n=12$,
+\[
+  f_0(x) = `r 0.5^12`,
+\]
+\[
+  \quad f_1(x) = `r exp(lbeta(5, 9) - lbeta(1, 1))`,
+\]
+\[
+  \quad \frac{f_0(x)}{f_1(x)} = `r exp(12 * log(0.5) + lbeta(1, 1) - lbeta(5,9))`
 \]
 
-La décision optimale :
 \[
   \delta(x) = \begin{cases} a_0 & \frac{c_I}{c_{II}} \frac{\Pr[M=H_0]}{\Pr[M=H_1]} \frac{f_0(x)}{f_1(x)} \geq 1, \\ a_1 & \mbox{autrement}.
   \end{cases}
