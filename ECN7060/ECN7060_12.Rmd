@@ -141,9 +141,9 @@ $$ C(X) = \left\{\sigma^2 \colon \frac{(n-1)S^2}{\chi_{n-1,\alpha/2}} \leq \sigm
 * Soit $T$ une statistique avec fonction de répartition $F_T(t|\theta)$.
 * Si $F_T$ est toujours inversible (c.-à-d. pour tous $\theta$), $F_T(T|\theta) \sim U(0,1)$, une loi qui ne dépend pas de $\theta$.
 * Supposons que $T$ est stochastiquement croissante en $\theta$.
-* C'est à dire que $F_T(t,\theta)$ est décroissante en $\theta$.
+* C'est à dire que $F_T(t|\theta)$ est décroissante en $\theta$.
 * Pour $t$ donné, soit $\theta_L(t)$ et $\theta_U(t)$ les solutions de
-$$ F_T(t|\theta_U(t)) = \alpha_1 \quad F_T(\theta_L(t)) = 1-\alpha_2. $$
+$$ F_T(t|\theta_U(t)) = \alpha_1, \quad F_T(t|\theta_L(t)) = 1-\alpha_2. $$
 * Pour tous $t$, $\theta$,
 $$ \theta > \theta_U(t) \Leftrightarrow F_T(t,\theta) < \alpha_1 $$
 $$ \theta < \theta_L(t) \Leftrightarrow F_T(t,\theta) > 1- \alpha_2 $$
@@ -155,3 +155,37 @@ $$ P_\theta[\theta_L(T) \leq \theta \leq \theta_U(T)] = P_\theta[\alpha_1 \leq F
 ## Graphique, pivot de la fonction de répartition
 
 ![](./Figures/Pivot_cdf.png)
+
+## Exemple gaussien (Question 5(e) de l'examen final 2021)
+
+* Soit $X_1,\ldots,X_n \sim \mathrm{iid}\, N(\mu,1)$.
+* $T = \tfrac{1}{n} \sum_{i=1}^n X_i$.
+* Soit $F_T(t;\mu)$ la fonction de répartition de $T$ pour $\mu$ donnée.
+* Question de l'examen 2021 : montrez que la quantité $F_T(T;\mu)$ est pivotale et utilisez-la pour construire un intervalle de confiance pour $\mu$ avec probabilité de couverture $1-\alpha$.
+* Réponse (première partie)
+    * Remarquez que la fonction de répartition de $T$ est inversible.
+    * Soit $G$ la fonction de répartition de $F_T(T;\mu)$.
+    * Pour $u \in [0,1]$,
+    \[
+      \begin{aligned}
+        G(u) &= P(F_T(T;\mu) \leq u) \\
+        &= P(T \leq F_T^{-1}(u; \mu)) \\
+        &= F_T(F_T^{-1}(u;\mu);\mu) = u.
+      \end{aligned}
+    \]
+
+## Exemple gaussien, cont.
+
+* Réponse (deuxième partie) (soit $\alpha_1 = 0.025$, $\alpha_2 = 0.975$)
+    * Remarquez que $F_T(t;\mu) = P(T \leq t;\mu) = \Phi(\sqrt{n}(T-\mu))$, où $\Phi(\cdot)$ est la fonction de répartition de la loi $N(0,1)$.
+    * La solution de $\Phi(\sqrt{n}(t-\mu_U(t))) = \alpha_1 = 0.025$ est celle de
+    $$ \sqrt{n}(t-\mu_U(t)) = z_{\alpha_1} = z_{0.025}. $$
+    * Alors la solution est $\mu_U(t) = t - z_{\alpha_1}/\sqrt{n}$.
+    * La solution de $\Phi(\sqrt{n}(t-\mu_L(t))) = \alpha_2 = 0.975$ est celle de
+    $$ \sqrt{n}(t-\mu_L(t)) = -z_{1-\alpha_2} = -z_{0.025}. $$
+    * Alors la solution est $\mu_L(t) = t + z_{1-\alpha_2}/\sqrt{n}$.
+    * L'intervalle de confiance pour $\alpha_1,\alpha_2$ données est
+    \[
+      [T-z_{\alpha_1}/\sqrt{n}, T+z_{1-\alpha_2}/\sqrt{n}]
+      = [T-z_{0.025}/\sqrt{n}, T+z_{0.025}/\sqrt{n}].
+    \]
