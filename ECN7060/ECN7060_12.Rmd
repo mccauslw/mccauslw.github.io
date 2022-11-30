@@ -16,12 +16,13 @@ knitr::opts_chunk$set(echo = FALSE)
 $$ P_\theta[L(X) \leq \theta \leq U(X)]. $$
     * souvent une fonction de $\theta$, pas toujours (idéalement non)
     * restrictions sur le modèle pour obtenir cette non-dépendance
-    * coefficient de confiance $\inf_\theta P_\theta(L(X)\leq \theta \leq U(X))$.
+    * le coefficient de confiance est $\inf_\theta P_\theta(L(X)\leq \theta \leq U(X))$.
     * arbitrage : haute probabilité de couverture v. intervalle court
 * Les propriétés bayésiennes concernent la probabilité
 $$ P[L(x) \leq \theta \leq U(x)|x] \quad \mbox{ou} \quad P[l\leq \theta \leq u|x] $$
-    * Stratégie symétrique : $L(x)$ et $U(x)$ sont les quantiles $\alpha/2$ et $1-\alpha/2$ de $\theta$, $U(x) - L(x)$ n'est pas forcément minimale
-    * Intervalle de haute probabilité *a posteriori* : $U(x) - L(x)$ minimale sous la contrainte $P[L(x) \leq \theta \leq U(x)|x] = 1-\alpha$.
+    * Deux façons populaires pour choiser $L(x)$ et $U(x)$ :
+        * $L(x)$ et $U(x)$ sont les quantiles $\alpha/2$ et $1-\alpha/2$ de $\theta$, $U(x) - L(x)$ n'est pas forcément minimale
+        * Intervalle de haute probabilité *a posteriori* : $U(x) - L(x)$ minimale sous la contrainte $P[L(x) \leq \theta \leq U(x)|x] = 1-\alpha$.
 
 ## Régions de haute probabilité et intervalles interquantile
 
@@ -43,18 +44,19 @@ $$ P[L(x) \leq \theta \leq U(x)|x] \quad \mbox{ou} \quad P[l\leq \theta \leq u|x
 ## Inversion d'une statistique test
 
 * Pour chaque $\theta_0$, soit $A(\theta_0)$ la région de non-rejet pour un test de niveau $\alpha$ de l'hypothèse nulle $H_0:\theta = \theta_0$.
-* Alors $A(\theta)$ vérifie $P_\theta[X \notin A(\theta)] \leq \alpha$ et l'inégalité est sharp.
+* Alors $A(\theta)$ vérifie $P_\theta[X \notin A(\theta)] \leq \alpha$.
 * Définez, pour chaque $x \in {\cal X}$, $C(x) = \{\theta:x \in A(\theta)\}$.
 * Notez que $x \in A(\theta) \Leftrightarrow \theta \in C(x)$.
-* Résultat : $C(X)$ est une région de confiance avec coefficient de confiance $(1-\alpha)$.
+* Résultat : $C(X)$ est une région de confiance $(1-\alpha)$.
 * Preuve :
     * Puisque le niveau du test est de $\alpha$,
     $$ P_\theta[X \notin A(\theta)] \leq \alpha. $$
     * Alors
     $$ P_\theta[\theta \in C(X)] = P_\theta[X \in A(\theta)] \geq (1-\alpha). $$
-    * La première inégalité est sharp donc la deuxième l'est aussi.
+    * Si on remplace la première inégalité par une égalité, la deuxième devient une
+    égalité.
 
-## $C(\bar{x})$ et $A(\theta)$ pour un exemple gaussien
+## $C(\bar{x})$ et $A(\theta)$ pour un exemple gaussien, $\sigma^2$ connu
 
 ![](./Figures/Intervalle_Region.png)
 
@@ -80,14 +82,26 @@ $$
 $$
 * Alors $P[\bar{X} - z_{\alpha/2}\sigma/\sqrt{n} \leq \mu_0 \leq \bar{X} + z_{\alpha/2}\sigma/\sqrt{n}] = 1-\alpha$.
 
+## Inversion d'un test, Exemple 9.2.11
+
+* Considérez la construction d'un intervalle pour $p$ dans le modèle $X \sim \mathrm{Bi}(n,p)$.
+* Une idée raisonnable est de construire, pour $\alpha$ donné et pour chaque $p$,
+la région de non-rejet $A(p) \subseteq \{0,1,\ldots,n\}$ avec le nombre minimal d'éléments,...
+* ...puis invertir $A(p)$ pour obtenir $C(X)$.
+* Cependant, considerez le résultat quand $n=3$ et $1-\alpha = 0.442$.
+
+## Inversion d'un test, Exemple 9.2.11 (cont.)
+
+![](./Figures/Inversion_test.pdf)
+
 ## Quantités pivotales
 
 * Une fonction $Q(X,\theta)$ est pivotale si sa loi ne dépend pas de $\theta$.
 * Interprétation bayésienne : sa loi ne dépend pas de $f(\theta)$
 * Famille $f(x|\mu) = f_0(x-\mu)$ : $Q(X,\theta) = \bar{X}-\mu$ est pivotale.
 * Preuve :
-    * Soit $Z_i \sim f_0(z)$. Sa distribution ne dépend pas de $\mu$.
-    * Si $X_i \sim f(x|\mu) = f_0(x-\mu)$,
+    * Soit $Z_i \sim \mathrm{iid}\, f_0(z)$. Sa distribution ne dépend pas de $\mu$.
+    * Si $X_i \sim \mathrm{iid}\, f(x|\mu) = f_0(x-\mu)$,
     $$ (X_1,\ldots,X_n) \sim (Z_1+\mu,\ldots,Z_n+\mu) $$
     $$ \bar{X} - \mu \sim \frac{1}{n} \sum_{i=1}^n (Z_i + \mu) - \mu = \bar{Z} $$
     * La loi de $\bar{Z}$ (et de $Q(X,\theta) = \bar{X}-\mu$) ne dépend pas de $\mu$.
@@ -177,15 +191,15 @@ $$ P_\theta[\theta_L(T) \leq \theta \leq \theta_U(T)] = P_\theta[\alpha_1 \leq F
 ## Exemple gaussien, cont.
 
 * Réponse (deuxième partie) (soit $\alpha_1 = 0.025$, $\alpha_2 = 0.975$)
-    * Remarquez que $F_T(t;\mu) = P(T \leq t;\mu) = \Phi(\sqrt{n}(T-\mu))$, où $\Phi(\cdot)$ est la fonction de répartition de la loi $N(0,1)$.
+    * Remarquez que $F_T(t;\mu) = P(T \leq t;\mu) = \Phi(\sqrt{n}(t-\mu))$, où $\Phi(\cdot)$ est la fonction de répartition de la loi $N(0,1)$.
     * La solution de $\Phi(\sqrt{n}(t-\mu_U(t))) = \alpha_1 = 0.025$ est celle de
-    $$ \sqrt{n}(t-\mu_U(t)) = z_{\alpha_1} = z_{0.025}. $$
-    * Alors la solution est $\mu_U(t) = t - z_{\alpha_1}/\sqrt{n}$.
+    $$ \sqrt{n}(t-\mu_U(t)) = \Phi^{-1}(\alpha_1) = -z_{0.025}. $$
+    * Alors la solution est $\mu_U(t) = t + z_{0.025}/\sqrt{n}$.
     * La solution de $\Phi(\sqrt{n}(t-\mu_L(t))) = \alpha_2 = 0.975$ est celle de
-    $$ \sqrt{n}(t-\mu_L(t)) = -z_{1-\alpha_2} = -z_{0.025}. $$
-    * Alors la solution est $\mu_L(t) = t + z_{1-\alpha_2}/\sqrt{n}$.
+    $$ \sqrt{n}(t-\mu_L(t)) = \Phi^{-1}(\alpha_2) = z_{0.025}. $$
+    * Alors la solution est $\mu_L(t) = t - z_{0.025}/\sqrt{n}$.
     * L'intervalle de confiance pour $\alpha_1,\alpha_2$ données est
     \[
-      [T-z_{\alpha_1}/\sqrt{n}, T+z_{1-\alpha_2}/\sqrt{n}]
+      [T-\Phi^{-1}(\alpha_2)/\sqrt{n}, T-\Phi^{-1}(\alpha_1)/\sqrt{n}]
       = [T-z_{0.025}/\sqrt{n}, T+z_{0.025}/\sqrt{n}].
     \]
