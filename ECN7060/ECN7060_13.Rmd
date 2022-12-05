@@ -36,10 +36,10 @@ $$ F(x_i|\theta) = p \Phi\left(\frac{x_i-\mu_1}{\sigma_1}\right) +
 
 ```{r mixtures, include=TRUE, echo=TRUE, fig.height=6}
 x = seq(-3, 3, by=0.001); y = dnorm(x, 0, 1)
-y1 = 0.5 * dnorm(x, 0, 1) + 0.5 * dnorm(x, 0, 3/2)
-y2 = 0.8 * dnorm(x, -1/4, 1) + 0.2 * dnorm(x, 1, 1)
-plot(x, y, type='l'); lines(x, y1, col='green')
-lines(x, y2, col='red')
+y1 = 0.5 * (dnorm(x, 0, sqrt(0.5)) + dnorm(x, 0, sqrt(1.5)))
+y2 = 0.8 * dnorm(x, -1/4, sqrt(0.8)) + 0.2 * dnorm(x, 1, sqrt(0.8))
+plot(x, y, type='l', ylim=c(0, 0.5));
+lines(x, y1, col='green'); lines(x, y2, col='red')
 ```
 
 ## La question d'identification (ponctuelle)
@@ -152,7 +152,30 @@ plot(p, dbeta(p, 0.5, 10.5), 'l')
     $$ \frac{\partial}{\partial \theta} \int_0^\theta f(x_i|\theta)\, dx = 0
     \quad \mbox{mais} \quad
     \int_0^\theta \frac{\partial}{\partial \theta} f(x_i|\theta)\, dx = \int_0^\theta \frac{-1}{\theta^2}\, dx = -\frac{1}{\theta}. $$
-    
+
+## Un modèle uniforme discret
+
+![](./Figures/savais_tu.pdf)
+
+## Données pour un modèle uniforme discret
+
+### Livres savais-tu?
+
+|Titre |numéro de série|
+|------|---------------|
+|Vautours | 6 |
+|Coquerelles | 21 |
+|Ratons laveurs| 32 |
+|Manchots | 68 |
+
+## Vraisemblance pour un modèle uniforme discret
+
+```{r savais}
+th = seq(1,100)
+plot(th, th^{-4}*(th>=68), type='p')
+abline(v=77, col='red')
+```
+
 ## Conditions de Régularité (page 516)
 
 Pour convergence de l'estimateur MV :
