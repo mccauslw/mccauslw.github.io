@@ -271,7 +271,7 @@ E_\theta\left[
 = -E_\theta\left[
     \frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
     \frac{\partial \log f(X_i|\theta)}{\partial \theta}
-\right] \equiv -I(\theta)
+\right] \equiv -I_1(\theta)
 $$
 
 ## Additivité de l'information de Fisher
@@ -289,7 +289,7 @@ I_n(\theta) &= E_\theta\left[
 \frac{\partial \log f(X_i|\theta)}{\partial \theta^\top}
 \frac{\partial \log f(X_i|\theta)}{\partial \theta}
 \right] \\
-&\equiv nI(\theta).
+&\equiv nI_1(\theta).
 \end{aligned}
 $$
 
@@ -390,13 +390,13 @@ $$
 * Pour la vraie valeur $\theta_0$, les termes sont iid, avec
 $$ E_{\theta_0}\left[ \frac{\partial 
 \log f(X_i|\theta_0)}{\partial \theta^\top} \right] = 0, \qquad
-\mathrm{Var}_{\theta_0}\left[ \frac{\partial \log f(X_i|\theta_0)}{\partial \theta^\top} \right] = I(\theta_0). $$
+\mathrm{Var}_{\theta_0}\left[ \frac{\partial \log f(X_i|\theta_0)}{\partial \theta^\top} \right] = I_1(\theta_0). $$
 
 * Par une loi de grand nombres,
 $$ \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \to_p 0. $$
 
 * Par un théorème central limite,
-$$ \sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \to_d N(0,I(\theta_0)). $$
+$$ \sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \to_d N(0,I_1(\theta_0)). $$
 
 ## Notes sur le gradient
 
@@ -409,12 +409,12 @@ On a besoin de
 
 ## Loi de grand nombres pour la matrice hessienne et son inverse
 
-$$ -\frac{1}{n}\frac{\partial^2 l(\theta_0;X)}{\partial \theta \partial \theta^\top} = -\frac{1}{n} \sum_{i=1}^n \frac{\partial^2 \log f(X_i|\theta_0)}{\partial \theta \partial \theta^\top} \to_p I(\theta_0) $$
+$$ -\frac{1}{n}\frac{\partial^2 l(\theta_0;X)}{\partial \theta \partial \theta^\top} = -\frac{1}{n} \sum_{i=1}^n \frac{\partial^2 \log f(X_i|\theta_0)}{\partial \theta \partial \theta^\top} \to_p I_1(\theta_0) $$
 
 * Par le théorème « continuous mapping, »
 $$ -\left[
 \frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}
-\right]^{-1} \to_p I(\theta_0)^{-1}. $$
+\right]^{-1} \to_p I_1(\theta_0)^{-1}. $$
 
 ## Combinaison des résultats
 
@@ -426,10 +426,10 @@ $$
 
 * Convergence de $\sqrt{n}(\hat{\theta}-\theta)$ en loi :
 $$
-\sqrt{n}(\hat{\theta}-\theta_0) \approx \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right] \to_d N(0,I(\theta_0)^{-1}).
+\sqrt{n}(\hat{\theta}-\theta_0) \approx \left[-\frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}\right]^{-1} \left[\sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \right] \to_d N(0,I_1(\theta_0)^{-1}).
 $$
 
-* Remarquez que $I(\theta_0)^{-1}$ est la borne inférieure Cramer-Rao. Sous les conditions de régularité, $\hat{\theta}_{MV}$ est un estimateur asymptotiquement efficace de $\theta_0$.
+* Remarquez que $I_1(\theta_0)^{-1}$ est la borne inférieure Cramer-Rao. Sous les conditions de régularité, $\hat{\theta}_{MV}$ est un estimateur asymptotiquement efficace de $\theta_0$.
 
 ## Distribution asymptotique de la statistique test LRT
 
@@ -442,7 +442,7 @@ $$ l(\theta_0|x) = l(\hat{\theta}|x) + \frac{1}{2} (\hat{\theta}-\theta_0)^\top
 $$
 \begin{aligned}
 -2\log \lambda(x) &= -2(l(\theta_0|x) - l(\hat{\theta}|x)) \\
-&\to_d (\hat{\theta}-\theta_0)^\top
+&\to_d -(\hat{\theta}-\theta_0)^\top
 \frac{\partial^2 l(\hat{\theta};x)}{\partial \theta \partial \theta^\top} (\hat{\theta}-\theta_0) \to_d \chi^2_k.
 \end{aligned}
 $$
