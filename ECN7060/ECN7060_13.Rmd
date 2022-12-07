@@ -3,6 +3,7 @@ title: "ECN 7060, cours 13"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: beamer_presentation
+urlcolor: blue
 ---
 
 ```{r setup, include=FALSE}
@@ -52,7 +53,9 @@ $$ \theta \neq \theta_0 \Rightarrow f(\cdot|\theta) \neq f(\cdot|\theta_0). $$
 * Identification II :
 $$ \theta_1 \neq \theta_2 \Rightarrow f(\cdot|\theta_1) \neq f(\cdot|\theta_2). $$
 
-* La deuxième condition est plus forte. En pratique, elle est souvent la condition à vérifier, mais quelquefois l'identification (ou l'absense) est locale.
+* La deuxième condition est plus forte. En pratique, elle est souvent la condition à vérifier.
+
+* [Exemples simple ici de la vérification de l'identification](https://en.wikipedia.org/wiki/Identifiability#CITEREFCasellaBerger2001)
 
 ## Un mélange extrème de deux gaussiens
 
@@ -76,8 +79,9 @@ plot(x, y, type='l')
     * D'autres chemins où la vraisemblance croit sans borne
         * $p\in(0,1)$ arbitraire
         * d'autres choix de $\mu_2$, $\sigma_2$
-        * échange d'index
-* D'autres modèles de mélange
+        * d'autres choix d'index
+* On peut construire des preuves semblables pour montrer que la vraisemblance d'autres modèles de mélange n'est pas bornée.
+* On parle de "ill-behaved likelihood"; la faute en revient au modèle ou à la méthode d'inférence?
 
 ## Une vraisemblance non-bornée
 
@@ -86,13 +90,16 @@ plot(x, y, type='l')
 ## Le modèle de mélange, implications pour la loi *a posteriori*
 
 * Mettons que la vraisemblance n'est pas bornée.
-* Pour certaines lois *a priori*, la densité *a posteriori* est bornée:
-    - Si $X_i \sim N(\mu,\omega^{-1})$ et $\omega \sim \mathrm{Ga}(\alpha, \beta)$,
-    \[
-      f(x_i) \propto \omega^{1/2} \exp\left[ -\tfrac{1}{2} \omega (x_i-\mu)^2 \right],
-      \quad
-      f(\omega) \propto \omega^{\alpha-1} e^{-\beta \omega}.
-    \]
+* Pour certaines lois *a priori*, la densité *a posteriori* est bornée.
+* Pour le modèle de mélange, $\omega_i \equiv \sigma_i^{-1}$ et $\omega_i \sim \mathrm{Ga}(\alpha, \beta)$, la densité *a posteriori* est bornée :
+\[
+  f(x_i|\theta) \propto
+  p \omega_1^{1/2} \exp\left[ -\tfrac{1}{2} \omega_1 (x_i-\mu_1)^2 \right]
+  + (1-p) \omega_2^{1/2} \exp\left[ -\tfrac{1}{2} \omega_2 (x_i-\mu_2)^2 \right]
+\]
+\[
+  f(\omega_i) \propto \omega_i^{\alpha-1} e^{-\beta \omega_i}.
+\]
 * Bornée ou non, si la densité *a priori* est propre, la densité *a posteriori* l'est aussi.
 * Même si la densité *a priori* est impropre, la densité *a posteriori* est souvent propre (mais il faut le vérifier).
 * Dans le cas où la densité *a posteriori* est propre,
@@ -100,23 +107,24 @@ plot(x, y, type='l')
     
 ## Un modèle Bernoulli
 
-* $X_1,\ldots,X_n \sim \mathrm{iid}\, \mathrm{Bn}(p)$
+* $X_1,\ldots,X_n \sim \mathrm{iid}\, \mathrm{Bn}(p)$, $p \in \Theta = [0,1]$.
 
-* $R = \sum_{i=1}^n X_i$ est une statistique suffisante minimale pour $p$.
-
-* Si $r = 0$,
-    * $f(x|p) = (1-p)^n$,
-    * $\hat{p}_{MV}(x) = 0$ (solution de coin),
-    * $\mathrm{Var}_p[\hat{p}_{MV}(X)] = 0$ quand $p = \hat{p}_{MV}(x)$.
+* $R = \sum_{i=1}^n X_i$ est une statistique exhaustive minimale pour $p$.
 
 * Irregularité :
-    * $\hat{p}_{MV}(x)$ se trouve sur la frontière de $\Theta = [0,1]$.
-    * La dérivée (à droite) de $\log f(x|p)$ n'égale pas à zéro à l'estimation MV :
+    * Si le vrai $p_0 \in \{0,1\}$, $p_0$ est sur la frontière de $\Theta$.
+    
+* Si $r = 0$,
+    * $f(x|p) = (1-p)^n$,
+    * La dérivée de $\log f(x|p)$ n'égale jamais à zéro :
     \[
-      \left. \frac{\partial \log f(x|p)}{\partial p} \right|_{p=0}
-      = \left. \frac{\partial n\log(1-p)}{\partial p} \right|_{p=0}
-      = \left. -n/(1-p) \right|_{p=0} = -n.
+      \frac{\partial \log f(x|p)}{\partial p}
+      = \frac{\partial n\log(1-p)}{\partial p}
+      = \frac{-n}{1-p}.
     \]
+    * $\hat{p}_{MV}(x) = 0$ (solution de coin),
+    * $\hat{p}_{MV}(x)$ se trouve sur la frontière de $\Theta = [0,1]$.
+    * $\mathrm{Var}_p[\hat{p}_{MV}(X)] = 0$ quand $p = \hat{p}_{MV}(x)$.
 
 * D'autres cas :
     * Modèles avec restrictions sur les paramètres.
@@ -132,11 +140,11 @@ p = seq(0, 1, by=0.001)
 plot(p, dbeta(p, 0.5, 10.5), 'l')
 ```
 
-## Un modèle uniform
+## Un modèle uniforme
 
 * $X_1,\ldots,X_n \sim \mathrm{iid}\, U(0,\theta)$.
 
-* $X_{(1)} = \max_{i} X_i$ est une statistique suffisante minimale pour $\theta$.
+* $X_{(1)} = \max_{i} X_i$ est une statistique exhaustive minimale pour $\theta$.
 
 * Ici,
     * $f(x|\theta) = \theta^{-n} 1_{[x_{(1)},\infty)}(\theta)$.
@@ -153,13 +161,26 @@ plot(p, dbeta(p, 0.5, 10.5), 'l')
     \quad \mbox{mais} \quad
     \int_0^\theta \frac{\partial}{\partial \theta} f(x_i|\theta)\, dx = \int_0^\theta \frac{-1}{\theta^2}\, dx = -\frac{1}{\theta}. $$
 
-## Un modèle uniforme discret
+## Combien de livres « Savais-tu? » y a-t-il?
 
 ![](./Figures/savais_tu.pdf)
 
-## Données pour un modèle uniforme discret
+## Un modèle uniforme discret
 
-### Livres savais-tu?
+### Le modèle
+
+* $X_i$ iid, chaque $X_i$ a une loi uniforme sur $\{1,\ldots,\theta\}$
+* On observe $X_1,\ldots,X_n$, $\max_i X_i$ est exhaustive.
+
+### La vraisemblance
+
+\[
+  L(\theta|x) = \begin{cases}
+    \theta^{-n} & \theta \geq \max_i x_i \\ 0 & \text{autrement}
+  \end{cases}
+\]
+
+### Les données ($n=4$)
 
 |Titre |numéro de série|
 |------|---------------|
@@ -172,7 +193,7 @@ plot(p, dbeta(p, 0.5, 10.5), 'l')
 
 ```{r savais}
 th = seq(1,100)
-plot(th, th^{-4}*(th>=68), type='p')
+plot(th, th^{-4}*(th>=68), type='p', xlab='theta', ylab='L(theta|x))')
 abline(v=77, col='red')
 ```
 
@@ -381,16 +402,17 @@ $$ \sqrt{n} \frac{1}{n} \frac{\partial l(\theta_0;x)}{\partial \theta^\top} \to_
 
 On a besoin de
 
-* l'existence des dérivées, échange d'ordre (intégral, dérivée),
+* l'existence des dérivées,
+* pouvoir échanger l'ordre de l'intégral et la dérivée,
 * une variance fini,
-* $X_i$ indépendents, identiquement distribués.
+* $X_i$ iid.
 
 ## Loi de grand nombres pour la matrice hessienne et son inverse
 
-$$ \frac{1}{n}\frac{\partial^2 l(\theta_0;X)}{\partial \theta \partial \theta^\top} = \frac{1}{n} \sum_{i=1}^n \frac{\partial^2 \log f(X_i|\theta_0)}{\partial \theta \partial \theta^\top} \to_p I(\theta_0) $$
+$$ -\frac{1}{n}\frac{\partial^2 l(\theta_0;X)}{\partial \theta \partial \theta^\top} = -\frac{1}{n} \sum_{i=1}^n \frac{\partial^2 \log f(X_i|\theta_0)}{\partial \theta \partial \theta^\top} \to_p I(\theta_0) $$
 
 * Par le théorème « continuous mapping, »
-$$ \left[
+$$ -\left[
 \frac{1}{n}\frac{\partial^2 l(\theta_0;x)}{\partial \theta \partial \theta^\top}
 \right]^{-1} \to_p I(\theta_0)^{-1}. $$
 
