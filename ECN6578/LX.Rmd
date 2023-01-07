@@ -7,7 +7,7 @@ output: pdf_document
 urlcolor: blue
 ---
 
-## Cours 1, le 10 janvier
+## Cours 1, le 9 janvier
 
 #### Sujets
 
@@ -31,16 +31,9 @@ Trouvez $\mathrm{Cov}[X,Y]$.
 
 1. Trouvez l'aplatissement du mélange suivant de deux lois gaussiennes, chacune avec probabilité 0.5 : $N(0,0.9)$ et $N(0,1.1)$.
 
-#### Exercices avec R
-
-(Travail préliminaire, pas à remettre)
-
-1. Téléchargez R et R Studio.
-1. Créez un fichier HTML à partir du gabarit R Markdown.
-
 \pagebreak
 
-## Cours 2, le 17 janvier
+## Cours 2, le 16 janvier
 
 #### Sujets
 
@@ -90,17 +83,9 @@ Le site suivant donne les quatres premiers moments non centraux d'une v.a. $N(\m
 1. On observe un échantillon $X_1,\ldots,X_T$, où $X_t \sim \mathrm{iid}\, N(\mu,\sigma^2)$.
 Si on fait les tests 1 et 2 de la diapo "Attention : tests multiples!" quelle est la probabilité d'au moins un rejet, comme fonction de $\alpha$?
 
-#### Exercices avec R
-
-Travail, cours 2
-
-1. Téléchargez le fichier des données `d-3m7008.txt` et faites la graphique des rendements journaliers de l'action 3M avec la commande `plot`, option 'l' (L minuscule).
-1. Faites un test de l'hypothèse que les rendements sont iid gaussiens, avec la statistique test Jarque-Bera. Calculez les valeurs critiques en utilisant la fonction de quantile (comme `qnorm` ou `qchisq`) de la loi asymptotique de la statistique test sous l'hypothèse nulle.
-1. Faites un test de l'hypothèse que les rendements sont iid avec variance finie, avec la statistique test Box-Pierce. Utilisez la commande `acf` pour obtenir la fonction d'autocorrélation et calculez la statistique test à partir de cette fonction. Utilisez $m=10$ retards. Confirmez ensuite votre réponse en utilisant la commande `Box.test`.
-
 \pagebreak
 
-## Cours 3, le 24 janvier
+## Cours 3, le 23 janvier
 
 #### Sujets
 
@@ -141,24 +126,9 @@ Travail, cours 2
 
 1. Trouvez $\psi_1,\psi_2,\psi_3$ de la représentation MA infinie pour un ARMA(1,2) général.
 
-#### Exercices avec R
-
-Travail, cours 3
-
-1. Considérez le process ARMA(3,1) suivant :
-\[
-  r_t = 1.9 r_{t-1} - 1.4 r_{t-2} + 0.45 r_{t-3} + a_t - 0.3 a_{t-1}.
-\]
-    a. Simulez le séries pour $T=500$ observations.
-    a. Faites la graphique de la fonction d'autocorrélation $\rho_k$ de la population, pour $k=1,\ldots,25$
-    a. Faites la graphique de la fonction d'autocorrélation $\hat\rho_k$ de l'échantillon, pour $k=1,\ldots,25$.
-    a. Estimez les paramètres d'un modèle ARMA(3,1) en vous servant de l'échantillon que vous avez tiré. Donnez des estimations ponctuelles avec leurs écarts-types.
-
-1. Tsay, Exercice 2.4. Lisez les sections 2.8.1 et 2.8.2 sur la saisonnalité.
-
 \pagebreak
 
-## Cours 4, le 31 janvier
+## Cours 4, le 30 janvier
 
 #### Sujets
 
@@ -193,20 +163,9 @@ Trouvez la variance de l'erreur de prévision dans les deux cas.
 1. Mettons que $r_t$ suit un GARCH(1,1) gaussien avec moyenne zéro.
 Calculez la variance, l'asymétrie et l’aplatissement de $r_t$. Vous pouvez vérifier la variance et l'aplatissement en comparant vos résultats aux résultats à la page 132 de Tsay.
 
-#### Exercices en R
-
-Travail, cours 4
-
-1.
-    a. Prenez le code de la diapo 'Simulation du modèle ARCH(3)' et modifiez-le pour simuler un GARCH(1,1) gaussien à moyenne zéro pendant $T=1000$ périodes.
-Utilisez les valeurs des paramètres $\alpha_0 = 0.000084$, $\alpha_1 = 0.1213$, $\beta_1 = 0.8523$.
-    a. Calculez la variance, l'asymétrie et l'aplatissement de l'échantillon.
-Suggestion : comparez à la variance, à l'asymétrie et l’aplatissement de la population obtenues dans les exercices théoriques.
-    a. Faites la graphique de $r_t$ et de $\sigma_t^2$. 
-
 \pagebreak
 
-## Cours 5, le 7 février
+## Cours 5, le 6 février
 
 #### Sujets
 
@@ -237,24 +196,9 @@ Suggestion : comparez à la variance, à l'asymétrie et l’aplatissement de la
 1. Faites des prévision du rendement $r_{T+1}$ pour une modèle AR(1)-GARCH(1,1).
 Quelle est la variance conditionnelle des erreurs de prévision? Exprime le résultat en termes des paramètres, de $r_T$ et de $\sigma_T^2$.
 
-#### Exercices avec R
-
-Travail, cours 5
-
-1. Pour cette question, utilisez les données dans le fichier d-3m7008.txt (action 3M, rendements journaliers, 1970-2008).
-Je recommande le paquet fGARCH, utilisé pour les démonstrations du cours 5.
-Pour tous les modèles suivants, calculez la valeur maximale de la log-vraisemblance.
-Quel est le meilleur modèle selon le critère AIC?
-Pour ce modèle, reportez les estimations MV (maximum de vraisemblance) des paramètres et leurs écarts-types asymptotiques et faites la graphique de la séquence de volatilités estimées.
-    a. GARCH(1,1), distribution conditionnelle gaussienne.
-    a. GARCH(1,1), distribution conditionnelle $t$ de Student.
-    a. ARCH(2), distribution conditionnelle $t$ de Student.
-    a. GARCH(2,1), distribution conditionnelle $t$ de Student.
-    a. AR(1)-GARCH(1,1), distribution conditionnelle $t$ de Student.
-
 \pagebreak
 
-## Cours 6, le 14 février
+## Cours 6, le 13 février
 
 #### Sujets
 
@@ -289,19 +233,9 @@ où l'espérance est par rapport à la loi conditionnelle de $(\theta,h_T,h_{T+1
     a. Écrivez la densité $f(r_{T+1}|\log h_{T+1}, \log h_T, \theta, r_1,\ldots,r_T)$ en utilisant l'équation d'observation.
     a. Comment peut-on approximer la densité prédictive $f(r_{T+1}|r_1,\ldots,r_T)$ sur une grille à partir d'un échantillon de la loi de $\theta,\log h_T|r_1,\ldots,r_T$? Indice: comme étape intermédiaire, créez un échantillon de la loi de $\theta,\log h_T,\log h_{T+1}|r_1,\ldots,r_T$.
 
-#### Exercices avec R
-
-Travail, cours 6
-
-1. Considérez le modèle de volatilité stochastique décrit dans le cours, avec $\mu=0$.
-Regardez aussi la question théorique 3 ci-haut.
-Dans le fichier postsim.txt se trouve un échantillon MCMC qui représente la loi *a posteriori* des paramètres $\alpha_0$, $\alpha_1$ et $\omega_v \equiv 1/\sigma_v^2$, ainsi que la log-volatilité $x_T \equiv \log h_T$.
-L'échantillon des données utilisé pour l'analyse comprend 3139 log rendments du taux d'échange entre le dollar canadien et l'euro, du 3 janvier 2000 au 4 avril 2012.
-Faites la graphique de la densité prédictive de $r_{T+1}$ sur une grille de points dans l'intervalle $[-0.01, 0.01]$.
-
 \pagebreak
 
-## Cours 7, le 21 février
+## Cours 7, le 6 mars
 
 #### Sujets
 
@@ -341,7 +275,7 @@ $(g+\mu_ph)^\top\Omega\omega$.
 
 \pagebreak
 
-## Cours 8, 9, le 14 et le 21 mars
+## Cours 8, 9, le 13 et le 20 mars
 
 #### Sujets
 
@@ -390,7 +324,7 @@ On observe $w_t = (C_t, C_{t+1}, R_{t+1}, Z_t)$, $t=1,\ldots,T$.
 
 \pagebreak
 
-## Cours 10, le 28 mars
+## Cours 10, le 27 mars
 
 #### Sujets
 
@@ -414,7 +348,7 @@ Selons les données $(r_1,\ldots,r_n)$ observées, $\sigma_n = 0.012$ et $r_n = 
 
 \pagebreak
 
-## Cours 11, le 4 avril
+## Cours 11, le 3 avril
 
 #### Sujets
 

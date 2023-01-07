@@ -52,8 +52,9 @@ urlcolor: blue
     a. lectures préparatoires à faire avant le cours
     a. lectures associées aux cours
     a. exercices théoriques
-1. Plan de cours
 1. Diapos en pdf
+1. Examen des préalables
+1. Plan de cours
 1. Examens des années 2017, 2019, 2020, 2021, 2022.
 
 ### Notes

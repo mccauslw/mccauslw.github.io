@@ -44,6 +44,7 @@ Mes intérêts de recherche actuels se situent dans deux domaines principaux :
     
 Les cours que j'enseigne actuellement ou que j'ai enseigné récemment sonts :
 
+1. Analyse numérique en économie, ECN 6338 (2ième cycle)
 1. Probabilités pour économistes, ECN 7060 (3ième cycle)
-1. Éléments de microéconomie, ECN 6013 (2ième cycle)
 1. Économétrie des marchés financiers, ECN 6578 (2ième cycle)
+1. Éléments de microéconomie, ECN 6013 (2ième cycle)

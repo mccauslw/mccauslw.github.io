@@ -13,8 +13,7 @@
 
 ##### Cours 1, le 9 janvier
   
-[Diapos](./ECN6578/ECN6578_1.pdf),&nbsp;&nbsp;
-[Diapos, code source](./ECN6578/ECN6578_1.Rmd)
+[Diapos](./ECN6578/ECN6578_1.pdf)
 
 ***
 
