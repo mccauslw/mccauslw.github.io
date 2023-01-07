@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2023"
 subtitle: "Cours 1"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -37,57 +37,30 @@ urlcolor: blue
 
 ## Les éléments de la note finale
 
-1. Examen intra, le lundi 7 mars : 35%
-1. Nombre aléatoire de quiz, en forme de devoir StudiUM : 15%
-    a. quiz certain : le 17 janvier
-    a. quiz aléatoires : les 10 dates possibles sont les 24, 31 janvier, les 7, 14, 21 février; les 14, 21, 28 mars; les 4, 11 avril. La probabilité d'un quiz est de 0,5.
-    a. 8h30 - 8h45. La semaine prochaine seulement, aujourd'hui à 8h30 lundi.
-1. Deux travaux pratiques de computation en R
-    a. premier à remettre vendredi le 25 février avant minuit : 10%
-    a. deuxième à remettre vendredi le 8 avril avant minuit : 5%
-1. Examen final, le *jeudi* 14 avril : 35%
-
-### Notes
-- Les deux examens sont théoriques.
-- Les travaux pratiques en R sont complémentaires des examens.
-- Le premier travail consiste en les exercices pratiques données jusqu'au 21 février (inclusif) ; le deuxième, les exercices pratiques données jusqu'au 4 avril (inclusif).
+1. Examen intra, le lundi 20 février : 40%
+1. Quiz : 15% total
+    a. Il y aura un nombre aléatoire de quiz. La probabilité d'un quiz est de 0.5, à chacune des dates suivantes.
+    a. Dates avant l'examen intra : les 16, 23, 30 janvier; les 6, 13 février
+    a. Dates après l'examen intra : les 6, 13, 20, 27 mars; le 3 avril.
+1. Examen final, le lundi 24 avril : 45%
 
 ## Documents au site web
 
 ### Documents
 
-1. Lectures et exercices théoriques (organisées par cours)
+1. Lectures et exercices, organisées par cours
     a. lectures préparatoires à faire avant le cours
     a. lectures associées aux cours
     a. exercices théoriques
-1. Exercices pratiques en R (organisé par cours)
 1. Plan de cours
 1. Diapos en pdf
-1. Vidéos (enregistrements des réunions zoom)
+1. Examens des années 2017, 2019, 2020, 2021, 2022.
 
 ### Notes
 
 - Chaque semaine, avant le cours, je mettrai à jour les deux premiers documents et ajouterai les diapos du cours actuel.
-- Les lectures et les questions théoriques servent à préparer les examens.
+- Les lectures, les questions théoriques et les examens servent à préparer les examens.
 - [Le site web du cours](https://mccauslw.github.io/ECN6578.html)
-
-## Plus sur les travaux pratiques en R
-
-- Remettez les travaux pratiques en équipes de 1, 2 ou 3.
-- Écrivez tous les noms sur la première page.
-- Les deux travaux pratiques seront des "Devoirs" sous StudiUM.
-- Chargez une copie avant minuit à la date de l'échéance.
-- Chaque membre de l'équipe soumet le même travail.
-- Téléchargement de R, RStudio
-    - R : <https://www.r-project.org>
-    - R Studio : <https://www.rstudio.com>
-- Utilisez [R Markdown](https://rmarkdown.rstudio.com) pour créer
-    - un fichier HTML que vous convertissez ensuite en PDF, ou
-    - un fichier PDF directement (il faut installer \LaTeX).
-- Regardez la documentation de [R Markdown](https://rmarkdown.rstudio.com) pour voir comment
-    - inclure du code R dans les documents,
-    - inclure les résultats de R (y compris des tableaux et des graphiques) dans les documents.
-- Le code source de ces diapos se trouve au site web du cours.
 
 ## Attentes
 1. Faites les lectures préparatoires avant le cours.

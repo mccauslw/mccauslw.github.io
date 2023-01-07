@@ -11,15 +11,24 @@
 
 
 
-<title>ECN6578.utf8</title>
+<title>ECN6578.knit</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -36,11 +45,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -53,32 +57,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -90,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +85,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 64px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h2 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h3 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h4 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h5 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h6 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +122,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +134,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -194,10 +145,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,7 +173,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -276,7 +239,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -304,13 +267,13 @@ $(document).ready(function () {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="contact.html">
-    <span class="fas fa-envelope fa-lg"></span>
+    <span class="fa fa-envelope fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="http://github.com/mccauslw">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -319,7 +282,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -327,64 +290,28 @@ $(document).ready(function () {
 </div>
 
 
-<div id="section" class="section level2">
-<h2>—</h2>
 <p><link rel="stylesheet" href="styles.css" type="text/css"></p>
-<div id="documents-pour-ecn-6578-économétrie-des-marchés-financiers" class="section level3">
+<div id="documents-pour-ecn-6578-économétrie-des-marchés-financiers"
+class="section level3">
 <h3>Documents pour ECN 6578, Économétrie des marchés financiers</h3>
-<p><a href="./ECN6578/ECN6578A-H22-PC.pdf">Plan de Cours</a></p>
-<p><a href="./ECN6578/examen_prealables.pdf">Examen des préalables</a></p>
+<p><a href="./ECN6578/ECN6578A-H23-PC.pdf">Plan de Cours</a></p>
+<p><a href="./ECN6578/examen_prealables.pdf">Examen des
+préalables</a></p>
 <p><a href="./ECN6578/LX.pdf">Lectures et exercices</a></p>
-<p><a href="./ECN6578/TP2.pdf">Deuxième Travail Pratique</a></p>
-<div id="cours-1-le-10-janvier" class="section level5">
-<h5>Cours 1, le 10 janvier</h5>
-<p><a href="./ECN6578/ECN6578_1.pdf">Diapos</a>,   <a href="./ECN6578/ECN6578_1.Rmd">Diapos, code source</a>,   <a href="https://umontreal.zoom.us/rec/share/SRoyRJ9zZhlSyU3QrfWbL4QJSTrNWtAY1GRd42_0PLHGNIL-scRN91vf4-B0As8A.rjqyvEHNJmTdw8qB?startTime=1641823227000">Video</a></p>
-</div>
-<div id="cours-2-le-17-janvier" class="section level5">
-<h5>Cours 2, le 17 janvier</h5>
-<p><a href="./ECN6578/ECN6578_2.pdf">Diapos</a>,   <a href="https://umontreal.zoom.us/rec/share/7Z8snd12uSmtjH-Io7QkEboBMU2u39ecSeyFzb_xcrdzTvAZJkAdgKX2hGG81Lty.O4rglM63NC7ALhZv">Video</a></p>
-</div>
-<div id="cours-3-le-24-janvier" class="section level5">
-<h5>Cours 3, le 24 janvier</h5>
-<p><a href="./ECN6578/ECN6578_3.pdf">Diapos</a>,   <a href="https://umontreal.zoom.us/rec/share/KsTUwa63bzqDL579KUExOVSI5Jy3cNDHpF6n3LOsgZGyhLzEwEvHG_IfBH2L_yZc.tVxiO1FDHmW_YauO">Video</a></p>
-</div>
-<div id="cours-4-le-31-janvier" class="section level5">
-<h5>Cours 4, le 31 janvier</h5>
-<p><a href="./ECN6578/ECN6578_4.pdf">Diapos</a></p>
-</div>
-<div id="cours-5-le-7-février" class="section level5">
-<h5>Cours 5, le 7 février</h5>
-<p><a href="./ECN6578/ECN6578_5.pdf">Diapos</a></p>
-</div>
-<div id="cours-6-le-14-février" class="section level5">
-<h5>Cours 6, le 14 février</h5>
-<p><a href="./ECN6578/ECN6578_6.pdf">Diapos</a></p>
-</div>
-<div id="cours-7-le-21-février" class="section level5">
-<h5>Cours 7, le 21 février</h5>
-<p><a href="./ECN6578/ECN6578_7.pdf">Diapos</a></p>
-</div>
-<div id="cours-8-et-9-le-14-et-le-21-mars" class="section level5">
-<h5>Cours 8 et 9, le 14 et le 21 mars</h5>
-<p><a href="./ECN6578/ECN6578_8.pdf">Diapos</a></p>
-</div>
-<div id="cours-10-le-28-mars" class="section level5">
-<h5>Cours 10, le 28 mars</h5>
-<p><a href="./ECN6578/ECN6578_12.pdf">Diapos</a></p>
-</div>
-<div id="cours-11-le-4-avril" class="section level5">
-<h5>Cours 11, le 4 avril</h5>
-<p><a href="./ECN6578/ECN6578_xx.pdf">Diapos</a></p>
+<div id="cours-1-le-9-janvier" class="section level5">
+<h5>Cours 1, le 9 janvier</h5>
+<p><a href="./ECN6578/ECN6578_1.pdf">Diapos</a>,   <a
+href="./ECN6578/ECN6578_1.Rmd">Diapos, code source</a></p>
 <hr />
 <p><a href="./ECN6578/EI21.pdf">Examen Intra, hiver 2021</a></p>
 <p><a href="./ECN6578/EI20.pdf">Examen Intra, hiver 2020</a></p>
 <p><a href="./ECN6578/EI19.pdf">Examen Intra, hiver 2019</a></p>
-<p><a href="./ECN6578/ECN6578A_EI17.pdf">Examen Intra, automne 2017</a></p>
+<p><a href="./ECN6578/ECN6578A_EI17.pdf">Examen Intra, automne
+2017</a></p>
 <p><a href="./ECN6578/EF21.pdf">Examen Final, hiver 2021</a></p>
 <p><a href="./ECN6578/EF20.pdf">Examen Final, hiver 2020</a></p>
 <p><a href="./ECN6578/EF19.pdf">Examen Final, hiver 2019</a></p>
 <p><a href="./ECN6578/EF17A.pdf">Examen Final, automne 2017</a></p>
-</div>
 </div>
 </div>
 
@@ -415,7 +342,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
