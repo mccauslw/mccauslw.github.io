@@ -11,9 +11,13 @@
 
 [Lectures et exercices](./ECN6578/LX.pdf)
 
-##### Cours 1, le 9 janvier
+#### Cours 1, le 9 janvier
   
 [Diapos](./ECN6578/ECN6578_1.pdf)
+
+#### Cours 2, le 16 janvier
+
+[Diapos](./ECN6578/ECN6578_2.pdf)
 
 ***
 
