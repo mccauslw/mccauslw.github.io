@@ -72,9 +72,8 @@ $1+R_t[k] = (1+R)^k$?
 
 * Définitions : pour la variable aléatoire $X \sim (\mu, \sigma^2)$, l'asymétrie $S$ et l'aplatissment $K$ de la population sont
 $$ S = E[(X-\mu)^3]/\sigma^3, \quad K = E[(X-\mu)^4]/\sigma^4. $$
-
-* Pour l'asymétrie et l'aplatissement de l'échantillon, on utilise les moments de l'échantillon.
-
+* Pour une v.a. gaussienne, $S=0$ et $K=3$.
+* Pour l'asymétrie et l'aplatissement de l'échantillon, on utilise les moments analogues de l'échantillon.
 * Asymétrie et aplatissement dans le tableau 1.2 de Tsay.
     * Asymétrie (skewness) souvent négative---actions et indices.
     * Aplatissement (kurtosis) toujours plus grand que 3---actions et indices.
