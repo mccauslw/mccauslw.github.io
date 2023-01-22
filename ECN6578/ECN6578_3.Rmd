@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2023"
 subtitle: "Cours 3"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -15,7 +15,7 @@ output: beamer_presentation
 
 ## Commentaires préliminaires
 
-1. On focalise sur les processus covariance-stationnaires $r_t$.
+1. On focalise ici sur les processus covariance-stationnaires $r_t$.
 1. Tous les moments d'ordre un et deux de $r_t$ se trouvent dans la moyenne $\mu$ et la fonction d'autocovariance $\gamma_k$, $k=0,1,\ldots$.
 1. Spécification alternative : moyenne $\mu$, variance $\sigma^2$ et fonction d'autocorrélation $\rho_k$, $k=1,2,\ldots$, avec $\sigma^2 = \gamma_0$, $\rho_k = \gamma_k/\gamma_0$.
 1. On peut trouver les moments d'ordre un et deux de toutes les fonctions linéaires des $r_t$ si on connait $\mu$, $\gamma_k$, $k=1,\ldots$.
@@ -73,7 +73,7 @@ $$ \rho_k = \phi^k. $$
 ## Modèle AR(1) : Simulation
 
 ```{r ARsim, echo=TRUE}
-ts.sim = arima.sim(n=1000, list(ar=0.8, sd = 0.1))
+ts.sim = arima.sim(n=1000, list(ar=0.8, sd=0.1))
 ts.plot(ts.sim)
 ```
 
@@ -145,7 +145,7 @@ $$ \gamma_2 = \phi_1 \gamma_1 + \phi_2 \gamma_0. $$
 \]
 où $\omega_1^{-1}$ et $\omega_2^{-1}$ sont les deux racines de $1-\phi_1 x - \phi_2x^2$.
 * On peut trouver $c_1$ et $c_2$ avec les valeurs initiales $\gamma_0$ et $\gamma_1$.
-* Signification : une description des ailes de la fonction d'autocorrélation.
+* Cette équation en forme réduite pour $\gamma_k$ révèle les ailes de la fonction d'autocorrélation : $\gamma_k \approx c_i \omega_i^k$ pour $i$ tel que $\omega_i$ est minimal.
 
 ## Fonction d'autocovariance pour quelques processus AR(2)
 
@@ -187,12 +187,12 @@ plot(ACF, ylim=c(-1,1))
    (1-\phi_1 B - \ldots - \phi_p B^p) = (1-\omega_1 B) \cdots (1-\omega_p B),
 \]
 * La stationnarité implique $|\omega_i^{-1}| > 1$ (ou $|\omega_i| < 1$), $i=1,\ldots,p$.
-* La fonction d'autocovariance vérifie, pour $k>p$, si les $\omega_i$ sont distincts.
+* Si les $\omega_i$ sont distincts, la fonction d'autocovariance $\gamma_k$ prend la forme
 \[
   \gamma_k = c_1 \omega_1^k + \ldots + c_p \omega_p^k
 \]
-et $\gamma_0,\ldots,\gamma_p$ détermine $c_1,\ldots,c_p$.
-* Conséquence : la fonction d'autocorrélation d'un AR(p) diminue de taux exponentiel.
+où on peut déterminer $c_1,\ldots,c_p$ avec $\gamma_0,\ldots,\gamma_p$.
+* Une implication : la fonction d'autocorrélation d'un AR(p) diminue de taux exponentiel.
 * Il peut y avoir des paires $(\omega_i, \omega_j) = a \pm bi$, mais les $\gamma_k$ sont toujours réels.
 
 ## ARMA(p,q) : 3 représentations
