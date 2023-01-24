@@ -43,7 +43,7 @@ output: beamer_presentation
 
 ## Modèle AR(1) : Calcul de la fonction d'autocovariance I
 
-- Supposons que $\mu=0$, $\phi$ et $\sigma_a^2 \equiv \mathrm{Var}[a_t]$ sont donnés, $|\phi| < 0$.
+- Supposons que $\mu=0$, $\phi$ et $\sigma_a^2 \equiv \mathrm{Var}[a_t]$ sont donnés, $|\phi| < 1$.
 
 ### Équations Yule-Walker pour trouver $\gamma_0$, $\gamma_1$
 
@@ -145,7 +145,7 @@ $$ \gamma_2 = \phi_1 \gamma_1 + \phi_2 \gamma_0. $$
 \]
 où $\omega_1^{-1}$ et $\omega_2^{-1}$ sont les deux racines de $1-\phi_1 x - \phi_2x^2$.
 * On peut trouver $c_1$ et $c_2$ avec les valeurs initiales $\gamma_0$ et $\gamma_1$.
-* Cette équation en forme réduite pour $\gamma_k$ révèle les ailes de la fonction d'autocorrélation : $\gamma_k \approx c_i \omega_i^k$ pour $i$ tel que $\omega_i$ est minimal.
+* Cette équation en forme réduite pour $\gamma_k$ révèle les ailes de la fonction d'autocorrélation : $\gamma_k \approx c_i \omega_i^k$ pour $i$ tel que $\omega_i$ est maximal.
 
 ## Fonction d'autocovariance pour quelques processus AR(2)
 
