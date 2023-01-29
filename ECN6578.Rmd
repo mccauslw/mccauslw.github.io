@@ -23,6 +23,10 @@
 
 [Diapos](./ECN6578/ECN6578_3.pdf)
 
+#### Cours 4, le 30 janvier
+
+[Diapos](./ECN6578/ECN6578_4.pdf)
+
 ***
 
 [Examen Intra, hiver 2021](./ECN6578/EI21.pdf)

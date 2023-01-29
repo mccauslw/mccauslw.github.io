@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2023"
 subtitle: "Cours 4"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -142,7 +142,7 @@ où $E[r_{t+1}|F_t] = \phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t
 \]
 - 'Hétéroscédasticité conditionnelle' veut dire que $\sigma_t^2$ varie avec $t$.
 - Convention alternative (qu'on n'utilise pas ici) où l'indice indique le moment où la quantité est connue : $\mu_{t-1} \equiv E[r_t|F_{t-1}]$.
-- D'autres définitions : $a_t \equiv r_t - \mu_t$, $\epsilon_t \equiv a_t/\sigma_t$, alors
+- Autres définitions : $a_t \equiv r_t - \mu_t$, $\epsilon_t \equiv a_t/\sigma_t$, alors
 \[
   r_t = \mu_t + \sigma_t \epsilon_t.
 \]
