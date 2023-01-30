@@ -176,8 +176,9 @@ $$ E[a_t] = E[E[a_t|F_{t-1}]] = E[0] = 0. $$
 * Variance inconditionnelle
 $$ \mathrm{Var}[a_t] = E[a_t^2] = E[E[a_t^2|F_{t-1}]] = E[\alpha_0 + \alpha_1 a_{t-1}^2], $$
 $$ (1-\alpha_1) \mathrm{Var}[a_t] = \alpha_0, \qquad \mathrm{Var}[a_t] = \alpha_0/(1-\alpha_1). $$
+* Il faut que $\alpha_1 \neq 0$ pour capturer l'hétéroscédasticité conditionnelle, $\alpha_1 > 0$ pour la persistence de la volatilité.
 * Il faut que $\alpha_1 < 1$ par covariance stationnarité.
-* Il faut que $\alpha_0 > 0$ et $\alpha_1 \geq 0$ par positivité de la variance.
+* Il faut que $\alpha_0 > 0$ et $\alpha_1 \geq 0$ par positivité de la variance conditionnelle.
 
 ## Asymétrie conditionnelle et l'effet de levier
 
@@ -193,7 +194,7 @@ $$ E[(\sigma_{t+1}^2-\sigma_t^2) a_t] = E[(\alpha_0 + \alpha_1 a_t^2 - \sigma_t^
 * Troisième moment inconditionnel en termes du troisième moment conditionnel :
 $$ E[a_t^3] = E[E[a_t^3|F_{t-1}]]. $$
 * Si l'asymétrie conditionnelle est nulle, l'asymétrie inconditionnelle et $\mathrm{Cov}[(\sigma_{t+1}^2-\sigma_t^2), a_t]$ sont nulles aussi.
-* Conclusion: pour un ARCH(1), une asymétrie inconditionnelle ou un effet de levier doit passer par une asymétrie conditionnelle.
+* Conclusion: pour un ARCH(1), une asymétrie inconditionnelle ou un effet de levier doit passer par une asymétrie conditionnelle. Ces deux effets ne sont pas  entrainés par le modèle. 
 * Même chose pour un ARCH(m).
 
 ## Aplatissement d'un ARCH(1) gaussien
