@@ -151,9 +151,9 @@ où $E[r_{t+1}|F_t] = \phi_1 r_t + \phi_2 r_{t-1} - \theta_1 a_t - \theta_2 a_{t
 ## Exemple ARMA(p,q)-GARCH(m,s)
 
 * Un modèle pour $\mu_t$ : (cas spécial de 3.3)
-$$ \mu_t = \phi_0 + \sum_{i=1}^p \phi_i r_{t-i} - \sum_{i=1}^q \theta_i a_{t-i}.$$
+$$ \mu_t = \phi_0 + \sum_{i=1}^p \phi_i r_{t-i} - \sum_{j=1}^q \theta_j a_{t-j}.$$
 * Un modèle pour $\sigma^2_t$ : (3.14)
-$$ \sigma_t^2 = \alpha_0 + \sum_{i=1}^m \alpha_i a_{t-1}^2 + \sum_{j=1}^s \beta_j \sigma^2_{t-j}. $$
+$$ \sigma_t^2 = \alpha_0 + \sum_{i=1}^m \alpha_i a_{t-i}^2 + \sum_{j=1}^s \beta_j \sigma^2_{t-j}. $$
 * $r_t|F_{t-1} \sim (\mu_t, \sigma_t^2)$ 
 
 ## Modèle ARCH

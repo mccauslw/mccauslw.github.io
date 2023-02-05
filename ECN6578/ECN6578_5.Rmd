@@ -103,21 +103,37 @@ L = -n*theta + somme_y*log(theta)
 plot(theta, L, type='l', ylim=c(-200, max(L)))
 ```
 
+## La fonction de vraisemblance pour une séries chronologique
+
+* La vraisemblance en général pour un modèle qui donne la densité $f(r_1,\ldots,r_T,\theta)$.
+\[
+  {\cal L}(\theta; r) = f(r_1|\theta) f(r_2|r_1,\theta) \cdots f(r_T|r_1,\ldots,r_{T-1},\theta)
+\]
+* Chaque densité $f(r_t|r_1,\ldots,r_{t-1},\theta)$ est un genre de prévision conditionnelle de $r_t$ sachant $r_1,\ldots,r_{t-1}$ et $\theta$.
+* La log vraisemblance est
+\[
+  L(\theta; r) = \sum_{t=1}^T \log f(r_t|r_1,\ldots,r_{t-1},\theta).
+\]
+* Pourquoi la log-vraisemblance et non juste la vraisemblance?
+    * Pas de dépassement ou soupassement numérique (overflow/underflow)
+    * Plus facile à maximiser (la dérivée d'une somme est la somme des dérivées, la log-vraisemblance est plus souvent concave)
+
 ## Exemple : évaluation de la log vraisemblance GARCH(1,1)
 
+* Rappel : $L(\theta;r) = \sum_{t=1}^T f(r_t|r_1,\ldots,r_{t-1},\theta)$.
 * Juste avant l'itération $t$, la valeur $\sigma_t^2$ est disponible.
 * À l'itération $t$,
 
-1. On calcule le terme $\log f(r_t|r_1,\ldots,r_{t-1})$ de la log vraisemblance.
+1. On calcule le terme $\log f(r_t|r_1,\ldots,r_{t-1},\theta)$ de la log vraisemblance.
 Dans le cas gaussien,
 \[
-  \log f(r_t|r_1,\ldots,r_{t-1}) = -\tfrac{1}{2} (\log 2\pi + \log \sigma_t^2) - \tfrac{1}{2} r_t^2/\sigma_t^2.
+  \log f(r_t|r_1,\ldots,r_{t-1},\theta) = -\tfrac{1}{2} (\log 2\pi + \log \sigma_t^2) - \tfrac{1}{2} r_t^2/\sigma_t^2.
 \]
 et plus en général,
 \[
-  \log f(r_t|r_1,\ldots,r_{t-1}) = -\log \sigma_t + \log f_\epsilon(r_t/\sigma_t),
+  \log f(r_t|r_1,\ldots,r_{t-1},\theta) = -\log \sigma_t + \log f_\epsilon(r_t/\sigma_t|\theta),
 \]
-où $f_\epsilon(\epsilon)$ et la densité des $\epsilon_t$.
+où $f_\epsilon(\epsilon|\theta)$ et la densité des $\epsilon_t$.
 1. On calcule la valeur $\sigma_{t+1}^2$ :
 \[
   \sigma_{t+1}^2 = \alpha_0 + \alpha_1 r_t^2 + \beta_1 \sigma_t^2.
@@ -157,21 +173,6 @@ où $f_\epsilon(\epsilon)$ et la densité des $\epsilon_t$.
   \hat{\theta} = \tfrac{1}{n} \sum_{i=1}^n y_i.
 \]
 * Pour $n = 60$ et $\sum_{i=1}^n y_i = 230$, $\hat\theta = \frac{23}{6} \approx 3.833$.
-
-## La fonction de vraisemblance pour une séries chronologique
-
-* La vraisemblance en général pour un modèle qui donne la densité $f(r_1,\ldots,r_T,\theta)$.
-\[
-  {\cal L}(\theta; r) = f(r_1|\theta) f(r_2|r_1,\theta) \cdots f(r_T|r_1,\ldots,r_{T-1},\theta)
-\]
-* Chaque densité $f(r_t|r_1,\ldots,r_{t-1})$ est un genre de prévision conditionnelle de $r_t$ sachant $r_1,\ldots,r_{t-1}$.
-* La log vraisemblance est
-\[
-  L(\theta; r) = \sum_{t=1}^T \log f(r_t|r_1,\ldots,r_{t-1},\theta).
-\]
-* Pourquoi la log-vraisemblance et non juste la vraisemblance?
-    * Pas de underflow numérique (soupassement arithmétique)
-    * Plus facile à maximiser (la dérivée d'une somme est la somme des dérivées)
 
 ## Maximum de vraisemblance : conditions de régularité
 
@@ -304,7 +305,7 @@ Notes :
 * Par exemple, si $\epsilon_t \sim N(0,1)$, $E[|\epsilon_t|] = \sqrt{2/\pi}$
 * $\ln \sigma_t^2$ est un processus AR(1), puisque $g(\epsilon_t)$ est un bruit blanc.
 * Pour $\theta < 0$, il y a un effet de levier.
-* Pas besoin de contraintes pour assurer la positivité de la volatilité.
+* Pas besoin de contraintes sur les coefficients pour assurer la positivité de la volatilité, grace à la spécification logarithmique.
 
 ## La fonction $g(\epsilon)$ de l'équation (3.31) (un exemple)
 
