@@ -294,7 +294,7 @@ ${\cal I}(\theta_0)$, qui est inconnu.
 Le modèle EGARCH(1,1) :
 \[
   a_t = \sigma_t \epsilon_t
-  \quad \ln \sigma^2_t = \alpha \ln \sigma^2_{t-1} + (1-\alpha) \alpha_0 + g(\epsilon_t)
+  \quad \ln \sigma^2_t = \alpha \ln \sigma^2_{t-1} + (1-\alpha) \alpha_0 + g(\epsilon_{t-1})
   \quad \epsilon_t \sim \mathrm{iid} (0,1),
 \]
 où $g(\epsilon) = \theta \epsilon + \gamma [|\epsilon| - E[|\epsilon|]]$.
