@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2023"
 subtitle: "Cours 6"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -40,7 +40,7 @@ où $r \equiv (r_1, \ldots, r_T)$, $h \equiv (h_1, \ldots, h_T)$.
     - les modèles (dans une situation où considère plusieurs modèles concurrents).
 * Il n'y a pas de recours aux résultats asymptotiques en $T$.
 
-## Éléments de l'analyse bayésienne (modèle sans variables latentes)
+## Éléments de l'analyse bayésienne (dans un modèle sans variables latentes)
 
 * Quantités pertinentes :
     * $\theta$, un vecteur de paramètres inconnus,
@@ -56,7 +56,7 @@ où $r \equiv (r_1, \ldots, r_T)$, $h \equiv (h_1, \ldots, h_T)$.
     * $f(y)$, la densité marginale des données,
     * $f(y^\circ)$, la vraisemblance marginale (un nombre).
 
-## Éléments de l'analyse bayésenne (modèle avec variables latentes)
+## Éléments de l'analyse bayésenne (dans un modèle avec variables latentes)
 
 * Quantités pertinentes :
     * $\theta$, un vecteur de paramètres inconnus,
@@ -83,7 +83,7 @@ $$ f(\theta|y^\circ) = \frac{f(\theta,y^\circ)}{f(y^\circ)} = \frac{f(\theta)f(y
 
 * $f(\theta)$ représente notre incertitude sur $\theta$ avant l'observation de $y$.
 
-* $f(\theta|y^\circ)$ resprésente notre incertitude sur $\theta$ après qu'observe $y=y^\circ$.
+* $f(\theta|y^\circ)$ resprésente notre incertitude sur $\theta$ après qu'on observe $y=y^\circ$.
 
 * Un point important à retenir : $f(\theta|y^\circ) \propto f(\theta,y^\circ)$.
 
@@ -112,7 +112,7 @@ lines(x, dbeta(x, alpha, beta), col='red')
 
 ## Exemple gaussien I
 
-* Considérez les modèle $y_t \sim \mathrm{iid}\, N(\mu, h^{-1})$.
+* Considérez le modèle $y_t \sim \mathrm{iid}\, N(\mu, h^{-1})$.
 * Le vecteur de paramètres est $\theta = (\mu,h)$.
 * Le vecteur d'observables est $y = (y_1,\ldots,y_T)$.
 * La densité des données est
@@ -144,7 +144,7 @@ $$ \mathrm{Var}[\theta|y^\circ] = E[(\theta_k - E[\theta_k|y^\circ])^2|y^\circ].
 * Exemple 3, densité prédictive (valeurs de $y_{T+1}$ sur une grille) :
 $$ f(y_{T+1}|y^\circ) = E[f(y_{T+1}|\theta,y^\circ)|y^\circ]. $$
 
-## Preuve de l'exemple 3
+## Preuve du résultat de l'exemple 3
 
 $$ \begin{aligned}
 E[f(y_{T+1}&|y_1,\ldots,y_T,\theta)|y_1,\ldots,y_T] \\
