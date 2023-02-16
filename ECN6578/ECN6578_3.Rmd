@@ -229,16 +229,16 @@ où on peut déterminer $c_1,\ldots,c_p$ avec $\gamma_0,\ldots,\gamma_p$.
 \]
 - Multiplie par $r_{t-h}$ et prenez l'espérance:
 \[
-  \gamma_h = \phi_1 \gamma_{h-1} - \ldots - \phi_p \gamma_{h-p} - \theta_h E[a_{t-h}r_{t-h}] - \ldots - \theta_q E[a_{t-q}r_{t-h}]
+  \gamma_h = \phi_1 \gamma_{h-1} + \ldots + \phi_p \gamma_{h-p} - \theta_h E[a_{t-h}r_{t-h}] - \ldots - \theta_q E[a_{t-q}r_{t-h}]
 \]
 - En utilisant la représentation MA infinie,
 \[
-  \gamma_h = \phi_1 \gamma_{h-1} - \ldots - \phi_p \gamma_{h-p} - \theta_h \psi_0 \sigma_a^2 - \ldots - \theta_q \psi_{q-h} \sigma_a^2
+  \gamma_h = \phi_1 \gamma_{h-1} + \ldots + \phi_p \gamma_{h-p} - \theta_h \psi_0 \sigma_a^2 - \ldots - \theta_q \psi_{q-h} \sigma_a^2
 \]
 - Les équations pour $h=0,1,\ldots,p$ donnent $\gamma_0,\gamma_1,\ldots,\gamma_p$.
 - Pour $h > \max(p, q)$, c'est comme un AR(p) :
 \[
-  \gamma_h = \phi_1 \gamma_{h-1} - \ldots - \phi_p \gamma_{h-p},
+  \gamma_h = \phi_1 \gamma_{h-1} + \ldots + \phi_p \gamma_{h-p},
 \]
 alors les racines du polynome caracteristique déterminent le taux de diminution de la ACF.
 
