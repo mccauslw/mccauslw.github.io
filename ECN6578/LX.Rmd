@@ -268,10 +268,10 @@ Si vous n'en servez pas, la solution est incorrecte.
 $g + \mu_p h$ et celui du portefeuille $g + \mu_q h$ est
 $(g+\mu_ph)^\top\Omega(g+\mu_qh)$.
 1. Servez-vous du troisième résultat pour trouver le $\mu_{op}$ unique, en termes de $\mu_p$, qui donne $\mathrm{Cov}[R_p,R_{op}] = 0$.
-1. La covariance entre le rendement du portefeuille $p$ sur le FMV et le portefeuille arbitraire $\omega$ est
+1. La covariance entre le rendement du portefeuille $p$ sur le FMV et le portefeuille arbitraire avec poids $\omega$ est
 $(g+\mu_ph)^\top\Omega\omega$.
-Écrivez-la en forme $\lambda \mu_i + \gamma$, où $\mu_i = E[R_i]$, et $\lambda$ et $\gamma$ sont des fonctions de $\mu_p, A, B, C, D$.
-Écrivez l'équation pour deux cas spéciaux, $i=op$ et $i=p$, pour obtenir (5.2.19) dans le manuel CLM.
+Écrivez-la en forme $\lambda \omega^\top \mu + \gamma$, où $\lambda$ et $\gamma$ sont des fonctions de $\mu_p, A, B, C, D$. Remarquez que $\omega^\top \mu$ est le rendement moyen du portefeuille arbritraire.
+Écrivez l'équation pour deux cas spéciaux, le portefeuille $p$ et le portefeuille $op$, pour obtenir (5.2.19) dans le manuel CLM.
 
 \pagebreak
 

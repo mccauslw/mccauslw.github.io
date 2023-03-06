@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2023"
 subtitle: "Cours 7"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -355,10 +355,10 @@ $R_i = (1-\beta_{im}) R_f + \beta_{im} R_m + \epsilon_p$.
 où
 \[ \alpha_{im} = E[R_{om}](1-\beta_{im}) \quad \forall i. \]
 Autrement dit
-\[ E[R_i] = \alpha + \beta_{im}(E[R_m] - \alpha). \]
+\[ E[R_i] = \gamma + \beta_{im}(E[R_m] - \gamma) = \gamma(1-\beta_{im}) + \beta_{im} E[R_m]. \]
 où
-\[ \alpha = E[R_{om}]. \]
-* Notez bien que la constante $\alpha$ ne dépend pas de $i$, ce qui est une restriction testable.
+\[ \gamma = E[R_{om}]. \]
+* Notez bien que la constante $\gamma$ ne dépend pas de $i$, ce qui est une restriction testable.
 
 ## Modèle de marché pour la version Sharpe-Lintner
 
@@ -372,7 +372,7 @@ où
 * $\beta$ est le vecteur $N\times 1$ des bêtas.
 * $Z_{mt}$ est le rendement excédentaire du marché.
 * Notez que $\mu_m$ ici est une moyenne d'un rendement excédentaire.
-* Hypothèse nulle entraînée par le CAPM: $H_0:\alpha=0$
+* L'hypothèse nulle entraînée par le CAPM est $H_0:\alpha=0$
 
 ## Modèle de marché pour la version Black
 
@@ -434,7 +434,7 @@ $H_0:\alpha=(\iota-\beta)\gamma$, pour un $\gamma$ scalaire quelconque, qui repr
 * On peut riposter :
     * "Data Snooping" : on essaye plusieurs tests, sans motivation théorique,
       et par hasard, quelques-uns indiquent un départ significatif.
-    * biais de sélection : les actifs des entreprises qui font faillite sont écartés de l'échantillon. Les petites sont plus probable à échouer, et les survivants ont un rendement plus élevé.
+    * biais de sélection : les actifs des entreprises qui font faillite pendant la période d'observation sont écartés de l'échantillon. Les petites entreprises font faillite plus souvent, et les survivants ont un rendement plus élevé.
     * C'est seulement l'efficacité du proxy du marché qui est mise en cause par les tests. Mais Kandel et Stambaugh (1987) et Shanken (1987) démontrent que si la corrélation entre le proxy et le marché est plus grand que 0.7, le rejet du CAPM avec le proxy entraîne le rejet du CAPM avec le marché inobservable.
 
 ## La théorie d'évaluation par arbitrage (APT)
@@ -445,7 +445,7 @@ $H_0:\alpha=(\iota-\beta)\gamma$, pour un $\gamma$ scalaire quelconque, qui repr
   R_i = a_i + b_{i1} f_1 + b_{i2} f_2 + \ldots b_{iK} f_K + \epsilon_i \quad i=1,\ldots,N
 \]
 où
-* $f_1,\ldots,f_K$ sont des facteurs (variables pas associées à l'actif)
+* $f_1,\ldots,f_K$ sont des facteurs (souvent des portefeuilles ou des variables macroéconomiques)
 * $b_{ik}$ est la sensibilité de $R_i$ au facteur $k$ (factor loading).
 * $\epsilon_i$ est une variable tel que $\epsilon|f \sim (0,\Sigma)$.
 * Même chose en vecteurs:
@@ -460,18 +460,20 @@ où
 ## Résultats I
   
 * Le modèle du marché dans lequel on enfonce le CAPM est un cas spécial : $K=1$, $f_1 = R_m$.
-* Ross démontre qu'avec
+* Ross démontre que sous les hypothèses
     * $N$ très grand,
     * les facteurs rendent compte de la variation en commun des actifs au point que la variance d'un portefeuille $p$ bien diversifié, conditionnelle aux facteurs, tende vers zéro, et
     * l'absence d'arbitrage,
-    que
-    \[
-      \underset{N\times 1}{\mu} \equiv E[R] = \underset{N\times 1}{\iota} \underset{1\times 1}{\lambda_0} + \underset{N\times K}{B} \underset{K\times 1}{\lambda_K},
-    \]
-    où
-    * $\lambda_0$ est un paramètre zéro-bêta du modèle,
-      qui est le rendement sans risque s'il y en a un, et
-    * $\lambda_K$ est un vecteur des primes des risque des facteurs.
+    
+que
+\[
+  \underset{N\times 1}{\mu} \equiv E[R] = \underset{N\times 1}{\iota} \underset{1\times 1}{\lambda_0} + \underset{N\times K}{B} \underset{K\times 1}{\lambda_K},
+\]
+où
+
+* $\lambda_0$ est un paramètre zéro-bêta du modèle,
+  qui est le rendement sans risque s'il y en a un, et
+* $\lambda_K$ est un vecteur des primes des risque des facteurs.
 
 ## Résultats II
 
