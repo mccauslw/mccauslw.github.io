@@ -39,6 +39,10 @@
 
 [Diapos](./ECN6578/ECN6578_7.pdf)
 
+#### Cours 8 et 9, le 13 et le 20 mars
+
+[Diapos](./ECN6578/ECN6578_8.pdf)
+
 ***
 
 [Examen Intra, hiver 2022](./ECN6578/EI22.pdf)

@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2023"
 subtitle: "Cours 8 et 9"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -68,15 +68,19 @@ knitr::opts_chunk$set(echo = FALSE)
       période qui dépend de $s$.
     *  Actif $i$ a un prix $q_i$ en période 1.
     *  Actif $i$ paie $X_{si}$ si l'état $s$ se produit.
-    *  $\pi$, $X$ et $q$ sont primitifs.
-* Un arbitrage est un portefeuille $\omega$ tel que
+    *  $\pi$ ($S \times 1$), $X$ ($S \times N$) et $q$ ($N \times 1$) sont primitifs.
+* Pour un portefeuille $\omega \in \mathbb{R}^N$,
+    * $\omega^\top q$ est le prix de $\omega$ dans la première période,
+    * $X\omega \in \mathbb{R}^S$ donne sa valeur dans la deuxième période,
+    selon l'état.
+* Un arbitrage est un portefeuille $\omega \in \mathbb{R}^n$ tel que
     * $\omega^\top q \leq 0$ (on ne paie rien dans la première période)
     * $X\omega \geq 0$ (on ne peut pas perdre dans la deuxième), et
     * $X\omega \neq 0$ (on gagne dans au moins un état du monde).
 
 ## Prix et rendements
 
-*  Vecteur $q$ donne les prix à période 1 :
+*  Vecteur $q$ donne les prix à la période 1 :
     \[
     \underset{N\times 1}{q}
     =
@@ -168,7 +172,7 @@ knitr::opts_chunk$set(echo = FALSE)
     (i.e. quand $U'(C_{t+1})$ est élevé).
     * En équilibre, son prix est plus élevé (par rapport a un actif $j$ où $\mathrm{cov}[R_{jt},M_t] < 0$) et son rendement moyen est moins élevé.
     * L'investisseur supporte ce rendement moyen moins élevé
-    car l'actif paie quand la consommation est plus valorisée.
+    car l'actif paie plus quand la consommation est plus valorisée.
 
 ## Le modèle CCAPM
 
@@ -178,6 +182,8 @@ knitr::opts_chunk$set(echo = FALSE)
     \[ M_{t+1} = \delta \frac{U'(C_{t+1})}{U'(C_t)}, \]
     où $C_t$ est la consommation agrégée est le modèle
     CCAPM (C pour consommation).
+* Comme le CAPM, le CCAPM explique la coupe transversale des moyennes des rendements.
+* Il donne aussi une relation entre la consommation et la coupe transversale des rendements.
 
 ## La fonction d'utilité isoélastique
 

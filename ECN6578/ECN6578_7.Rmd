@@ -261,9 +261,9 @@ $\{(\sqrt{\omega'\Omega\omega},\omega'\mu) : \omega'\iota = 1\}$.
 * Si un portefeuille $\omega_p \neq \omega_0$ se trouve sur la FMV, il exist un portfeuille unique $op$, le portefeuille zéro bêta de $p$, tel que $\mathrm{cov}[R_p,R_{op}] = 0$.
 * Pour n'importe quel portefeuille $a$ et n'import quel portefeuille $p$ sur la FMV, les coefficients de la régression
   \[
-    R_a = \beta_0 + \beta_1 R_{op} + \beta_2 R_p + \epsilon_p
+    R_a = \beta_0 + \beta_1 R_{op} + \beta_2 R_p + \epsilon_a
     \quad
-    E[\epsilon_p|R_p,R_{op}] = 0
+    E[\epsilon_a|R_p,R_{op}] = 0
   \]
   sont
   \[
@@ -334,12 +334,12 @@ et tous choississent un portfeuille efficace, le portefeuille
 $m$ du marché (le portefeuille global) doit être efficace.
 * On utilise souvent une indice comme le S\&P 500 comme proxy du marché, et les bon du trésor comme proxy de l'actif sans risque dans la version S-L.
 
-## Implications Testables : Version S-L
+## Implications Testables, un actif : Version S-L
 
 * Dans la version S-L, le rendement du marché $R_m$ est le rendement FMV $R_p$, $R_f$ est le rendement zéro-bêta $R_{op}$.
-* L'équation $R_a = (1-\beta_{ap}) R_{op} + \beta_{ap} R_p + \epsilon_p$ devient, pour le portefeuille $a$ égale à l'actif $i$,
-$R_i = (1-\beta_{im}) R_f + \beta_{im} R_m + \epsilon_p$.
-* La version Sharpe-Lintner entraîne les implications testables suivantes:
+* L'équation $R_a = (1-\beta_{ap}) R_{op} + \beta_{ap} R_p + \epsilon_a$ devient, pour le portefeuille $a$ égale à l'actif $i$,
+$R_i = (1-\beta_{im}) R_f + \beta_{im} R_m + \epsilon_i$.
+* La version Sharpe-Lintner entraîne les implications testables suivantes :
   \[ E[R_i] = R_f + \beta_{im}(E[R_m]-R_f), \]
   \[ \beta_{im} = \frac{\mathrm{cov}[R_i,R_m]}{\mathrm{var}[R_m]}. \]
 * Si on défine le rendement excédentaire $Z_i \equiv R_i - R_f$ de l'actif $i$, on obtient
@@ -348,19 +348,18 @@ $R_i = (1-\beta_{im}) R_f + \beta_{im} R_m + \epsilon_p$.
   \[ \beta_{im} = \frac{\mathrm{cov}[Z_i,Z_m]}{\mathrm{var}[Z_m]}, \]
   une équation de régression à constante nulle.
 
-## Implications Testables : Version Black
+## Implications Testables, un actif : Version Black
 
 * Pour la version Black, on a l'implication
-\[ E[R_i] = \alpha_{im} + \beta_{im} E[R_m] \]
+\[ E[R_i] = (1-\beta_{im})E[R_{om}] + \beta_{im} E[R_m] \equiv \alpha_{im} + \beta_{im} E[R_m], \]
+ou
+\[ E[R_i] = \gamma(1-\beta_{im}) + \beta_{im} E[R_m], \]
 où
-\[ \alpha_{im} = E[R_{om}](1-\beta_{im}) \quad \forall i. \]
-Autrement dit
-\[ E[R_i] = \gamma + \beta_{im}(E[R_m] - \gamma) = \gamma(1-\beta_{im}) + \beta_{im} E[R_m]. \]
-où
+\[ \alpha_{im} = E[R_{om}](1-\beta_{im}) \quad \forall i, \]
 \[ \gamma = E[R_{om}]. \]
 * Notez bien que la constante $\gamma$ ne dépend pas de $i$, ce qui est une restriction testable.
 
-## Modèle de marché pour la version Sharpe-Lintner
+## Modèle de marché (plusieurs actifs) : Version S-L
 
 * On enfonce le modèle CAPM dans un modéle du marché.
 * Modèle de marché pour la version S-L :
@@ -374,7 +373,7 @@ où
 * Notez que $\mu_m$ ici est une moyenne d'un rendement excédentaire.
 * L'hypothèse nulle entraînée par le CAPM est $H_0:\alpha=0$
 
-## Modèle de marché pour la version Black
+## Modèle de marché (plusieurs actifs) : Version Black
 
 * Modèle de marché pour la version Black :
 \[ R_t = \alpha + \beta R_{mt} + \epsilon_t \]
@@ -389,7 +388,7 @@ $H_0:\alpha=(\iota-\beta)\gamma$, pour un $\gamma$ scalaire quelconque, qui repr
 ## Détails économétriques : versions gaussiennes
 
 * On suppose souvent que les rendements sont i.i.d. $N(\mu,\Omega)$.
-* On se sert souvent des rendements mensuels. L'approximation gaussien n'est pas si mal.
+* On se sert souvent des rendements mensuels. L'approximation gaussien n'est pas si mal que pour les rendements journaliers.
 * Pour la fonction de vraisemblance, les estimateurs MV, est les statistiques tests du CAPM : CLM, Section 5.3.
     * Dans la version S-L, le modèle est très standard et il y a une expression à forme réduite des estimateurs.
     * Dans la version Black, le paramètre $\gamma$, qui représente $E[R_{op}]$, cause des problèmes, mais il y a un processus itératif pour trouver les estimateurs.
