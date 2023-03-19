@@ -352,7 +352,7 @@ $\log XY = \log X + \log Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\sig
 *  Prenez l'effet de commerce (commercial paper) comme
     proxy pour $f$.
 *  Pendant 1889-1994, la moyenne de l'échantillon du
-    $R_i$ est de 6\%.
+    $R_i$ est de 6\%. (2002-2021 : 6.4\%)
 *  Celle du rendement log en excès est de 4\%.
 *  $C_{t+1}/C_t$ est très lisse ($\sigma_c =0.033$),
 *  Sa covariance avec $R_i$ est très faible
@@ -377,7 +377,7 @@ $\log XY = \log X + \log Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\sig
 	
 *  Mais $\gamma = 19$ implique $\delta = 1.12 > 1$.
 *  Intuition : une grande aversion pour le risque implique
-    un très faible volonté à substituer.
+    un très faible volonté à substituer intertemporellement.
     Avec $C_{t+1}/C_t > 1$, on a une forte désire
     à emprunter, qui n'est pas cohérent avec un taux d'intérêt
     bas et un $\delta < 1$.
@@ -401,6 +401,7 @@ $\log XY = \log X + \log Y \sim N(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2 + 2\sig
     \[
     \theta = \frac{1-\gamma}{1-\psi^{-1}}.
     \]
+* Notez que la restriction $\psi^{-1} = \gamma$ donne $\theta = 1$.
 
 ## Utilité isoélastique comme cas spécial
 
@@ -618,10 +619,13 @@ et dans le cas spécial d'utilité isoélastique,
 
 ## Éléments de la GMM
 
-*  Une séries de vecteurs aléatoires (données) : $w_t\;$ ($J\times 1$ à chaque période $t$, observé en $T$ périodes)
-*  Vecteur de paramètres : $\theta_0\;$ ($P\times 1$)
-*  Fonction de moment : $g(w_t,\theta_0)\;$ ($Q\times 1$)
-*  Condition de moment de la population : $E[g(w_t,\theta_0)]=0$
+* Une séries de vecteurs aléatoires (données) : $w_t\;$ ($J\times 1$ à chaque période $t$, observé en $T$ périodes)
+* Vecteur de paramètres : $\theta_0\;$ ($P\times 1$)
+* Fonction de moment : $g(w_t,\theta_0)\;$ ($Q\times 1$)
+* Condition de moment de la population : $E[g(w_t,\theta_0)]=0$
+* Le choix de $g(\cdot,\cdot)$ est la spécification d'un modèle.
+* Remarquez que l'hypothèse $E[g(w_t,\theta_0)]=0$ est moins forte que la spécification d'une loi paramétrique pour $w_t$.
+    * Par exemple $E[(y_i-x_i\beta)x_i] = 0$ versus $y_i = x_i\beta + u_i$, $u_i|x_i \sim N(0,\sigma^2)$.
 
 ## Exemple CCAPM 1 : $w_t$
 
