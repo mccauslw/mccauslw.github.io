@@ -694,9 +694,9 @@ et dans le cas spécial d'utilité isoélastique,
       zéro.
     *  Une estimation GMM est la valeur $\theta$ pour laquelle
       $g_T(w,\theta)$ est le plus près de zéro, selon un critère donné.
-    *  $g_T(w,\theta)$ étant vecteur, il faut choisir une distance
+    *  $g_T(w,\theta)$ étant un vecteur, il faut choisir une distance
       à zéro.
-    *  On peut évaluer le modèle par la proximité de
+    *  On peut évaluer le modèle par la proximité minimale de
       $g_T(w,\theta)$ à zéro.
 
 ## L'estimation GMM
@@ -725,7 +725,7 @@ et dans le cas spécial d'utilité isoélastique,
     où
     \[ S = \mathrm{avar}[ T^{1/2} g_T(w,\theta_0)]. \]
 *  Notez que $S$ dépend de $\theta_0$, qui est inconnu.
-*  Même l'estimation de $\theta$ dépend de $W_T$.
+*  L'estimation de $\theta$ dépend de $W_T$.
 *  Cette situation mène à une approche itérative.
 
 ## Estimation de $\theta$ à plusieurs étapes
