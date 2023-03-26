@@ -175,7 +175,7 @@ L'importance:
 
 1. Plus de détail sur la dynamique des prix
 1. Information sur la liquidité des marchés, le processus de la découverte des prix (price discovery).
-1. Mesures de volatilité
+1. Construction de mesures de volatilité
 1. Comprendre la microstructure des marchés
 
 La prudence est nécessaire : le bruit de microstructure
@@ -229,7 +229,7 @@ $$ \mathrm{Cov}[X,Y] = E[\mathrm{Cov}[X,Y|Z]] + \mathrm{Cov}[E[X|Z], E[Y|Z]]. $$
 * Cas spécial, auto-covariances : $X = r_{At}^\circ$, $Y = r_{A,t-k}^\circ$, $Z = z$ :
 $$ \mathrm{Cov}[r_{At}^\circ,r_{A,t-k}^\circ] = E[\mathrm{Cov}[r_{At}^\circ,r_{A,t-k}^\circ|z]] + \mathrm{Cov}[E[r_{At}^\circ|z], E[r_{A,t-k}^\circ|z]]. $$
 
-* Sachant $z$, les sommes $r_{At}$ et $r_{A,t-k}$ ne se chevauchent pas et
+* Sachant $z$, les sommes $r_{At}^\circ$ et $r_{A,t-k}^\circ$ ne se chevauchent pas et
 $$ \mathrm{Cov}[r_{At}^\circ,r_{A,t-k}^\circ|z] = 0. $$
 
 * Calcul de $\mathrm{Cov}[E[r_{At}^\circ|z], E[r_{A,t-k}^\circ|z]]$ : exercice.
