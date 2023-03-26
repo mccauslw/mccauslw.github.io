@@ -1,5 +1,5 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2020"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2023"
 subtitle: "Cours 10"
 author: "William McCausland"
 date: "`r Sys.Date()`"
@@ -42,6 +42,10 @@ $$ y_{nt} = -p_{nt}/n = \frac{1}{n} \sum_{i=0}^{n-1} r_{n-i,t+1+i}. $$
 * La courbe de rendement (yield curve) est la graphique de $Y_{nt}$ ou $y_{nt}$ contre $n$.
 * L'écart de rendement (yield spread) à $t$ est $S_{nt} \equiv Y_{nt} - Y_{1t}$ ou $s_{nt} \equiv y_{nt}-y_{1t}$.
 
+## Courbe de rendement actuel, il y a un an, il y a deux ans
+
+![Source: gurufocus.com](./YieldCurve.png)
+
 ## Cours à terme (forward rates)
 
 * Voici une façon de garantir à $t$ un taux d'intérêt entre $t+n$ et $t+n+1$ (le taux étant déterminé par les prix marchands).
@@ -55,10 +59,12 @@ $$ 1 + F_{nt} = \frac{P_{nt}}{P_{n+1,t}}. $$
 *  Rappel : $P_{nt}$ le prix à $t$ d'une obligation zéro coupon, qui paie 1 dollar à $t+n$.
 *  $P_{nt} = E_t[P_{n-1,t+1} M_{t+1}]$ où $M_{t+1}$ est le
     facteur d'actualisation stochastique.
-*  L'itération donne $P_{nt}=E_t[M_{t+1}M_{t+2}\cdots M_{t+n}]$.
+*  L'itération donne $P_{nt}=E_t[M_{t+1}M_{t+2}\cdots M_{t+n}]$ :
+    * $E_t[E_{t+1}[P_{n-2,t+2} M_{t+2}] M_{t+1}] = E_t[P_{n-2,t+2}M_{t+1}M_{t+2}]$
+    * $P_{0,t+n} = 1$.
 *  La log-normalité conjointe conditionnelle des
     $P_{1t}, P_{2t}, \ldots$ et $M_{t+1}$ donne l'équation
-    de valorisation :
+    de valorisation suivante :
     \[ p_{nt} = E_t[m_{t+1} + p_{n-1,t+1}] +
     \frac{1}{2} \mathrm{var}_t[m_{t+1} + p_{n-1,t+1}], \]
     où
