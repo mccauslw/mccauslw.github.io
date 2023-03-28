@@ -328,30 +328,6 @@ On observe $w_t = (C_t, C_{t+1}, R_{t+1}, Z_t)$, $t=1,\ldots,T$.
 
 #### Sujets
 
-1. Valeur à risque (VaR, value at risk)
-1. Régression quantile
-
-#### Lectures préliminaires
-
-1. Tsay chapitre 7 intro, 7.1
-
-#### Autres Lectures
-
-1. Tsay 7.2 Riskmetrics
-1. Tsay 7.3 Approche économétrique à la valeur à risque
-1. Tsay 7.4 Régression quantile
-
-#### Exercices
-
-1. Supposez que les rendements journaliers d'un actif suivent un modèle GARCH(1,1) gaussien à moyenne zéro, avec $\alpha_0 = 4.2 \times 10^{-6}$, $\alpha_1 = 0.12$, $\beta = 0.85$.
-Selons les données $(r_1,\ldots,r_n)$ observées, $\sigma_n = 0.012$ et $r_n = -0.007$. Quelle est la valeur à risque pendant une période d'un jour d'un montant de cet actif qui vaut 10000 dollars à $t=n$? Utilisez $p=0.01$.
-
-\pagebreak
-
-## Cours 11, le 3 avril
-
-#### Sujets
-
 1. Obligations
 1. Modèles de la structure à terme
 
@@ -378,3 +354,27 @@ $n\backslash t$| 0 | 1 | 2
     a. Trouvez la valeur du cours à terme $F_{20}$. À quelle période est-il observé?
 
 1. Dérivez les équations (11.1.21) et (11.1.23) dans CLM.
+
+\pagebreak
+
+## Cours 11, le 3 avril
+
+#### Sujets
+
+1. Valeur à risque (VaR, value at risk)
+1. Régression quantile
+
+#### Lectures préliminaires
+
+1. Tsay chapitre 7 intro, 7.1
+
+#### Autres Lectures
+
+1. Tsay 7.2 Riskmetrics
+1. Tsay 7.3 Approche économétrique à la valeur à risque
+1. Tsay 7.4 Régression quantile
+
+#### Exercices
+
+1. Supposez que les rendements journaliers d'un actif suivent un modèle GARCH(1,1) gaussien à moyenne zéro, avec $\alpha_0 = 4.2 \times 10^{-6}$, $\alpha_1 = 0.12$, $\beta = 0.85$.
+Selons les données $(r_1,\ldots,r_n)$ observées, $\sigma_n = 0.012$ et $r_n = -0.007$. Quelle est la valeur à risque pendant une période d'un jour d'un montant de cet actif qui vaut 10000 dollars à $t=n$? Utilisez $p=0.01$.
