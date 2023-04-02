@@ -1,6 +1,6 @@
 ---
-title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2022"
-subtitle: "Cours 12 : Valeur à risque"
+title: "ECN 6578A, Économétrie des marchés financiers, Hiver 2023"
+subtitle: "Cours 11 : Valeur à risque"
 author: "William McCausland"
 date: "`r Sys.Date()`"
 output: beamer_presentation
@@ -10,7 +10,7 @@ output: beamer_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Pourquoi la valeur à risque I
+## Pourquoi la valeur à risque, partie I
 
 * L'objectif de l'investisseur : choisir un portefeuille selon ses préférences.
 * L'information pertinente est la loi prédictive conjointe de tous les rendements des actifs.
@@ -20,17 +20,17 @@ knitr::opts_chunk$set(echo = FALSE)
     * optimisation
 * Simplification 1 : focaliser sur la moyenne et la variance des rendements : (CAPM)
 * Simplification 2 : focaliser sur les grandes pertes et leur probabilité (VaR, ES)
-* Pour un preneur de décisions, les deux sont complémentaires, pas exclusives.
-* Le problème de gestion de risque pour une entreprise est similaire
+* Pour un preneur de décisions, les deux approches sont complémentaires, pas exclusives.
+* Le problème de gestion de risque pour une entreprise a des éléments en commun.
 
-## Pourqoui la valeur à risque II
+## Pourqoui la valeur à risque, partie II
 
 * Perte non-linéaire : risque de faire faillite, de devoir vendre des actifs productifs, d'avoir besoin d'un sauvetage financier
 * Exemples de risque :
     * Institutions financières, levier de financement
     * Importeurs, exporteurs (risque des devises)
     * Firmes qui exploitent des ressources naturels (risque de changements de prix)
-    * Pensions : risque de perte de valeur des actifs
+    * Fonds de pensions : risque de perte de valeur des actifs
 
 ## Valeur à Risque (VaR)
 
@@ -136,6 +136,8 @@ $$ -\mathrm{VaR} = \mu_{n+1} + \Phi^{-1}(0.05) \sigma_{n+1} = \mu_{n+1} - 1.65 \
 
 * Si $r_{n+1}|r_1,\ldots,r_n \sim t(\mu_{n+1},\sigma^2_{n+1},\nu)$ :
     * La variance d'une variable aléatoire $t$ de Student standard avec $\nu$ degrés de liberté est $\nu/(\nu-2)$.
+    * Alors si $\mathrm{Var}[\lambda Z] = \sigma^2$ et $Z \sim t_\nu$,
+    $\lambda = \sigma/\sqrt{\nu/(\nu-2)}$.
     * Soit $t_\nu(p)$ la quantile d'une variable aléatoire $t(\nu)$.
     * La valeur à risque est, par unité de valeur
 $$ -\mathrm{VaR} = \mu_{n+1} + \frac{t_\nu(p) \sigma_{n+1}}{\sqrt{\nu/(\nu-2)}}. $$
@@ -234,12 +236,19 @@ abline(v=x.ch.p)
     1. L'hypothèse de iid peu crédible : quand la volatilité est persistante, la variance asymptotique de la quantile de l'échantillon est plus grande.
     1. Pas de conditionnement à l'information pertinente.
     1. Les quantiles empiriques ne sont pas précises pour $p$ petit.
-    1. Pas de changement de distribution entre la période de l'échantillon et la période de prévision.
+    1. Il faut supposer qu'il n'y aie pas de changement de loi entre la période de l'échantillon et la période de prévision.
 
-## Régression quantile I
+## Aparté : la moyenne comme choix optimal
 
-* Rappel : la moyenne $E[r]$ est la solution du problème suivant de minimization de perte quadratique espérée :
+- Soit $r$ une variable aléatoire d'une loi, $r_1,\ldots,r_n$ une échantillon de cette loi.
+- On veux choisir une valeur représentative de la loi ou de l'échantillon.
+- La moyenne $\beta = E[r]$ est la solution du problème suivant de minimization de perte quadratique espérée :
 $$ \arg\min_\beta E[(r-\beta)^2] = \arg\min_\beta E[(r-E[r])^2] + (E[r]-\beta)^2. $$
+- La moyenne de l'échantillon $b = \bar{r} = n^{-1} \sum_{i=1}^n r_i$ est la solution du problème de moindres carrés:
+$$ \arg\min_b n^{-1} \sum_{i=1}^n (r_i-b)^2. $$
+
+## Aparté : les quantiles comme choix optimaux
+
 * La quantile $x_p = F^{-1}(p)$ est la solution du problème suivant minimization de perte espérée :
 $$ x_p = \arg\min_\beta E[w_p(r-\beta)], $$
 * La fonction de perte $w_p$ est
@@ -256,7 +265,7 @@ p=0.8; lines(z, p*z*(z>=0) - (1-p)*z*(z<0), col='red')
 p=0.2; lines(z, p*z*(z>=0) - (1-p)*z*(z<0), col='green')
 ```
 
-## Régression quantile II
+## Régression quantile
 
 * Supposons que la quantile conditionnelle de $r_t$ sachant $x_t$, dénoté $q_p|x_t$, est linéaire en $x_t$ : $q_p|x = \beta_p^\top x$.
 * Alors $\beta_p$ est la solution de
