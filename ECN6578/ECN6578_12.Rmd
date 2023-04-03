@@ -104,9 +104,9 @@ $$ \sigma_t^2[k] = k\sigma_{t+1}^2. $$
 $$ P_tQ \times -\Phi^{-1}(0.05) \sigma_{t+1} \approx P_tQ  \times 1.65 \sigma_{t+1} $$
 * Pour $p=0.05$, $l=k$, la VaR est de
 $$ P_tQ \times -\Phi^{-1}(0.05) \sqrt{k} \sigma_{t+1} \approx P_tQ  \times 1.65 \sqrt{k} \sigma_{t+1} $$
-* Notez l'approximation $R_t = r_t$.
+* Notez l'approximation $R_{t+l} = r_{t+l}$. On utilise $r_{t+l}$ dans le modèle IGARCH, $R_{t+l}$ pour calculer la perte.
 * Exemple 7.1 :
-    * $\sigma_t = 0.53\%$ (écart-type empirique du rendement journalier pour le taux d'échange DM/Dollar, juin 1997)
+    * $\sigma_{t+1} = 0.53\%$ (écart-type empirique du rendement journalier pour le taux d'échange DM/Dollar, juin 1997)
     * $P_tQ = 10^7\, \$$
     * $p = 0.05$ alors $\Phi^{-1}(p) = \Phi^{-1}(0.05) \approx -1.65$
     * $\mathrm{VaR}(1) = 10^7 \times 1.65 \times 0.0053 = 87450\,\$$
