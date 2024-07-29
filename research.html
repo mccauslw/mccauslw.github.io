@@ -11,20 +11,29 @@
 
 
 
-<title>research.utf8</title>
+<title>research.knit</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -36,11 +45,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -53,32 +57,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -90,10 +69,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -110,40 +85,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 64px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h2 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h3 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h4 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h5 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
-.section h6 {
-  padding-top: 69px;
-  margin-top: -69px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -171,7 +122,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -183,7 +134,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -193,11 +144,28 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.parent().addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -209,13 +177,12 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -223,16 +190,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -276,7 +236,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -292,25 +252,19 @@ $(document).ready(function () {
   <a href="./CV/CVMcCausland.pdf">CV</a>
 </li>
 <li>
-  <a href="ECN7060.html">ECN 7060</a>
-</li>
-<li>
-  <a href="ECN6578.html">ECN 6578</a>
-</li>
-<li>
   <a href="R_links.html">R Links</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="contact.html">
-    <span class="fas fa-envelope fa-lg"></span>
+    <span class="fa fa-envelope fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="http://github.com/mccauslw">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -319,7 +273,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -327,61 +281,111 @@ $(document).ready(function () {
 </div>
 
 
-<div id="section" class="section level2">
-<h2>—</h2>
 <p><link rel="stylesheet" href="styles.css" type="text/css"></p>
 <div id="papers-in-progress" class="section level3">
 <h3>Papers in progress</h3>
 <div id="state-space-models" class="section level4">
 <h4>State Space Models</h4>
-<p><a href="./papers/McCaMillPell.pdf">Multivariate stochastic volatility using the HESSIAN method</a> (with Shirley Miller and Denis Pelletier)</p>
-<p><a href="./papers/McCa_DFM-SV.pdf">Dynamic factor models with stochastic volatility</a></p>
-<p>A flexible stochastic conditional duration model (with Samuel Gingras)</p>
-<p><a href="./papers/McCaGing_theta_draw.pdf">Joint sampling of states and parameters in state space models</a> (with Samuel Gingras)</p>
+<p>[<a href="./papers/McCaGing_theta_draw.pdf">Joint sampling of states
+and parameters in state space models</a> (with Samuel Gingras)</p>
+<p>Dynamic factor models with stochastic
+volatility](./papers/McCa_DFM-SV.pdf)</p>
+<p>A flexible stochastic conditional duration model (with Samuel
+Gingras)</p>
 <p>On the unconditional distribution of time-varying parameters</p>
 </div>
 <div id="random-choice-models" class="section level4">
 <h4>Random Choice Models</h4>
-<p>Testing axioms of stochastic discrete choice using population choice probabilities (with Tony Marley and Clint Davis-Stober)</p>
-<p>An illustrated guide to context effects (with Tony Marley, Clint Davis-Stober and Brandon Turner)</p>
-<p>On the multiplicative inequality (with Tony Marley)</p>
-<p>A new experiment for population choice probabilities (with Charlie Gerringer, YouGov)</p>
+<p><a href="./papers/McCaMarlDavi24.pdf">A population choice experiment
+for testing axioms of stochastic discrete choice</a>, submitted to
+Judgment and Decision Making. (with Tony Marley and Clint
+Davis-Stober)</p>
+<p>A new experiment for population choice probabilities (with Charlie
+Gerringer, YouGov)</p>
 <p>RanCh: A package for abstract discrete Random Choice analysis</p>
-<p>A data archive for context effects (with Hope Snyder and Clint Davis-Stober)</p>
 </div>
 </div>
-<div id="journal-articles-reverse-order-of-publication" class="section level3">
+<div id="journal-articles-reverse-order-of-publication"
+class="section level3">
 <h3>Journal articles (reverse order of publication)</h3>
-<p><a href="./papers/McCaDaviMarlParkBrow.pdf">Testing the random utility hypothesis directly</a> <em>Economic Journal</em>, forthcoming.<br />
-(with Clintin Davis-Stober, A. A. J. Marley, Sanghyuk Park and Nicholas Brown)</p>
-<p><a href="./papers/DjegMcCa14.pdf">The HESSIAN method for models with leverage-like effects</a> <em>Journal of Financial Econometrics</em>, 2015, <strong>13</strong>, 722-755.<br />
+<p><a href="./papers/McCaMarl_JMP_24.pdf">On the multiplicative
+inequality</a> <em>Journal of Mathematical Psychology</em>, 2024,
+<strong>122</strong>, ??-??. (with Tony Marley)</p>
+<p><a href="./papers/DaviMarlMcCaTurn23.pdf">An illustrated guide to
+context effects</a> <em>Journal of Mathematical Psychology</em>, 2023,
+<strong>115</strong>, ??-??. (with Clint Davis-Stober, A. A. J. Marley
+and Brandon Turner)</p>
+<p><a href="./papers/McCaMillPell.pdf">Multivariate stochastic
+volatility using the HESSIAN method</a> <em>Econometrics and
+Statistics</em>, 2021, <strong>17</strong>, 76-94. (with Shirley Miller
+and Denis Pelletier)</p>
+<p><a href="./papers/McCaDaviMarlParkBrow.pdf">Testing the random
+utility hypothesis directly</a> <em>Economic Journal</em>, 2020,
+<strong>130</strong>, 183-207.<br />
+(with Clintin Davis-Stober, A. A. J. Marley, Sanghyuk Park and Nicholas
+Brown)</p>
+<p><a href="./papers/DjegMcCa14.pdf">The HESSIAN method for models with
+leverage-like effects</a> <em>Journal of Financial Econometrics</em>,
+2015, <strong>13</strong>, 722-755.<br />
 (with Gbowan B. Djegnéné)</p>
-<p><a href="./papers/McCaMarl_JMP_14.pdf">Bayesian inference and model comparison for random choice structures</a> <em>Journal of Mathematical Psychology</em>, 2014, <strong>62-6</strong>, 33-46.<br />
+<p><a href="./papers/McCaMarl_JMP_14.pdf">Bayesian inference and model
+comparison for random choice structures</a> <em>Journal of Mathematical
+Psychology</em>, 2014, <strong>62-6</strong>, 33-46.<br />
 (with A.A.J. Marley)</p>
-<p><a href="./papers/McCaMarl_JMP_13.pdf">Prior Distributions for Random Choice Structures</a> <em>Journal of Mathematical Psychology</em>, 2013, <strong>57</strong>, 78-93.<br />
+<p><a href="./papers/McCaMarl_JMP_13.pdf">Prior Distributions for Random
+Choice Structures</a> <em>Journal of Mathematical Psychology</em>, 2013,
+<strong>57</strong>, 78-93.<br />
 (with A.A.J. Marley)</p>
-<p><a href="./papers/McCa_JEconometrics_12.pdf">The HESSIAN Method (Highly Efficient State Smoothing, In A Nutshell)</a> <em>Journal of Econometrics</em>, 2012, <strong>168</strong>, 189-206.</p>
-<p><a href="./papers/McCaMillPell_CSDA_11.pdf">Simulation smoothing for state-space models: A computational efficiency analysis</a> <em>Computational Statistics and Data Analysis</em>, 2011, <strong>55</strong>, 199-212.<br />
+<p><a href="./papers/McCa_JEconometrics_12.pdf">The HESSIAN Method
+(Highly Efficient State Smoothing, In A Nutshell)</a> <em>Journal of
+Econometrics</em>, 2012, <strong>168</strong>, 189-206.</p>
+<p><a href="./papers/McCaMillPell_CSDA_11.pdf">Simulation smoothing for
+state-space models: A computational efficiency analysis</a>
+<em>Computational Statistics and Data Analysis</em>, 2011,
+<strong>55</strong>, 199-212.<br />
 (with Shirley Miller and Denis Pelletier)</p>
-<p><a href="./papers/McCa_Economica_09.pdf">Random Consumer Demand</a> <em>Economica</em>, 2009, <strong>76</strong>, 89-107.</p>
-<p><a href="./papers/McCa_JEconometrics_08.pdf">On Bayesian Analysis and Computation for Functions with Monotonicity and Curvature Restrictions</a> <em>Journal of Econometrics</em>, 2008, <strong>142</strong>, 484-507.</p>
-<p><a href="./papers/McCa_JEconometrics_07.pdf">Time Reversibility of Stationary Regular Finite State Markov Chains</a> <em>Journal of Econometrics</em>, 2007, <strong>136</strong>, 303-318.</p>
-<p><a href="./papers/McCa_CompEcon_04.pdf">Using the BACC Software for Bayesian Inference</a> <em>Computational Economics</em>, 2004, <strong>23</strong>, 201-218.</p>
-<p><a href="./papers/GeweMcCa_AJAE_01.pdf">Bayesian Specification Analysis in Econometrics</a> <em>American Journal of Agricultural Economics</em>, 2001, <strong>83</strong>, 1181-1186. (with John Geweke)</p>
+<p><a href="./papers/McCa_Economica_09.pdf">Random Consumer Demand</a>
+<em>Economica</em>, 2009, <strong>76</strong>, 89-107.</p>
+<p><a href="./papers/McCa_JEconometrics_08.pdf">On Bayesian Analysis and
+Computation for Functions with Monotonicity and Curvature
+Restrictions</a> <em>Journal of Econometrics</em>, 2008,
+<strong>142</strong>, 484-507.</p>
+<p><a href="./papers/McCa_JEconometrics_07.pdf">Time Reversibility of
+Stationary Regular Finite State Markov Chains</a> <em>Journal of
+Econometrics</em>, 2007, <strong>136</strong>, 303-318.</p>
+<p><a href="./papers/McCa_CompEcon_04.pdf">Using the BACC Software for
+Bayesian Inference</a> <em>Computational Economics</em>, 2004,
+<strong>23</strong>, 201-218.</p>
+<p><a href="./papers/GeweMcCa_AJAE_01.pdf">Bayesian Specification
+Analysis in Econometrics</a> <em>American Journal of Agricultural
+Economics</em>, 2001, <strong>83</strong>, 1181-1186. (with John
+Geweke)</p>
 </div>
 <div id="other-publications" class="section level3">
 <h3>Other publications</h3>
-<p><a href="./papers/McCa_IREF_10.pdf">Economic Modeling and Inference, by Bent Jesper Christensen and Nicholas M. Kiefer</a> <em>International Review of Economics and Finance</em>, 2010, <strong>19</strong>, 793-794. (book review)</p>
-<p>Discussion on the Paper by Rue, Martino and Chopin <em>Journal of the Royal Statistical Society: Series B</em>, 2009, <strong>71</strong>, 375-375.</p>
-<p>Bayesian Inference on Time-Varying Proportions, in S. Chib, W. Griffiths, G. Koop and D. Terrell (eds.), <em>Advances in Econometrics, Volume 23: Bayesian Econometric Methods</em>. Bingley, UK: Emerald Books, 2008, 525-544.<br />
+<p><a href="./papers/McCa_IREF_10.pdf">Economic Modeling and Inference,
+by Bent Jesper Christensen and Nicholas M. Kiefer</a> <em>International
+Review of Economics and Finance</em>, 2010, <strong>19</strong>,
+793-794. (book review)</p>
+<p>Discussion on the Paper by Rue, Martino and Chopin <em>Journal of the
+Royal Statistical Society: Series B</em>, 2009, <strong>71</strong>,
+375-375.</p>
+<p>Bayesian Inference on Time-Varying Proportions, in S. Chib, W.
+Griffiths, G. Koop and D. Terrell (eds.), <em>Advances in Econometrics,
+Volume 23: Bayesian Econometric Methods</em>. Bingley, UK: Emerald
+Books, 2008, 525-544.<br />
 (with Brahim Lgui)</p>
-<p>Using Simulation Methods for Bayesian Econometric Models in David E. A. Giles (ed.), <em>Computer-Aided Econometrics</em>. New York: Marcel Dekker, 2003, 209-261. (with John Geweke and John J. Stevens)</p>
-<p>Embedding Bayesian Tools in Mathematical Software <em>Proceedings of the International Society for Bayesian Analysis (ISBA)</em>, 2000, 165-173. (with John Geweke)</p>
+<p>Using Simulation Methods for Bayesian Econometric Models in David E.
+A. Giles (ed.), <em>Computer-Aided Econometrics</em>. New York: Marcel
+Dekker, 2003, 209-261. (with John Geweke and John J. Stevens)</p>
+<p>Embedding Bayesian Tools in Mathematical Software <em>Proceedings of
+the International Society for Bayesian Analysis (ISBA)</em>, 2000,
+165-173. (with John Geweke)</p>
 </div>
 <div id="unpublished-research" class="section level3">
 <h3>Unpublished research</h3>
-<p>The Ghost in the Machine: Inferring Machine-Based Strategies from Observed Behavior (with Jim Engle-Warnick and John Miller)</p>
-</div>
+<p>The Ghost in the Machine: Inferring Machine-Based Strategies from
+Observed Behavior (with Jim Engle-Warnick and John Miller)</p>
 </div>
 
 
@@ -411,7 +415,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

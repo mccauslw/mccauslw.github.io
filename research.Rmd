@@ -7,7 +7,7 @@
 
 #### State Space Models
 
-[[Joint sampling of states and parameters in state space models](./papers/McCaGing_theta_draw.pdf)
+[Joint sampling of states and parameters in state space models](./papers/McCaGing_theta_draw.pdf)
 (with Samuel Gingras)
 
 Dynamic factor models with stochastic volatility](./papers/McCa_DFM-SV.pdf)
