@@ -7,42 +7,47 @@
 
 #### State Space Models
 
-[Multivariate stochastic volatility using the HESSIAN method](./papers/McCaMillPell.pdf)
-(with Shirley Miller and Denis Pelletier)
-
-[Dynamic factor models with stochastic volatility](./papers/McCa_DFM-SV.pdf)
-
-A flexible stochastic conditional duration model
+[[Joint sampling of states and parameters in state space models](./papers/McCaGing_theta_draw.pdf)
 (with Samuel Gingras)
 
-[Joint sampling of states and parameters in state space models](./papers/McCaGing_theta_draw.pdf)
+Dynamic factor models with stochastic volatility](./papers/McCa_DFM-SV.pdf)
+
+A flexible stochastic conditional duration model
 (with Samuel Gingras)
 
 On the unconditional distribution of time-varying parameters
 
 #### Random Choice Models
 
-Testing axioms of stochastic discrete choice using population choice probabilities
+[A population choice experiment for testing axioms of stochastic discrete choice](./papers/McCaMarlDavi24.pdf),
+submitted to Judgment and Decision Making.
 (with Tony Marley and Clint Davis-Stober)
-
-An illustrated guide to context effects
-(with Tony Marley, Clint Davis-Stober and Brandon Turner)
-
-On the multiplicative inequality
-(with Tony Marley)
 
 A new experiment for population choice probabilities
 (with Charlie Gerringer, YouGov)
 
 RanCh: A package for abstract discrete Random Choice analysis
 
-A data archive for context effects
-(with Hope Snyder and Clint Davis-Stober)
-
 ### Journal articles (reverse order of publication)
 
+[On the multiplicative inequality](./papers/McCaMarl_JMP_24.pdf)
+*Journal of Mathematical Psychology*, 2024,
+**122**, ??-??.
+(with Tony Marley)
+
+[An illustrated guide to context effects](./papers/DaviMarlMcCaTurn23.pdf)
+*Journal of Mathematical Psychology*, 2023,
+**115**, ??-??.
+(with Clint Davis-Stober, A. A. J. Marley and Brandon Turner)
+
+[Multivariate stochastic volatility using the HESSIAN method](./papers/McCaMillPell.pdf)
+*Econometrics and Statistics*, 2021,
+**17**, 76-94.
+(with Shirley Miller and Denis Pelletier)
+
 [Testing the random utility hypothesis directly](./papers/McCaDaviMarlParkBrow.pdf)
-*Economic Journal*, forthcoming.  
+*Economic Journal*, 2020,
+**130**, 183-207.  
 (with Clintin Davis-Stober, A. A. J. Marley, Sanghyuk Park and Nicholas Brown)
 
 [The HESSIAN method for models with leverage-like effects](./papers/DjegMcCa14.pdf)
