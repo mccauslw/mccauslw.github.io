@@ -3,9 +3,9 @@
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-### Papers in progress
+# Papers in progress
 
-#### State Space Models
+## State Space Models
 
 [Joint sampling of states and parameters in state space models](./papers/McCaGing_theta_draw.pdf)
 (with Samuel Gingras)
