@@ -3,31 +3,6 @@
 
 <link rel="stylesheet" href="styles.css" type="text/css">
 
-# Papers in progress
-
-## State Space Models
-
-[Joint sampling of states and parameters in state space models](./papers/McCaGing_theta_draw.pdf)
-(with Samuel Gingras)
-
-[Dynamic factor models with stochastic volatility](./papers/McCa_DFM-SV.pdf)
-
-A flexible stochastic conditional duration model
-(with Samuel Gingras)
-
-On the unconditional distribution of time-varying parameters
-
-#### Random Choice Models
-
-[A population choice experiment for testing axioms of stochastic discrete choice](./papers/McCaMarlDavi24.pdf),
-submitted to Judgment and Decision Making.
-(with Tony Marley and Clint Davis-Stober)
-
-A new experiment for population choice probabilities
-(with Charlie Gerringer, YouGov)
-
-RanCh: A package for abstract discrete Random Choice analysis
-
 ### Journal articles (reverse order of publication)
 
 [On the multiplicative inequality](./papers/McCaMarl_JMP_24.pdf)
@@ -93,6 +68,31 @@ RanCh: A package for abstract discrete Random Choice analysis
 [Bayesian Specification Analysis in Econometrics](./papers/GeweMcCa_AJAE_01.pdf)
 *American Journal of Agricultural Economics*, 2001,
 **83**, 1181-1186. (with John Geweke)
+
+### Papers in progress
+
+#### State Space Models
+
+[Joint sampling of states and parameters in state space models](./papers/McCaGing_theta_draw.pdf)
+(with Samuel Gingras)
+
+[Dynamic factor models with stochastic volatility](./papers/McCa_DFM-SV.pdf)
+
+A flexible stochastic conditional duration model
+(with Samuel Gingras)
+
+On the unconditional distribution of time-varying parameters
+
+#### Random Choice Models
+
+[A population choice experiment for testing axioms of stochastic discrete choice](./papers/McCaMarlDavi24.pdf),
+submitted to Judgment and Decision Making.
+(with Tony Marley and Clint Davis-Stober)
+
+A new experiment for population choice probabilities
+(with Charlie Gerringer, YouGov)
+
+RanCh: A package for abstract discrete Random Choice analysis
 
 ### Other publications
 
