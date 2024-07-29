@@ -7,10 +7,6 @@ navbar:
       href: research.html
     - text: "CV"
       href: ./CV/CVMcCausland.pdf
-    - text: "ECN 7060"
-      href: ECN7060.html
-    - text: "ECN 6578"
-      href: ECN6578.html
     - text: "R Links"
       href: R_links.html
   right:
