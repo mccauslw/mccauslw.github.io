@@ -10,7 +10,7 @@
 [Joint sampling of states and parameters in state space models](./papers/McCaGing_theta_draw.pdf)
 (with Samuel Gingras)
 
-Dynamic factor models with stochastic volatility](./papers/McCa_DFM-SV.pdf)
+[Dynamic factor models with stochastic volatility](./papers/McCa_DFM-SV.pdf)
 
 A flexible stochastic conditional duration model
 (with Samuel Gingras)
